@@ -61,7 +61,8 @@
       "instructions": [
         "You will see a row of five arrows.",
         "Tell which way the middle arrow points, using the buttons or your arrow keys.",
-        "Ignore the side arrows: sometimes they point the other way."
+        "Ignore the side arrows: sometimes they point the other way.",
+        "Each mistake costs 20 points: be quick, but don’t guess."
       ],
       "left": "Left",
       "right": "Right",
@@ -73,7 +74,8 @@
       "instructions": [
         "First you will see a symbol: remember it.",
         "Then another appears: answer “Yes” if it matches the previous one or “No” if it is different.",
-        "Each symbol is compared with the one right before it. Streaks of correct answers multiply your points."
+        "Each symbol is compared with the one right before it. Streaks of correct answers multiply your points.",
+        "Each mistake costs 10 points and resets your streak."
       ],
       "remember": "Remember this symbol",
       "question": "Does it match the previous one?",
@@ -106,7 +108,8 @@
       "instructions": [
         "At the top you will see the current rule: COLOR or SHAPE.",
         "Tap the bottom card that matches the middle card under that rule (or use your arrow keys).",
-        "The rule changes without warning: always check the banner."
+        "The rule changes without warning: always check the banner.",
+        "Each mistake costs 20 points: be quick, but don’t guess."
       ],
       "rule": {
         "color": "COLOR",
@@ -131,7 +134,7 @@
       "instructions": [
         "An operation appears: type the result with the on-screen keypad or your keyboard.",
         "Press OK (or Enter) to answer. If one is tricky, you can skip it.",
-        "Every correct answer earns points and raises the difficulty."
+        "Correct answers earn points and each wrong answer costs 10 (skipping costs nothing). Several correct answers in a row raise the difficulty."
       ],
       "delete": "Delete",
       "ok": "OK",

@@ -1,6 +1,6 @@
 import { clampLevel, createStaircase, stepStaircase, type Staircase } from '../../core/difficulty';
 import { randInt, type Rng } from '../../core/rng';
-import { accuracyOf } from '../shared/scoring';
+import { accuracyOf, addPoints } from '../shared/scoring';
 import type { GameResult } from '../types';
 
 export type Op = '+' | '-' | '×' | '÷' | '+×';
@@ -16,6 +16,8 @@ export interface Problem {
 export const QUICK_MATH_MAX_SCORE = 8000;
 export const QUICK_MATH_REFERENCE_SCORE = 500;
 export const MAX_INPUT_DIGITS = 4;
+/** A wrong answer costs this much; skipping costs nothing. */
+export const QUICK_MATH_WRONG_PENALTY = 10;
 
 const add = (a: number, b: number): Problem => ({ a, b, op: '+', answer: a + b });
 const sub = (x: number, y: number): Problem => {
@@ -97,13 +99,13 @@ export function deleteDigit(state: QuickMathState): QuickMathState {
   return state.input === '' ? state : { ...state, input: state.input.slice(0, -1) };
 }
 
-function advance(state: QuickMathState, correct: boolean, rng: Rng): QuickMathState {
+function advance(state: QuickMathState, correct: boolean, penalize: boolean, rng: Rng): QuickMathState {
   const staircase = stepStaircase(state.staircase, correct);
   return {
     staircase,
     problem: makeProblem(staircase.level, rng),
     input: '',
-    score: state.score + (correct ? 10 + state.staircase.level : 0),
+    score: addPoints(state.score, correct ? 10 + state.staircase.level : penalize ? -QUICK_MATH_WRONG_PENALTY : 0),
     correct: state.correct + (correct ? 1 : 0),
     total: state.total + 1,
   };
@@ -112,11 +114,11 @@ function advance(state: QuickMathState, correct: boolean, rng: Rng): QuickMathSt
 export function submitAnswer(state: QuickMathState, rng: Rng): { state: QuickMathState; correct: boolean | null } {
   if (state.input === '') return { state, correct: null };
   const correct = Number(state.input) === state.problem.answer;
-  return { state: advance(state, correct, rng), correct };
+  return { state: advance(state, correct, !correct, rng), correct };
 }
 
 export function skipProblem(state: QuickMathState, rng: Rng): QuickMathState {
-  return advance(state, false, rng);
+  return advance(state, false, false, rng);
 }
 
 export function quickMathResult(state: QuickMathState, durationMs: number): GameResult {

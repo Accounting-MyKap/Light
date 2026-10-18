@@ -93,3 +93,18 @@ test('ruleSwitchResult', () => {
     durationMs: 60_000,
   });
 });
+
+describe('wrong answers deduct points', () => {
+  test('a wrong answer costs 20 points, never below 0', () => {
+    const r = createRng(21);
+    const s = { ...createRuleSwitchGame(1, r, 0), score: 50 };
+    expect(answerRule(s, other(s.trial.correctSide), 1000, r).state.score).toBe(30);
+    expect(answerRule({ ...s, score: 5 }, other(s.trial.correctSide), 1000, r).state.score).toBe(0);
+  });
+  test('late answers and timeouts cost nothing', () => {
+    const r = createRng(22);
+    const s = { ...createRuleSwitchGame(1, r, 0), score: 50 };
+    expect(answerRule(s, other(s.trial.correctSide), 3001, r).state.score).toBe(50);
+    expect(timeoutRule(s, 3000, r).score).toBe(50);
+  });
+});

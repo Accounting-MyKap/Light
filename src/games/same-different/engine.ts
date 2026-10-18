@@ -1,7 +1,7 @@
 import { clampLevel, createStaircase, stepStaircase, type Staircase } from '../../core/difficulty';
 import { pick, type Rng } from '../../core/rng';
 import { MIN_RT_MS } from '../shared/constants';
-import { accuracyOf } from '../shared/scoring';
+import { accuracyOf, addPoints } from '../shared/scoring';
 import type { GameResult } from '../types';
 
 export type SymbolId =
@@ -25,6 +25,8 @@ export type SymbolId =
 
 export const SAME_DIFF_MAX_SCORE = 12000;
 export const SAME_DIFF_REFERENCE_SCORE = 1500;
+/** A wrong answer costs this much (and resets the streak), so random guessing averages about 0. */
+export const SAME_DIFF_WRONG_PENALTY = 10;
 
 const POOL_DISTINCT: readonly SymbolId[] = ['circle', 'square', 'triangle', 'star', 'heart', 'cross'];
 const POOL_ORIENTED: readonly SymbolId[] = ['tri-up', 'tri-down', 'tri-left', 'tri-right', 'diamond', 'square'];
@@ -81,7 +83,7 @@ export function createSameDiffGame(startLevel: number, rng: Rng, now: number): S
   };
 }
 
-function advance(state: SameDiffState, correct: boolean, now: number, rng: Rng): SameDiffState {
+function advance(state: SameDiffState, correct: boolean, penalize: boolean, now: number, rng: Rng): SameDiffState {
   const staircase = stepStaircase(state.staircase, correct);
   const streak = correct ? state.streak + 1 : 0;
   return {
@@ -89,7 +91,7 @@ function advance(state: SameDiffState, correct: boolean, now: number, rng: Rng):
     previous: state.current,
     current: nextSymbol(state.current, staircase.level, rng),
     trialStartedAt: now,
-    score: state.score + (correct ? 10 * streakMultiplier(streak) : 0),
+    score: addPoints(state.score, correct ? 10 * streakMultiplier(streak) : penalize ? -SAME_DIFF_WRONG_PENALTY : 0),
     streak,
     correct: state.correct + (correct ? 1 : 0),
     total: state.total + 1,
@@ -104,13 +106,14 @@ export function answerSameDiff(
 ): { state: SameDiffState; correct: boolean | null } {
   const rt = now - state.trialStartedAt;
   if (rt < MIN_RT_MS) return { state, correct: null };
-  const isSame = state.current === state.previous;
-  const correct = (answer === 'same') === isSame && rt <= timeLimitMs(state.staircase.level);
-  return { state: advance(state, correct, now, rng), correct };
+  // A late answer counts as a miss, like a timeout, and costs nothing; only a wrong answer deducts.
+  const late = rt > timeLimitMs(state.staircase.level);
+  const correct = !late && (answer === 'same') === (state.current === state.previous);
+  return { state: advance(state, correct, !late, now, rng), correct };
 }
 
 export function timeoutSameDiff(state: SameDiffState, now: number, rng: Rng): SameDiffState {
-  return advance(state, false, now, rng);
+  return advance(state, false, false, now, rng);
 }
 
 export function sameDiffResult(state: SameDiffState, durationMs: number): GameResult {

@@ -168,10 +168,15 @@ minutos en "Secuencia de luces", que va por rondas.
 | # | Juego (id) | Área | Mecánica | Qué controla el nivel (1–10) | Puntaje |
 |---|---|---|---|---|---|
 | 1 | Secuencia de luces (`sequence-lights`) | Memoria | Se iluminan casillas de una cuadrícula en orden; el jugador las repite. 8 rondas. Acierto → la secuencia crece 1; error → baja 1 (mín. 3). | Largo de secuencia = nivel + 2 (3–12). Cuadrícula 3×3 (largo 3–5), 4×4 (6–8), 5×5 (9–12). | Σ (largo × 10) de las rondas acertadas |
-| 2 | Flechas (`arrows`) | Atención | Fila de 5 flechas; se responde la dirección de la central (botones izquierda/derecha, flechas del teclado). 60 s. | Proporción de flechas incongruentes (30 %→70 %) y ventana de respuesta (2000→700 ms). | Por acierto: 10 + bonus de rapidez de 0 a 10 |
-| 3 | ¿Igual o distinto? (`same-different`) | Velocidad | Aparecen símbolos uno tras otro; se responde si el actual es igual al anterior. 60 s. | Parecido entre símbolos del conjunto y tiempo máximo por símbolo (3000→1000 ms; si se agota, cuenta como error). | 10 por acierto × multiplicador de racha (×1; ×2 desde 5 seguidos; ×3 desde 10) |
-| 4 | Cambio de regla (`rule-switch`) | Flexibilidad | Una carta (forma + color) se empareja con una de dos cartas objetivo, según la regla visible arriba: COLOR o FORMA. 60 s. | Cada cuántos ensayos cambia la regla (6→2, con variación aleatoria) y ventana de respuesta. | Por acierto: 10 + bonus de rapidez; +5 extra si el acierto ocurre justo tras un cambio de regla |
-| 5 | Cálculo relámpago (`quick-math`) | Matemáticas | Operaciones contra el reloj, respuesta con teclado numérico en pantalla + OK; se puede saltar. 60 s. | Operaciones y rangos: sumas de 1 cifra (1) → restas → tablas de multiplicar → 2 cifras → operaciones mixtas (10). | Por acierto: 10 + nivel actual |
+| 2 | Flechas (`arrows`) | Atención | Fila de 5 flechas; se responde la dirección de la central (botones izquierda/derecha, flechas del teclado). 60 s. | Proporción de flechas incongruentes (30 %→70 %) y ventana de respuesta (2000→700 ms). | Por acierto: 10 + bonus de rapidez de 0 a 10. Por error: −20 |
+| 3 | ¿Igual o distinto? (`same-different`) | Velocidad | Aparecen símbolos uno tras otro; se responde si el actual es igual al anterior. 60 s. | Parecido entre símbolos del conjunto y tiempo máximo por símbolo (3000→1000 ms; si se agota, cuenta como error). | 10 por acierto × multiplicador de racha (×1; ×2 desde 5 seguidos; ×3 desde 10). Por error: −10 y la racha vuelve a 0 |
+| 4 | Cambio de regla (`rule-switch`) | Flexibilidad | Una carta (forma + color) se empareja con una de dos cartas objetivo, según la regla visible arriba: COLOR o FORMA. 60 s. | Cada cuántos ensayos cambia la regla (6→2, con variación aleatoria) y ventana de respuesta. | Por acierto: 10 + bonus de rapidez; +5 extra si el acierto ocurre justo tras un cambio de regla. Por error: −20 |
+| 5 | Cálculo relámpago (`quick-math`) | Matemáticas | Operaciones contra el reloj, respuesta con teclado numérico en pantalla + OK; se puede saltar. 60 s. | Operaciones y rangos: sumas de 1 cifra (1) → restas → tablas de multiplicar → 2 cifras → operaciones mixtas (10). | Por acierto: 10 + nivel actual. Por error: −10; saltar no resta |
+
+**Errores que restan** (juegos 2–5, decidido el 2026-10-18): un error resta puntos para que adivinar al azar
+promedie unos 0 puntos y jugar con cuidado siempre rinda más. El puntaje nunca baja de 0. No responder a
+tiempo, o responder tarde, cuenta como fallo para la precisión pero no resta. Las instrucciones de cada
+juego indican cuánto resta un error.
 
 **Dificultad dentro de la partida** (juegos 2–5): tras 4 aciertos seguidos sube un nivel;
 tras 2 errores seguidos baja uno. `levelReached` es el nivel máximo alcanzado.

@@ -1,7 +1,7 @@
 import { clampLevel, createStaircase, stepStaircase, type Staircase } from '../../core/difficulty';
 import { pick, randInt, type Rng } from '../../core/rng';
 import { MIN_RT_MS } from '../shared/constants';
-import { accuracyOf, speedBonus } from '../shared/scoring';
+import { accuracyOf, addPoints, speedBonus } from '../shared/scoring';
 import type { GameResult } from '../types';
 
 export type Shape = 'circle' | 'square' | 'triangle';
@@ -26,6 +26,8 @@ export const COLOR_STYLE: Record<CardColor, { hex: string; pattern: 'solid' | 's
 
 export const RULE_SWITCH_MAX_SCORE = 10000;
 export const RULE_SWITCH_REFERENCE_SCORE = 1400;
+/** A wrong answer costs this much, so fast random guessing averages about 0. */
+export const RULE_SWITCH_WRONG_PENALTY = 20;
 
 export interface RuleTrial {
   stimulus: Card;
@@ -102,7 +104,7 @@ function advance(state: RuleSwitchState, correct: boolean, points: number, now: 
     justSwitched,
     trial: makeRuleTrial(rule, rng),
     trialStartedAt: now,
-    score: state.score + points,
+    score: addPoints(state.score, points),
     correct: state.correct + (correct ? 1 : 0),
     total: state.total + 1,
   };
@@ -117,8 +119,14 @@ export function answerRule(
   const rt = now - state.trialStartedAt;
   if (rt < MIN_RT_MS) return { state, correct: null };
   const windowMs = ruleWindowMs(state.staircase.level);
-  const correct = side === state.trial.correctSide && rt <= windowMs;
-  const points = correct ? 10 + speedBonus(rt, windowMs) + (state.justSwitched ? 5 : 0) : 0;
+  // A late answer counts as a miss, like a timeout, and costs nothing; only a wrong answer deducts.
+  const late = rt > windowMs;
+  const correct = !late && side === state.trial.correctSide;
+  const points = correct
+    ? 10 + speedBonus(rt, windowMs) + (state.justSwitched ? 5 : 0)
+    : late
+      ? 0
+      : -RULE_SWITCH_WRONG_PENALTY;
   return { state: advance(state, correct, points, now, rng), correct };
 }
 

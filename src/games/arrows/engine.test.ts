@@ -73,3 +73,24 @@ test('arrowsResult', () => {
     durationMs: 60_000,
   });
 });
+
+describe('wrong answers deduct points', () => {
+  test('a wrong answer costs 20 points', () => {
+    const r = createRng(11);
+    const s = { ...createArrowsGame(1, r, 0), score: 50 };
+    expect(answerArrow(s, opposite(s.trial.direction), 500, r).state.score).toBe(30);
+  });
+  test('the score never goes below 0', () => {
+    const r = createRng(12);
+    const s = { ...createArrowsGame(1, r, 0), score: 5 };
+    expect(answerArrow(s, opposite(s.trial.direction), 500, r).state.score).toBe(0);
+  });
+  test('late answers and timeouts are misses but cost nothing', () => {
+    const r = createRng(13);
+    const s = { ...createArrowsGame(1, r, 0), score: 50 };
+    const late = answerArrow(s, opposite(s.trial.direction), 2001, r);
+    expect(late.correct).toBe(false);
+    expect(late.state).toMatchObject({ score: 50, total: 1, correct: 0 });
+    expect(timeoutArrow(s, 2000, r).score).toBe(50);
+  });
+});

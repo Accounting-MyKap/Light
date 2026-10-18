@@ -61,7 +61,8 @@
       "instructions": [
         "Verás una fila de cinco flechas.",
         "Indica hacia dónde apunta la flecha del centro, con los botones o con las flechas del teclado.",
-        "Ignora las flechas de los lados: a veces apuntan al revés."
+        "Ignora las flechas de los lados: a veces apuntan al revés.",
+        "Cada error resta 20 puntos: responde rápido, pero sin adivinar."
       ],
       "left": "Izquierda",
       "right": "Derecha",
@@ -73,7 +74,8 @@
       "instructions": [
         "Primero verás un símbolo: recuérdalo.",
         "Luego aparecerá otro: responde «Sí» si es igual al anterior o «No» si es distinto.",
-        "Cada símbolo se compara con el que vino justo antes. Las rachas de aciertos multiplican tus puntos."
+        "Cada símbolo se compara con el que vino justo antes. Las rachas de aciertos multiplican tus puntos.",
+        "Cada error resta 10 puntos y reinicia tu racha."
       ],
       "remember": "Recuerda este símbolo",
       "question": "¿Es igual al anterior?",
@@ -106,7 +108,8 @@
       "instructions": [
         "Arriba verás la regla actual: COLOR o FORMA.",
         "Toca la carta de abajo que coincide con la carta central según esa regla (o usa las flechas del teclado).",
-        "La regla cambia sin aviso: fíjate siempre en el cartel."
+        "La regla cambia sin aviso: fíjate siempre en el cartel.",
+        "Cada error resta 20 puntos: responde rápido, pero sin adivinar."
       ],
       "rule": {
         "color": "COLOR",
@@ -131,7 +134,7 @@
       "instructions": [
         "Aparece una operación: escribe el resultado con el teclado en pantalla o el de tu computador.",
         "Pulsa OK (o Enter) para responder. Si una se te complica, puedes saltarla.",
-        "Cada acierto suma puntos y sube la dificultad."
+        "Cada acierto suma puntos y cada error resta 10 (saltar no resta). Varios aciertos seguidos suben la dificultad."
       ],
       "delete": "Borrar",
       "ok": "OK",

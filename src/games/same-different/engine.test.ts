@@ -57,7 +57,7 @@ test('streak multiplies points and resets on error', () => {
   expect(s.score).toBe(60);
   now += 200;
   s = answerSameDiff(s, wrongAnswer(s), now, r).state;
-  expect(s).toMatchObject({ streak: 0, score: 60, correct: 5, total: 6 });
+  expect(s).toMatchObject({ streak: 0, score: 50, correct: 5, total: 6 });
 });
 
 test('after answering, previous becomes old current', () => {
@@ -90,9 +90,24 @@ test('sameDiffResult', () => {
   s = answerSameDiff(s, rightAnswer(s), 300, r).state;
   s = answerSameDiff(s, wrongAnswer(s), 600, r).state;
   expect(sameDiffResult(s, 60_000)).toEqual({
-    score: 10,
+    score: 0, // +10, then -10 for the mistake
     accuracy: 0.5,
     levelReached: s.staircase.maxLevel,
     durationMs: 60_000,
+  });
+});
+
+describe('wrong answers deduct points', () => {
+  test('a wrong answer costs 10 points and resets the streak, never below 0', () => {
+    const r = createRng(31);
+    const s = { ...createSameDiffGame(1, r, 0), score: 50, streak: 3 };
+    expect(answerSameDiff(s, wrongAnswer(s), 500, r).state).toMatchObject({ score: 40, streak: 0 });
+    expect(answerSameDiff({ ...s, score: 4 }, wrongAnswer(s), 500, r).state.score).toBe(0);
+  });
+  test('late answers and timeouts cost nothing', () => {
+    const r = createRng(32);
+    const s = { ...createSameDiffGame(1, r, 0), score: 50 };
+    expect(answerSameDiff(s, wrongAnswer(s), 3001, r).state.score).toBe(50);
+    expect(timeoutSameDiff(s, 3000, r).score).toBe(50);
   });
 });
