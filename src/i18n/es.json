@@ -158,5 +158,18 @@
     "completed": "¡Entrenamiento de hoy completado!",
     "done": "Hecho",
     "comeBack": "Vuelve mañana para mantener tu racha."
+  },
+  "gamesScreen": {
+    "best": "Mejor marca: {{score}}"
+  },
+  "progress": {
+    "empty": "Todavía no hay partidas. ¡Juega una para ver tu progreso!",
+    "byArea": "Puntaje por área",
+    "byGame": "Por juego",
+    "streakCurrent": "Racha actual: {{count}}",
+    "streakBest": "Mejor racha: {{count}}",
+    "daysTrained": "Días entrenados: {{count}}",
+    "chartLabel": "Últimos {{count}} puntajes: mínimo {{min}}, máximo {{max}}, último {{last}}",
+    "notEnoughData": "Juega al menos dos partidas para ver tu evolución."
   }
 }

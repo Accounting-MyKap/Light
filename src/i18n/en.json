@@ -158,5 +158,18 @@
     "completed": "Today’s training is complete!",
     "done": "Done",
     "comeBack": "Come back tomorrow to keep your streak going."
+  },
+  "gamesScreen": {
+    "best": "Personal best: {{score}}"
+  },
+  "progress": {
+    "empty": "No games yet. Play one to see your progress!",
+    "byArea": "Score by area",
+    "byGame": "By game",
+    "streakCurrent": "Current streak: {{count}}",
+    "streakBest": "Best streak: {{count}}",
+    "daysTrained": "Days trained: {{count}}",
+    "chartLabel": "Last {{count}} scores: lowest {{min}}, highest {{max}}, latest {{last}}",
+    "notEnoughData": "Play at least two games to see your trend."
   }
 }
