@@ -1,0 +1,27 @@
+{
+  "app": { "name": "Light", "tagline": "Ilumina tu cerebro" },
+  "nav": { "today": "Hoy", "games": "Juegos", "progress": "Progreso", "settings": "Ajustes" },
+  "areas": {
+    "memory": "Memoria",
+    "attention": "Atención",
+    "speed": "Velocidad",
+    "flexibility": "Flexibilidad mental",
+    "math": "Matemáticas",
+    "logic": "Lógica",
+    "language": "Lenguaje"
+  },
+  "common": {
+    "start": "Comenzar",
+    "continue": "Continuar",
+    "exit": "Salir",
+    "back": "Volver",
+    "playAgain": "Jugar de nuevo",
+    "next": "Siguiente",
+    "howToPlay": "¿Cómo se juega?"
+  },
+  "errors": {
+    "generic": "Algo salió mal",
+    "backHome": "Volver al inicio",
+    "gameNotFound": "No encontramos ese juego"
+  }
+}

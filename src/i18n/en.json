@@ -1,0 +1,27 @@
+{
+  "app": { "name": "Light", "tagline": "Light up your brain" },
+  "nav": { "today": "Today", "games": "Games", "progress": "Progress", "settings": "Settings" },
+  "areas": {
+    "memory": "Memory",
+    "attention": "Attention",
+    "speed": "Speed",
+    "flexibility": "Mental flexibility",
+    "math": "Math",
+    "logic": "Logic",
+    "language": "Language"
+  },
+  "common": {
+    "start": "Start",
+    "continue": "Continue",
+    "exit": "Exit",
+    "back": "Back",
+    "playAgain": "Play again",
+    "next": "Next",
+    "howToPlay": "How to play"
+  },
+  "errors": {
+    "generic": "Something went wrong",
+    "backHome": "Back to home",
+    "gameNotFound": "We couldn't find that game"
+  }
+}
