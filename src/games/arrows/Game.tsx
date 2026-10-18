@@ -57,7 +57,7 @@ export function ArrowsGame({ startLevel, paused, onFinish }: GameProps) {
   return (
     <div className={styles.game}>
       <GameHud remainingMs={remaining} score={game.score} level={game.staircase.level} />
-      <ArrowRow trial={game.trial} />
+      <ArrowRow key={game.total} trial={game.trial} className="appear" />
       <div className={styles.controls}>
         <button type="button" className={styles.answer} onClick={() => answer('left')}>
           <ArrowIcon direction="left" />

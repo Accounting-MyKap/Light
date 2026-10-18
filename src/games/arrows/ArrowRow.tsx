@@ -17,11 +17,11 @@ export function ArrowIcon({ direction, className }: { direction: Direction; clas
   );
 }
 
-export function ArrowRow({ trial }: { trial: ArrowTrial }) {
+export function ArrowRow({ trial, className = '' }: { trial: ArrowTrial; className?: string }) {
   const flank: Direction = trial.congruent ? trial.direction : trial.direction === 'left' ? 'right' : 'left';
   const directions = [flank, flank, trial.direction, flank, flank];
   return (
-    <div className={styles.row} data-testid="arrows-row" data-direction={trial.direction} aria-hidden="true">
+    <div className={`${styles.row} ${className}`} data-testid="arrows-row" data-direction={trial.direction} aria-hidden="true">
       {directions.map((d, i) => (
         <ArrowIcon key={i} direction={d} className={styles.arrow} />
       ))}

@@ -46,3 +46,12 @@ test('finishes once after 60 seconds', () => {
   expect(onFinish).toHaveBeenCalledTimes(1);
   expect(onFinish.mock.calls[0][0]).toMatchObject({ durationMs: 60_000 });
 });
+
+test('every new trial re-mounts the arrow row so repeats are visible', () => {
+  render(<ArrowsGame startLevel={1} paused={false} onFinish={vi.fn()} />);
+  advance(300);
+  const before = screen.getByTestId('arrows-row');
+  expect(before).toHaveClass('appear');
+  fireEvent.keyDown(window, { key: 'ArrowLeft' });
+  expect(screen.getByTestId('arrows-row')).not.toBe(before);
+});

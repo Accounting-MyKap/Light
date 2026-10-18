@@ -49,3 +49,12 @@ test('finishes once after 60 seconds', () => {
   expect(onFinish).toHaveBeenCalledTimes(1);
   expect(onFinish.mock.calls[0][0]).toMatchObject({ durationMs: 60_000 });
 });
+
+test('every new trial re-mounts the stimulus so repeats are visible', () => {
+  render(<RuleSwitchGame startLevel={1} paused={false} onFinish={vi.fn()} />);
+  advance(300);
+  const before = screen.getByTestId('stimulus');
+  expect(before).toHaveClass('appear');
+  fireEvent.keyDown(window, { key: 'ArrowLeft' });
+  expect(screen.getByTestId('stimulus')).not.toBe(before);
+});

@@ -189,5 +189,9 @@
     "deleteYes": "Sí, borrar",
     "deleteCancel": "Cancelar",
     "deleted": "Listo: borramos todos tus datos de este dispositivo."
+  },
+  "update": {
+    "available": "Nueva versión disponible",
+    "reload": "Recargar"
   }
 }

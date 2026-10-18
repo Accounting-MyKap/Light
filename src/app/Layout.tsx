@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
+import { UpdatePrompt } from './UpdatePrompt';
 import styles from './Layout.module.css';
 
 const NAV_ITEMS = [
@@ -16,6 +17,7 @@ export function Layout() {
 
   return (
     <div className={styles.shell}>
+      <UpdatePrompt />
       {!isPlaying && (
         <header className={styles.header}>
           <Link to="/" className={styles.brand}>

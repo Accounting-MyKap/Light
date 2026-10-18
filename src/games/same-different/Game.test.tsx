@@ -44,3 +44,12 @@ test('finishes once after 60 active seconds', () => {
   expect(onFinish).toHaveBeenCalledTimes(1);
   expect(onFinish.mock.calls[0][0]).toMatchObject({ durationMs: 60_000 });
 });
+
+test('every new trial re-mounts the symbol card so repeats are visible', () => {
+  render(<SameDifferentGame startLevel={1} paused={false} onFinish={vi.fn()} />);
+  advance(INTRO_MS + 300);
+  const before = screen.getByTestId('symbol-card');
+  expect(before).toHaveClass('appear');
+  fireEvent.keyDown(window, { key: 'ArrowLeft' });
+  expect(screen.getByTestId('symbol-card')).not.toBe(before);
+});

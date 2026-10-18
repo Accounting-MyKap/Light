@@ -69,9 +69,8 @@ export function SameDifferentGame({ startLevel, paused, onFinish }: GameProps) {
       <p className={styles.prompt} aria-live="polite">
         {introDone ? t('games.same-different.question') : t('games.same-different.remember')}
       </p>
-      <div className={styles.card}>
+      <div key={`${game.total}-${introDone}`} className={`${styles.card} appear`} data-testid="symbol-card">
         <SymbolGlyph
-          key={`${game.total}-${introDone}`}
           id={shown}
           label={t(`games.same-different.symbols.${shown}`)}
           className={styles.symbol}

@@ -189,5 +189,9 @@
     "deleteYes": "Yes, delete",
     "deleteCancel": "Cancel",
     "deleted": "Done: all your data on this device has been deleted."
+  },
+  "update": {
+    "available": "A new version is available",
+    "reload": "Reload"
   }
 }

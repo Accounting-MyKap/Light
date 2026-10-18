@@ -69,7 +69,7 @@ export function RuleSwitchGame({ startLevel, paused, onFinish }: GameProps) {
         <RuleIcon rule={game.rule} />
         {t(`games.rule-switch.rule.${game.rule}`)}
       </div>
-      <CardView card={trial.stimulus} testId="stimulus" className={styles.stimulus} />
+      <CardView key={game.total} card={trial.stimulus} testId="stimulus" className={`${styles.stimulus} appear`} />
       <div className={styles.targets}>
         <CardView card={trial.left} testId="target-left" onSelect={() => answer('left')} />
         <CardView card={trial.right} testId="target-right" onSelect={() => answer('right')} />
