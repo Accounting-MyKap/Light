@@ -65,3 +65,19 @@ test('auto-repeated keys are ignored', () => {
   fireEvent.keyDown(window, { key: correctKey(), repeat: true });
   expect(hud('Puntos')).toBe('0');
 });
+
+test('cards never pile up across rule switches', () => {
+  const errors = vi.spyOn(console, 'error').mockImplementation(() => {});
+  render(<RuleSwitchGame startLevel={1} paused={false} onFinish={vi.fn()} />);
+  let switches = 0;
+  for (let i = 0; i < 40; i++) {
+    advance(300);
+    const before = screen.getByTestId('rule-banner').dataset.rule;
+    fireEvent.keyDown(window, { key: correctKey() });
+    if (screen.getAllByTestId('rule-banner')[0].dataset.rule !== before) switches++;
+    expect(screen.getAllByTestId('stimulus')).toHaveLength(1);
+    expect(screen.getAllByTestId('rule-banner')).toHaveLength(1);
+  }
+  expect(switches).toBeGreaterThan(2);
+  expect(errors.mock.calls.flat().join(' ')).not.toMatch(/same key/);
+});

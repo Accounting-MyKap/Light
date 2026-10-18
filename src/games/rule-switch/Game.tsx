@@ -52,7 +52,7 @@ export function RuleSwitchGame({ startLevel, paused, onFinish }: GameProps) {
     <div className={styles.game}>
       <GameHud remainingMs={remaining} score={game.score} level={game.staircase.level} />
       <div
-        key={game.justSwitched ? game.total : 'steady'}
+        key={game.justSwitched ? `rule-${game.total}` : 'rule-steady'}
         className={`${styles.banner} ${game.justSwitched ? styles.switched : ''}`}
         data-testid="rule-banner"
         data-rule={game.rule}
@@ -61,7 +61,7 @@ export function RuleSwitchGame({ startLevel, paused, onFinish }: GameProps) {
         <RuleIcon rule={game.rule} />
         {t(`games.rule-switch.rule.${game.rule}`)}
       </div>
-      <CardView key={game.total} card={trial.stimulus} testId="stimulus" className={`${styles.stimulus} appear`} />
+      <CardView key={`stimulus-${game.total}`} card={trial.stimulus} testId="stimulus" className={`${styles.stimulus} appear`} />
       <div className={styles.targets}>
         <CardView card={trial.left} testId="target-left" onSelect={() => answer('left')} />
         <CardView card={trial.right} testId="target-right" onSelect={() => answer('right')} />
