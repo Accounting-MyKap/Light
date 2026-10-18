@@ -39,5 +39,15 @@
       "level": "Nivel"
     }
   },
-  "games": {}
+  "games": {},
+  "play": {
+    "exit": "Salir del juego",
+    "paused": "Pausado",
+    "newBest": "¡Nueva mejor marca!",
+    "score": "Puntaje",
+    "best": "Mejor marca",
+    "accuracy": "Precisión",
+    "levelReached": "Nivel alcanzado",
+    "example": "Ejemplo"
+  }
 }

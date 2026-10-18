@@ -39,5 +39,15 @@
       "level": "Level"
     }
   },
-  "games": {}
+  "games": {},
+  "play": {
+    "exit": "Quit game",
+    "paused": "Paused",
+    "newBest": "New personal best!",
+    "score": "Score",
+    "best": "Personal best",
+    "accuracy": "Accuracy",
+    "levelReached": "Level reached",
+    "example": "Example"
+  }
 }
