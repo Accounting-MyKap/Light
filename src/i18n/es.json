@@ -39,7 +39,23 @@
       "level": "Nivel"
     }
   },
-  "games": {},
+  "games": {
+    "sequence-lights": {
+      "title": "Secuencia de luces",
+      "description": "Recuerda en qué orden se encienden las casillas.",
+      "instructions": [
+        "Observa cómo se encienden las casillas, una tras otra.",
+        "Cuando aparezca «Tu turno», tócalas en el mismo orden.",
+        "Si aciertas, la secuencia se alarga; si fallas, se acorta."
+      ],
+      "cell": "Casilla {{n}}",
+      "watch": "Observa…",
+      "yourTurn": "Tu turno",
+      "correct": "¡Bien!",
+      "wrong": "Casi… sigamos",
+      "round": "Ronda {{n}} de {{total}}"
+    }
+  },
   "play": {
     "exit": "Salir del juego",
     "paused": "Pausado",

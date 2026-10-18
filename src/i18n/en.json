@@ -39,7 +39,23 @@
       "level": "Level"
     }
   },
-  "games": {},
+  "games": {
+    "sequence-lights": {
+      "title": "Light Sequence",
+      "description": "Remember the order in which the cells light up.",
+      "instructions": [
+        "Watch the cells light up, one after another.",
+        "When you see “Your turn”, tap them in the same order.",
+        "Get it right and the sequence grows; miss and it shrinks."
+      ],
+      "cell": "Cell {{n}}",
+      "watch": "Watch…",
+      "yourTurn": "Your turn",
+      "correct": "Nice!",
+      "wrong": "Almost… keep going",
+      "round": "Round {{n}} of {{total}}"
+    }
+  },
   "play": {
     "exit": "Quit game",
     "paused": "Paused",
