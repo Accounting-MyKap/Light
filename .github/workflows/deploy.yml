@@ -24,6 +24,10 @@ jobs:
           node-version: 24
           cache: npm
       - run: npm ci
+      # Never publish a build that fails the checks.
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm test
       - run: npm run build
       - uses: actions/upload-pages-artifact@v5
         with:
@@ -37,4 +41,4 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
