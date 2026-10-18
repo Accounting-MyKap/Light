@@ -6,7 +6,8 @@ import { applyTheme } from './theme';
 
 /** Applies saved language and theme. A null language keeps the one detected at startup. */
 export function SettingsEffects() {
-  const settings = useLiveQuery(getSettings, []);
+  // A storage error must never take the app down; without settings, keep startup language and theme.
+  const settings = useLiveQuery(() => getSettings().catch(() => null), []);
   const language = settings?.language ?? null;
   const theme = settings?.theme;
 

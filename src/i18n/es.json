@@ -148,7 +148,9 @@
     "levelReached": "Nivel alcanzado",
     "example": "Ejemplo",
     "nextGame": "Siguiente juego",
-    "seeSummary": "Ver resumen"
+    "seeSummary": "Ver resumen",
+    "saveError": "No pudimos guardar tu partida.",
+    "retry": "Reintentar"
   },
   "today": {
     "title": "Entrenamiento de hoy",
@@ -157,7 +159,8 @@
     "streak_other": "{{count}} días seguidos",
     "completed": "¡Entrenamiento de hoy completado!",
     "done": "Hecho",
-    "comeBack": "Vuelve mañana para mantener tu racha."
+    "comeBack": "Vuelve mañana para mantener tu racha.",
+    "loadError": "No pudimos preparar tu entrenamiento de hoy. Intenta recargar la página."
   },
   "gamesScreen": {
     "best": "Mejor marca: {{score}}"

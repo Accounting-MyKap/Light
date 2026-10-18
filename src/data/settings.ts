@@ -35,6 +35,7 @@ export async function updateSettings(patch: Partial<Settings>): Promise<Settings
   });
 }
 
+/** Live settings; falls back to the defaults while loading or if storage cannot be read. */
 export function useSettings(): Settings {
-  return useLiveQuery(getSettings, [], DEFAULT_SETTINGS);
+  return useLiveQuery(() => getSettings().catch(() => DEFAULT_SETTINGS), [], DEFAULT_SETTINGS);
 }

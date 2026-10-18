@@ -2,6 +2,8 @@ import { localDay } from '../core/dates';
 import { db, type StoredResult } from './db';
 
 export interface NewResult {
+  /** Optional stable id; saving the same id again overwrites instead of duplicating. */
+  id?: string;
   gameId: string;
   level: number;
   score: number;
@@ -14,7 +16,7 @@ export interface NewResult {
 export async function addResult(input: NewResult): Promise<StoredResult> {
   const playedAt = input.playedAt ?? new Date();
   const stored: StoredResult = {
-    id: crypto.randomUUID(),
+    id: input.id ?? crypto.randomUUID(),
     gameId: input.gameId,
     level: input.level,
     score: input.score,
@@ -25,7 +27,7 @@ export async function addResult(input: NewResult): Promise<StoredResult> {
     day: localDay(playedAt),
     synced: 0,
   };
-  await db.results.add(stored);
+  await db.results.put(stored);
   return stored;
 }
 

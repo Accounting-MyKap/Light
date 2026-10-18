@@ -148,7 +148,9 @@
     "levelReached": "Level reached",
     "example": "Example",
     "nextGame": "Next game",
-    "seeSummary": "See summary"
+    "seeSummary": "See summary",
+    "saveError": "We couldn’t save your game.",
+    "retry": "Retry"
   },
   "today": {
     "title": "Today’s training",
@@ -157,7 +159,8 @@
     "streak_other": "{{count}} days in a row",
     "completed": "Today’s training is complete!",
     "done": "Done",
-    "comeBack": "Come back tomorrow to keep your streak going."
+    "comeBack": "Come back tomorrow to keep your streak going.",
+    "loadError": "We couldn’t prepare today’s training. Try reloading the page."
   },
   "gamesScreen": {
     "best": "Personal best: {{score}}"

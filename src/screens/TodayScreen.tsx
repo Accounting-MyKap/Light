@@ -23,9 +23,13 @@ function LightIcon() {
 export function TodayScreen() {
   const { t } = useTranslation();
   const [today] = useState(() => localDay(new Date()));
+  const [planError, setPlanError] = useState(false);
 
   useEffect(() => {
-    void getOrCreatePlan(today);
+    getOrCreatePlan(today).catch((error: unknown) => {
+      console.error(error);
+      setPlanError(true);
+    });
   }, [today]);
 
   const plan = useLiveQuery(() => getPlan(today), [today]);
@@ -48,6 +52,8 @@ export function TodayScreen() {
         <LightIcon />
         {t('today.streak', { count: streak.current })}
       </p>
+
+      {!plan && planError && <p role="alert">{t('today.loadError')}</p>}
 
       {plan && done && (
         <>

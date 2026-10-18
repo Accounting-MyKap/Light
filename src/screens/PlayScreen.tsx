@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Link, useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { playTone } from '../core/sound';
 import { getStartLevel } from '../data/levels';
-import { getSettings, updateSettings, useSettings } from '../data/settings';
+import { DEFAULT_SETTINGS, getSettings, updateSettings, useSettings } from '../data/settings';
 import { getGame } from '../games/registry';
 import type { GameDefinition, GameResult } from '../games/types';
 import { recordGameResult } from '../play/recordGameResult';
@@ -45,7 +45,8 @@ type Phase =
   | { kind: 'loading' }
   | { kind: 'intro'; showInstructions: boolean; firstTime: boolean }
   | { kind: 'playing' }
-  | { kind: 'result'; result: GameResult; previousBest: number | null; nextGameId: string | null };
+  | { kind: 'result'; result: GameResult; previousBest: number | null; nextGameId: string | null }
+  | { kind: 'saveError'; result: GameResult; resultId: string };
 
 function PlaySession({ game, daily }: { game: GameDefinition; daily: string | null }) {
   const { t } = useTranslation();
@@ -60,7 +61,10 @@ function PlaySession({ game, daily }: { game: GameDefinition; daily: string | nu
 
   useEffect(() => {
     let alive = true;
-    void Promise.all([getStartLevel(game.id), getSettings()]).then(([level, settings]) => {
+    void Promise.all([
+      getStartLevel(game.id).catch(() => 1),
+      getSettings().catch(() => DEFAULT_SETTINGS),
+    ]).then(([level, settings]) => {
       if (!alive) return;
       const firstTime = !settings.seenInstructions.includes(game.id);
       setStartLevel(level);
@@ -93,17 +97,30 @@ function PlaySession({ game, daily }: { game: GameDefinition; daily: string | nu
     startPlaying();
   };
 
+  // The result id is fixed per finished game so a retry after a storage error never duplicates it.
+  const save = useCallback(
+    async (result: GameResult, resultId: string) => {
+      try {
+        const recorded = await recordGameResult({ game, startLevel, result, daily, resultId });
+        setStartLevel(recorded.newStartLevel);
+        const nextGameId = recorded.plan?.gameIds.find((id) => !recorded.plan?.completed.includes(id)) ?? null;
+        setPhase({ kind: 'result', result, previousBest: recorded.previousBest, nextGameId });
+      } catch (error) {
+        console.error(error);
+        setPhase({ kind: 'saveError', result, resultId });
+      }
+    },
+    [game, startLevel, daily],
+  );
+
   const handleFinish = useCallback(
     async (result: GameResult) => {
       if (finishedRef.current) return;
       finishedRef.current = true;
       if (sound) playTone('finish');
-      const recorded = await recordGameResult({ game, startLevel, result, daily });
-      setStartLevel(recorded.newStartLevel);
-      const nextGameId = recorded.plan?.gameIds.find((id) => !recorded.plan?.completed.includes(id)) ?? null;
-      setPhase({ kind: 'result', result, previousBest: recorded.previousBest, nextGameId });
+      await save(result, crypto.randomUUID());
     },
-    [game, startLevel, sound, daily],
+    [save, sound],
   );
 
   const exit = () => {
@@ -148,6 +165,21 @@ function PlaySession({ game, daily }: { game: GameDefinition; daily: string | nu
         </section>
       );
     }
+    case 'saveError':
+      return (
+        <section className={`${styles.screen} ${styles.center}`}>
+          <h1>{title}</h1>
+          <p role="alert">{t('play.saveError')}</p>
+          <div className={styles.actions}>
+            <button className={styles.primary} onClick={() => void save(phase.result, phase.resultId)}>
+              {t('play.retry')}
+            </button>
+            <button className={styles.secondary} onClick={exit}>
+              {t('common.exit')}
+            </button>
+          </div>
+        </section>
+      );
     case 'result':
       return (
         <ResultView
