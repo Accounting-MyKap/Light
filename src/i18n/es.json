@@ -54,6 +54,18 @@
       "correct": "¡Bien!",
       "wrong": "Casi… sigamos",
       "round": "Ronda {{n}} de {{total}}"
+    },
+    "arrows": {
+      "title": "Flechas",
+      "description": "Fíjate solo en la flecha del centro, aunque las demás intenten confundirte.",
+      "instructions": [
+        "Verás una fila de cinco flechas.",
+        "Indica hacia dónde apunta la flecha del centro, con los botones o con las flechas del teclado.",
+        "Ignora las flechas de los lados: a veces apuntan al revés."
+      ],
+      "left": "Izquierda",
+      "right": "Derecha",
+      "exampleAnswer": "Respuesta correcta: Izquierda"
     }
   },
   "play": {

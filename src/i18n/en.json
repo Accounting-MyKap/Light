@@ -54,6 +54,18 @@
       "correct": "Nice!",
       "wrong": "Almost… keep going",
       "round": "Round {{n}} of {{total}}"
+    },
+    "arrows": {
+      "title": "Arrows",
+      "description": "Focus only on the middle arrow, even when the others try to distract you.",
+      "instructions": [
+        "You will see a row of five arrows.",
+        "Tell which way the middle arrow points, using the buttons or your arrow keys.",
+        "Ignore the side arrows: sometimes they point the other way."
+      ],
+      "left": "Left",
+      "right": "Right",
+      "exampleAnswer": "Correct answer: Left"
     }
   },
   "play": {
