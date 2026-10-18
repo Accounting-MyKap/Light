@@ -16,8 +16,8 @@ const CHART_POINTS = 30;
 export function ProgressScreen() {
   const { t } = useTranslation();
   const today = useLocalDay();
-  // Re-evaluated when the day changes so the 30-day window and the streak stay current.
-  const now = useMemo(() => new Date(), [today]);
+  // The 30-day window is measured from the end of the current local day.
+  const now = useMemo(() => new Date(`${today}T23:59:59`), [today]);
   const results = useLiveQuery(() => listResults(), []);
   const days = useLiveQuery(completedDays, [], []);
 
