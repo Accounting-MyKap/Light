@@ -29,6 +29,7 @@ export function SettingsScreen() {
         <label htmlFor="language">{t('settings.language')}</label>
         <select
           id="language"
+          className={styles.select}
           value={currentLanguage}
           onChange={(e) => void updateSettings({ language: e.target.value as Language })}
         >
@@ -37,10 +38,10 @@ export function SettingsScreen() {
         </select>
       </div>
 
-      <fieldset className={styles.section}>
+      <fieldset className={`${styles.section} ${styles.fieldset}`}>
         <legend>{t('settings.theme')}</legend>
         {THEMES.map((theme) => (
-          <label key={theme}>
+          <label key={theme} className={styles.option}>
             <input
               type="radio"
               name="theme"
@@ -53,7 +54,7 @@ export function SettingsScreen() {
         ))}
       </fieldset>
 
-      <label>
+      <label className={styles.option}>
         <input
           type="checkbox"
           role="switch"

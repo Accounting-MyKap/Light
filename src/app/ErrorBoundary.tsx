@@ -7,7 +7,9 @@ function ErrorFallback() {
   return (
     <div role="alert" className="error-fallback">
       <p>{t('errors.generic')}</p>
-      <Link to="/">{t('errors.backHome')}</Link>
+      <Link to="/" className="link-button">
+        {t('errors.backHome')}
+      </Link>
     </div>
   );
 }

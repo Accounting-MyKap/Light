@@ -29,7 +29,9 @@ function GameNotFound() {
   return (
     <section className={styles.screen}>
       <h1>{t('errors.gameNotFound')}</h1>
-      <Link to="/">{t('errors.backHome')}</Link>
+      <Link to="/" className="link-button">
+        {t('errors.backHome')}
+      </Link>
     </section>
   );
 }

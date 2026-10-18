@@ -80,3 +80,11 @@ a {
     animation-duration: 160ms !important;
   }
 }
+
+/* Text links that act as buttons still need a 44 px touch target. */
+.link-button {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 0.25rem;
+}
