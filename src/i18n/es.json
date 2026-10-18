@@ -124,6 +124,18 @@
         "purple": "morado"
       },
       "exampleAnswer": "Regla COLOR: la respuesta es el cuadrado azul."
+    },
+    "quick-math": {
+      "title": "Cálculo relámpago",
+      "description": "Resuelve operaciones contra el reloj; la dificultad sube mientras aciertas.",
+      "instructions": [
+        "Aparece una operación: escribe el resultado con el teclado en pantalla o el de tu computador.",
+        "Pulsa OK (o Enter) para responder. Si una se te complica, puedes saltarla.",
+        "Cada acierto suma puntos y sube la dificultad."
+      ],
+      "delete": "Borrar",
+      "ok": "OK",
+      "skip": "Saltar"
     }
   },
   "play": {

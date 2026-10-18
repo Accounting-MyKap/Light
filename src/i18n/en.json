@@ -124,6 +124,18 @@
         "purple": "purple"
       },
       "exampleAnswer": "COLOR rule: the answer is the blue square."
+    },
+    "quick-math": {
+      "title": "Quick Math",
+      "description": "Solve operations against the clock; it gets harder as you get them right.",
+      "instructions": [
+        "An operation appears: type the result with the on-screen keypad or your keyboard.",
+        "Press OK (or Enter) to answer. If one is tricky, you can skip it.",
+        "Every correct answer earns points and raises the difficulty."
+      ],
+      "delete": "Delete",
+      "ok": "OK",
+      "skip": "Skip"
     }
   },
   "play": {
