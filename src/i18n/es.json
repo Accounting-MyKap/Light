@@ -99,6 +99,31 @@
         "dot-center": "punto en el centro",
         "dot-none": "cuadro vacío"
       }
+    },
+    "rule-switch": {
+      "title": "Cambio de regla",
+      "description": "Empareja cartas por color o por forma, y adáptate cuando la regla cambie.",
+      "instructions": [
+        "Arriba verás la regla actual: COLOR o FORMA.",
+        "Toca la carta de abajo que coincide con la carta central según esa regla (o usa las flechas del teclado).",
+        "La regla cambia sin aviso: fíjate siempre en el cartel."
+      ],
+      "rule": {
+        "color": "COLOR",
+        "shape": "FORMA"
+      },
+      "card": "{{shape}} {{color}}",
+      "shapes": {
+        "circle": "círculo",
+        "square": "cuadrado",
+        "triangle": "triángulo"
+      },
+      "colors": {
+        "blue": "azul",
+        "orange": "naranja",
+        "purple": "morado"
+      },
+      "exampleAnswer": "Regla COLOR: la respuesta es el cuadrado azul."
     }
   },
   "play": {

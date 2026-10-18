@@ -99,6 +99,31 @@
         "dot-center": "dot in the center",
         "dot-none": "empty box"
       }
+    },
+    "rule-switch": {
+      "title": "Rule Switch",
+      "description": "Match cards by color or by shape, and adapt when the rule changes.",
+      "instructions": [
+        "At the top you will see the current rule: COLOR or SHAPE.",
+        "Tap the bottom card that matches the middle card under that rule (or use your arrow keys).",
+        "The rule changes without warning: always check the banner."
+      ],
+      "rule": {
+        "color": "COLOR",
+        "shape": "SHAPE"
+      },
+      "card": "{{color}} {{shape}}",
+      "shapes": {
+        "circle": "circle",
+        "square": "square",
+        "triangle": "triangle"
+      },
+      "colors": {
+        "blue": "blue",
+        "orange": "orange",
+        "purple": "purple"
+      },
+      "exampleAnswer": "COLOR rule: the answer is the blue square."
     }
   },
   "play": {
