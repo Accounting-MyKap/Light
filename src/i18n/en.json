@@ -1,6 +1,14 @@
 {
-  "app": { "name": "Light", "tagline": "Light up your brain" },
-  "nav": { "today": "Today", "games": "Games", "progress": "Progress", "settings": "Settings" },
+  "app": {
+    "name": "Light",
+    "tagline": "Light up your brain"
+  },
+  "nav": {
+    "today": "Today",
+    "games": "Games",
+    "progress": "Progress",
+    "settings": "Settings"
+  },
   "areas": {
     "memory": "Memory",
     "attention": "Attention",
@@ -23,5 +31,13 @@
     "generic": "Something went wrong",
     "backHome": "Back to home",
     "gameNotFound": "We couldn't find that game"
-  }
+  },
+  "game": {
+    "hud": {
+      "time": "Time",
+      "score": "Score",
+      "level": "Level"
+    }
+  },
+  "games": {}
 }

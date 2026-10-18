@@ -1,6 +1,14 @@
 {
-  "app": { "name": "Light", "tagline": "Ilumina tu cerebro" },
-  "nav": { "today": "Hoy", "games": "Juegos", "progress": "Progreso", "settings": "Ajustes" },
+  "app": {
+    "name": "Light",
+    "tagline": "Ilumina tu cerebro"
+  },
+  "nav": {
+    "today": "Hoy",
+    "games": "Juegos",
+    "progress": "Progreso",
+    "settings": "Ajustes"
+  },
   "areas": {
     "memory": "Memoria",
     "attention": "Atención",
@@ -23,5 +31,13 @@
     "generic": "Algo salió mal",
     "backHome": "Volver al inicio",
     "gameNotFound": "No encontramos ese juego"
-  }
+  },
+  "game": {
+    "hud": {
+      "time": "Tiempo",
+      "score": "Puntos",
+      "level": "Nivel"
+    }
+  },
+  "games": {}
 }
