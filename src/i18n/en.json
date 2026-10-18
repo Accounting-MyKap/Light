@@ -171,5 +171,23 @@
     "daysTrained": "Days trained: {{count}}",
     "chartLabel": "Last {{count}} scores: lowest {{min}}, highest {{max}}, latest {{last}}",
     "notEnoughData": "Play at least two games to see your trend."
+  },
+  "settings": {
+    "language": "Language",
+    "theme": "Theme",
+    "themes": {
+      "auto": "Automatic",
+      "light": "Light",
+      "dark": "Dark"
+    },
+    "sound": "Sound",
+    "privacyTitle": "Privacy",
+    "privacy": "Your progress is stored only on this device. Light uses no ads or analytics.",
+    "dataTitle": "Your data",
+    "deleteData": "Delete my data",
+    "deleteConfirm": "Are you sure? Your history, streaks and settings on this device will be deleted.",
+    "deleteYes": "Yes, delete",
+    "deleteCancel": "Cancel",
+    "deleted": "Done: all your data on this device has been deleted."
   }
 }

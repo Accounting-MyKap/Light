@@ -171,5 +171,23 @@
     "daysTrained": "Días entrenados: {{count}}",
     "chartLabel": "Últimos {{count}} puntajes: mínimo {{min}}, máximo {{max}}, último {{last}}",
     "notEnoughData": "Juega al menos dos partidas para ver tu evolución."
+  },
+  "settings": {
+    "language": "Idioma",
+    "theme": "Tema",
+    "themes": {
+      "auto": "Automático",
+      "light": "Claro",
+      "dark": "Oscuro"
+    },
+    "sound": "Sonido",
+    "privacyTitle": "Privacidad",
+    "privacy": "Tu progreso se guarda solo en este dispositivo. Light no usa publicidad ni analítica.",
+    "dataTitle": "Tus datos",
+    "deleteData": "Borrar mis datos",
+    "deleteConfirm": "¿Seguro? Se borrarán tu historial, tus rachas y tus ajustes de este dispositivo.",
+    "deleteYes": "Sí, borrar",
+    "deleteCancel": "Cancelar",
+    "deleted": "Listo: borramos todos tus datos de este dispositivo."
   }
 }
