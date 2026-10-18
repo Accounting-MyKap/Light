@@ -63,7 +63,7 @@
 }
 
 .badge {
-  color: var(--success);
+  color: var(--success-strong);
   font-weight: 700;
 }
 

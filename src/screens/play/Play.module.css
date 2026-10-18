@@ -94,7 +94,7 @@
 }
 
 .newBest {
-  color: var(--accent);
+  color: var(--accent-strong);
   font-weight: 700;
 }
 

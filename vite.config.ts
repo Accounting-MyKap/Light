@@ -35,5 +35,7 @@ export default defineConfig({
     globals: true,
     setupFiles: ['./src/setupTests.ts'],
     include: ['src/**/*.test.{ts,tsx}'],
+    // Keep theme.css readable so the contrast test can check the real tokens.
+    css: { include: [/theme\.css/] },
   },
 });
