@@ -66,6 +66,39 @@
       "left": "Izquierda",
       "right": "Derecha",
       "exampleAnswer": "Respuesta correcta: Izquierda"
+    },
+    "same-different": {
+      "title": "¿Igual o distinto?",
+      "description": "Decide lo más rápido que puedas si cada símbolo es igual al anterior.",
+      "instructions": [
+        "Primero verás un símbolo: recuérdalo.",
+        "Luego aparecerá otro: responde «Sí» si es igual al anterior o «No» si es distinto.",
+        "Cada símbolo se compara con el que vino justo antes. Las rachas de aciertos multiplican tus puntos."
+      ],
+      "remember": "Recuerda este símbolo",
+      "question": "¿Es igual al anterior?",
+      "yes": "Sí",
+      "no": "No",
+      "exampleAnswer": "Respuesta correcta: Sí",
+      "symbols": {
+        "circle": "círculo",
+        "square": "cuadrado",
+        "triangle": "triángulo",
+        "star": "estrella",
+        "heart": "corazón",
+        "cross": "cruz",
+        "tri-up": "triángulo hacia arriba",
+        "tri-down": "triángulo hacia abajo",
+        "tri-left": "triángulo hacia la izquierda",
+        "tri-right": "triángulo hacia la derecha",
+        "diamond": "rombo",
+        "dot-tl": "punto arriba a la izquierda",
+        "dot-tr": "punto arriba a la derecha",
+        "dot-bl": "punto abajo a la izquierda",
+        "dot-br": "punto abajo a la derecha",
+        "dot-center": "punto en el centro",
+        "dot-none": "cuadro vacío"
+      }
     }
   },
   "play": {

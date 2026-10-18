@@ -66,6 +66,39 @@
       "left": "Left",
       "right": "Right",
       "exampleAnswer": "Correct answer: Left"
+    },
+    "same-different": {
+      "title": "Same or Different?",
+      "description": "Decide as fast as you can whether each symbol matches the previous one.",
+      "instructions": [
+        "First you will see a symbol: remember it.",
+        "Then another appears: answer “Yes” if it matches the previous one or “No” if it is different.",
+        "Each symbol is compared with the one right before it. Streaks of correct answers multiply your points."
+      ],
+      "remember": "Remember this symbol",
+      "question": "Does it match the previous one?",
+      "yes": "Yes",
+      "no": "No",
+      "exampleAnswer": "Correct answer: Yes",
+      "symbols": {
+        "circle": "circle",
+        "square": "square",
+        "triangle": "triangle",
+        "star": "star",
+        "heart": "heart",
+        "cross": "cross",
+        "tri-up": "triangle pointing up",
+        "tri-down": "triangle pointing down",
+        "tri-left": "triangle pointing left",
+        "tri-right": "triangle pointing right",
+        "diamond": "diamond",
+        "dot-tl": "dot top left",
+        "dot-tr": "dot top right",
+        "dot-bl": "dot bottom left",
+        "dot-br": "dot bottom right",
+        "dot-center": "dot in the center",
+        "dot-none": "empty box"
+      }
     }
   },
   "play": {
