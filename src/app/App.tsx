@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { HashRouter, Route, Routes } from 'react-router-dom';
+import { HashRouter, Route, Routes, useLocation } from 'react-router-dom';
 import { ErrorBoundary } from './ErrorBoundary';
 import { Layout } from './Layout';
 import { SettingsEffects } from './SettingsEffects';
@@ -9,7 +9,13 @@ import { ProgressScreen } from '../screens/ProgressScreen';
 import { SettingsScreen } from '../screens/SettingsScreen';
 import { PlayScreen } from '../screens/PlayScreen';
 
-const guard = (screen: ReactNode) => <ErrorBoundary>{screen}</ErrorBoundary>;
+/** One error boundary per visit: a new location starts with a fresh boundary, so leaving a crashed screen recovers. */
+function Guard({ children }: { children: ReactNode }) {
+  const { key } = useLocation();
+  return <ErrorBoundary key={key}>{children}</ErrorBoundary>;
+}
+
+const guard = (screen: ReactNode) => <Guard>{screen}</Guard>;
 
 export function AppRoutes() {
   return (
