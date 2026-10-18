@@ -1,0 +1,200 @@
+{
+  "app": {
+    "name": "Light",
+    "tagline": "Ilumina tu cerebro"
+  },
+  "nav": {
+    "today": "Hoy",
+    "games": "Juegos",
+    "progress": "Progreso",
+    "settings": "Ajustes"
+  },
+  "areas": {
+    "memory": "Memoria",
+    "attention": "Atención",
+    "speed": "Velocidad",
+    "flexibility": "Flexibilidad mental",
+    "math": "Matemáticas",
+    "logic": "Lógica",
+    "language": "Lenguaje"
+  },
+  "common": {
+    "start": "Comenzar",
+    "continue": "Continuar",
+    "exit": "Salir",
+    "back": "Volver",
+    "playAgain": "Jugar de nuevo",
+    "next": "Siguiente",
+    "howToPlay": "¿Cómo se juega?"
+  },
+  "errors": {
+    "generic": "Algo salió mal",
+    "backHome": "Volver al inicio",
+    "gameNotFound": "No encontramos ese juego"
+  },
+  "game": {
+    "hud": {
+      "time": "Tiempo",
+      "score": "Puntos",
+      "level": "Nivel"
+    }
+  },
+  "games": {
+    "sequence-lights": {
+      "title": "Secuencia de luces",
+      "description": "Recuerda en qué orden se encienden las casillas.",
+      "instructions": [
+        "Observa cómo se encienden las casillas, una tras otra.",
+        "Cuando aparezca «Tu turno», tócalas en el mismo orden.",
+        "Si aciertas, la secuencia se alarga; si fallas, se acorta."
+      ],
+      "cell": "Casilla {{n}}",
+      "watch": "Observa…",
+      "yourTurn": "Tu turno",
+      "correct": "¡Bien!",
+      "wrong": "Casi… sigamos",
+      "round": "Ronda {{n}} de {{total}}"
+    },
+    "arrows": {
+      "title": "Flechas",
+      "description": "Fíjate solo en la flecha del centro, aunque las demás intenten confundirte.",
+      "instructions": [
+        "Verás una fila de cinco flechas.",
+        "Indica hacia dónde apunta la flecha del centro, con los botones o con las flechas del teclado.",
+        "Ignora las flechas de los lados: a veces apuntan al revés."
+      ],
+      "left": "Izquierda",
+      "right": "Derecha",
+      "exampleAnswer": "Respuesta correcta: Izquierda"
+    },
+    "same-different": {
+      "title": "¿Igual o distinto?",
+      "description": "Decide lo más rápido que puedas si cada símbolo es igual al anterior.",
+      "instructions": [
+        "Primero verás un símbolo: recuérdalo.",
+        "Luego aparecerá otro: responde «Sí» si es igual al anterior o «No» si es distinto.",
+        "Cada símbolo se compara con el que vino justo antes. Las rachas de aciertos multiplican tus puntos."
+      ],
+      "remember": "Recuerda este símbolo",
+      "question": "¿Es igual al anterior?",
+      "yes": "Sí",
+      "no": "No",
+      "exampleAnswer": "Respuesta correcta: Sí",
+      "symbols": {
+        "circle": "círculo",
+        "square": "cuadrado",
+        "triangle": "triángulo",
+        "star": "estrella",
+        "heart": "corazón",
+        "cross": "cruz",
+        "tri-up": "triángulo hacia arriba",
+        "tri-down": "triángulo hacia abajo",
+        "tri-left": "triángulo hacia la izquierda",
+        "tri-right": "triángulo hacia la derecha",
+        "diamond": "rombo",
+        "dot-tl": "punto arriba a la izquierda",
+        "dot-tr": "punto arriba a la derecha",
+        "dot-bl": "punto abajo a la izquierda",
+        "dot-br": "punto abajo a la derecha",
+        "dot-center": "punto en el centro",
+        "dot-none": "cuadro vacío"
+      }
+    },
+    "rule-switch": {
+      "title": "Cambio de regla",
+      "description": "Empareja cartas por color o por forma, y adáptate cuando la regla cambie.",
+      "instructions": [
+        "Arriba verás la regla actual: COLOR o FORMA.",
+        "Toca la carta de abajo que coincide con la carta central según esa regla (o usa las flechas del teclado).",
+        "La regla cambia sin aviso: fíjate siempre en el cartel."
+      ],
+      "rule": {
+        "color": "COLOR",
+        "shape": "FORMA"
+      },
+      "card": "{{shape}} {{color}}",
+      "shapes": {
+        "circle": "círculo",
+        "square": "cuadrado",
+        "triangle": "triángulo"
+      },
+      "colors": {
+        "blue": "azul",
+        "orange": "naranja",
+        "purple": "morado"
+      },
+      "exampleAnswer": "Regla COLOR: la respuesta es el cuadrado azul."
+    },
+    "quick-math": {
+      "title": "Cálculo relámpago",
+      "description": "Resuelve operaciones contra el reloj; la dificultad sube mientras aciertas.",
+      "instructions": [
+        "Aparece una operación: escribe el resultado con el teclado en pantalla o el de tu computador.",
+        "Pulsa OK (o Enter) para responder. Si una se te complica, puedes saltarla.",
+        "Cada acierto suma puntos y sube la dificultad."
+      ],
+      "delete": "Borrar",
+      "ok": "OK",
+      "skip": "Saltar"
+    }
+  },
+  "play": {
+    "exit": "Salir del juego",
+    "paused": "Pausado",
+    "newBest": "¡Nueva mejor marca!",
+    "score": "Puntaje",
+    "best": "Mejor marca",
+    "accuracy": "Precisión",
+    "levelReached": "Nivel alcanzado",
+    "example": "Ejemplo",
+    "nextGame": "Siguiente juego",
+    "seeSummary": "Ver resumen",
+    "saveError": "No pudimos guardar tu partida.",
+    "retry": "Reintentar"
+  },
+  "today": {
+    "title": "Entrenamiento de hoy",
+    "intro": "Tres juegos cortos, unos 5 minutos en total.",
+    "streak_one": "{{count}} día seguido",
+    "streak_other": "{{count}} días seguidos",
+    "completed": "¡Entrenamiento de hoy completado!",
+    "done": "Hecho",
+    "comeBack": "Vuelve mañana para mantener tu racha.",
+    "loadError": "No pudimos preparar tu entrenamiento de hoy. Intenta recargar la página."
+  },
+  "gamesScreen": {
+    "best": "Mejor marca: {{score}}"
+  },
+  "progress": {
+    "empty": "Todavía no hay partidas. ¡Juega una para ver tu progreso!",
+    "byArea": "Puntaje por área",
+    "byGame": "Por juego",
+    "streakCurrent": "Racha actual: {{count}}",
+    "streakBest": "Mejor racha: {{count}}",
+    "daysTrained": "Días entrenados: {{count}}",
+    "chartLabel": "Últimos {{count}} puntajes: mínimo {{min}}, máximo {{max}}, último {{last}}",
+    "notEnoughData": "Juega al menos dos partidas para ver tu evolución."
+  },
+  "settings": {
+    "language": "Idioma",
+    "theme": "Tema",
+    "themes": {
+      "auto": "Automático",
+      "light": "Claro",
+      "dark": "Oscuro"
+    },
+    "sound": "Sonido",
+    "privacyTitle": "Privacidad",
+    "privacy": "Tu progreso se guarda solo en este dispositivo. Light no usa publicidad ni analítica.",
+    "dataTitle": "Tus datos",
+    "deleteData": "Borrar mis datos",
+    "deleteConfirm": "¿Seguro? Se borrarán tu historial, tus rachas y tus ajustes de este dispositivo.",
+    "deleteYes": "Sí, borrar",
+    "deleteCancel": "Cancelar",
+    "deleted": "Listo: borramos todos tus datos de este dispositivo."
+  },
+  "update": {
+    "available": "Nueva versión disponible",
+    "reload": "Recargar"
+  }
+}

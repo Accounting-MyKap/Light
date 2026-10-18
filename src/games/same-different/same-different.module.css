@@ -1,0 +1,62 @@
+.game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.prompt {
+  margin: 0;
+  font-weight: 700;
+  min-height: 1.5em;
+}
+
+.card {
+  display: grid;
+  place-items: center;
+  width: min(60vw, 220px);
+  aspect-ratio: 1;
+  border-radius: var(--radius);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: 0 0 32px var(--glow);
+}
+
+.symbol {
+  width: 70%;
+  height: 70%;
+  color: var(--text);
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  width: min(92vw, 420px);
+}
+
+.answer {
+  min-height: 72px;
+  border: none;
+  border-radius: var(--radius);
+  background: var(--accent);
+  color: var(--accent-text);
+  font-weight: 800;
+  font-size: 1.25rem;
+}
+
+.answer:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.exampleRow {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.exampleRow .card {
+  width: 96px;
+  box-shadow: none;
+}

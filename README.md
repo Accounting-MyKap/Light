@@ -1,0 +1,59 @@
+# Light — Ilumina tu cerebro
+
+Light es una app web gratuita con ejercicios cortos para ejercitar la mente: memoria, atención,
+velocidad, flexibilidad mental y matemáticas. Propone un entrenamiento diario de 3 juegos
+(unos 5 minutos), lleva tu racha de días y muestra tu progreso. Funciona en español e inglés,
+se puede instalar en el celular y sigue funcionando sin internet.
+
+Todo el progreso se guarda en el dispositivo. Light no usa publicidad ni analítica.
+
+## Requisitos
+
+- Node.js 22.13 o superior.
+
+## Comandos
+
+| Comando | Qué hace |
+|---|---|
+| `npm install` | Instala las dependencias |
+| `npm run dev` | Abre la app en modo desarrollo |
+| `npm test` | Pruebas unitarias y de componentes (Vitest) |
+| `npm run e2e` | Pruebas de punta a punta (Playwright) |
+| `npm run lint` / `npm run typecheck` | Revisión de estilo y de tipos |
+| `npm run build` | Genera la versión publicable en `dist/` |
+| `npm run icons` | Regenera los íconos PNG a partir de `public/icon.svg` |
+
+Las pruebas de punta a punta y `npm run icons` usan Chromium. Si ya tienes uno instalado, indica su ruta con
+`PW_CHROMIUM_PATH` (por ejemplo `PW_CHROMIUM_PATH=/opt/pw-browsers/chromium npm run e2e`); si no,
+instálalo con `npx playwright install chromium`.
+
+## Publicación
+
+Cada cambio que llega a `main` se publica en GitHub Pages con el flujo `.github/workflows/deploy.yml`.
+Para activarlo una sola vez: en GitHub, **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+La app queda en `https://<usuario>.github.io/Light/`.
+
+## Estructura
+
+```
+src/
+  app/        marco de la app: rutas, navegación, tema, errores, aviso de versión nueva
+  screens/    pantallas: Hoy, Juegos, Partida, Progreso, Ajustes
+  games/      un juego por carpeta + registro y piezas comunes (reloj, puntaje, sonido)
+  core/       lógica pura: azar, fechas, dificultad, plan diario, racha, puntaje por área
+  data/       base de datos local (IndexedDB con Dexie)
+  play/       guardar el resultado de una partida
+  i18n/       textos en español (es.json) e inglés (en.json)
+e2e/          pruebas de punta a punta
+docs/         especificación y planes de implementación
+```
+
+## Cómo agregar un juego
+
+1. Crea `src/games/<id>/` con el motor (`engine.ts`, lógica pura y probada), el componente
+   (`Game.tsx`), un ejemplo visual (`Example.tsx`) y su definición (`index.ts`).
+2. Agrega una línea en `src/games/registry.ts`.
+3. Agrega `games.<id>.title`, `description` e `instructions` en `es.json` y `en.json`.
+
+Las pruebas verifican que cada juego registrado tenga sus textos en ambos idiomas. Cuando exista
+la sincronización con Supabase (plan 2), también hará falta una fila en la tabla `games`.

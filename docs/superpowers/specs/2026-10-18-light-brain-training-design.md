@@ -1,8 +1,8 @@
 # Light — App web gratuita de entrenamiento mental
 
 **Fecha:** 2026-10-18
-**Estado:** Diseño aprobado por secciones; pendiente revisión del documento completo
-**Nombre:** "Light" es provisional (igual que el repositorio)
+**Estado:** Aprobado
+**Nombre:** Light — lema "Ilumina tu cerebro" (EN: "Light up your brain")
 
 ---
 

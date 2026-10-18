@@ -1,0 +1,200 @@
+{
+  "app": {
+    "name": "Light",
+    "tagline": "Light up your brain"
+  },
+  "nav": {
+    "today": "Today",
+    "games": "Games",
+    "progress": "Progress",
+    "settings": "Settings"
+  },
+  "areas": {
+    "memory": "Memory",
+    "attention": "Attention",
+    "speed": "Speed",
+    "flexibility": "Mental flexibility",
+    "math": "Math",
+    "logic": "Logic",
+    "language": "Language"
+  },
+  "common": {
+    "start": "Start",
+    "continue": "Continue",
+    "exit": "Exit",
+    "back": "Back",
+    "playAgain": "Play again",
+    "next": "Next",
+    "howToPlay": "How to play"
+  },
+  "errors": {
+    "generic": "Something went wrong",
+    "backHome": "Back to home",
+    "gameNotFound": "We couldn't find that game"
+  },
+  "game": {
+    "hud": {
+      "time": "Time",
+      "score": "Score",
+      "level": "Level"
+    }
+  },
+  "games": {
+    "sequence-lights": {
+      "title": "Light Sequence",
+      "description": "Remember the order in which the cells light up.",
+      "instructions": [
+        "Watch the cells light up, one after another.",
+        "When you see “Your turn”, tap them in the same order.",
+        "Get it right and the sequence grows; miss and it shrinks."
+      ],
+      "cell": "Cell {{n}}",
+      "watch": "Watch…",
+      "yourTurn": "Your turn",
+      "correct": "Nice!",
+      "wrong": "Almost… keep going",
+      "round": "Round {{n}} of {{total}}"
+    },
+    "arrows": {
+      "title": "Arrows",
+      "description": "Focus only on the middle arrow, even when the others try to distract you.",
+      "instructions": [
+        "You will see a row of five arrows.",
+        "Tell which way the middle arrow points, using the buttons or your arrow keys.",
+        "Ignore the side arrows: sometimes they point the other way."
+      ],
+      "left": "Left",
+      "right": "Right",
+      "exampleAnswer": "Correct answer: Left"
+    },
+    "same-different": {
+      "title": "Same or Different?",
+      "description": "Decide as fast as you can whether each symbol matches the previous one.",
+      "instructions": [
+        "First you will see a symbol: remember it.",
+        "Then another appears: answer “Yes” if it matches the previous one or “No” if it is different.",
+        "Each symbol is compared with the one right before it. Streaks of correct answers multiply your points."
+      ],
+      "remember": "Remember this symbol",
+      "question": "Does it match the previous one?",
+      "yes": "Yes",
+      "no": "No",
+      "exampleAnswer": "Correct answer: Yes",
+      "symbols": {
+        "circle": "circle",
+        "square": "square",
+        "triangle": "triangle",
+        "star": "star",
+        "heart": "heart",
+        "cross": "cross",
+        "tri-up": "triangle pointing up",
+        "tri-down": "triangle pointing down",
+        "tri-left": "triangle pointing left",
+        "tri-right": "triangle pointing right",
+        "diamond": "diamond",
+        "dot-tl": "dot top left",
+        "dot-tr": "dot top right",
+        "dot-bl": "dot bottom left",
+        "dot-br": "dot bottom right",
+        "dot-center": "dot in the center",
+        "dot-none": "empty box"
+      }
+    },
+    "rule-switch": {
+      "title": "Rule Switch",
+      "description": "Match cards by color or by shape, and adapt when the rule changes.",
+      "instructions": [
+        "At the top you will see the current rule: COLOR or SHAPE.",
+        "Tap the bottom card that matches the middle card under that rule (or use your arrow keys).",
+        "The rule changes without warning: always check the banner."
+      ],
+      "rule": {
+        "color": "COLOR",
+        "shape": "SHAPE"
+      },
+      "card": "{{color}} {{shape}}",
+      "shapes": {
+        "circle": "circle",
+        "square": "square",
+        "triangle": "triangle"
+      },
+      "colors": {
+        "blue": "blue",
+        "orange": "orange",
+        "purple": "purple"
+      },
+      "exampleAnswer": "COLOR rule: the answer is the blue square."
+    },
+    "quick-math": {
+      "title": "Quick Math",
+      "description": "Solve operations against the clock; it gets harder as you get them right.",
+      "instructions": [
+        "An operation appears: type the result with the on-screen keypad or your keyboard.",
+        "Press OK (or Enter) to answer. If one is tricky, you can skip it.",
+        "Every correct answer earns points and raises the difficulty."
+      ],
+      "delete": "Delete",
+      "ok": "OK",
+      "skip": "Skip"
+    }
+  },
+  "play": {
+    "exit": "Quit game",
+    "paused": "Paused",
+    "newBest": "New personal best!",
+    "score": "Score",
+    "best": "Personal best",
+    "accuracy": "Accuracy",
+    "levelReached": "Level reached",
+    "example": "Example",
+    "nextGame": "Next game",
+    "seeSummary": "See summary",
+    "saveError": "We couldn’t save your game.",
+    "retry": "Retry"
+  },
+  "today": {
+    "title": "Today’s training",
+    "intro": "Three short games, about 5 minutes in total.",
+    "streak_one": "{{count}} day in a row",
+    "streak_other": "{{count}} days in a row",
+    "completed": "Today’s training is complete!",
+    "done": "Done",
+    "comeBack": "Come back tomorrow to keep your streak going.",
+    "loadError": "We couldn’t prepare today’s training. Try reloading the page."
+  },
+  "gamesScreen": {
+    "best": "Personal best: {{score}}"
+  },
+  "progress": {
+    "empty": "No games yet. Play one to see your progress!",
+    "byArea": "Score by area",
+    "byGame": "By game",
+    "streakCurrent": "Current streak: {{count}}",
+    "streakBest": "Best streak: {{count}}",
+    "daysTrained": "Days trained: {{count}}",
+    "chartLabel": "Last {{count}} scores: lowest {{min}}, highest {{max}}, latest {{last}}",
+    "notEnoughData": "Play at least two games to see your trend."
+  },
+  "settings": {
+    "language": "Language",
+    "theme": "Theme",
+    "themes": {
+      "auto": "Automatic",
+      "light": "Light",
+      "dark": "Dark"
+    },
+    "sound": "Sound",
+    "privacyTitle": "Privacy",
+    "privacy": "Your progress is stored only on this device. Light uses no ads or analytics.",
+    "dataTitle": "Your data",
+    "deleteData": "Delete my data",
+    "deleteConfirm": "Are you sure? Your history, streaks and settings on this device will be deleted.",
+    "deleteYes": "Yes, delete",
+    "deleteCancel": "Cancel",
+    "deleted": "Done: all your data on this device has been deleted."
+  },
+  "update": {
+    "available": "A new version is available",
+    "reload": "Reload"
+  }
+}
