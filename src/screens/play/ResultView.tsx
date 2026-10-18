@@ -8,9 +8,11 @@ export interface ResultViewProps {
   previousBest: number | null;
   onPlayAgain: () => void;
   onBack: () => void;
+  /** Daily mode: the next unfinished game of the plan, or null when the plan is done. */
+  daily?: { nextGameId: string | null; onNext: () => void; onSummary: () => void };
 }
 
-export function ResultView({ game, result, previousBest, onPlayAgain, onBack }: ResultViewProps) {
+export function ResultView({ game, result, previousBest, onPlayAgain, onBack, daily }: ResultViewProps) {
   const { t } = useTranslation();
   const isNewBest = previousBest === null || result.score > previousBest;
   return (
@@ -35,14 +37,28 @@ export function ResultView({ game, result, previousBest, onPlayAgain, onBack }: 
           <dd>{result.levelReached}</dd>
         </div>
       </dl>
-      <div className={styles.actions}>
-        <button className={styles.primary} onClick={onPlayAgain}>
-          {t('common.playAgain')}
-        </button>
-        <button className={styles.secondary} onClick={onBack}>
-          {t('common.back')}
-        </button>
-      </div>
+      {daily ? (
+        <div className={styles.actions}>
+          {daily.nextGameId ? (
+            <button className={styles.primary} onClick={daily.onNext}>
+              {t('play.nextGame')}
+            </button>
+          ) : (
+            <button className={styles.primary} onClick={daily.onSummary}>
+              {t('play.seeSummary')}
+            </button>
+          )}
+        </div>
+      ) : (
+        <div className={styles.actions}>
+          <button className={styles.primary} onClick={onPlayAgain}>
+            {t('common.playAgain')}
+          </button>
+          <button className={styles.secondary} onClick={onBack}>
+            {t('common.back')}
+          </button>
+        </div>
+      )}
     </section>
   );
 }

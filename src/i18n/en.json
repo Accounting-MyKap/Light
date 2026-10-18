@@ -146,6 +146,17 @@
     "best": "Personal best",
     "accuracy": "Accuracy",
     "levelReached": "Level reached",
-    "example": "Example"
+    "example": "Example",
+    "nextGame": "Next game",
+    "seeSummary": "See summary"
+  },
+  "today": {
+    "title": "Today’s training",
+    "intro": "Three short games, about 5 minutes in total.",
+    "streak_one": "{{count}} day in a row",
+    "streak_other": "{{count}} days in a row",
+    "completed": "Today’s training is complete!",
+    "done": "Done",
+    "comeBack": "Come back tomorrow to keep your streak going."
   }
 }

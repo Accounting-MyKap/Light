@@ -25,3 +25,17 @@ test('recordGameResult stores result and next start level', async () => {
   expect(second.previousBest).toBe(120);
   expect(second.newStartLevel).toBe(3);
 });
+
+test('daily results mark the plan of the given day', async () => {
+  const { db } = await import('../data/db');
+  await db.dailyPlans.put({ day: '2026-10-20', gameIds: ['fake', 'x', 'y'], completed: [] });
+  const res = await recordGameResult({
+    game: fakeGame,
+    startLevel: 1,
+    result: { score: 50, accuracy: 0.7, levelReached: 1, durationMs: 60000 },
+    daily: '2026-10-20',
+  });
+  expect(res.stored.isDaily).toBe(true);
+  expect(res.plan?.completed).toEqual(['fake']);
+  expect((await db.dailyPlans.get('2026-10-20'))?.completed).toEqual(['fake']);
+});

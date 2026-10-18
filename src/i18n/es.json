@@ -146,6 +146,17 @@
     "best": "Mejor marca",
     "accuracy": "Precisión",
     "levelReached": "Nivel alcanzado",
-    "example": "Ejemplo"
+    "example": "Ejemplo",
+    "nextGame": "Siguiente juego",
+    "seeSummary": "Ver resumen"
+  },
+  "today": {
+    "title": "Entrenamiento de hoy",
+    "intro": "Tres juegos cortos, unos 5 minutos en total.",
+    "streak_one": "{{count}} día seguido",
+    "streak_other": "{{count}} días seguidos",
+    "completed": "¡Entrenamiento de hoy completado!",
+    "done": "Hecho",
+    "comeBack": "Vuelve mañana para mantener tu racha."
   }
 }

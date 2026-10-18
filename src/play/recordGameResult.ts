@@ -1,5 +1,6 @@
 import { nextStartLevel } from '../core/difficulty';
-import type { StoredResult } from '../data/db';
+import { markDailyGameDone } from '../data/dailyPlans';
+import type { DailyPlan, StoredResult } from '../data/db';
 import { setStartLevel } from '../data/levels';
 import { addResult, bestScore } from '../data/results';
 import type { GameDefinition, GameResult } from '../games/types';
@@ -8,8 +9,9 @@ export async function recordGameResult(args: {
   game: GameDefinition;
   startLevel: number;
   result: GameResult;
+  /** Day of the daily plan this game belongs to, or null for free play. */
   daily: string | null;
-}): Promise<{ stored: StoredResult; previousBest: number | null; newStartLevel: number }> {
+}): Promise<{ stored: StoredResult; previousBest: number | null; newStartLevel: number; plan: DailyPlan | null }> {
   const { game, startLevel, result, daily } = args;
   const previousBest = await bestScore(game.id);
   const stored = await addResult({
@@ -22,5 +24,6 @@ export async function recordGameResult(args: {
   });
   const newStartLevel = nextStartLevel(startLevel, result.accuracy);
   await setStartLevel(game.id, newStartLevel);
-  return { stored, previousBest, newStartLevel };
+  const plan = daily === null ? null : await markDailyGameDone(daily, game.id);
+  return { stored, previousBest, newStartLevel, plan };
 }

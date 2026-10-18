@@ -80,3 +80,24 @@ test('unknown game id', async () => {
   expect(await screen.findByText('No encontramos ese juego')).toBeInTheDocument();
   expect(screen.getByRole('link', { name: 'Volver al inicio' })).toHaveAttribute('href', '/');
 });
+
+test('daily mode offers the next game of the plan', async () => {
+  await updateSettings({ seenInstructions: ['fake'] });
+  await db.dailyPlans.put({ day: '2026-10-20', gameIds: ['fake', 'other', 'third'], completed: [] });
+  await open('/play/fake?daily=2026-10-20');
+  await userEvent.click(await screen.findByRole('button', { name: 'Comenzar' }));
+  await userEvent.click(screen.getByRole('button', { name: 'Terminar' }));
+  await userEvent.click(await screen.findByRole('button', { name: 'Siguiente juego' }));
+  expect(await screen.findByText('No encontramos ese juego')).toBeInTheDocument();
+  expect((await db.dailyPlans.get('2026-10-20'))?.completed).toEqual(['fake']);
+});
+
+test('daily mode on the last game offers the summary', async () => {
+  await updateSettings({ seenInstructions: ['fake'] });
+  await db.dailyPlans.put({ day: '2026-10-20', gameIds: ['other', 'fake'], completed: ['other'] });
+  await open('/play/fake?daily=2026-10-20');
+  await userEvent.click(await screen.findByRole('button', { name: 'Comenzar' }));
+  await userEvent.click(screen.getByRole('button', { name: 'Terminar' }));
+  await userEvent.click(await screen.findByRole('button', { name: 'Ver resumen' }));
+  expect(await screen.findByRole('navigation')).toBeInTheDocument();
+});

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { playTone } from '../core/sound';
 import { getStartLevel } from '../data/levels';
 import { getSettings, updateSettings, useSettings } from '../data/settings';
@@ -12,11 +12,16 @@ import { PauseOverlay } from './play/PauseOverlay';
 import { ResultView } from './play/ResultView';
 import styles from './play/Play.module.css';
 
+const DAY_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
+
 export function PlayScreen() {
   const { gameId = '' } = useParams();
+  const [searchParams] = useSearchParams();
+  const dailyParam = searchParams.get('daily');
+  const daily = dailyParam && DAY_PATTERN.test(dailyParam) ? dailyParam : null;
   const game = getGame(gameId);
   if (!game) return <GameNotFound />;
-  return <PlaySession key={game.id} game={game} />;
+  return <PlaySession key={`${game.id}-${daily ?? 'free'}`} game={game} daily={daily} />;
 }
 
 function GameNotFound() {
@@ -40,9 +45,9 @@ type Phase =
   | { kind: 'loading' }
   | { kind: 'intro'; showInstructions: boolean; firstTime: boolean }
   | { kind: 'playing' }
-  | { kind: 'result'; result: GameResult; previousBest: number | null };
+  | { kind: 'result'; result: GameResult; previousBest: number | null; nextGameId: string | null };
 
-function PlaySession({ game }: { game: GameDefinition }) {
+function PlaySession({ game, daily }: { game: GameDefinition; daily: string | null }) {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
@@ -93,11 +98,12 @@ function PlaySession({ game }: { game: GameDefinition }) {
       if (finishedRef.current) return;
       finishedRef.current = true;
       if (sound) playTone('finish');
-      const recorded = await recordGameResult({ game, startLevel, result, daily: null });
+      const recorded = await recordGameResult({ game, startLevel, result, daily });
       setStartLevel(recorded.newStartLevel);
-      setPhase({ kind: 'result', result, previousBest: recorded.previousBest });
+      const nextGameId = recorded.plan?.gameIds.find((id) => !recorded.plan?.completed.includes(id)) ?? null;
+      setPhase({ kind: 'result', result, previousBest: recorded.previousBest, nextGameId });
     },
-    [game, startLevel, sound],
+    [game, startLevel, sound, daily],
   );
 
   const exit = () => {
@@ -149,6 +155,15 @@ function PlaySession({ game }: { game: GameDefinition }) {
           previousBest={phase.previousBest}
           onPlayAgain={startPlaying}
           onBack={() => navigate('/games')}
+          daily={
+            daily === null
+              ? undefined
+              : {
+                  nextGameId: phase.nextGameId,
+                  onNext: () => navigate(`/play/${phase.nextGameId}?daily=${daily}`),
+                  onSummary: () => navigate('/'),
+                }
+          }
         />
       );
   }
