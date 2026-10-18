@@ -1,10 +1,11 @@
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { createRng, randomSeed } from '../../core/rng';
 import { useCountdown, useGameClock } from '../shared/clock';
 import { GAME_DURATION_MS } from '../shared/constants';
 import { useFeedback } from '../shared/feedback';
 import { GameHud } from '../shared/GameHud';
+import { useGameKeys } from '../shared/useGameKeys';
 import type { GameProps } from '../types';
 import {
   createQuickMathGame,
@@ -17,6 +18,9 @@ import {
 } from './engine';
 import { Keypad } from './Keypad';
 import styles from './quick-math.module.css';
+
+/** Pointer clicks on game controls should not move keyboard focus onto them (Enter must keep submitting). */
+const keepFocus = (e: { preventDefault: () => void }) => e.preventDefault();
 
 export function QuickMathGame({ startLevel, paused, onFinish }: GameProps) {
   const { t } = useTranslation();
@@ -33,39 +37,40 @@ export function QuickMathGame({ startLevel, paused, onFinish }: GameProps) {
 
   const active = !paused && !finished;
 
+  // Each action returns whether it was used, so unused keys keep their browser behavior.
   const actions = {
-    digit: (d: number) => active && setGame(typeDigit(game, d)),
-    remove: () => active && setGame(deleteDigit(game)),
+    digit: (d: number) => {
+      if (!active) return false;
+      setGame(typeDigit(game, d));
+      return true;
+    },
+    remove: () => {
+      if (!active) return false;
+      setGame(deleteDigit(game));
+      return true;
+    },
     submit: () => {
-      if (!active) return;
+      if (!active) return false;
       const res = submitAnswer(game, rng);
-      if (res.correct === null) return;
+      if (res.correct === null) return false;
       feedback(res.correct ? 'correct' : 'wrong');
       setGame(res.state);
+      return true;
     },
     skip: () => {
-      if (!active) return;
+      if (!active) return false;
       feedback('wrong');
       setGame(skipProblem(game, rng));
+      return true;
     },
   };
 
-  const actionsRef = useRef(actions);
-  useEffect(() => {
-    actionsRef.current = actions;
+  useGameKeys((key) => {
+    if (/^[0-9]$/.test(key)) return actions.digit(Number(key));
+    if (key === 'Backspace') return actions.remove();
+    if (key === 'Enter') return actions.submit();
+    return false;
   });
-
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (/^[0-9]$/.test(e.key)) actionsRef.current.digit(Number(e.key));
-      else if (e.key === 'Backspace') actionsRef.current.remove();
-      else if (e.key === 'Enter') actionsRef.current.submit();
-      else return;
-      e.preventDefault();
-    };
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
-  }, []);
 
   return (
     <div className={styles.game}>
@@ -78,7 +83,7 @@ export function QuickMathGame({ startLevel, paused, onFinish }: GameProps) {
         </span>
       </div>
       <Keypad onDigit={actions.digit} onDelete={actions.remove} onSubmit={actions.submit} />
-      <button type="button" className={styles.skip} onClick={actions.skip}>
+      <button type="button" className={styles.skip} onMouseDown={keepFocus} onClick={actions.skip}>
         {t('games.quick-math.skip')}
       </button>
     </div>

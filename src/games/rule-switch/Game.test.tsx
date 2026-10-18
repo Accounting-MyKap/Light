@@ -58,3 +58,10 @@ test('every new trial re-mounts the stimulus so repeats are visible', () => {
   fireEvent.keyDown(window, { key: 'ArrowLeft' });
   expect(screen.getByTestId('stimulus')).not.toBe(before);
 });
+
+test('auto-repeated keys are ignored', () => {
+  render(<RuleSwitchGame startLevel={1} paused={false} onFinish={vi.fn()} />);
+  advance(300);
+  fireEvent.keyDown(window, { key: correctKey(), repeat: true });
+  expect(hud('Puntos')).toBe('0');
+});

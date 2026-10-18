@@ -62,3 +62,24 @@ test('finishes once after 60 seconds', () => {
   expect(onFinish).toHaveBeenCalledTimes(1);
   expect(onFinish.mock.calls[0][0]).toMatchObject({ durationMs: 60_000, accuracy: 0 });
 });
+
+test('Enter on a focused button is left to the button, even while paused', () => {
+  render(<QuickMathGame startLevel={1} paused={true} onFinish={vi.fn()} />);
+  const notPrevented = fireEvent.keyDown(screen.getByRole('button', { name: 'OK' }), { key: 'Enter' });
+  expect(notPrevented).toBe(true);
+});
+
+test('Enter on a focused button does not submit the typed answer', () => {
+  render(<QuickMathGame startLevel={1} paused={false} onFinish={vi.fn()} />);
+  fireEvent.keyDown(window, { key: '7' });
+  const notPrevented = fireEvent.keyDown(screen.getByRole('button', { name: 'Saltar' }), { key: 'Enter' });
+  expect(notPrevented).toBe(true);
+  expect(screen.getByTestId('answer').textContent).toBe('7');
+});
+
+test('auto-repeated keys are ignored', () => {
+  render(<QuickMathGame startLevel={1} paused={false} onFinish={vi.fn()} />);
+  fireEvent.keyDown(window, { key: '7' });
+  fireEvent.keyDown(window, { key: '7', repeat: true });
+  expect(screen.getByTestId('answer').textContent).toBe('7');
+});

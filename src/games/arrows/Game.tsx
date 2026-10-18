@@ -1,10 +1,11 @@
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { createRng, randomSeed } from '../../core/rng';
 import { useCountdown, useGameClock, useTrialTimeout } from '../shared/clock';
 import { GAME_DURATION_MS } from '../shared/constants';
 import { useFeedback } from '../shared/feedback';
 import { GameHud } from '../shared/GameHud';
+import { useGameKeys } from '../shared/useGameKeys';
 import type { GameProps } from '../types';
 import { ArrowIcon, ArrowRow } from './ArrowRow';
 import { answerArrow, arrowsResult, arrowWindowMs, createArrowsGame, timeoutArrow, type Direction } from './engine';
@@ -31,28 +32,19 @@ export function ArrowsGame({ startLevel, paused, onFinish }: GameProps) {
   });
 
   const answer = (direction: Direction) => {
-    if (!active) return;
+    if (!active) return false;
     const res = answerArrow(game, direction, clock.now(), rng);
-    if (res.correct === null) return;
+    if (res.correct === null) return false;
     feedback(res.correct ? 'correct' : 'wrong');
     setGame(res.state);
+    return true;
   };
 
-  const answerRef = useRef(answer);
-  useEffect(() => {
-    answerRef.current = answer;
+  useGameKeys((key) => {
+    if (key === 'ArrowLeft') return answer('left');
+    if (key === 'ArrowRight') return answer('right');
+    return false;
   });
-
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'ArrowLeft') answerRef.current('left');
-      else if (e.key === 'ArrowRight') answerRef.current('right');
-      else return;
-      e.preventDefault();
-    };
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
-  }, []);
 
   return (
     <div className={styles.game}>

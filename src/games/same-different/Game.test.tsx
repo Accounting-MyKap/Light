@@ -53,3 +53,11 @@ test('every new trial re-mounts the symbol card so repeats are visible', () => {
   fireEvent.keyDown(window, { key: 'ArrowLeft' });
   expect(screen.getByTestId('symbol-card')).not.toBe(before);
 });
+
+test('auto-repeated keys are ignored', () => {
+  render(<SameDifferentGame startLevel={1} paused={false} onFinish={vi.fn()} />);
+  advance(INTRO_MS + 300);
+  fireEvent.keyDown(window, { key: 'ArrowLeft', repeat: true });
+  fireEvent.keyDown(window, { key: 'ArrowRight', repeat: true });
+  expect(hud('Puntos')).toBe('0');
+});

@@ -1,10 +1,11 @@
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { createRng, randomSeed } from '../../core/rng';
 import { useCountdown, useGameClock, useTrialTimeout } from '../shared/clock';
 import { GAME_DURATION_MS } from '../shared/constants';
 import { useFeedback } from '../shared/feedback';
 import { GameHud } from '../shared/GameHud';
+import { useGameKeys } from '../shared/useGameKeys';
 import type { GameProps } from '../types';
 import { answerSameDiff, createSameDiffGame, sameDiffResult, timeLimitMs, timeoutSameDiff } from './engine';
 import { SymbolGlyph } from './symbols';
@@ -38,28 +39,19 @@ export function SameDifferentGame({ startLevel, paused, onFinish }: GameProps) {
   });
 
   const answer = (choice: 'same' | 'different') => {
-    if (!active) return;
+    if (!active) return false;
     const res = answerSameDiff(game, choice, clock.now(), rng);
-    if (res.correct === null) return;
+    if (res.correct === null) return false;
     feedback(res.correct ? 'correct' : 'wrong');
     setGame(res.state);
+    return true;
   };
 
-  const answerRef = useRef(answer);
-  useEffect(() => {
-    answerRef.current = answer;
+  useGameKeys((key) => {
+    if (key === 'ArrowLeft') return answer('different');
+    if (key === 'ArrowRight') return answer('same');
+    return false;
   });
-
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'ArrowLeft') answerRef.current('different');
-      else if (e.key === 'ArrowRight') answerRef.current('same');
-      else return;
-      e.preventDefault();
-    };
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
-  }, []);
 
   const shown = introDone ? game.current : game.previous;
 

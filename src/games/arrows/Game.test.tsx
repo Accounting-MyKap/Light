@@ -55,3 +55,10 @@ test('every new trial re-mounts the arrow row so repeats are visible', () => {
   fireEvent.keyDown(window, { key: 'ArrowLeft' });
   expect(screen.getByTestId('arrows-row')).not.toBe(before);
 });
+
+test('holding an arrow key does not answer trials (auto-repeat is ignored)', () => {
+  render(<ArrowsGame startLevel={1} paused={false} onFinish={vi.fn()} />);
+  advance(300);
+  fireEvent.keyDown(window, { key: target() === 'left' ? 'ArrowLeft' : 'ArrowRight', repeat: true });
+  expect(hud('Puntos')).toBe('0');
+});
