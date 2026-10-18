@@ -23,6 +23,8 @@ export const fakeGame: GameDefinition = {
   Example: FakeExample,
 };
 
+export const fakeGame2: GameDefinition = { ...fakeGame, id: 'fake2' };
+
 export function registerFakeGameTranslations(): void {
   const texts = {
     games: {
@@ -30,6 +32,11 @@ export function registerFakeGameTranslations(): void {
         title: 'Juego falso',
         description: 'Un juego para pruebas',
         instructions: ['Primera instrucción falsa', 'Segunda instrucción falsa'],
+      },
+      fake2: {
+        title: 'Segundo juego falso',
+        description: 'Otro juego para pruebas',
+        instructions: ['Instrucción A', 'Instrucción B'],
       },
     },
   };

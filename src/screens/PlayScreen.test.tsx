@@ -6,8 +6,9 @@ import { clearAllData, db } from '../data/db';
 import { getSettings, updateSettings } from '../data/settings';
 
 vi.mock('../games/registry', async () => {
-  const { fakeGame } = await import('../test/fakeGame');
-  return { GAMES: [fakeGame], getGame: (id: string) => (id === 'fake' ? fakeGame : undefined) };
+  const { fakeGame, fakeGame2 } = await import('../test/fakeGame');
+  const games = [fakeGame, fakeGame2];
+  return { GAMES: games, getGame: (id: string) => games.find((g) => g.id === id) };
 });
 
 function setHidden(hidden: boolean) {
@@ -100,4 +101,18 @@ test('daily mode on the last game offers the summary', async () => {
   await userEvent.click(screen.getByRole('button', { name: 'Terminar' }));
   await userEvent.click(await screen.findByRole('button', { name: 'Ver resumen' }));
   expect(await screen.findByRole('navigation')).toBeInTheDocument();
+});
+
+test('exiting a later daily game returns to Today, not to the previous game', async () => {
+  await updateSettings({ seenInstructions: ['fake', 'fake2'] });
+  await db.dailyPlans.put({ day: '2026-10-20', gameIds: ['fake', 'fake2'], completed: [] });
+  await open('/play/fake?daily=2026-10-20');
+  await userEvent.click(await screen.findByRole('button', { name: 'Comenzar' }));
+  await userEvent.click(screen.getByRole('button', { name: 'Terminar' }));
+  await userEvent.click(await screen.findByRole('button', { name: 'Siguiente juego' }));
+  expect(await screen.findByRole('heading', { name: 'Segundo juego falso' })).toBeInTheDocument();
+  await userEvent.click(screen.getByRole('button', { name: 'Comenzar' }));
+  await userEvent.click(screen.getByRole('button', { name: 'Salir del juego' }));
+  await userEvent.click(screen.getByRole('button', { name: 'Salir' }));
+  expect(await screen.findByRole('heading', { name: 'Entrenamiento de hoy' })).toBeInTheDocument();
 });

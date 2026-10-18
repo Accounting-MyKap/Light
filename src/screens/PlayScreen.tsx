@@ -107,7 +107,8 @@ function PlaySession({ game, daily }: { game: GameDefinition; daily: string | nu
   );
 
   const exit = () => {
-    if (location.key === 'default') navigate('/games');
+    if (daily !== null) navigate('/');
+    else if (location.key === 'default') navigate('/games');
     else navigate(-1);
   };
 
@@ -160,7 +161,7 @@ function PlaySession({ game, daily }: { game: GameDefinition; daily: string | nu
               ? undefined
               : {
                   nextGameId: phase.nextGameId,
-                  onNext: () => navigate(`/play/${phase.nextGameId}?daily=${daily}`),
+                  onNext: () => navigate(`/play/${phase.nextGameId}?daily=${daily}`, { replace: true }),
                   onSummary: () => navigate('/'),
                 }
           }
