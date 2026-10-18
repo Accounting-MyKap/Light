@@ -1,6 +1,7 @@
 import { expect, test, type Locator } from '@playwright/test';
 
 async function expectTall(targets: Locator) {
+  await expect(targets.first()).toBeVisible(); // the app renders after an async bootstrap
   const count = await targets.count();
   expect(count).toBeGreaterThan(0);
   for (let i = 0; i < count; i++) {
