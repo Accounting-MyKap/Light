@@ -1,8 +1,8 @@
 import { useLiveQuery } from 'dexie-react-hooks';
-import { useState } from 'react';
+import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { areaScores } from '../core/areaScore';
-import { localDay } from '../core/dates';
+import { useLocalDay } from '../app/useLocalDay';
 import { computeStreak } from '../core/streak';
 import { completedDays } from '../data/dailyPlans';
 import { listResults } from '../data/results';
@@ -15,7 +15,9 @@ const CHART_POINTS = 30;
 
 export function ProgressScreen() {
   const { t } = useTranslation();
-  const [now] = useState(() => new Date());
+  const today = useLocalDay();
+  // Re-evaluated when the day changes so the 30-day window and the streak stay current.
+  const now = useMemo(() => new Date(), [today]);
   const results = useLiveQuery(() => listResults(), []);
   const days = useLiveQuery(completedDays, [], []);
 
@@ -31,7 +33,7 @@ export function ProgressScreen() {
   }
 
   const scores = areaScores(results, GAMES, now);
-  const streak = computeStreak(days, localDay(now));
+  const streak = computeStreak(days, today);
   const daysTrained = new Set(results.map((r) => r.day)).size;
 
   return (

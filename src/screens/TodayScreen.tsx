@@ -2,7 +2,7 @@ import { useLiveQuery } from 'dexie-react-hooks';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { localDay } from '../core/dates';
+import { useLocalDay } from '../app/useLocalDay';
 import { computeStreak } from '../core/streak';
 import { completedDays, getOrCreatePlan, getPlan, isPlanComplete } from '../data/dailyPlans';
 import { db } from '../data/db';
@@ -22,13 +22,14 @@ function LightIcon() {
 
 export function TodayScreen() {
   const { t } = useTranslation();
-  const [today] = useState(() => localDay(new Date()));
-  const [planError, setPlanError] = useState(false);
+  const today = useLocalDay();
+  const [planErrorDay, setPlanErrorDay] = useState<string | null>(null);
+  const planError = planErrorDay === today;
 
   useEffect(() => {
     getOrCreatePlan(today).catch((error: unknown) => {
       console.error(error);
-      setPlanError(true);
+      setPlanErrorDay(today);
     });
   }, [today]);
 

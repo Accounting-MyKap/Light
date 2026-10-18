@@ -52,3 +52,14 @@ test('completed day shows the summary with today scores and streak 1', async () 
   expect(screen.queryByRole('link', { name: 'Continuar' })).not.toBeInTheDocument();
   expect(await db.dailyPlans.count()).toBe(1);
 });
+
+test('coming back the next morning shows the new day plan', async () => {
+  vi.setSystemTime(new Date(2026, 9, 18, 23, 58));
+  await renderApp('/');
+  await vi.waitFor(async () => expect(await getPlan('2026-10-18')).toBeDefined());
+  vi.setSystemTime(new Date(2026, 9, 19, 8, 0));
+  document.dispatchEvent(new Event('visibilitychange'));
+  await vi.waitFor(async () => expect(await getPlan('2026-10-19')).toBeDefined());
+  const link = await screen.findByRole('link', { name: 'Comenzar' });
+  await vi.waitFor(() => expect(link.getAttribute('href')).toContain('daily=2026-10-19'));
+});
