@@ -81,6 +81,7 @@ export function SettingsScreen() {
       <section className={styles.section}>
         <h2>{t('settings.privacyTitle')}</h2>
         <p className={styles.muted}>{t(syncConfig ? 'settings.privacySync' : 'settings.privacy')}</p>
+        {syncConfig?.turnstileSiteKey && <p className={styles.muted}>{t('settings.privacyCaptcha')}</p>}
       </section>
 
       <section className={styles.section}>

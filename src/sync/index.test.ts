@@ -11,6 +11,7 @@ const captchaGetter = async () => 'token';
 const syncNow = vi.fn<(remote: RemoteStore, getCaptchaToken: () => Promise<string | undefined>) => Promise<SyncReport>>();
 const createSupabaseRemote = vi.fn(() => remote);
 const createCaptchaTokenGetter = vi.fn(() => captchaGetter);
+const deleteData = vi.fn<(remote: RemoteStore | null) => Promise<'ok' | 'remote-failed'>>();
 
 /** A fresh copy of the module, because it keeps its scheduler and remote at module level. */
 async function load(syncConfig: SyncConfig | null) {
@@ -19,6 +20,7 @@ async function load(syncConfig: SyncConfig | null) {
   vi.doMock('./syncEngine', () => ({ syncNow }));
   vi.doMock('./remote', () => ({ createSupabaseRemote }));
   vi.doMock('./captcha', () => ({ createCaptchaTokenGetter }));
+  vi.doMock('./deleteData', () => ({ deleteEverything: deleteData }));
   return import('./index');
 }
 
@@ -51,6 +53,7 @@ function setHidden(hidden: boolean) {
 
 beforeEach(() => {
   syncNow.mockReset().mockResolvedValue(ok);
+  deleteData.mockReset().mockResolvedValue('ok');
   createSupabaseRemote.mockClear();
   createCaptchaTokenGetter.mockClear();
 });
@@ -217,6 +220,43 @@ describe('sync enabled', () => {
     locks.waiting[0]();
     expect(await report).toBe(ok);
     expect(syncNow).toHaveBeenCalledTimes(1);
+  });
+
+  test('deleteEverything waits for the sync run in flight, then deletes', async () => {
+    const sync = await load(config);
+    let finish!: (report: SyncReport) => void;
+    syncNow.mockImplementationOnce(() => new Promise<SyncReport>((resolve) => (finish = resolve)));
+    const running = sync.requestSync();
+    await vi.waitFor(() => expect(syncNow).toHaveBeenCalledTimes(1));
+
+    const deleting = sync.deleteEverything(remote);
+    await new Promise((resolve) => setTimeout(resolve, 20));
+    expect(deleteData).not.toHaveBeenCalled();
+
+    finish(ok);
+    expect(await deleting).toBe('ok');
+    expect(deleteData).toHaveBeenCalledExactlyOnceWith(remote);
+    expect(await running).toBe(ok);
+  });
+
+  test('deleteEverything also holds the cross-tab lock', async () => {
+    const sync = await load(config);
+    const locks = stubLocks();
+    const deleting = sync.deleteEverything(remote);
+    await vi.waitFor(() => expect(locks.waiting).toHaveLength(1));
+    expect(locks.request).toHaveBeenCalledExactlyOnceWith('light-sync', expect.any(Function));
+    expect(deleteData).not.toHaveBeenCalled();
+
+    locks.waiting[0]();
+    expect(await deleting).toBe('ok');
+    expect(deleteData).toHaveBeenCalledExactlyOnceWith(remote);
+  });
+
+  test('a delete that fails is reported to the caller and does not block the next run', async () => {
+    const sync = await load(config);
+    deleteData.mockRejectedValueOnce(new Error('IndexedDB is gone'));
+    await expect(sync.deleteEverything(remote)).rejects.toThrow('IndexedDB is gone');
+    expect(await sync.requestSync()).toBe(ok);
   });
 
   test('stopping the service twice is harmless', async () => {

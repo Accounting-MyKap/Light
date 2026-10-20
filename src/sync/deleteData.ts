@@ -9,6 +9,8 @@ import type { RemoteStore } from './remote';
  * server data went but signing out failed, the retry finds no session and just clears the device.
  *
  * A failure to clear the device itself rejects, as `clearAllData` does.
+ *
+ * The app calls it through `deleteEverything` in `./index`, which queues it behind any sync run in flight.
  */
 export async function deleteEverything(remote: RemoteStore | null): Promise<'ok' | 'remote-failed'> {
   if (remote) {

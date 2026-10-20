@@ -29,6 +29,9 @@ const CONFIRM_SYNC =
 const SUCCESS = 'Listo: borramos todos tus datos de este dispositivo.';
 const SUCCESS_SYNC = 'Listo: borramos todos tus datos de este dispositivo y de nuestro servidor.';
 const SERVER_ERROR = 'No pudimos borrar tus datos del servidor. Revisa tu conexión e inténtalo de nuevo.';
+const PRIVACY_SYNC =
+  'Tu progreso se guarda en este dispositivo. Para compararte con otros jugadores, tus partidas (puntaje, nivel, precisión, duración y fecha) también se envían de forma anónima, sin nombre ni correo, a nuestro servidor. Light no usa publicidad ni analítica.';
+const PRIVACY_CAPTCHA = 'La primera vez que se envían, Cloudflare Turnstile comprueba que no eres un bot.';
 
 beforeEach(async () => {
   config.current = null;
@@ -76,28 +79,35 @@ test('privacy note is visible', async () => {
     screen.getByText('Tu progreso se guarda solo en este dispositivo. Light no usa publicidad ni analítica.'),
   ).toBeInTheDocument();
   expect(screen.queryByText(/a nuestro servidor/)).not.toBeInTheDocument();
+  expect(screen.queryByText(/Turnstile/)).not.toBeInTheDocument();
 });
 
-test('privacy note says the scores are sent when sync is enabled', async () => {
+test('privacy note says what is sent when sync is enabled', async () => {
   config.current = enabled;
   await renderApp('/settings');
-  expect(
-    screen.getByText(
-      'Tu progreso se guarda en este dispositivo. Para compararte con otros jugadores, tus puntajes también se envían de forma anónima, sin nombre ni correo, a nuestro servidor. Light no usa publicidad ni analítica.',
-    ),
-  ).toBeInTheDocument();
+  expect(screen.getByText(PRIVACY_SYNC)).toBeInTheDocument();
   expect(screen.queryByText(/guarda solo en este dispositivo/)).not.toBeInTheDocument();
+  // No Turnstile site key: no captcha runs, so the note does not mention one.
+  expect(screen.queryByText(/Turnstile/)).not.toBeInTheDocument();
+});
+
+test('privacy note mentions the Turnstile check when a site key is configured', async () => {
+  config.current = { ...enabled, turnstileSiteKey: 'site-key' };
+  await renderApp('/settings');
+  expect(screen.getByText(PRIVACY_SYNC)).toBeInTheDocument();
+  expect(screen.getByText(PRIVACY_CAPTCHA)).toBeInTheDocument();
 });
 
 test('privacy note is honest in English too when sync is enabled', async () => {
-  config.current = enabled;
+  config.current = { ...enabled, turnstileSiteKey: 'site-key' };
   await initI18n('en');
   render(<SettingsScreen />);
   expect(
     screen.getByText(
-      'Your progress is stored on this device. To compare you with other players, your scores are also sent anonymously, with no name or email, to our server. Light uses no ads or analytics.',
+      'Your progress is stored on this device. To compare you with other players, your games (score, level, accuracy, duration and date) are also sent anonymously, with no name or email, to our server. Light uses no ads or analytics.',
     ),
   ).toBeInTheDocument();
+  expect(screen.getByText('The first time they’re sent, Cloudflare Turnstile checks that you’re not a bot.')).toBeInTheDocument();
 });
 
 test('delete my data asks for confirmation', async () => {

@@ -1,11 +1,11 @@
 // The single entry point the UI uses for sync: screens import from here, never from the modules behind it.
 import { createCaptchaTokenGetter } from './captcha';
 import { syncConfig } from './config';
+import { deleteEverything as deleteEverythingNow } from './deleteData';
 import { createSupabaseRemote, type RemoteStore } from './remote';
 import { createSyncScheduler, type SyncScheduler } from './scheduler';
 import { syncNow, type SyncReport } from './syncEngine';
 
-export { deleteEverything } from './deleteData';
 export { fetchPercentile } from './percentile';
 export type { RemoteStore } from './remote';
 export type { SyncReport } from './syncEngine';
@@ -30,6 +30,14 @@ function runAfterLast<T>(task: () => Promise<T>): Promise<T> {
 function withSyncLock<T>(task: () => Promise<T>): Promise<T> {
   const locks = (navigator as { locks?: LockManager }).locks;
   return locks ? locks.request('light-sync', task) : task();
+}
+
+/**
+ * Deletes the player's data on the server and on the device (see deleteData.ts), queued behind any sync run in flight
+ * and holding the same lock: an upload landing between the server delete and the sign-out would leave rows behind.
+ */
+export function deleteEverything(store: RemoteStore | null): Promise<'ok' | 'remote-failed'> {
+  return runAfterLast(() => deleteEverythingNow(store));
 }
 
 /** The Supabase remote, created on first use and then shared. `null` when sync is not configured. */
