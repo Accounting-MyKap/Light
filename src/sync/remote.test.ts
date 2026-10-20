@@ -1,4 +1,4 @@
-import { classifyError, createSupabaseRemote, RemoteError } from './remote';
+import { classifyError, createSupabaseRemote, fetchWithTimeout, RemoteError, REQUEST_TIMEOUT_MS } from './remote';
 import type { RemoteResult } from './remote';
 
 test.each([
@@ -249,5 +249,83 @@ describe('createSupabaseRemote', () => {
     const calls = stubFetch(() => json(204));
     await expect(createSupabaseRemote(config, { storage: memoryStorage() }).deleteMyData()).rejects.toMatchObject({ kind: 'auth' });
     expect(calls).toHaveLength(0);
+  });
+});
+
+describe('request timeout', () => {
+  /**
+   * A fetch that never answers but, like the real one, rejects with the abort reason once its signal aborts.
+   * Returns the paths it was called with (clients left over from earlier tests may call it too).
+   */
+  function stubHangingFetch(): string[] {
+    const paths: string[] = [];
+    vi.stubGlobal('fetch', (input: string | URL | Request, init: RequestInit = {}) => {
+      paths.push(new URL(String(input)).pathname);
+      return new Promise<Response>((_resolve, reject) => {
+        const { signal } = init;
+        if (signal?.aborted) reject(signal.reason);
+        signal?.addEventListener('abort', () => reject(signal.reason), { once: true });
+      });
+    });
+    return paths;
+  }
+
+  /** Runs `body` as if this browser had no `AbortSignal.timeout` / `AbortSignal.any`, then puts them back. */
+  async function withoutAbortSignalHelpers(names: Array<'timeout' | 'any'>, body: () => Promise<void>) {
+    const saved = { timeout: AbortSignal.timeout, any: AbortSignal.any };
+    try {
+      for (const name of names) Object.assign(AbortSignal, { [name]: undefined });
+      await body();
+    } finally {
+      Object.assign(AbortSignal, saved);
+    }
+  }
+
+  test('a request that hangs is given up after 20 seconds and fails as a network error', async () => {
+    const deadline = new AbortController();
+    const timeout = vi.spyOn(AbortSignal, 'timeout').mockReturnValue(deadline.signal);
+    const paths = stubHangingFetch();
+    const failure = createSupabaseRemote(config, { storage: memoryStorage() }).upsertResults([result]);
+    await vi.waitFor(() => expect(paths).toContain('/rest/v1/results'));
+    expect(REQUEST_TIMEOUT_MS).toBe(20_000);
+    expect(timeout).toHaveBeenCalledWith(20_000);
+
+    deadline.abort(new DOMException('The operation timed out.', 'TimeoutError'));
+    await expect(failure).rejects.toMatchObject({ name: 'RemoteError', kind: 'network' });
+  });
+
+  test('without AbortSignal.timeout or AbortSignal.any a hanging request still fails after 20 seconds', async () => {
+    await withoutAbortSignalHelpers(['timeout', 'any'], async () => {
+      vi.useFakeTimers();
+      try {
+        const paths = stubHangingFetch();
+        let settled = false;
+        const outcome = createSupabaseRemote(config, { storage: memoryStorage() })
+          .upsertResults([result])
+          .then(() => undefined, (error: unknown) => error)
+          .finally(() => (settled = true));
+        await vi.advanceTimersByTimeAsync(0);
+        expect(paths).toContain('/rest/v1/results');
+        await vi.advanceTimersByTimeAsync(19_999);
+        expect(settled).toBe(false);
+        await vi.advanceTimersByTimeAsync(1);
+        expect(await outcome).toMatchObject({ name: 'RemoteError', kind: 'network' });
+      } finally {
+        vi.useRealTimers();
+      }
+    });
+  });
+
+  test.each([
+    ['with', []],
+    ['without', ['any']],
+  ] as const)("%s AbortSignal.any, the caller's own signal still aborts the request", async (_label, missing) => {
+    await withoutAbortSignalHelpers([...missing], async () => {
+      stubHangingFetch();
+      const caller = new AbortController();
+      const request = fetchWithTimeout('https://proj.supabase.co/rest/v1/games', { signal: caller.signal });
+      caller.abort();
+      await expect(request).rejects.toMatchObject({ name: 'AbortError' });
+    });
   });
 });

@@ -97,9 +97,40 @@ async function unwrap<R extends { data: unknown; error: ErrorLike | null; status
   return response.data;
 }
 
+/** Longest a request to Supabase may take. Past it the call fails as a network error and the scheduler retries later. */
+export const REQUEST_TIMEOUT_MS = 20_000;
+
+/**
+ * `fetch` with a deadline: a request that never answers would otherwise hold the single sync run forever.
+ * A signal from the caller still aborts the request too.
+ */
+export function fetchWithTimeout(input: RequestInfo | URL, init: RequestInit = {}): Promise<Response> {
+  const deadline = timeoutSignal(REQUEST_TIMEOUT_MS);
+  return fetch(input, { ...init, signal: init.signal ? eitherSignal(init.signal, deadline) : deadline });
+}
+
+// AbortSignal.timeout and AbortSignal.any are recent (Safari 16 and 17.4): older browsers get the same behavior by hand.
+function timeoutSignal(ms: number): AbortSignal {
+  if (typeof AbortSignal.timeout === 'function') return AbortSignal.timeout(ms);
+  const controller = new AbortController();
+  setTimeout(() => controller.abort(new DOMException('The request timed out', 'TimeoutError')), ms);
+  return controller.signal;
+}
+
+function eitherSignal(a: AbortSignal, b: AbortSignal): AbortSignal {
+  if (typeof AbortSignal.any === 'function') return AbortSignal.any([a, b]);
+  const controller = new AbortController();
+  for (const signal of [a, b]) {
+    if (signal.aborted) controller.abort(signal.reason);
+    else signal.addEventListener('abort', () => controller.abort(signal.reason), { once: true });
+  }
+  return controller.signal;
+}
+
 export function createSupabaseRemote(config: SyncConfig, options: { storage?: Storage } = {}): RemoteStore {
   const client = createClient(config.url, config.publishableKey, {
     auth: { persistSession: true, autoRefreshToken: true, storageKey: 'light-auth', storage: options.storage },
+    global: { fetch: fetchWithTimeout },
   });
 
   async function currentUserId(): Promise<string | null> {

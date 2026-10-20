@@ -30,6 +30,20 @@ function start(sync: Awaited<ReturnType<typeof load>>): () => void {
   return stop;
 }
 
+/**
+ * Gives jsdom a `navigator.locks` whose lock is held elsewhere: each request waits in `waiting` until the test grants
+ * it by calling the entry. Removed again after each test.
+ */
+function stubLocks() {
+  const waiting: Array<() => void> = [];
+  const request = vi.fn(
+    (name: string, callback: (lock: { name: string }) => Promise<unknown>) =>
+      new Promise((resolve, reject) => waiting.push(() => void callback({ name }).then(resolve, reject))),
+  );
+  Object.defineProperty(navigator, 'locks', { value: { request }, configurable: true });
+  return { request, waiting };
+}
+
 function setHidden(hidden: boolean) {
   Object.defineProperty(document, 'hidden', { value: hidden, configurable: true });
   document.dispatchEvent(new Event('visibilitychange'));
@@ -43,6 +57,7 @@ beforeEach(() => {
 afterEach(() => {
   for (const stop of stops.splice(0)) stop();
   Object.defineProperty(document, 'hidden', { value: false, configurable: true });
+  delete (navigator as { locks?: unknown }).locks;
   vi.useRealTimers();
   vi.restoreAllMocks();
 });
@@ -181,6 +196,27 @@ describe('sync enabled', () => {
     syncNow.mockRejectedValueOnce(new Error('first run failed'));
     expect(await sync.requestSync()).toBeNull();
     expect(await sync.requestSync()).toBe(ok);
+  });
+
+  test('without the Web Locks API (as in jsdom) runs go ahead without a lock', async () => {
+    expect('locks' in navigator).toBe(false);
+    const sync = await load(config);
+    expect(await sync.requestSync()).toBe(ok);
+  });
+
+  test('with the Web Locks API each run holds the cross-tab "light-sync" lock', async () => {
+    const sync = await load(config);
+    const locks = stubLocks();
+    const report = sync.requestSync();
+    await vi.waitFor(() => expect(locks.waiting).toHaveLength(1));
+    expect(locks.request).toHaveBeenCalledExactlyOnceWith('light-sync', expect.any(Function));
+    // Another tab holds the lock: this tab's run waits for it.
+    await new Promise((resolve) => setTimeout(resolve, 20));
+    expect(syncNow).not.toHaveBeenCalled();
+
+    locks.waiting[0]();
+    expect(await report).toBe(ok);
+    expect(syncNow).toHaveBeenCalledTimes(1);
   });
 
   test('stopping the service twice is harmless', async () => {

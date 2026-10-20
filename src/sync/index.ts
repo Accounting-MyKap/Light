@@ -17,10 +17,19 @@ let scheduler: SyncScheduler | null = null;
 // service (a StrictMode remount, say) gets a new scheduler while the old one's run may still be in flight.
 let lastRun: Promise<unknown> = Promise.resolve();
 
-function runAfterLast(store: RemoteStore, getCaptchaToken: () => Promise<string | undefined>): Promise<SyncReport> {
-  const run = lastRun.then(() => syncNow(store, getCaptchaToken));
+function runAfterLast<T>(task: () => Promise<T>): Promise<T> {
+  const run = lastRun.then(() => withSyncLock(task));
   lastRun = run.catch(() => {});
   return run;
+}
+
+/**
+ * Runs `task` holding the `light-sync` Web Lock, so two open tabs never upload at once (they share the device's data
+ * and the guest session, and could otherwise create two guests). Without the API it just runs.
+ */
+function withSyncLock<T>(task: () => Promise<T>): Promise<T> {
+  const locks = (navigator as { locks?: LockManager }).locks;
+  return locks ? locks.request('light-sync', task) : task();
 }
 
 /** The Supabase remote, created on first use and then shared. `null` when sync is not configured. */
@@ -35,7 +44,7 @@ function getScheduler(): SyncScheduler | null {
   if (!store || !syncConfig) return null;
   captchaTokenGetter ??= createCaptchaTokenGetter(syncConfig.turnstileSiteKey);
   const getCaptchaToken = captchaTokenGetter;
-  scheduler ??= createSyncScheduler(() => runAfterLast(store, getCaptchaToken));
+  scheduler ??= createSyncScheduler(() => runAfterLast(() => syncNow(store, getCaptchaToken)));
   return scheduler;
 }
 
