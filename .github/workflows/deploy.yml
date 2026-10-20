@@ -28,7 +28,13 @@ jobs:
       - run: npm run lint
       - run: npm run typecheck
       - run: npm test
+      # Sync is opt-in: with these repository variables unset the build is local-only.
+      # All three values are public (they end up in the bundle). Never put a service key here.
       - run: npm run build
+        env:
+          VITE_SUPABASE_URL: ${{ vars.SUPABASE_URL }}
+          VITE_SUPABASE_PUBLISHABLE_KEY: ${{ vars.SUPABASE_PUBLISHABLE_KEY }}
+          VITE_TURNSTILE_SITE_KEY: ${{ vars.TURNSTILE_SITE_KEY }}
       - uses: actions/upload-pages-artifact@v5
         with:
           path: dist

@@ -1,0 +1,22 @@
+name: Keep Supabase awake
+
+# The free Supabase plan pauses a project after a week without activity.
+# A tiny read of `games` every 3 days counts as activity.
+on:
+  schedule:
+    - cron: '17 6 */3 * *'
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  ping:
+    # Skipped until the repository variables from SETUP.md exist.
+    if: vars.SUPABASE_URL != ''
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          curl -fsS "$SUPABASE_URL/rest/v1/games?select=id&limit=1" -H "apikey: $KEY"
+        env:
+          SUPABASE_URL: ${{ vars.SUPABASE_URL }}
+          KEY: ${{ vars.SUPABASE_PUBLISHABLE_KEY }}

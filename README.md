@@ -50,11 +50,25 @@ npm run db:reset && npm run db:test
 
 Al arrancar, `db:start` imprime `API_URL` (`http://127.0.0.1:54321`) y las claves locales.
 
+### Pruebas de integración
+
+`npm run test:integration` ejecuta el cliente de sincronización real contra el Supabase local: subida
+sin duplicados, rechazo de un puntaje imposible, días completados, aislamiento por RLS, percentil y
+recuperación de un invitado borrado. Necesita que `npm run db:start` esté corriendo (lee la URL y las
+claves de `supabase status`) y no corre con `npm test`, para que las pruebas unitarias nunca requieran
+Docker. En CI es el trabajo `supabase`, junto con `db:test`.
+
 ## Publicación
 
 Cada cambio que llega a `main` se publica en GitHub Pages con el flujo `.github/workflows/deploy.yml`.
 Para activarlo una sola vez: en GitHub, **Settings → Pages → Build and deployment → Source: GitHub Actions**.
 La app queda en `https://<usuario>.github.io/Light/`.
+
+Sin configuración adicional, la app se publica solo en modo local (sin sincronización). Para conectar
+Supabase y que los invitados sincronicen sus partidas, sigue [`SETUP.md`](SETUP.md): crea el proyecto,
+aplica las migraciones, activa Turnstile y define las variables del repositorio `SUPABASE_URL`,
+`SUPABASE_PUBLISHABLE_KEY` y `TURNSTILE_SITE_KEY`. El workflow `keep-alive.yml` consulta Supabase cada
+3 días para que el plan gratuito no pause el proyecto.
 
 ## Estructura
 
@@ -66,8 +80,10 @@ src/
   core/       lógica pura: azar, fechas, dificultad, plan diario, racha, puntaje por área
   data/       base de datos local (IndexedDB con Dexie)
   play/       guardar el resultado de una partida
+  sync/       sincronización opcional con Supabase: cola de subida, invitados, percentil y borrado de datos
   i18n/       textos en español (es.json) e inglés (en.json)
 e2e/          pruebas de punta a punta
+tests/        pruebas de integración contra el Supabase local
 supabase/     base de datos: configuración, migraciones SQL y pruebas pgTAP
 docs/         especificación y planes de implementación
 ```
@@ -79,5 +95,7 @@ docs/         especificación y planes de implementación
 2. Agrega una línea en `src/games/registry.ts`.
 3. Agrega `games.<id>.title`, `description` e `instructions` en `es.json` y `en.json`.
 
-Las pruebas verifican que cada juego registrado tenga sus textos en ambos idiomas. Cuando exista
-la sincronización con Supabase (plan 2), también hará falta una fila en la tabla `games`.
+Las pruebas verifican que cada juego registrado tenga sus textos en ambos idiomas. Para la
+sincronización con Supabase también hace falta una fila en la tabla `games` (en una migración nueva de
+`supabase/migrations/`, con su área y su puntaje máximo); la prueba de integración comprueba que la
+tabla coincida con el registro.

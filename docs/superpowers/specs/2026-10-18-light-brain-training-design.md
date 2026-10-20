@@ -194,13 +194,15 @@ de esa área (en la v1 hay un juego por área).
 
 | Almacén | Contenido |
 |---|---|
-| `results` | Todas las partidas del dispositivo/cuenta, con `synced: boolean` |
-| `dailyPlans` | Plan de cada día (fecha local → 3 ids de juego, estado de cada uno) |
+| `results` | Todas las partidas del dispositivo/cuenta, con `synced: 0 \| 1 \| 2` (0 = por subir, 1 = subida, 2 = rechazada por el servidor; no se reintenta) |
+| `dailyPlans` | Plan de cada día (fecha local → 3 ids de juego, estado de cada uno) y `syncedCompletion?` (el servidor ya tiene ese día completado o lo rechazó) |
 | `gameLevels` | Nivel inicial por juego |
 | `settings` | Idioma, sonido, tema, juegos cuyas instrucciones ya se vieron |
+| `meta` | Contabilidad de la sincronización: `{ id: 'sync', remoteUserId }`, la identidad del servidor a la que se refieren las marcas `synced = 1`. Si cambia (por ejemplo, el servidor borró al invitado), esas partidas vuelven a `synced = 0`; las de `synced = 2` se quedan como están |
 
 La base local es la fuente principal. La sesión de Supabase la guarda la librería
-`supabase-js` en `localStorage`.
+`supabase-js` en `localStorage`. El esquema de Dexie está en la versión 2: la tabla `meta` y el
+campo `syncedCompletion` son lo único que añadió a la versión 1.
 
 ### 5.2 Esquema en Supabase (Postgres)
 
@@ -220,7 +222,7 @@ create table public.results (
   level       smallint not null check (level between 1 and 10),
   score       integer not null check (score >= 0),
   accuracy    real not null check (accuracy between 0 and 1),
-  duration_ms integer not null check (duration_ms between 5000 and 600000),
+  duration_ms integer not null check (duration_ms between 5000 and 3600000),
   is_daily    boolean not null default false,
   played_at   timestamptz not null,
   created_at  timestamptz not null default now()
@@ -228,6 +230,8 @@ create table public.results (
 create index on public.results (game_id, played_at);
 create index on public.results (user_id, played_at);
 -- Trigger de validación: score <= games.max_score y played_at <= now() + 5 minutos.
+-- duration_ms llega hasta 1 hora (3 600 000 ms) y no 10 minutos: una partida larga de Secuencia
+-- de luces, con pausas, no debe ser rechazada (un rechazo es definitivo, ver `synced = 2`).
 
 create table public.daily_completions (
   user_id uuid not null default auth.uid() references auth.users on delete cascade,
@@ -380,6 +384,11 @@ no hay duplicados ni conflictos.
 
 ## 9. Configuración (contenido de `SETUP.md`)
 
+`SETUP.md` ya existe con la parte de invitados (Plan 2): proyecto, migraciones, `pg_cron`,
+inicios de sesión anónimos, Turnstile, variables de GitHub y comprobación del keep-alive. El
+Plan 3 (cuentas) agrega los pasos que faltan en esta lista (Edge Functions, Google OAuth y
+"Manual linking").
+
 1. Crear un proyecto nuevo en la cuenta personal de Supabase del dueño.
 2. Aplicar las migraciones de `supabase/migrations`, pegándolas en el editor SQL o mediante
    el conector o la CLI.
@@ -400,7 +409,7 @@ falla, se aplica la alternativa indicada sin cambiar lo que ve el usuario.
 | 1 | Que `auth.admin.updateUserById` sobre un usuario anónimo, con correo, contraseña y `email_confirm: true`, lo deje como permanente (`is_anonymous = false`) | `create-account` crea un usuario nuevo con la API de administración y mueve los datos como en `merge-guest` |
 | 2 | Qué dominio ficticio acepta Supabase Auth para el correo sintético | Usar un subdominio controlado sin buzón |
 | 3 | Si desactivar los registros públicos por correo afecta las sesiones anónimas | Dejar los registros activos; sin servicio de correo propio, Supabase no envía mensajes a terceros |
-| 4 | Que pg_cron esté disponible en el plan gratuito | Hacer la limpieza desde el workflow programado de GitHub |
+| 4 | Que pg_cron esté disponible en el plan gratuito | Hacer la limpieza desde el workflow programado de GitHub. **Resultado:** en Supabase local está disponible (1.6.4) y la migración de limpieza se aplica y se prueba. Falta confirmarlo en el proyecto real (SETUP, paso 3) |
 
 ## 11. Orden de construcción sugerido
 
