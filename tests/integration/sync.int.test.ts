@@ -4,6 +4,7 @@ import { getOrCreatePlan, markDailyGameDone } from '../../src/data/dailyPlans';
 import { clearAllData, db } from '../../src/data/db';
 import { addResult, type NewResult } from '../../src/data/results';
 import { GAMES } from '../../src/games/registry';
+import { deleteEverything } from '../../src/sync/deleteData';
 import { fetchPercentile } from '../../src/sync/percentile';
 import type { RemoteResult } from '../../src/sync/remote';
 import { syncNow } from '../../src/sync/syncEngine';
@@ -250,5 +251,29 @@ describe('lost identity', () => {
     expect(await serverResults(oldUserId)).toHaveLength(0);
     expect((await db.results.toArray()).map((row) => row.synced)).toEqual([1, 1]);
     expect(await serverUserCount()).toBe(1);
+  });
+});
+
+describe('deleteEverything', () => {
+  test("removes the guest's results and completed days from the server and clears the device", async () => {
+    const remote = newGuestRemote();
+    await addResult(localResult({ score: 140, playedAt: new Date(Date.now() - 2000) }));
+    await addResult(localResult({ gameId: 'arrows', score: 500, playedAt: new Date(Date.now() - 1000) }));
+    const day = localDay(new Date());
+    const plan = await getOrCreatePlan(day);
+    for (const gameId of plan.gameIds) await markDailyGameDone(day, gameId);
+    expect(await syncNow(remote, noCaptcha)).toEqual({ status: 'ok', uploaded: 2, rejected: 0, pending: 0 });
+    const userId = (await remote.currentUserId()) as string;
+    expect(await serverResults(userId)).toHaveLength(2);
+    expect(await serverCompletions(userId)).toHaveLength(1);
+
+    expect(await deleteEverything(remote)).toBe('ok');
+
+    expect(await serverResults(userId)).toHaveLength(0);
+    expect(await serverCompletions(userId)).toHaveLength(0);
+    expect(await remote.currentUserId()).toBeNull();
+    expect(await db.results.count()).toBe(0);
+    expect(await db.dailyPlans.count()).toBe(0);
+    expect(await db.meta.count()).toBe(0);
   });
 });
