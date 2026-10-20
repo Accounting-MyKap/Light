@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import type { GameDefinition, GameResult } from '../../games/types';
+import { PercentileLine } from './PercentileLine';
 import styles from './Play.module.css';
 
 export interface ResultViewProps {
@@ -21,6 +22,7 @@ export function ResultView({ game, result, previousBest, onPlayAgain, onBack, da
       <p className="visually-hidden">{t('play.score')}</p>
       <p className={styles.score}>{result.score}</p>
       {isNewBest && <p className={styles.newBest}>{t('play.newBest')}</p>}
+      <PercentileLine gameId={game.id} />
       <dl className={styles.stats}>
         {!isNewBest && (
           <div>

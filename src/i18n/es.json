@@ -145,6 +145,7 @@
     "exit": "Salir del juego",
     "paused": "Pausado",
     "newBest": "¡Nueva mejor marca!",
+    "percentile": "Estás por encima del {{percent}} % de los jugadores",
     "score": "Puntaje",
     "best": "Mejor marca",
     "accuracy": "Precisión",

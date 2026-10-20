@@ -35,6 +35,8 @@ export default defineConfig({
     globals: true,
     setupFiles: ['./src/setupTests.ts'],
     include: ['src/**/*.test.{ts,tsx}'],
+    // Unit tests never reach a real Supabase project, even when a developer has these set in .env.local.
+    env: { VITE_SUPABASE_URL: '', VITE_SUPABASE_PUBLISHABLE_KEY: '', VITE_TURNSTILE_SITE_KEY: '' },
     // Keep theme.css readable so the contrast test can check the real tokens.
     css: { include: [/theme\.css/] },
   },

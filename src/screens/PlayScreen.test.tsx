@@ -4,7 +4,7 @@ import { renderApp } from '../test/renderApp';
 import { registerFakeGameTranslations } from '../test/fakeGame';
 import { clearAllData, db } from '../data/db';
 import { getSettings, updateSettings } from '../data/settings';
-import { requestSync } from '../sync';
+import { fetchPercentile, getRemote, requestSync } from '../sync';
 
 // UI code reaches sync only through this module, so one mock keeps these tests off the network.
 vi.mock('../sync');
@@ -22,8 +22,13 @@ function setHidden(hidden: boolean) {
   });
 }
 
+// Finishing a game asks for a sync twice: once to upload the result, once from the percentile line on the result screen.
+const FINISH_SYNCS = 2;
+
 beforeEach(async () => {
   vi.mocked(requestSync).mockReset().mockResolvedValue(null);
+  vi.mocked(getRemote).mockReset().mockReturnValue(null);
+  vi.mocked(fetchPercentile).mockReset().mockResolvedValue(null);
   await clearAllData();
 });
 afterEach(() => {
@@ -130,13 +135,13 @@ test('finishing a game requests a sync', async () => {
   expect(requestSync).not.toHaveBeenCalled();
   await userEvent.click(screen.getByRole('button', { name: 'Terminar' }));
   expect(await screen.findByText('120')).toBeInTheDocument();
-  expect(requestSync).toHaveBeenCalledTimes(1);
+  expect(requestSync).toHaveBeenCalledTimes(FINISH_SYNCS);
   // The sync starts after the result is in storage, so it has something to upload.
   expect(await db.results.where('synced').equals(0).count()).toBe(1);
   // Starting another round is not a finished game.
   await userEvent.click(screen.getByRole('button', { name: 'Jugar de nuevo' }));
   expect(screen.getByText('paused:false')).toBeInTheDocument();
-  expect(requestSync).toHaveBeenCalledTimes(1);
+  expect(requestSync).toHaveBeenCalledTimes(FINISH_SYNCS);
 });
 
 test('a failed save does not request a sync; the successful retry does, once', async () => {
@@ -150,5 +155,16 @@ test('a failed save does not request a sync; the successful retry does, once', a
   expect(requestSync).not.toHaveBeenCalled();
   await userEvent.click(screen.getByRole('button', { name: 'Reintentar' }));
   expect(await screen.findByText('120')).toBeInTheDocument();
-  expect(requestSync).toHaveBeenCalledTimes(1);
+  expect(requestSync).toHaveBeenCalledTimes(FINISH_SYNCS);
+});
+
+test('the result screen shows the percentile once the game has been ranked', async () => {
+  vi.mocked(fetchPercentile).mockResolvedValue(73);
+  await updateSettings({ seenInstructions: ['fake'] });
+  await open('/play/fake');
+  await userEvent.click(await screen.findByRole('button', { name: 'Comenzar' }));
+  expect(fetchPercentile).not.toHaveBeenCalled();
+  await userEvent.click(screen.getByRole('button', { name: 'Terminar' }));
+  expect(await screen.findByText('Estás por encima del 73 % de los jugadores')).toBeInTheDocument();
+  expect(fetchPercentile).toHaveBeenCalledWith(null, 'fake', expect.any(Date));
 });

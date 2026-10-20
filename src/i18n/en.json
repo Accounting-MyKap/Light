@@ -145,6 +145,7 @@
     "exit": "Quit game",
     "paused": "Paused",
     "newBest": "New personal best!",
+    "percentile": "You're ahead of {{percent}}% of players",
     "score": "Score",
     "best": "Personal best",
     "accuracy": "Accuracy",
