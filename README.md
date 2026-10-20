@@ -101,3 +101,8 @@ Las pruebas verifican que cada juego registrado tenga sus textos en ambos idioma
 sincronización con Supabase también hace falta una fila en la tabla `games` (en una migración nueva de
 `supabase/migrations/`, con su área y su puntaje máximo); la prueba de integración comprueba que la
 tabla coincida con el registro.
+
+**Aplica esa migración en el proyecto de Supabase antes de unir el cambio a `main`**, porque unir a
+`main` publica la app. Si el juego nuevo llega a los jugadores antes que su fila en `games`, el
+servidor rechaza cada uno de sus resultados y los dispositivos los marcan como no sincronizables para
+siempre (no se reintentan).
