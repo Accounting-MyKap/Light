@@ -20,12 +20,16 @@ export function SettingsScreen() {
 
   const deleteAll = async () => {
     setDeleting(true);
+    setDeleted(false);
     setRemoteFailed(false);
     try {
       const outcome = await deleteEverything(getRemote());
       setConfirming(false);
       setDeleted(outcome === 'ok');
       setRemoteFailed(outcome === 'remote-failed');
+    } catch (error) {
+      // The device could not be cleared: no message claims otherwise, and the dialog stays open to try again.
+      console.error('Deleting local data failed', error);
     } finally {
       setDeleting(false);
     }
@@ -87,16 +91,16 @@ export function SettingsScreen() {
           </button>
         ) : (
           <div role="alertdialog" aria-labelledby="confirm-delete">
-            <p id="confirm-delete">{t('settings.deleteConfirm')}</p>
+            <p id="confirm-delete">{t(syncConfig ? 'settings.deleteConfirmSync' : 'settings.deleteConfirm')}</p>
             <button type="button" disabled={deleting} onClick={() => void deleteAll()}>
               {t('settings.deleteYes')}
             </button>{' '}
-            <button type="button" onClick={() => setConfirming(false)}>
+            <button type="button" disabled={deleting} onClick={() => setConfirming(false)}>
               {t('settings.deleteCancel')}
             </button>
           </div>
         )}
-        {deleted && <p role="status">{t('settings.deleted')}</p>}
+        {deleted && <p role="status">{t(syncConfig ? 'settings.deletedSync' : 'settings.deleted')}</p>}
         {remoteFailed && <p role="alert">{t('settings.deleteRemoteError')}</p>}
       </section>
     </section>

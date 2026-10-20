@@ -194,9 +194,11 @@
     "dataTitle": "Tus datos",
     "deleteData": "Borrar mis datos",
     "deleteConfirm": "¿Seguro? Se borrarán tu historial, tus rachas y tus ajustes de este dispositivo.",
+    "deleteConfirmSync": "¿Seguro? Se borrarán tu historial, tus rachas y tus ajustes de este dispositivo, y tus puntajes de nuestro servidor.",
     "deleteYes": "Sí, borrar",
     "deleteCancel": "Cancelar",
     "deleted": "Listo: borramos todos tus datos de este dispositivo.",
+    "deletedSync": "Listo: borramos todos tus datos de este dispositivo y de nuestro servidor.",
     "deleteRemoteError": "No pudimos borrar tus datos del servidor. Revisa tu conexión e inténtalo de nuevo."
   },
   "sync": {

@@ -194,9 +194,11 @@
     "dataTitle": "Your data",
     "deleteData": "Delete my data",
     "deleteConfirm": "Are you sure? Your history, streaks and settings on this device will be deleted.",
+    "deleteConfirmSync": "Are you sure? Your history, streaks and settings on this device, and your scores on our server, will be deleted.",
     "deleteYes": "Yes, delete",
     "deleteCancel": "Cancel",
     "deleted": "Done: all your data on this device has been deleted.",
+    "deletedSync": "Done: all your data on this device and on our server has been deleted.",
     "deleteRemoteError": "We couldn’t delete your data from the server. Check your connection and try again."
   },
   "sync": {
