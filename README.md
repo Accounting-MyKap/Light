@@ -27,6 +27,28 @@ Las pruebas de punta a punta y `npm run icons` usan Chromium. Si ya tienes uno i
 `PW_CHROMIUM_PATH` (por ejemplo `PW_CHROMIUM_PATH=/opt/pw-browsers/chromium npm run e2e`); si no,
 instálalo con `npx playwright install chromium`.
 
+## Supabase local
+
+La base de datos de Supabase (Postgres con RLS) vive en `supabase/`: la configuración en `config.toml`,
+las migraciones en `supabase/migrations/` y las pruebas pgTAP en `supabase/tests/`. Para correrla en tu
+máquina necesitas Docker.
+
+```bash
+dockerd > /tmp/dockerd.log 2>&1 &                    # solo en el sandbox, si Docker no está corriendo
+export SUPABASE_INTERNAL_IMAGE_REGISTRY=docker.io    # solo en el sandbox, donde el registro por defecto (ECR) está bloqueado
+npm run db:start
+npm run db:reset && npm run db:test
+```
+
+| Comando | Qué hace |
+|---|---|
+| `npm run db:start` | Levanta Supabase local con solo lo necesario (base de datos, API y auth) |
+| `npm run db:stop` | Lo detiene |
+| `npm run db:reset` | Recrea la base de datos y aplica todas las migraciones |
+| `npm run db:test` | Corre las pruebas pgTAP de `supabase/tests/` |
+
+Al arrancar, `db:start` imprime `API_URL` (`http://127.0.0.1:54321`) y las claves locales.
+
 ## Publicación
 
 Cada cambio que llega a `main` se publica en GitHub Pages con el flujo `.github/workflows/deploy.yml`.
@@ -45,6 +67,7 @@ src/
   play/       guardar el resultado de una partida
   i18n/       textos en español (es.json) e inglés (en.json)
 e2e/          pruebas de punta a punta
+supabase/     base de datos: configuración, migraciones SQL y pruebas pgTAP
 docs/         especificación y planes de implementación
 ```
 
