@@ -14,9 +14,10 @@ jobs:
     # Skipped until the repository variables from SETUP.md exist.
     if: vars.SUPABASE_URL != ''
     runs-on: ubuntu-latest
+    timeout-minutes: 2
     steps:
       - run: |
-          curl -fsS "$SUPABASE_URL/rest/v1/games?select=id&limit=1" -H "apikey: $KEY"
+          curl -fsS --max-time 30 "$SUPABASE_URL/rest/v1/games?select=id&limit=1" -H "apikey: $KEY"
         env:
           SUPABASE_URL: ${{ vars.SUPABASE_URL }}
           KEY: ${{ vars.SUPABASE_PUBLISHABLE_KEY }}

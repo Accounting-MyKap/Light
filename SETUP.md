@@ -1,8 +1,9 @@
 # Configuración de Light
 
-Light funciona sin servidor: todo el progreso queda en el dispositivo. Esta guía conecta la app a
-Supabase para que los **invitados** (sesiones anónimas, sin cuenta) sincronicen sus partidas y vean
-su percentil. Es la parte del Plan 2; cuando llegue el Plan 3 (cuentas) se agregarán aquí sus pasos.
+Por defecto, Light funciona sin servidor: el progreso queda en el dispositivo. Esta guía conecta la
+app a Supabase para que los **invitados** (quienes juegan sin crear cuenta) envíen sus partidas de
+forma anónima, sin nombre ni correo, y vean cómo les va frente a otros jugadores (su percentil). Cuando
+se agreguen las cuentas, más adelante, sus pasos se sumarán a esta guía.
 
 Si no haces nada de esto, la app sigue publicándose y funcionando igual que hasta ahora, sin red y
 sin sincronización.
@@ -18,7 +19,8 @@ sin sincronización.
 
 1. **Crear el proyecto en Supabase.** En tu cuenta personal, crea un proyecto nuevo. Anota la **URL**
    del proyecto (por ejemplo `https://abcdefghijklmnopqrst.supabase.co`, sin barra final) y la
-   *publishable key*. Las dos son públicas y van en la app.
+   *publishable key*; las dos están en la configuración de la API del proyecto. Son públicas y van en
+   la app. Copia solo la *publishable key*; nunca la *secret* / *service_role*.
 
 2. **Aplicar las 3 migraciones** de `supabase/migrations/`, en este orden:
    1. `20261020000000_core_schema.sql`
@@ -28,11 +30,16 @@ sin sincronización.
    Puedes pegarlas una por una en el SQL Editor de Supabase, aplicarlas con el conector de Supabase
    (por ejemplo, para que Claude lo haga) o con la CLI (`supabase link` y `supabase db push`).
 
+   Si la tercera migración falla por `pg_cron` (el error nombra esa extensión), detente y ve al
+   paso 3.
+
 3. **Verificar `pg_cron`.** En **Database → Extensions**, comprueba que `pg_cron` quedó activa (la
-   tercera migración la crea y programa la limpieza semanal de invitados abandonados). Si el plan
-   gratuito no la permitiera, la limpieza se cambia a un workflow programado de GitHub; anótalo
-   para resolverlo en ese momento. En el Supabase local la extensión sí está disponible (versión
-   1.6.4); falta confirmarlo en el proyecto real.
+   tercera migración la crea y programa la limpieza semanal de invitados abandonados). En el Supabase
+   local la extensión sí está disponible (versión 1.6.4); falta confirmarlo en el proyecto real.
+
+   Si el plan gratuito no la permite: deja aplicadas solo las migraciones 1 y 2, avisa a Claude o a
+   quien mantenga el proyecto para que la limpieza semanal pase a un workflow programado de GitHub, y
+   sigue con el paso 4. La sincronización funciona igual sin esa limpieza.
 
 4. **Activar los invitados.** En **Authentication → Sign In / Providers**, activa *Anonymous
    sign-ins*.
@@ -50,7 +57,8 @@ sin sincronización.
    > arregla creando la variable y volviendo a publicar.
 
 6. **Crear las variables en GitHub.** En el repositorio, **Settings → Secrets and variables → Actions
-   → Variables** (la pestaña *Variables*, no *Secrets*), crea estas tres:
+   → Variables** (la pestaña *Variables*, no *Secrets*), crea estas tres. Pega solo la *publishable
+   key*; nunca la *secret* / *service_role*:
 
    | Variable | Valor |
    |---|---|
@@ -67,6 +75,9 @@ sin sincronización.
    El workflow *Keep Supabase awake* consulta la tabla `games` cada 3 días para que el plan gratuito
    no pause el proyecto. Mientras la variable `SUPABASE_URL` no exista, ese trabajo se omite (no
    falla), así que solo cuenta como verificación después del paso 6.
+
+   GitHub desactiva los workflows programados cuando el repositorio pasa 60 días sin actividad. Si
+   eso ocurre, entra a **Actions → Keep Supabase awake** y reactívalo (botón *Enable workflow*).
 
 ## Probar en tu máquina (opcional)
 

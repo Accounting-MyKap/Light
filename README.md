@@ -5,7 +5,9 @@ velocidad, flexibilidad mental y matemáticas. Propone un entrenamiento diario d
 (unos 5 minutos), lleva tu racha de días y muestra tu progreso. Funciona en español e inglés,
 se puede instalar en el celular y sigue funcionando sin internet.
 
-Todo el progreso se guarda en el dispositivo. Light no usa publicidad ni analítica.
+Todo el progreso se guarda en el dispositivo. Si el sitio se publica con las variables de Supabase
+(ver [`SETUP.md`](SETUP.md)), tus puntajes además se envían de forma anónima, sin nombre ni correo,
+para compararte con otros jugadores. Light no usa publicidad ni analítica.
 
 ## Requisitos
 
