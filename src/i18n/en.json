@@ -190,12 +190,14 @@
     "sound": "Sound",
     "privacyTitle": "Privacy",
     "privacy": "Your progress is stored only on this device. Light uses no ads or analytics.",
+    "privacySync": "Your progress is stored on this device. To compare you with other players, your scores are also sent anonymously, with no name or email, to our server. Light uses no ads or analytics.",
     "dataTitle": "Your data",
     "deleteData": "Delete my data",
     "deleteConfirm": "Are you sure? Your history, streaks and settings on this device will be deleted.",
     "deleteYes": "Yes, delete",
     "deleteCancel": "Cancel",
-    "deleted": "Done: all your data on this device has been deleted."
+    "deleted": "Done: all your data on this device has been deleted.",
+    "deleteRemoteError": "We couldn’t delete your data from the server. Check your connection and try again."
   },
   "sync": {
     "pending_one": "{{count}} game waiting to sync",

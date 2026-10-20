@@ -190,12 +190,14 @@
     "sound": "Sonido",
     "privacyTitle": "Privacidad",
     "privacy": "Tu progreso se guarda solo en este dispositivo. Light no usa publicidad ni analítica.",
+    "privacySync": "Tu progreso se guarda en este dispositivo. Para compararte con otros jugadores, tus puntajes también se envían de forma anónima, sin nombre ni correo, a nuestro servidor. Light no usa publicidad ni analítica.",
     "dataTitle": "Tus datos",
     "deleteData": "Borrar mis datos",
     "deleteConfirm": "¿Seguro? Se borrarán tu historial, tus rachas y tus ajustes de este dispositivo.",
     "deleteYes": "Sí, borrar",
     "deleteCancel": "Cancelar",
-    "deleted": "Listo: borramos todos tus datos de este dispositivo."
+    "deleted": "Listo: borramos todos tus datos de este dispositivo.",
+    "deleteRemoteError": "No pudimos borrar tus datos del servidor. Revisa tu conexión e inténtalo de nuevo."
   },
   "sync": {
     "pending_one": "{{count}} partida por sincronizar",

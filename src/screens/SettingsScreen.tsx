@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { ThemeSetting } from '../app/theme';
-import { clearAllData } from '../data/db';
 import { updateSettings, useSettings } from '../data/settings';
 import type { Language } from '../i18n';
+import { syncConfig } from '../sync/config';
+import { deleteEverything, getRemote } from '../sync';
 import styles from './Screens.module.css';
 
 const THEMES: readonly ThemeSetting[] = ['auto', 'light', 'dark'];
@@ -12,13 +13,22 @@ export function SettingsScreen() {
   const { t, i18n } = useTranslation();
   const settings = useSettings();
   const [confirming, setConfirming] = useState(false);
+  const [deleting, setDeleting] = useState(false);
   const [deleted, setDeleted] = useState(false);
+  const [remoteFailed, setRemoteFailed] = useState(false);
   const currentLanguage: Language = i18n.language?.startsWith('es') ? 'es' : 'en';
 
   const deleteAll = async () => {
-    await clearAllData();
-    setConfirming(false);
-    setDeleted(true);
+    setDeleting(true);
+    setRemoteFailed(false);
+    try {
+      const outcome = await deleteEverything(getRemote());
+      setConfirming(false);
+      setDeleted(outcome === 'ok');
+      setRemoteFailed(outcome === 'remote-failed');
+    } finally {
+      setDeleting(false);
+    }
   };
 
   return (
@@ -66,7 +76,7 @@ export function SettingsScreen() {
 
       <section className={styles.section}>
         <h2>{t('settings.privacyTitle')}</h2>
-        <p className={styles.muted}>{t('settings.privacy')}</p>
+        <p className={styles.muted}>{t(syncConfig ? 'settings.privacySync' : 'settings.privacy')}</p>
       </section>
 
       <section className={styles.section}>
@@ -78,7 +88,7 @@ export function SettingsScreen() {
         ) : (
           <div role="alertdialog" aria-labelledby="confirm-delete">
             <p id="confirm-delete">{t('settings.deleteConfirm')}</p>
-            <button type="button" onClick={() => void deleteAll()}>
+            <button type="button" disabled={deleting} onClick={() => void deleteAll()}>
               {t('settings.deleteYes')}
             </button>{' '}
             <button type="button" onClick={() => setConfirming(false)}>
@@ -87,6 +97,7 @@ export function SettingsScreen() {
           </div>
         )}
         {deleted && <p role="status">{t('settings.deleted')}</p>}
+        {remoteFailed && <p role="alert">{t('settings.deleteRemoteError')}</p>}
       </section>
     </section>
   );

@@ -1,14 +1,45 @@
-import { screen, within } from '@testing-library/react';
+import { act, render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { renderApp } from '../test/renderApp';
 import { clearAllData, db } from '../data/db';
 import { DEFAULT_SETTINGS, getSettings } from '../data/settings';
 import { addResult } from '../data/results';
+import { initI18n } from '../i18n';
+import { deleteEverything, getRemote } from '../sync';
+import type { SyncConfig } from '../sync/config';
+import { deleteEverything as realDeleteEverything } from '../sync/deleteData';
+import { syncNow } from '../sync/syncEngine';
+import { createFakeRemote } from '../test/fakeRemote';
+import { SettingsScreen } from './SettingsScreen';
+
+const config = vi.hoisted(() => ({ current: null as SyncConfig | null }));
+vi.mock('../sync/config', () => ({
+  get syncConfig() {
+    return config.current;
+  },
+}));
+// The app mounts the sync service; here only the delete flow is looked at, so `deleteEverything` runs for real unless a test says otherwise.
+vi.mock('../sync');
+
+const enabled: SyncConfig = { url: 'https://example.supabase.co', publishableKey: 'sb_publishable_test', turnstileSiteKey: null };
+const play = { gameId: 'arrows', level: 1, score: 10, accuracy: 1, durationMs: 60000, isDaily: false };
+const SUCCESS = 'Listo: borramos todos tus datos de este dispositivo.';
+const SERVER_ERROR = 'No pudimos borrar tus datos del servidor. Revisa tu conexión e inténtalo de nuevo.';
 
 beforeEach(async () => {
+  config.current = null;
+  vi.mocked(getRemote).mockReturnValue(null);
+  vi.mocked(deleteEverything).mockReset().mockImplementation(realDeleteEverything);
   await clearAllData();
   document.documentElement.removeAttribute('data-theme');
 });
+
+afterEach(() => vi.restoreAllMocks());
+
+async function confirmDelete() {
+  await userEvent.click(screen.getByRole('button', { name: 'Borrar mis datos' }));
+  await userEvent.click(screen.getByRole('button', { name: 'Sí, borrar' }));
+}
 
 test('choosing English switches the UI and is saved', async () => {
   await renderApp('/settings');
@@ -40,6 +71,29 @@ test('privacy note is visible', async () => {
   expect(
     screen.getByText('Tu progreso se guarda solo en este dispositivo. Light no usa publicidad ni analítica.'),
   ).toBeInTheDocument();
+  expect(screen.queryByText(/a nuestro servidor/)).not.toBeInTheDocument();
+});
+
+test('privacy note says the scores are sent when sync is enabled', async () => {
+  config.current = enabled;
+  await renderApp('/settings');
+  expect(
+    screen.getByText(
+      'Tu progreso se guarda en este dispositivo. Para compararte con otros jugadores, tus puntajes también se envían de forma anónima, sin nombre ni correo, a nuestro servidor. Light no usa publicidad ni analítica.',
+    ),
+  ).toBeInTheDocument();
+  expect(screen.queryByText(/guarda solo en este dispositivo/)).not.toBeInTheDocument();
+});
+
+test('privacy note is honest in English too when sync is enabled', async () => {
+  config.current = enabled;
+  await initI18n('en');
+  render(<SettingsScreen />);
+  expect(
+    screen.getByText(
+      'Your progress is stored on this device. To compare you with other players, your scores are also sent anonymously, with no name or email, to our server. Light uses no ads or analytics.',
+    ),
+  ).toBeInTheDocument();
 });
 
 test('delete my data asks for confirmation', async () => {
@@ -53,4 +107,73 @@ test('delete my data asks for confirmation', async () => {
   await vi.waitFor(async () => expect(await db.results.count()).toBe(0));
   expect(await getSettings()).toEqual(DEFAULT_SETTINGS);
   expect(await screen.findByText('Listo: borramos todos tus datos de este dispositivo.')).toBeInTheDocument();
+});
+
+test('deleting hands the remote to deleteEverything', async () => {
+  const remote = createFakeRemote();
+  vi.mocked(getRemote).mockReturnValue(remote);
+  vi.mocked(deleteEverything).mockResolvedValue('ok');
+  await renderApp('/settings');
+  await confirmDelete();
+  expect(await screen.findByText(SUCCESS)).toBeInTheDocument();
+  expect(deleteEverything).toHaveBeenCalledExactlyOnceWith(remote);
+});
+
+test('if the server cannot be reached it says so and does not claim anything was deleted', async () => {
+  vi.mocked(deleteEverything).mockResolvedValue('remote-failed');
+  await renderApp('/settings');
+  await confirmDelete();
+  expect(await screen.findByRole('alert')).toHaveTextContent(SERVER_ERROR);
+  expect(screen.queryByText(SUCCESS)).not.toBeInTheDocument();
+  expect(screen.queryByRole('alertdialog')).not.toBeInTheDocument();
+});
+
+test('the server error is in English when the language is English', async () => {
+  vi.mocked(deleteEverything).mockResolvedValue('remote-failed');
+  await initI18n('en');
+  render(<SettingsScreen />);
+  await userEvent.click(screen.getByRole('button', { name: 'Delete my data' }));
+  await userEvent.click(screen.getByRole('button', { name: 'Yes, delete' }));
+  expect(await screen.findByRole('alert')).toHaveTextContent(
+    'We couldn’t delete your data from the server. Check your connection and try again.',
+  );
+});
+
+test('after a server failure the data is kept, and trying again deletes it and hides the error', async () => {
+  vi.spyOn(console, 'warn').mockImplementation(() => {});
+  const remote = createFakeRemote();
+  vi.mocked(getRemote).mockReturnValue(remote);
+  await addResult(play);
+  await syncNow(remote, async () => undefined);
+  const userId = remote.currentUser!;
+  expect(remote.users.get(userId)!.results.size).toBe(1);
+  remote.failNext('network');
+  await renderApp('/settings');
+
+  await confirmDelete();
+  expect(await screen.findByRole('alert')).toHaveTextContent(SERVER_ERROR);
+  expect(await db.results.count()).toBe(1);
+  expect(remote.users.get(userId)!.results.size).toBe(1);
+
+  await confirmDelete();
+  expect(await screen.findByText(SUCCESS)).toBeInTheDocument();
+  expect(screen.queryByRole('alert')).not.toBeInTheDocument();
+  expect(await db.results.count()).toBe(0);
+  expect(remote.users.get(userId)!.results.size).toBe(0);
+  expect(remote.currentUser).toBeNull();
+});
+
+test('the confirm button cannot be pressed twice while the delete is running', async () => {
+  let finish!: (outcome: 'ok') => void;
+  vi.mocked(deleteEverything).mockReturnValue(new Promise((resolve) => (finish = resolve)));
+  await renderApp('/settings');
+  await confirmDelete();
+
+  expect(screen.getByRole('button', { name: 'Sí, borrar' })).toBeDisabled();
+  await userEvent.click(screen.getByRole('button', { name: 'Sí, borrar' }));
+  expect(deleteEverything).toHaveBeenCalledTimes(1);
+  expect(screen.queryByText(SUCCESS)).not.toBeInTheDocument();
+
+  await act(async () => finish('ok'));
+  expect(await screen.findByText(SUCCESS)).toBeInTheDocument();
 });

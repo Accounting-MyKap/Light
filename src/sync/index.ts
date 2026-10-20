@@ -5,6 +5,7 @@ import { createSupabaseRemote, type RemoteStore } from './remote';
 import { createSyncScheduler, type SyncScheduler } from './scheduler';
 import { syncNow, type SyncReport } from './syncEngine';
 
+export { deleteEverything } from './deleteData';
 export { fetchPercentile } from './percentile';
 export type { RemoteStore } from './remote';
 export type { SyncReport } from './syncEngine';
