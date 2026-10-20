@@ -70,7 +70,20 @@ function stubFetch(respond: (call: Call) => Response): Call[] {
   return calls;
 }
 
-afterEach(() => { vi.unstubAllGlobals(); });
+// Each test builds its own client on purpose (own storage, own fetch stub), which makes supabase-js warn about
+// "multiple GoTrueClient instances". The app creates a single client, so keep that warning out of the test output.
+beforeEach(() => {
+  const warn = console.warn.bind(console);
+  vi.spyOn(console, 'warn').mockImplementation((...args: unknown[]) => {
+    if (typeof args[0] === 'string' && args[0].includes('Multiple GoTrueClient instances')) return;
+    warn(...args);
+  });
+});
+
+afterEach(() => {
+  vi.unstubAllGlobals();
+  vi.restoreAllMocks();
+});
 
 const result: RemoteResult = {
   id: 'r-1', game_id: 'sequence', level: 3, score: 120, accuracy: 0.9, duration_ms: 45_000, is_daily: false,
@@ -176,6 +189,50 @@ describe('createSupabaseRemote', () => {
     const storage = memoryStorage(storedSession('user-1'));
     await expect(createSupabaseRemote(config, { storage }).currentUserId()).rejects.toMatchObject({ kind: 'network' });
     expect(storage.getItem('light-auth')).not.toBeNull();
+  });
+
+  // supabase-js refreshes an expired session on start-up and drops a dead one silently. The failure the app can see
+  // is a session that expires while it is running: the refresh then happens inside getSession() and returns the error.
+  describe('when the stored session expires while the app is running', () => {
+    async function remoteWithExpiredSession(userId: string) {
+      const storage = memoryStorage(storedSession(userId));
+      const remote = createSupabaseRemote(config, { storage });
+      await new Promise((resolve) => setTimeout(resolve, 20)); // let supabase-js finish its start-up pass
+      const stored = JSON.parse(storage.getItem('light-auth')!);
+      storage.setItem('light-auth', JSON.stringify({ ...stored, expires_at: Math.floor(Date.now() / 1000) - 60 }));
+      return { remote, storage };
+    }
+
+    test.each(['refresh_token_not_found', 'refresh_token_already_used', 'session_not_found'])(
+      'currentUserId resolves null for a dead refresh token (%s) so a fresh guest can be created',
+      async (code) => {
+        const calls = stubFetch(() => json(400, { code, error_code: code, msg: 'Invalid Refresh Token' }));
+        const { remote, storage } = await remoteWithExpiredSession('user-1');
+        expect(await remote.currentUserId()).toBeNull();
+        expect(calls.some((c) => c.url.pathname === '/auth/v1/token')).toBe(true);
+        expect(storage.getItem('light-auth')).toBeNull();
+      },
+    );
+
+    test('a genuine network failure while refreshing still rejects with kind network and keeps the session', async () => {
+      vi.stubGlobal('fetch', async () => { throw new TypeError('Failed to fetch'); });
+      const { remote, storage } = await remoteWithExpiredSession('user-1');
+      vi.useFakeTimers(); // supabase-js retries a failed refresh with backoff for up to 30 seconds
+      try {
+        const outcome = remote.currentUserId().then(() => undefined, (error: unknown) => error);
+        await vi.advanceTimersByTimeAsync(31_000);
+        expect(await outcome).toMatchObject({ name: 'RemoteError', kind: 'network' });
+        expect(storage.getItem('light-auth')).not.toBeNull();
+      } finally {
+        vi.useRealTimers();
+      }
+    });
+
+    test('any other refresh failure keeps its classification', async () => {
+      stubFetch(() => json(400, { code: 'validation_failed', error_code: 'validation_failed', msg: 'nope' }));
+      const { remote } = await remoteWithExpiredSession('user-1');
+      await expect(remote.currentUserId()).rejects.toMatchObject({ name: 'RemoteError', kind: 'network' });
+    });
   });
 
   test('deleteMyData removes only the signed-in user rows from both tables', async () => {

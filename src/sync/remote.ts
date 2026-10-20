@@ -33,6 +33,8 @@ export class RemoteError extends Error {
 // Check (23514), foreign key (23503), trigger-raised (P0001), invalid text representation (22P02), not null (23502).
 const REJECTED_CODES = new Set(['23514', '23503', 'P0001', '22P02', '23502']);
 const AUTH_CODES = new Set(['PGRST301', 'PGRST302', '42501']);
+// Refresh tokens the server will never accept again: the guest identity on this device is lost for good.
+const DEAD_SESSION_CODES = new Set(['refresh_token_not_found', 'refresh_token_already_used', 'session_not_found']);
 
 export function classifyError(error: { code?: string; status?: number; message?: string; name?: string }): RemoteErrorKind {
   if (error.code && REJECTED_CODES.has(error.code)) return 'rejected';
@@ -68,6 +70,11 @@ interface ErrorLike {
   name?: string;
 }
 
+function isDeadSession(error: ErrorLike): boolean {
+  // supabase-js turns `session_not_found` into AuthSessionMissingError, which carries no code.
+  return (error.code !== undefined && DEAD_SESSION_CODES.has(error.code)) || error.name === 'AuthSessionMissingError';
+}
+
 function toRemoteError(error: unknown, status?: number): RemoteError {
   if (error instanceof RemoteError) return error;
   const e: ErrorLike = typeof error === 'object' && error !== null ? error : {};
@@ -96,8 +103,19 @@ export function createSupabaseRemote(config: SyncConfig, options: { storage?: St
   });
 
   async function currentUserId(): Promise<string | null> {
-    const { session } = await unwrap(client.auth.getSession());
-    if (!session) return null;
+    let loaded;
+    try {
+      loaded = await client.auth.getSession();
+    } catch (error) {
+      throw toRemoteError(error);
+    }
+    if (loaded.error) {
+      // An expired session is refreshed inside getSession(); a refresh token the server rejects means "signed out",
+      // not "try again later". supabase-js has already dropped the stored session, so the caller can sign in a new guest.
+      if (isDeadSession(loaded.error)) return null;
+      throw toRemoteError(loaded.error);
+    }
+    if (!loaded.data.session) return null;
     try {
       const { user } = await unwrap(client.auth.getUser());
       return user?.id ?? null;
