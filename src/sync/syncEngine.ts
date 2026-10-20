@@ -37,9 +37,10 @@ export async function syncNow(remote: RemoteStore, getCaptchaToken: () => Promis
   } catch (error) {
     if (!(error instanceof RemoteError)) throw error;
     if (error.kind === 'network') return report('offline');
-    // `auth`: the session is gone, so the next run signs in a new guest. Refused uploads are handled per row,
-    // so a `rejected` reaching this point can only come from the identity step.
-    if (error.kind === 'auth') await signOutQuietly(remote);
+    // `auth` keeps the session: the next run's currentUserId() asks the server whether the guest still exists and only
+    // then starts a new one. Dropping a live guest here would re-upload everything under a new id, which the server
+    // ignores for ids it already has. Refused uploads are handled per row, so a `rejected` reaching this point can
+    // only come from the identity step.
     return report('error');
   }
   return report('ok');
@@ -138,15 +139,6 @@ async function accepts<T>(upload: (rows: T[]) => Promise<void>, rows: T[]): Prom
   } catch (error) {
     if (error instanceof RemoteError && error.kind === 'rejected') return false;
     throw error;
-  }
-}
-
-/** A sign-out that fails (e.g. offline) still leaves the run's outcome as `error`, so its failure is ignored. */
-async function signOutQuietly(remote: RemoteStore): Promise<void> {
-  try {
-    await remote.signOut();
-  } catch {
-    // Nothing to do: the next run checks the session again.
   }
 }
 

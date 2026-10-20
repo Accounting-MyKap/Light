@@ -222,7 +222,27 @@ test('rows the server refused stay refused after an identity change', async () =
   expect(upsert.mock.calls.flatMap(([rows]) => rows.map((row) => row.id))).not.toContain(bad.id);
 });
 
-test('auth error signs out and reports error; the next run uses a new identity', async () => {
+test('an auth error on an upload reports error and keeps the guest identity', async () => {
+  const r = createFakeRemote();
+  const first = await addResults(3);
+  await syncNow(r, token);
+  const user = r.currentUser!;
+  const signOut = vi.spyOn(r, 'signOut');
+  const [extra] = await addResults(1);
+
+  r.failNext('auth');
+  expect(await syncNow(r, token)).toEqual({ status: 'error', uploaded: 0, rejected: 0, pending: 1 });
+  expect(signOut).not.toHaveBeenCalled();
+  expect(r.currentUser).toBe(user);
+  expect(await countSynced(0)).toBe(1);
+
+  // The server still knows this guest, so the next run carries on with it instead of starting a second history.
+  expect(await syncNow(r, token)).toEqual({ status: 'ok', uploaded: 1, rejected: 0, pending: 0 });
+  expect(r.signInCount).toBe(1);
+  expect(serverResults(r, user)).toEqual(new Set([...first, extra].map((a) => a.id)));
+});
+
+test('after an auth error, a new guest is created only once the server no longer knows the old one', async () => {
   const r = createFakeRemote();
   const first = await addResults(3);
   await syncNow(r, token);
@@ -230,23 +250,15 @@ test('auth error signs out and reports error; the next run uses a new identity',
   const [extra] = await addResults(1);
 
   r.failNext('auth');
-  expect(await syncNow(r, token)).toEqual({ status: 'error', uploaded: 0, rejected: 0, pending: 1 });
-  expect(r.currentUser).toBeNull();
-  expect(await countSynced(0)).toBe(1);
+  expect(await syncNow(r, token)).toMatchObject({ status: 'error', pending: 1 });
+  expect(r.signInCount).toBe(1);
 
+  // The server forgets the guest: like getUser() does, currentUserId() now reports no session.
+  r.users.delete(oldUser);
   expect(await syncNow(r, token)).toEqual({ status: 'ok', uploaded: 4, rejected: 0, pending: 0 });
   expect(r.signInCount).toBe(2);
   expect(r.currentUser).not.toBe(oldUser);
   expect(serverResults(r)).toEqual(new Set([...first, extra].map((a) => a.id)));
-});
-
-test('auth error is reported even when signing out fails', async () => {
-  const r = createFakeRemote();
-  await addResults(1);
-  await r.signInGuest();
-  r.failNext('auth');
-  vi.spyOn(r, 'signOut').mockRejectedValue(new RemoteError('network', 'offline'));
-  expect(await syncNow(r, token)).toEqual({ status: 'error', uploaded: 0, rejected: 0, pending: 1 });
 });
 
 test('a failure that is not a RemoteError counts as a network failure', async () => {

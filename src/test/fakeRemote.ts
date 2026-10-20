@@ -4,7 +4,10 @@ import { RemoteError, type RemoteErrorKind, type RemoteResult, type RemoteStore 
 export type FakeRemote = RemoteStore & {
   /** What the "server" stores per guest identity. `completions` holds the uploaded days. */
   users: Map<string, { results: Map<string, RemoteResult>; completions: Set<string> }>;
-  /** The signed-in user; `null` means no session. Tests may set it to simulate a lost session. */
+  /**
+   * The signed-in user; `null` means no session. Tests may set it to simulate a lost session, or delete the user from
+   * `users` to simulate the server forgetting it (currentUserId() then drops the session).
+   */
   currentUser: string | null;
   /** Number of guest identities created. */
   signInCount: number;
@@ -52,6 +55,8 @@ export function createFakeRemote(): FakeRemote {
     },
 
     async currentUserId() {
+      // Like getUser() on the real server: a session whose user no longer exists is dropped.
+      if (remote.currentUser !== null && !remote.users.has(remote.currentUser)) remote.currentUser = null;
       return remote.currentUser;
     },
 
