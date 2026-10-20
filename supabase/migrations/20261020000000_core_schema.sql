@@ -1,5 +1,5 @@
 -- Core schema for syncing results: catalog of games, results and daily completions.
--- Row-level security is on for every table; results are immutable (no update policy).
+-- Row-level security is on for every table; results are immutable (no update grant or policy).
 
 create table public.games (
   id        text primary key,
@@ -31,6 +31,16 @@ create table public.daily_completions (
   games   text[] not null,
   primary key (user_id, day)
 );
+
+-- Table privileges -----------------------------------------------------------
+
+-- Hosted projects created since 2026-05-30 no longer grant anything on new public tables to the API roles,
+-- while the local stack still does. Revoking first makes local behave like hosted; then grant exactly what
+-- the app needs. Row-level security below still decides which rows each role reaches.
+revoke all on public.games, public.results, public.daily_completions from anon, authenticated, service_role;
+grant select on public.games to anon, authenticated;
+grant select, insert, delete on public.results, public.daily_completions to authenticated;
+grant all on public.games, public.results, public.daily_completions to service_role;
 
 -- max_score matches maxScore in the game registry (src/games).
 insert into public.games (id, area, max_score) values

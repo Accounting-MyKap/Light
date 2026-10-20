@@ -1,7 +1,7 @@
 begin;
 create extension if not exists pgtap with schema extensions;
 
-select plan(32);
+select plan(39);
 
 -- Two guests (anonymous users), created as postgres, which can write to auth.users.
 insert into auth.users (id, aud, role, is_anonymous, created_at) values
@@ -23,6 +23,23 @@ select results_eq(
             ('sequence-lights', 'memory', 960) $$,
   'games holds the 5 games with their score bounds'
 );
+
+-- ---------------------------------------------------------------- table privileges
+-- Exactly what the app needs: hosted projects no longer grant anything by default, and the
+-- migration revokes the local stack's default grants so local tests see the same thing.
+
+select table_privs_are('public', 'games', 'anon', array['SELECT'],
+  'anon can only read games');
+select table_privs_are('public', 'results', 'anon', array[]::text[],
+  'anon has no privileges on results');
+select table_privs_are('public', 'daily_completions', 'anon', array[]::text[],
+  'anon has no privileges on daily_completions');
+select table_privs_are('public', 'games', 'authenticated', array['SELECT'],
+  'authenticated can only read games');
+select table_privs_are('public', 'results', 'authenticated', array['SELECT', 'INSERT', 'DELETE'],
+  'authenticated can read, insert and delete results (no update: they are immutable)');
+select table_privs_are('public', 'daily_completions', 'authenticated', array['SELECT', 'INSERT', 'DELETE'],
+  'authenticated can read, insert and delete daily completions');
 
 -- ---------------------------------------------------------------- A inserts own results
 
@@ -73,9 +90,10 @@ select lives_ok(
   $$ delete from public.results $$,
   'B can try to delete, but RLS leaves it with no rows'
 );
-select lives_ok(
+select throws_ok(
   $$ update public.results set score = 0 $$,
-  'B can try to update, but RLS leaves it with no rows'
+  '42501', null,
+  'B cannot update results at all: there is no update privilege'
 );
 
 reset role;
@@ -89,7 +107,11 @@ set local role authenticated;
 select set_config('request.jwt.claims',
   json_build_object('sub', 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', 'role', 'authenticated')::text, true);
 
-update public.results set score = 0 where id = '11111111-1111-1111-1111-111111111111';
+select throws_ok(
+  $$ update public.results set score = 0 where id = '11111111-1111-1111-1111-111111111111' $$,
+  '42501', null,
+  'A cannot update own results either'
+);
 select is(
   (select score from public.results where id = '11111111-1111-1111-1111-111111111111'),
   1200,

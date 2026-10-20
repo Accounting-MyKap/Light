@@ -30,6 +30,9 @@ sin sincronización.
    Puedes pegarlas una por una en el SQL Editor de Supabase, aplicarlas con el conector de Supabase
    (por ejemplo, para que Claude lo haga) o con la CLI (`supabase link` y `supabase db push`).
 
+   Las migraciones conceden exactamente el acceso que la app necesita a sus tablas, así que no importa
+   cómo quedó, al crear el proyecto, la opción de exponer automáticamente las tablas nuevas a la API.
+
    Si la tercera migración falla por `pg_cron` (el error nombra esa extensión), detente y ve al
    paso 3.
 
