@@ -1,0 +1,196 @@
+import { classifyError, createSupabaseRemote, RemoteError } from './remote';
+import type { RemoteResult } from './remote';
+
+test.each([
+  [{ code: '23514' }, 'rejected'], [{ code: 'P0001' }, 'rejected'], [{ code: '23503' }, 'rejected'],
+  [{ code: '22P02' }, 'rejected'], [{ code: '23502' }, 'rejected'],
+  [{ status: 401 }, 'auth'], [{ status: 403 }, 'auth'], [{ code: 'PGRST301' }, 'auth'], [{ code: 'PGRST302' }, 'auth'],
+  [{ code: '42501' }, 'auth'], [{ name: 'AuthSessionMissingError' }, 'auth'],
+  [{ name: 'TypeError', message: 'Failed to fetch' }, 'network'], [{ status: 503 }, 'network'], [{ status: 0 }, 'network'],
+  [{ code: '23505' }, 'network'], [{}, 'network'],
+  [{ status: 400, code: '23514' }, 'rejected'],
+])('classifyError(%j) = %s', (e, kind) => {
+  expect(classifyError(e)).toBe(kind);
+});
+
+test('RemoteError is a real Error carrying its kind', () => {
+  const error = new RemoteError('auth', 'session expired');
+  expect(error).toBeInstanceOf(Error);
+  expect(error).toBeInstanceOf(RemoteError);
+  expect(error.kind).toBe('auth');
+  expect(error.message).toBe('session expired');
+  expect(error.name).toBe('RemoteError');
+});
+
+// --- createSupabaseRemote against a stubbed fetch: only the request shapes and error mapping, no real server. ---
+
+const config = { url: 'https://proj.supabase.co', publishableKey: 'sb_publishable_test', turnstileSiteKey: null };
+
+interface Call { method: string; url: URL; headers: Headers; body: unknown }
+
+function memoryStorage(initial: Record<string, string> = {}): Storage {
+  const data = new Map(Object.entries(initial));
+  return {
+    get length() { return data.size; },
+    clear: () => data.clear(),
+    getItem: (key) => data.get(key) ?? null,
+    key: (index) => [...data.keys()][index] ?? null,
+    removeItem: (key) => { data.delete(key); },
+    setItem: (key, value) => { data.set(key, String(value)); },
+  };
+}
+
+function storedSession(userId: string): Record<string, string> {
+  return {
+    'light-auth': JSON.stringify({
+      access_token: 'access-token', refresh_token: 'refresh-token', token_type: 'bearer',
+      expires_in: 3600, expires_at: Math.floor(Date.now() / 1000) + 3600,
+      user: { id: userId, aud: 'authenticated', app_metadata: {}, user_metadata: {}, created_at: '2026-01-01T00:00:00Z' },
+    }),
+  };
+}
+
+function json(status: number, body?: unknown): Response {
+  return new Response(body === undefined ? null : JSON.stringify(body), { status, headers: { 'Content-Type': 'application/json' } });
+}
+
+/** Stubs `fetch` and returns the recorded calls; `respond` decides each reply. */
+function stubFetch(respond: (call: Call) => Response): Call[] {
+  const calls: Call[] = [];
+  vi.stubGlobal('fetch', async (input: string | URL | Request, init?: RequestInit) => {
+    const call: Call = {
+      method: init?.method ?? 'GET',
+      url: new URL(String(input)),
+      headers: new Headers(init?.headers),
+      body: typeof init?.body === 'string' ? JSON.parse(init.body) : undefined,
+    };
+    calls.push(call);
+    return respond(call);
+  });
+  return calls;
+}
+
+afterEach(() => { vi.unstubAllGlobals(); });
+
+const result: RemoteResult = {
+  id: 'r-1', game_id: 'sequence', level: 3, score: 120, accuracy: 0.9, duration_ms: 45_000, is_daily: false,
+  played_at: '2026-10-20T10:00:00.000Z',
+};
+
+describe('createSupabaseRemote', () => {
+  test('upsertResults inserts missing rows only and never sends a user id', async () => {
+    const calls = stubFetch(() => json(201));
+    await createSupabaseRemote(config, { storage: memoryStorage() }).upsertResults([result]);
+    expect(calls).toHaveLength(1);
+    expect(calls[0].method).toBe('POST');
+    expect(calls[0].url.pathname).toBe('/rest/v1/results');
+    expect(calls[0].url.searchParams.get('on_conflict')).toBe('id');
+    expect(calls[0].headers.get('Prefer')).toContain('resolution=ignore-duplicates');
+    expect(calls[0].headers.get('apikey')).toBe('sb_publishable_test');
+    expect(calls[0].body).toEqual([result]);
+    expect(JSON.stringify(calls[0].body)).not.toContain('user_id');
+  });
+
+  test('upsertCompletions conflicts on (user_id, day) and keeps existing rows', async () => {
+    const calls = stubFetch(() => json(201));
+    await createSupabaseRemote(config, { storage: memoryStorage() }).upsertCompletions([{ day: '2026-10-20', games: ['sequence', 'arrows'] }]);
+    expect(calls[0].url.pathname).toBe('/rest/v1/daily_completions');
+    expect(calls[0].url.searchParams.get('on_conflict')).toBe('user_id,day');
+    expect(calls[0].headers.get('Prefer')).toContain('resolution=ignore-duplicates');
+    expect(calls[0].body).toEqual([{ day: '2026-10-20', games: ['sequence', 'arrows'] }]);
+  });
+
+  test('upserting nothing makes no request', async () => {
+    const calls = stubFetch(() => json(201));
+    const remote = createSupabaseRemote(config, { storage: memoryStorage() });
+    await remote.upsertResults([]);
+    await remote.upsertCompletions([]);
+    expect(calls).toHaveLength(0);
+  });
+
+  test.each([
+    ['a check violation', () => json(400, { code: '23514', message: 'new row violates check constraint' }), 'rejected'],
+    ['an expired JWT', () => json(401, { code: 'PGRST301', message: 'JWT expired' }), 'auth'],
+    ['a server error', () => json(503, { message: 'upstream unavailable' }), 'network'],
+  ])('upsertResults maps %s to a %s RemoteError', async (_label, reply, kind) => {
+    stubFetch(reply);
+    const failure = createSupabaseRemote(config, { storage: memoryStorage() }).upsertResults([result]);
+    await expect(failure).rejects.toBeInstanceOf(RemoteError);
+    await expect(failure).rejects.toMatchObject({ kind });
+  });
+
+  test('upsertResults maps a failed fetch to a network RemoteError', async () => {
+    vi.stubGlobal('fetch', async () => { throw new TypeError('Failed to fetch'); });
+    await expect(createSupabaseRemote(config, { storage: memoryStorage() }).upsertResults([result]))
+      .rejects.toMatchObject({ name: 'RemoteError', kind: 'network' });
+  });
+
+  test('percentile calls the RPC and passes null through', async () => {
+    let reply: unknown = 87;
+    const calls = stubFetch(() => json(200, reply));
+    const remote = createSupabaseRemote(config, { storage: memoryStorage() });
+    expect(await remote.percentile('sequence', 120)).toBe(87);
+    expect(calls[0].url.pathname).toBe('/rest/v1/rpc/get_percentile');
+    expect(calls[0].body).toEqual({ p_game_id: 'sequence', p_best_score: 120 });
+    reply = null;
+    expect(await remote.percentile('sequence', 120)).toBeNull();
+  });
+
+  test('signInGuest creates an anonymous user, forwarding the captcha token', async () => {
+    const calls = stubFetch(() => json(200, {
+      access_token: 'a', refresh_token: 'r', token_type: 'bearer', expires_in: 3600,
+      user: { id: 'anon-1', aud: 'authenticated', is_anonymous: true, app_metadata: {}, user_metadata: {}, created_at: '2026-01-01T00:00:00Z' },
+    }));
+    const storage = memoryStorage();
+    expect(await createSupabaseRemote(config, { storage }).signInGuest('tok-1')).toBe('anon-1');
+    expect(calls[0].url.pathname).toBe('/auth/v1/signup');
+    expect(calls[0].body).toMatchObject({ gotrue_meta_security: { captcha_token: 'tok-1' } });
+    expect(storage.getItem('light-auth')).toContain('anon-1');
+  });
+
+  test('currentUserId is null without a stored session and does not hit the network', async () => {
+    const calls = stubFetch(() => json(200, {}));
+    expect(await createSupabaseRemote(config, { storage: memoryStorage() }).currentUserId()).toBeNull();
+    expect(calls).toHaveLength(0);
+  });
+
+  test('currentUserId validates the stored session against the server', async () => {
+    const calls = stubFetch(() => json(200, { id: 'user-1', aud: 'authenticated', app_metadata: {}, user_metadata: {}, created_at: '2026-01-01T00:00:00Z' }));
+    const remote = createSupabaseRemote(config, { storage: memoryStorage(storedSession('user-1')) });
+    expect(await remote.currentUserId()).toBe('user-1');
+    expect(calls.map((c) => c.url.pathname)).toEqual(['/auth/v1/user']);
+  });
+
+  test('currentUserId drops a session the server no longer knows and returns null', async () => {
+    const calls = stubFetch((call) => call.url.pathname === '/auth/v1/user'
+      ? json(403, { code: 'user_not_found', error_code: 'user_not_found', msg: 'User from sub claim in JWT does not exist' })
+      : json(204));
+    const storage = memoryStorage(storedSession('ghost'));
+    expect(await createSupabaseRemote(config, { storage }).currentUserId()).toBeNull();
+    expect(storage.getItem('light-auth')).toBeNull();
+    expect(calls.some((c) => c.url.pathname === '/auth/v1/logout' && c.url.searchParams.get('scope') === 'local')).toBe(true);
+  });
+
+  test('currentUserId keeps the session and throws a network error when offline', async () => {
+    vi.stubGlobal('fetch', async () => { throw new TypeError('Failed to fetch'); });
+    const storage = memoryStorage(storedSession('user-1'));
+    await expect(createSupabaseRemote(config, { storage }).currentUserId()).rejects.toMatchObject({ kind: 'network' });
+    expect(storage.getItem('light-auth')).not.toBeNull();
+  });
+
+  test('deleteMyData removes only the signed-in user rows from both tables', async () => {
+    const calls = stubFetch((call) => call.url.pathname === '/auth/v1/user'
+      ? json(200, { id: 'user-1', aud: 'authenticated', app_metadata: {}, user_metadata: {}, created_at: '2026-01-01T00:00:00Z' })
+      : json(204));
+    await createSupabaseRemote(config, { storage: memoryStorage(storedSession('user-1')) }).deleteMyData();
+    const deletes = calls.filter((c) => c.method === 'DELETE');
+    expect(deletes.map((c) => c.url.pathname)).toEqual(['/rest/v1/results', '/rest/v1/daily_completions']);
+    expect(deletes.every((c) => c.url.searchParams.get('user_id') === 'eq.user-1')).toBe(true);
+  });
+
+  test('deleteMyData without a session fails with an auth error and deletes nothing', async () => {
+    const calls = stubFetch(() => json(204));
+    await expect(createSupabaseRemote(config, { storage: memoryStorage() }).deleteMyData()).rejects.toMatchObject({ kind: 'auth' });
+    expect(calls).toHaveLength(0);
+  });
+});
