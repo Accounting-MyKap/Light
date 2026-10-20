@@ -196,6 +196,10 @@
     "deleteCancel": "Cancelar",
     "deleted": "Listo: borramos todos tus datos de este dispositivo."
   },
+  "sync": {
+    "pending_one": "{{count}} partida por sincronizar",
+    "pending_other": "{{count}} partidas por sincronizar"
+  },
   "update": {
     "available": "Nueva versión disponible",
     "reload": "Recargar"

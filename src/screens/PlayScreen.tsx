@@ -7,6 +7,7 @@ import { DEFAULT_SETTINGS, getSettings, updateSettings, useSettings } from '../d
 import { getGame } from '../games/registry';
 import type { GameDefinition, GameResult } from '../games/types';
 import { recordGameResult } from '../play/recordGameResult';
+import { requestSync } from '../sync';
 import { Instructions } from './play/Instructions';
 import { PauseOverlay } from './play/PauseOverlay';
 import { ResultView } from './play/ResultView';
@@ -107,6 +108,8 @@ function PlaySession({ game, daily }: { game: GameDefinition; daily: string | nu
         setStartLevel(recorded.newStartLevel);
         const nextGameId = recorded.plan?.gameIds.find((id) => !recorded.plan?.completed.includes(id)) ?? null;
         setPhase({ kind: 'result', result, previousBest: recorded.previousBest, nextGameId });
+        // Once per finished game: only a save that went through gets here, and "play again" starts a new game.
+        void requestSync();
       } catch (error) {
         console.error(error);
         setPhase({ kind: 'saveError', result, resultId });

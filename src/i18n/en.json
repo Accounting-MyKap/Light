@@ -196,6 +196,10 @@
     "deleteCancel": "Cancel",
     "deleted": "Done: all your data on this device has been deleted."
   },
+  "sync": {
+    "pending_one": "{{count}} game waiting to sync",
+    "pending_other": "{{count}} games waiting to sync"
+  },
   "update": {
     "available": "A new version is available",
     "reload": "Reload"

@@ -4,6 +4,10 @@ import { renderApp } from '../test/renderApp';
 import { registerFakeGameTranslations } from '../test/fakeGame';
 import { clearAllData, db } from '../data/db';
 import { getSettings, updateSettings } from '../data/settings';
+import { requestSync } from '../sync';
+
+// UI code reaches sync only through this module, so one mock keeps these tests off the network.
+vi.mock('../sync');
 
 vi.mock('../games/registry', async () => {
   const { fakeGame, fakeGame2 } = await import('../test/fakeGame');
@@ -19,10 +23,12 @@ function setHidden(hidden: boolean) {
 }
 
 beforeEach(async () => {
+  vi.mocked(requestSync).mockReset().mockResolvedValue(null);
   await clearAllData();
 });
 afterEach(() => {
   Object.defineProperty(document, 'hidden', { value: false, configurable: true });
+  vi.restoreAllMocks();
 });
 
 async function open(route: string) {
@@ -115,4 +121,34 @@ test('exiting a later daily game returns to Today, not to the previous game', as
   await userEvent.click(screen.getByRole('button', { name: 'Salir del juego' }));
   await userEvent.click(screen.getByRole('button', { name: 'Salir' }));
   expect(await screen.findByRole('heading', { name: 'Entrenamiento de hoy' })).toBeInTheDocument();
+});
+
+test('finishing a game requests a sync', async () => {
+  await updateSettings({ seenInstructions: ['fake'] });
+  await open('/play/fake');
+  await userEvent.click(await screen.findByRole('button', { name: 'Comenzar' }));
+  expect(requestSync).not.toHaveBeenCalled();
+  await userEvent.click(screen.getByRole('button', { name: 'Terminar' }));
+  expect(await screen.findByText('120')).toBeInTheDocument();
+  expect(requestSync).toHaveBeenCalledTimes(1);
+  // The sync starts after the result is in storage, so it has something to upload.
+  expect(await db.results.where('synced').equals(0).count()).toBe(1);
+  // Starting another round is not a finished game.
+  await userEvent.click(screen.getByRole('button', { name: 'Jugar de nuevo' }));
+  expect(screen.getByText('paused:false')).toBeInTheDocument();
+  expect(requestSync).toHaveBeenCalledTimes(1);
+});
+
+test('a failed save does not request a sync; the successful retry does, once', async () => {
+  await updateSettings({ seenInstructions: ['fake'] });
+  vi.spyOn(console, 'error').mockImplementation(() => {});
+  vi.spyOn(db.results, 'put').mockRejectedValueOnce(new Error('QuotaExceededError'));
+  await open('/play/fake');
+  await userEvent.click(await screen.findByRole('button', { name: 'Comenzar' }));
+  await userEvent.click(screen.getByRole('button', { name: 'Terminar' }));
+  expect(await screen.findByText('No pudimos guardar tu partida.')).toBeInTheDocument();
+  expect(requestSync).not.toHaveBeenCalled();
+  await userEvent.click(screen.getByRole('button', { name: 'Reintentar' }));
+  expect(await screen.findByText('120')).toBeInTheDocument();
+  expect(requestSync).toHaveBeenCalledTimes(1);
 });

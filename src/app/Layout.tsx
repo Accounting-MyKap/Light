@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
+import { PendingSyncBadge } from './PendingSyncBadge';
 import { UpdatePrompt } from './UpdatePrompt';
 import styles from './Layout.module.css';
 
@@ -24,6 +25,7 @@ export function Layout() {
             {t('app.name')}
           </Link>
           <span className={styles.tagline}>{t('app.tagline')}</span>
+          <PendingSyncBadge />
         </header>
       )}
       <main className={isPlaying ? styles.mainFull : styles.main}>

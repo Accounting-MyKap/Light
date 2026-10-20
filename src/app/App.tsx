@@ -3,6 +3,7 @@ import { HashRouter, Route, Routes, useLocation } from 'react-router-dom';
 import { ErrorBoundary } from './ErrorBoundary';
 import { Layout } from './Layout';
 import { SettingsEffects } from './SettingsEffects';
+import { SyncManager } from './SyncManager';
 import { TodayScreen } from '../screens/TodayScreen';
 import { GamesScreen } from '../screens/GamesScreen';
 import { ProgressScreen } from '../screens/ProgressScreen';
@@ -21,6 +22,8 @@ export function AppRoutes() {
   return (
     <>
       <SettingsEffects />
+      {/* Outside the per-location Guard: inside it, the sync service would restart on every navigation. */}
+      <SyncManager />
       <Routes>
         <Route element={<Layout />}>
           <Route index element={guard(<TodayScreen />)} />
