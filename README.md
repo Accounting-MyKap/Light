@@ -46,6 +46,7 @@ npm run db:reset && npm run db:test
 | `npm run db:stop` | Lo detiene |
 | `npm run db:reset` | Recrea la base de datos y aplica todas las migraciones |
 | `npm run db:test` | Corre las pruebas pgTAP de `supabase/tests/` |
+| `npm run test:integration` | Corre las pruebas de integración de `tests/integration/` contra el Supabase local; al terminar vacían las tablas y los usuarios, así que `db:test` sigue pasando después |
 
 Al arrancar, `db:start` imprime `API_URL` (`http://127.0.0.1:54321`) y las claves locales.
 
