@@ -2,6 +2,7 @@ import { nextStartLevel } from '../core/difficulty';
 import { markDailyGameDone } from '../data/dailyPlans';
 import type { DailyPlan, StoredResult } from '../data/db';
 import { setStartLevel } from '../data/levels';
+import { addQuizAnswers } from '../data/quizAnswers';
 import { addResult, bestScore } from '../data/results';
 import type { GameDefinition, GameResult } from '../games/types';
 
@@ -25,6 +26,7 @@ export async function recordGameResult(args: {
     durationMs: result.durationMs,
     isDaily: daily !== null,
   });
+  if (result.quiz) await addQuizAnswers(stored.id, result.quiz, new Date(stored.playedAt));
   const newStartLevel = nextStartLevel(startLevel, result.accuracy);
   await setStartLevel(game.id, newStartLevel);
   const plan = daily === null ? null : await markDailyGameDone(daily, game.id);
