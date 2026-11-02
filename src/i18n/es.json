@@ -129,7 +129,8 @@
         "orange": "naranja",
         "purple": "morado"
       },
-      "exampleAnswer": "Regla COLOR: la respuesta es el cuadrado azul."
+      "exampleAnswer": "Regla COLOR: la respuesta es el cuadrado azul.",
+      "exampleAnswerShape": "Regla FORMA: la respuesta es el círculo naranja."
     },
     "quick-math": {
       "title": "Cálculo relámpago",

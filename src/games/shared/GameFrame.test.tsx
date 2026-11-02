@@ -339,3 +339,24 @@ test('the controls sit below the game zone', () => {
   expect(game.compareDocumentPosition(controls) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
   expect(container.querySelector('[data-flash]')).toBeNull();
 });
+
+test('the game zone and the controls are marked, so a game can tell where its pieces sit', () => {
+  const { container } = render(
+    <FeedbackProvider>
+      <GameFrame {...baseProps} controls={<button>Izquierda</button>}>
+        <p>juego</p>
+      </GameFrame>
+    </FeedbackProvider>,
+  );
+  const stage = container.querySelector('[data-zone="stage"]');
+  const controls = container.querySelector('[data-zone="controls"]');
+  expect(stage).toContainElement(screen.getByText('juego'));
+  expect(controls).toContainElement(screen.getByRole('button', { name: 'Izquierda' }));
+  expect(stage).not.toContainElement(screen.getByRole('button', { name: 'Izquierda' }));
+});
+
+test('without controls there is no controls zone', () => {
+  const { container } = renderFrame();
+  expect(container.querySelector('[data-zone="stage"]')).not.toBeNull();
+  expect(container.querySelector('[data-zone="controls"]')).toBeNull();
+});

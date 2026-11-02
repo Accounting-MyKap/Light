@@ -106,12 +106,16 @@ export function GameFrame({ score, level, time, rounds, controls, children }: Ga
       {time && <TimeBar remainingMs={time.remainingMs} totalMs={time.totalMs} />}
       {rounds && <RoundDots current={rounds.current} total={rounds.total} />}
 
-      <div ref={stageRef} className={styles.stage}>
+      <div ref={stageRef} className={styles.stage} data-zone="stage">
         {children}
         {signal && <span key={signal.id} className={styles.flash} data-flash={signal.kind} aria-hidden="true" />}
       </div>
 
-      {controls && <div className={styles.controls}>{controls}</div>}
+      {controls && (
+        <div className={styles.controls} data-zone="controls">
+          {controls}
+        </div>
+      )}
     </div>
   );
 }

@@ -129,7 +129,8 @@
         "orange": "orange",
         "purple": "purple"
       },
-      "exampleAnswer": "COLOR rule: the answer is the blue square."
+      "exampleAnswer": "COLOR rule: the answer is the blue square.",
+      "exampleAnswerShape": "SHAPE rule: the answer is the orange circle."
     },
     "quick-math": {
       "title": "Quick Math",
