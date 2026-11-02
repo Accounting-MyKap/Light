@@ -54,7 +54,7 @@ export function ResultView({ game, result, previousBest, onPlayAgain, onBack, da
       <dl className={styles.statCards}>
         <div>
           <dt>{t('play.accuracy')}</dt>
-          <dd>{Math.round(result.accuracy * 100)} %</dd>
+          <dd>{Math.round(result.accuracy * 100)}&nbsp;%</dd>
         </div>
         <div>
           <dt>{t('play.levelReached')}</dt>

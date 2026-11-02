@@ -66,6 +66,11 @@ test('accuracy and level are shown in cards', () => {
   expect(screen.queryByText('Mejor marca')).not.toBeInTheDocument();
 });
 
+test('the accuracy never breaks between the number and its % sign', () => {
+  renderResult({ result: { ...RESULT, accuracy: 1 } });
+  expect(screen.getByText('Precisión').nextElementSibling?.textContent).toBe('100\u00a0%');
+});
+
 test('without a record there is no celebration, and the best mark is a card too', () => {
   const { container } = renderResult({ previousBest: 400 });
   expect(screen.queryByText('¡Nueva mejor marca!')).not.toBeInTheDocument();

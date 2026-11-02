@@ -21,7 +21,9 @@ export function useCountUp(target: number, durationMs = 1200): number {
     let frame = 0;
     const tick = () => {
       const progress = Math.min(1, (performance.now() - start) / durationMs);
-      setCount({ target, value: Math.round(target * easeOut(progress)) });
+      const value = Math.round(target * easeOut(progress));
+      // Most frames land on the number already shown: leave the state alone so nothing renders.
+      setCount((shown) => (shown.target === target && shown.value === value ? shown : { target, value }));
       if (progress < 1) frame = requestAnimationFrame(tick);
     };
     frame = requestAnimationFrame(tick);

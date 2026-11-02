@@ -51,6 +51,22 @@ test('never goes backwards on the way up', () => {
   }
 });
 
+test('only renders again when the number shown changes', () => {
+  setReducedMotion(false);
+  let renders = 0;
+  renderHook(() => {
+    renders += 1;
+    return useCountUp(3);
+  });
+  // One act per frame, as the browser would paint them: 3 only takes the values 0, 1, 2 and 3 in about 80 frames.
+  for (let frame = 0; frame < 80; frame++) {
+    act(() => {
+      vi.advanceTimersByTime(16);
+    });
+  }
+  expect(renders).toBeLessThan(12);
+});
+
 test('the duration is the second argument', () => {
   setReducedMotion(false);
   const { result } = renderHook(() => useCountUp(100, 400));

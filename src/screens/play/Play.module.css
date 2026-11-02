@@ -290,35 +290,39 @@
   font-weight: 700;
 }
 
+/* The celebration is as wide as the hero, and the hero clips sideways whatever else sticks out of it, so the result
+   never scrolls sideways (large text, narrow phones). Up and down nothing is clipped: the glow stays whole. */
 .hero {
   position: relative;
   display: grid;
   place-items: center;
-  width: min(100%, 15rem);
+  width: min(100%, 20rem);
   height: 11rem;
   margin-top: 0.5rem;
+  overflow-x: clip;
 }
 
 .heroScore {
   position: relative;
   margin: 0;
-  font-size: 5.25rem;
+  /* Big text size on a narrow phone: the number shrinks to fit instead of being cut by the hero. */
+  font-size: min(5.25rem, 28vw);
   font-weight: 800;
   line-height: 1;
   font-variant-numeric: tabular-nums;
   text-shadow: 0 0 2.25rem color-mix(in srgb, var(--game) 70%, transparent);
 }
 
-/* The celebration is a square, centered on the score, that clips what turns inside it. It starts while the number
-   is still landing and is never in the way of a tap. */
+/* The celebration is a square as wide as the hero (20rem at most, less on a narrow phone), centered on the score,
+   that clips what turns inside it. It starts while the number is still landing and is never in the way of a tap. */
 .celebration {
   --celebrate-delay: 0.4s;
   position: absolute;
   left: 50%;
   top: 50%;
-  width: 20rem;
-  height: 20rem;
-  margin: -10rem 0 0 -10rem;
+  width: 100%;
+  aspect-ratio: 1;
+  translate: -50% -50%;
   overflow: clip;
   pointer-events: none;
 }
@@ -413,7 +417,7 @@
 .statCards {
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: 1fr;
+  grid-auto-columns: minmax(0, 1fr);
   gap: 0.75rem;
   width: 100%;
   margin: 0;
@@ -436,6 +440,7 @@
   color: var(--luz-muted);
   font-size: 0.8125rem;
   text-wrap: balance;
+  overflow-wrap: anywhere;
 }
 
 .statCards dd {
