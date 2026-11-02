@@ -6,7 +6,7 @@ import type { QuizCategory } from '../types';
  * sección 9); `banks.test.ts` comprueba que coincida con los archivos.
  */
 export const BANK_SIZES: Record<QuizCategory, number> = {
-  history: 12,
+  history: 100,
   science: 12,
   geography: 12,
   math: 12,
