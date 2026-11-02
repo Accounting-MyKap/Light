@@ -46,10 +46,10 @@
     },
     {
       "id": "geography-0006", "difficulty": 2, "type": "choice",
-      "es": { "question": "¿Cuál es la montaña más alta de América?",
+      "es": { "question": "¿Cuál es la montaña más alta de América sobre el nivel del mar?",
               "options": ["El Aconcagua", "El Denali", "El Chimborazo", "El Huascarán"],
               "explanation": "El Aconcagua, en Argentina, mide unos 6960 m. El Denali es el más alto de Norteamérica, pero llega a unos 6190 m." },
-      "en": { "question": "What is the highest mountain in the Americas?",
+      "en": { "question": "What is the highest mountain in the Americas above sea level?",
               "options": ["Aconcagua", "Denali", "Chimborazo", "Huascarán"],
               "explanation": "Aconcagua, in Argentina, is about 6,960 m tall. Denali is the highest in North America, but reaches only about 6,190 m." }
     },
@@ -473,10 +473,10 @@
     },
     {
       "id": "geography-0055", "difficulty": 2, "type": "choice",
-      "es": { "question": "¿En cuántas ramas se divide la cordillera de los Andes al entrar en Colombia?",
+      "es": { "question": "¿En cuántas cordilleras se dividen los Andes en Colombia?",
               "options": ["Tres", "Dos", "Cuatro", "Cinco"],
               "explanation": "En Colombia los Andes forman tres cordilleras: la Occidental, la Central y la Oriental. Entre ellas corren los valles de los ríos Cauca y Magdalena." },
-      "en": { "question": "Into how many ranges does the Andes split when it enters Colombia?",
+      "en": { "question": "Into how many ranges do the Andes divide in Colombia?",
               "options": ["Three", "Two", "Four", "Five"],
               "explanation": "In Colombia the Andes form three ranges: the Western, Central and Eastern. The valleys of the Cauca and Magdalena rivers run between them." }
     },
@@ -574,10 +574,10 @@
       "id": "geography-0066", "difficulty": 2, "type": "choice",
       "es": { "question": "¿Cuál es la isla más grande del mar Caribe?",
               "options": ["Cuba", "La Española", "Jamaica", "Puerto Rico"],
-              "explanation": "Cuba, con unos 110 000 km², es la mayor isla del Caribe. La Española, que comparten Haití y la República Dominicana, es la segunda." },
+              "explanation": "Cuba, con unos 105 000 km², es la mayor isla del Caribe. La Española, que comparten Haití y la República Dominicana, es la segunda." },
       "en": { "question": "What is the largest island in the Caribbean Sea?",
               "options": ["Cuba", "Hispaniola", "Jamaica", "Puerto Rico"],
-              "explanation": "Cuba, with about 110,000 km², is the largest Caribbean island. Hispaniola, shared by Haiti and the Dominican Republic, is the second largest." }
+              "explanation": "Cuba, with about 105,000 km², is the largest Caribbean island. Hispaniola, shared by Haiti and the Dominican Republic, is the second largest." }
     },
     {
       "id": "geography-0067", "difficulty": 2, "type": "choice",
@@ -671,10 +671,10 @@
     },
     {
       "id": "geography-0077", "difficulty": 2, "type": "choice",
-      "es": { "question": "¿Cuál es el lago más grande de África?",
+      "es": { "question": "¿Cuál es el lago más grande de África por superficie?",
               "options": ["El Victoria", "El Tanganica", "El Malaui", "El Turkana"],
               "explanation": "El Victoria, compartido por Uganda, Kenia y Tanzania, tiene casi 69 000 km² y es el mayor lago africano." },
-      "en": { "question": "What is the largest lake in Africa?",
+      "en": { "question": "What is the largest lake in Africa by area?",
               "options": ["Lake Victoria", "Lake Tanganyika", "Lake Malawi", "Lake Turkana"],
               "explanation": "Lake Victoria, shared by Uganda, Kenya and Tanzania, covers almost 69,000 km² and is Africa's largest lake." }
     },
@@ -787,10 +787,10 @@
       "id": "geography-0091", "difficulty": 3, "type": "choice",
       "es": { "question": "¿En qué sistema montañoso están los picos Cristóbal Colón y Simón Bolívar, dos de los más altos de Colombia?",
               "options": ["Sierra Nevada de Santa Marta", "Sierra Nevada del Cocuy", "Serranía del Perijá", "Serranía de La Macarena"],
-              "explanation": "La Sierra Nevada de Santa Marta se alza junto al mar Caribe y sus cumbres más altas superan los 5000 m, con nieves a pocos kilómetros de la costa." },
+              "explanation": "La Sierra Nevada de Santa Marta se alza junto al mar Caribe y sus cumbres más altas superan los 5000 m, con nieves a unos 40 km de la costa." },
       "en": { "question": "In which mountain system are the peaks Cristóbal Colón and Simón Bolívar, two of Colombia's highest?",
               "options": ["Sierra Nevada de Santa Marta", "Sierra Nevada del Cocuy", "Serranía del Perijá", "Serranía de La Macarena"],
-              "explanation": "The Sierra Nevada de Santa Marta rises right beside the Caribbean Sea, and its highest summits top 5,000 m, with snow just a few kilometres from the coast." }
+              "explanation": "The Sierra Nevada de Santa Marta rises right beside the Caribbean Sea, and its highest summits top 5,000 m, with snow about 40 km from the coast." }
     },
     {
       "id": "geography-0092", "difficulty": 3, "type": "choice",
@@ -814,10 +814,10 @@
       "id": "geography-0094", "difficulty": 3, "type": "choice",
       "es": { "question": "¿Cuál es el lago más profundo del mundo?",
               "options": ["El Baikal", "El Tanganica", "El Superior", "El Victoria"],
-              "explanation": "El Baikal, en Siberia (Rusia), supera los 1600 m de profundidad y contiene cerca de una quinta parte del agua dulce líquida del planeta." },
+              "explanation": "El Baikal, en Siberia (Rusia), supera los 1600 m de profundidad y contiene cerca de una quinta parte del agua dulce superficial no congelada del planeta." },
       "en": { "question": "What is the deepest lake in the world?",
               "options": ["Lake Baikal", "Lake Tanganyika", "Lake Superior", "Lake Victoria"],
-              "explanation": "Lake Baikal, in Siberia (Russia), is over 1,600 m deep and holds about a fifth of the planet's liquid fresh water." }
+              "explanation": "Lake Baikal, in Siberia (Russia), is over 1,600 m deep and holds about a fifth of the world's unfrozen surface fresh water." }
     },
     {
       "id": "geography-0095", "difficulty": 3, "type": "choice",
