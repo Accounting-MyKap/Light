@@ -243,7 +243,8 @@ pestaña y salida con ✕.
     tiempo».
   - Debajo van la explicación y, si existe, la línea «Vigente a {mes} de {año}».
   - Luego el botón «Siguiente».
-- **Teclado:** `1`–`4` eligen una opción, `0` o `N` es «No sé» y `Enter` es «Siguiente».
+- **Teclado:** `1`–`4` eligen una opción, `0` es «No sé» y `Enter` es «Siguiente».
+- Después de la décima pregunta, el botón «Siguiente» se llama «Ver resultado».
 
 **Resultado:**
 - La vista de resultado de siempre.
