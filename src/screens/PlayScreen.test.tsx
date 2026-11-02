@@ -1,4 +1,4 @@
-import { act, screen } from '@testing-library/react';
+import { act, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { renderApp } from '../test/renderApp';
 import { registerFakeGameTranslations } from '../test/fakeGame';
@@ -9,6 +9,14 @@ import { fetchPercentile, getRemote, requestSync } from '../sync';
 
 // UI code reaches sync only through this module, so one mock keeps these tests off the network.
 vi.mock('../sync');
+
+// The 3-2-1 countdown takes 3 steps. The tests that need to see the game while it is still counting raise the step.
+const resumeTiming = vi.hoisted(() => ({ stepMs: 5 }));
+vi.mock('./play/resumeTiming', () => ({
+  get RESUME_STEP_MS() {
+    return resumeTiming.stepMs;
+  },
+}));
 
 vi.mock('../games/registry', async () => {
   const { fakeGame, fakeGame2 } = await import('../test/fakeGame');
@@ -27,6 +35,7 @@ function setHidden(hidden: boolean) {
 const FINISH_SYNCS = 2;
 
 beforeEach(async () => {
+  resumeTiming.stepMs = 5;
   vi.mocked(requestSync).mockReset().mockResolvedValue(null);
   vi.mocked(getRemote).mockReset().mockReturnValue(null);
   vi.mocked(fetchPercentile).mockReset().mockResolvedValue(null);
@@ -77,6 +86,52 @@ test('second visit skips instructions but offers how-to-play', async () => {
   expect(screen.getByText('Primera instrucción falsa')).toBeInTheDocument();
 });
 
+test('the intro shows the area label', async () => {
+  await open('/play/fake');
+  expect(await screen.findByText('Memoria')).toBeInTheDocument();
+});
+
+test('the intro for a returning player shows the area label too', async () => {
+  await updateSettings({ seenInstructions: ['fake'] });
+  await open('/play/fake');
+  expect(await screen.findByRole('button', { name: 'Comenzar' })).toBeInTheDocument();
+  expect(screen.getByText('Memoria')).toBeInTheDocument();
+});
+
+test('the frame shows the game title and its ✕ opens the pause sheet with time and points', async () => {
+  await updateSettings({ seenInstructions: ['fake'] });
+  await open('/play/fake');
+  await userEvent.click(await screen.findByRole('button', { name: 'Comenzar' }));
+  const game = document.querySelector<HTMLElement>('[data-game="fake"]')!;
+  expect(within(game).getByRole('heading', { level: 1, name: 'Juego falso' })).toBeInTheDocument();
+  // The screen draws no top bar of its own: the only title is the frame's.
+  expect(screen.getAllByRole('heading', { name: 'Juego falso' })).toHaveLength(1);
+
+  await userEvent.click(screen.getByRole('button', { name: 'Acertar' }));
+  await userEvent.click(within(game).getByRole('button', { name: 'Salir del juego' }));
+  const sheet = screen.getByRole('dialog', { name: 'Pausado' });
+  // The score and the time the frame reported are what the sheet shows.
+  expect(within(sheet).getByText('puntos').parentElement).toHaveTextContent('10');
+  expect(within(sheet).getByText('quedan').parentElement).toHaveTextContent('35 s');
+  expect(within(sheet).getByRole('button', { name: 'Continuar' })).toBeInTheDocument();
+  expect(within(sheet).getByRole('button', { name: 'Salir' })).toBeInTheDocument();
+});
+
+test('the game behind the pause sheet cannot be reached until it runs again', async () => {
+  resumeTiming.stepMs = 40;
+  await updateSettings({ seenInstructions: ['fake'] });
+  await open('/play/fake');
+  await userEvent.click(await screen.findByRole('button', { name: 'Comenzar' }));
+  const behindGame = () => screen.getByText(/^paused:/).closest('[inert]');
+  expect(behindGame()).toBeNull();
+  await userEvent.click(screen.getByRole('button', { name: 'Salir del juego' }));
+  expect(behindGame()).not.toBeNull();
+  await userEvent.click(screen.getByRole('button', { name: 'Continuar' }));
+  expect(behindGame()).not.toBeNull(); // still counting
+  expect(await screen.findByText('paused:false')).toBeInTheDocument();
+  expect(behindGame()).toBeNull();
+});
+
 test('hidden tab pauses the game', async () => {
   await updateSettings({ seenInstructions: ['fake'] });
   await open('/play/fake');
@@ -87,7 +142,54 @@ test('hidden tab pauses the game', async () => {
   expect(screen.getByText('paused:true')).toBeInTheDocument();
   setHidden(false);
   await userEvent.click(screen.getByRole('button', { name: 'Continuar' }));
-  expect(screen.getByText('paused:false')).toBeInTheDocument();
+  expect(await screen.findByText('paused:false')).toBeInTheDocument();
+});
+
+test('continue counts down before the game runs again', async () => {
+  resumeTiming.stepMs = 40;
+  await updateSettings({ seenInstructions: ['fake'] });
+  await open('/play/fake');
+  await userEvent.click(await screen.findByRole('button', { name: 'Comenzar' }));
+  await userEvent.click(screen.getByRole('button', { name: 'Salir del juego' }));
+  await userEvent.click(screen.getByRole('button', { name: 'Continuar' }));
+  // The sheet is gone and the numbers are on screen, but the game has not started again.
+  expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+  expect(screen.getByText('paused:true')).toBeInTheDocument();
+  expect(await screen.findByText('paused:false')).toBeInTheDocument();
+  expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+});
+
+test('hiding the app during the countdown returns to the pause sheet', async () => {
+  resumeTiming.stepMs = 60;
+  await updateSettings({ seenInstructions: ['fake'] });
+  await open('/play/fake');
+  await userEvent.click(await screen.findByRole('button', { name: 'Comenzar' }));
+  await userEvent.click(screen.getByRole('button', { name: 'Salir del juego' }));
+  await userEvent.click(screen.getByRole('button', { name: 'Continuar' }));
+  expect(screen.getByText('paused:true')).toBeInTheDocument(); // counting down
+  setHidden(true);
+  expect(screen.getByText('Pausado')).toBeInTheDocument();
+  expect(screen.getByText('paused:true')).toBeInTheDocument();
+  setHidden(false);
+  // The interrupted countdown does not finish behind the sheet: a whole countdown later, the game is still paused.
+  await new Promise((resolve) => setTimeout(resolve, 3 * 60 + 100));
+  expect(screen.getByText('Pausado')).toBeInTheDocument();
+  expect(screen.getByText('paused:true')).toBeInTheDocument();
+  // Continuing again starts a fresh countdown that does finish.
+  resumeTiming.stepMs = 5;
+  await userEvent.click(screen.getByRole('button', { name: 'Continuar' }));
+  expect(await screen.findByText('paused:false')).toBeInTheDocument();
+});
+
+test('the sheet takes focus, and the game gets it back when the countdown ends', async () => {
+  await updateSettings({ seenInstructions: ['fake'] });
+  await open('/play/fake');
+  await userEvent.click(await screen.findByRole('button', { name: 'Comenzar' }));
+  await userEvent.click(screen.getByRole('button', { name: 'Salir del juego' }));
+  expect(screen.getByRole('button', { name: 'Continuar' })).toHaveFocus();
+  await userEvent.click(screen.getByRole('button', { name: 'Continuar' }));
+  expect(await screen.findByText('paused:false')).toBeInTheDocument();
+  expect(document.querySelector('[data-game="fake"]')).toHaveFocus();
 });
 
 test('exit from pause does not save', async () => {

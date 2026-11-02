@@ -147,6 +147,8 @@
   "play": {
     "exit": "Quit game",
     "paused": "Paused",
+    "timeLeft": "left",
+    "points": "points",
     "newBest": "New personal best!",
     "percentile": "You're ahead of {{percent}}% of players",
     "score": "Score",

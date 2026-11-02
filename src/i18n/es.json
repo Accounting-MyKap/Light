@@ -147,6 +147,8 @@
   "play": {
     "exit": "Salir del juego",
     "paused": "Pausado",
+    "timeLeft": "quedan",
+    "points": "puntos",
     "newBest": "¡Nueva mejor marca!",
     "percentile": "Estás por encima del {{percent}} % de los jugadores",
     "score": "Puntaje",
