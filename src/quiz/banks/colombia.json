@@ -108,13 +108,13 @@
               "explanation": "The Junta Central de Contadores registers accountants and issues the professional card (Law 43 of 1990). The Consejo Técnico de la Contaduría Pública guides accounting standards." }
     },
     {
-      "id": "colombia-0013", "difficulty": 1, "type": "choice", "asOf": "2026-11",
-      "es": { "question": "En el PUC, ¿con qué dígito empiezan las cuentas del pasivo?",
-              "options": ["2", "1", "3", "4"],
-              "explanation": "Según el Decreto 2650 de 1993, la clase 2 es el Pasivo: las obligaciones de la empresa, como los préstamos, los proveedores y los impuestos por pagar." },
-      "en": { "question": "In the PUC (Colombia's chart of accounts), what digit do liability accounts start with?",
-              "options": ["2", "1", "3", "4"],
-              "explanation": "Under Decree 2650 of 1993, class 2 is Liabilities: the company's obligations, such as loans, suppliers and taxes payable." }
+      "id": "colombia-0013", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué es la TRM (tasa representativa del mercado)?",
+              "options": ["La tasa de cambio del peso frente al dólar", "La tasa de interés de referencia del Banco de la República", "La tasa máxima de interés que se puede cobrar", "La inflación de los últimos doce meses"],
+              "explanation": "Es la tasa de cambio del peso colombiano frente al dólar estadounidense; se calcula con las operaciones de compra y venta de dólares del mercado cambiario y se certifica cada día hábil." },
+      "en": { "question": "In Colombia, what is the TRM (tasa representativa del mercado)?",
+              "options": ["The peso–US dollar exchange rate", "The central bank's benchmark interest rate", "The maximum interest rate that may be charged", "Inflation over the last twelve months"],
+              "explanation": "It is the exchange rate of the Colombian peso against the US dollar; it is calculated from dollar purchases and sales in the foreign exchange market and certified every business day." }
     },
     {
       "id": "colombia-0014", "difficulty": 1, "type": "choice", "asOf": "2026-11",
@@ -126,37 +126,39 @@
               "explanation": "They are class 3 accounts, Equity (Decree 2650 of 1993): what belongs to the owners after subtracting liabilities from assets." }
     },
     {
-      "id": "colombia-0015", "difficulty": 1, "type": "truefalse", "answer": true, "asOf": "2026-11",
-      "es": { "question": "En el PUC, las cuentas que empiezan por 4 son de ingresos.",
-              "explanation": "La clase 4 agrupa los ingresos (Decreto 2650 de 1993). Por ejemplo, la cuenta 4135 registra los ingresos por comercio al por mayor y al por menor." },
-      "en": { "question": "In the PUC (Colombia's chart of accounts), accounts that start with 4 are revenue accounts.",
-              "explanation": "Class 4 groups revenue (Decree 2650 of 1993). For example, account 4135 records revenue from wholesale and retail trade." }
+      "id": "colombia-0015", "difficulty": 1, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "En la facturación electrónica, ¿para qué sirve una nota débito?",
+              "options": ["Para aumentar el valor de una factura ya emitida", "Para disminuir el valor de una factura ya emitida", "Para registrar un pago hecho con tarjeta débito", "Para que el comprador le facture al vendedor"],
+              "explanation": "La nota débito electrónica aumenta el valor de una factura ya emitida, por ejemplo por un mayor precio o cargos adicionales; la nota crédito lo disminuye (Resolución 000042 de 2020 y sus modificaciones)." },
+      "en": { "question": "In Colombian e-invoicing, what is a debit note (nota débito) used for?",
+              "options": ["To increase the value of an invoice already issued", "To reduce the value of an invoice already issued", "To record a payment made with a debit card", "For the buyer to invoice the seller"],
+              "explanation": "An electronic debit note increases the value of an invoice already issued, for example for a higher price or extra charges; a credit note reduces it (Resolution 000042 of 2020, as amended)." }
     },
     {
       "id": "colombia-0016", "difficulty": 1, "type": "choice", "asOf": "2026-11",
       "es": { "question": "En el PUC, ¿en qué grupo del activo se registran la caja y los bancos?",
-              "options": ["Disponible (11)", "Inversiones (12)", "Deudores (13)", "Diferidos (17)"],
+              "options": ["Disponible", "Inversiones", "Deudores", "Diferidos"],
               "explanation": "El grupo 11, Disponible, reúne los recursos de liquidez inmediata, como la caja (1105), los bancos (1110) y las cuentas de ahorro (1120), según el Decreto 2650 de 1993." },
       "en": { "question": "In the PUC (Colombia's chart of accounts), which asset group holds cash on hand and bank accounts?",
-              "options": ["Disponible (11, cash)", "Inversiones (12, investments)", "Deudores (13, receivables)", "Diferidos (17, deferred)"],
+              "options": ["Disponible (cash)", "Inversiones (investments)", "Deudores (receivables)", "Diferidos (deferred)"],
               "explanation": "Group 11, Disponible, holds immediately available funds, such as cash on hand (1105), banks (1110) and savings accounts (1120), under Decree 2650 of 1993." }
     },
     {
       "id": "colombia-0017", "difficulty": 1, "type": "choice", "asOf": "2026-11",
       "es": { "question": "En el PUC, ¿en qué grupo del activo se registran las mercancías compradas para revender?",
-              "options": ["Inventarios (14)", "Deudores (13)", "Inversiones (12)", "Otros activos (18)"],
+              "options": ["Inventarios", "Deudores", "Inversiones", "Otros activos"],
               "explanation": "Van en el grupo 14, Inventarios; por ejemplo, la cuenta 1435 es la de mercancías no fabricadas por la empresa (Decreto 2650 de 1993)." },
       "en": { "question": "In the PUC (Colombia's chart of accounts), which asset group holds goods bought for resale?",
-              "options": ["Inventarios (14, inventories)", "Deudores (13, receivables)", "Inversiones (12, investments)", "Otros activos (18, other assets)"],
+              "options": ["Inventarios (inventories)", "Deudores (receivables)", "Inversiones (investments)", "Otros activos (other assets)"],
               "explanation": "They go in group 14, Inventarios (inventories); for example, account 1435 is for goods not manufactured by the company (Decree 2650 of 1993)." }
     },
     {
       "id": "colombia-0018", "difficulty": 1, "type": "choice", "asOf": "2026-11",
       "es": { "question": "En el PUC, ¿en qué grupo se registran los edificios, la maquinaria y los vehículos que usa la empresa?",
-              "options": ["Propiedades, planta y equipo (15)", "Inventarios (14)", "Intangibles (16)", "Inversiones (12)"],
+              "options": ["Propiedades, planta y equipo", "Inventarios", "Intangibles", "Inversiones"],
               "explanation": "Los activos tangibles que la empresa usa en su operación, y no vende, van en el grupo 15, Propiedades, planta y equipo (Decreto 2650 de 1993)." },
       "en": { "question": "In the PUC (Colombia's chart of accounts), which group holds the buildings, machinery and vehicles the company uses?",
-              "options": ["Propiedades, planta y equipo (15, PP&E)", "Inventarios (14, inventories)", "Intangibles (16, intangibles)", "Inversiones (12, investments)"],
+              "options": ["Propiedades, planta y equipo (PP&E)", "Inventarios (inventories)", "Intangibles", "Inversiones (investments)"],
               "explanation": "Tangible assets the company uses in its operations, rather than sells, go in group 15, Propiedades, planta y equipo (PP&E), under Decree 2650 of 1993." }
     },
     {
@@ -213,10 +215,10 @@
     },
     {
       "id": "colombia-0025", "difficulty": 1, "type": "choice", "asOf": "2026-11",
-      "es": { "question": "En una compra sujeta a retención en la fuente, ¿quién practica la retención?",
+      "es": { "question": "Por regla general, en una compra sujeta a retención en la fuente, ¿quién practica la retención?",
               "options": ["El agente de retención que hace el pago", "El proveedor que recibe el pago", "La DIAN, al recibir la declaración", "El banco por el que se hace el pago"],
               "explanation": "La practica el agente de retención, es decir, quien paga (arts. 368 y 375 del Estatuto Tributario). Luego la declara y la paga a la DIAN." },
-      "en": { "question": "In a purchase subject to withholding tax, who withholds it?",
+      "en": { "question": "As a general rule, in a purchase subject to withholding tax, who withholds it?",
               "options": ["The withholding agent making the payment", "The supplier receiving the payment", "The DIAN, when it receives the return", "The bank through which payment is made"],
               "explanation": "The withholding agent, that is, the payer, withholds it (arts. 368 and 375 of the Tax Code), then files and pays it to the DIAN (Colombia's tax authority)." }
     },
@@ -319,10 +321,10 @@
       "id": "colombia-0037", "difficulty": 1, "type": "choice", "asOf": "2026-11",
       "es": { "question": "¿Quién genera y transmite a la DIAN el documento soporte de pago de nómina electrónica?",
               "options": ["El empleador", "El trabajador", "La EPS del trabajador", "El fondo de pensiones del trabajador"],
-              "explanation": "El empleador lo genera por los pagos laborales de cada período y lo transmite a la DIAN; soporta esos pagos como costo o deducción (Resolución 000013 de 2021 de la DIAN)." },
+              "explanation": "El empleador lo genera por los pagos laborales de cada período y lo transmite a la DIAN; soporta esos pagos como costo o deducción (Resolución 000013 de 2021 de la DIAN y sus modificaciones)." },
       "en": { "question": "Who generates the electronic payroll support document and sends it to the DIAN (Colombia's tax authority)?",
               "options": ["The employer", "The employee", "The employee's health insurer (EPS)", "The employee's pension fund"],
-              "explanation": "The employer generates it for each period's labor payments and sends it to the DIAN; it supports those payments as a cost or deduction (DIAN Resolution 000013 of 2021)." }
+              "explanation": "The employer generates it for each period's labor payments and sends it to the DIAN; it supports those payments as a cost or deduction (DIAN Resolution 000013 of 2021, as amended)." }
     },
     {
       "id": "colombia-0038", "difficulty": 1, "type": "truefalse", "answer": false, "asOf": "2026-11",
@@ -387,10 +389,10 @@
       "id": "colombia-0045", "difficulty": 1, "type": "choice",
       "es": { "question": "¿Qué hace un contribuyente con las retenciones en la fuente que le practicaron durante el año?",
               "options": ["Las resta del impuesto en su declaración", "Las registra como un gasto deducible", "Las cobra de nuevo a sus clientes", "Las pide en devolución cada mes a la DIAN"],
-              "explanation": "Las retenciones son un anticipo del impuesto: en la declaración se restan del impuesto a cargo y, si lo superan, queda un saldo a favor." },
+              "explanation": "En la declaración, las retenciones se restan del impuesto a cargo y, si lo superan, queda un saldo a favor." },
       "en": { "question": "What does a Colombian taxpayer do with the amounts withheld from it during the year?",
               "options": ["Subtracts them from the tax on its return", "Records them as a deductible expense", "Charges them again to its customers", "Claims them back from the DIAN every month"],
-              "explanation": "Withholdings are an advance payment of tax: on the return they are subtracted from the tax due and, if they exceed it, the excess is a balance in the taxpayer's favor." }
+              "explanation": "On the return, withholdings are subtracted from the tax due and, if they exceed it, the excess is a balance in the taxpayer's favor." }
     },
     {
       "id": "colombia-0046", "difficulty": 1, "type": "truefalse", "answer": false, "asOf": "2026-11",
@@ -482,10 +484,10 @@
       "id": "colombia-0056", "difficulty": 2, "type": "choice", "asOf": "2026-11",
       "es": { "question": "¿Qué es la autorretención en la fuente?",
               "options": ["Que el propio contribuyente se practique la retención", "Una retención que la DIAN practica de oficio", "La devolución automática de las retenciones", "Una retención que el banco hace al proveedor"],
-              "explanation": "El contribuyente calcula, declara y paga la retención sobre sus propios ingresos, en lugar de que se la practique quien le paga. Aplica a quienes la DIAN autoriza o la norma obliga (Decreto 1625 de 2016)." },
+              "explanation": "El contribuyente calcula, declara y paga la retención sobre sus propios ingresos, en lugar de que se la practique un agente de retención. Aplica a quienes la DIAN autoriza o la norma obliga (Decreto 1625 de 2016)." },
       "en": { "question": "In Colombian withholding tax, what is autorretención?",
               "options": ["The taxpayer withholds the tax on its own income", "A withholding the DIAN applies on its own initiative", "The automatic refund of withholdings", "A withholding the bank applies to the supplier"],
-              "explanation": "The taxpayer calculates, files and pays the withholding on its own income, instead of the payer withholding it. It applies to those the DIAN authorizes or the rules require (Decree 1625 of 2016)." }
+              "explanation": "The taxpayer calculates, files and pays the withholding on its own income, instead of having it withheld by a withholding agent. It applies to those the DIAN authorizes or the rules require (Decree 1625 of 2016)." }
     },
     {
       "id": "colombia-0057", "difficulty": 2, "type": "truefalse", "answer": true, "asOf": "2026-11",
@@ -569,10 +571,10 @@
     {
       "id": "colombia-0066", "difficulty": 2, "type": "choice",
       "es": { "question": "¿Qué reforma tributaria subió la tarifa general del IVA a partir de 2017?",
-              "options": ["Ley 1819 de 2016", "Ley 1607 de 2012", "Ley 2010 de 2019", "Ley 2277 de 2022"],
+              "options": ["Ley 1819 de 2016", "Ley 1607 de 2012", "Ley 1739 de 2014", "Ley 1111 de 2006"],
               "explanation": "La Ley 1819 de 2016 modificó el art. 468 del Estatuto Tributario y subió la tarifa general del IVA desde el 1 de enero de 2017." },
       "en": { "question": "Which tax reform raised Colombia's general VAT rate starting in 2017?",
-              "options": ["Law 1819 of 2016", "Law 1607 of 2012", "Law 2010 of 2019", "Law 2277 of 2022"],
+              "options": ["Law 1819 of 2016", "Law 1607 of 2012", "Law 1739 of 2014", "Law 1111 of 2006"],
               "explanation": "Law 1819 of 2016 amended art. 468 of the Tax Code and raised the general VAT rate from January 1, 2017." }
     },
     {
@@ -606,10 +608,10 @@
       "id": "colombia-0070", "difficulty": 2, "type": "choice", "asOf": "2026-11",
       "es": { "question": "En general, ¿sobre qué base se liquida el impuesto de industria y comercio (ICA)?",
               "options": ["Los ingresos ordinarios y extraordinarios", "La utilidad neta del período", "El patrimonio líquido", "El valor de la nómina"],
-              "explanation": "Se parte de los ingresos ordinarios y extraordinarios del período y se restan devoluciones, rebajas, descuentos, exportaciones y ventas de activos fijos (Ley 14 de 1983, art. 33)." },
+              "explanation": "Se parte de los ingresos ordinarios y extraordinarios del período y se restan devoluciones, rebajas, descuentos, exportaciones y ventas de activos fijos (Ley 1819 de 2016, art. 342)." },
       "en": { "question": "Generally, what is the tax base of Colombia's industry and commerce tax (ICA)?",
               "options": ["Ordinary and extraordinary income", "Net profit for the period", "Net equity", "Total payroll"],
-              "explanation": "It starts from the period's ordinary and extraordinary income and subtracts returns, rebates, discounts, exports and sales of fixed assets (Law 14 of 1983, art. 33)." }
+              "explanation": "It starts from the period's ordinary and extraordinary income and subtracts returns, rebates, discounts, exports and sales of fixed assets (Law 1819 of 2016, art. 342)." }
     },
     {
       "id": "colombia-0071", "difficulty": 2, "type": "choice", "asOf": "2026-11",
@@ -667,10 +669,10 @@
     },
     {
       "id": "colombia-0077", "difficulty": 2, "type": "choice", "asOf": "2026-11",
-      "es": { "question": "¿Durante cuánto tiempo debe un comerciante conservar sus libros y papeles de comercio?",
+      "es": { "question": "Según el Código de Comercio, ¿durante cuánto tiempo debe un comerciante conservar sus libros y papeles de comercio?",
               "options": ["10 años", "5 años", "20 años", "2 años"],
               "explanation": "El art. 60 del Código de Comercio, modificado por el art. 28 de la Ley 962 de 2005, fija diez años, contados desde la fecha del último asiento, documento o comprobante." },
-      "en": { "question": "How long must a Colombian merchant keep its accounting books and business papers?",
+      "en": { "question": "Under Colombia's Commercial Code, how long must a merchant keep its accounting books and business papers?",
               "options": ["10 years", "5 years", "20 years", "2 years"],
               "explanation": "Art. 60 of the Commercial Code, as amended by art. 28 of Law 962 of 2005, sets ten years from the date of the last entry, document or voucher." }
     },
@@ -719,19 +721,19 @@
       "id": "colombia-0083", "difficulty": 2, "type": "choice", "asOf": "2026-11",
       "es": { "question": "¿Qué entidades reciben los aportes parafiscales que se calculan sobre la nómina?",
               "options": ["SENA, ICBF y cajas de compensación familiar", "DIAN, SENA y EPS", "ICBF, ARL y fondos de pensiones", "Cajas de compensación, Colpensiones y DIAN"],
-              "explanation": "Son los aportes al SENA, al ICBF y a las cajas de compensación familiar (Ley 21 de 1982). Algunas empresas están exoneradas de los del SENA y el ICBF (art. 114-1 del Estatuto Tributario)." },
+              "explanation": "Son los aportes al SENA, al ICBF y a las cajas de compensación familiar (Leyes 21 de 1982 y 89 de 1988). Algunas empresas están exoneradas de los del SENA y el ICBF (art. 114-1 del Estatuto Tributario)." },
       "en": { "question": "Which entities receive the parafiscal contributions calculated on a Colombian company's payroll?",
-              "options": ["SENA, ICBF and family compensation funds (cajas)", "DIAN, SENA and health insurers (EPS)", "ICBF, occupational risk insurers and pension funds", "Family compensation funds, Colpensiones and DIAN"],
-              "explanation": "They go to SENA (training), ICBF (family welfare) and the cajas de compensación familiar (Law 21 of 1982). Some companies are exempt from the SENA and ICBF ones (Tax Code art. 114-1)." }
+              "options": ["SENA, ICBF and family compensation funds (cajas)", "DIAN, SENA and health insurers (EPS)", "ICBF, occupational risk insurers and pension funds", "Compensation funds, Colpensiones (pensions) and DIAN"],
+              "explanation": "They go to SENA (training), ICBF (family welfare) and the cajas de compensación familiar (Laws 21 of 1982 and 89 of 1988). Some companies are exempt from the SENA and ICBF ones (Tax Code art. 114-1)." }
     },
     {
       "id": "colombia-0084", "difficulty": 3, "type": "choice", "asOf": "2026-11",
       "es": { "question": "En el PUC, ¿en qué cuenta registra el retenido (quien recibe el pago) la retención en la fuente que le practicaron?",
               "options": ["1355", "2365", "2408", "5115"],
-              "explanation": "La registra como activo en la 1355, Anticipo de impuestos y contribuciones o saldos a favor, hasta restarla en su declaración. La 2365 es la del agente que retiene (Decreto 2650 de 1993)." },
+              "explanation": "La registra como activo en la 1355, Anticipo de impuestos y contribuciones o saldos a favor. La 2365 es la del agente que retiene (Decreto 2650 de 1993)." },
       "en": { "question": "In the PUC (Colombia's chart of accounts), which account does the payee use to record the tax withheld from it?",
               "options": ["1355", "2365", "2408", "5115"],
-              "explanation": "It records it as an asset in 1355, Anticipo de impuestos y contribuciones o saldos a favor (tax advances), until it subtracts it on its return. 2365 is the withholding agent's (Decree 2650 of 1993)." }
+              "explanation": "It records it as an asset in 1355, Anticipo de impuestos y contribuciones o saldos a favor (tax advances). 2365 is the withholding agent's (Decree 2650 of 1993)." }
     },
     {
       "id": "colombia-0085", "difficulty": 3, "type": "choice", "asOf": "2026-11",
@@ -771,10 +773,10 @@
       "id": "colombia-0089", "difficulty": 3, "type": "choice", "asOf": "2026-11",
       "es": { "question": "En la venta de bienes, ¿cuándo se causa el IVA?",
               "options": ["Al emitir la factura o, si no la hay, al entregar", "Cuando el cliente paga la factura", "Al final del período bimestral", "Cuando el vendedor recibe el pedido"],
-              "explanation": "Según el art. 429 del Estatuto Tributario, el IVA se causa en la fecha de emisión de la factura o, a falta de ella, en la entrega del bien, aunque la venta sea a crédito." },
+              "explanation": "Según el art. 429 del Estatuto Tributario, el IVA se causa en la fecha de emisión de la factura o, a falta de ella, en la entrega del bien, aunque se haya pactado reserva de dominio o retroventa." },
       "en": { "question": "In a sale of goods, when does Colombian VAT accrue?",
               "options": ["On invoicing or, if there is no invoice, on delivery", "When the customer pays the invoice", "At the end of the two-month period", "When the seller receives the order"],
-              "explanation": "Under art. 429 of the Tax Code, VAT accrues on the invoice date or, failing an invoice, on delivery of the goods, even if the sale is on credit." }
+              "explanation": "Under art. 429 of the Tax Code, VAT accrues on the invoice date or, failing an invoice, on delivery of the goods, even if retention of title or a repurchase clause was agreed." }
     },
     {
       "id": "colombia-0090", "difficulty": 3, "type": "choice", "asOf": "2026-11",
@@ -798,17 +800,17 @@
       "id": "colombia-0092", "difficulty": 3, "type": "choice", "asOf": "2026-11",
       "es": { "question": "¿Qué impuesto territorial se integra en el Régimen Simple de Tributación (SIMPLE)?",
               "options": ["El impuesto de industria y comercio consolidado", "El impuesto predial unificado", "El impuesto sobre vehículos automotores", "El impuesto de registro"],
-              "explanation": "El SIMPLE sustituye el impuesto de renta e integra, entre otros, el ICA consolidado de los municipios donde se realiza la actividad (Ley 2010 de 2019)." },
+              "explanation": "El SIMPLE sustituye el impuesto de renta e integra, entre otros, el ICA consolidado (Ley 2010 de 2019)." },
       "en": { "question": "Which local tax is integrated into Colombia's Simple Tax Regime (SIMPLE)?",
               "options": ["The consolidated industry and commerce tax (ICA)", "Property tax (predial)", "Motor vehicle tax", "Registration tax"],
-              "explanation": "SIMPLE replaces income tax and integrates, among others, the consolidated ICA of the municipalities where the business operates (Law 2010 of 2019)." }
+              "explanation": "SIMPLE replaces income tax and integrates, among others, the consolidated ICA (Law 2010 of 2019)." }
     },
     {
       "id": "colombia-0093", "difficulty": 3, "type": "truefalse", "answer": false, "asOf": "2026-11",
       "es": { "question": "Los libros de contabilidad de una sociedad deben registrarse en la cámara de comercio.",
-              "explanation": "El Decreto Ley 019 de 2012 eliminó ese registro; hoy solo se inscriben los libros de registro de socios o accionistas y los de actas de asamblea o junta de socios (Código de Comercio, art. 28)." },
+              "explanation": "El Decreto Ley 019 de 2012 eliminó ese registro; hoy solo se inscriben algunos libros, como el de registro de socios o accionistas (Código de Comercio, art. 28)." },
       "en": { "question": "A Colombian company's accounting books must be registered with the chamber of commerce.",
-              "explanation": "Decree-Law 019 of 2012 removed that requirement; today only the shareholder or partner register and the books of meeting minutes are registered (Commercial Code, art. 28)." }
+              "explanation": "Decree-Law 019 of 2012 removed that requirement; today only some books are registered, such as the shareholder or partner register (Commercial Code, art. 28)." }
     },
     {
       "id": "colombia-0094", "difficulty": 3, "type": "choice", "asOf": "2026-11",
@@ -837,12 +839,12 @@
     },
     {
       "id": "colombia-0097", "difficulty": 3, "type": "choice", "asOf": "2026-11",
-      "es": { "question": "Según la Ley 1314 de 2009, ¿qué ministerios expiden las normas de contabilidad e información financiera?",
+      "es": { "question": "En Colombia, ¿qué ministerios expiden en conjunto las normas de contabilidad e información financiera?",
               "options": ["Hacienda y Comercio, Industria y Turismo", "Hacienda y Trabajo", "Comercio, Industria y Turismo y Justicia", "Hacienda y Educación"],
-              "explanation": "Los ministerios de Hacienda y Crédito Público y de Comercio, Industria y Turismo las expiden en conjunto (art. 6), con base en las propuestas del Consejo Técnico de la Contaduría Pública." },
-      "en": { "question": "Under Law 1314 of 2009, which ministries issue Colombia's accounting and financial reporting standards?",
+              "explanation": "Los ministerios de Hacienda y Crédito Público y de Comercio, Industria y Turismo las expiden en conjunto (Ley 1314 de 2009, art. 6), con base en las propuestas del Consejo Técnico de la Contaduría Pública." },
+      "en": { "question": "In Colombia, which ministries jointly issue the accounting and financial reporting standards?",
               "options": ["Finance, and Trade, Industry and Tourism", "Finance, and Labor", "Trade, Industry and Tourism, and Justice", "Finance, and Education"],
-              "explanation": "The Ministries of Finance and of Trade, Industry and Tourism issue them jointly (art. 6), based on proposals from the Consejo Técnico de la Contaduría Pública, the technical standard-setter." }
+              "explanation": "The Ministries of Finance and of Trade, Industry and Tourism issue them jointly (Law 1314 of 2009, art. 6), based on proposals from the Consejo Técnico de la Contaduría Pública, the technical standard-setter." }
     },
     {
       "id": "colombia-0098", "difficulty": 3, "type": "choice", "asOf": "2026-11",
@@ -856,19 +858,19 @@
     {
       "id": "colombia-0099", "difficulty": 3, "type": "choice", "asOf": "2026-11",
       "es": { "question": "En el PUC, ¿para qué se usan las cuentas de orden de las clases 8 y 9?",
-              "options": ["Para controlar hechos que no afectan el balance", "Para registrar los ingresos no operacionales", "Para registrar las provisiones del período", "Para registrar las reservas del patrimonio"],
+              "options": ["Para controlar hechos que no afectan el balance", "Para registrar los ingresos no operacionales", "Para registrar las provisiones del período", "Para registrar las valorizaciones de los activos"],
               "explanation": "Registran derechos y responsabilidades contingentes, diferencias fiscales y otros datos de control que no afectan la situación financiera: la 8, las deudoras, y la 9, las acreedoras (Decreto 2650 de 1993)." },
       "en": { "question": "In the PUC (Colombia's chart of accounts), what are the memorandum accounts (cuentas de orden) of classes 8 and 9 used for?",
-              "options": ["To track items that do not affect the balance sheet", "To record non-operating revenue", "To record the provisions for the period", "To record equity reserves"],
+              "options": ["To track items that do not affect the balance sheet", "To record non-operating revenue", "To record the provisions for the period", "To record asset revaluations"],
               "explanation": "They record contingent rights and obligations, tax differences and other control data that do not affect the financial position: 8 for debit and 9 for credit items (Decree 2650 of 1993)." }
     },
     {
       "id": "colombia-0100", "difficulty": 3, "type": "choice", "asOf": "2026-11",
       "es": { "question": "En el PUC, ¿en qué grupo registra una comercializadora, como ingreso, los intereses que le pagan sus inversiones?",
-              "options": ["Ingresos no operacionales (42)", "Ingresos operacionales (41)", "Gastos no operacionales (53)", "Ajustes por inflación (47)"],
+              "options": ["Ingresos no operacionales (42)", "Ingresos operacionales (41)", "Diferidos (27, ingresos recibidos por anticipado)", "Ajustes por inflación (47)"],
               "explanation": "Para una empresa cuyo objeto no es financiero, los intereses recibidos son ingresos no operacionales, en la cuenta 4210, Financieros (Decreto 2650 de 1993)." },
       "en": { "question": "In the PUC (Colombia's chart of accounts), in which group does a trading company record interest earned on its investments as income?",
-              "options": ["Ingresos no operacionales (42, non-operating)", "Ingresos operacionales (41, operating)", "Gastos no operacionales (53, non-op. expenses)", "Ajustes por inflación (47, inflation adjustments)"],
+              "options": ["Ingresos no operacionales (42, non-operating)", "Ingresos operacionales (41, operating)", "Diferidos (27, unearned revenue)", "Ajustes por inflación (47, inflation adjustments)"],
               "explanation": "For a company whose business is not financial, interest earned is non-operating income, in account 4210, Financieros (Decree 2650 of 1993)." }
     }
   ]
