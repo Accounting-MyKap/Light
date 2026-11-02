@@ -7,6 +7,11 @@ import { DEFAULT_SETTINGS, updateSettings, useSettings } from '../../data/settin
 import { FeedbackProvider, useFeedback, useFeedbackSignal, type FeedbackKind } from './feedback';
 
 vi.mock('../../core/sound');
+// The real hook, unless a test pins the settings (see the re-render test below).
+vi.mock('../../data/settings', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('../../data/settings')>();
+  return { ...actual, useSettings: vi.fn(actual.useSettings) };
+});
 
 const vibrate = vi.fn();
 
@@ -19,6 +24,7 @@ beforeEach(async () => {
 
 afterEach(() => {
   Reflect.deleteProperty(navigator, 'vibrate');
+  vi.mocked(useSettings).mockReset();
 });
 
 /** The hook under test next to the settings it reads, so a test can wait until the stored settings have loaded. */
@@ -120,6 +126,9 @@ test('the signal ids keep growing, also when two calls land in the same batch', 
 });
 
 test('components that only call useFeedback do not re-render when a signal is published', async () => {
+  // Pinned settings: every `useSettings()` call is its own live query and resolves on its own schedule, so a
+  // late one would count as a re-render here. Only the context split is under test, not the settings load.
+  vi.mocked(useSettings).mockReturnValue(DEFAULT_SETTINGS);
   let renders = 0;
   function Caller() {
     const feedback = useFeedback();
@@ -128,23 +137,18 @@ test('components that only call useFeedback do not re-render when a signal is pu
     });
     return <button onClick={() => feedback('correct')}>go</button>;
   }
-  function Loaded() {
-    return <p>{useSettings() === DEFAULT_SETTINGS ? 'loading' : 'loaded'}</p>;
-  }
   render(
     <FeedbackProvider>
-      <Loaded />
       <Caller />
       <Probe />
     </FeedbackProvider>,
   );
-  // Wait for the stored settings, which re-render the caller once, so only signals are counted below.
-  await screen.findByText('loaded');
-  const before = renders;
+  expect(renders).toBe(1);
   await userEvent.click(screen.getByRole('button', { name: 'go' }));
   await userEvent.click(screen.getByRole('button', { name: 'go' }));
-  expect(screen.getByTestId('signal')).toHaveTextContent(/^correct#2$/);
-  expect(renders).toBe(before);
+  // The signal reached the provider's consumers (the probe re-rendered), the emitter did not.
+  expect(screen.getByTestId('signal')).toHaveTextContent('correct#2');
+  expect(renders).toBe(1);
 });
 
 test('without a provider the sound still plays and nothing breaks', () => {
