@@ -7,7 +7,7 @@ import type { QuizCategory } from '../types';
  */
 export const BANK_SIZES: Record<QuizCategory, number> = {
   history: 100,
-  science: 12,
+  science: 100,
   geography: 12,
   math: 12,
   arts: 12,
