@@ -88,7 +88,7 @@
               "explanation": "Without the expense, net income is higher than it should be; without the payable, liabilities are lower than they should be. Cash does not change." }
     },
     {
-      "id": "concepts-0011", "difficulty": 3, "type": "choice",
+      "id": "concepts-0011", "difficulty": 2, "type": "choice",
       "es": { "question": "Un cliente paga por adelantado un servicio que la empresa aún no ha prestado. ¿Cómo lo registra al recibir el pago?",
               "options": ["Como un pasivo (ingreso diferido)", "Como un ingreso del período", "Como una cuenta por cobrar", "Como un gasto pagado por anticipado"],
               "explanation": "Mientras no preste el servicio, la empresa le debe algo al cliente: registra un pasivo (ingreso diferido) y lo lleva a ingreso a medida que lo presta." },
@@ -97,13 +97,777 @@
               "explanation": "Until the service is performed, the company owes something to the customer: it records a liability (deferred revenue) and moves it to revenue as it performs." }
     },
     {
-      "id": "concepts-0012", "difficulty": 3, "type": "choice",
+      "id": "concepts-0012", "difficulty": 2, "type": "choice",
       "es": { "question": "En el método de inventario periódico, ¿cómo se calcula el costo de ventas?",
               "options": ["Inventario inicial + compras − inventario final", "Inventario inicial − compras + inventario final", "Compras − inventario inicial − inventario final", "Inventario final + compras + inventario inicial"],
               "explanation": "Al inventario inicial se suman las compras del período y se resta el inventario final: lo que no quedó en bodega se considera vendido." },
       "en": { "question": "Under the periodic inventory method, how is cost of goods sold calculated?",
               "options": ["Beginning inventory + purchases − ending inventory", "Beginning inventory − purchases + ending inventory", "Purchases − beginning inventory − ending inventory", "Ending inventory + purchases + beginning inventory"],
               "explanation": "Add the period's purchases to beginning inventory and subtract ending inventory: what is no longer in stock is treated as sold." }
+    },
+    {
+      "id": "concepts-0013", "difficulty": 1, "type": "choice",
+      "es": { "question": "Una empresa tiene activos por 80 000 y pasivos por 30 000. ¿Cuánto es su patrimonio?",
+              "options": ["50 000", "110 000", "30 000", "80 000"],
+              "explanation": "Patrimonio = activo − pasivo = 80 000 − 30 000 = 50 000. Es la parte de los activos que pertenece a los dueños." },
+      "en": { "question": "A company has assets of 80,000 and liabilities of 30,000. What is its equity?",
+              "options": ["50,000", "110,000", "30,000", "80,000"],
+              "explanation": "Equity = assets − liabilities = 80,000 − 30,000 = 50,000. It is the share of the assets that belongs to the owners." }
+    },
+    {
+      "id": "concepts-0014", "difficulty": 1, "type": "choice",
+      "es": { "question": "Una empresa compra una máquina y la paga de contado. ¿Qué pasa con su activo total?",
+              "options": ["No cambia", "Aumenta por el valor de la máquina", "Disminuye por el valor pagado", "Aumenta junto con el pasivo"],
+              "explanation": "Un activo (maquinaria) sube y otro (efectivo) baja por el mismo valor. El total del activo, el pasivo y el patrimonio no cambian." },
+      "en": { "question": "A company buys a machine and pays cash for it. What happens to its total assets?",
+              "options": ["They do not change", "They increase by the machine's cost", "They decrease by the amount paid", "They increase along with liabilities"],
+              "explanation": "One asset (equipment) goes up and another (cash) goes down by the same amount. Total assets, liabilities and equity stay the same." }
+    },
+    {
+      "id": "concepts-0015", "difficulty": 1, "type": "choice",
+      "es": { "question": "La dueña aporta 20 000 en efectivo a su empresa. ¿Cómo afecta la ecuación contable?",
+              "options": ["Aumentan el activo y el patrimonio", "Aumentan el activo y el pasivo", "Aumenta el activo y baja el patrimonio", "Aumenta el patrimonio y baja el pasivo"],
+              "explanation": "El efectivo (activo) sube 20 000 y el capital (patrimonio) sube 20 000. Un aporte del dueño no es una deuda ni un ingreso." },
+      "en": { "question": "The owner contributes 20,000 in cash to her business. How does this affect the accounting equation?",
+              "options": ["Assets and equity increase", "Assets and liabilities increase", "Assets increase and equity decreases", "Equity increases and liabilities decrease"],
+              "explanation": "Cash (an asset) rises by 20,000 and capital (equity) rises by 20,000. An owner's contribution is neither a debt nor revenue." }
+    },
+    {
+      "id": "concepts-0016", "difficulty": 1, "type": "choice",
+      "es": { "question": "Una empresa paga en efectivo una factura que le debía a un proveedor. ¿Qué efecto tiene?",
+              "options": ["Disminuyen el activo y el pasivo", "Disminuyen el activo y el patrimonio", "Aumentan el pasivo y el gasto", "Disminuye el pasivo y aumenta el patrimonio"],
+              "explanation": "Bajan el efectivo (activo) y la cuenta por pagar (pasivo) por el mismo valor. No afecta el resultado: la compra ya se había registrado." },
+      "en": { "question": "A company pays cash to settle an invoice it owed a supplier. What is the effect?",
+              "options": ["Assets and liabilities decrease", "Assets and equity decrease", "Liabilities and expenses increase", "Liabilities decrease and equity increases"],
+              "explanation": "Cash (an asset) and accounts payable (a liability) both fall by the same amount. Profit is not affected: the purchase was already recorded." }
+    },
+    {
+      "id": "concepts-0017", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuál de estos aumenta el patrimonio de una empresa?",
+              "options": ["Los ingresos del período", "Los gastos del período", "Los retiros o dividendos para los dueños", "Las compras de inventario a crédito"],
+              "explanation": "Los ingresos aumentan la utilidad y, con ella, el patrimonio. Los gastos y los retiros lo disminuyen; comprar a crédito cambia activo y pasivo." },
+      "en": { "question": "Which of these increases a company's equity?",
+              "options": ["Revenue for the period", "Expenses for the period", "Owner withdrawals or dividends", "Inventory purchases on credit"],
+              "explanation": "Revenue increases profit and, with it, equity. Expenses and withdrawals reduce it; buying on credit changes assets and liabilities." }
+    },
+    {
+      "id": "concepts-0018", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué tipo de cuenta tiene, por naturaleza, saldo crédito?",
+              "options": ["Pasivo", "Activo", "Gasto", "Retiros del dueño"],
+              "explanation": "Pasivo, patrimonio e ingresos aumentan con créditos y tienen saldo crédito. Activo, gastos y retiros aumentan con débitos." },
+      "en": { "question": "Which type of account normally has a credit balance?",
+              "options": ["Liability", "Asset", "Expense", "Owner's drawings"],
+              "explanation": "Liabilities, equity and revenue increase with credits and carry credit balances. Assets, expenses and drawings increase with debits." }
+    },
+    {
+      "id": "concepts-0019", "difficulty": 1, "type": "truefalse", "answer": false,
+      "es": { "question": "Las cuentas de ingresos aumentan con un débito.",
+              "explanation": "Aumentan con un crédito, igual que el patrimonio, porque los ingresos aumentan la utilidad. Un débito las disminuye; en el cierre se debitan para dejarlas en cero." },
+      "en": { "question": "Revenue accounts increase with a debit.",
+              "explanation": "They increase with a credit, like equity, because revenue increases profit. A debit decreases them; at closing they are debited to bring them to zero." }
+    },
+    {
+      "id": "concepts-0020", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuál de estas cuentas aumenta con un débito?",
+              "options": ["Gasto de salarios", "Ingresos por servicios", "Cuentas por pagar", "Capital social"],
+              "explanation": "Los gastos aumentan con débitos porque reducen el patrimonio. Ingresos, pasivos y capital aumentan con créditos." },
+      "en": { "question": "Which of these accounts increases with a debit?",
+              "options": ["Salaries expense", "Service revenue", "Accounts payable", "Share capital"],
+              "explanation": "Expenses increase with debits because they reduce equity. Revenue, liabilities and capital increase with credits." }
+    },
+    {
+      "id": "concepts-0021", "difficulty": 1, "type": "choice",
+      "es": { "question": "Una empresa compra un computador a crédito. ¿Qué asiento registra?",
+              "options": ["Débito a equipo, crédito a cuentas por pagar", "Débito a cuentas por pagar, crédito a equipo", "Débito a equipo, crédito a efectivo", "Débito a efectivo, crédito a cuentas por pagar"],
+              "explanation": "Sube un activo (equipo), que se debita, y sube una deuda (cuentas por pagar), que se acredita. El efectivo no se mueve hasta que se pague." },
+      "en": { "question": "A company buys a computer on credit. What entry does it record?",
+              "options": ["Debit equipment, credit accounts payable", "Debit accounts payable, credit equipment", "Debit equipment, credit cash", "Debit cash, credit accounts payable"],
+              "explanation": "An asset (equipment) increases and is debited; a debt (accounts payable) increases and is credited. Cash does not move until the bill is paid." }
+    },
+    {
+      "id": "concepts-0022", "difficulty": 1, "type": "choice",
+      "es": { "question": "Un cliente paga una factura de una venta a crédito del mes pasado. ¿Qué asiento se registra?",
+              "options": ["Débito a efectivo, crédito a cuentas por cobrar", "Débito a efectivo, crédito a ingresos", "Débito a cuentas por cobrar, crédito a efectivo", "Débito a ingresos, crédito a cuentas por cobrar"],
+              "explanation": "El ingreso ya se registró el mes pasado, al vender. Ahora solo cambia un activo por otro: sube el efectivo y baja la cuenta por cobrar." },
+      "en": { "question": "A customer pays an invoice for a credit sale made last month. What entry is recorded?",
+              "options": ["Debit cash, credit accounts receivable", "Debit cash, credit revenue", "Debit accounts receivable, credit cash", "Debit revenue, credit accounts receivable"],
+              "explanation": "The revenue was recorded last month, at the time of sale. Now one asset replaces another: cash goes up and accounts receivable go down." }
+    },
+    {
+      "id": "concepts-0023", "difficulty": 1, "type": "choice",
+      "es": { "question": "Con base de causación, la energía consumida en diciembre se factura y se paga en enero. ¿En qué mes se registra el gasto?",
+              "options": ["En diciembre", "En enero", "Mitad en diciembre y mitad en enero", "En el mes en que se apruebe el pago"],
+              "explanation": "El gasto va al período en que se consume la energía (diciembre). Al cierre se registra un gasto causado por pagar, que se cancela en enero." },
+      "en": { "question": "Under the accrual basis, electricity used in December is billed and paid in January. In which month is the expense recorded?",
+              "options": ["December", "January", "Half in December, half in January", "The month the payment is approved"],
+              "explanation": "The expense belongs to the period when the power was used (December). At period end an accrued liability is recorded and settled in January." }
+    },
+    {
+      "id": "concepts-0024", "difficulty": 1, "type": "truefalse", "answer": true,
+      "es": { "question": "La parte de un seguro pagado por adelantado que aún no se ha consumido es un activo.",
+              "explanation": "Es un gasto pagado por anticipado: un activo que pasa a gasto mes a mes, a medida que transcurre la cobertura del seguro." },
+      "en": { "question": "The unexpired portion of insurance paid in advance is an asset.",
+              "explanation": "It is a prepaid expense: an asset that moves to expense month by month as the insurance coverage runs." }
+    },
+    {
+      "id": "concepts-0025", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Para qué se hacen los asientos de ajuste al final del período?",
+              "options": ["Para dejar ingresos y gastos en el período correcto", "Para llevar a cero las cuentas de resultados", "Para corregir los errores del extracto bancario", "Para pasar los saldos al libro del año siguiente"],
+              "explanation": "Los ajustes aplican la causación: registran lo causado y no facturado y reparten anticipos y diferidos. Llevar a cero los resultados es tarea del cierre." },
+      "en": { "question": "Why are adjusting entries made at the end of the period?",
+              "options": ["To place revenue and expenses in the right period", "To bring the income statement accounts to zero", "To correct errors in the bank statement", "To carry balances forward to next year's books"],
+              "explanation": "Adjusting entries apply the accrual basis: they record accruals and allocate prepayments and deferrals. Zeroing out income accounts is done by closing entries." }
+    },
+    {
+      "id": "concepts-0026", "difficulty": 1, "type": "choice",
+      "es": { "question": "Una máquina cuesta 26 000, tiene un valor residual de 2000 y una vida útil de 4 años. ¿Cuál es su depreciación anual en línea recta?",
+              "options": ["6000", "6500", "7000", "4800"],
+              "explanation": "Línea recta = (costo − valor residual) ÷ vida útil = (26 000 − 2000) ÷ 4 = 6000 por año, el mismo valor cada año." },
+      "en": { "question": "A machine costs 26,000, has a residual value of 2,000 and a useful life of 4 years. What is its annual straight-line depreciation?",
+              "options": ["6,000", "6,500", "7,000", "4,800"],
+              "explanation": "Straight-line = (cost − residual value) ÷ useful life = (26,000 − 2,000) ÷ 4 = 6,000 per year, the same amount every year." }
+    },
+    {
+      "id": "concepts-0027", "difficulty": 1, "type": "choice",
+      "es": { "question": "Un vehículo costó 40 000 y su depreciación acumulada es de 15 000. ¿Cuál es su valor en libros?",
+              "options": ["25 000", "55 000", "40 000", "15 000"],
+              "explanation": "Valor en libros (valor neto) = costo − depreciación acumulada = 40 000 − 15 000 = 25 000. No es necesariamente lo que vale en el mercado." },
+      "en": { "question": "A vehicle cost 40,000 and its accumulated depreciation is 15,000. What is its carrying amount (book value)?",
+              "options": ["25,000", "55,000", "40,000", "15,000"],
+              "explanation": "Carrying amount (book value) = cost − accumulated depreciation = 40,000 − 15,000 = 25,000. It is not necessarily its market value." }
+    },
+    {
+      "id": "concepts-0028", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué supone el método de inventario PEPS (FIFO)?",
+              "options": ["Las primeras unidades que entran son las primeras en salir", "Las últimas unidades que entran son las primeras en salir", "Todas las unidades salen al mismo costo promedio", "Las unidades salen a su costo de reposición actual"],
+              "explanation": "PEPS = primeras en entrar, primeras en salir: el costo de ventas toma los costos más antiguos y el inventario final queda con los más recientes." },
+      "en": { "question": "What does the FIFO inventory method assume?",
+              "options": ["The first units in are the first units out", "The last units in are the first units out", "All units go out at the same average cost", "Units go out at their current replacement cost"],
+              "explanation": "FIFO = first in, first out: cost of goods sold uses the oldest costs, and ending inventory is left with the most recent ones." }
+    },
+    {
+      "id": "concepts-0029", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué sistema de inventario actualiza el saldo y el costo de ventas con cada compra y cada venta?",
+              "options": ["Permanente (perpetuo)", "Periódico", "Promedio ponderado", "Conteo físico anual"],
+              "explanation": "El sistema permanente registra cada movimiento y da el saldo en todo momento. El periódico calcula el costo de ventas al final, con un conteo físico." },
+      "en": { "question": "Which inventory system updates the balance and cost of goods sold with every purchase and sale?",
+              "options": ["Perpetual", "Periodic", "Weighted average", "Annual physical count"],
+              "explanation": "A perpetual system records every movement and gives the balance at any time. A periodic system works out cost of goods sold at period end with a physical count." }
+    },
+    {
+      "id": "concepts-0030", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué es un balance de prueba?",
+              "options": ["Una lista de los saldos de todas las cuentas del mayor", "Un estado que muestra la utilidad del período", "Un presupuesto de ingresos y gastos", "Una comparación del saldo en libros con el banco"],
+              "explanation": "Lista cada cuenta del mayor con su saldo débito o crédito para comprobar que los totales coinciden. Es una herramienta interna, no un estado financiero." },
+      "en": { "question": "What is a trial balance?",
+              "options": ["A list of the balances of all ledger accounts", "A statement showing the period's profit", "A budget of revenue and expenses", "A comparison of the book balance with the bank"],
+              "explanation": "It lists every ledger account with its debit or credit balance to check that the totals agree. It is an internal tool, not a financial statement." }
+    },
+    {
+      "id": "concepts-0031", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué cuentas se cierran (quedan en cero) al final del período contable?",
+              "options": ["Las de ingresos, costos y gastos", "Las de activo", "Las de pasivo", "Las de capital social y reservas"],
+              "explanation": "Las cuentas de resultados son temporales: su saldo pasa al patrimonio y empiezan el período siguiente en cero. Activo, pasivo y patrimonio son permanentes." },
+      "en": { "question": "Which accounts are closed (brought to zero) at the end of the accounting period?",
+              "options": ["Revenue, cost and expense accounts", "Asset accounts", "Liability accounts", "Share capital and reserve accounts"],
+              "explanation": "Income statement accounts are temporary: their balances move to equity and they start the next period at zero. Assets, liabilities and equity are permanent." }
+    },
+    {
+      "id": "concepts-0032", "difficulty": 1, "type": "choice",
+      "es": { "question": "Al cierre, ¿a qué cuenta se lleva finalmente la utilidad neta del período?",
+              "options": ["A una cuenta de patrimonio (utilidades acumuladas)", "A una cuenta de pasivo (cuentas por pagar)", "A la cuenta de efectivo", "A los ingresos del período siguiente"],
+              "explanation": "El cierre traslada la utilidad o pérdida al patrimonio, en utilidades acumuladas o resultados del ejercicio. Por eso la utilidad aumenta el patrimonio." },
+      "en": { "question": "At closing, where does the period's net income finally end up?",
+              "options": ["In an equity account (retained earnings)", "In a liability account (accounts payable)", "In the cash account", "In next period's revenue"],
+              "explanation": "Closing moves the profit or loss into equity, as retained earnings or current-year earnings. That is why profit increases equity." }
+    },
+    {
+      "id": "concepts-0033", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué libro agrupa los movimientos por cuenta y muestra el saldo de cada una?",
+              "options": ["El libro mayor", "El libro diario", "El libro de actas", "El libro de accionistas"],
+              "explanation": "El diario registra las transacciones en orden cronológico; luego se pasan al mayor, que las agrupa por cuenta y da el saldo de cada una." },
+      "en": { "question": "Which book groups transactions by account and shows each account's balance?",
+              "options": ["The general ledger", "The general journal", "The minute book", "The shareholder register"],
+              "explanation": "The journal records transactions in date order; they are then posted to the ledger, which groups them by account and gives each balance." }
+    },
+    {
+      "id": "concepts-0034", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué estado financiero muestra los activos, pasivos y patrimonio de la empresa a una fecha determinada?",
+              "options": ["Estado de situación financiera (balance general)", "Estado de resultados", "Estado de flujos de efectivo", "Estado de cambios en el patrimonio"],
+              "explanation": "Es una foto a una fecha de lo que la empresa tiene, lo que debe y lo que es de los dueños. Las NIIF lo llaman estado de situación financiera." },
+      "en": { "question": "Which financial statement shows a company's assets, liabilities and equity at a specific date?",
+              "options": ["Statement of financial position (balance sheet)", "Income statement", "Statement of cash flows", "Statement of changes in equity"],
+              "explanation": "It is a snapshot at a date of what the company owns, what it owes and what belongs to the owners. IFRS calls it the statement of financial position." }
+    },
+    {
+      "id": "concepts-0035", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿En qué tres actividades clasifica sus movimientos el estado de flujos de efectivo?",
+              "options": ["Operación, inversión y financiación", "Ingresos, costos y gastos", "Corriente, no corriente y patrimonio", "Ventas, compras y nómina"],
+              "explanation": "Operación: el negocio diario. Inversión: compra y venta de activos de largo plazo. Financiación: préstamos recibidos y pagados, y aportes de capital." },
+      "en": { "question": "Into which three activities does the statement of cash flows classify cash movements?",
+              "options": ["Operating, investing and financing", "Revenue, costs and expenses", "Current, non-current and equity", "Sales, purchases and payroll"],
+              "explanation": "Operating: day-to-day business. Investing: buying and selling long-term assets. Financing: loans taken out and repaid, and capital contributions." }
+    },
+    {
+      "id": "concepts-0036", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué estado financiero explica los cambios del capital, las utilidades acumuladas y los dividendos del período?",
+              "options": ["Estado de cambios en el patrimonio", "Estado de situación financiera", "Estado de flujos de efectivo", "Estado de resultados"],
+              "explanation": "Parte del patrimonio inicial, suma la utilidad y los aportes, resta los dividendos o retiros y llega al patrimonio final del balance." },
+      "en": { "question": "Which financial statement explains the period's changes in capital, retained earnings and dividends?",
+              "options": ["Statement of changes in equity", "Statement of financial position", "Statement of cash flows", "Income statement"],
+              "explanation": "It starts from opening equity, adds profit and contributions, subtracts dividends or withdrawals, and arrives at the closing equity on the balance sheet." }
+    },
+    {
+      "id": "concepts-0037", "difficulty": 1, "type": "choice",
+      "es": { "question": "En un período, una empresa tiene ingresos por 120 000 y gastos por 85 000. ¿Cuál es su utilidad neta?",
+              "options": ["35 000", "205 000", "85 000", "45 000"],
+              "explanation": "Utilidad neta = ingresos − gastos = 120 000 − 85 000 = 35 000. Si los gastos superaran los ingresos, el resultado sería una pérdida." },
+      "en": { "question": "In a period, a company has revenue of 120,000 and expenses of 85,000. What is its net income?",
+              "options": ["35,000", "205,000", "85,000", "45,000"],
+              "explanation": "Net income = revenue − expenses = 120,000 − 85,000 = 35,000. If expenses exceeded revenue, the result would be a net loss." }
+    },
+    {
+      "id": "concepts-0038", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué supuesto contable parte de que la empresa seguirá operando en el futuro previsible?",
+              "options": ["Negocio en marcha", "Ente económico", "Unidad monetaria", "Materialidad"],
+              "explanation": "Por el supuesto de negocio en marcha, los activos se valoran pensando en su uso futuro y no por lo que darían en una liquidación inmediata." },
+      "en": { "question": "Which accounting assumption holds that the company will keep operating for the foreseeable future?",
+              "options": ["Going concern", "Economic entity", "Monetary unit", "Materiality"],
+              "explanation": "Under the going concern assumption, assets are measured with their future use in mind, not at what they would fetch in an immediate liquidation." }
+    },
+    {
+      "id": "concepts-0039", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué principio exige separar las transacciones de la empresa de las finanzas personales de sus dueños?",
+              "options": ["Ente económico (entidad)", "Negocio en marcha", "Costo histórico", "Período contable"],
+              "explanation": "La empresa es una entidad distinta de sus dueños: sus libros registran solo las transacciones del negocio, no las compras personales de los dueños." },
+      "en": { "question": "Which principle requires keeping the company's transactions separate from its owners' personal finances?",
+              "options": ["Economic entity", "Going concern", "Historical cost", "Periodicity (time period)"],
+              "explanation": "The business is an entity separate from its owners: its books record only the business's transactions, not the owners' personal purchases." }
+    },
+    {
+      "id": "concepts-0040", "difficulty": 1, "type": "choice",
+      "es": { "question": "Una empresa compró un terreno por 100 000. Hoy vale 130 000 en el mercado. Con el modelo del costo, ¿por cuánto figura en libros?",
+              "options": ["100 000", "130 000", "115 000", "30 000"],
+              "explanation": "Con el modelo del costo, el terreno queda a su costo de compra y no se ajusta al valor de mercado. Además, los terrenos no se deprecian." },
+      "en": { "question": "A company bought land for 100,000. Its market value is now 130,000. Under the cost model, at what amount is it carried?",
+              "options": ["100,000", "130,000", "115,000", "30,000"],
+              "explanation": "Under the cost model, land stays at its purchase cost and is not adjusted to market value. Land is also not depreciated." }
+    },
+    {
+      "id": "concepts-0041", "difficulty": 1, "type": "choice",
+      "es": { "question": "Una empresa tiene activo corriente por 90 000 y pasivo corriente por 60 000. ¿Cuál es su capital de trabajo?",
+              "options": ["30 000", "150 000", "−30 000", "60 000"],
+              "explanation": "Capital de trabajo = activo corriente − pasivo corriente = 90 000 − 60 000 = 30 000: los recursos de corto plazo que quedan tras cubrir las deudas de corto plazo." },
+      "en": { "question": "A company has current assets of 90,000 and current liabilities of 60,000. What is its working capital?",
+              "options": ["30,000", "150,000", "−30,000", "60,000"],
+              "explanation": "Working capital = current assets − current liabilities = 90,000 − 60,000 = 30,000: the short-term resources left after covering short-term debts." }
+    },
+    {
+      "id": "concepts-0042", "difficulty": 1, "type": "truefalse", "answer": true,
+      "es": { "question": "En una cuenta T, el lado izquierdo es el del débito (debe).",
+              "explanation": "Por convención, el débito (debe) va a la izquierda y el crédito (haber) a la derecha, sea cual sea el tipo de cuenta." },
+      "en": { "question": "In a T-account, the left side is the debit side.",
+              "explanation": "By convention, debits go on the left and credits on the right, whatever the type of account." }
+    },
+    {
+      "id": "concepts-0043", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuál de estas transacciones genera un ingreso para la empresa?",
+              "options": ["Prestar un servicio a un cliente", "Recibir un préstamo del banco", "Recibir un aporte de capital del dueño", "Cobrar una factura de una venta anterior"],
+              "explanation": "El ingreso surge al prestar el servicio. El préstamo es un pasivo, el aporte es patrimonio y el cobro solo cambia la cuenta por cobrar por efectivo." },
+      "en": { "question": "Which of these transactions produces revenue for the company?",
+              "options": ["Performing a service for a customer", "Receiving a bank loan", "Receiving a capital contribution from the owner", "Collecting an invoice for an earlier sale"],
+              "explanation": "Revenue arises when the service is performed. The loan is a liability, the contribution is equity, and the collection only swaps a receivable for cash." }
+    },
+    {
+      "id": "concepts-0044", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuál de estos pagos se registra como gasto del período?",
+              "options": ["La publicidad de la campaña de este mes", "Un computador que se usará cuatro años", "El abono a capital de un préstamo", "Mercancía comprada para revender"],
+              "explanation": "La publicidad del mes se consume en el período. El computador es activo fijo, el abono a capital reduce un pasivo y la mercancía es inventario hasta venderse." },
+      "en": { "question": "Which of these payments is recorded as an expense for the period?",
+              "options": ["This month's advertising campaign", "A computer to be used for four years", "A principal repayment on a loan", "Merchandise bought for resale"],
+              "explanation": "The month's advertising is used up in the period. The computer is a fixed asset, the principal payment reduces a liability and merchandise is inventory until sold." }
+    },
+    {
+      "id": "concepts-0045", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuál de estas cuentas es un activo corriente?",
+              "options": ["Cuentas por cobrar a clientes", "Maquinaria y equipo", "Préstamo bancario a cinco años", "Capital social"],
+              "explanation": "La cartera se convierte en efectivo en el corto plazo (normalmente antes de 12 meses). La maquinaria es activo no corriente, el préstamo es pasivo y el capital es patrimonio." },
+      "en": { "question": "Which of these accounts is a current asset?",
+              "options": ["Accounts receivable from customers", "Machinery and equipment", "Five-year bank loan", "Share capital"],
+              "explanation": "Receivables turn into cash in the short term (usually within 12 months). Machinery is a non-current asset, the loan is a liability and capital is equity." }
+    },
+    {
+      "id": "concepts-0046", "difficulty": 1, "type": "choice",
+      "es": { "question": "Una empresa recibe un préstamo que pagará en una sola cuota dentro de tres años. ¿Cómo se clasifica hoy esa deuda?",
+              "options": ["Pasivo no corriente", "Pasivo corriente", "Activo no corriente", "Patrimonio"],
+              "explanation": "Una deuda que vence más de 12 meses después de la fecha del balance es no corriente. Cuando falte menos de un año para pagarla, pasará a corriente." },
+      "en": { "question": "A company takes out a loan to be repaid in a single payment in three years. How is the debt classified today?",
+              "options": ["Non-current liability", "Current liability", "Non-current asset", "Equity"],
+              "explanation": "A debt due more than 12 months after the balance sheet date is non-current. Once less than a year remains until payment, it becomes current." }
+    },
+    {
+      "id": "concepts-0047", "difficulty": 1, "type": "choice",
+      "es": { "question": "Cuando una tienda vende mercancía, ¿a qué cuenta del estado de resultados va el costo de lo vendido?",
+              "options": ["Costo de ventas", "Gastos de ventas", "Gastos de administración", "Gastos financieros"],
+              "explanation": "El costo de la mercancía vendida sale del inventario y va al costo de ventas, que se resta de las ventas para obtener la utilidad bruta." },
+      "en": { "question": "When a store sells merchandise, to which income statement account does the cost of what was sold go?",
+              "options": ["Cost of goods sold", "Selling expenses", "Administrative expenses", "Finance costs"],
+              "explanation": "The cost of the merchandise sold leaves inventory and goes to cost of goods sold, which is subtracted from sales to arrive at gross profit." }
+    },
+    {
+      "id": "concepts-0048", "difficulty": 1, "type": "truefalse", "answer": false,
+      "es": { "question": "El dinero que el dueño retira de su negocio para uso personal es un gasto del negocio.",
+              "explanation": "No es un gasto: es una distribución al dueño. Disminuye el patrimonio directamente, sin pasar por el estado de resultados." },
+      "en": { "question": "Money the owner withdraws from the business for personal use is a business expense.",
+              "explanation": "It is not an expense but a distribution to the owner. It reduces equity directly, without going through the income statement." }
+    },
+    {
+      "id": "concepts-0049", "difficulty": 2, "type": "choice",
+      "es": { "question": "El 1 de octubre una empresa paga 12 000 por un seguro de 12 meses. ¿Cuánto queda como gasto pagado por anticipado al 31 de diciembre?",
+              "options": ["9000", "3000", "12 000", "6000"],
+              "explanation": "Cada mes se consumen 1000. De octubre a diciembre pasan 3 meses: 3000 van a gasto y quedan 9000 como activo por los 9 meses restantes." },
+      "en": { "question": "On October 1 a company pays 12,000 for 12 months of insurance. How much remains as a prepaid expense at December 31?",
+              "options": ["9,000", "3,000", "12,000", "6,000"],
+              "explanation": "Each month uses up 1,000. October to December is 3 months: 3,000 goes to expense and 9,000 stays as an asset for the remaining 9 months." }
+    },
+    {
+      "id": "concepts-0050", "difficulty": 2, "type": "choice",
+      "es": { "question": "En diciembre una empresa prestó un servicio que facturará en enero. ¿Qué ajuste registra al 31 de diciembre?",
+              "options": ["Débito a cuentas por cobrar, crédito a ingresos", "Débito a ingresos, crédito a cuentas por cobrar", "Débito a efectivo, crédito a ingresos diferidos", "Débito a ingresos diferidos, crédito a ingresos"],
+              "explanation": "Es un ingreso causado: ya se ganó en diciembre aunque no se haya facturado. Se reconocen el ingreso y el derecho de cobro, que se factura en enero." },
+      "en": { "question": "In December a company performed a service that it will bill in January. What adjusting entry does it record at December 31?",
+              "options": ["Debit accounts receivable, credit revenue", "Debit revenue, credit accounts receivable", "Debit cash, credit deferred revenue", "Debit deferred revenue, credit revenue"],
+              "explanation": "This is accrued revenue: it was earned in December even though it has not been billed. Revenue and the right to collect are recorded, then billed in January." }
+    },
+    {
+      "id": "concepts-0051", "difficulty": 2, "type": "choice",
+      "es": { "question": "El 1 de noviembre una empresa cobra 6000 por adelantado por 6 meses de servicio. ¿Cuánto queda como ingreso diferido al 31 de diciembre?",
+              "options": ["4000", "2000", "6000", "1000"],
+              "explanation": "Cada mes se presta servicio por 1000. En noviembre y diciembre se ganan 2000, que pasan a ingreso; quedan 4000 como pasivo por los 4 meses pendientes." },
+      "en": { "question": "On November 1 a company collects 6,000 in advance for 6 months of service. How much remains as deferred revenue at December 31?",
+              "options": ["4,000", "2,000", "6,000", "1,000"],
+              "explanation": "Each month 1,000 of service is delivered. November and December earn 2,000, which moves to revenue; 4,000 stays as a liability for the 4 months left." }
+    },
+    {
+      "id": "concepts-0052", "difficulty": 2, "type": "truefalse", "answer": true,
+      "es": { "question": "Los asientos de ajuste de fin de período (causados, anticipados y diferidos) no afectan la cuenta de efectivo.",
+              "explanation": "El efectivo ya se movió antes o se moverá después; el ajuste solo reparte ingresos y gastos entre períodos. Corregir el banco tras una conciliación es otra cosa." },
+      "en": { "question": "Period-end adjusting entries (accruals, prepayments and deferrals) do not affect the cash account.",
+              "explanation": "Cash moved earlier or will move later; the adjustment only allocates revenue and expenses between periods. Fixing book cash after a bank reconciliation is different." }
+    },
+    {
+      "id": "concepts-0053", "difficulty": 2, "type": "choice",
+      "es": { "question": "Una empresa paga una nómina de 5000 cada viernes por 5 días de trabajo, de lunes a viernes. Si el año cierra un miércoles, ¿cuánto salario causa?",
+              "options": ["3000", "2000", "5000", "1000"],
+              "explanation": "Cada día de trabajo cuesta 1000. Lunes, martes y miércoles ya se trabajaron: se causan 3000 (débito a gasto de salarios, crédito a salarios por pagar)." },
+      "en": { "question": "A company pays a 5,000 payroll every Friday for a 5-day week, Monday to Friday. If the year ends on a Wednesday, how much salary does it accrue?",
+              "options": ["3,000", "2,000", "5,000", "1,000"],
+              "explanation": "Each workday costs 1,000. Monday, Tuesday and Wednesday have been worked: accrue 3,000 (debit salaries expense, credit salaries payable)." }
+    },
+    {
+      "id": "concepts-0054", "difficulty": 2, "type": "choice",
+      "es": { "question": "Con un fondo fijo de caja menor, ¿qué se debita al reembolsarlo?",
+              "options": ["Los gastos pagados con los recibos del fondo", "La caja menor, por el valor total del fondo", "Las cuentas por pagar a los empleados", "El efectivo en bancos"],
+              "explanation": "En el reembolso se debitan los gastos soportados con los recibos y se acredita el banco. La cuenta de caja menor solo cambia si se aumenta o reduce el fondo." },
+      "en": { "question": "Under a fixed (imprest) petty cash fund, what is debited when the fund is replenished?",
+              "options": ["The expenses paid, per the fund's receipts", "Petty cash, for the full amount of the fund", "Amounts payable to employees", "Cash in bank"],
+              "explanation": "On replenishment, the expenses backed by the receipts are debited and the bank is credited. The petty cash account changes only if the fund is increased or reduced." }
+    },
+    {
+      "id": "concepts-0055", "difficulty": 2, "type": "choice",
+      "es": { "question": "En marzo una empresa factura 10 000 por servicios de marzo y cobra 6000 de ellos, más 3000 de ventas de febrero. ¿Cuál es su ingreso de marzo en base de caja?",
+              "options": ["9000", "10 000", "6000", "13 000"],
+              "explanation": "En base de caja cuenta lo cobrado en marzo: 6000 + 3000 = 9000. Con causación, el ingreso de marzo sería 10 000, lo ganado en el mes." },
+      "en": { "question": "In March a company bills 10,000 for March services and collects 6,000 of it, plus 3,000 from February sales. What is March revenue on the cash basis?",
+              "options": ["9,000", "10,000", "6,000", "13,000"],
+              "explanation": "On the cash basis, what was collected in March counts: 6,000 + 3,000 = 9,000. Under the accrual basis, March revenue would be 10,000, what was earned." }
+    },
+    {
+      "id": "concepts-0056", "difficulty": 2, "type": "choice",
+      "es": { "question": "Según las NIIF, ¿qué estado financiero no se prepara con la base de causación?",
+              "options": ["El estado de flujos de efectivo", "El estado de resultados", "El estado de situación financiera", "El estado de cambios en el patrimonio"],
+              "explanation": "Las NIIF piden preparar los estados con base de causación, salvo la información de flujos de efectivo, que muestra entradas y salidas reales de dinero." },
+      "en": { "question": "Under IFRS, which financial statement is not prepared on the accrual basis?",
+              "options": ["The statement of cash flows", "The income statement", "The statement of financial position", "The statement of changes in equity"],
+              "explanation": "IFRS requires financial statements to be prepared on the accrual basis, except cash flow information, which shows actual cash receipts and payments." }
+    },
+    {
+      "id": "concepts-0057", "difficulty": 2, "type": "choice",
+      "es": { "question": "Un equipo cuesta 10 000 y tiene una vida útil de 5 años. ¿Cuál es la depreciación del primer año por doble saldo decreciente?",
+              "options": ["4000", "2000", "5000", "3333"],
+              "explanation": "La tasa es el doble de la de línea recta: 2 × 20 % = 40 %. Se aplica al valor en libros inicial: 40 % × 10 000 = 4000 el primer año." },
+      "en": { "question": "Equipment costs 10,000 and has a 5-year useful life. What is first-year depreciation under the double-declining-balance method?",
+              "options": ["4,000", "2,000", "5,000", "3,333"],
+              "explanation": "The rate is twice the straight-line rate: 2 × 20% = 40%. It is applied to the opening book value: 40% × 10,000 = 4,000 in year one." }
+    },
+    {
+      "id": "concepts-0058", "difficulty": 2, "type": "choice",
+      "es": { "question": "Una máquina cuesta 100 000, tiene un valor residual de 10 000 y producirá 300 000 unidades en su vida. Este año produjo 40 000. ¿Cuánto se deprecia?",
+              "options": ["12 000", "13 333", "10 000", "9000"],
+              "explanation": "Tasa por unidad = (100 000 − 10 000) ÷ 300 000 = 0,30. Depreciación del año = 40 000 × 0,30 = 12 000. El gasto sigue el uso real de la máquina." },
+      "en": { "question": "A machine costs 100,000, has a residual value of 10,000 and will produce 300,000 units over its life. It produced 40,000 this year. What is the depreciation?",
+              "options": ["12,000", "13,333", "10,000", "9,000"],
+              "explanation": "Rate per unit = (100,000 − 10,000) ÷ 300,000 = 0.30. This year's depreciation = 40,000 × 0.30 = 12,000. The expense follows the machine's actual use." }
+    },
+    {
+      "id": "concepts-0059", "difficulty": 2, "type": "choice",
+      "es": { "question": "Un equipo que costó 20 000, con depreciación acumulada de 12 000, se vende por 10 000. ¿Qué resultado deja la venta?",
+              "options": ["Ganancia de 2000", "Pérdida de 10 000", "Ganancia de 10 000", "Pérdida de 2000"],
+              "explanation": "Valor en libros = 20 000 − 12 000 = 8000. Se vende por 10 000, así que hay una ganancia de 10 000 − 8000 = 2000." },
+      "en": { "question": "Equipment that cost 20,000, with accumulated depreciation of 12,000, is sold for 10,000. What is the result of the sale?",
+              "options": ["Gain of 2,000", "Loss of 10,000", "Gain of 10,000", "Loss of 2,000"],
+              "explanation": "Carrying amount = 20,000 − 12,000 = 8,000. It sells for 10,000, so there is a gain of 10,000 − 8,000 = 2,000." }
+    },
+    {
+      "id": "concepts-0060", "difficulty": 2, "type": "choice",
+      "es": { "question": "Una máquina de 12 000, sin valor residual y con vida útil de 4 años, se compra el 1 de abril. En línea recta por meses, ¿cuánto se deprecia al 31 de diciembre?",
+              "options": ["2250", "3000", "750", "2000"],
+              "explanation": "Al año son 12 000 ÷ 4 = 3000, o 250 al mes. De abril a diciembre hay 9 meses: 9 × 250 = 2250." },
+      "en": { "question": "A 12,000 machine with no residual value and a 4-year life is bought on April 1. Using monthly straight-line, how much is depreciated through December 31?",
+              "options": ["2,250", "3,000", "750", "2,000"],
+              "explanation": "Annual depreciation is 12,000 ÷ 4 = 3,000, or 250 a month. April through December is 9 months: 9 × 250 = 2,250." }
+    },
+    {
+      "id": "concepts-0061", "difficulty": 2, "type": "truefalse", "answer": false,
+      "es": { "question": "Las NIIF permiten valorar los inventarios con el método UEPS (LIFO).",
+              "explanation": "La NIC 2 no permite UEPS: solo PEPS, promedio ponderado o identificación específica. US GAAP sí permite UEPS." },
+      "en": { "question": "IFRS allows inventories to be measured using the LIFO method.",
+              "explanation": "IAS 2 does not permit LIFO: only FIFO, weighted average or specific identification. US GAAP does allow LIFO." }
+    },
+    {
+      "id": "concepts-0062", "difficulty": 2, "type": "choice",
+      "es": { "question": "Sin inventario inicial, se compran 10 unidades a 5 y luego 10 a 7, y se venden 15. Con PEPS, ¿cuál es el costo de ventas?",
+              "options": ["85", "95", "90", "105"],
+              "explanation": "PEPS saca primero las más antiguas: 10 × 5 + 5 × 7 = 85. Con UEPS serían 95 y con promedio ponderado (6 por unidad), 90." },
+      "en": { "question": "With no opening inventory, a company buys 10 units at 5, then 10 at 7, and sells 15. Under FIFO, what is cost of goods sold?",
+              "options": ["85", "95", "90", "105"],
+              "explanation": "FIFO takes the oldest units first: 10 × 5 + 5 × 7 = 85. Under LIFO it would be 95, and under weighted average (6 per unit), 90." }
+    },
+    {
+      "id": "concepts-0063", "difficulty": 2, "type": "choice",
+      "es": { "question": "Hay 100 unidades a 10 y se compran 300 a 14. ¿Cuál es el costo promedio ponderado por unidad?",
+              "options": ["13", "12", "14", "11"],
+              "explanation": "(100 × 10 + 300 × 14) ÷ 400 = (1000 + 4200) ÷ 400 = 13. El promedio simple de los precios (12) no sirve, porque ignora las cantidades." },
+      "en": { "question": "There are 100 units at 10, and 300 more are bought at 14. What is the weighted average cost per unit?",
+              "options": ["13", "12", "14", "11"],
+              "explanation": "(100 × 10 + 300 × 14) ÷ 400 = (1,000 + 4,200) ÷ 400 = 13. The simple average of the prices (12) is wrong because it ignores quantities." }
+    },
+    {
+      "id": "concepts-0064", "difficulty": 2, "type": "choice",
+      "es": { "question": "Si los precios de compra suben de forma sostenida, ¿qué método de inventario da la mayor utilidad bruta?",
+              "options": ["PEPS (FIFO)", "UEPS (LIFO)", "Promedio ponderado", "Todos dan la misma utilidad"],
+              "explanation": "PEPS lleva al costo de ventas los costos más antiguos y bajos, así que la utilidad bruta es mayor. UEPS, permitido en US GAAP pero no en NIIF, daría la menor." },
+      "en": { "question": "If purchase prices rise steadily, which inventory method gives the highest gross profit?",
+              "options": ["FIFO", "LIFO", "Weighted average", "They all give the same profit"],
+              "explanation": "FIFO charges the oldest, lowest costs to cost of goods sold, so gross profit is highest. LIFO, allowed under US GAAP but not IFRS, would give the lowest." }
+    },
+    {
+      "id": "concepts-0065", "difficulty": 2, "type": "choice",
+      "es": { "question": "Según la NIC 2, ¿cómo se miden los inventarios al cierre?",
+              "options": ["Al menor entre el costo y el valor neto realizable", "Al mayor entre el costo y el valor neto realizable", "Siempre a su valor razonable", "Siempre al precio de venta esperado"],
+              "explanation": "Si el valor neto realizable cae por debajo del costo, el inventario se rebaja a ese valor y la pérdida va al resultado del período." },
+      "en": { "question": "Under IAS 2, how are inventories measured at period end?",
+              "options": ["At the lower of cost and net realizable value", "At the higher of cost and net realizable value", "Always at fair value", "Always at the expected selling price"],
+              "explanation": "If net realizable value falls below cost, inventory is written down to that amount and the loss goes to profit or loss for the period." }
+    },
+    {
+      "id": "concepts-0066", "difficulty": 2, "type": "truefalse", "answer": true,
+      "es": { "question": "El flete pagado para traer la mercancía comprada hasta la bodega forma parte del costo del inventario.",
+              "explanation": "El costo del inventario incluye el precio de compra y lo necesario para dejarlo en su lugar y condición actuales, como fletes y aranceles no recuperables." },
+      "en": { "question": "Freight paid to bring purchased merchandise to the warehouse is part of the cost of inventory.",
+              "explanation": "Inventory cost includes the purchase price and the costs needed to bring it to its present location and condition, such as freight and non-recoverable import duties." }
+    },
+    {
+      "id": "concepts-0067", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cuál de estos errores no se detecta con el balance de prueba, porque los totales siguen cuadrando?",
+              "options": ["Omitir por completo una transacción", "Registrar solo el débito de un asiento", "Sumar mal el saldo de una cuenta", "Registrar un débito de 500 y un crédito de 50"],
+              "explanation": "Si se omite todo el asiento, débitos y créditos quedan cortos por igual y el balance cuadra. Tampoco detecta un asiento llevado a la cuenta equivocada." },
+      "en": { "question": "Which of these errors does a trial balance not reveal, because the totals still agree?",
+              "options": ["Omitting a transaction entirely", "Posting only the debit side of an entry", "Miscalculating an account's balance", "Recording a debit of 500 and a credit of 50"],
+              "explanation": "If the whole entry is omitted, debits and credits are short by the same amount and the trial balance agrees. It also misses entries posted to the wrong account." }
+    },
+    {
+      "id": "concepts-0068", "difficulty": 2, "type": "truefalse", "answer": true,
+      "es": { "question": "Una empresa puede tener utilidad neta y, al mismo tiempo, un flujo de efectivo de operación negativo.",
+              "explanation": "Sí: si vende mucho a crédito o acumula inventario, la utilidad se registra pero el dinero aún no entra. Por eso se analizan ambos estados." },
+      "en": { "question": "A company can report a net profit and, at the same time, negative operating cash flow.",
+              "explanation": "Yes: if it sells heavily on credit or builds up inventory, profit is recorded but the cash has not come in yet. That is why both statements are analysed." }
+    },
+    {
+      "id": "concepts-0069", "difficulty": 2, "type": "choice",
+      "es": { "question": "Un balance de prueba tiene una diferencia que es divisible exactamente por 9. ¿Qué error suele indicar?",
+              "options": ["Dígitos invertidos, como 54 registrado como 45", "Un saldo puesto en la columna contraria", "Un débito registrado sin su crédito", "Una transacción omitida por completo"],
+              "explanation": "Al invertir dos dígitos, la diferencia siempre es múltiplo de 9 (54 − 45 = 9). Un saldo en la columna contraria deja una diferencia del doble de su valor." },
+      "en": { "question": "A trial balance is out by an amount that is exactly divisible by 9. What error does this usually point to?",
+              "options": ["Transposed digits, such as 54 entered as 45", "A balance placed in the wrong column", "A debit posted without its credit", "A transaction omitted entirely"],
+              "explanation": "Swapping two digits always creates a difference that is a multiple of 9 (54 − 45 = 9). A balance in the wrong column creates a difference of twice its amount." }
+    },
+    {
+      "id": "concepts-0070", "difficulty": 2, "type": "choice",
+      "es": { "question": "Una empresa vende de contado un camión usado que empleaba para sus entregas. ¿En qué actividad del estado de flujos de efectivo va ese cobro?",
+              "options": ["Inversión", "Operación", "Financiación", "No se presenta en ese estado"],
+              "explanation": "Comprar y vender activos de largo plazo, como vehículos o maquinaria, son actividades de inversión, aunque la empresa reciba dinero por una venta." },
+      "en": { "question": "A company sells, for cash, a used truck it had been using for deliveries. In which section of the statement of cash flows does that receipt go?",
+              "options": ["Investing activities", "Operating activities", "Financing activities", "It is not shown in that statement"],
+              "explanation": "Buying and selling long-term assets, such as vehicles or machinery, are investing activities, even though the company receives cash from a sale." }
+    },
+    {
+      "id": "concepts-0071", "difficulty": 2, "type": "choice",
+      "es": { "question": "Utilidades acumuladas al inicio: 50 000. Utilidad del año: 20 000. Dividendos decretados: 8000. ¿Cuál es el saldo final de utilidades acumuladas?",
+              "options": ["62 000", "78 000", "70 000", "42 000"],
+              "explanation": "Saldo final = inicial + utilidad − dividendos = 50 000 + 20 000 − 8000 = 62 000. Los dividendos reducen las utilidades acumuladas, pero no son un gasto." },
+      "en": { "question": "Opening retained earnings: 50,000. Net income for the year: 20,000. Dividends declared: 8,000. What is the closing retained earnings balance?",
+              "options": ["62,000", "78,000", "70,000", "42,000"],
+              "explanation": "Closing = opening + net income − dividends = 50,000 + 20,000 − 8,000 = 62,000. Dividends reduce retained earnings but are not an expense." }
+    },
+    {
+      "id": "concepts-0072", "difficulty": 2, "type": "choice",
+      "es": { "question": "En el método indirecto del flujo de efectivo de operación, ¿qué se hace con el gasto por depreciación?",
+              "options": ["Se suma a la utilidad neta", "Se resta de la utilidad neta", "Se presenta en actividades de inversión", "Se presenta en actividades de financiación"],
+              "explanation": "El método indirecto parte de la utilidad neta. La depreciación la redujo sin mover efectivo, así que se vuelve a sumar." },
+      "en": { "question": "Under the indirect method for operating cash flow, what is done with depreciation expense?",
+              "options": ["It is added back to net income", "It is subtracted from net income", "It is shown under investing activities", "It is shown under financing activities"],
+              "explanation": "The indirect method starts from net income. Depreciation reduced it without moving cash, so it is added back." }
+    },
+    {
+      "id": "concepts-0073", "difficulty": 2, "type": "truefalse", "answer": true,
+      "es": { "question": "Según las NIIF, las notas forman parte del juego completo de estados financieros.",
+              "explanation": "Las notas explican las políticas contables, los juicios y el detalle de las cifras. Sin ellas, el juego de estados financieros está incompleto." },
+      "en": { "question": "Under IFRS, the notes are part of a complete set of financial statements.",
+              "explanation": "The notes explain accounting policies, judgements and the detail behind the figures. Without them, the set of financial statements is incomplete." }
+    },
+    {
+      "id": "concepts-0074", "difficulty": 2, "type": "choice",
+      "es": { "question": "Efectivo: 30 000. Cuentas por cobrar: 50 000. Inventarios: 40 000. Pasivo corriente: 50 000. ¿Cuál es la prueba ácida?",
+              "options": ["1,6", "2,4", "0,8", "1,0"],
+              "explanation": "La prueba ácida excluye el inventario: (30 000 + 50 000) ÷ 50 000 = 1,6. Con el inventario sería la razón corriente: 120 000 ÷ 50 000 = 2,4." },
+      "en": { "question": "Cash: 30,000. Accounts receivable: 50,000. Inventory: 40,000. Current liabilities: 50,000. What is the quick (acid-test) ratio?",
+              "options": ["1.6", "2.4", "0.8", "1.0"],
+              "explanation": "The quick ratio excludes inventory: (30,000 + 50,000) ÷ 50,000 = 1.6. Including inventory gives the current ratio: 120,000 ÷ 50,000 = 2.4." }
+    },
+    {
+      "id": "concepts-0075", "difficulty": 2, "type": "choice",
+      "es": { "question": "Una empresa tiene activos totales por 150 000 y pasivos totales por 60 000. ¿Cuál es su nivel de endeudamiento?",
+              "options": ["40 %", "60 %", "67 %", "250 %"],
+              "explanation": "Endeudamiento = pasivo total ÷ activo total = 60 000 ÷ 150 000 = 40 %: los acreedores financian el 40 % de los activos. El 67 % sería pasivo ÷ patrimonio." },
+      "en": { "question": "A company has total assets of 150,000 and total liabilities of 60,000. What is its debt ratio?",
+              "options": ["40%", "60%", "67%", "250%"],
+              "explanation": "Debt ratio = total liabilities ÷ total assets = 60,000 ÷ 150,000 = 40%: creditors finance 40% of the assets. 67% would be liabilities ÷ equity." }
+    },
+    {
+      "id": "concepts-0076", "difficulty": 2, "type": "choice",
+      "es": { "question": "Ventas: 500 000. Costo de ventas: 300 000. Gastos operacionales: 120 000. ¿Cuál es el margen bruto?",
+              "options": ["40 %", "16 %", "60 %", "24 %"],
+              "explanation": "Margen bruto = (ventas − costo de ventas) ÷ ventas = 200 000 ÷ 500 000 = 40 %. Los gastos operacionales no entran; con ellos sale el margen operacional (16 %)." },
+      "en": { "question": "Sales: 500,000. Cost of goods sold: 300,000. Operating expenses: 120,000. What is the gross margin?",
+              "options": ["40%", "16%", "60%", "24%"],
+              "explanation": "Gross margin = (sales − cost of goods sold) ÷ sales = 200,000 ÷ 500,000 = 40%. Operating expenses are excluded; with them you get the operating margin (16%)." }
+    },
+    {
+      "id": "concepts-0077", "difficulty": 2, "type": "choice",
+      "es": { "question": "Una empresa vendió 400 000 y su utilidad neta fue de 30 000. ¿Cuál es su margen neto?",
+              "options": ["7,5 %", "13,3 %", "30 %", "75 %"],
+              "explanation": "Margen neto = utilidad neta ÷ ventas = 30 000 ÷ 400 000 = 7,5 %: de cada 100 vendidos quedan 7,50 de utilidad después de todos los costos y gastos." },
+      "en": { "question": "A company had sales of 400,000 and net income of 30,000. What is its net profit margin?",
+              "options": ["7.5%", "13.3%", "30%", "75%"],
+              "explanation": "Net margin = net income ÷ sales = 30,000 ÷ 400,000 = 7.5%: out of every 100 in sales, 7.50 is left as profit after all costs and expenses." }
+    },
+    {
+      "id": "concepts-0078", "difficulty": 2, "type": "choice",
+      "es": { "question": "Ventas a crédito del año: 720 000. Cartera promedio: 60 000. Con un año de 360 días, ¿cuál es el período promedio de cobro?",
+              "options": ["30 días", "12 días", "60 días", "45 días"],
+              "explanation": "Rotación de cartera = 720 000 ÷ 60 000 = 12 veces al año. Período de cobro = 360 ÷ 12 = 30 días, lo que tardan en promedio los clientes en pagar." },
+      "en": { "question": "Annual credit sales: 720,000. Average accounts receivable: 60,000. Using a 360-day year, what is the average collection period?",
+              "options": ["30 days", "12 days", "60 days", "45 days"],
+              "explanation": "Receivables turnover = 720,000 ÷ 60,000 = 12 times a year. Collection period = 360 ÷ 12 = 30 days, how long customers take to pay on average." }
+    },
+    {
+      "id": "concepts-0079", "difficulty": 2, "type": "choice",
+      "es": { "question": "Al conciliar aparece un cheque de un cliente devuelto por fondos insuficientes, que la empresa aún no ha registrado. ¿Cómo se trata?",
+              "options": ["Se resta del saldo en libros", "Se suma al saldo en libros", "Se resta del saldo del extracto", "Se suma al saldo del extracto"],
+              "explanation": "El banco ya lo descontó, pero los libros no: se acredita el efectivo y se vuelve a debitar la cuenta por cobrar del cliente." },
+      "en": { "question": "A customer's check comes back for insufficient funds (NSF), and the company has not recorded it yet. How is it treated in the bank reconciliation?",
+              "options": ["Subtract it from the book balance", "Add it to the book balance", "Subtract it from the bank balance", "Add it to the bank balance"],
+              "explanation": "The bank has already deducted it, but the books have not: credit cash and debit the customer's account receivable again." }
+    },
+    {
+      "id": "concepts-0080", "difficulty": 2, "type": "choice",
+      "es": { "question": "Saldo del extracto: 10 000. Consignaciones en tránsito: 2000. Cheques girados aún no cobrados: 3000. ¿Cuál es el saldo bancario conciliado?",
+              "options": ["9000", "11 000", "15 000", "5000"],
+              "explanation": "Saldo conciliado = extracto + consignaciones en tránsito − cheques pendientes = 10 000 + 2000 − 3000 = 9000. Debe coincidir con el saldo en libros ajustado." },
+      "en": { "question": "Bank statement balance: 10,000. Deposits in transit: 2,000. Outstanding checks: 3,000. What is the adjusted bank balance?",
+              "options": ["9,000", "11,000", "15,000", "5,000"],
+              "explanation": "Adjusted bank balance = statement + deposits in transit − outstanding checks = 10,000 + 2,000 − 3,000 = 9,000. It must match the adjusted book balance." }
+    },
+    {
+      "id": "concepts-0081", "difficulty": 2, "type": "truefalse", "answer": false,
+      "es": { "question": "En una conciliación bancaria, las consignaciones en tránsito y los cheques pendientes de cobro requieren un asiento en los libros.",
+              "explanation": "No: los libros ya los tienen y el banco todavía no. Solo se registran en libros las partidas del lado de libros, como comisiones bancarias o cheques devueltos." },
+      "en": { "question": "In a bank reconciliation, deposits in transit and outstanding checks require a journal entry in the books.",
+              "explanation": "No: the books already include them and the bank does not yet. Only book-side items, such as bank fees or NSF checks, are recorded in the books." }
+    },
+    {
+      "id": "concepts-0082", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cómo se registra el costo de instalar y probar una máquina nueva antes de que empiece a operar?",
+              "options": ["Se suma al costo de la máquina", "Como gasto del período", "Como un pasivo", "Como una disminución del patrimonio"],
+              "explanation": "El costo del activo incluye todo lo necesario para dejarlo listo para usar: precio, fletes, instalación y pruebas. Luego se deprecia junto con la máquina." },
+      "en": { "question": "How is the cost of installing and testing a new machine before it starts operating recorded?",
+              "options": ["Added to the cost of the machine", "As an expense of the period", "As a liability", "As a reduction of equity"],
+              "explanation": "An asset's cost includes everything needed to get it ready for use: price, freight, installation and testing. It is then depreciated with the machine." }
+    },
+    {
+      "id": "concepts-0083", "difficulty": 3, "type": "choice",
+      "es": { "question": "Una empresa olvida ajustar un ingreso diferido que ya ganó al prestar el servicio. ¿Qué efecto tiene en sus estados financieros?",
+              "options": ["Pasivo sobrestimado y utilidad subestimada", "Pasivo subestimado y utilidad sobrestimada", "Activo sobrestimado y utilidad sobrestimada", "Solo se subestima el efectivo"],
+              "explanation": "El cobro anticipado sigue como pasivo aunque el servicio ya se prestó. Así, el pasivo queda mayor que el real, y el ingreso y la utilidad, menores." },
+      "en": { "question": "A company forgets to adjust deferred revenue that it has already earned by performing the service. What is the effect on its financial statements?",
+              "options": ["Liabilities overstated, net income understated", "Liabilities understated, net income overstated", "Assets overstated, net income overstated", "Only cash is understated"],
+              "explanation": "The advance payment stays as a liability even though the service was performed, so liabilities are too high and revenue and net income too low." }
+    },
+    {
+      "id": "concepts-0084", "difficulty": 3, "type": "choice",
+      "es": { "question": "Un activo cuesta 40 000, sin valor residual y con vida útil de 5 años. Con doble saldo decreciente, ¿cuánto se deprecia en el segundo año?",
+              "options": ["9600", "16 000", "8000", "10 667"],
+              "explanation": "Tasa = 2 × 20 % = 40 %. Año 1: 40 % × 40 000 = 16 000. Año 2: 40 % × (40 000 − 16 000) = 9600. La tasa se aplica al valor en libros, no al costo." },
+      "en": { "question": "An asset costs 40,000, has no residual value and a 5-year life. Under double-declining balance, what is depreciation in year two?",
+              "options": ["9,600", "16,000", "8,000", "10,667"],
+              "explanation": "Rate = 2 × 20% = 40%. Year 1: 40% × 40,000 = 16,000. Year 2: 40% × (40,000 − 16,000) = 9,600. The rate applies to book value, not cost." }
+    },
+    {
+      "id": "concepts-0085", "difficulty": 3, "type": "truefalse", "answer": false,
+      "es": { "question": "En el método de doble saldo decreciente, el valor residual se resta del costo antes de aplicar la tasa.",
+              "explanation": "La tasa se aplica al valor en libros sin restar el residual. El residual solo pone un límite: el activo no se deprecia por debajo de ese valor." },
+      "en": { "question": "Under the double-declining-balance method, residual value is subtracted from cost before applying the rate.",
+              "explanation": "The rate is applied to book value without deducting residual value. Residual value only sets a floor: the asset is not depreciated below it." }
+    },
+    {
+      "id": "concepts-0086", "difficulty": 3, "type": "choice",
+      "es": { "question": "Una empresa revisa y alarga la vida útil estimada de una máquina. ¿Cómo contabiliza el cambio?",
+              "options": ["De forma prospectiva, en el período actual y los siguientes", "Reexpresando los estados de años anteriores", "Como la corrección de un error", "Con un ajuste directo a utilidades acumuladas"],
+              "explanation": "Es un cambio en una estimación contable (NIC 8 y ASC 250): el valor en libros pendiente se deprecia en la nueva vida restante, sin tocar años anteriores." },
+      "en": { "question": "A company reviews and extends the estimated useful life of a machine. How does it account for the change?",
+              "options": ["Prospectively, in the current and future periods", "By restating prior years' statements", "As the correction of an error", "With a direct adjustment to retained earnings"],
+              "explanation": "It is a change in accounting estimate (IAS 8 and ASC 250): the remaining book value is depreciated over the new remaining life, without touching prior years." }
+    },
+    {
+      "id": "concepts-0087", "difficulty": 3, "type": "choice",
+      "es": { "question": "Según la NIC 16, ¿cuándo comienza la depreciación de un elemento de propiedad, planta y equipo?",
+              "options": ["Cuando está disponible para su uso", "Cuando se usa por primera vez", "Cuando se termina de pagar", "Al comenzar el siguiente año fiscal"],
+              "explanation": "Empieza cuando el activo está en el lugar y las condiciones para operar como se prevé, aunque aún no se use. Termina al darlo de baja o clasificarlo como mantenido para la venta." },
+      "en": { "question": "Under IAS 16, when does depreciation of an item of property, plant and equipment begin?",
+              "options": ["When it is available for use", "When it is first used", "When it has been fully paid for", "At the start of the next fiscal year"],
+              "explanation": "It begins when the asset is in the location and condition to operate as intended, even if not yet used. It ends when the asset is derecognized or classified as held for sale." }
+    },
+    {
+      "id": "concepts-0088", "difficulty": 3, "type": "truefalse", "answer": true,
+      "es": { "question": "Según la NIC 16, cada parte de un activo fijo con un costo significativo frente al costo total del activo se deprecia por separado.",
+              "explanation": "Es la depreciación por componentes: por ejemplo, los motores de un avión pueden depreciarse aparte del fuselaje. Partes con igual vida útil y método pueden agruparse." },
+      "en": { "question": "Under IAS 16, each part of a fixed asset whose cost is significant relative to the asset's total cost is depreciated separately.",
+              "explanation": "This is component depreciation: for example, an aircraft's engines may be depreciated separately from the airframe. Parts with the same useful life and method may be grouped." }
+    },
+    {
+      "id": "concepts-0089", "difficulty": 3, "type": "choice",
+      "es": { "question": "Un activo cuesta 15 000, sin valor residual y con vida útil de 5 años. Con suma de los dígitos de los años, ¿cuánto se deprecia el primer año?",
+              "options": ["5000", "3000", "6000", "1000"],
+              "explanation": "Suma de dígitos = 1 + 2 + 3 + 4 + 5 = 15. El primer año se aplica 5/15: 15 000 × 5/15 = 5000. Luego 4/15, 3/15 y así hasta 1/15." },
+      "en": { "question": "An asset costs 15,000, has no residual value and a 5-year life. Under the sum-of-the-years'-digits method, what is first-year depreciation?",
+              "options": ["5,000", "3,000", "6,000", "1,000"],
+              "explanation": "Sum of digits = 1 + 2 + 3 + 4 + 5 = 15. Year one uses 5/15: 15,000 × 5/15 = 5,000. Then 4/15, 3/15 and so on down to 1/15." }
+    },
+    {
+      "id": "concepts-0090", "difficulty": 3, "type": "choice",
+      "es": { "question": "Un inventario cuesta 100. Se venderá por 110, pero terminarlo cuesta 5 y venderlo, 15. Según la NIC 2, ¿por cuánto debe quedar en libros?",
+              "options": ["90", "100", "110", "95"],
+              "explanation": "Valor neto realizable = 110 − 5 − 15 = 90, menor que el costo de 100. El inventario se rebaja a 90 y la pérdida de 10 va al resultado." },
+      "en": { "question": "Inventory costs 100. It will sell for 110, but it costs 5 to complete and 15 to sell. Under IAS 2, at what amount should it be carried?",
+              "options": ["90", "100", "110", "95"],
+              "explanation": "Net realizable value = 110 − 5 − 15 = 90, below the cost of 100. Inventory is written down to 90 and the loss of 10 goes to profit or loss." }
+    },
+    {
+      "id": "concepts-0091", "difficulty": 3, "type": "truefalse", "answer": true,
+      "es": { "question": "Según la NIC 2, una rebaja del inventario al valor neto realizable puede revertirse si ese valor se recupera después.",
+              "explanation": "Sí, hasta el monto de la rebaja original, y la reversión reduce el costo de ventas. En US GAAP, en cambio, la rebaja crea una nueva base de costo y no se revierte." },
+      "en": { "question": "Under IAS 2, a write-down of inventory to net realizable value can be reversed if that value later recovers.",
+              "explanation": "Yes, up to the original write-down, and the reversal reduces cost of sales. Under US GAAP, by contrast, the write-down creates a new cost basis and is not reversed." }
+    },
+    {
+      "id": "concepts-0092", "difficulty": 3, "type": "choice",
+      "es": { "question": "Con promedio ponderado permanente: hay 100 unidades a 10, se venden 50 y luego se compran 50 a 13. ¿Cuál es el nuevo costo promedio por unidad?",
+              "options": ["11,50", "11,00", "13,00", "10,00"],
+              "explanation": "Tras la venta quedan 50 × 10 = 500. La compra suma 650: 1150 ÷ 100 = 11,50. Un promedio periódico daría 11,00 [(1000 + 650) ÷ 150]." },
+      "en": { "question": "Under a perpetual (moving) weighted average: 100 units at 10, 50 are sold, then 50 are bought at 13. What is the new average cost per unit?",
+              "options": ["11.50", "11.00", "13.00", "10.00"],
+              "explanation": "After the sale, 50 × 10 = 500 remain. The purchase adds 650: 1,150 ÷ 100 = 11.50. A periodic average would give 11.00 [(1,000 + 650) ÷ 150]." }
+    },
+    {
+      "id": "concepts-0093", "difficulty": 3, "type": "choice",
+      "es": { "question": "El inventario final de este año se sobrestimó y el error no se corrige. ¿Qué efecto tiene en la utilidad del año siguiente?",
+              "options": ["La subestima", "La sobrestima", "No la afecta", "La afecta solo si se usa PEPS"],
+              "explanation": "Este año el costo de ventas baja y la utilidad sube. El año siguiente ese inventario inflado es el inicial: sube el costo de ventas y baja la utilidad, y el error se compensa." },
+      "en": { "question": "This year's ending inventory was overstated and the error is not corrected. What is the effect on next year's net income?",
+              "options": ["It is understated", "It is overstated", "It is not affected", "It is affected only under FIFO"],
+              "explanation": "This year cost of goods sold falls and profit rises. Next year the inflated figure is opening inventory, so cost of goods sold rises, profit falls and the error reverses." }
+    },
+    {
+      "id": "concepts-0094", "difficulty": 3, "type": "choice",
+      "es": { "question": "En el método indirecto, si las cuentas por cobrar aumentaron durante el año, ¿qué se hace con ese aumento en el flujo de operación?",
+              "options": ["Se resta de la utilidad neta", "Se suma a la utilidad neta", "Se presenta en actividades de inversión", "No se ajusta"],
+              "explanation": "Un aumento de la cartera significa ventas registradas como ingreso que aún no se han cobrado; por eso se resta para llegar al efectivo realmente recibido." },
+      "en": { "question": "Under the indirect method, if accounts receivable increased during the year, how is the increase treated in operating cash flow?",
+              "options": ["Subtracted from net income", "Added to net income", "Shown under investing activities", "Not adjusted"],
+              "explanation": "A rise in receivables means sales recorded as revenue but not yet collected, so it is subtracted to arrive at the cash actually received." }
+    },
+    {
+      "id": "concepts-0095", "difficulty": 3, "type": "choice",
+      "es": { "question": "Una empresa con razón corriente de 2 paga en efectivo una cuenta por pagar de corto plazo. ¿Qué pasa con su razón corriente?",
+              "options": ["Aumenta", "Disminuye", "No cambia", "Baja a 1"],
+              "explanation": "Activo y pasivo corrientes bajan lo mismo. Ej.: 200 ÷ 100 = 2; al pagar 50 queda 150 ÷ 50 = 3. Si la razón fuera menor que 1, bajaría." },
+      "en": { "question": "A company with a current ratio of 2 pays a short-term payable in cash. What happens to its current ratio?",
+              "options": ["It increases", "It decreases", "It does not change", "It falls to 1"],
+              "explanation": "Current assets and liabilities fall by the same amount. E.g. 200 ÷ 100 = 2; paying 50 leaves 150 ÷ 50 = 3. If the ratio were below 1, it would fall." }
+    },
+    {
+      "id": "concepts-0096", "difficulty": 3, "type": "choice",
+      "es": { "question": "Una empresa con prueba ácida de 1,2 compra inventario a crédito. ¿Qué pasa con su prueba ácida?",
+              "options": ["Disminuye", "Aumenta", "No cambia", "Queda en 1"],
+              "explanation": "El inventario no entra en la prueba ácida, así que el numerador no cambia, pero el pasivo corriente sube. En la razón corriente, el efecto dependería de su nivel." },
+      "en": { "question": "A company with a quick ratio of 1.2 buys inventory on credit. What happens to its quick ratio?",
+              "options": ["It decreases", "It increases", "It does not change", "It becomes exactly 1"],
+              "explanation": "Inventory is excluded from the quick ratio, so the numerator is unchanged while current liabilities rise. For the current ratio, the effect would depend on its level." }
+    },
+    {
+      "id": "concepts-0097", "difficulty": 3, "type": "choice",
+      "es": { "question": "En el análisis DuPont, el ROE es igual al margen neto × la rotación de activos × ¿qué otro factor?",
+              "options": ["El multiplicador del capital (activo ÷ patrimonio)", "La razón corriente (AC ÷ PC)", "La rotación de cartera (ventas ÷ cartera)", "El margen bruto (utilidad bruta ÷ ventas)"],
+              "explanation": "ROE = (utilidad ÷ ventas) × (ventas ÷ activo) × (activo ÷ patrimonio). Ventas y activo se cancelan y queda utilidad ÷ patrimonio." },
+      "en": { "question": "In DuPont analysis, ROE equals net profit margin × asset turnover × what other factor?",
+              "options": ["The equity multiplier (assets ÷ equity)", "The current ratio (CA ÷ CL)", "Receivables turnover (sales ÷ receivables)", "Gross margin (gross profit ÷ sales)"],
+              "explanation": "ROE = (net income ÷ sales) × (sales ÷ assets) × (assets ÷ equity). Sales and assets cancel out, leaving net income ÷ equity." }
+    },
+    {
+      "id": "concepts-0098", "difficulty": 3, "type": "choice",
+      "es": { "question": "Un cheque girado por 450 se registró en libros como 540. Al conciliar, ¿qué ajuste se hace al saldo en libros?",
+              "options": ["Sumar 90", "Restar 90", "Sumar 540", "Restar 450"],
+              "explanation": "En libros se restaron 540 en lugar de 450, así que el saldo quedó 90 por debajo. Se suman 90 con un asiento de corrección. Es una transposición: 90 es múltiplo de 9." },
+      "en": { "question": "A check written for 450 was recorded in the books as 540. In the bank reconciliation, what adjustment is made to the book balance?",
+              "options": ["Add 90", "Subtract 90", "Add 540", "Subtract 450"],
+              "explanation": "The books deducted 540 instead of 450, leaving the balance 90 too low. Add 90 with a correcting entry. It is a transposition: 90 is a multiple of 9." }
+    },
+    {
+      "id": "concepts-0099", "difficulty": 3, "type": "truefalse", "answer": false,
+      "es": { "question": "Los asientos de reversión son obligatorios al inicio de cada período.",
+              "explanation": "Son opcionales: se hacen el primer día del período siguiente para revertir ciertos ajustes, sobre todo causaciones, y registrar luego el pago o cobro de forma normal." },
+      "en": { "question": "Reversing entries are mandatory at the start of each period.",
+              "explanation": "They are optional: made on the first day of the next period to reverse certain adjustments, mainly accruals, so the later payment or receipt is recorded as usual." }
+    },
+    {
+      "id": "concepts-0100", "difficulty": 3, "type": "choice",
+      "es": { "question": "Según el Marco Conceptual de las NIIF, ¿cuáles son las dos características cualitativas fundamentales de la información financiera?",
+              "options": ["Relevancia y representación fiel", "Comparabilidad y verificabilidad", "Oportunidad y comprensibilidad", "Prudencia y uniformidad"],
+              "explanation": "Relevancia y representación fiel son las fundamentales. Comparabilidad, verificabilidad, oportunidad y comprensibilidad son características que las mejoran." },
+      "en": { "question": "Under the IFRS Conceptual Framework, what are the two fundamental qualitative characteristics of financial information?",
+              "options": ["Relevance and faithful representation", "Comparability and verifiability", "Timeliness and understandability", "Prudence and consistency"],
+              "explanation": "Relevance and faithful representation are the fundamental ones. Comparability, verifiability, timeliness and understandability are enhancing characteristics." }
     }
   ]
 }
