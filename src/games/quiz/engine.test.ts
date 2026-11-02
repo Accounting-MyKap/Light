@@ -7,6 +7,7 @@ import {
   QUIZ_CORRECT_POINTS,
   QUIZ_MAX_SCORE,
   QUIZ_QUESTION_MS,
+  QUIZ_REFERENCE_SCORE,
   QUIZ_ROUND_LENGTH,
   QUIZ_WRONG_PENALTY,
   answerQuestion,
@@ -28,6 +29,20 @@ const shownOf = (state: QuizRoundState, canonical: number) => state.current.orde
 const correctShown = (state: QuizRoundState) => shownOf(state, correctIndex(state.current.question));
 const wrongShown = (state: QuizRoundState) => shownOf(state, correctIndex(state.current.question) === 0 ? 1 : 0);
 
+/**
+ * A round whose first question shows its options out of canonical order: the correct one is not first, and
+ * some wrong option sits at a different shown position than its canonical index. Shown and canonical indices
+ * therefore differ, which is what the tests of `chosen` need.
+ */
+function shuffledRound(): QuizRoundState {
+  for (let seed = 1; seed <= 500; seed++) {
+    const s = createQuizRound(pool, new Map(), 1, createRng(seed), 0);
+    const { order } = s.current;
+    if (order[0] !== 0 && order.some((canonical, shown) => canonical !== 0 && canonical !== shown)) return s;
+  }
+  throw new Error('no seed shuffles the options');
+}
+
 /** Answers the current question, then moves on to the next one at `now + 1000`. */
 function play(state: QuizRoundState, right: boolean, rng = createRng(99), at = 1000): QuizRoundState {
   const answered = answerQuestion(state, right ? correctShown(state) : wrongShown(state), state.current.askedAt + at);
@@ -39,6 +54,7 @@ test('constants', () => {
   expect(QUIZ_QUESTION_MS).toBe(20_000);
   expect(QUIZ_CORRECT_POINTS).toBe(20);
   expect(QUIZ_MAX_SCORE).toBe(300);
+  expect(QUIZ_REFERENCE_SCORE).toBe(200);
   expect(QUIZ_WRONG_PENALTY).toEqual({ choice: 10, truefalse: 30 });
 });
 
@@ -280,7 +296,27 @@ test('quizResult reports accuracy, level reached and canonical choices', () => {
   expect(result.quiz?.items[0].chosen).toBe(0);
 });
 
-test('canonical choices of true/false map through the shown order', () => {
+test('chosen is the canonical index, not the shown one, on a hit', () => {
+  const s = shuffledRound();
+  const shown = correctShown(s);
+  expect(shown).not.toBe(0);
+  const item = lastItem(answerQuestion(s, shown, 2000));
+  expect(item).toMatchObject({ outcome: 'correct', chosen: 0 });
+  expect(item?.chosen).toBe(s.current.order[shown]);
+  expect(item?.chosen).not.toBe(shown);
+});
+
+test('chosen is the canonical index, not the shown one, on a miss', () => {
+  const s = shuffledRound();
+  const shown = s.current.order.findIndex((canonical, position) => canonical !== 0 && canonical !== position);
+  const canonical = s.current.order[shown];
+  expect(canonical).not.toBe(shown);
+  const item = lastItem(answerQuestion(s, shown, 2000));
+  expect(item).toMatchObject({ outcome: 'wrong', chosen: canonical });
+  expect(item?.chosen).not.toBe(shown);
+});
+
+test('a wrong true/false stores the other canonical index', () => {
   const rng = createRng(7);
   const s0 = createQuizRound(trueFalsePool, new Map(), 1, rng, 0);
   const wrong = answerQuestion(s0, wrongShown(s0), 2000);
