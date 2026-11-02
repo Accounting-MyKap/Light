@@ -75,10 +75,10 @@
       "id": "colombia-0009", "difficulty": 3, "type": "choice", "asOf": "2026-11",
       "es": { "question": "¿Qué formulario de la DIAN se usa para presentar la declaración del IVA?",
               "options": ["Formulario 300", "Formulario 350", "Formulario 110", "Formulario 210"],
-              "explanation": "El formulario 300 es la declaración del IVA. El 350 es de retención en la fuente, el 110 de renta de personas jurídicas y el 210 de renta de personas naturales." },
+              "explanation": "El formulario 300 es la declaración del IVA. El 350 es de retención en la fuente, el 110 de renta de personas jurídicas y el 210 de renta de personas naturales. Los prescribe la DIAN por resolución." },
       "en": { "question": "Which DIAN form is used to file the VAT return?",
               "options": ["Form 300", "Form 350", "Form 110", "Form 210"],
-              "explanation": "Form 300 is the VAT return. Form 350 is for withholding tax, Form 110 for corporate income tax and Form 210 for individual income tax." }
+              "explanation": "Form 300 is the VAT return. Form 350 is for withholding tax, Form 110 for corporate income tax and Form 210 for individual income tax. Forms are prescribed by DIAN resolution." }
     },
     {
       "id": "colombia-0010", "difficulty": 3, "type": "choice", "asOf": "2026-11",
@@ -102,10 +102,10 @@
       "id": "colombia-0012", "difficulty": 3, "type": "choice", "asOf": "2026-11",
       "es": { "question": "¿Qué entidad inscribe a los contadores públicos y expide su tarjeta profesional?",
               "options": ["La Junta Central de Contadores", "La DIAN", "La Superintendencia de Sociedades", "El Consejo Técnico de la Contaduría Pública"],
-              "explanation": "La Junta Central de Contadores inscribe a los contadores y expide la tarjeta profesional. El Consejo Técnico de la Contaduría Pública orienta las normas contables." },
+              "explanation": "La Junta Central de Contadores inscribe a los contadores y expide la tarjeta profesional (Ley 43 de 1990). El Consejo Técnico de la Contaduría Pública orienta las normas contables." },
       "en": { "question": "Which body registers public accountants and issues their professional card?",
               "options": ["Junta Central de Contadores (Central Accountants Board)", "DIAN (tax authority)", "Superintendencia de Sociedades (companies regulator)", "Consejo Técnico de la Contaduría Pública (CTCP)"],
-              "explanation": "The Junta Central de Contadores registers accountants and issues the professional card. The Consejo Técnico de la Contaduría Pública guides accounting standards." }
+              "explanation": "The Junta Central de Contadores registers accountants and issues the professional card (Law 43 of 1990). The Consejo Técnico de la Contaduría Pública guides accounting standards." }
     }
   ]
 }

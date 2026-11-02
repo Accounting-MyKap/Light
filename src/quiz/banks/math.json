@@ -75,10 +75,10 @@
       "id": "math-0009", "difficulty": 3, "type": "choice",
       "es": { "question": "¿Quién demostró el último teorema de Fermat en la década de 1990?",
               "options": ["Andrew Wiles", "Grigori Perelman", "Terence Tao", "John Nash"],
-              "explanation": "Andrew Wiles presentó la demostración en 1993 y, tras corregirla, quedó completa en 1995. Perelman demostró la conjetura de Poincaré." },
+              "explanation": "Andrew Wiles la presentó en 1993; tras corregir un error, la completó en 1994 y se publicó en 1995. Perelman demostró la conjetura de Poincaré." },
       "en": { "question": "Who proved Fermat's Last Theorem in the 1990s?",
               "options": ["Andrew Wiles", "Grigori Perelman", "Terence Tao", "John Nash"],
-              "explanation": "Andrew Wiles presented the proof in 1993 and, after fixing a gap, completed it in 1995. Perelman proved the Poincaré conjecture." }
+              "explanation": "Andrew Wiles presented it in 1993; after fixing a gap, he completed it in 1994 and it was published in 1995. Perelman proved the Poincaré conjecture." }
     },
     {
       "id": "math-0010", "difficulty": 3, "type": "choice",
