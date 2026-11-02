@@ -1,0 +1,109 @@
+{
+  "category": "arts",
+  "questions": [
+    {
+      "id": "arts-0001", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Quién pintó la Mona Lisa?",
+              "options": ["Leonardo da Vinci", "Miguel Ángel", "Rafael", "Sandro Botticelli"],
+              "explanation": "Leonardo da Vinci la pintó a comienzos del siglo XVI. Hoy se exhibe en el Museo del Louvre, en París." },
+      "en": { "question": "Who painted the Mona Lisa?",
+              "options": ["Leonardo da Vinci", "Michelangelo", "Raphael", "Sandro Botticelli"],
+              "explanation": "Leonardo da Vinci painted it in the early 16th century. It is now on display at the Louvre Museum in Paris." }
+    },
+    {
+      "id": "arts-0002", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Quién escribió «Don Quijote de la Mancha»?",
+              "options": ["Miguel de Cervantes", "Lope de Vega", "Federico García Lorca", "Gabriel García Márquez"],
+              "explanation": "Miguel de Cervantes publicó la primera parte en 1605 y la segunda en 1615. Se considera la primera novela moderna." },
+      "en": { "question": "Who wrote “Don Quixote”?",
+              "options": ["Miguel de Cervantes", "Lope de Vega", "Federico García Lorca", "Gabriel García Márquez"],
+              "explanation": "Miguel de Cervantes published the first part in 1605 and the second in 1615. It is regarded as the first modern novel." }
+    },
+    {
+      "id": "arts-0003", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Quién escribió «Cien años de soledad»?",
+              "options": ["Gabriel García Márquez", "Mario Vargas Llosa", "Julio Cortázar", "Jorge Luis Borges"],
+              "explanation": "Gabriel García Márquez la publicó en 1967. Ganó el Premio Nobel de Literatura en 1982." },
+      "en": { "question": "Who wrote “One Hundred Years of Solitude”?",
+              "options": ["Gabriel García Márquez", "Mario Vargas Llosa", "Julio Cortázar", "Jorge Luis Borges"],
+              "explanation": "Gabriel García Márquez published it in 1967. He won the Nobel Prize in Literature in 1982." }
+    },
+    {
+      "id": "arts-0004", "difficulty": 1, "type": "truefalse", "answer": false,
+      "es": { "question": "Charles Dickens escribió «Romeo y Julieta».",
+              "explanation": "«Romeo y Julieta» es de William Shakespeare. Dickens escribió novelas como «Oliver Twist» y «Cuento de Navidad»." },
+      "en": { "question": "Charles Dickens wrote “Romeo and Juliet”.",
+              "explanation": "“Romeo and Juliet” is by William Shakespeare. Dickens wrote novels such as “Oliver Twist” and “A Christmas Carol”." }
+    },
+    {
+      "id": "arts-0005", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Quién compuso la Novena Sinfonía, que incluye el «Himno a la Alegría»?",
+              "options": ["Ludwig van Beethoven", "Wolfgang Amadeus Mozart", "Johann Sebastian Bach", "Joseph Haydn"],
+              "explanation": "Beethoven la estrenó en 1824, cuando ya estaba sordo. Su último movimiento incluye un coro que canta la «Oda a la Alegría» de Schiller." },
+      "en": { "question": "Who composed the Ninth Symphony, which includes the “Ode to Joy”?",
+              "options": ["Ludwig van Beethoven", "Wolfgang Amadeus Mozart", "Johann Sebastian Bach", "Joseph Haydn"],
+              "explanation": "Beethoven premiered it in 1824, when he was already deaf. Its final movement features a choir singing Schiller's “Ode to Joy”." }
+    },
+    {
+      "id": "arts-0006", "difficulty": 2, "type": "choice",
+      "es": { "question": "En la mitología griega, ¿quién es el dios del mar?",
+              "options": ["Poseidón", "Zeus", "Hades", "Apolo"],
+              "explanation": "Poseidón gobierna los mares y los terremotos. Zeus reina en el cielo, Hades en el inframundo y Apolo es dios de la luz y la música." },
+      "en": { "question": "In Greek mythology, who is the god of the sea?",
+              "options": ["Poseidon", "Zeus", "Hades", "Apollo"],
+              "explanation": "Poseidon rules the seas and earthquakes. Zeus rules the sky, Hades the underworld, and Apollo is the god of light and music." }
+    },
+    {
+      "id": "arts-0007", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué pintor pintó el «Guernica», sobre el bombardeo de 1937?",
+              "options": ["Pablo Picasso", "Salvador Dalí", "Joan Miró", "Francisco de Goya"],
+              "explanation": "Pablo Picasso lo pintó en 1937, tras el bombardeo de la ciudad vasca de Guernica durante la Guerra Civil Española." },
+      "en": { "question": "Which painter created “Guernica”, about the 1937 bombing?",
+              "options": ["Pablo Picasso", "Salvador Dalí", "Joan Miró", "Francisco de Goya"],
+              "explanation": "Pablo Picasso painted it in 1937, after the bombing of the Basque town of Guernica during the Spanish Civil War." }
+    },
+    {
+      "id": "arts-0008", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿A qué poeta griego se atribuye «La Odisea»?",
+              "options": ["Homero", "Hesíodo", "Virgilio", "Ovidio"],
+              "explanation": "Tradicionalmente se atribuye a Homero, igual que «La Ilíada». Virgilio y Ovidio fueron poetas romanos." },
+      "en": { "question": "To which Greek poet is “The Odyssey” attributed?",
+              "options": ["Homer", "Hesiod", "Virgil", "Ovid"],
+              "explanation": "It is traditionally attributed to Homer, like “The Iliad”. Virgil and Ovid were Roman poets." }
+    },
+    {
+      "id": "arts-0009", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Quién pintó «Las Meninas»?",
+              "options": ["Diego Velázquez", "Francisco de Goya", "El Greco", "Bartolomé Murillo"],
+              "explanation": "Diego Velázquez lo pintó en 1656. Hoy se exhibe en el Museo del Prado, en Madrid." },
+      "en": { "question": "Who painted “Las Meninas”?",
+              "options": ["Diego Velázquez", "Francisco de Goya", "El Greco", "Bartolomé Murillo"],
+              "explanation": "Diego Velázquez painted it in 1656. It is now on display at the Prado Museum in Madrid." }
+    },
+    {
+      "id": "arts-0010", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿En qué museo se exhibe «La ronda de noche», de Rembrandt?",
+              "options": ["Rijksmuseum", "Museo del Louvre", "Museo del Prado", "Galería de los Uffizi"],
+              "explanation": "«La ronda de noche» (1642) se exhibe en el Rijksmuseum de Ámsterdam. El Louvre está en París, el Prado en Madrid y los Uffizi en Florencia." },
+      "en": { "question": "In which museum is Rembrandt's “The Night Watch” displayed?",
+              "options": ["The Rijksmuseum", "The Louvre", "The Prado Museum", "The Uffizi Gallery"],
+              "explanation": "“The Night Watch” (1642) hangs in the Rijksmuseum in Amsterdam. The Louvre is in Paris, the Prado in Madrid and the Uffizi in Florence." }
+    },
+    {
+      "id": "arts-0011", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Quién escribió la novela «Ulises», publicada en 1922?",
+              "options": ["James Joyce", "Virginia Woolf", "Samuel Beckett", "T. S. Eliot"],
+              "explanation": "James Joyce publicó «Ulises» en 1922. La novela sigue un solo día, el 16 de junio de 1904, en Dublín." },
+      "en": { "question": "Who wrote the novel “Ulysses”, published in 1922?",
+              "options": ["James Joyce", "Virginia Woolf", "Samuel Beckett", "T. S. Eliot"],
+              "explanation": "James Joyce published “Ulysses” in 1922. The novel follows a single day, 16 June 1904, in Dublin." }
+    },
+    {
+      "id": "arts-0012", "difficulty": 3, "type": "truefalse", "answer": true,
+      "es": { "question": "El pintor conocido como El Greco nació en Grecia.",
+              "explanation": "Domenikos Theotokopoulos nació en Creta, hacia 1541. Se formó allí y en Venecia, y después se instaló en Toledo, España." },
+      "en": { "question": "The painter known as El Greco was born in Greece.",
+              "explanation": "Domenikos Theotokopoulos was born on Crete around 1541. He trained there and in Venice, then settled in Toledo, Spain." }
+    }
+  ]
+}

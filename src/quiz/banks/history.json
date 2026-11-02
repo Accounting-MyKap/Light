@@ -1,0 +1,109 @@
+{
+  "category": "history",
+  "questions": [
+    {
+      "id": "history-0001", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿En qué año terminó la Segunda Guerra Mundial?",
+              "options": ["1945", "1939", "1950", "1918"],
+              "explanation": "Terminó en 1945: en mayo en Europa y en septiembre, con la rendición de Japón, en Asia." },
+      "en": { "question": "In what year did the Second World War end?",
+              "options": ["1945", "1939", "1950", "1918"],
+              "explanation": "It ended in 1945: in May in Europe and in September, with Japan's surrender, in Asia." }
+    },
+    {
+      "id": "history-0002", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Quién fue el primer presidente de Estados Unidos?",
+              "options": ["George Washington", "Thomas Jefferson", "Abraham Lincoln", "Benjamin Franklin"],
+              "explanation": "George Washington gobernó de 1789 a 1797. Jefferson fue el tercer presidente, Lincoln el decimosexto, y Franklin nunca fue presidente." },
+      "en": { "question": "Who was the first president of the United States?",
+              "options": ["George Washington", "Thomas Jefferson", "Abraham Lincoln", "Benjamin Franklin"],
+              "explanation": "George Washington served from 1789 to 1797. Jefferson was the third president, Lincoln the sixteenth, and Franklin never held the office." }
+    },
+    {
+      "id": "history-0003", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué civilización construyó las pirámides de Giza?",
+              "options": ["La egipcia", "La maya", "La azteca", "La romana"],
+              "explanation": "Las pirámides de Giza las levantaron los antiguos egipcios hace unos 4500 años, como tumbas de faraones." },
+      "en": { "question": "Which civilization built the pyramids of Giza?",
+              "options": ["Ancient Egypt", "The Maya", "The Aztecs", "Ancient Rome"],
+              "explanation": "The ancient Egyptians built the Giza pyramids about 4,500 years ago, as tombs for pharaohs." }
+    },
+    {
+      "id": "history-0004", "difficulty": 1, "type": "truefalse", "answer": true,
+      "es": { "question": "Abraham Lincoln fue presidente de Estados Unidos durante la Guerra de Secesión.",
+              "explanation": "Gobernó de 1861 a 1865, los años de la guerra civil entre el Norte y el Sur." },
+      "en": { "question": "Abraham Lincoln was president of the United States during the American Civil War.",
+              "explanation": "He served from 1861 to 1865, the years of the war between the North and the South." }
+    },
+    {
+      "id": "history-0005", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cuál fue la capital del Imperio inca?",
+              "options": ["Cusco", "Machu Picchu", "Lima", "La Paz"],
+              "explanation": "Cusco fue el centro político y religioso del Imperio inca. Machu Picchu era una propiedad real, y Lima la fundaron los españoles en 1535." },
+      "en": { "question": "What was the capital of the Inca Empire?",
+              "options": ["Cusco", "Machu Picchu", "Lima", "La Paz"],
+              "explanation": "Cusco was the political and religious center of the Inca Empire. Machu Picchu was a royal estate, and Lima was founded by the Spanish in 1535." }
+    },
+    {
+      "id": "history-0006", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿En qué año fue el Grito de Independencia de Colombia, el 20 de julio?",
+              "options": ["1810", "1819", "1821", "1830"],
+              "explanation": "El 20 de julio de 1810, en Santafé de Bogotá, comenzó el movimiento de independencia. La batalla de Boyacá fue el 7 de agosto de 1819." },
+      "en": { "question": "In what year did Colombia's Cry of Independence take place, on 20 July?",
+              "options": ["1810", "1819", "1821", "1830"],
+              "explanation": "On 20 July 1810, in Santafé de Bogotá, the independence movement began. The Battle of Boyacá came later, on 7 August 1819." }
+    },
+    {
+      "id": "history-0007", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué documento firmó el rey Juan de Inglaterra en 1215 y limitó el poder del monarca?",
+              "options": ["La Carta Magna", "La Declaración de Derechos", "El Edicto de Nantes", "La Bula de Oro"],
+              "explanation": "La Carta Magna se firmó en Runnymede y estableció que el rey también debía respetar la ley." },
+      "en": { "question": "Which document did King John of England sign in 1215, limiting the monarch's power?",
+              "options": ["The Magna Carta", "The Bill of Rights", "The Edict of Nantes", "The Golden Bull"],
+              "explanation": "The Magna Carta was sealed at Runnymede and established that the king, too, had to respect the law." }
+    },
+    {
+      "id": "history-0008", "difficulty": 2, "type": "truefalse", "answer": false,
+      "es": { "question": "La Guerra de los Cien Años entre Inglaterra y Francia duró exactamente cien años.",
+              "explanation": "Duró 116 años, de 1337 a 1453, con varias treguas. El nombre es solo una aproximación." },
+      "en": { "question": "The Hundred Years' War between England and France lasted exactly one hundred years.",
+              "explanation": "It lasted 116 years, from 1337 to 1453, with several truces. The name is only an approximation." }
+    },
+    {
+      "id": "history-0009", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿En qué año cayó Tenochtitlan ante Hernán Cortés y sus aliados indígenas?",
+              "options": ["1521", "1519", "1532", "1535"],
+              "explanation": "Cayó el 13 de agosto de 1521. En 1519 Cortés había llegado a la ciudad; en 1532 Pizarro entró al Perú." },
+      "en": { "question": "In what year did Tenochtitlan fall to Hernán Cortés and his Indigenous allies?",
+              "options": ["1521", "1519", "1532", "1535"],
+              "explanation": "It fell on 13 August 1521. Cortés had first reached the city in 1519, and Pizarro entered Peru in 1532." }
+    },
+    {
+      "id": "history-0010", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Qué acuerdos de 1648 pusieron fin a la Guerra de los Treinta Años?",
+              "options": ["La Paz de Westfalia", "La Paz de Augsburgo", "El Tratado de Utrecht", "El Congreso de Viena"],
+              "explanation": "La Paz de Westfalia (1648) cerró la guerra y sentó las bases del sistema de Estados soberanos. Augsburgo es de 1555 y Utrecht, de 1713." },
+      "en": { "question": "Which agreements of 1648 ended the Thirty Years' War?",
+              "options": ["The Peace of Westphalia", "The Peace of Augsburg", "The Treaty of Utrecht", "The Congress of Vienna"],
+              "explanation": "The Peace of Westphalia (1648) ended the war and laid the foundations of the system of sovereign states. Augsburg dates from 1555 and Utrecht from 1713." }
+    },
+    {
+      "id": "history-0011", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Qué emperador, depuesto en el año 476, se considera el último del Imperio romano de Occidente?",
+              "options": ["Rómulo Augústulo", "Odoacro", "Justiniano", "Constantino"],
+              "explanation": "Rómulo Augústulo fue depuesto en 476 por el caudillo germano Odoacro; esa fecha suele marcar el fin del Imperio de Occidente." },
+      "en": { "question": "Which emperor, deposed in the year 476, is considered the last of the Western Roman Empire?",
+              "options": ["Romulus Augustulus", "Odoacer", "Justinian", "Constantine"],
+              "explanation": "Romulus Augustulus was deposed in 476 by the Germanic chieftain Odoacer; that date usually marks the end of the Western Empire." }
+    },
+    {
+      "id": "history-0012", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿En qué año se firmó el Tratado de Tordesillas entre España y Portugal?",
+              "options": ["1494", "1492", "1500", "1513"],
+              "explanation": "Se firmó en 1494 y repartió las tierras por descubrir con una línea trazada al oeste de las islas de Cabo Verde." },
+      "en": { "question": "In what year was the Treaty of Tordesillas between Spain and Portugal signed?",
+              "options": ["1494", "1492", "1500", "1513"],
+              "explanation": "It was signed in 1494 and divided the lands yet to be explored along a line drawn west of the Cape Verde islands." }
+    }
+  ]
+}

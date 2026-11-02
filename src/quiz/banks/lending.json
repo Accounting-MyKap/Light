@@ -1,0 +1,109 @@
+{
+  "category": "lending",
+  "questions": [
+    {
+      "id": "lending-0001", "difficulty": 1, "type": "choice",
+      "es": { "question": "En un préstamo, ¿cómo se llama el dinero prestado, sin contar los intereses?",
+              "options": ["Capital", "Cuota", "Garantía", "Comisión"],
+              "explanation": "El capital (principal) es el monto prestado. Los intereses son el costo adicional por usar ese dinero." },
+      "en": { "question": "In a loan, what is the borrowed amount, not counting interest, called?",
+              "options": ["Principal", "Installment", "Collateral", "Fee"],
+              "explanation": "The principal is the amount borrowed. Interest is the additional cost of using that money." }
+    },
+    {
+      "id": "lending-0002", "difficulty": 1, "type": "choice",
+      "es": { "question": "Si un cliente no paga su cuota en la fecha pactada, ¿en qué situación queda su préstamo?",
+              "options": ["En mora", "Prepagado", "Refinanciado", "Amortizado"],
+              "explanation": "Un préstamo con pagos vencidos está en mora. Cuantos más días de atraso, mayor es el riesgo de pérdida." },
+      "en": { "question": "If a borrower does not pay an installment on the due date, what is the loan's status?",
+              "options": ["Past due", "Prepaid", "Refinanced", "Fully amortized"],
+              "explanation": "A loan with overdue payments is past due (delinquent). The more days late, the higher the risk of loss." }
+    },
+    {
+      "id": "lending-0003", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué documento contiene la promesa firmada del deudor de pagar un préstamo?",
+              "options": ["Pagaré", "Factura", "Recibo de caja", "Extracto bancario"],
+              "explanation": "El pagaré es el título en el que el deudor promete pagar una suma determinada en una fecha o en cuotas." },
+      "en": { "question": "Which document holds the borrower's signed promise to repay a loan?",
+              "options": ["Promissory note", "Invoice", "Cash receipt", "Bank statement"],
+              "explanation": "The promissory note is the instrument in which the borrower promises to pay a set sum on a date or in installments." }
+    },
+    {
+      "id": "lending-0004", "difficulty": 1, "type": "truefalse", "answer": true,
+      "es": { "question": "Con la misma tasa y el mismo monto, un préstamo a plazo más largo genera más intereses en total.",
+              "explanation": "Con un plazo más largo el capital queda pendiente más tiempo, así que se acumulan más intereses, aunque cada cuota sea menor." },
+      "en": { "question": "With the same rate and amount, a loan with a longer term generates more total interest.",
+              "explanation": "With a longer term the principal stays outstanding for longer, so more interest builds up, even though each payment is smaller." }
+    },
+    {
+      "id": "lending-0005", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué es el payoff de un préstamo?",
+              "options": ["El monto para cancelarlo hoy: capital más intereses", "La cuota mensual pactada", "El monto inicial desembolsado", "Los intereses totales de la vida del préstamo"],
+              "explanation": "Es el monto exacto que cubre la deuda en una fecha: capital pendiente más intereses causados y, si aplica, cargos. El prestamista lo informa." },
+      "en": { "question": "What is a loan's payoff amount?",
+              "options": ["The amount to pay it off today: principal plus interest", "The agreed monthly installment", "The amount originally disbursed", "The total interest over the loan's life"],
+              "explanation": "It is the exact amount that settles the debt on a given date: outstanding principal plus accrued interest and, if applicable, fees. The lender provides it." }
+    },
+    {
+      "id": "lending-0006", "difficulty": 2, "type": "choice",
+      "es": { "question": "En un reporte de aging de cartera, ¿cómo se agrupan los saldos?",
+              "options": ["Por días de atraso: 1-30, 31-60, 61-90, más de 90", "Por tasa de interés de cada préstamo", "Por tipo de garantía", "Por monto desembolsado"],
+              "explanation": "El aging clasifica los saldos vencidos según la antigüedad del atraso. Sirve para medir el riesgo y calcular las provisiones." },
+      "en": { "question": "In a portfolio aging report, how are balances grouped?",
+              "options": ["By days past due: 1-30, 31-60, 61-90, over 90", "By each loan's interest rate", "By type of collateral", "By amount disbursed"],
+              "explanation": "Aging classifies overdue balances by how long they have been late. It helps measure risk and calculate loss allowances." }
+    },
+    {
+      "id": "lending-0007", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué mide el LTV (loan-to-value) de un préstamo con garantía?",
+              "options": ["El préstamo dividido entre el valor de la garantía", "La cuota dividida entre el ingreso del deudor", "Los intereses divididos entre el capital", "El valor de la garantía dividido entre los ingresos"],
+              "explanation": "LTV = monto del préstamo ÷ valor de la garantía. Un LTV más alto deja menos colchón al prestamista si el valor de la garantía baja." },
+      "en": { "question": "What does the LTV (loan-to-value) ratio of a secured loan measure?",
+              "options": ["The loan amount divided by the collateral's value", "The payment divided by the borrower's income", "Interest divided by principal", "Collateral value divided by income"],
+              "explanation": "LTV = loan amount ÷ collateral value. A higher LTV leaves the lender less cushion if the collateral's value falls." }
+    },
+    {
+      "id": "lending-0008", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cuánto interés simple genera un capital de 10 000 al 6 % anual durante 2 años?",
+              "options": ["1200", "600", "1236", "120"],
+              "explanation": "Interés simple = capital × tasa × tiempo = 10 000 × 0,06 × 2 = 1200. Con capitalización anual (interés compuesto) serían 1236." },
+      "en": { "question": "How much simple interest does a principal of 10,000 earn at 6% per year over 2 years?",
+              "options": ["1,200", "600", "1,236", "120"],
+              "explanation": "Simple interest = principal × rate × time = 10,000 × 0.06 × 2 = 1,200. With annual compounding it would be 1,236." }
+    },
+    {
+      "id": "lending-0009", "difficulty": 3, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "En EE. UU., ¿en qué se diferencia el APR de la tasa nominal de un préstamo?",
+              "options": ["Incluye, además del interés, ciertos cargos del préstamo", "Solo cuenta las comisiones, no el interés", "Siempre es menor que la tasa nominal", "Solo se usa en préstamos a más de 30 años"],
+              "explanation": "El APR expresa el costo anual del crédito: incluye el interés y ciertos cargos, como comisiones de originación (Reg. Z). Suele ser mayor que la tasa nominal." },
+      "en": { "question": "In the U.S., how does a loan's APR differ from its nominal interest rate?",
+              "options": ["It includes, besides interest, certain loan charges", "It counts only fees, not interest", "It is always lower than the nominal rate", "It applies only to loans longer than 30 years"],
+              "explanation": "APR shows the yearly cost of credit: it includes interest plus certain charges, such as origination fees (Reg. Z). It is usually higher than the nominal rate." }
+    },
+    {
+      "id": "lending-0010", "difficulty": 3, "type": "choice",
+      "es": { "question": "Con la base 30/360, ¿cuántos días de interés se cuentan entre el 15 de enero y el 15 de febrero?",
+              "options": ["30", "31", "28", "29"],
+              "explanation": "En 30/360 cada mes completo cuenta 30 días, sin importar el calendario. Con días reales (actual) serían 31." },
+      "en": { "question": "Under the 30/360 day count, how many days of interest accrue from January 15 to February 15?",
+              "options": ["30", "31", "28", "29"],
+              "explanation": "Under 30/360 every full month counts as 30 days, regardless of the calendar. Counting actual days it would be 31." }
+    },
+    {
+      "id": "lending-0011", "difficulty": 3, "type": "choice",
+      "es": { "question": "Si la cuota de un préstamo es menor que los intereses del período, ¿qué pasa con el saldo?",
+              "options": ["Aumenta (amortización negativa)", "Disminuye, pero más despacio", "Se mantiene igual", "Se cancela al final del plazo"],
+              "explanation": "Si la cuota no alcanza a cubrir los intereses, lo no pagado se suma al capital y el saldo crece. Esto se llama amortización negativa." },
+      "en": { "question": "If a loan payment is lower than the interest accrued in the period, what happens to the balance?",
+              "options": ["It grows (negative amortization)", "It shrinks, but more slowly", "It stays the same", "It is paid off at maturity"],
+              "explanation": "If the payment does not cover the interest, the unpaid part is added to the principal and the balance grows. This is called negative amortization." }
+    },
+    {
+      "id": "lending-0012", "difficulty": 3, "type": "truefalse", "answer": true,
+      "es": { "question": "Con la base actual/365, un mes de 31 días genera más interés que uno de 28 días, con el mismo saldo y tasa.",
+              "explanation": "Con actual/365 se cuentan los días reales de cada mes, así que 31 días acumulan más interés que 28. Con 30/360 ambos meses contarían 30." },
+      "en": { "question": "Under actual/365, a 31-day month accrues more interest than a 28-day month, with the same balance and rate.",
+              "explanation": "Actual/365 counts the real days of each month, so 31 days accrue more interest than 28. Under 30/360 both months would count 30." }
+    }
+  ]
+}

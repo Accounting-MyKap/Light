@@ -1,0 +1,109 @@
+{
+  "category": "geography",
+  "questions": [
+    {
+      "id": "geography-0001", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuál es el océano más grande del mundo?",
+              "options": ["El Pacífico", "El Atlántico", "El Índico", "El Ártico"],
+              "explanation": "El océano Pacífico cubre cerca de un tercio de la superficie del planeta, más que toda la tierra firme junta." },
+      "en": { "question": "What is the largest ocean in the world?",
+              "options": ["The Pacific", "The Atlantic", "The Indian", "The Arctic"],
+              "explanation": "The Pacific Ocean covers about a third of the planet's surface, more than all the land combined." }
+    },
+    {
+      "id": "geography-0002", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuál es la capital de Japón?",
+              "options": ["Tokio", "Kioto", "Osaka", "Nagoya"],
+              "explanation": "Tokio es la capital desde 1868. Kioto fue la capital imperial durante más de mil años, pero hoy no lo es." },
+      "en": { "question": "What is the capital of Japan?",
+              "options": ["Tokyo", "Kyoto", "Osaka", "Nagoya"],
+              "explanation": "Tokyo has been the capital since 1868. Kyoto was the imperial capital for over a thousand years, but it no longer is." }
+    },
+    {
+      "id": "geography-0003", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuál es el país más grande del mundo por superficie?",
+              "options": ["Rusia", "Canadá", "China", "Estados Unidos"],
+              "explanation": "Rusia ocupa más de 17 millones de km²; Canadá, el segundo país más grande, tiene cerca de 10 millones." },
+      "en": { "question": "Which is the largest country in the world by area?",
+              "options": ["Russia", "Canada", "China", "United States"],
+              "explanation": "Russia covers more than 17 million km²; Canada, the second-largest country, covers about 10 million." }
+    },
+    {
+      "id": "geography-0004", "difficulty": 1, "type": "truefalse", "answer": false,
+      "es": { "question": "En Brasil el idioma oficial es el español.",
+              "explanation": "El idioma oficial de Brasil es el portugués, herencia de la colonización portuguesa." },
+      "en": { "question": "The official language of Brazil is Spanish.",
+              "explanation": "Brazil's official language is Portuguese, a legacy of Portuguese colonization." }
+    },
+    {
+      "id": "geography-0005", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cuál es la capital de Australia?",
+              "options": ["Canberra", "Sídney", "Melbourne", "Perth"],
+              "explanation": "Canberra se eligió en 1908 como solución intermedia entre las rivales Sídney y Melbourne, y se construyó para ser la capital." },
+      "en": { "question": "What is the capital of Australia?",
+              "options": ["Canberra", "Sydney", "Melbourne", "Perth"],
+              "explanation": "Canberra was chosen in 1908 as a compromise between the rivals Sydney and Melbourne, and was built to be the capital." }
+    },
+    {
+      "id": "geography-0006", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cuál es la montaña más alta de América?",
+              "options": ["El Aconcagua", "El Denali", "El Chimborazo", "El Huascarán"],
+              "explanation": "El Aconcagua, en Argentina, mide unos 6960 m. El Denali es el más alto de Norteamérica, pero llega a unos 6190 m." },
+      "en": { "question": "What is the highest mountain in the Americas?",
+              "options": ["Aconcagua", "Denali", "Chimborazo", "Huascarán"],
+              "explanation": "Aconcagua, in Argentina, is about 6,960 m tall. Denali is the highest in North America, but reaches only about 6,190 m." }
+    },
+    {
+      "id": "geography-0007", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué estrecho separa España de Marruecos y une el Atlántico con el Mediterráneo?",
+              "options": ["Gibraltar", "El Bósforo", "Magallanes", "Ormuz"],
+              "explanation": "El estrecho de Gibraltar mide unos 14 km en su punto más angosto. El Bósforo está en Turquía y Magallanes, en el sur de América." },
+      "en": { "question": "Which strait separates Spain from Morocco and links the Atlantic with the Mediterranean?",
+              "options": ["Gibraltar", "The Bosphorus", "Magellan", "Hormuz"],
+              "explanation": "The Strait of Gibraltar is about 14 km wide at its narrowest. The Bosphorus is in Turkey and Magellan is at the tip of South America." }
+    },
+    {
+      "id": "geography-0008", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cuál es la capital de Turquía?",
+              "options": ["Ankara", "Estambul", "Esmirna", "Bursa"],
+              "explanation": "Ankara es la capital desde 1923. Estambul es la ciudad más grande del país, pero no es la capital." },
+      "en": { "question": "What is the capital of Turkey?",
+              "options": ["Ankara", "Istanbul", "Izmir", "Bursa"],
+              "explanation": "Ankara has been the capital since 1923. Istanbul is the country's largest city, but it is not the capital." }
+    },
+    {
+      "id": "geography-0009", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Cuál es el río más largo de Europa?",
+              "options": ["El Volga", "El Danubio", "El Rin", "El Dniéper"],
+              "explanation": "El Volga, en Rusia, mide unos 3500 km. El Danubio, el segundo en Europa, mide unos 2850 km." },
+      "en": { "question": "What is the longest river in Europe?",
+              "options": ["The Volga", "The Danube", "The Rhine", "The Dnieper"],
+              "explanation": "The Volga, in Russia, is about 3,500 km long. The Danube, Europe's second longest, is about 2,850 km." }
+    },
+    {
+      "id": "geography-0010", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Cuál es el país sin salida al mar más grande del mundo?",
+              "options": ["Kazajistán", "Mongolia", "Chad", "Bolivia"],
+              "explanation": "Kazajistán tiene unos 2,7 millones de km². Mongolia es el segundo país sin litoral más grande." },
+      "en": { "question": "What is the largest landlocked country in the world?",
+              "options": ["Kazakhstan", "Mongolia", "Chad", "Bolivia"],
+              "explanation": "Kazakhstan covers about 2.7 million km². Mongolia is the second-largest landlocked country." }
+    },
+    {
+      "id": "geography-0011", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Cuál es la capital de Etiopía?",
+              "options": ["Adís Abeba", "Nairobi", "Jartum", "Kampala"],
+              "explanation": "Adís Abeba es la capital de Etiopía y sede de la Unión Africana. Nairobi es de Kenia, Jartum de Sudán y Kampala de Uganda." },
+      "en": { "question": "What is the capital of Ethiopia?",
+              "options": ["Addis Ababa", "Nairobi", "Khartoum", "Kampala"],
+              "explanation": "Addis Ababa is Ethiopia's capital and the seat of the African Union. Nairobi is in Kenya, Khartoum in Sudan and Kampala in Uganda." }
+    },
+    {
+      "id": "geography-0012", "difficulty": 3, "type": "truefalse", "answer": true,
+      "es": { "question": "Sudáfrica tiene tres capitales.",
+              "explanation": "Pretoria es la sede del gobierno, Ciudad del Cabo la del Parlamento y Bloemfontein la del poder judicial." },
+      "en": { "question": "South Africa has three capital cities.",
+              "explanation": "Pretoria is the seat of government, Cape Town of the legislature and Bloemfontein of the judiciary." }
+    }
+  ]
+}

@@ -1,0 +1,111 @@
+{
+  "category": "math",
+  "questions": [
+    {
+      "id": "math-0001", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuánto es 7 × 8?",
+              "options": ["56", "54", "49", "63"],
+              "explanation": "7 × 8 = 56. Un truco para recordarlo: 5, 6, 7, 8 → 56 = 7 × 8." },
+      "en": { "question": "What is 7 × 8?",
+              "options": ["56", "54", "49", "63"],
+              "explanation": "7 × 8 = 56. A memory trick: 5, 6, 7, 8 → 56 = 7 × 8." }
+    },
+    {
+      "id": "math-0002", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuántos grados suman los ángulos interiores de un triángulo?",
+              "options": ["180°", "90°", "360°", "270°"],
+              "explanation": "Los tres ángulos interiores de cualquier triángulo suman siempre 180°." },
+      "en": { "question": "How many degrees do the interior angles of a triangle add up to?",
+              "options": ["180°", "90°", "360°", "270°"],
+              "explanation": "The three interior angles of any triangle always add up to 180°." }
+    },
+    {
+      "id": "math-0003", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuántos lados tiene un hexágono?",
+              "options": ["6", "5", "7", "8"],
+              "explanation": "Hexágono viene del griego «seis ángulos»: tiene seis lados, como las celdas de un panal." },
+      "en": { "question": "How many sides does a hexagon have?",
+              "options": ["6", "5", "7", "8"],
+              "explanation": "Hexagon comes from the Greek for “six angles”: it has six sides, like the cells of a honeycomb." }
+    },
+    {
+      "id": "math-0004", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuánto vale aproximadamente π (pi), redondeado a dos decimales?",
+              "options": ["3,14", "3,41", "3,24", "3,16"],
+              "explanation": "π es la razón entre la circunferencia y el diámetro de un círculo: 3,14159… Es un número irracional." },
+      "en": { "question": "What is the approximate value of π (pi), rounded to two decimal places?",
+              "options": ["3.14", "3.41", "3.24", "3.16"],
+              "explanation": "π is the ratio of a circle's circumference to its diameter: 3.14159… It is an irrational number." }
+    },
+    {
+      "id": "math-0005", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cuál es el siguiente número primo después del 7?",
+              "options": ["11", "9", "13", "15"],
+              "explanation": "El 8, el 9 y el 10 son compuestos (9 = 3 × 3), así que el siguiente primo es el 11. El 13 es primo, pero no el siguiente." },
+      "en": { "question": "What is the next prime number after 7?",
+              "options": ["11", "9", "13", "15"],
+              "explanation": "8, 9 and 10 are composite (9 = 3 × 3), so the next prime is 11. 13 is prime too, but it is not the next one." }
+    },
+    {
+      "id": "math-0006", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cuál es la fórmula del área de un círculo de radio r?",
+              "options": ["π × r²", "2 × π × r", "π × r", "2 × π × r²"],
+              "explanation": "El área es π × r². La fórmula 2 × π × r es la longitud de la circunferencia." },
+      "en": { "question": "What is the formula for the area of a circle of radius r?",
+              "options": ["π × r²", "2 × π × r", "π × r", "2 × π × r²"],
+              "explanation": "The area is π × r². The formula 2 × π × r gives the circumference instead." }
+    },
+    {
+      "id": "math-0007", "difficulty": 2, "type": "truefalse", "answer": true,
+      "es": { "question": "El cero es un número par.",
+              "explanation": "Un número es par si es divisible entre 2 sin residuo, y 0 ÷ 2 = 0. Por eso el cero es par." },
+      "en": { "question": "Zero is an even number.",
+              "explanation": "A number is even if it is divisible by 2 with no remainder, and 0 ÷ 2 = 0. So zero is even." }
+    },
+    {
+      "id": "math-0008", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cómo se llama un polígono de ocho lados?",
+              "options": ["Octágono", "Heptágono", "Eneágono", "Decágono"],
+              "explanation": "Octágono viene del griego «ocho ángulos». El heptágono tiene siete lados, el eneágono nueve y el decágono diez." },
+      "en": { "question": "What is a polygon with eight sides called?",
+              "options": ["Octagon", "Heptagon", "Nonagon", "Decagon"],
+              "explanation": "Octagon comes from the Greek for “eight angles”. A heptagon has seven sides, a nonagon nine and a decagon ten." }
+    },
+    {
+      "id": "math-0009", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Quién demostró el último teorema de Fermat en la década de 1990?",
+              "options": ["Andrew Wiles", "Grigori Perelman", "Terence Tao", "John Nash"],
+              "explanation": "Andrew Wiles presentó la demostración en 1993 y, tras corregirla, quedó completa en 1995. Perelman demostró la conjetura de Poincaré." },
+      "en": { "question": "Who proved Fermat's Last Theorem in the 1990s?",
+              "options": ["Andrew Wiles", "Grigori Perelman", "Terence Tao", "John Nash"],
+              "explanation": "Andrew Wiles presented the proof in 1993 and, after fixing a gap, completed it in 1995. Perelman proved the Poincaré conjecture." }
+    },
+    {
+      "id": "math-0010", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Cuánto suman los ángulos interiores de un pentágono?",
+              "options": ["540°", "360°", "720°", "450°"],
+              "explanation": "La suma es (n − 2) × 180°. Con n = 5: 3 × 180° = 540°. El cuadrilátero suma 360° y el hexágono, 720°." },
+      "en": { "question": "What do the interior angles of a pentagon add up to?",
+              "options": ["540°", "360°", "720°", "450°"],
+              "explanation": "The sum is (n − 2) × 180°. With n = 5: 3 × 180° = 540°. A quadrilateral adds up to 360° and a hexagon to 720°." }
+    },
+    {
+      "id": "math-0011", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Cuánto vale 0! (cero factorial)?",
+              "options": ["1", "0", "Indefinido", "−1"],
+              "explanation": "Por definición 0! = 1. Así funcionan las fórmulas de combinatoria: por ejemplo, hay una sola forma de ordenar cero elementos." },
+      "en": { "question": "What is the value of 0! (zero factorial)?",
+              "options": ["1", "0", "Undefined", "−1"],
+              "explanation": "By definition, 0! = 1. That keeps combinatorics formulas working: for example, there is exactly one way to arrange zero items." }
+    },
+    {
+      "id": "math-0012", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Cuántos números primos hay entre 1 y 20?",
+              "options": ["8", "7", "9", "10"],
+              "explanation": "Son 8: 2, 3, 5, 7, 11, 13, 17 y 19. El 1 no es primo." },
+      "en": { "question": "How many prime numbers are there between 1 and 20?",
+              "options": ["8", "7", "9", "10"],
+              "explanation": "There are 8: 2, 3, 5, 7, 11, 13, 17 and 19. The number 1 is not prime." }
+    }
+  ]
+}

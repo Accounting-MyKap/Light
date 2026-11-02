@@ -1,0 +1,111 @@
+{
+  "category": "colombia",
+  "questions": [
+    {
+      "id": "colombia-0001", "difficulty": 1, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿Cuál es la tarifa general del IVA en Colombia?",
+              "options": ["19 %", "16 %", "21 %", "12 %"],
+              "explanation": "Es la tarifa general del IVA según el art. 468 del Estatuto Tributario; algunos bienes y servicios tienen tarifa reducida o están excluidos." },
+      "en": { "question": "What is Colombia's general VAT rate?",
+              "options": ["19%", "16%", "21%", "12%"],
+              "explanation": "It is the general VAT rate under art. 468 of the Tax Code (Estatuto Tributario); some goods and services have a reduced rate or are excluded." }
+    },
+    {
+      "id": "colombia-0002", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué registro de la DIAN identifica a los contribuyentes y sus responsabilidades tributarias?",
+              "options": ["RUT", "RUP", "RUNT", "RUES"],
+              "explanation": "El RUT (Registro Único Tributario) lo administra la DIAN. El RUP es de proponentes, el RUNT de tránsito y el RUES de las cámaras de comercio." },
+      "en": { "question": "Which registry of the DIAN (Colombia's tax authority) identifies taxpayers and their tax responsibilities?",
+              "options": ["RUT (Single Tax Registry)", "RUP (Single Registry of Bidders)", "RUNT (National Traffic Registry)", "RUES (Business and Social Registry)"],
+              "explanation": "The RUT is administered by the DIAN. The RUP is for public-contract bidders, the RUNT for traffic and vehicles, and the RUES for the chambers of commerce." }
+    },
+    {
+      "id": "colombia-0003", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué es la DIAN?",
+              "options": ["La autoridad de impuestos y aduanas de Colombia", "El banco central de Colombia", "La entidad que vigila a los bancos", "La cámara de comercio de cada ciudad"],
+              "explanation": "La Dirección de Impuestos y Aduanas Nacionales recauda los impuestos nacionales y controla el comercio exterior. El banco central es el Banco de la República." },
+      "en": { "question": "What is the DIAN?",
+              "options": ["Colombia's tax and customs authority", "Colombia's central bank", "The agency that supervises banks", "The chamber of commerce of each city"],
+              "explanation": "The Dirección de Impuestos y Aduanas Nacionales collects national taxes and oversees foreign trade. The central bank is the Banco de la República." }
+    },
+    {
+      "id": "colombia-0004", "difficulty": 1, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "En el PUC (Plan Único de Cuentas), ¿qué agrupa la clase 1?",
+              "options": ["Activos", "Pasivos", "Patrimonio", "Ingresos"],
+              "explanation": "Según el Decreto 2650 de 1993, la clase 1 es Activo, la 2 Pasivo, la 3 Patrimonio, la 4 Ingresos, la 5 Gastos, la 6 Costos de ventas y la 7 Costos de producción." },
+      "en": { "question": "In the PUC (Colombia's chart of accounts), what does class 1 group?",
+              "options": ["Assets", "Liabilities", "Equity", "Revenue"],
+              "explanation": "Under Decree 2650 of 1993, class 1 is Assets, 2 Liabilities, 3 Equity, 4 Revenue, 5 Expenses, 6 Cost of sales and 7 Production costs." }
+    },
+    {
+      "id": "colombia-0005", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué ley estableció la convergencia de la contabilidad colombiana hacia las normas internacionales de información financiera (NIIF)?",
+              "options": ["Ley 1314 de 2009", "Ley 43 de 1990", "Ley 222 de 1995", "Ley 1819 de 2016"],
+              "explanation": "La Ley 1314 de 2009 ordenó converger hacia estándares internacionales. La Ley 43 de 1990 regula la profesión contable y la 1819 de 2016 fue una reforma tributaria." },
+      "en": { "question": "Which law set Colombia's convergence to international financial reporting standards (IFRS, called NIIF in Colombia)?",
+              "options": ["Law 1314 of 2009", "Law 43 of 1990", "Law 222 of 1995", "Law 1819 of 2016"],
+              "explanation": "Law 1314 of 2009 ordered convergence with international standards. Law 43 of 1990 regulates the accounting profession and Law 1819 of 2016 was a tax reform." }
+    },
+    {
+      "id": "colombia-0006", "difficulty": 2, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿Quién cobra el impuesto de industria y comercio (ICA)?",
+              "options": ["Los municipios y distritos", "La DIAN", "Los departamentos", "El Ministerio de Hacienda"],
+              "explanation": "El ICA es un impuesto municipal sobre actividades industriales, comerciales y de servicios (Ley 14 de 1983 y Decreto 1333 de 1986). Lo recaudan los municipios y distritos." },
+      "en": { "question": "Who collects Colombia's industry and commerce tax (ICA)?",
+              "options": ["Municipalities and districts", "The DIAN (national tax authority)", "The departments (states)", "The Ministry of Finance"],
+              "explanation": "The ICA is a municipal tax on industrial, commercial and service activities (Law 14 of 1983 and Decree 1333 of 1986). Municipalities and districts collect it." }
+    },
+    {
+      "id": "colombia-0007", "difficulty": 2, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿Para qué se usa la UVT en Colombia?",
+              "options": ["Como unidad de medida de valores tributarios", "Como moneda para pagar impuestos", "Como índice de inflación", "Como tasa de interés de mora"],
+              "explanation": "La Unidad de Valor Tributario expresa montos, bases y sanciones de las normas tributarias (art. 868 del Estatuto Tributario). La DIAN la actualiza cada año." },
+      "en": { "question": "What is Colombia's UVT (tax value unit) used for?",
+              "options": ["As a unit to measure tax-related amounts", "As a currency for paying taxes", "As an inflation index", "As a late-payment interest rate"],
+              "explanation": "The Unidad de Valor Tributario expresses the amounts, bases and penalties in tax law (art. 868 of the Tax Code). The DIAN updates it every year." }
+    },
+    {
+      "id": "colombia-0008", "difficulty": 2, "type": "truefalse", "answer": true, "asOf": "2026-11",
+      "es": { "question": "En Colombia, la factura electrónica de venta debe ser validada por la DIAN antes de entregarse al comprador.",
+              "explanation": "El facturador la genera, la DIAN la valida y solo entonces se entrega al comprador (art. 616-1 del Estatuto Tributario y Resolución 000042 de 2020)." },
+      "en": { "question": "In Colombia, an electronic sales invoice must be validated by the DIAN before it is delivered to the buyer.",
+              "explanation": "The seller generates it, the DIAN validates it, and only then is it delivered to the buyer (art. 616-1 of the Tax Code and Resolution 000042 of 2020)." }
+    },
+    {
+      "id": "colombia-0009", "difficulty": 3, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿Qué formulario de la DIAN se usa para presentar la declaración del IVA?",
+              "options": ["Formulario 300", "Formulario 350", "Formulario 110", "Formulario 210"],
+              "explanation": "El formulario 300 es la declaración del IVA. El 350 es de retención en la fuente, el 110 de renta de personas jurídicas y el 210 de renta de personas naturales." },
+      "en": { "question": "Which DIAN form is used to file the VAT return?",
+              "options": ["Form 300", "Form 350", "Form 110", "Form 210"],
+              "explanation": "Form 300 is the VAT return. Form 350 is for withholding tax, Form 110 for corporate income tax and Form 210 for individual income tax." }
+    },
+    {
+      "id": "colombia-0010", "difficulty": 3, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "En el PUC, ¿qué clase agrupa los costos de producción o de operación?",
+              "options": ["Clase 7", "Clase 6", "Clase 5", "Clase 8"],
+              "explanation": "La clase 7 son los costos de producción o de operación. La 6 es de costos de ventas, la 5 de gastos y la 8 de cuentas de orden deudoras (Decreto 2650 de 1993)." },
+      "en": { "question": "In the PUC (Colombia's chart of accounts), which class groups production or operating costs?",
+              "options": ["Class 7", "Class 6", "Class 5", "Class 8"],
+              "explanation": "Class 7 is production or operating costs. Class 6 is cost of sales, 5 is expenses and 8 is debit memorandum accounts (Decree 2650 of 1993)." }
+    },
+    {
+      "id": "colombia-0011", "difficulty": 3, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿Quién nombra al revisor fiscal de una sociedad?",
+              "options": ["La asamblea de accionistas o junta de socios", "El gerente general", "La DIAN", "La Superintendencia de Sociedades"],
+              "explanation": "Lo elige el máximo órgano social, no la administración, para que pueda fiscalizarla con independencia (Código de Comercio, arts. 203 y siguientes)." },
+      "en": { "question": "Who appoints a company's revisor fiscal (statutory auditor)?",
+              "options": ["The shareholders' meeting or board of partners", "The general manager", "The DIAN", "The Superintendency of Companies"],
+              "explanation": "The highest corporate body elects the revisor fiscal, not management, so it can oversee management independently (Commercial Code, arts. 203 ff.)." }
+    },
+    {
+      "id": "colombia-0012", "difficulty": 3, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿Qué entidad inscribe a los contadores públicos y expide su tarjeta profesional?",
+              "options": ["La Junta Central de Contadores", "La DIAN", "La Superintendencia de Sociedades", "El Consejo Técnico de la Contaduría Pública"],
+              "explanation": "La Junta Central de Contadores inscribe a los contadores y expide la tarjeta profesional. El Consejo Técnico de la Contaduría Pública orienta las normas contables." },
+      "en": { "question": "Which body registers public accountants and issues their professional card?",
+              "options": ["Junta Central de Contadores (Central Accountants Board)", "DIAN (tax authority)", "Superintendencia de Sociedades (companies regulator)", "Consejo Técnico de la Contaduría Pública (CTCP)"],
+              "explanation": "The Junta Central de Contadores registers accountants and issues the professional card. The Consejo Técnico de la Contaduría Pública guides accounting standards." }
+    }
+  ]
+}

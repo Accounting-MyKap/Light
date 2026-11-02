@@ -1,0 +1,109 @@
+{
+  "category": "science",
+  "questions": [
+    {
+      "id": "science-0001", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuál es el planeta más grande del sistema solar?",
+              "options": ["Júpiter", "Saturno", "Neptuno", "La Tierra"],
+              "explanation": "Júpiter es el planeta más grande: su diámetro es más de once veces el de la Tierra." },
+      "en": { "question": "Which is the largest planet in the solar system?",
+              "options": ["Jupiter", "Saturn", "Neptune", "Earth"],
+              "explanation": "Jupiter is the largest planet: its diameter is more than eleven times that of Earth." }
+    },
+    {
+      "id": "science-0002", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué gas toman las plantas del aire para hacer la fotosíntesis?",
+              "options": ["Dióxido de carbono", "Oxígeno", "Nitrógeno", "Helio"],
+              "explanation": "Las plantas absorben dióxido de carbono y, con la luz del sol y el agua, producen azúcares y liberan oxígeno." },
+      "en": { "question": "Which gas do plants take from the air to carry out photosynthesis?",
+              "options": ["Carbon dioxide", "Oxygen", "Nitrogen", "Helium"],
+              "explanation": "Plants absorb carbon dioxide and, using sunlight and water, make sugars and release oxygen." }
+    },
+    {
+      "id": "science-0003", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuál es la fórmula química del agua?",
+              "options": ["H2O", "CO2", "O2", "NaCl"],
+              "explanation": "Cada molécula de agua tiene dos átomos de hidrógeno (H) y uno de oxígeno (O): H2O." },
+      "en": { "question": "What is the chemical formula of water?",
+              "options": ["H2O", "CO2", "O2", "NaCl"],
+              "explanation": "Each water molecule has two hydrogen (H) atoms and one oxygen (O) atom: H2O." }
+    },
+    {
+      "id": "science-0004", "difficulty": 1, "type": "truefalse", "answer": false,
+      "es": { "question": "Los murciélagos son aves.",
+              "explanation": "Son mamíferos: tienen pelo, amamantan a sus crías y son los únicos mamíferos capaces de volar de verdad." },
+      "en": { "question": "Bats are birds.",
+              "explanation": "They are mammals: they have fur, nurse their young, and are the only mammals capable of true flight." }
+    },
+    {
+      "id": "science-0005", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cuál es el hueso más largo del cuerpo humano?",
+              "options": ["El fémur", "La tibia", "El húmero", "El peroné"],
+              "explanation": "El fémur, en el muslo, es el hueso más largo y también el más fuerte del cuerpo humano." },
+      "en": { "question": "What is the longest bone in the human body?",
+              "options": ["The femur", "The tibia", "The humerus", "The fibula"],
+              "explanation": "The femur, in the thigh, is the longest and also the strongest bone in the human body." }
+    },
+    {
+      "id": "science-0006", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué elemento químico tiene el símbolo Fe?",
+              "options": ["Hierro", "Flúor", "Fósforo", "Francio"],
+              "explanation": "Fe viene del latín ferrum, «hierro». El flúor es F, el fósforo es P y el francio es Fr." },
+      "en": { "question": "Which chemical element has the symbol Fe?",
+              "options": ["Iron", "Fluorine", "Phosphorus", "Francium"],
+              "explanation": "Fe comes from the Latin ferrum, “iron”. Fluorine is F, phosphorus is P and francium is Fr." }
+    },
+    {
+      "id": "science-0007", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cuál es la velocidad aproximada de la luz en el vacío?",
+              "options": ["300 000 km/s", "30 000 km/s", "3 000 000 km/s", "150 000 km/s"],
+              "explanation": "La luz viaja a unos 299 792 km por segundo en el vacío, es decir, cerca de 300 000 km/s." },
+      "en": { "question": "What is the approximate speed of light in a vacuum?",
+              "options": ["300,000 km/s", "30,000 km/s", "3,000,000 km/s", "150,000 km/s"],
+              "explanation": "Light travels at about 299,792 km per second in a vacuum, that is, close to 300,000 km/s." }
+    },
+    {
+      "id": "science-0008", "difficulty": 2, "type": "choice",
+      "es": { "question": "En una célula animal, ¿qué orgánulo produce la mayor parte del ATP, su fuente de energía?",
+              "options": ["La mitocondria", "El núcleo", "El ribosoma", "El aparato de Golgi"],
+              "explanation": "Las mitocondrias producen la mayor parte del ATP mediante la respiración celular; por eso se llaman «las centrales de energía»." },
+      "en": { "question": "In an animal cell, which organelle produces most of the ATP, its energy source?",
+              "options": ["The mitochondrion", "The nucleus", "The ribosome", "The Golgi apparatus"],
+              "explanation": "Mitochondria produce most of the ATP through cellular respiration, which is why they are called “the powerhouses of the cell”." }
+    },
+    {
+      "id": "science-0009", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Cuál es el elemento más abundante en la corteza terrestre?",
+              "options": ["Oxígeno", "Silicio", "Hierro", "Aluminio"],
+              "explanation": "El oxígeno es casi la mitad de la masa de la corteza, combinado en minerales. Le siguen el silicio y el aluminio." },
+      "en": { "question": "Which is the most abundant element in Earth's crust?",
+              "options": ["Oxygen", "Silicon", "Iron", "Aluminum"],
+              "explanation": "Oxygen makes up nearly half of the crust's mass, combined in minerals. Silicon and aluminum follow." }
+    },
+    {
+      "id": "science-0010", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Cuál es el hueso más pequeño del cuerpo humano?",
+              "options": ["El estribo", "El yunque", "El martillo", "El escafoides"],
+              "explanation": "El estribo, en el oído medio, mide unos 3 mm. El martillo y el yunque son los otros dos huesecillos del oído, algo mayores." },
+      "en": { "question": "What is the smallest bone in the human body?",
+              "options": ["The stapes", "The incus", "The malleus", "The scaphoid"],
+              "explanation": "The stapes, in the middle ear, is about 3 mm long. The malleus and incus are the other two ear bones, slightly larger." }
+    },
+    {
+      "id": "science-0011", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Quién ganó premios Nobel en dos ciencias distintas: Física (1903) y Química (1911)?",
+              "options": ["Marie Curie", "Rosalind Franklin", "Lise Meitner", "Dorothy Hodgkin"],
+              "explanation": "Marie Curie es la única persona con premios Nobel en dos ciencias distintas. Franklin y Meitner nunca ganaron uno, y Hodgkin ganó solo el de Química." },
+      "en": { "question": "Who won Nobel Prizes in two different sciences: Physics (1903) and Chemistry (1911)?",
+              "options": ["Marie Curie", "Rosalind Franklin", "Lise Meitner", "Dorothy Hodgkin"],
+              "explanation": "Marie Curie is the only person with Nobel Prizes in two different sciences. Franklin and Meitner never won one, and Hodgkin won only the Chemistry prize." }
+    },
+    {
+      "id": "science-0012", "difficulty": 3, "type": "truefalse", "answer": true,
+      "es": { "question": "En el vacío, una pluma y un martillo caen con la misma aceleración.",
+              "explanation": "Sin aire no hay resistencia, y todos los cuerpos caen igual. Lo comprobó un astronauta del Apolo 15 en la Luna, en 1971." },
+      "en": { "question": "In a vacuum, a feather and a hammer fall with the same acceleration.",
+              "explanation": "With no air there is no drag, so all objects fall alike. An Apollo 15 astronaut demonstrated it on the Moon in 1971." }
+    }
+  ]
+}

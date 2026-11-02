@@ -1,0 +1,109 @@
+{
+  "category": "concepts",
+  "questions": [
+    {
+      "id": "concepts-0001", "difficulty": 1, "type": "choice",
+      "es": { "question": "En la partida doble, ¿qué debe cumplirse siempre en cada asiento contable?",
+              "options": ["Los débitos son iguales a los créditos", "Los débitos son mayores que los créditos", "Los créditos son mayores que los débitos", "Se afecta una sola cuenta"],
+              "explanation": "Cada transacción afecta al menos dos cuentas, y el total de los débitos es siempre igual al total de los créditos." },
+      "en": { "question": "In double-entry bookkeeping, what must always hold true in every journal entry?",
+              "options": ["Debits equal credits", "Debits exceed credits", "Credits exceed debits", "Only one account is affected"],
+              "explanation": "Every transaction affects at least two accounts, and total debits always equal total credits." }
+    },
+    {
+      "id": "concepts-0002", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuál es la ecuación contable básica?",
+              "options": ["Activo = Pasivo + Patrimonio", "Activo = Pasivo − Patrimonio", "Pasivo = Activo + Patrimonio", "Patrimonio = Activo + Pasivo"],
+              "explanation": "Lo que la empresa tiene (activo) se financia con lo que debe (pasivo) y con el aporte de sus dueños (patrimonio)." },
+      "en": { "question": "What is the basic accounting equation?",
+              "options": ["Assets = Liabilities + Equity", "Assets = Liabilities − Equity", "Liabilities = Assets + Equity", "Equity = Assets + Liabilities"],
+              "explanation": "What the company owns (assets) is financed by what it owes (liabilities) and by its owners' contributions (equity)." }
+    },
+    {
+      "id": "concepts-0003", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué estado financiero muestra los ingresos, costos y gastos de un período?",
+              "options": ["Estado de resultados", "Balance general", "Estado de flujos de efectivo", "Estado de cambios en el patrimonio"],
+              "explanation": "El estado de resultados muestra ingresos, costos y gastos de un período y termina en la utilidad o pérdida. El balance es una foto a una fecha." },
+      "en": { "question": "Which financial statement shows a period's revenues, costs and expenses?",
+              "options": ["Income statement", "Balance sheet", "Statement of cash flows", "Statement of changes in equity"],
+              "explanation": "The income statement shows a period's revenues, costs and expenses and ends in net income or loss. The balance sheet is a snapshot at a date." }
+    },
+    {
+      "id": "concepts-0004", "difficulty": 1, "type": "truefalse", "answer": false,
+      "es": { "question": "Las cuentas por pagar son un activo.",
+              "explanation": "Son un pasivo: representan lo que la empresa debe a sus proveedores." },
+      "en": { "question": "Accounts payable are an asset.",
+              "explanation": "They are a liability: they represent what the company owes to its suppliers." }
+    },
+    {
+      "id": "concepts-0005", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué principio establece que los ingresos y gastos se registran cuando ocurren, y no cuando se cobran o se pagan?",
+              "options": ["Causación (base de acumulación)", "Base de caja", "Costo histórico", "Materialidad"],
+              "explanation": "Con la causación, una venta se registra al entregar el bien o prestar el servicio, aunque el dinero llegue después. La base de caja registra al cobrar o pagar." },
+      "en": { "question": "Which principle says that revenues and expenses are recorded when they occur, not when cash is received or paid?",
+              "options": ["Accrual basis", "Cash basis", "Historical cost", "Materiality"],
+              "explanation": "Under the accrual basis, a sale is recorded when the good is delivered or the service performed, even if cash arrives later. The cash basis records when cash moves." }
+    },
+    {
+      "id": "concepts-0006", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué compara una conciliación bancaria?",
+              "options": ["Los registros contables con el extracto del banco", "El activo con el pasivo de la empresa", "El presupuesto con los gastos reales", "Los ingresos de este año con los del anterior"],
+              "explanation": "Compara el saldo en libros con el del extracto bancario y explica las diferencias, como cheques en tránsito o comisiones aún no registradas." },
+      "en": { "question": "What does a bank reconciliation compare?",
+              "options": ["The accounting records with the bank statement", "Assets with the company's liabilities", "The budget with actual expenses", "This year's revenue with last year's"],
+              "explanation": "It compares the book balance with the bank statement balance and explains the differences, such as outstanding checks or bank fees not yet recorded." }
+    },
+    {
+      "id": "concepts-0007", "difficulty": 2, "type": "truefalse", "answer": true,
+      "es": { "question": "La depreciación es un gasto que no implica una salida de efectivo.",
+              "explanation": "La depreciación reparte el costo de un activo durante su vida útil. El dinero salió cuando se compró; el gasto de cada período no mueve efectivo." },
+      "en": { "question": "Depreciation is an expense that does not involve a cash outflow.",
+              "explanation": "Depreciation spreads an asset's cost over its useful life. The cash left when the asset was bought; each period's expense does not move cash." }
+    },
+    {
+      "id": "concepts-0008", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué razón financiera se calcula dividiendo el activo corriente entre el pasivo corriente?",
+              "options": ["Razón corriente (liquidez)", "Prueba ácida", "Endeudamiento", "Rotación de cartera"],
+              "explanation": "La razón corriente mide si los activos de corto plazo cubren las deudas de corto plazo. La prueba ácida es parecida, pero excluye los inventarios." },
+      "en": { "question": "Which financial ratio is calculated by dividing current assets by current liabilities?",
+              "options": ["Current ratio", "Quick ratio (acid test)", "Debt ratio", "Receivables turnover"],
+              "explanation": "The current ratio measures whether short-term assets cover short-term debts. The quick ratio is similar but excludes inventory." }
+    },
+    {
+      "id": "concepts-0009", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Qué tipo de cuenta es la depreciación acumulada?",
+              "options": ["Regularizadora del activo, con saldo crédito", "De gasto, con saldo débito", "De pasivo, con saldo crédito", "De patrimonio, con saldo débito"],
+              "explanation": "Es una cuenta contra-activo: resta al costo del activo y tiene saldo crédito. El gasto por depreciación es la cuenta que va al estado de resultados." },
+      "en": { "question": "What type of account is accumulated depreciation?",
+              "options": ["A contra-asset account with a credit balance", "An expense account with a debit balance", "A liability account with a credit balance", "An equity account with a debit balance"],
+              "explanation": "It is a contra-asset account: it reduces the asset's cost and has a credit balance. Depreciation expense is the account that goes to the income statement." }
+    },
+    {
+      "id": "concepts-0010", "difficulty": 3, "type": "choice",
+      "es": { "question": "Al cierre de un período, una empresa omite registrar un gasto ya causado y aún no pagado. ¿Qué efecto tiene?",
+              "options": ["Utilidad sobrestimada y pasivos subestimados", "Utilidad subestimada y pasivos sobrestimados", "Solo se subestima el efectivo", "Ningún efecto en los estados financieros"],
+              "explanation": "Sin el gasto, la utilidad queda mayor que la real; y sin la cuenta por pagar, el pasivo queda menor que el real. El efectivo no cambia." },
+      "en": { "question": "At period end, a company fails to record an expense that was incurred but not yet paid. What is the effect?",
+              "options": ["Net income overstated, liabilities understated", "Net income understated, liabilities overstated", "Only cash is understated", "No effect on the financial statements"],
+              "explanation": "Without the expense, net income is higher than it should be; without the payable, liabilities are lower than they should be. Cash does not change." }
+    },
+    {
+      "id": "concepts-0011", "difficulty": 3, "type": "choice",
+      "es": { "question": "Un cliente paga por adelantado un servicio que la empresa aún no ha prestado. ¿Cómo lo registra al recibir el pago?",
+              "options": ["Como un pasivo (ingreso diferido)", "Como un ingreso del período", "Como una cuenta por cobrar", "Como un gasto pagado por anticipado"],
+              "explanation": "Mientras no preste el servicio, la empresa le debe algo al cliente: registra un pasivo (ingreso diferido) y lo lleva a ingreso a medida que lo presta." },
+      "en": { "question": "A customer prepays for a service the company has not yet performed. How does the company record the payment when received?",
+              "options": ["As a liability (deferred revenue)", "As revenue for the period", "As an account receivable", "As a prepaid expense"],
+              "explanation": "Until the service is performed, the company owes something to the customer: it records a liability (deferred revenue) and moves it to revenue as it performs." }
+    },
+    {
+      "id": "concepts-0012", "difficulty": 3, "type": "choice",
+      "es": { "question": "En el método de inventario periódico, ¿cómo se calcula el costo de ventas?",
+              "options": ["Inventario inicial + compras − inventario final", "Inventario inicial − compras + inventario final", "Compras − inventario inicial − inventario final", "Inventario final + compras + inventario inicial"],
+              "explanation": "Al inventario inicial se suman las compras del período y se resta el inventario final: lo que no quedó en bodega se considera vendido." },
+      "en": { "question": "Under the periodic inventory method, how is cost of goods sold calculated?",
+              "options": ["Beginning inventory + purchases − ending inventory", "Beginning inventory − purchases + ending inventory", "Purchases − beginning inventory − ending inventory", "Ending inventory + purchases + beginning inventory"],
+              "explanation": "Add the period's purchases to beginning inventory and subtract ending inventory: what is no longer in stock is treated as sold." }
+    }
+  ]
+}

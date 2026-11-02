@@ -1,0 +1,109 @@
+{
+  "category": "us",
+  "questions": [
+    {
+      "id": "us-0001", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué significan las siglas GAAP en la contabilidad de EE. UU.?",
+              "options": ["Principios de contabilidad generalmente aceptados", "Asociación de auditores y contadores públicos", "Guía anual de análisis de pagos", "Normas globales de auditoría y presupuesto"],
+              "explanation": "GAAP son los Generally Accepted Accounting Principles: las reglas con las que las empresas de EE. UU. preparan sus estados financieros." },
+      "en": { "question": "What does GAAP stand for in U.S. accounting?",
+              "options": ["Generally Accepted Accounting Principles", "General Association of Auditors and Preparers", "Global Audit and Accounting Policies", "Guide to Annual Accounting Procedures"],
+              "explanation": "GAAP are the Generally Accepted Accounting Principles: the rules U.S. companies follow to prepare their financial statements." }
+    },
+    {
+      "id": "us-0002", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué formulario del IRS usan las personas físicas para su declaración anual de impuesto sobre la renta?",
+              "options": ["Formulario 1040", "Formulario 1099", "Formulario 1120", "Formulario W-2"],
+              "explanation": "El Formulario 1040 es la declaración anual de las personas físicas. El 1120 lo usan las corporaciones y el W-2 informa los sueldos de los empleados." },
+      "en": { "question": "Which IRS form do individuals use to file their annual income tax return?",
+              "options": ["Form 1040", "Form 1099", "Form 1120", "Form W-2"],
+              "explanation": "Form 1040 is the annual return for individuals. Form 1120 is used by corporations and Form W-2 reports employees' wages." }
+    },
+    {
+      "id": "us-0003", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué empresa desarrolla el software de contabilidad QuickBooks?",
+              "options": ["Intuit", "Oracle", "SAP", "Sage"],
+              "explanation": "QuickBooks es un producto de Intuit, la misma empresa de TurboTax. Oracle, SAP y Sage tienen otros programas contables." },
+      "en": { "question": "Which company develops the QuickBooks accounting software?",
+              "options": ["Intuit", "Oracle", "SAP", "Sage"],
+              "explanation": "QuickBooks is a product of Intuit, the same company behind TurboTax. Oracle, SAP and Sage offer other accounting software." }
+    },
+    {
+      "id": "us-0004", "difficulty": 1, "type": "truefalse", "answer": false,
+      "es": { "question": "El FASB es la agencia que recauda los impuestos federales en Estados Unidos.",
+              "explanation": "Los impuestos federales los recauda el IRS. El FASB (Financial Accounting Standards Board) emite las normas de contabilidad financiera, los US GAAP." },
+      "en": { "question": "The FASB is the agency that collects federal taxes in the United States.",
+              "explanation": "Federal taxes are collected by the IRS. The FASB (Financial Accounting Standards Board) sets financial accounting standards, known as U.S. GAAP." }
+    },
+    {
+      "id": "us-0005", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué organismo emite los US GAAP?",
+              "options": ["FASB", "IASB", "IRS", "PCAOB"],
+              "explanation": "El FASB emite los US GAAP, reunidos en la Accounting Standards Codification (ASC). El IASB emite las IFRS y el PCAOB supervisa a los auditores." },
+      "en": { "question": "Which body sets U.S. GAAP?",
+              "options": ["FASB", "IASB", "IRS", "PCAOB"],
+              "explanation": "The FASB sets U.S. GAAP, collected in the Accounting Standards Codification (ASC). The IASB sets IFRS and the PCAOB oversees auditors." }
+    },
+    {
+      "id": "us-0006", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Para qué sirve el formulario W-9?",
+              "options": ["Dar al pagador el nombre y el número fiscal (TIN)", "Presentar la declaración anual de renta", "Indicar la retención de impuestos del empleado", "Reportar los pagos hechos a contratistas"],
+              "explanation": "Quien va a recibir pagos, como un contratista o proveedor, entrega el W-9 al pagador con su nombre y su TIN, para que luego este lo reporte en un 1099." },
+      "en": { "question": "What is Form W-9 used for?",
+              "options": ["Giving a payer your name and taxpayer ID (TIN)", "Filing the annual income tax return", "Setting an employee's tax withholding", "Reporting payments made to contractors"],
+              "explanation": "A person who will receive payments, such as a contractor or vendor, gives the payer a W-9 with their name and TIN, so the payer can later report them on a 1099." }
+    },
+    {
+      "id": "us-0007", "difficulty": 2, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿Qué formulario reporta al IRS los pagos a contratistas independientes que no son empleados?",
+              "options": ["Formulario 1099-NEC", "Formulario W-2", "Formulario 1040", "Formulario W-4"],
+              "explanation": "El pagador reporta lo pagado a contratistas independientes en el 1099-NEC. Los sueldos de los empleados se reportan en el W-2." },
+      "en": { "question": "Which form reports payments to independent contractors who are not employees to the IRS?",
+              "options": ["Form 1099-NEC", "Form W-2", "Form 1040", "Form W-4"],
+              "explanation": "The payer reports what it paid independent contractors on Form 1099-NEC. Employees' wages are reported on Form W-2." }
+    },
+    {
+      "id": "us-0008", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué formulario presentan las corporaciones C para su declaración de impuesto sobre la renta?",
+              "options": ["Formulario 1120", "Formulario 1065", "Formulario 1040", "Formulario 940"],
+              "explanation": "Las corporaciones C presentan el Formulario 1120. El 1065 lo presentan las sociedades de personas (partnerships) y el 1040, las personas físicas." },
+      "en": { "question": "Which form do C corporations file for their income tax return?",
+              "options": ["Form 1120", "Form 1065", "Form 1040", "Form 940"],
+              "explanation": "C corporations file Form 1120. Partnerships file Form 1065 and individuals file Form 1040." }
+    },
+    {
+      "id": "us-0009", "difficulty": 3, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿Qué tema del ASC regula el reconocimiento de ingresos de contratos con clientes?",
+              "options": ["ASC 606", "ASC 842", "ASC 326", "ASC 350"],
+              "explanation": "El ASC 606 fija el modelo de cinco pasos para reconocer ingresos. El 842 trata de arrendamientos, el 326 de pérdidas crediticias y el 350 de intangibles." },
+      "en": { "question": "Which ASC topic governs revenue recognition for contracts with customers?",
+              "options": ["ASC 606", "ASC 842", "ASC 326", "ASC 350"],
+              "explanation": "ASC 606 sets the five-step model for recognizing revenue. ASC 842 covers leases, 326 credit losses and 350 intangibles." }
+    },
+    {
+      "id": "us-0010", "difficulty": 3, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿Qué cambio principal introdujo el ASC 842 para los arrendatarios?",
+              "options": ["Registrar un activo por derecho de uso y un pasivo", "Llevar todos los arrendamientos solo a gastos", "Medir los arrendamientos a valor razonable cada año", "Eliminar la distinción entre operativo y financiero"],
+              "explanation": "Con el ASC 842, los arrendatarios llevan al balance casi todos los arrendamientos, como un activo por derecho de uso y un pasivo por arrendamiento." },
+      "en": { "question": "What main change did ASC 842 bring for lessees?",
+              "options": ["Record a right-of-use asset and a lease liability", "Record all leases only as an expense", "Measure leases at fair value every year", "Drop the operating vs. finance lease distinction"],
+              "explanation": "Under ASC 842, lessees put almost all leases on the balance sheet, as a right-of-use asset and a lease liability." }
+    },
+    {
+      "id": "us-0011", "difficulty": 3, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿Qué mide el modelo CECL del ASC 326 en activos como los préstamos?",
+              "options": ["Pérdidas esperadas durante toda la vida del activo", "Solo las pérdidas ya incurridas", "Solo las pérdidas esperadas en los próximos 12 meses", "El valor razonable de la garantía"],
+              "explanation": "CECL (Current Expected Credit Loss) obliga a estimar desde el inicio las pérdidas esperadas de toda la vida del activo, y no solo las ya incurridas." },
+      "en": { "question": "What does the CECL model in ASC 326 measure for assets such as loans?",
+              "options": ["Expected losses over the asset's whole life", "Only losses already incurred", "Only expected losses over the next 12 months", "The fair value of the collateral"],
+              "explanation": "CECL (Current Expected Credit Loss) requires estimating, from the start, the expected losses over the asset's whole life, not only those already incurred." }
+    },
+    {
+      "id": "us-0012", "difficulty": 3, "type": "truefalse", "answer": true,
+      "es": { "question": "El use tax se debe pagar cuando se compra un bien sin sales tax y se usa en un estado que sí lo grava.",
+              "explanation": "El use tax complementa al sales tax: si el vendedor no cobró el impuesto de ventas, el comprador debe declararlo y pagarlo al estado donde usa el bien." },
+      "en": { "question": "Use tax is owed when you buy an item without paying sales tax and use it in a state that taxes it.",
+              "explanation": "Use tax complements sales tax: if the seller did not collect sales tax, the buyer must report and pay it to the state where the item is used." }
+    }
+  ]
+}

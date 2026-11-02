@@ -1,0 +1,109 @@
+{
+  "category": "technology",
+  "questions": [
+    {
+      "id": "technology-0001", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué empresa lanzó el primer iPhone, en 2007?",
+              "options": ["Apple", "Samsung", "Nokia", "Microsoft"],
+              "explanation": "Apple presentó el primer iPhone en 2007, bajo la dirección de Steve Jobs." },
+      "en": { "question": "Which company launched the first iPhone, in 2007?",
+              "options": ["Apple", "Samsung", "Nokia", "Microsoft"],
+              "explanation": "Apple introduced the first iPhone in 2007, under the leadership of Steve Jobs." }
+    },
+    {
+      "id": "technology-0002", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Quién fundó Microsoft junto con Paul Allen?",
+              "options": ["Bill Gates", "Steve Jobs", "Mark Zuckerberg", "Jeff Bezos"],
+              "explanation": "Bill Gates y Paul Allen fundaron Microsoft en 1975. Jobs cofundó Apple, Zuckerberg Facebook y Bezos Amazon." },
+      "en": { "question": "Who founded Microsoft together with Paul Allen?",
+              "options": ["Bill Gates", "Steve Jobs", "Mark Zuckerberg", "Jeff Bezos"],
+              "explanation": "Bill Gates and Paul Allen founded Microsoft in 1975. Jobs co-founded Apple, Zuckerberg Facebook and Bezos Amazon." }
+    },
+    {
+      "id": "technology-0003", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué símbolo separa el nombre de usuario del dominio en una dirección de correo electrónico?",
+              "options": ["@", "#", "&", "$"],
+              "explanation": "La arroba (@) va entre el usuario y el dominio, como en nombre@ejemplo.com." },
+      "en": { "question": "Which symbol separates the username from the domain in an email address?",
+              "options": ["@", "#", "&", "$"],
+              "explanation": "The at sign (@) goes between the username and the domain, as in name@example.com." }
+    },
+    {
+      "id": "technology-0004", "difficulty": 1, "type": "truefalse", "answer": false,
+      "es": { "question": "El teclado de un computador es un dispositivo de salida.",
+              "explanation": "Es un dispositivo de entrada, porque envía datos al computador. La pantalla y la impresora son de salida." },
+      "en": { "question": "A computer keyboard is an output device.",
+              "explanation": "It is an input device, because it sends data to the computer. The screen and the printer are output devices." }
+    },
+    {
+      "id": "technology-0005", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué significan las siglas USB?",
+              "options": ["Universal Serial Bus", "Unified System Board", "Ultra Speed Broadcast", "Universal Storage Block"],
+              "explanation": "USB significa Universal Serial Bus, un estándar para conectar dispositivos al computador y alimentarlos." },
+      "en": { "question": "What does the acronym USB stand for?",
+              "options": ["Universal Serial Bus", "Unified System Board", "Ultra Speed Broadcast", "Universal Storage Block"],
+              "explanation": "USB stands for Universal Serial Bus, a standard for connecting devices to a computer and powering them." }
+    },
+    {
+      "id": "technology-0006", "difficulty": 2, "type": "truefalse", "answer": true,
+      "es": { "question": "Un byte equivale a 8 bits.",
+              "explanation": "Un byte agrupa 8 bits, que permiten representar 256 valores distintos (2 elevado a 8)." },
+      "en": { "question": "A byte is equal to 8 bits.",
+              "explanation": "A byte groups 8 bits, which can represent 256 different values (2 to the power of 8)." }
+    },
+    {
+      "id": "technology-0007", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Quién creó la World Wide Web?",
+              "options": ["Tim Berners-Lee", "Vint Cerf", "Bill Gates", "Linus Torvalds"],
+              "explanation": "Tim Berners-Lee la propuso en 1989 mientras trabajaba en el CERN. Vint Cerf es coautor del protocolo TCP/IP, no de la Web." },
+      "en": { "question": "Who created the World Wide Web?",
+              "options": ["Tim Berners-Lee", "Vint Cerf", "Bill Gates", "Linus Torvalds"],
+              "explanation": "Tim Berners-Lee proposed it in 1989 while working at CERN. Vint Cerf is a co-designer of the TCP/IP protocol, not of the Web." }
+    },
+    {
+      "id": "technology-0008", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué lenguaje se usa para dar estructura (títulos, párrafos, enlaces) a una página web?",
+              "options": ["HTML", "CSS", "SQL", "Python"],
+              "explanation": "HTML define la estructura y el contenido de la página. CSS se encarga de su aspecto visual." },
+      "en": { "question": "Which language is used to give a web page its structure (headings, paragraphs, links)?",
+              "options": ["HTML", "CSS", "SQL", "Python"],
+              "explanation": "HTML defines the structure and content of the page. CSS takes care of its visual appearance." }
+    },
+    {
+      "id": "technology-0009", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿A quién se considera la primera programadora de la historia, por su algoritmo para la máquina analítica de Babbage?",
+              "options": ["Ada Lovelace", "Grace Hopper", "Hedy Lamarr", "Margaret Hamilton"],
+              "explanation": "Ada Lovelace publicó en 1843 un algoritmo para la máquina analítica de Charles Babbage, considerado el primer programa de computador." },
+      "en": { "question": "Who is considered the first computer programmer, for her algorithm for Babbage's Analytical Engine?",
+              "options": ["Ada Lovelace", "Grace Hopper", "Hedy Lamarr", "Margaret Hamilton"],
+              "explanation": "Ada Lovelace published an algorithm for Charles Babbage's Analytical Engine in 1843, regarded as the first computer program." }
+    },
+    {
+      "id": "technology-0010", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Cómo se llamaba la red precursora de internet, financiada por el Departamento de Defensa de EE. UU. y activa desde 1969?",
+              "options": ["ARPANET", "NSFNET", "USENET", "BITNET"],
+              "explanation": "ARPANET conectó sus primeros nodos en 1969. NSFNET, USENET y BITNET fueron redes posteriores, de los años ochenta." },
+      "en": { "question": "What was the precursor network of the internet, funded by the U.S. Department of Defense and active since 1969?",
+              "options": ["ARPANET", "NSFNET", "USENET", "BITNET"],
+              "explanation": "ARPANET connected its first nodes in 1969. NSFNET, USENET and BITNET were later networks, from the 1980s." }
+    },
+    {
+      "id": "technology-0011", "difficulty": 3, "type": "choice",
+      "es": { "question": "En el estándar IEC, ¿cuántos bytes tiene un kibibyte (KiB)?",
+              "options": ["1024", "1000", "512", "2048"],
+              "explanation": "Un kibibyte son 1024 bytes (2 elevado a 10). El kilobyte (kB) del Sistema Internacional son 1000 bytes." },
+      "en": { "question": "In the IEC standard, how many bytes are in a kibibyte (KiB)?",
+              "options": ["1024", "1000", "512", "2048"],
+              "explanation": "A kibibyte is 1,024 bytes (2 to the power of 10). The kilobyte (kB) of the International System is 1,000 bytes." }
+    },
+    {
+      "id": "technology-0012", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Quién creó el lenguaje de programación C++?",
+              "options": ["Bjarne Stroustrup", "Dennis Ritchie", "James Gosling", "Guido van Rossum"],
+              "explanation": "Stroustrup empezó a crearlo en 1979 en los Laboratorios Bell, como extensión de C. Ritchie creó C, Gosling Java y van Rossum Python." },
+      "en": { "question": "Who created the C++ programming language?",
+              "options": ["Bjarne Stroustrup", "Dennis Ritchie", "James Gosling", "Guido van Rossum"],
+              "explanation": "Stroustrup began creating it in 1979 at Bell Labs, as an extension of C. Ritchie created C, Gosling Java and van Rossum Python." }
+    }
+  ]
+}

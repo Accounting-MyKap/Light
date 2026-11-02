@@ -1,0 +1,109 @@
+{
+  "category": "sports",
+  "questions": [
+    {
+      "id": "sports-0001", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuántos jugadores tiene cada equipo en la cancha en un partido de fútbol, incluido el portero?",
+              "options": ["11", "9", "10", "12"],
+              "explanation": "Cada equipo juega con once jugadores, uno de ellos el portero." },
+      "en": { "question": "How many players does each team have on the field in a soccer match, including the goalkeeper?",
+              "options": ["11", "9", "10", "12"],
+              "explanation": "Each team plays with eleven players, one of them the goalkeeper." }
+    },
+    {
+      "id": "sports-0002", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cada cuántos años se celebran los Juegos Olímpicos de verano?",
+              "options": ["Cada 4 años", "Cada 2 años", "Cada 3 años", "Cada 5 años"],
+              "explanation": "Se celebran cada cuatro años, un ciclo que se llama olimpiada." },
+      "en": { "question": "How often are the Summer Olympic Games held?",
+              "options": ["Every 4 years", "Every 2 years", "Every 3 years", "Every 5 years"],
+              "explanation": "They are held every four years, a cycle called an Olympiad." }
+    },
+    {
+      "id": "sports-0003", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué deporte se juega en el torneo de Wimbledon?",
+              "options": ["Tenis", "Críquet", "Golf", "Polo"],
+              "explanation": "Wimbledon, en Londres, es el torneo de tenis más antiguo del mundo y se juega sobre césped." },
+      "en": { "question": "Which sport is played at the Wimbledon tournament?",
+              "options": ["Tennis", "Cricket", "Golf", "Polo"],
+              "explanation": "Wimbledon, in London, is the oldest tennis tournament in the world and is played on grass." }
+    },
+    {
+      "id": "sports-0004", "difficulty": 1, "type": "truefalse", "answer": true,
+      "es": { "question": "Un equipo de baloncesto tiene cinco jugadores en la cancha a la vez.",
+              "explanation": "Cada equipo juega con cinco jugadores en la cancha y puede hacer cambios con los suplentes." },
+      "en": { "question": "A basketball team has five players on the court at a time.",
+              "explanation": "Each team plays with five players on the court and can make substitutions from the bench." }
+    },
+    {
+      "id": "sports-0005", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué país ganó la primera Copa Mundial de fútbol, en 1930?",
+              "options": ["Uruguay", "Argentina", "Brasil", "Italia"],
+              "explanation": "Uruguay organizó el torneo y lo ganó, al vencer 4-2 a Argentina en la final." },
+      "en": { "question": "Which country won the first FIFA World Cup, in 1930?",
+              "options": ["Uruguay", "Argentina", "Brazil", "Italy"],
+              "explanation": "Uruguay hosted the tournament and won it, beating Argentina 4-2 in the final." }
+    },
+    {
+      "id": "sports-0006", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué selección ganó el Mundial de fútbol de 1986, jugado en México?",
+              "options": ["Argentina", "Alemania Occidental", "Francia", "Brasil"],
+              "explanation": "Argentina, liderada por Diego Maradona, venció 3-2 a Alemania Occidental en la final." },
+      "en": { "question": "Which national team won the 1986 World Cup, held in Mexico?",
+              "options": ["Argentina", "West Germany", "France", "Brazil"],
+              "explanation": "Argentina, led by Diego Maradona, beat West Germany 3-2 in the final." }
+    },
+    {
+      "id": "sports-0007", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cuántos hoyos tiene un campo de golf estándar?",
+              "options": ["18", "9", "12", "24"],
+              "explanation": "Una ronda completa se juega en 18 hoyos. Algunos campos más pequeños tienen solo 9." },
+      "en": { "question": "How many holes does a standard golf course have?",
+              "options": ["18", "9", "12", "24"],
+              "explanation": "A full round is played over 18 holes. Some smaller courses have only 9." }
+    },
+    {
+      "id": "sports-0008", "difficulty": 2, "type": "truefalse", "answer": true,
+      "es": { "question": "La distancia oficial del maratón es de 42,195 km.",
+              "explanation": "Son 42,195 km (26 millas y 385 yardas), distancia fijada oficialmente en 1921 a partir del maratón de los Juegos de Londres 1908." },
+      "en": { "question": "The official distance of the marathon is 42.195 km.",
+              "explanation": "It is 42.195 km (26 miles and 385 yards), a distance officially set in 1921 based on the marathon of the 1908 London Games." }
+    },
+    {
+      "id": "sports-0009", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Qué tenista ganó en 1988 los cuatro torneos del Grand Slam y el oro olímpico, el «Golden Slam»?",
+              "options": ["Steffi Graf", "Martina Navratilova", "Chris Evert", "Monica Seles"],
+              "explanation": "Steffi Graf ganó el Abierto de Australia, Roland Garros, Wimbledon y el Abierto de EE. UU., y el oro olímpico de Seúl, todo en 1988." },
+      "en": { "question": "Which tennis player won all four Grand Slam titles and Olympic gold in 1988, the “Golden Slam”?",
+              "options": ["Steffi Graf", "Martina Navratilova", "Chris Evert", "Monica Seles"],
+              "explanation": "Steffi Graf won the Australian Open, the French Open, Wimbledon, the US Open and the Seoul Olympic gold, all in 1988." }
+    },
+    {
+      "id": "sports-0010", "difficulty": 3, "type": "choice",
+      "es": { "question": "En el rugby unión, ¿cuántos puntos vale un try (ensayo)?",
+              "options": ["5", "4", "3", "6"],
+              "explanation": "Un try vale 5 puntos y da derecho a una conversión de 2. En el rugby league, en cambio, vale 4." },
+      "en": { "question": "In rugby union, how many points is a try worth?",
+              "options": ["5", "4", "3", "6"],
+              "explanation": "A try is worth 5 points and earns a conversion kick worth 2. In rugby league, by contrast, a try is worth 4." }
+    },
+    {
+      "id": "sports-0011", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿En qué ciudad se celebraron los primeros Juegos Olímpicos de Invierno, en 1924?",
+              "options": ["Chamonix", "Sankt Moritz", "Lake Placid", "Oslo"],
+              "explanation": "Se celebraron en Chamonix, Francia. Sankt Moritz fue sede en 1928, Lake Placid en 1932 y Oslo en 1952." },
+      "en": { "question": "In which city were the first Winter Olympic Games held, in 1924?",
+              "options": ["Chamonix", "St. Moritz", "Lake Placid", "Oslo"],
+              "explanation": "They were held in Chamonix, France. St. Moritz hosted in 1928, Lake Placid in 1932 and Oslo in 1952." }
+    },
+    {
+      "id": "sports-0012", "difficulty": 3, "type": "choice",
+      "es": { "question": "En el béisbol, ¿cuántas carreras anota un jonrón con las bases llenas (un «grand slam»)?",
+              "options": ["4", "3", "2", "5"],
+              "explanation": "Anotan los tres corredores que estaban en base más el bateador: cuatro carreras, el máximo en una sola jugada." },
+      "en": { "question": "In baseball, how many runs score on a home run with the bases loaded (a “grand slam”)?",
+              "options": ["4", "3", "2", "5"],
+              "explanation": "The three runners on base score along with the batter: four runs, the most possible on a single play." }
+    }
+  ]
+}

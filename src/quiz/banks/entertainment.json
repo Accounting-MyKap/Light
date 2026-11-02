@@ -1,0 +1,109 @@
+{
+  "category": "entertainment",
+  "questions": [
+    {
+      "id": "entertainment-0001", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué banda británica grabó el álbum «Abbey Road»?",
+              "options": ["The Beatles", "The Rolling Stones", "Queen", "Pink Floyd"],
+              "explanation": "The Beatles lo lanzaron en 1969. Su portada, con los cuatro cruzando una calle, es una de las más famosas de la historia." },
+      "en": { "question": "Which British band recorded the album “Abbey Road”?",
+              "options": ["The Beatles", "The Rolling Stones", "Queen", "Pink Floyd"],
+              "explanation": "The Beatles released it in 1969. Its cover, with the four of them crossing a street, is one of the most famous ever." }
+    },
+    {
+      "id": "entertainment-0002", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿En qué película de Disney aparece el personaje de Simba?",
+              "options": ["El rey león", "Aladdín", "Bambi", "Tarzán"],
+              "explanation": "Simba es el joven león protagonista de «El rey león», estrenada por Disney en 1994." },
+      "en": { "question": "In which Disney movie does the character Simba appear?",
+              "options": ["The Lion King", "Aladdin", "Bambi", "Tarzan"],
+              "explanation": "Simba is the young lion who stars in “The Lion King”, released by Disney in 1994." }
+    },
+    {
+      "id": "entertainment-0003", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué artista es conocido como el «Rey del Pop»?",
+              "options": ["Michael Jackson", "Elvis Presley", "Prince", "Justin Timberlake"],
+              "explanation": "Michael Jackson recibió ese apodo. A Elvis Presley se le llama el «Rey del Rock and Roll»." },
+      "en": { "question": "Which artist is known as the “King of Pop”?",
+              "options": ["Michael Jackson", "Elvis Presley", "Prince", "Justin Timberlake"],
+              "explanation": "Michael Jackson earned that nickname. Elvis Presley is called the “King of Rock and Roll”." }
+    },
+    {
+      "id": "entertainment-0004", "difficulty": 1, "type": "truefalse", "answer": false,
+      "es": { "question": "Los Beatles eran una banda de Estados Unidos.",
+              "explanation": "Los Beatles se formaron en Liverpool, Inglaterra, a comienzos de los años sesenta." },
+      "en": { "question": "The Beatles were a band from the United States.",
+              "explanation": "The Beatles formed in Liverpool, England, in the early 1960s." }
+    },
+    {
+      "id": "entertainment-0005", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Quién dirigió la película «Titanic» (1997)?",
+              "options": ["James Cameron", "Steven Spielberg", "Ridley Scott", "Christopher Nolan"],
+              "explanation": "James Cameron escribió y dirigió «Titanic», que ganó once premios Óscar, entre ellos Mejor Película." },
+      "en": { "question": "Who directed the movie “Titanic” (1997)?",
+              "options": ["James Cameron", "Steven Spielberg", "Ridley Scott", "Christopher Nolan"],
+              "explanation": "James Cameron wrote and directed “Titanic”, which won eleven Academy Awards, including Best Picture." }
+    },
+    {
+      "id": "entertainment-0006", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué actor interpretó a Jack Sparrow en la saga «Piratas del Caribe»?",
+              "options": ["Johnny Depp", "Orlando Bloom", "Geoffrey Rush", "Brad Pitt"],
+              "explanation": "Johnny Depp es Jack Sparrow. Orlando Bloom interpreta a Will Turner y Geoffrey Rush, al capitán Barbossa." },
+      "en": { "question": "Which actor played Jack Sparrow in the “Pirates of the Caribbean” movies?",
+              "options": ["Johnny Depp", "Orlando Bloom", "Geoffrey Rush", "Brad Pitt"],
+              "explanation": "Johnny Depp plays Jack Sparrow. Orlando Bloom plays Will Turner and Geoffrey Rush plays Captain Barbossa." }
+    },
+    {
+      "id": "entertainment-0007", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué serie de televisión transcurre en los reinos de Poniente (Westeros)?",
+              "options": ["Juego de tronos", "The Witcher", "Vikingos", "The Last Kingdom"],
+              "explanation": "«Juego de tronos» (HBO, 2011-2019) adapta las novelas de George R. R. Martin, ambientadas en Poniente." },
+      "en": { "question": "Which TV series takes place in the kingdoms of Westeros?",
+              "options": ["Game of Thrones", "The Witcher", "Vikings", "The Last Kingdom"],
+              "explanation": "“Game of Thrones” (HBO, 2011-2019) adapts George R. R. Martin's novels, set in Westeros." }
+    },
+    {
+      "id": "entertainment-0008", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cuál es el nombre real de la cantante Lady Gaga?",
+              "options": ["Stefani Germanotta", "Katheryn Hudson", "Robyn Fenty", "Alecia Moore"],
+              "explanation": "Lady Gaga nació como Stefani Joanne Angelina Germanotta. Katheryn Hudson es Katy Perry, Robyn Fenty es Rihanna y Alecia Moore es P!nk." },
+      "en": { "question": "What is the real name of the singer Lady Gaga?",
+              "options": ["Stefani Germanotta", "Katheryn Hudson", "Robyn Fenty", "Alecia Moore"],
+              "explanation": "Lady Gaga was born Stefani Joanne Angelina Germanotta. Katheryn Hudson is Katy Perry, Robyn Fenty is Rihanna and Alecia Moore is P!nk." }
+    },
+    {
+      "id": "entertainment-0009", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Quién compuso la banda sonora de «Star Wars: La guerra de las galaxias» (1977)?",
+              "options": ["John Williams", "Hans Zimmer", "Ennio Morricone", "Danny Elfman"],
+              "explanation": "John Williams compuso la música de Star Wars (1977), con la Orquesta Sinfónica de Londres. También firmó «Tiburón» y «E.T.»." },
+      "en": { "question": "Who composed the score for “Star Wars” (1977)?",
+              "options": ["John Williams", "Hans Zimmer", "Ennio Morricone", "Danny Elfman"],
+              "explanation": "John Williams composed the Star Wars score (1977), performed by the London Symphony Orchestra. He also scored “Jaws” and “E.T.”." }
+    },
+    {
+      "id": "entertainment-0010", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Qué cineasta japonés dirigió «Los siete samuráis» (1954)?",
+              "options": ["Akira Kurosawa", "Hayao Miyazaki", "Yasujirō Ozu", "Takeshi Kitano"],
+              "explanation": "Akira Kurosawa dirigió «Los siete samuráis». Miyazaki es director de animación del Studio Ghibli, y Ozu hizo dramas familiares como «Cuentos de Tokio»." },
+      "en": { "question": "Which Japanese filmmaker directed “Seven Samurai” (1954)?",
+              "options": ["Akira Kurosawa", "Hayao Miyazaki", "Yasujirō Ozu", "Takeshi Kitano"],
+              "explanation": "Akira Kurosawa directed “Seven Samurai”. Miyazaki is the animation director of Studio Ghibli, and Ozu made family dramas like “Tokyo Story”." }
+    },
+    {
+      "id": "entertainment-0011", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Quién dirigió «2001: Una odisea del espacio» (1968)?",
+              "options": ["Stanley Kubrick", "Steven Spielberg", "George Lucas", "Ridley Scott"],
+              "explanation": "Stanley Kubrick dirigió y coescribió la película con Arthur C. Clarke, basándose en un relato corto de este." },
+      "en": { "question": "Who directed “2001: A Space Odyssey” (1968)?",
+              "options": ["Stanley Kubrick", "Steven Spielberg", "George Lucas", "Ridley Scott"],
+              "explanation": "Stanley Kubrick directed and co-wrote the film with Arthur C. Clarke, based on one of Clarke's short stories." }
+    },
+    {
+      "id": "entertainment-0012", "difficulty": 3, "type": "truefalse", "answer": true,
+      "es": { "question": "«Blancanieves y los siete enanitos» (1937) fue el primer largometraje animado de Disney.",
+              "explanation": "Estrenada en diciembre de 1937, fue el primer largometraje de animación de Walt Disney Productions." },
+      "en": { "question": "“Snow White and the Seven Dwarfs” (1937) was Disney's first feature-length animated film.",
+              "explanation": "Released in December 1937, it was the first feature-length animated film from Walt Disney Productions." }
+    }
+  ]
+}
