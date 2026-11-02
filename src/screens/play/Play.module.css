@@ -437,8 +437,9 @@
   box-shadow: inset 0 0 0 1.5px var(--luz-glass-border);
 }
 
+/* The cards sit over the middle of the glow (and taller screens stretch it), so their labels use --luz-soft too. */
 .statCards dt {
-  color: var(--luz-muted);
+  color: var(--luz-soft);
   font-size: 0.8125rem;
   text-wrap: balance;
   overflow-wrap: anywhere;
