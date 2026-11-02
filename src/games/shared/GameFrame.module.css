@@ -48,10 +48,11 @@
   line-height: 1.25;
 }
 
+/* Small text in the top band sits on the colored glow, so it uses --luz-soft (--luz-muted is for the flat background). */
 .level {
   margin: 0;
   font-size: 13px;
-  color: var(--luz-muted);
+  color: var(--luz-soft);
 }
 
 .level div {

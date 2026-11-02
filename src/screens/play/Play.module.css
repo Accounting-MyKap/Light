@@ -106,7 +106,7 @@
 
 .description {
   margin: 0;
-  color: var(--luz-muted);
+  color: var(--luz-soft);
   font-size: 1.0625rem;
 }
 
@@ -283,9 +283,10 @@
   width: 100%;
 }
 
+/* On the colored glow at the top of the screen: --luz-soft, not --luz-muted (see luz.css). */
 .resultTitle {
   margin: 0;
-  color: var(--luz-muted);
+  color: var(--luz-soft);
   font-size: 1.125rem;
   font-weight: 700;
 }

@@ -8,6 +8,9 @@
   --luz-bg: #090b19;
   --luz-text: #eef1ff;
   --luz-muted: #8e94b8;
+  /* Muted text that sits in the top band, over the colored glow: lighter than --luz-muted, which only
+     reaches 4.5:1 on the flat background. */
+  --luz-soft: #b4b9d8;
   --luz-glass: rgba(255, 255, 255, 0.045);
   --luz-glass-border: rgba(255, 255, 255, 0.09);
   --luz-ok: #4dffa6;

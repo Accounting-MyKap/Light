@@ -22,6 +22,15 @@ function luminance(hex: string): number {
   return 0.2126 * r + 0.7152 * g + 0.0722 * b;
 }
 
+/** `top` over `bottom` at the given share of `top`, per channel, as a hex color. */
+function mix(top: string, bottom: string, share: number): string {
+  const channels = [1, 3, 5].map((i) => {
+    const mixed = share * parseInt(top.slice(i, i + 2), 16) + (1 - share) * parseInt(bottom.slice(i, i + 2), 16);
+    return Math.round(mixed).toString(16).padStart(2, '0');
+  });
+  return `#${channels.join('')}`;
+}
+
 function contrast(a: string, b: string): number {
   const [hi, lo] = [luminance(a), luminance(b)].sort((x, y) => y - x);
   return (hi + 0.05) / (lo + 0.05);
@@ -52,7 +61,7 @@ describe('Luz (always-dark game screens)', () => {
   const AREAS = ['memory', 'attention', 'speed', 'flexibility', 'math'] as const;
   const games = AREAS.map((area): [string, string] => [area, tokensIn(luzCss, `[data-luz][data-area='${area}']`).game]);
 
-  test.each([['luz-text'], ['luz-muted']])('--%s on --luz-bg meets WCAG AA (4.5:1)', (fg) => {
+  test.each([['luz-text'], ['luz-muted'], ['luz-soft']])('--%s on --luz-bg meets WCAG AA (4.5:1)', (fg) => {
     expect(luz[fg], `--${fg} defined`).toBeDefined();
     expect(contrast(luz[fg], luz['luz-bg'])).toBeGreaterThanOrEqual(4.5);
   });
@@ -69,6 +78,12 @@ describe('Luz (always-dark game screens)', () => {
     });
     test('--luz-ink on --game meets WCAG AA (4.5:1)', () => {
       expect(contrast(luz['luz-ink'], game)).toBeGreaterThanOrEqual(4.5);
+    });
+    // The glow at the top of the screen is the area color at 28% over the background (its strongest point,
+    // luz.css `background-image`). Small secondary text in the top band (level line, result title) uses --luz-soft.
+    test('--luz-soft over the top glow of the area meets WCAG AA (4.5:1)', () => {
+      expect(luz['luz-soft'], '--luz-soft defined').toBeDefined();
+      expect(contrast(luz['luz-soft'], mix(game, luz['luz-bg'], 0.28))).toBeGreaterThanOrEqual(4.5);
     });
   });
 });
