@@ -1,4 +1,5 @@
 import type { ComponentType } from 'react';
+import type { QuizRoundDetails } from '../quiz/types';
 
 export type Area = 'memory' | 'attention' | 'speed' | 'flexibility' | 'math' | 'logic' | 'language';
 
@@ -9,6 +10,8 @@ export interface GameResult {
   accuracy: number;
   levelReached: number;
   durationMs: number;
+  /** Solo en los juegos de preguntas: lo necesario para el repaso y el historial local. */
+  quiz?: QuizRoundDetails;
 }
 
 export interface GameProps {
