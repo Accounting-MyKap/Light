@@ -48,14 +48,22 @@ async function solveRuleSwitch(page: Page, count: number): Promise<void> {
 }
 
 /**
- * A few answers, so the screens have a score and an accuracy worth looking at. The two games that cannot be read
- * from the page cheaply get a few taps instead; Sequence Lights is left to the helper.
+ * A few answers, so the screens have a score and an accuracy worth looking at. Same or different gets a few taps
+ * instead of right answers (its previous symbol is not on the page); Sequence Lights is left to the helper.
  */
 async function answerSome(page: Page, id: (typeof GAMES)[number]): Promise<void> {
   if (id === 'sequence-lights') return;
   if (id === 'quick-math') return solveQuickMath(page, 4);
   if (id === 'rule-switch') return solveRuleSwitch(page, 6);
   const buttons = page.locator('[data-game] [data-zone="controls"] button');
+  if (id === 'arrows') {
+    // «Izquierda» is the first button, «Derecha» the second: tap the one the center arrow points to.
+    for (let i = 0; i < 6; i++) {
+      const direction = await page.getByTestId('arrows-row').getAttribute('data-direction');
+      await buttons.nth(direction === 'left' ? 0 : 1).click();
+    }
+    return;
+  }
   for (let i = 0; i < 6; i++) await buttons.nth(i % 2).click();
 }
 
