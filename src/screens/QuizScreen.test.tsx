@@ -91,6 +91,21 @@ test('seen counts never exceed the bank size', async () => {
   expect(within(triviaMix).getByText(`Vistas: ${size} de ${sumOfBanks(TRIVIA_CATEGORIES)}`)).toBeInTheDocument();
 });
 
+test('the two mix cards are featured and the category cards are not', async () => {
+  await renderApp('/quiz');
+  // CSS modules hash the class names in tests (_cardFeatured_ab12cd), so match on the name.
+  const isFeatured = (a: HTMLElement) => /cardFeatured/.test(a.className);
+  const cards = screen.getAllByRole('link').filter((a) => a.getAttribute('href')?.startsWith('/play/'));
+  expect(cards).toHaveLength(14);
+
+  expect(cards.filter(isFeatured).map((a) => a.getAttribute('href'))).toEqual([
+    '/play/trivia-mix',
+    '/play/accounting-mix',
+  ]);
+  expect(isFeatured(screen.getByRole('link', { name: /^Historia/ }))).toBe(false);
+  expect(isFeatured(screen.getByRole('link', { name: /^Conceptos contables/ }))).toBe(false);
+});
+
 test('the nav has five tabs in order', async () => {
   await renderApp('/quiz');
   const nav = screen.getByRole('navigation');

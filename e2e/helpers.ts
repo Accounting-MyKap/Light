@@ -25,3 +25,18 @@ export async function finishCurrentGame(page: Page): Promise<void> {
   }
   await expect(result).toBeVisible();
 }
+
+const QUIZ_ROUND_LENGTH = 10;
+
+/**
+ * Plays the open quiz round to its result screen, always picking option 1. The wait before each tap is longer than
+ * MIN_RT_MS (150 ms): the app ignores an answer given right after a question appears.
+ */
+export async function finishQuizRound(page: Page): Promise<void> {
+  for (let n = 1; n <= QUIZ_ROUND_LENGTH; n++) {
+    await expect(page.getByText(`Pregunta ${n} de ${QUIZ_ROUND_LENGTH}`)).toBeVisible();
+    await page.waitForTimeout(200);
+    await page.getByRole('button', { name: /^1 / }).click();
+    await page.getByRole('button', { name: n === QUIZ_ROUND_LENGTH ? 'Ver resultado' : 'Siguiente' }).click();
+  }
+}

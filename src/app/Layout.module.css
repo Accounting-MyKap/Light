@@ -54,7 +54,8 @@
   position: fixed;
   inset: auto 0 0 0;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  /* minmax(0, …) keeps the five tracks equal: a long label can never widen its own column. */
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   background: var(--surface);
   border-top: 1px solid var(--border);
   padding-bottom: env(safe-area-inset-bottom);
@@ -68,8 +69,26 @@
   text-decoration: none;
   color: var(--text-muted);
   font-weight: 600;
-  /* Five tabs must fit in 320 px: «Preguntas» is the widest label. */
+  /* Five tabs must fit in 320 px («Preguntas» is the widest label), so the label grows with the screen. */
   font-size: 0.75rem;
+}
+
+@media (min-width: 360px) {
+  .navLink {
+    font-size: 0.8125rem;
+  }
+}
+
+@media (min-width: 375px) {
+  .navLink {
+    font-size: 0.875rem;
+  }
+}
+
+@media (min-width: 430px) {
+  .navLink {
+    font-size: 1rem;
+  }
 }
 
 .navLink[aria-current='page'] {
