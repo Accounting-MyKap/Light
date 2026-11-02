@@ -298,7 +298,10 @@
     "streakBest": "Mejor racha: {{count}}",
     "daysTrained": "Días entrenados: {{count}}",
     "chartLabel": "Últimos {{count}} puntajes: mínimo {{min}}, máximo {{max}}, último {{last}}",
-    "notEnoughData": "Juega al menos dos partidas para ver tu evolución."
+    "notEnoughData": "Juega al menos dos partidas para ver tu evolución.",
+    "quizTitle": "Preguntas",
+    "mastery": "Dominio (últimos 30 días)",
+    "quizLine": "Vistas: {{seen}} de {{total}} · Mejor marca: {{best}}"
   },
   "settings": {
     "language": "Idioma",

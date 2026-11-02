@@ -6,9 +6,10 @@ import { useLocalDay } from '../app/useLocalDay';
 import { computeStreak } from '../core/streak';
 import { completedDays } from '../data/dailyPlans';
 import { listResults } from '../data/results';
-import { GAMES } from '../games/registry';
+import { TRAINING_GAMES } from '../games/registry';
 import { V1_AREAS } from '../games/types';
 import { LineChart } from './progress/LineChart';
+import { QuizProgress } from './progress/QuizProgress';
 import styles from './Screens.module.css';
 
 const CHART_POINTS = 30;
@@ -32,9 +33,11 @@ export function ProgressScreen() {
     );
   }
 
-  const scores = areaScores(results, GAMES, now);
+  // The training metrics count only the training games; quiz rounds have their own block below.
+  const trainingIds = new Set(TRAINING_GAMES.map((g) => g.id));
+  const scores = areaScores(results, TRAINING_GAMES, now);
   const streak = computeStreak(days, today);
-  const daysTrained = new Set(results.map((r) => r.day)).size;
+  const daysTrained = new Set(results.filter((r) => trainingIds.has(r.gameId)).map((r) => r.day)).size;
 
   return (
     <section className={styles.screen}>
@@ -67,7 +70,7 @@ export function ProgressScreen() {
 
       <section className={styles.section}>
         <h2>{t('progress.byGame')}</h2>
-        {GAMES.map((g) => {
+        {TRAINING_GAMES.map((g) => {
           const values = results.filter((r) => r.gameId === g.id).map((r) => r.score);
           if (values.length === 0) return null;
           const recent = values.slice(-CHART_POINTS);
@@ -88,6 +91,8 @@ export function ProgressScreen() {
           );
         })}
       </section>
+
+      <QuizProgress results={results} now={now} />
     </section>
   );
 }

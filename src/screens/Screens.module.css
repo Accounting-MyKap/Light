@@ -71,6 +71,12 @@
   height: 14px;
 }
 
+.quizCategory {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
 .value {
   text-align: right;
   font-weight: 700;

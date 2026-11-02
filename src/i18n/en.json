@@ -298,7 +298,10 @@
     "streakBest": "Best streak: {{count}}",
     "daysTrained": "Days trained: {{count}}",
     "chartLabel": "Last {{count}} scores: lowest {{min}}, highest {{max}}, latest {{last}}",
-    "notEnoughData": "Play at least two games to see your trend."
+    "notEnoughData": "Play at least two games to see your trend.",
+    "quizTitle": "Quiz",
+    "mastery": "Mastery (last 30 days)",
+    "quizLine": "Seen: {{seen}} of {{total}} · Best: {{best}}"
   },
   "settings": {
     "language": "Language",
