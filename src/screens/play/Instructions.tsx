@@ -4,7 +4,7 @@ import styles from './Play.module.css';
 
 export function Instructions({ game, onStart }: { game: GameDefinition; onStart: () => void }) {
   const { t } = useTranslation();
-  const steps = t(`games.${game.id}.instructions`, { returnObjects: true }) as string[];
+  const steps = t(game.instructionsKey ?? `games.${game.id}.instructions`, { returnObjects: true }) as string[];
   const { Example } = game;
   return (
     <section className={styles.screen}>

@@ -10,9 +10,9 @@ import { fetchPercentile, getRemote, requestSync } from '../sync';
 vi.mock('../sync');
 
 vi.mock('../games/registry', async () => {
-  const { fakeGame, fakeGame2 } = await import('../test/fakeGame');
-  const games = [fakeGame, fakeGame2];
-  return { GAMES: games, getGame: (id: string) => games.find((g) => g.id === id) };
+  const { fakeGame, fakeGame2, fakeGame3 } = await import('../test/fakeGame');
+  const games = [fakeGame, fakeGame2, fakeGame3];
+  return { GAMES: games, TRAINING_GAMES: games, QUIZ_GAMES: [], getGame: (id: string) => games.find((g) => g.id === id) };
 });
 
 function setHidden(hidden: boolean) {
@@ -52,6 +52,13 @@ test('first visit shows instructions, then plays and shows result with new best'
   expect(await screen.findByText('120')).toBeInTheDocument();
   expect(screen.getByText('¡Nueva mejor marca!')).toBeInTheDocument();
   expect(await db.results.count()).toBe(1);
+});
+
+test('instructions come from instructionsKey when a game sets it', async () => {
+  await open('/play/fake3');
+  expect(await screen.findByRole('heading', { name: 'Tercer juego falso' })).toBeInTheDocument();
+  expect(screen.getByText('Responde 10 preguntas; tienes 20 segundos para cada una.')).toBeInTheDocument();
+  expect(screen.getByText('fake example')).toBeInTheDocument();
 });
 
 test('second visit skips instructions but offers how-to-play', async () => {

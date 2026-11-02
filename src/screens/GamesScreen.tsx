@@ -2,7 +2,7 @@ import { useLiveQuery } from 'dexie-react-hooks';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { db } from '../data/db';
-import { GAMES } from '../games/registry';
+import { TRAINING_GAMES } from '../games/registry';
 import { V1_AREAS } from '../games/types';
 import styles from './Screens.module.css';
 
@@ -22,7 +22,7 @@ export function GamesScreen() {
     <section className={styles.screen}>
       <h1>{t('nav.games')}</h1>
       {V1_AREAS.map((area) => {
-        const games = GAMES.filter((g) => g.area === area);
+        const games = TRAINING_GAMES.filter((g) => g.area === area);
         if (games.length === 0) return null;
         return (
           <section key={area} className={styles.section}>

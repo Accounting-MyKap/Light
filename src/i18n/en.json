@@ -139,6 +139,62 @@
       "delete": "Delete",
       "ok": "OK",
       "skip": "Skip"
+    },
+    "trivia-mix": {
+      "title": "General knowledge mix",
+      "description": "Questions from all 8 categories in every round."
+    },
+    "trivia-history": {
+      "title": "History",
+      "description": "World and Latin American history."
+    },
+    "trivia-science": {
+      "title": "Science",
+      "description": "Physics, chemistry, biology, astronomy and the human body."
+    },
+    "trivia-geography": {
+      "title": "Geography",
+      "description": "Countries, capitals, rivers, mountains and regions."
+    },
+    "trivia-math": {
+      "title": "Math",
+      "description": "Concepts, geometry, simple arithmetic and the history of math."
+    },
+    "trivia-arts": {
+      "title": "Arts & literature",
+      "description": "Painting, authors and works, classical music and mythology."
+    },
+    "trivia-entertainment": {
+      "title": "Entertainment",
+      "description": "Film, music and TV."
+    },
+    "trivia-sports": {
+      "title": "Sports",
+      "description": "World Cups, the Olympics and the rules of each sport."
+    },
+    "trivia-technology": {
+      "title": "Technology",
+      "description": "Inventions, computing and the history of the internet."
+    },
+    "accounting-mix": {
+      "title": "Accounting mix",
+      "description": "Questions from all 4 accounting topics."
+    },
+    "accounting-concepts": {
+      "title": "Accounting concepts",
+      "description": "Double entry, financial statements, accruals and reconciliations."
+    },
+    "accounting-colombia": {
+      "title": "Accounting in Colombia",
+      "description": "PUC, IFRS, VAT, withholding tax, ICA and e-invoicing."
+    },
+    "accounting-us": {
+      "title": "US accounting",
+      "description": "US GAAP, ASC topics, IRS forms and QuickBooks."
+    },
+    "accounting-lending": {
+      "title": "Lending & loan portfolio",
+      "description": "Interest, amortization, payoff, aging, allowances and charge-offs."
     }
   },
   "play": {
@@ -198,7 +254,13 @@
         "Earth"
       ],
       "explanation": "Jupiter has more than twice the mass of all the other planets combined."
-    }
+    },
+    "instructions": [
+      "Answer 10 questions; you have 20 seconds for each.",
+      "Tap the right answer or use keys 1 to 4. Then you'll see the answer and a short explanation.",
+      "Each correct answer earns 20 points, plus up to 10 for speed. Each mistake costs 10 points (30 on true-or-false questions).",
+      "If you don't know, tap “I don't know” or key 0: you'll see the answer without losing points."
+    ]
   },
   "today": {
     "title": "Today’s training",

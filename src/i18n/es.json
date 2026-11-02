@@ -139,6 +139,62 @@
       "delete": "Borrar",
       "ok": "OK",
       "skip": "Saltar"
+    },
+    "trivia-mix": {
+      "title": "Mezcla de cultura general",
+      "description": "Preguntas de las 8 categorías en cada ronda."
+    },
+    "trivia-history": {
+      "title": "Historia",
+      "description": "Historia universal y de América Latina."
+    },
+    "trivia-science": {
+      "title": "Ciencias",
+      "description": "Física, química, biología, astronomía y cuerpo humano."
+    },
+    "trivia-geography": {
+      "title": "Geografía",
+      "description": "Países, capitales, ríos, montañas y regiones."
+    },
+    "trivia-math": {
+      "title": "Matemáticas",
+      "description": "Conceptos, geometría, cálculo sencillo e historia de las matemáticas."
+    },
+    "trivia-arts": {
+      "title": "Arte y literatura",
+      "description": "Pintura, autores y obras, música clásica y mitología."
+    },
+    "trivia-entertainment": {
+      "title": "Entretenimiento",
+      "description": "Cine, música y televisión."
+    },
+    "trivia-sports": {
+      "title": "Deportes",
+      "description": "Mundiales, Juegos Olímpicos y reglas de cada deporte."
+    },
+    "trivia-technology": {
+      "title": "Tecnología",
+      "description": "Inventos, computación e historia de internet."
+    },
+    "accounting-mix": {
+      "title": "Mezcla contable",
+      "description": "Preguntas de las 4 subcategorías contables."
+    },
+    "accounting-concepts": {
+      "title": "Conceptos contables",
+      "description": "Partida doble, estados financieros, causación y conciliaciones."
+    },
+    "accounting-colombia": {
+      "title": "Contabilidad en Colombia",
+      "description": "PUC, NIIF, IVA, retención en la fuente, ICA y facturación electrónica."
+    },
+    "accounting-us": {
+      "title": "Contabilidad en EE. UU.",
+      "description": "US GAAP, temas ASC, formularios del IRS y QuickBooks."
+    },
+    "accounting-lending": {
+      "title": "Cartera y préstamos",
+      "description": "Intereses, amortización, payoff, aging, provisiones y castigos."
     }
   },
   "play": {
@@ -198,7 +254,13 @@
         "Tierra"
       ],
       "explanation": "Júpiter tiene más del doble de masa que todos los demás planetas juntos."
-    }
+    },
+    "instructions": [
+      "Responde 10 preguntas; tienes 20 segundos para cada una.",
+      "Toca la respuesta correcta o usa las teclas 1 a 4. Luego verás la respuesta y una breve explicación.",
+      "Cada acierto suma 20 puntos, más hasta 10 por rapidez. Cada error resta 10 puntos (30 en las de verdadero o falso).",
+      "Si no la sabes, toca «No sé» o la tecla 0: verás la respuesta sin perder puntos."
+    ]
   },
   "today": {
     "title": "Entrenamiento de hoy",

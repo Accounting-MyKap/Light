@@ -7,7 +7,12 @@ import { updateSettings } from '../data/settings';
 
 vi.mock('../games/registry', async () => {
   const { fakeGame } = await import('../test/fakeGame');
-  return { GAMES: [fakeGame], getGame: (id: string) => (id === 'fake' ? fakeGame : undefined) };
+  return {
+    GAMES: [fakeGame],
+    TRAINING_GAMES: [fakeGame],
+    QUIZ_GAMES: [],
+    getGame: (id: string) => (id === 'fake' ? fakeGame : undefined),
+  };
 });
 
 beforeEach(async () => {

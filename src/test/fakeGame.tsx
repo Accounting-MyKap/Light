@@ -25,6 +25,9 @@ export const fakeGame: GameDefinition = {
 
 export const fakeGame2: GameDefinition = { ...fakeGame, id: 'fake2' };
 
+/** Takes its instructions from a shared i18n key, like the quiz games do. */
+export const fakeGame3: GameDefinition = { ...fakeGame, id: 'fake3', instructionsKey: 'quiz.instructions' };
+
 export function registerFakeGameTranslations(): void {
   const texts = {
     games: {
@@ -37,6 +40,11 @@ export function registerFakeGameTranslations(): void {
         title: 'Segundo juego falso',
         description: 'Otro juego para pruebas',
         instructions: ['Instrucción A', 'Instrucción B'],
+      },
+      // No `instructions` here on purpose: they come from the game's `instructionsKey`.
+      fake3: {
+        title: 'Tercer juego falso',
+        description: 'Un juego con instrucciones compartidas',
       },
     },
   };

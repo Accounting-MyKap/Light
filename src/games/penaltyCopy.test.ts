@@ -17,3 +17,11 @@ test.each([
     expect(dicts[lang].games[id].instructions.join(' '), lang).toMatch(new RegExp(`\\b${penalty}\\b`));
   }
 });
+
+test('quiz.instructions states the 10-point and 30-point penalties (es and en)', () => {
+  for (const lang of ['es', 'en']) {
+    const text = (dicts[lang] as unknown as { quiz: { instructions: string[] } }).quiz.instructions.join(' ');
+    expect(text, lang).toMatch(/\b10\b/);
+    expect(text, lang).toMatch(/\b30\b/);
+  }
+});
