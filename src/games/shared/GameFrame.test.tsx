@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { useState, type ReactNode } from 'react';
 import { initI18n } from '../../i18n';
-import { FeedbackProvider, useFeedback, type FeedbackKind } from './feedback';
+import { FeedbackProvider, useFeedback, useFeedbackSignal, type FeedbackKind } from './feedback';
 import { GameFrame, type GameFrameProps } from './GameFrame';
 import { PlayChromeContext, type PlayChrome } from './playChrome';
 
@@ -174,6 +174,38 @@ test('feedback signals draw a flash of their kind and restart on each one', asyn
   await userEvent.click(screen.getByRole('button', { name: 'emit timeout' }));
   expect(flash(container)).toHaveLength(1);
   expect(container.querySelectorAll('[data-flash="timeout"]')).toHaveLength(1);
+});
+
+test("a game's keyed child never collides with the flash: its old copies are removed, not piled up", async () => {
+  // Like Arrows: one child keyed by a counter that moves in step with the signal ids, so the child and the
+  // flash would both be keyed 1, 2, 3... if they were siblings in the same list.
+  function KeyedGame() {
+    const key = useFeedbackSignal()?.id ?? 0;
+    return (
+      <GameFrame {...baseProps}>
+        <p key={key} data-testid="row">
+          fila {key}
+        </p>
+      </GameFrame>
+    );
+  }
+  const { container } = render(
+    <FeedbackProvider>
+      <Emitter />
+      <KeyedGame />
+    </FeedbackProvider>,
+  );
+  const stage = container.querySelector('[data-zone="stage"]') as HTMLElement;
+  expect(screen.getAllByTestId('row')).toHaveLength(1);
+
+  for (const name of ['emit correct', 'emit wrong', 'emit correct', 'emit timeout', 'emit correct']) {
+    await userEvent.click(screen.getByRole('button', { name }));
+    expect(screen.getAllByTestId('row')).toHaveLength(1);
+    // The stage holds the game's one element and the one flash, nothing left over.
+    expect(stage.children).toHaveLength(2);
+    expect(flash(container)).toHaveLength(1);
+  }
+  expect(screen.getByTestId('row')).toHaveTextContent('fila 5');
 });
 
 test('a reaction left over from before the frame mounted is not replayed', async () => {

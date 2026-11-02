@@ -1,7 +1,7 @@
 import { useContext, useEffect, useRef, useState, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import { prefersReducedMotion } from '../../core/motion';
-import { useFeedbackSignal } from './feedback';
+import { useFeedbackSignal, type FeedbackSignal } from './feedback';
 import { PlayChromeContext } from './playChrome';
 import styles from './GameFrame.module.css';
 
@@ -107,8 +107,11 @@ export function GameFrame({ score, level, time, rounds, controls, children }: Ga
       {rounds && <RoundDots current={rounds.current} total={rounds.total} />}
 
       <div ref={stageRef} className={styles.stage} data-zone="stage">
-        {children}
-        {signal && <span key={signal.id} className={styles.flash} data-flash={signal.kind} aria-hidden="true" />}
+        {/* The game's children and the flash are siblings, so each gets its own scope: a game that keys its
+            element (Arrows keys its row by trial count, which can equal a signal id) can never share a key
+            with the flash, which would stop React from removing the old rows. */}
+        <>{children}</>
+        <Flash signal={signal} />
       </div>
 
       {controls && (
@@ -118,6 +121,12 @@ export function GameFrame({ score, level, time, rounds, controls, children }: Ga
       )}
     </div>
   );
+}
+
+/** The flash over the game zone. Its element is keyed by the signal, so every answer starts the animation over. */
+function Flash({ signal }: { signal: FeedbackSignal | null }) {
+  if (!signal) return null;
+  return <span key={signal.id} className={styles.flash} data-flash={signal.kind} aria-hidden="true" />;
 }
 
 function TimeBar({ remainingMs, totalMs }: { remainingMs: number; totalMs: number }) {

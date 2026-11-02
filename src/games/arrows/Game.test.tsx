@@ -68,6 +68,23 @@ test('every new trial re-mounts the arrow row so repeats are visible', () => {
   expect(screen.getByTestId('arrows-row')).not.toBe(before);
 });
 
+test('there is always exactly one arrow row, after answers and after a miss (rows never pile up)', () => {
+  renderGame();
+  expect(screen.getAllByTestId('arrows-row')).toHaveLength(1);
+  for (let i = 0; i < 4; i++) {
+    advance(300);
+    fireEvent.keyDown(window, { key: target() === 'left' ? 'ArrowLeft' : 'ArrowRight' });
+    expect(screen.getAllByTestId('arrows-row')).toHaveLength(1);
+  }
+  // Let one arrow time out.
+  advance(arrowWindowMs(1) + 100);
+  expect(flashes()).toEqual(['timeout']);
+  expect(screen.getAllByTestId('arrows-row')).toHaveLength(1);
+  advance(300);
+  fireEvent.keyDown(window, { key: target() === 'left' ? 'ArrowLeft' : 'ArrowRight' });
+  expect(screen.getAllByTestId('arrows-row')).toHaveLength(1);
+});
+
 test('holding an arrow key does not answer trials (auto-repeat is ignored)', () => {
   renderGame();
   advance(300);
