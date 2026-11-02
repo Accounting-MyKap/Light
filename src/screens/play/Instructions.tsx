@@ -1,15 +1,15 @@
 import { useTranslation } from 'react-i18next';
 import type { GameDefinition } from '../../games/types';
-import { AreaLabel } from './AreaLabel';
+import { IntroHeader } from './IntroHeader';
 import styles from './Play.module.css';
 
-export function Instructions({ game, onStart }: { game: GameDefinition; onStart: () => void }) {
+export function Instructions({ game, onStart, onExit }: { game: GameDefinition; onStart: () => void; onExit: () => void }) {
   const { t } = useTranslation();
   const steps = t(`games.${game.id}.instructions`, { returnObjects: true }) as string[];
   const { Example } = game;
   return (
     <section className={styles.screen}>
-      <AreaLabel area={game.area} />
+      <IntroHeader area={game.area} onExit={onExit} />
       <h1 className={styles.introTitle}>{t(`games.${game.id}.title`)}</h1>
       {/* Explicit role: Safari drops the list semantics once the markers are hidden. */}
       <ol className={styles.steps} role="list">

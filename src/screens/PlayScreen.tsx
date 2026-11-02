@@ -10,7 +10,7 @@ import { PlayChromeContext, type PlayChrome, type PlayHud } from '../games/share
 import type { GameDefinition, GameResult } from '../games/types';
 import { recordGameResult } from '../play/recordGameResult';
 import { requestSync } from '../sync';
-import { AreaLabel } from './play/AreaLabel';
+import { IntroHeader } from './play/IntroHeader';
 import { Instructions } from './play/Instructions';
 import { PauseOverlay } from './play/PauseOverlay';
 import { ResultView } from './play/ResultView';
@@ -179,10 +179,10 @@ function PlaySession({ game, daily }: { game: GameDefinition; daily: string | nu
   const renderPhase = (phase: Exclude<Phase, { kind: 'loading' }>) => {
     switch (phase.kind) {
       case 'intro':
-        if (phase.showInstructions) return <Instructions game={game} onStart={handleStart} />;
+        if (phase.showInstructions) return <Instructions game={game} onStart={handleStart} onExit={exit} />;
         return (
           <section className={styles.screen}>
-            <AreaLabel area={game.area} />
+            <IntroHeader area={game.area} onExit={exit} />
             <h1 className={styles.introTitle}>{title}</h1>
             <p className={styles.description}>{t(`games.${game.id}.description`)}</p>
             <div className={styles.introActions}>

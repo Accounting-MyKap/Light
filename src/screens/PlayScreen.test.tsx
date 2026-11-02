@@ -102,6 +102,31 @@ test('the intro for a returning player shows the area label too', async () => {
   expect(screen.getByText('Memoria')).toBeInTheDocument();
 });
 
+test('the instructions have a ✕ that leaves without playing or saving', async () => {
+  await open('/play/fake');
+  expect(await screen.findByText('Primera instrucción falsa')).toBeInTheDocument();
+  await userEvent.click(screen.getByRole('button', { name: 'Salir del juego' }));
+  expect(await screen.findByRole('heading', { level: 1, name: 'Juegos' })).toBeInTheDocument();
+  expect(await db.results.count()).toBe(0);
+});
+
+test('the intro for a returning player has the ✕ too', async () => {
+  await updateSettings({ seenInstructions: ['fake'] });
+  await open('/play/fake');
+  expect(await screen.findByRole('button', { name: '¿Cómo se juega?' })).toBeInTheDocument();
+  await userEvent.click(screen.getByRole('button', { name: 'Salir del juego' }));
+  expect(await screen.findByRole('heading', { level: 1, name: 'Juegos' })).toBeInTheDocument();
+});
+
+test('the ✕ on the intro of a daily game goes back to Today', async () => {
+  await updateSettings({ seenInstructions: ['fake'] });
+  await db.dailyPlans.put({ day: '2026-10-20', gameIds: ['fake', 'fake2'], completed: [] });
+  await open('/play/fake?daily=2026-10-20');
+  await userEvent.click(await screen.findByRole('button', { name: 'Salir del juego' }));
+  expect(await screen.findByRole('heading', { name: 'Entrenamiento de hoy' })).toBeInTheDocument();
+  expect(await db.results.count()).toBe(0);
+});
+
 test('the frame shows the game title and its ✕ opens the pause sheet with time and points', async () => {
   await updateSettings({ seenInstructions: ['fake'] });
   await open('/play/fake');
