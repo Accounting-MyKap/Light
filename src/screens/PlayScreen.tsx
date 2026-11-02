@@ -5,6 +5,7 @@ import { playTone } from '../core/sound';
 import { getStartLevel } from '../data/levels';
 import { DEFAULT_SETTINGS, getSettings, updateSettings, useSettings } from '../data/settings';
 import { getGame } from '../games/registry';
+import { LuzScope } from '../games/shared/luz/LuzScope';
 import type { GameDefinition, GameResult } from '../games/types';
 import { recordGameResult } from '../play/recordGameResult';
 import { requestSync } from '../sync';
@@ -136,73 +137,77 @@ function PlaySession({ game, daily }: { game: GameDefinition; daily: string | nu
 
   const title = t(`games.${game.id}.title`);
 
-  switch (phase.kind) {
-    case 'loading':
-      return null;
-    case 'intro':
-      if (phase.showInstructions) return <Instructions game={game} onStart={handleStart} />;
-      return (
-        <section className={styles.screen}>
-          <h1>{title}</h1>
-          <p>{t(`games.${game.id}.description`)}</p>
-          <div className={styles.actions}>
-            <button className={styles.primary} onClick={handleStart}>
-              {t('common.start')}
-            </button>
-            <button className={styles.secondary} onClick={() => setPhase({ ...phase, showInstructions: true })}>
-              {t('common.howToPlay')}
-            </button>
-          </div>
-        </section>
-      );
-    case 'playing': {
-      const { Component } = game;
-      return (
-        <section className={styles.screen} data-game={game.id}>
-          <div className={styles.topbar}>
+  // Every phase of the game screen sits on the dark Luz background, whatever the app theme is.
+  const renderPhase = (phase: Exclude<Phase, { kind: 'loading' }>) => {
+    switch (phase.kind) {
+      case 'intro':
+        if (phase.showInstructions) return <Instructions game={game} onStart={handleStart} />;
+        return (
+          <section className={styles.screen}>
             <h1>{title}</h1>
-            <button className={styles.iconButton} aria-label={t('play.exit')} onClick={() => setPaused(true)}>
-              ✕
-            </button>
-          </div>
-          <Component key={round} startLevel={startLevel} paused={paused} onFinish={handleFinish} />
-          {paused && <PauseOverlay onContinue={() => setPaused(false)} onExit={exit} />}
-        </section>
-      );
+            <p>{t(`games.${game.id}.description`)}</p>
+            <div className={styles.actions}>
+              <button className={styles.primary} onClick={handleStart}>
+                {t('common.start')}
+              </button>
+              <button className={styles.secondary} onClick={() => setPhase({ ...phase, showInstructions: true })}>
+                {t('common.howToPlay')}
+              </button>
+            </div>
+          </section>
+        );
+      case 'playing': {
+        const { Component } = game;
+        return (
+          <section className={styles.screen} data-game={game.id}>
+            <div className={styles.topbar}>
+              <h1>{title}</h1>
+              <button className={styles.iconButton} aria-label={t('play.exit')} onClick={() => setPaused(true)}>
+                ✕
+              </button>
+            </div>
+            <Component key={round} startLevel={startLevel} paused={paused} onFinish={handleFinish} />
+            {paused && <PauseOverlay onContinue={() => setPaused(false)} onExit={exit} />}
+          </section>
+        );
+      }
+      case 'saveError':
+        return (
+          <section className={`${styles.screen} ${styles.center}`}>
+            <h1>{title}</h1>
+            <p role="alert">{t('play.saveError')}</p>
+            <div className={styles.actions}>
+              <button className={styles.primary} onClick={() => void save(phase.result, phase.resultId)}>
+                {t('play.retry')}
+              </button>
+              <button className={styles.secondary} onClick={exit}>
+                {t('common.exit')}
+              </button>
+            </div>
+          </section>
+        );
+      case 'result':
+        return (
+          <ResultView
+            game={game}
+            result={phase.result}
+            previousBest={phase.previousBest}
+            onPlayAgain={startPlaying}
+            onBack={() => navigate('/games')}
+            daily={
+              daily === null
+                ? undefined
+                : {
+                    nextGameId: phase.nextGameId,
+                    onNext: () => navigate(`/play/${phase.nextGameId}?daily=${daily}`, { replace: true }),
+                    onSummary: () => navigate('/'),
+                  }
+            }
+          />
+        );
     }
-    case 'saveError':
-      return (
-        <section className={`${styles.screen} ${styles.center}`}>
-          <h1>{title}</h1>
-          <p role="alert">{t('play.saveError')}</p>
-          <div className={styles.actions}>
-            <button className={styles.primary} onClick={() => void save(phase.result, phase.resultId)}>
-              {t('play.retry')}
-            </button>
-            <button className={styles.secondary} onClick={exit}>
-              {t('common.exit')}
-            </button>
-          </div>
-        </section>
-      );
-    case 'result':
-      return (
-        <ResultView
-          game={game}
-          result={phase.result}
-          previousBest={phase.previousBest}
-          onPlayAgain={startPlaying}
-          onBack={() => navigate('/games')}
-          daily={
-            daily === null
-              ? undefined
-              : {
-                  nextGameId: phase.nextGameId,
-                  onNext: () => navigate(`/play/${phase.nextGameId}?daily=${daily}`, { replace: true }),
-                  onSummary: () => navigate('/'),
-                }
-          }
-        />
-      );
-  }
+  };
+
+  if (phase.kind === 'loading') return null;
+  return <LuzScope area={game.area}>{renderPhase(phase)}</LuzScope>;
 }

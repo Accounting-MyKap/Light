@@ -26,7 +26,7 @@ export default defineConfig({
         ],
       },
       workbox: {
-        globPatterns: ['**/*.{js,css,html,svg,png,webmanifest}'],
+        globPatterns: ['**/*.{js,css,html,svg,png,webmanifest,woff2}'],
       },
     }),
   ],
@@ -37,7 +37,7 @@ export default defineConfig({
     include: ['src/**/*.test.{ts,tsx}'],
     // Unit tests never reach a real Supabase project, even when a developer has these set in .env.local.
     env: { VITE_SUPABASE_URL: '', VITE_SUPABASE_PUBLISHABLE_KEY: '', VITE_TURNSTILE_SITE_KEY: '' },
-    // Keep theme.css readable so the contrast test can check the real tokens.
-    css: { include: [/theme\.css/] },
+    // Keep theme.css and luz.css readable so the contrast test can check the real tokens.
+    css: { include: [/theme\.css/, /luz\.css/] },
   },
 });

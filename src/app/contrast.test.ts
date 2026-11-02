@@ -1,9 +1,17 @@
+import luzCss from '../games/shared/luz/luz.css?raw';
 import css from './theme.css?raw';
 
-function tokens(selector: string): Record<string, string> {
-  const start = css.indexOf(selector);
-  const block = css.slice(css.indexOf('{', start) + 1, css.indexOf('}', start));
+// Finds the block by its exact selector text followed by ` {`, so `[data-luz] {` never matches the longer
+// `[data-luz][data-area='…'] {` selectors that also contain it.
+function tokensIn(source: string, selector: string): Record<string, string> {
+  const start = source.indexOf(`${selector} {`);
+  if (start === -1) throw new Error(`Selector not found: ${selector}`);
+  const block = source.slice(source.indexOf('{', start) + 1, source.indexOf('}', start));
   return Object.fromEntries([...block.matchAll(/--([\w-]+):\s*(#[0-9a-fA-F]{6})/g)].map((m) => [m[1], m[2]]));
+}
+
+function tokens(selector: string): Record<string, string> {
+  return tokensIn(css, selector);
 }
 
 function luminance(hex: string): number {
@@ -36,5 +44,31 @@ describe.each([`:root[data-theme='light']`, `:root[data-theme='dark']`])('%s', (
   test.each(TEXT_PAIRS)('--%s on --%s meets WCAG AA (4.5:1)', (fg, bg) => {
     expect(t[fg], `--${fg} defined`).toBeDefined();
     expect(contrast(t[fg], t[bg])).toBeGreaterThanOrEqual(4.5);
+  });
+});
+
+describe('Luz (always-dark game screens)', () => {
+  const luz = tokensIn(luzCss, '[data-luz]');
+  const AREAS = ['memory', 'attention', 'speed', 'flexibility', 'math'] as const;
+  const games = AREAS.map((area): [string, string] => [area, tokensIn(luzCss, `[data-luz][data-area='${area}']`).game]);
+
+  test.each([['luz-text'], ['luz-muted']])('--%s on --luz-bg meets WCAG AA (4.5:1)', (fg) => {
+    expect(luz[fg], `--${fg} defined`).toBeDefined();
+    expect(contrast(luz[fg], luz['luz-bg'])).toBeGreaterThanOrEqual(4.5);
+  });
+
+  test.each([['luz-ok'], ['luz-bad']])('--%s on --luz-bg meets 3:1', (fg) => {
+    expect(luz[fg], `--${fg} defined`).toBeDefined();
+    expect(contrast(luz[fg], luz['luz-bg'])).toBeGreaterThanOrEqual(3);
+  });
+
+  describe.each(games)('area %s', (_area, game) => {
+    test('--game on --luz-bg meets 3:1', () => {
+      expect(game, '--game defined').toBeDefined();
+      expect(contrast(game, luz['luz-bg'])).toBeGreaterThanOrEqual(3);
+    });
+    test('--luz-ink on --game meets WCAG AA (4.5:1)', () => {
+      expect(contrast(luz['luz-ink'], game)).toBeGreaterThanOrEqual(4.5);
+    });
   });
 });
