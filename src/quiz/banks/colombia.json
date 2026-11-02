@@ -32,10 +32,10 @@
       "id": "colombia-0004", "difficulty": 1, "type": "choice", "asOf": "2026-11",
       "es": { "question": "En el PUC (Plan Único de Cuentas), ¿qué agrupa la clase 1?",
               "options": ["Activos", "Pasivos", "Patrimonio", "Ingresos"],
-              "explanation": "Según el Decreto 2650 de 1993, la clase 1 es Activo, la 2 Pasivo, la 3 Patrimonio, la 4 Ingresos, la 5 Gastos, la 6 Costos de ventas y la 7 Costos de producción." },
+              "explanation": "Según el Decreto 2650 de 1993, la clase 1 agrupa el activo: los recursos que controla la empresa. Toda cuenta cuyo código empieza por 1 es de activo." },
       "en": { "question": "In the PUC (Colombia's chart of accounts), what does class 1 group?",
               "options": ["Assets", "Liabilities", "Equity", "Revenue"],
-              "explanation": "Under Decree 2650 of 1993, class 1 is Assets, 2 Liabilities, 3 Equity, 4 Revenue, 5 Expenses, 6 Cost of sales and 7 Production costs." }
+              "explanation": "Under Decree 2650 of 1993, class 1 groups assets: the resources the company controls. Every account whose code starts with 1 is an asset account." }
     },
     {
       "id": "colombia-0005", "difficulty": 2, "type": "choice",
@@ -66,17 +66,17 @@
     },
     {
       "id": "colombia-0008", "difficulty": 2, "type": "truefalse", "answer": true, "asOf": "2026-11",
-      "es": { "question": "En Colombia, la factura electrónica de venta debe ser validada por la DIAN antes de entregarse al comprador.",
-              "explanation": "El facturador la genera, la DIAN la valida y solo entonces se entrega al comprador (art. 616-1 del Estatuto Tributario y Resolución 000042 de 2020)." },
-      "en": { "question": "In Colombia, an electronic sales invoice must be validated by the DIAN before it is delivered to the buyer.",
-              "explanation": "The seller generates it, the DIAN validates it, and only then is it delivered to the buyer (art. 616-1 of the Tax Code and Resolution 000042 of 2020)." }
+      "es": { "question": "Como regla general, en Colombia la factura electrónica de venta debe ser validada por la DIAN antes de entregarse al comprador.",
+              "explanation": "El facturador la genera, la DIAN la valida y solo entonces se entrega al comprador, salvo contingencia técnica (art. 616-1 del Estatuto Tributario y Resolución 000042 de 2020 y sus modificaciones)." },
+      "en": { "question": "As a general rule, in Colombia an electronic sales invoice must be validated by the DIAN (tax authority) before it is delivered to the buyer.",
+              "explanation": "The seller generates it, the DIAN validates it, and only then is it delivered to the buyer, except in a technical contingency (art. 616-1 of the Tax Code and Resolution 000042 of 2020, as amended)." }
     },
     {
-      "id": "colombia-0009", "difficulty": 3, "type": "choice", "asOf": "2026-11",
+      "id": "colombia-0009", "difficulty": 2, "type": "choice", "asOf": "2026-11",
       "es": { "question": "¿Qué formulario de la DIAN se usa para presentar la declaración del IVA?",
               "options": ["Formulario 300", "Formulario 350", "Formulario 110", "Formulario 210"],
               "explanation": "El formulario 300 es la declaración del IVA. El 350 es de retención en la fuente, el 110 de renta de personas jurídicas y el 210 de renta de personas naturales. Los prescribe la DIAN por resolución." },
-      "en": { "question": "Which DIAN form is used to file the VAT return?",
+      "en": { "question": "Which form of the DIAN (Colombia's tax authority) is used to file the VAT return?",
               "options": ["Form 300", "Form 350", "Form 110", "Form 210"],
               "explanation": "Form 300 is the VAT return. Form 350 is for withholding tax, Form 110 for corporate income tax and Form 210 for individual income tax. Forms are prescribed by DIAN resolution." }
     },
@@ -95,7 +95,7 @@
               "options": ["La asamblea de accionistas o junta de socios", "El gerente general", "La DIAN", "La Superintendencia de Sociedades"],
               "explanation": "Lo elige el máximo órgano social, no la administración, para que pueda fiscalizarla con independencia (Código de Comercio, arts. 203 y siguientes)." },
       "en": { "question": "Who appoints a company's revisor fiscal (statutory auditor)?",
-              "options": ["The shareholders' meeting or board of partners", "The general manager", "The DIAN", "The Superintendency of Companies"],
+              "options": ["The shareholders' or partners' meeting", "The general manager", "The DIAN", "The Superintendency of Companies"],
               "explanation": "The highest corporate body elects the revisor fiscal, not management, so it can oversee management independently (Commercial Code, arts. 203 ff.)." }
     },
     {
@@ -106,6 +106,770 @@
       "en": { "question": "Which body registers public accountants and issues their professional card?",
               "options": ["Junta Central de Contadores (Central Accountants Board)", "DIAN (tax authority)", "Superintendencia de Sociedades (companies regulator)", "Consejo Técnico de la Contaduría Pública (CTCP)"],
               "explanation": "The Junta Central de Contadores registers accountants and issues the professional card (Law 43 of 1990). The Consejo Técnico de la Contaduría Pública guides accounting standards." }
+    },
+    {
+      "id": "colombia-0013", "difficulty": 1, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "En el PUC, ¿con qué dígito empiezan las cuentas del pasivo?",
+              "options": ["2", "1", "3", "4"],
+              "explanation": "Según el Decreto 2650 de 1993, la clase 2 es el Pasivo: las obligaciones de la empresa, como los préstamos, los proveedores y los impuestos por pagar." },
+      "en": { "question": "In the PUC (Colombia's chart of accounts), what digit do liability accounts start with?",
+              "options": ["2", "1", "3", "4"],
+              "explanation": "Under Decree 2650 of 1993, class 2 is Liabilities: the company's obligations, such as loans, suppliers and taxes payable." }
+    },
+    {
+      "id": "colombia-0014", "difficulty": 1, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "En el PUC, ¿en qué clase están el capital social, las reservas y los resultados del ejercicio?",
+              "options": ["Patrimonio", "Pasivo", "Ingresos", "Activo"],
+              "explanation": "Son cuentas de la clase 3, Patrimonio (Decreto 2650 de 1993): lo que pertenece a los socios después de restar los pasivos de los activos." },
+      "en": { "question": "In the PUC (Colombia's chart of accounts), which class holds share capital, reserves and the year's results?",
+              "options": ["Equity", "Liabilities", "Revenue", "Assets"],
+              "explanation": "They are class 3 accounts, Equity (Decree 2650 of 1993): what belongs to the owners after subtracting liabilities from assets." }
+    },
+    {
+      "id": "colombia-0015", "difficulty": 1, "type": "truefalse", "answer": true, "asOf": "2026-11",
+      "es": { "question": "En el PUC, las cuentas que empiezan por 4 son de ingresos.",
+              "explanation": "La clase 4 agrupa los ingresos (Decreto 2650 de 1993). Por ejemplo, la cuenta 4135 registra los ingresos por comercio al por mayor y al por menor." },
+      "en": { "question": "In the PUC (Colombia's chart of accounts), accounts that start with 4 are revenue accounts.",
+              "explanation": "Class 4 groups revenue (Decree 2650 of 1993). For example, account 4135 records revenue from wholesale and retail trade." }
+    },
+    {
+      "id": "colombia-0016", "difficulty": 1, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "En el PUC, ¿en qué grupo del activo se registran la caja y los bancos?",
+              "options": ["Disponible (11)", "Inversiones (12)", "Deudores (13)", "Diferidos (17)"],
+              "explanation": "El grupo 11, Disponible, reúne los recursos de liquidez inmediata, como la caja (1105), los bancos (1110) y las cuentas de ahorro (1120), según el Decreto 2650 de 1993." },
+      "en": { "question": "In the PUC (Colombia's chart of accounts), which asset group holds cash on hand and bank accounts?",
+              "options": ["Disponible (11, cash)", "Inversiones (12, investments)", "Deudores (13, receivables)", "Diferidos (17, deferred)"],
+              "explanation": "Group 11, Disponible, holds immediately available funds, such as cash on hand (1105), banks (1110) and savings accounts (1120), under Decree 2650 of 1993." }
+    },
+    {
+      "id": "colombia-0017", "difficulty": 1, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "En el PUC, ¿en qué grupo del activo se registran las mercancías compradas para revender?",
+              "options": ["Inventarios (14)", "Deudores (13)", "Inversiones (12)", "Otros activos (18)"],
+              "explanation": "Van en el grupo 14, Inventarios; por ejemplo, la cuenta 1435 es la de mercancías no fabricadas por la empresa (Decreto 2650 de 1993)." },
+      "en": { "question": "In the PUC (Colombia's chart of accounts), which asset group holds goods bought for resale?",
+              "options": ["Inventarios (14, inventories)", "Deudores (13, receivables)", "Inversiones (12, investments)", "Otros activos (18, other assets)"],
+              "explanation": "They go in group 14, Inventarios (inventories); for example, account 1435 is for goods not manufactured by the company (Decree 2650 of 1993)." }
+    },
+    {
+      "id": "colombia-0018", "difficulty": 1, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "En el PUC, ¿en qué grupo se registran los edificios, la maquinaria y los vehículos que usa la empresa?",
+              "options": ["Propiedades, planta y equipo (15)", "Inventarios (14)", "Intangibles (16)", "Inversiones (12)"],
+              "explanation": "Los activos tangibles que la empresa usa en su operación, y no vende, van en el grupo 15, Propiedades, planta y equipo (Decreto 2650 de 1993)." },
+      "en": { "question": "In the PUC (Colombia's chart of accounts), which group holds the buildings, machinery and vehicles the company uses?",
+              "options": ["Propiedades, planta y equipo (15, PP&E)", "Inventarios (14, inventories)", "Intangibles (16, intangibles)", "Inversiones (12, investments)"],
+              "explanation": "Tangible assets the company uses in its operations, rather than sells, go in group 15, Propiedades, planta y equipo (PP&E), under Decree 2650 of 1993." }
+    },
+    {
+      "id": "colombia-0019", "difficulty": 1, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "Una empresa recibe un préstamo de un banco. ¿En qué grupo del PUC registra la deuda?",
+              "options": ["Obligaciones financieras (21)", "Proveedores (22)", "Cuentas por pagar (23)", "Otros pasivos (28)"],
+              "explanation": "Las deudas con bancos y otras entidades financieras van en el grupo 21, Obligaciones financieras. El 22 es de proveedores y el 23 de otras cuentas por pagar (Decreto 2650 de 1993)." },
+      "en": { "question": "A company takes out a bank loan. In which group of the PUC (Colombia's chart of accounts) does it record the debt?",
+              "options": ["Obligaciones financieras (21, financial debt)", "Proveedores (22, suppliers)", "Cuentas por pagar (23, payables)", "Otros pasivos (28, other liabilities)"],
+              "explanation": "Debts with banks and other financial institutions go in group 21, Obligaciones financieras. Group 22 is for suppliers and 23 for other payables (Decree 2650 of 1993)." }
+    },
+    {
+      "id": "colombia-0020", "difficulty": 1, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿Qué número asigna la DIAN para identificar a cada contribuyente?",
+              "options": ["El NIT", "El código CIIU", "El número de matrícula mercantil", "El número de la resolución de facturación"],
+              "explanation": "El NIT (Número de Identificación Tributaria) identifica al contribuyente en sus trámites ante la DIAN (art. 555-1 del Estatuto Tributario)." },
+      "en": { "question": "Which number does the DIAN (Colombia's tax authority) assign to identify each taxpayer?",
+              "options": ["The NIT (tax ID number)", "The CIIU code (economic activity code)", "The commercial registration number", "The invoicing authorization number"],
+              "explanation": "The NIT (Número de Identificación Tributaria, tax ID number) identifies the taxpayer in its dealings with the DIAN (art. 555-1 of the Tax Code)." }
+    },
+    {
+      "id": "colombia-0021", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cómo se llama el dígito que va al final del NIT, después del guion?",
+              "options": ["Dígito de verificación", "Dígito de régimen", "Código de responsabilidad", "Código de seccional"],
+              "explanation": "El dígito de verificación (DV) se calcula a partir de los demás números del NIT y sirve para detectar errores al digitarlo." },
+      "en": { "question": "What is the digit at the end of a NIT (Colombian tax ID), after the hyphen, called?",
+              "options": ["Check digit (dígito de verificación)", "Regime digit", "Responsibility code", "Tax office code"],
+              "explanation": "The check digit (DV) is calculated from the other digits of the NIT and helps catch typing errors." }
+    },
+    {
+      "id": "colombia-0022", "difficulty": 1, "type": "truefalse", "answer": true,
+      "es": { "question": "Para una persona natural con cédula de ciudadanía, el NIT se forma con el mismo número de su cédula.",
+              "explanation": "La DIAN le asigna como NIT su número de cédula, seguido de un dígito adicional que se calcula a partir de ese número." },
+      "en": { "question": "For an individual with a Colombian citizenship ID card (cédula), the NIT (tax ID) is built from the same ID number.",
+              "explanation": "The DIAN assigns the cédula number as the NIT, followed by one extra digit calculated from that number." }
+    },
+    {
+      "id": "colombia-0023", "difficulty": 1, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿En qué formato se genera la factura electrónica de venta que valida la DIAN?",
+              "options": ["XML", "PDF", "XLSX (Excel)", "DOCX (Word)"],
+              "explanation": "La factura electrónica es un archivo XML con el estándar UBL; el PDF es solo su representación gráfica (Resolución 000042 de 2020 de la DIAN y sus modificaciones)." },
+      "en": { "question": "In what format is the electronic sales invoice validated by the DIAN (Colombia's tax authority) generated?",
+              "options": ["XML", "PDF", "XLSX (Excel)", "DOCX (Word)"],
+              "explanation": "The e-invoice is an XML file following the UBL standard; the PDF is only its graphic representation (DIAN Resolution 000042 of 2020, as amended)." }
+    },
+    {
+      "id": "colombia-0024", "difficulty": 1, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿Qué es la retención en la fuente?",
+              "options": ["Un cobro anticipado de un impuesto al hacer un pago", "Un impuesto adicional al impuesto de renta", "Una multa por declarar tarde", "Un descuento comercial que se da al proveedor"],
+              "explanation": "Es un mecanismo para recaudar el impuesto en forma anticipada, dentro del mismo año en que se causa (art. 367 del Estatuto Tributario). No es un impuesto distinto." },
+      "en": { "question": "What is retención en la fuente (withholding tax) in Colombia?",
+              "options": ["Advance collection of a tax when a payment is made", "An extra tax on top of income tax", "A penalty for filing late", "A trade discount given to the supplier"],
+              "explanation": "It collects the tax in advance, within the same year in which it accrues (art. 367 of the Tax Code). It is not a separate tax." }
+    },
+    {
+      "id": "colombia-0025", "difficulty": 1, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "En una compra sujeta a retención en la fuente, ¿quién practica la retención?",
+              "options": ["El agente de retención que hace el pago", "El proveedor que recibe el pago", "La DIAN, al recibir la declaración", "El banco por el que se hace el pago"],
+              "explanation": "La practica el agente de retención, es decir, quien paga (arts. 368 y 375 del Estatuto Tributario). Luego la declara y la paga a la DIAN." },
+      "en": { "question": "In a purchase subject to withholding tax, who withholds it?",
+              "options": ["The withholding agent making the payment", "The supplier receiving the payment", "The DIAN, when it receives the return", "The bank through which payment is made"],
+              "explanation": "The withholding agent, that is, the payer, withholds it (arts. 368 and 375 of the Tax Code), then files and pays it to the DIAN (Colombia's tax authority)." }
+    },
+    {
+      "id": "colombia-0026", "difficulty": 1, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿Qué impuesto grava la propiedad de bienes inmuebles y lo cobran los municipios?",
+              "options": ["El impuesto predial unificado", "El impuesto de industria y comercio", "El impuesto de registro", "El impuesto de timbre"],
+              "explanation": "El predial unificado grava los inmuebles ubicados en cada municipio o distrito, que lo administra y fija sus tarifas (Ley 44 de 1990)." },
+      "en": { "question": "Which tax is levied on owning real estate and collected by Colombian municipalities?",
+              "options": ["Property tax (impuesto predial)", "Industry and commerce tax (ICA)", "Registration tax", "Stamp tax"],
+              "explanation": "The impuesto predial unificado is levied on real estate in each municipality or district, which administers it and sets its rates (Law 44 of 1990)." }
+    },
+    {
+      "id": "colombia-0027", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué libro de contabilidad registra las operaciones en orden cronológico, a medida que ocurren?",
+              "options": ["El libro diario", "El libro mayor", "El libro de actas", "El libro de inventarios y balances"],
+              "explanation": "El libro diario registra cada operación por fecha, con sus débitos y créditos. El mayor resume esos movimientos por cuenta." },
+      "en": { "question": "Which accounting book records transactions in chronological order, as they occur?",
+              "options": ["The journal (libro diario)", "The general ledger (libro mayor)", "The minutes book", "The inventory and balance book"],
+              "explanation": "The journal records each transaction by date, with its debits and credits. The general ledger summarizes those entries by account." }
+    },
+    {
+      "id": "colombia-0028", "difficulty": 1, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿En qué libro se dejan por escrito las decisiones de la asamblea de accionistas?",
+              "options": ["El libro de actas", "El libro diario", "El libro de registro de accionistas", "El libro mayor y balances"],
+              "explanation": "Las decisiones de la asamblea o de la junta de socios constan en actas firmadas por el presidente y el secretario de la reunión (Código de Comercio, art. 189)." },
+      "en": { "question": "In which book are the decisions of a Colombian company's shareholders' meeting recorded?",
+              "options": ["The minutes book (libro de actas)", "The journal", "The shareholder register", "The general ledger"],
+              "explanation": "Decisions of the shareholders' or partners' meeting are recorded in minutes signed by the meeting's chair and secretary (Commercial Code, art. 189)." }
+    },
+    {
+      "id": "colombia-0029", "difficulty": 1, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿Qué entidad lleva el registro mercantil donde se inscriben los comerciantes y las sociedades?",
+              "options": ["La cámara de comercio", "La DIAN", "La Superintendencia de Sociedades", "La notaría"],
+              "explanation": "Las cámaras de comercio llevan el registro mercantil: la matrícula de comerciantes y establecimientos y la inscripción de actos y documentos (Código de Comercio, arts. 26 y 27)." },
+      "en": { "question": "In Colombia, which body keeps the commercial registry where merchants and companies are registered?",
+              "options": ["The chamber of commerce", "The DIAN (tax authority)", "The Superintendency of Companies", "A notary's office"],
+              "explanation": "Chambers of commerce keep the commercial registry: the registration of merchants and businesses, and of acts and documents (Commercial Code, arts. 26 and 27)." }
+    },
+    {
+      "id": "colombia-0030", "difficulty": 1, "type": "truefalse", "answer": true, "asOf": "2026-11",
+      "es": { "question": "Según el Código de Comercio, todo comerciante está obligado a llevar contabilidad regular de sus negocios.",
+              "explanation": "Es uno de los deberes del comerciante del art. 19 del Código de Comercio, junto con matricularse en el registro mercantil y conservar sus documentos." },
+      "en": { "question": "Under Colombia's Commercial Code, every merchant must keep regular accounting records of its business.",
+              "explanation": "It is one of a merchant's duties under art. 19 of the Commercial Code, along with registering in the commercial registry and keeping its documents." }
+    },
+    {
+      "id": "colombia-0031", "difficulty": 1, "type": "truefalse", "answer": true, "asOf": "2026-11",
+      "es": { "question": "El revisor fiscal de una sociedad debe ser contador público.",
+              "explanation": "Lo exige el art. 215 del Código de Comercio. Si se elige a una firma de contadores, esta nombra a un contador público para ejercer el cargo." },
+      "en": { "question": "A Colombian company's revisor fiscal (statutory auditor) must be a public accountant.",
+              "explanation": "Art. 215 of the Commercial Code requires it. If an accounting firm is appointed, it names a public accountant to hold the position." }
+    },
+    {
+      "id": "colombia-0032", "difficulty": 1, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "Según la Ley 222 de 1995, ¿en qué fecha deben las sociedades cortar sus cuentas y preparar estados financieros de fin de ejercicio?",
+              "options": ["El 31 de diciembre", "El 31 de marzo", "El 30 de junio", "En la fecha que elija cada sociedad"],
+              "explanation": "El art. 34 de la Ley 222 de 1995 ordena cortar cuentas al menos una vez al año, el 31 de diciembre, y preparar y difundir estados financieros de propósito general." },
+      "en": { "question": "Under Law 222 of 1995, on what date must Colombian companies close their books and prepare year-end financial statements?",
+              "options": ["December 31", "March 31", "June 30", "On a date each company chooses"],
+              "explanation": "Art. 34 of Law 222 of 1995 requires closing the books at least once a year, on December 31, and preparing and disclosing general-purpose financial statements." }
+    },
+    {
+      "id": "colombia-0033", "difficulty": 1, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "En Colombia, ¿qué marco técnico contable aplican las empresas del grupo 2?",
+              "options": ["La NIIF para las Pymes", "Las NIIF plenas", "Los US GAAP", "Las NICSP del sector público"],
+              "explanation": "Según el Decreto 2420 de 2015, el grupo 2 aplica la NIIF para las Pymes; el grupo 1 aplica las NIIF plenas." },
+      "en": { "question": "In Colombia, which accounting framework do group 2 companies apply?",
+              "options": ["IFRS for SMEs (NIIF para las Pymes)", "Full IFRS", "US GAAP", "IPSAS (public sector standards)"],
+              "explanation": "Under Decree 2420 of 2015, group 2 applies IFRS for SMEs; group 1 applies full IFRS." }
+    },
+    {
+      "id": "colombia-0034", "difficulty": 1, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿Cuál de estas operaciones es un hecho generador del IVA?",
+              "options": ["La importación de bienes", "El pago de la nómina", "El reparto de dividendos", "Un aporte de capital en dinero a una sociedad"],
+              "explanation": "El art. 420 del Estatuto Tributario grava con IVA la venta de bienes, la prestación de servicios y la importación de bienes, entre otros. Salarios, dividendos y aportes en dinero no lo generan." },
+      "en": { "question": "Which of these transactions is a taxable event for VAT in Colombia?",
+              "options": ["Importing goods", "Paying the payroll", "Distributing dividends", "A cash capital contribution to a company"],
+              "explanation": "Art. 420 of the Tax Code levies VAT on the sale of goods, the provision of services and the import of goods, among others. Wages, dividends and cash contributions do not trigger it." }
+    },
+    {
+      "id": "colombia-0035", "difficulty": 1, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿Cuál es la tarifa del gravamen a los movimientos financieros (GMF)?",
+              "options": ["4 por mil", "2 por mil", "1 por ciento", "4 por ciento"],
+              "explanation": "El GMF grava, entre otras operaciones, los retiros de cuentas bancarias, a una tarifa de cuatro por mil: 4 pesos por cada 1000 (art. 872 del Estatuto Tributario)." },
+      "en": { "question": "What is the rate of Colombia's financial transactions tax (GMF)?",
+              "options": ["4 per thousand (0.4%)", "2 per thousand (0.2%)", "1%", "4%"],
+              "explanation": "The GMF applies, among other transactions, to withdrawals from bank accounts, at 4 per thousand: 4 pesos for every 1,000 (art. 872 of the Tax Code)." }
+    },
+    {
+      "id": "colombia-0036", "difficulty": 1, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "Una empresa compra un servicio a una persona no obligada a facturar. ¿Qué documento electrónico debe generar la empresa?",
+              "options": ["El documento soporte de adquisiciones", "Una nota crédito electrónica", "Una factura electrónica de venta", "Un tiquete POS electrónico"],
+              "explanation": "El comprador genera el documento soporte y lo transmite a la DIAN; sin él, el pago no se acepta como costo o deducción (art. 771-2 del Estatuto Tributario)." },
+      "en": { "question": "A Colombian company buys a service from someone not required to invoice. Which electronic document must the company generate?",
+              "options": ["The purchase support document (documento soporte)", "An electronic credit note", "An electronic sales invoice", "An electronic POS receipt"],
+              "explanation": "The buyer generates the support document and sends it to the DIAN; without it, the payment is not accepted as a cost or deduction (art. 771-2 of the Tax Code)." }
+    },
+    {
+      "id": "colombia-0037", "difficulty": 1, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿Quién genera y transmite a la DIAN el documento soporte de pago de nómina electrónica?",
+              "options": ["El empleador", "El trabajador", "La EPS del trabajador", "El fondo de pensiones del trabajador"],
+              "explanation": "El empleador lo genera por los pagos laborales de cada período y lo transmite a la DIAN; soporta esos pagos como costo o deducción (Resolución 000013 de 2021 de la DIAN)." },
+      "en": { "question": "Who generates the electronic payroll support document and sends it to the DIAN (Colombia's tax authority)?",
+              "options": ["The employer", "The employee", "The employee's health insurer (EPS)", "The employee's pension fund"],
+              "explanation": "The employer generates it for each period's labor payments and sends it to the DIAN; it supports those payments as a cost or deduction (DIAN Resolution 000013 of 2021)." }
+    },
+    {
+      "id": "colombia-0038", "difficulty": 1, "type": "truefalse", "answer": false, "asOf": "2026-11",
+      "es": { "question": "Una factura electrónica ya validada por la DIAN se puede borrar si tiene un error.",
+              "explanation": "No se borra: se anula o se corrige con una nota crédito electrónica, que también se transmite a la DIAN (Resolución 000042 de 2020 y sus modificaciones)." },
+      "en": { "question": "An electronic invoice already validated by the DIAN (Colombia's tax authority) can be deleted if it has an error.",
+              "explanation": "It cannot be deleted: it is voided or corrected with an electronic credit note, which is also sent to the DIAN (Resolution 000042 of 2020, as amended)." }
+    },
+    {
+      "id": "colombia-0039", "difficulty": 1, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿Cuál de estos datos es un requisito de la factura de venta según el Estatuto Tributario?",
+              "options": ["El NIT del vendedor", "La firma del revisor fiscal", "El número de cuenta bancaria del vendedor", "El sello de la cámara de comercio"],
+              "explanation": "El art. 617 del Estatuto Tributario exige, entre otros, el nombre y el NIT del vendedor y del comprador, numeración consecutiva, fecha, descripción y valor total." },
+      "en": { "question": "Which of these is a required element of a sales invoice under Colombia's Tax Code?",
+              "options": ["The seller's NIT (tax ID)", "The revisor fiscal's signature", "The seller's bank account number", "The chamber of commerce's stamp"],
+              "explanation": "Art. 617 of the Tax Code requires, among other things, the name and NIT of seller and buyer, consecutive numbering, date, description and total value." }
+    },
+    {
+      "id": "colombia-0040", "difficulty": 1, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "Por ley, ¿cuántos días de vacaciones remuneradas tiene un trabajador por cada año de servicio?",
+              "options": ["15 días hábiles", "15 días calendario", "30 días hábiles", "10 días hábiles"],
+              "explanation": "El art. 186 del Código Sustantivo del Trabajo da 15 días hábiles consecutivos de vacaciones remuneradas por cada año de servicio." },
+      "en": { "question": "By law in Colombia, how many days of paid vacation does an employee get for each year of service?",
+              "options": ["15 business days", "15 calendar days", "30 business days", "10 business days"],
+              "explanation": "Art. 186 of the Labor Code (Código Sustantivo del Trabajo) grants 15 consecutive business days of paid vacation for each year of service." }
+    },
+    {
+      "id": "colombia-0041", "difficulty": 1, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "Por ley, ¿cuánto equivale el auxilio de cesantía por cada año de trabajo?",
+              "options": ["Un mes de salario", "Quince días de salario", "Dos meses de salario", "Una semana de salario"],
+              "explanation": "El empleador debe un mes de salario por cada año de servicio, y la parte proporcional por fracciones de año (art. 249 del Código Sustantivo del Trabajo)." },
+      "en": { "question": "By law in Colombia, how much severance pay (cesantías) does an employer owe for each year of work?",
+              "options": ["One month's salary", "Fifteen days' salary", "Two months' salary", "One week's salary"],
+              "explanation": "The employer owes one month's salary for each year of service, prorated for partial years (art. 249 of the Labor Code, Código Sustantivo del Trabajo)." }
+    },
+    {
+      "id": "colombia-0042", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Con qué planilla pagan las empresas los aportes a seguridad social y parafiscales de sus trabajadores?",
+              "options": ["La PILA", "El formulario 350", "La nómina electrónica", "El RUT"],
+              "explanation": "La PILA (Planilla Integrada de Liquidación de Aportes) permite liquidar y pagar en un solo trámite salud, pensión, riesgos laborales y aportes parafiscales." },
+      "en": { "question": "Which form do Colombian employers use to pay their employees' social security and payroll contributions?",
+              "options": ["The PILA (integrated contributions form)", "Form 350", "The electronic payroll document", "The RUT (tax registry)"],
+              "explanation": "The PILA (Planilla Integrada de Liquidación de Aportes) lets employers calculate and pay health, pension, occupational risk and payroll contributions in one step." }
+    },
+    {
+      "id": "colombia-0043", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué superintendencia vigila a los bancos y a las aseguradoras en Colombia?",
+              "options": ["La Superintendencia Financiera", "La Superintendencia de Sociedades", "La Superintendencia de Industria y Comercio", "La Superintendencia de Economía Solidaria"],
+              "explanation": "La Superintendencia Financiera vigila a bancos, aseguradoras, fiduciarias y demás entidades del sistema financiero y del mercado de valores." },
+      "en": { "question": "Which superintendency supervises banks and insurers in Colombia?",
+              "options": ["Superintendencia Financiera (financial regulator)", "Superintendencia de Sociedades (companies)", "Superintendencia de Industria y Comercio (trade)", "Superintendencia de Economía Solidaria (co-ops)"],
+              "explanation": "The Superintendencia Financiera supervises banks, insurers, trust companies and other entities of the financial system and the securities market." }
+    },
+    {
+      "id": "colombia-0044", "difficulty": 1, "type": "truefalse", "answer": true, "asOf": "2026-11",
+      "es": { "question": "Una sociedad por acciones simplificada (SAS) puede constituirse con un solo accionista.",
+              "explanation": "La Ley 1258 de 2008 permite crear una SAS con una o varias personas naturales o jurídicas, por documento privado inscrito en el registro mercantil." },
+      "en": { "question": "A Colombian simplified stock company (SAS) can be formed with a single shareholder.",
+              "explanation": "Law 1258 of 2008 allows an SAS to be formed by one or more individuals or legal entities, through a private document registered in the commercial registry." }
+    },
+    {
+      "id": "colombia-0045", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué hace un contribuyente con las retenciones en la fuente que le practicaron durante el año?",
+              "options": ["Las resta del impuesto en su declaración", "Las registra como un gasto deducible", "Las cobra de nuevo a sus clientes", "Las pide en devolución cada mes a la DIAN"],
+              "explanation": "Las retenciones son un anticipo del impuesto: en la declaración se restan del impuesto a cargo y, si lo superan, queda un saldo a favor." },
+      "en": { "question": "What does a Colombian taxpayer do with the amounts withheld from it during the year?",
+              "options": ["Subtracts them from the tax on its return", "Records them as a deductible expense", "Charges them again to its customers", "Claims them back from the DIAN every month"],
+              "explanation": "Withholdings are an advance payment of tax: on the return they are subtracted from the tax due and, if they exceed it, the excess is a balance in the taxpayer's favor." }
+    },
+    {
+      "id": "colombia-0046", "difficulty": 1, "type": "truefalse", "answer": false, "asOf": "2026-11",
+      "es": { "question": "El IVA que una empresa cobra en sus ventas es un ingreso de la empresa.",
+              "explanation": "No es ingreso: la empresa lo recauda para el Estado y lo registra como pasivo en la cuenta 2408 del PUC, impuesto sobre las ventas por pagar (Decreto 2650 de 1993)." },
+      "en": { "question": "The VAT a Colombian company charges on its sales is revenue of the company.",
+              "explanation": "It is not revenue: the company collects it for the government and records it as a liability in account 2408 of the PUC (Colombia's chart of accounts), VAT payable." }
+    },
+    {
+      "id": "colombia-0047", "difficulty": 1, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "Por ley, ¿en cuántos pagos al año se paga la prima de servicios?",
+              "options": ["Dos: a mitad de año y en diciembre", "Uno, en diciembre", "Cuatro, uno por trimestre", "Doce, con cada salario"],
+              "explanation": "El art. 306 del Código Sustantivo del Trabajo fija 30 días de salario por año: la mitad a más tardar el 30 de junio y el resto a más tardar el 20 de diciembre." },
+      "en": { "question": "By law in Colombia, in how many payments per year is the service bonus (prima de servicios) paid?",
+              "options": ["Two: mid-year and in December", "One, in December", "Four, one per quarter", "Twelve, with each paycheck"],
+              "explanation": "Art. 306 of the Labor Code sets 30 days' salary per year: half by June 30 and the rest by December 20." }
+    },
+    {
+      "id": "colombia-0048", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué comprobante de contabilidad se elabora para registrar un pago que hace la empresa?",
+              "options": ["El comprobante de egreso", "El recibo de caja", "La nota de contabilidad", "La factura de venta"],
+              "explanation": "El comprobante de egreso respalda las salidas de dinero, como los pagos por cheque o transferencia; el recibo de caja respalda las entradas de dinero." },
+      "en": { "question": "In Colombian practice, which accounting voucher is prepared to record a payment the company makes?",
+              "options": ["The disbursement voucher (comprobante de egreso)", "The cash receipt (recibo de caja)", "The adjustment voucher (nota de contabilidad)", "The sales invoice"],
+              "explanation": "The comprobante de egreso supports cash outflows, such as check or transfer payments; the recibo de caja supports cash inflows." }
+    },
+    {
+      "id": "colombia-0049", "difficulty": 2, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "En el PUC, ¿cuántos dígitos tiene el código de una subcuenta?",
+              "options": ["6", "4", "8", "5"],
+              "explanation": "El código crece por niveles: clase (1 dígito), grupo (2), cuenta (4) y subcuenta (6); por ejemplo, 110505 es caja general (Decreto 2650 de 1993)." },
+      "en": { "question": "In the PUC (Colombia's chart of accounts), how many digits does a subaccount code have?",
+              "options": ["6", "4", "8", "5"],
+              "explanation": "Codes grow by level: class (1 digit), group (2), account (4) and subaccount (6); for example, 110505 is general cash (Decree 2650 of 1993)." }
+    },
+    {
+      "id": "colombia-0050", "difficulty": 2, "type": "truefalse", "answer": true, "asOf": "2026-11",
+      "es": { "question": "En el PUC, cada empresa puede abrir cuentas auxiliares, por debajo de las subcuentas, según sus necesidades.",
+              "explanation": "El Decreto 2650 de 1993 fija las clases, los grupos, las cuentas y las subcuentas; por debajo de ellas, cada empresa crea los auxiliares que necesite para su control." },
+      "en": { "question": "In the PUC (Colombia's chart of accounts), each company may open auxiliary accounts below the subaccounts to suit its needs.",
+              "explanation": "Decree 2650 of 1993 sets the classes, groups, accounts and subaccounts; below them, each company creates the auxiliary accounts it needs for control." }
+    },
+    {
+      "id": "colombia-0051", "difficulty": 2, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "En el PUC, ¿qué registra la cuenta 1305?",
+              "options": ["Clientes", "Proveedores", "Bancos", "Anticipos y avances"],
+              "explanation": "La 1305, Clientes, pertenece al grupo 13, Deudores, y registra lo que deben los clientes por ventas a crédito (Decreto 2650 de 1993)." },
+      "en": { "question": "In the PUC (Colombia's chart of accounts), what does account 1305 record?",
+              "options": ["Clientes (customers receivable)", "Proveedores (suppliers)", "Bancos (banks)", "Anticipos y avances (advances)"],
+              "explanation": "Account 1305, Clientes, belongs to group 13, Deudores (receivables), and records what customers owe for credit sales (Decree 2650 of 1993)." }
+    },
+    {
+      "id": "colombia-0052", "difficulty": 2, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "En el PUC, ¿en qué grupo se registran los salarios por pagar y las cesantías consolidadas?",
+              "options": ["Obligaciones laborales (25)", "Cuentas por pagar (23)", "Proveedores (22)", "Obligaciones financieras (21)"],
+              "explanation": "El grupo 25, Obligaciones laborales, reúne lo que la empresa debe a sus trabajadores, como salarios (2505) y cesantías consolidadas (2510), según el Decreto 2650 de 1993." },
+      "en": { "question": "In the PUC (Colombia's chart of accounts), which group holds wages payable and accrued severance (cesantías consolidadas)?",
+              "options": ["Obligaciones laborales (25, payroll liabilities)", "Cuentas por pagar (23, payables)", "Proveedores (22, suppliers)", "Obligaciones financieras (21, financial debt)"],
+              "explanation": "Group 25, Obligaciones laborales, holds what the company owes its employees, such as wages (2505) and accrued severance (2510), under Decree 2650 of 1993." }
+    },
+    {
+      "id": "colombia-0053", "difficulty": 2, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "En el PUC, ¿qué grupo reúne los gastos operacionales de ventas?",
+              "options": ["52", "51", "53", "54"],
+              "explanation": "El grupo 52 es el de gastos operacionales de ventas; el 51, el de gastos operacionales de administración, y el 53, el de gastos no operacionales (Decreto 2650 de 1993)." },
+      "en": { "question": "In the PUC (Colombia's chart of accounts), which group holds operating selling expenses (gastos operacionales de ventas)?",
+              "options": ["52", "51", "53", "54"],
+              "explanation": "Group 52 is operating selling expenses; 51 is operating administrative expenses, and 53 is non-operating expenses (Decree 2650 of 1993)." }
+    },
+    {
+      "id": "colombia-0054", "difficulty": 2, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿En qué momento se practica la retención en la fuente?",
+              "options": ["En el pago o abono en cuenta, lo que ocurra primero", "Solo cuando se paga en efectivo", "Al presentar la declaración de renta", "Al final de cada mes, sobre el total de compras"],
+              "explanation": "Se practica al pagar o al abonar en cuenta (registrar la obligación con el beneficiario), lo que ocurra primero (art. 375 del Estatuto Tributario y su reglamento)." },
+      "en": { "question": "When is Colombian withholding tax (retención en la fuente) applied?",
+              "options": ["On payment or crediting to the account, whichever is first", "Only when paying in cash", "When filing the income tax return", "At month-end, on total purchases"],
+              "explanation": "It is withheld when the payment is made or when the amount is credited to the payee's account (recorded as owed), whichever comes first (art. 375 of the Tax Code and its regulations)." }
+    },
+    {
+      "id": "colombia-0055", "difficulty": 2, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿Cómo registra el agente de retención las retenciones que practicó y aún no ha pagado a la DIAN?",
+              "options": ["Como un pasivo con la DIAN", "Como un gasto del período", "Como un activo a su favor", "Como un menor valor de sus ingresos"],
+              "explanation": "Es dinero que debe consignar a la DIAN: va en el pasivo, en la cuenta 2365 del PUC, retención en la fuente (Decreto 2650 de 1993)." },
+      "en": { "question": "How does a withholding agent record amounts it has withheld but not yet paid to the DIAN (Colombia's tax authority)?",
+              "options": ["As a liability to the DIAN", "As an expense for the period", "As an asset in its favor", "As a reduction of its revenue"],
+              "explanation": "It owes that money to the DIAN, so it goes in liabilities, in account 2365 of the PUC (Colombia's chart of accounts), withholding tax payable." }
+    },
+    {
+      "id": "colombia-0056", "difficulty": 2, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿Qué es la autorretención en la fuente?",
+              "options": ["Que el propio contribuyente se practique la retención", "Una retención que la DIAN practica de oficio", "La devolución automática de las retenciones", "Una retención que el banco hace al proveedor"],
+              "explanation": "El contribuyente calcula, declara y paga la retención sobre sus propios ingresos, en lugar de que se la practique quien le paga. Aplica a quienes la DIAN autoriza o la norma obliga (Decreto 1625 de 2016)." },
+      "en": { "question": "In Colombian withholding tax, what is autorretención?",
+              "options": ["The taxpayer withholds the tax on its own income", "A withholding the DIAN applies on its own initiative", "The automatic refund of withholdings", "A withholding the bank applies to the supplier"],
+              "explanation": "The taxpayer calculates, files and pays the withholding on its own income, instead of the payer withholding it. It applies to those the DIAN authorizes or the rules require (Decree 1625 of 2016)." }
+    },
+    {
+      "id": "colombia-0057", "difficulty": 2, "type": "truefalse", "answer": true, "asOf": "2026-11",
+      "es": { "question": "La declaración de retención en la fuente tiene periodicidad mensual.",
+              "explanation": "El art. 606 del Estatuto Tributario fija una declaración mensual; no es obligatoria en los meses en que no hubo operaciones sujetas a retención." },
+      "en": { "question": "In Colombia, the withholding tax return is filed on a monthly basis.",
+              "explanation": "Art. 606 of the Tax Code sets a monthly return; it is not required in months without transactions subject to withholding." }
+    },
+    {
+      "id": "colombia-0058", "difficulty": 2, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿Qué es la información exógena que ciertas personas y empresas reportan a la DIAN?",
+              "options": ["Datos de sus operaciones con terceros", "Su declaración anual de renta", "La lista de sus facturas anuladas", "Su certificado de existencia y representación"],
+              "explanation": "Es el reporte de pagos, ingresos, retenciones y saldos con terceros que la DIAN pide para cruzar información (art. 631 del Estatuto Tributario)." },
+      "en": { "question": "What is the información exógena that certain individuals and companies report to the DIAN (Colombia's tax authority)?",
+              "options": ["Data on their transactions with third parties", "Their annual income tax return", "The list of their voided invoices", "Their certificate of incorporation"],
+              "explanation": "It is the report of payments, income, withholdings and balances with third parties that the DIAN requests to cross-check data (art. 631 of the Tax Code)." }
+    },
+    {
+      "id": "colombia-0059", "difficulty": 2, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿Quién califica a una empresa como gran contribuyente?",
+              "options": ["La DIAN, mediante resolución", "La Superintendencia de Sociedades", "La cámara de comercio", "La propia empresa, en su RUT"],
+              "explanation": "El director de la DIAN señala por resolución a los grandes contribuyentes, según su volumen de operaciones y su importancia en el recaudo (art. 562 del Estatuto Tributario)." },
+      "en": { "question": "Who classifies a Colombian company as a gran contribuyente (large taxpayer)?",
+              "options": ["The DIAN, by resolution", "The Superintendency of Companies", "The chamber of commerce", "The company itself, in its RUT"],
+              "explanation": "The DIAN's director designates large taxpayers by resolution, based on their volume of operations and importance to tax collection (art. 562 of the Tax Code)." }
+    },
+    {
+      "id": "colombia-0060", "difficulty": 2, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿Qué es el anticipo del impuesto de renta?",
+              "options": ["Un pago adelantado del impuesto del año siguiente", "Un descuento por pagar antes del plazo", "Una retención que practica el banco", "Un saldo a favor que se pide en devolución"],
+              "explanation": "Al declarar renta, el contribuyente liquida un anticipo a cuenta del impuesto del año siguiente, que luego resta en esa declaración (art. 807 del Estatuto Tributario)." },
+      "en": { "question": "In Colombia, what is the anticipo del impuesto de renta?",
+              "options": ["An advance payment of next year's income tax", "A discount for paying before the deadline", "A withholding applied by the bank", "A refundable balance in the taxpayer's favor"],
+              "explanation": "When filing, the taxpayer calculates an advance on next year's income tax, which it then subtracts in that next return (art. 807 of the Tax Code)." }
+    },
+    {
+      "id": "colombia-0061", "difficulty": 2, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿Qué es el IVA descontable?",
+              "options": ["El IVA pagado en compras que se resta del IVA generado", "El IVA que se descuenta al cliente por pronto pago", "El IVA de las ventas a crédito no cobradas", "El IVA que no se cobra en los bienes excluidos"],
+              "explanation": "El responsable resta del IVA generado en sus ventas el IVA que pagó en compras destinadas a operaciones gravadas, y paga la diferencia (arts. 485 y 488 del Estatuto Tributario)." },
+      "en": { "question": "In Colombian VAT, what is IVA descontable?",
+              "options": ["VAT paid on purchases, subtracted from output VAT", "VAT discounted to the customer for early payment", "VAT on credit sales not yet collected", "VAT not charged on excluded goods"],
+              "explanation": "A VAT-registered business subtracts from the VAT on its sales the VAT it paid on purchases used for taxable operations, and pays the difference (arts. 485 and 488 of the Tax Code)." }
+    },
+    {
+      "id": "colombia-0062", "difficulty": 2, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "En el IVA, ¿qué caracteriza a un bien exento?",
+              "options": ["Tarifa 0 %, con derecho a descontar el IVA pagado", "No causa IVA y el IVA pagado se lleva al costo", "Paga IVA solo si lo compra una empresa", "Paga IVA solo en su primera venta"],
+              "explanation": "Los exentos están gravados a tarifa 0 %: quien los vende puede descontar el IVA de sus compras y pedir devolución. Los excluidos no causan IVA (arts. 477 y 424 del Estatuto Tributario)." },
+      "en": { "question": "In Colombian VAT, what characterizes an exempt (exento) good?",
+              "options": ["0% rate, with the right to deduct VAT paid", "No VAT accrues; VAT paid becomes a cost", "VAT applies only if a business buys it", "VAT applies only on its first sale"],
+              "explanation": "Exempt goods are taxed at 0%: sellers may deduct the VAT on their purchases and request a refund. Excluded goods do not accrue VAT (arts. 477 and 424 of the Tax Code)." }
+    },
+    {
+      "id": "colombia-0063", "difficulty": 2, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿Qué tratamiento tiene en el IVA la exportación de bienes?",
+              "options": ["Es exenta", "Es excluida", "Está gravada a la tarifa general", "Está gravada a una tarifa reducida"],
+              "explanation": "El art. 481 del Estatuto Tributario declara exenta la exportación de bienes: no se cobra IVA al comprador del exterior y el exportador puede pedir la devolución del IVA pagado." },
+      "en": { "question": "How is the export of goods treated for Colombian VAT?",
+              "options": ["Exempt", "Excluded", "Taxed at the general rate", "Taxed at a reduced rate"],
+              "explanation": "Art. 481 of the Tax Code makes the export of goods exempt: no VAT is charged to the foreign buyer and the exporter may claim a refund of the VAT it paid." }
+    },
+    {
+      "id": "colombia-0064", "difficulty": 2, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿Cuál de estos servicios está excluido del IVA?",
+              "options": ["El arrendamiento de inmuebles para vivienda", "El arrendamiento de oficinas", "El servicio de vigilancia", "El servicio de parqueadero"],
+              "explanation": "El art. 476 del Estatuto Tributario excluye del IVA el arrendamiento de inmuebles para vivienda. El de oficinas y locales comerciales sí está gravado." },
+      "en": { "question": "Which of these services is excluded from Colombian VAT?",
+              "options": ["Renting property for housing", "Renting offices", "Security guard services", "Parking services"],
+              "explanation": "Art. 476 of the Tax Code excludes residential rentals from VAT. Renting offices and commercial premises is taxed." }
+    },
+    {
+      "id": "colombia-0065", "difficulty": 2, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "Además de la tarifa general, ¿cuál es la tarifa reducida del IVA que aplica a algunos bienes y servicios?",
+              "options": ["5 %", "10 %", "8 %", "16 %"],
+              "explanation": "Los arts. 468-1 y 468-3 del Estatuto Tributario gravan algunos bienes y servicios a la tarifa del 5 %; el resto de lo gravado va a la tarifa general." },
+      "en": { "question": "Besides the general rate, what is the reduced Colombian VAT rate that applies to some goods and services?",
+              "options": ["5%", "10%", "8%", "16%"],
+              "explanation": "Arts. 468-1 and 468-3 of the Tax Code tax some goods and services at 5%; everything else that is taxed pays the general rate." }
+    },
+    {
+      "id": "colombia-0066", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué reforma tributaria subió la tarifa general del IVA a partir de 2017?",
+              "options": ["Ley 1819 de 2016", "Ley 1607 de 2012", "Ley 2010 de 2019", "Ley 2277 de 2022"],
+              "explanation": "La Ley 1819 de 2016 modificó el art. 468 del Estatuto Tributario y subió la tarifa general del IVA desde el 1 de enero de 2017." },
+      "en": { "question": "Which tax reform raised Colombia's general VAT rate starting in 2017?",
+              "options": ["Law 1819 of 2016", "Law 1607 of 2012", "Law 2010 of 2019", "Law 2277 of 2022"],
+              "explanation": "Law 1819 of 2016 amended art. 468 of the Tax Code and raised the general VAT rate from January 1, 2017." }
+    },
+    {
+      "id": "colombia-0067", "difficulty": 2, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿Con qué periodicidad se presenta la declaración del IVA?",
+              "options": ["Bimestral o cuatrimestral, según los ingresos", "Mensual para todos los responsables", "Anual para todos los responsables", "Trimestral o semestral, según los ingresos"],
+              "explanation": "Por regla general, el art. 600 del Estatuto Tributario fija períodos bimestrales para los grandes contribuyentes y quienes superan cierto nivel de ingresos, y cuatrimestrales para los demás." },
+      "en": { "question": "How often is the Colombian VAT return filed?",
+              "options": ["Every two or four months, depending on income", "Monthly for all VAT payers", "Annually for all VAT payers", "Quarterly or half-yearly, depending on income"],
+              "explanation": "As a general rule, art. 600 of the Tax Code sets two-month periods for large taxpayers and those above a certain income level, and four-month periods for the rest." }
+    },
+    {
+      "id": "colombia-0068", "difficulty": 2, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿Qué impuesto nacional cobran, en general, los restaurantes y bares en lugar del IVA?",
+              "options": ["El impuesto nacional al consumo", "El impuesto de industria y comercio", "El gravamen a los movimientos financieros", "El impuesto de timbre"],
+              "explanation": "El expendio de comidas y bebidas está excluido del IVA y gravado, en cambio, con el impuesto nacional al consumo (arts. 426 y 512-1 del Estatuto Tributario)." },
+      "en": { "question": "Which national tax do restaurants and bars in Colombia generally charge instead of VAT?",
+              "options": ["The national consumption tax (INC)", "The industry and commerce tax (ICA)", "The financial transactions tax (GMF)", "The stamp tax"],
+              "explanation": "Food and drink service is excluded from VAT and subject instead to the national consumption tax (arts. 426 and 512-1 of the Tax Code)." }
+    },
+    {
+      "id": "colombia-0069", "difficulty": 2, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿Cómo se denomina hoy a quienes antes pertenecían al régimen simplificado del IVA?",
+              "options": ["No responsables del IVA", "Responsables exentos", "Régimen común", "Grandes contribuyentes"],
+              "explanation": "Hoy la ley distingue entre responsables y no responsables del IVA; los requisitos para ser no responsable están en el art. 437 del Estatuto Tributario." },
+      "en": { "question": "What are those who used to be in Colombia's simplified VAT regime (régimen simplificado) called today?",
+              "options": ["Non-VAT-responsible persons (no responsables)", "Exempt VAT payers", "Common regime (régimen común)", "Large taxpayers"],
+              "explanation": "Today the law distinguishes VAT-responsible and non-responsible persons; the requirements to be non-responsible are in art. 437 of the Tax Code." }
+    },
+    {
+      "id": "colombia-0070", "difficulty": 2, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "En general, ¿sobre qué base se liquida el impuesto de industria y comercio (ICA)?",
+              "options": ["Los ingresos ordinarios y extraordinarios", "La utilidad neta del período", "El patrimonio líquido", "El valor de la nómina"],
+              "explanation": "Se parte de los ingresos ordinarios y extraordinarios del período y se restan devoluciones, rebajas, descuentos, exportaciones y ventas de activos fijos (Ley 14 de 1983, art. 33)." },
+      "en": { "question": "Generally, what is the tax base of Colombia's industry and commerce tax (ICA)?",
+              "options": ["Ordinary and extraordinary income", "Net profit for the period", "Net equity", "Total payroll"],
+              "explanation": "It starts from the period's ordinary and extraordinary income and subtracts returns, rebates, discounts, exports and sales of fixed assets (Law 14 of 1983, art. 33)." }
+    },
+    {
+      "id": "colombia-0071", "difficulty": 2, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿Qué es el impuesto de avisos y tableros?",
+              "options": ["Un impuesto complementario del ICA", "Un impuesto nacional a la publicidad en medios", "Una tasa que cobra la cámara de comercio", "Un impuesto departamental a las vallas"],
+              "explanation": "Es un complementario del ICA que pagan quienes anuncian su negocio con avisos visibles desde el espacio público; se liquida junto con el ICA (Ley 14 de 1983)." },
+      "en": { "question": "What is Colombia's impuesto de avisos y tableros (signs and billboards tax)?",
+              "options": ["A tax complementary to the ICA", "A national tax on media advertising", "A fee charged by the chamber of commerce", "A departmental tax on billboards"],
+              "explanation": "It complements the ICA (industry and commerce tax) and is paid by businesses with signs visible from public space; it is settled together with the ICA (Law 14 of 1983)." }
+    },
+    {
+      "id": "colombia-0072", "difficulty": 2, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿Cuál de estos impuestos es de los departamentos?",
+              "options": ["El impuesto sobre vehículos automotores", "El impuesto predial unificado", "El impuesto de alumbrado público", "El impuesto de delineación urbana"],
+              "explanation": "Lo cobran los departamentos y el Distrito Capital (Ley 488 de 1998), que comparten una parte con los municipios. Los otros tres son impuestos municipales." },
+      "en": { "question": "Which of these Colombian taxes belongs to the departments (regional governments)?",
+              "options": ["Motor vehicle tax", "Property tax (predial)", "Street lighting tax", "Building permit tax (delineación urbana)"],
+              "explanation": "It is collected by the departments and the Capital District (Law 488 of 1998), which share part of it with municipalities. The other three are municipal taxes." }
+    },
+    {
+      "id": "colombia-0073", "difficulty": 2, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "En el marco contable colombiano, ¿qué entidades forman parte del grupo 1?",
+              "options": ["Los emisores de valores y las entidades de interés público", "Las entidades públicas del orden nacional", "Las personas naturales no comerciantes", "Las sociedades con un solo accionista"],
+              "explanation": "Según el Decreto 2420 de 2015, el grupo 1 incluye a los emisores de valores, a las entidades de interés público, como los bancos, y a otras empresas grandes que cumplen ciertos requisitos." },
+      "en": { "question": "In Colombia's accounting framework, which entities belong to group 1?",
+              "options": ["Securities issuers and public-interest entities", "National-level government entities", "Individuals who are not merchants", "Companies with a single shareholder"],
+              "explanation": "Under Decree 2420 of 2015, group 1 includes securities issuers, public-interest entities (such as banks) and other large companies that meet certain criteria." }
+    },
+    {
+      "id": "colombia-0074", "difficulty": 2, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "En el marco contable colombiano, ¿qué tipo de entidades conforman el grupo 3?",
+              "options": ["Las microempresas", "Las cooperativas financieras", "Las compañías de seguros", "Los fondos de pensiones"],
+              "explanation": "El grupo 3 lo forman las microempresas que cumplen los requisitos del Decreto 2420 de 2015, y aplica un marco de contabilidad simplificada." },
+      "en": { "question": "In Colombia's accounting framework, what type of entities make up group 3?",
+              "options": ["Microenterprises", "Financial cooperatives", "Insurance companies", "Pension funds"],
+              "explanation": "Group 3 is made up of microenterprises that meet the requirements of Decree 2420 of 2015, and it applies a simplified accounting framework." }
+    },
+    {
+      "id": "colombia-0075", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué entidad expide las normas de contabilidad para las entidades públicas en Colombia?",
+              "options": ["La Contaduría General de la Nación", "La Contraloría General de la República", "El Consejo Técnico de la Contaduría Pública", "La Junta Central de Contadores"],
+              "explanation": "La Contaduría General de la Nación regula la contabilidad pública (art. 354 de la Constitución y Ley 298 de 1996). La Contraloría vigila la gestión fiscal." },
+      "en": { "question": "Which body issues the accounting rules for public-sector entities in Colombia?",
+              "options": ["Contaduría General de la Nación (General Accounting Office)", "Contraloría General de la República (comptroller)", "Consejo Técnico de la Contaduría Pública (CTCP)", "Junta Central de Contadores (accountants board)"],
+              "explanation": "The Contaduría General de la Nación regulates public-sector accounting (art. 354 of the Constitution and Law 298 of 1996). The Contraloría oversees fiscal management." }
+    },
+    {
+      "id": "colombia-0076", "difficulty": 2, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿Dentro de qué plazo debe renovarse cada año la matrícula mercantil?",
+              "options": ["En los tres primeros meses del año", "En el mes de enero", "En el primer semestre del año", "En el mes de diciembre"],
+              "explanation": "El art. 33 del Código de Comercio ordena renovar la matrícula mercantil cada año, dentro de los tres primeros meses; es decir, a más tardar el 31 de marzo." },
+      "en": { "question": "Within what period must a Colombian commercial registration (matrícula mercantil) be renewed each year?",
+              "options": ["In the first three months of the year", "In January", "In the first half of the year", "In December"],
+              "explanation": "Art. 33 of the Commercial Code requires renewing the commercial registration every year, within the first three months; that is, by March 31." }
+    },
+    {
+      "id": "colombia-0077", "difficulty": 2, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿Durante cuánto tiempo debe un comerciante conservar sus libros y papeles de comercio?",
+              "options": ["10 años", "5 años", "20 años", "2 años"],
+              "explanation": "El art. 60 del Código de Comercio, modificado por el art. 28 de la Ley 962 de 2005, fija diez años, contados desde la fecha del último asiento, documento o comprobante." },
+      "en": { "question": "How long must a Colombian merchant keep its accounting books and business papers?",
+              "options": ["10 years", "5 years", "20 years", "2 years"],
+              "explanation": "Art. 60 of the Commercial Code, as amended by art. 28 of Law 962 of 2005, sets ten years from the date of the last entry, document or voucher." }
+    },
+    {
+      "id": "colombia-0078", "difficulty": 2, "type": "truefalse", "answer": false, "asOf": "2026-11",
+      "es": { "question": "Un accionista de una sociedad puede ser, a la vez, su revisor fiscal.",
+              "explanation": "El art. 205 del Código de Comercio lo prohíbe: no pueden ser revisores fiscales los asociados de la compañía ni los de sus subordinadas, para proteger su independencia." },
+      "en": { "question": "A shareholder of a Colombian company may also serve as its revisor fiscal (statutory auditor).",
+              "explanation": "Art. 205 of the Commercial Code forbids it: members of the company or of its subsidiaries cannot be its revisor fiscal, to protect the auditor's independence." }
+    },
+    {
+      "id": "colombia-0079", "difficulty": 2, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿Qué emite el revisor fiscal sobre los estados financieros de la sociedad?",
+              "options": ["Un dictamen con su opinión profesional", "Una certificación como su preparador", "Un acta de aprobación", "Una declaración juramentada de renta"],
+              "explanation": "El revisor fiscal autoriza con su firma los estados financieros, con su dictamen u opinión profesional (Código de Comercio, arts. 207 y 208). No los prepara: eso es de la administración." },
+      "en": { "question": "What does the revisor fiscal (statutory auditor) issue on a Colombian company's financial statements?",
+              "options": ["An audit report with a professional opinion", "A certification as their preparer", "An approval resolution", "A sworn income tax return"],
+              "explanation": "The revisor fiscal signs the financial statements with an audit report, or professional opinion (Commercial Code, arts. 207 and 208). Management, not the auditor, prepares them." }
+    },
+    {
+      "id": "colombia-0080", "difficulty": 2, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "Según la Ley 222 de 1995, ¿quiénes certifican los estados financieros de una sociedad?",
+              "options": ["El representante legal y el contador que los preparó", "El revisor fiscal y el contador", "La asamblea de accionistas y el revisor fiscal", "La junta directiva y el representante legal"],
+              "explanation": "El art. 37 de la Ley 222 de 1995 pide al representante legal y al contador declarar que verificaron las afirmaciones de los estados y que se tomaron fielmente de los libros." },
+      "en": { "question": "Under Law 222 of 1995, who certifies a Colombian company's financial statements?",
+              "options": ["The legal representative and the preparing accountant", "The revisor fiscal and the accountant", "The shareholders' meeting and the revisor fiscal", "The board of directors and the legal representative"],
+              "explanation": "Art. 37 of Law 222 of 1995 requires the legal representative and the accountant to state that they verified the statements' assertions and took them faithfully from the books." }
+    },
+    {
+      "id": "colombia-0081", "difficulty": 2, "type": "truefalse", "answer": false, "asOf": "2026-11",
+      "es": { "question": "En los libros de comercio se permite borrar o tachar un asiento para corregir un error.",
+              "explanation": "El art. 57 del Código de Comercio prohíbe borrar, tachar, hacer raspaduras o correcciones en los asientos; los errores se salvan con un nuevo asiento." },
+      "en": { "question": "In Colombian commercial books, an entry may be erased or crossed out to correct an error.",
+              "explanation": "Art. 57 of the Commercial Code prohibits erasing, crossing out, scraping or altering entries; errors are fixed with a new entry." }
+    },
+    {
+      "id": "colombia-0082", "difficulty": 2, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "En la factura electrónica, ¿qué es el CUFE?",
+              "options": ["El código único que identifica cada factura", "El número de la resolución de facturación", "El código del proveedor tecnológico", "El consecutivo interno de la empresa"],
+              "explanation": "El CUFE (Código Único de Factura Electrónica) se genera con los datos de la factura y la identifica de forma única ante la DIAN (Resolución 000042 de 2020 y sus modificaciones)." },
+      "en": { "question": "In Colombian e-invoicing, what is the CUFE?",
+              "options": ["The unique code identifying each invoice", "The invoicing authorization number", "The technology provider's code", "The company's internal sequence number"],
+              "explanation": "The CUFE (Código Único de Factura Electrónica) is generated from the invoice data and uniquely identifies it with the DIAN (Resolution 000042 of 2020, as amended)." }
+    },
+    {
+      "id": "colombia-0083", "difficulty": 2, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿Qué entidades reciben los aportes parafiscales que se calculan sobre la nómina?",
+              "options": ["SENA, ICBF y cajas de compensación familiar", "DIAN, SENA y EPS", "ICBF, ARL y fondos de pensiones", "Cajas de compensación, Colpensiones y DIAN"],
+              "explanation": "Son los aportes al SENA, al ICBF y a las cajas de compensación familiar (Ley 21 de 1982). Algunas empresas están exoneradas de los del SENA y el ICBF (art. 114-1 del Estatuto Tributario)." },
+      "en": { "question": "Which entities receive the parafiscal contributions calculated on a Colombian company's payroll?",
+              "options": ["SENA, ICBF and family compensation funds (cajas)", "DIAN, SENA and health insurers (EPS)", "ICBF, occupational risk insurers and pension funds", "Family compensation funds, Colpensiones and DIAN"],
+              "explanation": "They go to SENA (training), ICBF (family welfare) and the cajas de compensación familiar (Law 21 of 1982). Some companies are exempt from the SENA and ICBF ones (Tax Code art. 114-1)." }
+    },
+    {
+      "id": "colombia-0084", "difficulty": 3, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "En el PUC, ¿en qué cuenta registra el retenido (quien recibe el pago) la retención en la fuente que le practicaron?",
+              "options": ["1355", "2365", "2408", "5115"],
+              "explanation": "La registra como activo en la 1355, Anticipo de impuestos y contribuciones o saldos a favor, hasta restarla en su declaración. La 2365 es la del agente que retiene (Decreto 2650 de 1993)." },
+      "en": { "question": "In the PUC (Colombia's chart of accounts), which account does the payee use to record the tax withheld from it?",
+              "options": ["1355", "2365", "2408", "5115"],
+              "explanation": "It records it as an asset in 1355, Anticipo de impuestos y contribuciones o saldos a favor (tax advances), until it subtracts it on its return. 2365 is the withholding agent's (Decree 2650 of 1993)." }
+    },
+    {
+      "id": "colombia-0085", "difficulty": 3, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "Si un agente de retención no practica una retención que debía practicar, ¿qué consecuencia tiene?",
+              "options": ["Responde por el valor que dejó de retener", "Ninguna, si el proveedor declara el ingreso", "Solo recibe una amonestación escrita", "La DIAN cobra el valor únicamente al proveedor"],
+              "explanation": "El art. 370 del Estatuto Tributario hace al agente que no retiene responsable de esa suma junto con el contribuyente; además, las sanciones que se le impongan son solo suyas." },
+      "en": { "question": "If a Colombian withholding agent fails to withhold tax it should have withheld, what is the consequence?",
+              "options": ["It is liable for the amount it failed to withhold", "None, if the supplier reports the income", "It only receives a written warning", "The DIAN collects only from the supplier"],
+              "explanation": "Art. 370 of the Tax Code makes an agent that fails to withhold liable for that amount together with the taxpayer; any penalties imposed on the agent are its own." }
+    },
+    {
+      "id": "colombia-0086", "difficulty": 3, "type": "truefalse", "answer": true, "asOf": "2026-11",
+      "es": { "question": "Una declaración de retención en la fuente presentada sin el pago total no produce efecto legal, salvo las excepciones de la ley.",
+              "explanation": "Así lo dispone el art. 580-1 del Estatuto Tributario; la principal excepción es la del agente que tiene un saldo a favor y pide compensarlo." },
+      "en": { "question": "In Colombia, a withholding tax return filed without full payment has no legal effect, except as the law provides.",
+              "explanation": "Art. 580-1 of the Tax Code says so; the main exception is for an agent with a balance in its favor that it asks to offset." }
+    },
+    {
+      "id": "colombia-0087", "difficulty": 3, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿Qué formulario usa el empleador para certificar los ingresos y retenciones por rentas de trabajo de sus empleados?",
+              "options": ["Formulario 220", "Formulario 260", "Formulario 120", "Formulario 160"],
+              "explanation": "El formulario 220 es el certificado de ingresos y retenciones por rentas de trabajo y de pensiones; lo prescribe la DIAN por resolución y el empleador lo expide cada año." },
+      "en": { "question": "Which form does a Colombian employer use to certify its employees' employment income and tax withheld?",
+              "options": ["Form 220", "Form 260", "Form 120", "Form 160"],
+              "explanation": "Form 220 is the certificate of employment and pension income and withholdings; the DIAN prescribes it by resolution and the employer issues it every year." }
+    },
+    {
+      "id": "colombia-0088", "difficulty": 3, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "Por regla general, ¿cuánto tiempo después del vencimiento del plazo para declarar queda en firme una declaración tributaria?",
+              "options": ["3 años", "2 años", "5 años", "10 años"],
+              "explanation": "El art. 714 del Estatuto Tributario fija un término general de firmeza de tres años; hay términos especiales, por ejemplo cuando se compensan pérdidas o hay precios de transferencia." },
+      "en": { "question": "As a general rule, how long after the filing deadline does a Colombian tax return become final (en firme)?",
+              "options": ["3 years", "2 years", "5 years", "10 years"],
+              "explanation": "Art. 714 of the Tax Code sets a general three-year period; there are special periods, for example when tax losses are offset or transfer pricing applies." }
+    },
+    {
+      "id": "colombia-0089", "difficulty": 3, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "En la venta de bienes, ¿cuándo se causa el IVA?",
+              "options": ["Al emitir la factura o, si no la hay, al entregar", "Cuando el cliente paga la factura", "Al final del período bimestral", "Cuando el vendedor recibe el pedido"],
+              "explanation": "Según el art. 429 del Estatuto Tributario, el IVA se causa en la fecha de emisión de la factura o, a falta de ella, en la entrega del bien, aunque la venta sea a crédito." },
+      "en": { "question": "In a sale of goods, when does Colombian VAT accrue?",
+              "options": ["On invoicing or, if there is no invoice, on delivery", "When the customer pays the invoice", "At the end of the two-month period", "When the seller receives the order"],
+              "explanation": "Under art. 429 of the Tax Code, VAT accrues on the invoice date or, failing an invoice, on delivery of the goods, even if the sale is on credit." }
+    },
+    {
+      "id": "colombia-0090", "difficulty": 3, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿Qué tratamiento tienen en el IVA los intereses de un préstamo de dinero?",
+              "options": ["Están excluidos", "Están exentos", "Están gravados a la tarifa general", "Están gravados a la tarifa reducida"],
+              "explanation": "El art. 476 del Estatuto Tributario excluye los intereses y rendimientos de operaciones de crédito. Distinto es financiar una venta gravada: esos intereses sí integran la base del IVA (art. 447)." },
+      "en": { "question": "How is interest on a loan of money treated for Colombian VAT?",
+              "options": ["Excluded", "Exempt", "Taxed at the general rate", "Taxed at the reduced rate"],
+              "explanation": "Art. 476 of the Tax Code excludes interest and returns on credit operations. Financing a taxable sale is different: that interest is part of the VAT base (art. 447)." }
+    },
+    {
+      "id": "colombia-0091", "difficulty": 3, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿Qué parte del gravamen a los movimientos financieros (GMF) efectivamente pagado es deducible en el impuesto de renta?",
+              "options": ["El 50 %", "El 100 %", "El 25 %", "Nada: no es deducible"],
+              "explanation": "El art. 115 del Estatuto Tributario permite deducir el 50 % del GMF efectivamente pagado y certificado, tenga o no relación de causalidad con la actividad económica." },
+      "en": { "question": "What share of the financial transactions tax (GMF) actually paid is deductible for Colombian income tax?",
+              "options": ["50%", "100%", "25%", "None: it is not deductible"],
+              "explanation": "Art. 115 of the Tax Code allows deducting 50% of the GMF actually paid and certified, whether or not it relates to the business activity." }
+    },
+    {
+      "id": "colombia-0092", "difficulty": 3, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿Qué impuesto territorial se integra en el Régimen Simple de Tributación (SIMPLE)?",
+              "options": ["El impuesto de industria y comercio consolidado", "El impuesto predial unificado", "El impuesto sobre vehículos automotores", "El impuesto de registro"],
+              "explanation": "El SIMPLE sustituye el impuesto de renta e integra, entre otros, el ICA consolidado de los municipios donde se realiza la actividad (Ley 2010 de 2019)." },
+      "en": { "question": "Which local tax is integrated into Colombia's Simple Tax Regime (SIMPLE)?",
+              "options": ["The consolidated industry and commerce tax (ICA)", "Property tax (predial)", "Motor vehicle tax", "Registration tax"],
+              "explanation": "SIMPLE replaces income tax and integrates, among others, the consolidated ICA of the municipalities where the business operates (Law 2010 of 2019)." }
+    },
+    {
+      "id": "colombia-0093", "difficulty": 3, "type": "truefalse", "answer": false, "asOf": "2026-11",
+      "es": { "question": "Los libros de contabilidad de una sociedad deben registrarse en la cámara de comercio.",
+              "explanation": "El Decreto Ley 019 de 2012 eliminó ese registro; hoy solo se inscriben los libros de registro de socios o accionistas y los de actas de asamblea o junta de socios (Código de Comercio, art. 28)." },
+      "en": { "question": "A Colombian company's accounting books must be registered with the chamber of commerce.",
+              "explanation": "Decree-Law 019 of 2012 removed that requirement; today only the shareholder or partner register and the books of meeting minutes are registered (Commercial Code, art. 28)." }
+    },
+    {
+      "id": "colombia-0094", "difficulty": 3, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "En una sociedad anónima, ¿qué porcentaje de las utilidades líquidas de cada ejercicio debe llevarse a la reserva legal?",
+              "options": ["10 %", "5 %", "20 %", "50 %"],
+              "explanation": "El art. 452 del Código de Comercio exige el 10 % de las utilidades líquidas hasta que la reserva llegue al 50 % del capital suscrito." },
+      "en": { "question": "In a Colombian sociedad anónima (corporation), what share of each year's net profit must go to the legal reserve?",
+              "options": ["10%", "5%", "20%", "50%"],
+              "explanation": "Art. 452 of the Commercial Code requires 10% of net profit until the reserve reaches 50% of subscribed capital." }
+    },
+    {
+      "id": "colombia-0095", "difficulty": 3, "type": "truefalse", "answer": false, "asOf": "2026-11",
+      "es": { "question": "Según el Código de Comercio, un médico que ejerce su profesión de forma independiente es comerciante.",
+              "explanation": "El art. 23 del Código de Comercio dice que no es mercantil la prestación de servicios propios de las profesiones liberales, así que esa actividad no lo hace comerciante." },
+      "en": { "question": "Under Colombia's Commercial Code, a doctor who practices independently is a merchant.",
+              "explanation": "Art. 23 of the Commercial Code says services inherent to the liberal professions are not commercial activities, so that work does not make the doctor a merchant." }
+    },
+    {
+      "id": "colombia-0096", "difficulty": 3, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "Si los estatutos no dicen nada, ¿dentro de qué plazo debe reunirse la asamblea ordinaria de una sociedad anónima?",
+              "options": ["Dentro de los 3 meses siguientes al cierre del ejercicio", "Dentro del mes siguiente al cierre del ejercicio", "Dentro de los 6 meses siguientes al cierre del ejercicio", "En cualquier momento del año siguiente"],
+              "explanation": "El art. 422 del Código de Comercio fija la reunión ordinaria al menos una vez al año y, en silencio de los estatutos, dentro de los tres meses siguientes al vencimiento del ejercicio." },
+      "en": { "question": "If the bylaws are silent, within what period must a Colombian sociedad anónima hold its ordinary shareholders' meeting?",
+              "options": ["Within 3 months after the fiscal year ends", "Within 1 month after the fiscal year ends", "Within 6 months after the fiscal year ends", "At any time during the following year"],
+              "explanation": "Art. 422 of the Commercial Code requires an ordinary meeting at least once a year and, if the bylaws are silent, within three months after the fiscal year ends." }
+    },
+    {
+      "id": "colombia-0097", "difficulty": 3, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "Según la Ley 1314 de 2009, ¿qué ministerios expiden las normas de contabilidad e información financiera?",
+              "options": ["Hacienda y Comercio, Industria y Turismo", "Hacienda y Trabajo", "Comercio, Industria y Turismo y Justicia", "Hacienda y Educación"],
+              "explanation": "Los ministerios de Hacienda y Crédito Público y de Comercio, Industria y Turismo las expiden en conjunto (art. 6), con base en las propuestas del Consejo Técnico de la Contaduría Pública." },
+      "en": { "question": "Under Law 1314 of 2009, which ministries issue Colombia's accounting and financial reporting standards?",
+              "options": ["Finance, and Trade, Industry and Tourism", "Finance, and Labor", "Trade, Industry and Tourism, and Justice", "Finance, and Education"],
+              "explanation": "The Ministries of Finance and of Trade, Industry and Tourism issue them jointly (art. 6), based on proposals from the Consejo Técnico de la Contaduría Pública, the technical standard-setter." }
+    },
+    {
+      "id": "colombia-0098", "difficulty": 3, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿Qué normas internacionales adoptó Colombia como parte de sus normas de aseguramiento de la información?",
+              "options": ["Las NIA (Normas Internacionales de Auditoría)", "Las NICSP (sector público)", "Los US GAAS", "El marco COSO"],
+              "explanation": "El Decreto 2420 de 2015 incluye normas de aseguramiento basadas en las NIA del IAASB, que deben aplicar, entre otros, los revisores fiscales de las entidades del grupo 1." },
+      "en": { "question": "Which international standards did Colombia adopt as part of its assurance standards (normas de aseguramiento)?",
+              "options": ["ISAs (International Standards on Auditing)", "IPSAS (public sector)", "US GAAS", "The COSO framework"],
+              "explanation": "Decree 2420 of 2015 includes assurance standards based on the IAASB's ISAs, which the revisores fiscales (statutory auditors) of group 1 entities, among others, must apply." }
+    },
+    {
+      "id": "colombia-0099", "difficulty": 3, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "En el PUC, ¿para qué se usan las cuentas de orden de las clases 8 y 9?",
+              "options": ["Para controlar hechos que no afectan el balance", "Para registrar los ingresos no operacionales", "Para registrar las provisiones del período", "Para registrar las reservas del patrimonio"],
+              "explanation": "Registran derechos y responsabilidades contingentes, diferencias fiscales y otros datos de control que no afectan la situación financiera: la 8, las deudoras, y la 9, las acreedoras (Decreto 2650 de 1993)." },
+      "en": { "question": "In the PUC (Colombia's chart of accounts), what are the memorandum accounts (cuentas de orden) of classes 8 and 9 used for?",
+              "options": ["To track items that do not affect the balance sheet", "To record non-operating revenue", "To record the provisions for the period", "To record equity reserves"],
+              "explanation": "They record contingent rights and obligations, tax differences and other control data that do not affect the financial position: 8 for debit and 9 for credit items (Decree 2650 of 1993)." }
+    },
+    {
+      "id": "colombia-0100", "difficulty": 3, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "En el PUC, ¿en qué grupo registra una comercializadora, como ingreso, los intereses que le pagan sus inversiones?",
+              "options": ["Ingresos no operacionales (42)", "Ingresos operacionales (41)", "Gastos no operacionales (53)", "Ajustes por inflación (47)"],
+              "explanation": "Para una empresa cuyo objeto no es financiero, los intereses recibidos son ingresos no operacionales, en la cuenta 4210, Financieros (Decreto 2650 de 1993)." },
+      "en": { "question": "In the PUC (Colombia's chart of accounts), in which group does a trading company record interest earned on its investments as income?",
+              "options": ["Ingresos no operacionales (42, non-operating)", "Ingresos operacionales (41, operating)", "Gastos no operacionales (53, non-op. expenses)", "Ajustes por inflación (47, inflation adjustments)"],
+              "explanation": "For a company whose business is not financial, interest earned is non-operating income, in account 4210, Financieros (Decree 2650 of 1993)." }
     }
   ]
 }
