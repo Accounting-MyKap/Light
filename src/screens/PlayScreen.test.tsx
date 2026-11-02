@@ -3,6 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { renderApp } from '../test/renderApp';
 import { registerFakeGameTranslations } from '../test/fakeGame';
 import { clearAllData, db } from '../data/db';
+import * as levels from '../data/levels';
 import { getSettings, updateSettings } from '../data/settings';
 import { fetchPercentile, getRemote, requestSync } from '../sync';
 
@@ -52,6 +53,19 @@ test('first visit shows instructions, then plays and shows result with new best'
   expect(await screen.findByText('120')).toBeInTheDocument();
   expect(screen.getByText('¡Nueva mejor marca!')).toBeInTheDocument();
   expect(await db.results.count()).toBe(1);
+});
+
+test('every phase of the game screen sits inside the dark Luz scope of the game area', async () => {
+  await open('/play/fake');
+  const heading = await screen.findByRole('heading', { name: 'Juego falso' });
+  expect(heading.closest('[data-luz][data-area="memory"]')).not.toBeNull();
+});
+
+test('the dark Luz scope is already there while the game is still loading', async () => {
+  vi.spyOn(levels, 'getStartLevel').mockReturnValue(new Promise(() => {}));
+  const { container } = await renderApp('/play/fake');
+  expect(container.querySelector('[data-luz][data-area="memory"]')).not.toBeNull();
+  expect(screen.queryByRole('heading')).not.toBeInTheDocument();
 });
 
 test('second visit skips instructions but offers how-to-play', async () => {

@@ -30,14 +30,28 @@
   --glow: color-mix(in srgb, var(--game) 40%, transparent);
   --border: rgba(255, 255, 255, 0.12);
 
+  /*
+   * The scope fills the viewport edge to edge and carries the screen padding itself (the app's 720px column
+   * with 1.25rem gutters, plus the safe-area insets), so the dark background never leaves light strips.
+   */
+  --luz-pad-top: max(0.5rem, env(safe-area-inset-top));
+  --luz-pad-bottom: max(2rem, env(safe-area-inset-bottom));
+  /* Lets a game screen (Play.module.css .screen) fill the viewport exactly, so it does not scroll. */
+  --screen-inset: calc(var(--luz-pad-top) + var(--luz-pad-bottom));
   min-height: 100dvh;
+  padding: var(--luz-pad-top) max(1.25rem, env(safe-area-inset-right), calc((100% - 680px) / 2))
+    var(--luz-pad-bottom) max(1.25rem, env(safe-area-inset-left), calc((100% - 680px) / 2));
   color-scheme: dark;
   color: var(--luz-text);
   font-family: 'Sora Variable', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  /* A glow of the area color at the top that fades out by 60% of the height. */
-  background:
-    radial-gradient(ellipse 100% 60% at 50% 0, color-mix(in srgb, var(--game) 28%, transparent), transparent),
-    var(--luz-bg);
+  background-color: var(--luz-bg);
+  /* A glow of the area color at the top that fades out by 60% of the height. Kept apart from the color above,
+     so a browser without color-mix() still gets the plain dark background. */
+  background-image: radial-gradient(
+    ellipse 100% 60% at 50% 0,
+    color-mix(in srgb, var(--game) 28%, transparent),
+    transparent
+  );
 }
 
 [data-luz][data-area='memory'] {
@@ -61,6 +75,7 @@
 }
 
 /* The page behind the game is dark too, so overscroll and bounce never flash the light app background. */
-html[data-luz-active] {
+html[data-luz-active],
+html[data-luz-active] body {
   background: #090b19;
 }

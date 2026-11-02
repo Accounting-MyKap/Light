@@ -208,6 +208,5 @@ function PlaySession({ game, daily }: { game: GameDefinition; daily: string | nu
     }
   };
 
-  if (phase.kind === 'loading') return null;
-  return <LuzScope area={game.area}>{renderPhase(phase)}</LuzScope>;
+  return <LuzScope area={game.area}>{phase.kind === 'loading' ? null : renderPhase(phase)}</LuzScope>;
 }
