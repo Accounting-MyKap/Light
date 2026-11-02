@@ -37,7 +37,8 @@
       "time": "Tiempo",
       "score": "Puntos",
       "level": "Nivel",
-      "secondsLeft": "Quedan {{count}} s",
+      "secondsLeft_one": "Queda {{count}} segundo",
+      "secondsLeft_other": "Quedan {{count}} segundos",
       "round": "Ronda {{n}} de {{total}}"
     }
   },

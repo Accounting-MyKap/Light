@@ -37,7 +37,8 @@
       "time": "Time",
       "score": "Score",
       "level": "Level",
-      "secondsLeft": "{{count}} s left",
+      "secondsLeft_one": "{{count}} second left",
+      "secondsLeft_other": "{{count}} seconds left",
       "round": "Round {{n}} of {{total}}"
     }
   },

@@ -338,10 +338,11 @@
   );
   -webkit-mask: radial-gradient(closest-side, #000 30%, transparent 75%);
   mask: radial-gradient(closest-side, #000 30%, transparent 75%);
-  /* The rays come in once and then keep turning (the turn is its own property, so the two animations do not fight). */
+  /* The rays come in once and then turn for two full turns (the turn is its own property, so the two animations do
+     not fight). A full turn ends where it began, so when they stop nothing jumps and the screen can rest. */
   animation:
     rays-in 0.6s ease-out var(--celebrate-delay) both,
-    rays-turn 24s linear var(--celebrate-delay) infinite;
+    rays-turn 24s linear var(--celebrate-delay) 2;
 }
 
 .spark {

@@ -71,6 +71,31 @@ test('a double mount (StrictMode) and two scopes in a row still restore the orig
   expect(themeColor()).toBe(ORIGINAL_COLOR);
 });
 
+test('a scope that is remounted by its key in one commit (daily next game) still restores the original at the end', () => {
+  const view = (key: string, area: 'memory' | 'math') => (
+    <LuzScope key={key} area={area}>
+      <p>{key}</p>
+    </LuzScope>
+  );
+  const { rerender, unmount } = render(view('first', 'memory'));
+  expect(themeColor()).toBe('#090b19');
+  expect(document.documentElement.hasAttribute('data-luz-active')).toBe(true);
+
+  // The old scope unmounts and the new one mounts in the same commit.
+  rerender(view('second', 'math'));
+  expect(screen.getByText('second').parentElement).toHaveAttribute('data-area', 'math');
+  expect(themeColor()).toBe('#090b19');
+  expect(document.documentElement.hasAttribute('data-luz-active')).toBe(true);
+
+  rerender(view('third', 'memory'));
+  expect(themeColor()).toBe('#090b19');
+  expect(document.documentElement.hasAttribute('data-luz-active')).toBe(true);
+
+  unmount();
+  expect(themeColor()).toBe(ORIGINAL_COLOR);
+  expect(document.documentElement.hasAttribute('data-luz-active')).toBe(false);
+});
+
 test('works without a theme-color meta and does not leave one behind', () => {
   document.querySelector('meta[name="theme-color"]')?.remove();
   const { unmount } = render(

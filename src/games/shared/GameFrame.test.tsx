@@ -71,7 +71,7 @@ test('level shows as "Nivel 3"', () => {
 test('the time bar tells screen readers the seconds left', () => {
   renderFrame({ time: { remainingMs: 41_200, totalMs: 60_000 } });
   const bar = screen.getByRole('progressbar', { name: 'Tiempo' });
-  expect(bar).toHaveAttribute('aria-valuetext', 'Quedan 42 s');
+  expect(bar).toHaveAttribute('aria-valuetext', 'Quedan 42 segundos');
   expect(bar).toHaveAttribute('aria-valuemin', '0');
   expect(bar).toHaveAttribute('aria-valuemax', '60');
   expect(bar).toHaveAttribute('aria-valuenow', '42');
@@ -85,7 +85,20 @@ test('the time bar fill shrinks with the time left', () => {
 test('the time bar texts follow the language', async () => {
   await initI18n('en');
   renderFrame({ time: { remainingMs: 41_200, totalMs: 60_000 } });
-  expect(screen.getByRole('progressbar', { name: 'Time' })).toHaveAttribute('aria-valuetext', '42 s left');
+  expect(screen.getByRole('progressbar', { name: 'Time' })).toHaveAttribute('aria-valuetext', '42 seconds left');
+});
+
+test('the time bar says «1 segundo» in the singular and «0 segundos» at the end', async () => {
+  const { update } = renderFrame({ time: { remainingMs: 700, totalMs: 60_000 } });
+  expect(screen.getByRole('progressbar')).toHaveAttribute('aria-valuetext', 'Queda 1 segundo');
+  update({ time: { remainingMs: 0, totalMs: 60_000 } });
+  expect(screen.getByRole('progressbar')).toHaveAttribute('aria-valuetext', 'Quedan 0 segundos');
+});
+
+test('the time bar says «1 second left» in the singular in English', async () => {
+  await initI18n('en');
+  renderFrame({ time: { remainingMs: 700, totalMs: 60_000 } });
+  expect(screen.getByRole('progressbar')).toHaveAttribute('aria-valuetext', '1 second left');
 });
 
 test('the last 10 seconds mark the bar as urgent', () => {

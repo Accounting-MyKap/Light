@@ -48,7 +48,7 @@ async function solveRuleSwitch(page: Page, count: number): Promise<void> {
 }
 
 /**
- * A few answers, so the result has a score and an accuracy worth looking at. The two games that cannot be read
+ * A few answers, so the screens have a score and an accuracy worth looking at. The two games that cannot be read
  * from the page cheaply get a few taps instead; Sequence Lights is left to the helper.
  */
 async function answerSome(page: Page, id: (typeof GAMES)[number]): Promise<void> {
@@ -164,6 +164,33 @@ test.describe('result at a large root font size', () => {
   });
 });
 
+test.describe('arrows rows', () => {
+  test.use({ viewport: { width: 390, height: 844 } });
+
+  // Regression lock for the final review's Critical finding: in a session's first game the signal id equaled the trial
+  // count, two siblings shared a key, and every answer left one more old row in the page, pushing the buttons away.
+  test('Arrows keeps a single row after many answers and its buttons stay on screen', async ({ page }) => {
+    await page.goto('./#/play/arrows');
+    await page.getByRole('button', { name: 'Comenzar' }).click();
+    await expect(page.locator('[data-game]')).toBeVisible();
+    const rows = page.getByTestId('arrows-row');
+    const buttons = page.locator('[data-game] [data-zone="controls"] button');
+    await expect(rows).toHaveCount(1);
+
+    for (let i = 0; i < 8; i++) {
+      await buttons.nth(i % 2).click();
+      await expect(rows, `rows after answer ${i + 1}`).toHaveCount(1);
+    }
+
+    const viewportHeight = page.viewportSize()?.height ?? 0;
+    for (let i = 0; i < 2; i++) {
+      const box = await buttons.nth(i).boundingBox();
+      expect((box?.y ?? Infinity) + (box?.height ?? 0), `button ${i} bottom edge`).toBeLessThanOrEqual(viewportHeight);
+    }
+    expect(await page.evaluate(() => document.documentElement.scrollHeight <= window.innerHeight)).toBe(true);
+  });
+});
+
 test.describe('review screenshots', () => {
   test.use({ viewport: { width: 390, height: 844 }, colorScheme: 'dark' });
 
@@ -183,10 +210,13 @@ test.describe('review screenshots', () => {
         // Same or different shows its symbol first, with the answers off; wait for them, then let the trial settle.
         await expect(game.locator('[data-zone="controls"] button').first()).toBeEnabled();
         await page.waitForTimeout(1000);
+        // The play screenshot shows a game in progress: a few answers in, with points on the board.
+        await answerSome(page, id);
+        if (id === 'arrows') await expect(page.getByTestId('arrows-row')).toHaveCount(1);
+        await page.waitForTimeout(500);
       }
       await page.screenshot({ path: `${SCREENSHOT_DIR}/${id}-play.png` });
 
-      await answerSome(page, id);
       await finishRunningGame(page);
       // Wait for the count-up to land (and the celebration to settle) before looking at it.
       await expect(page.getByTestId('result-score')).toHaveText(String(await announcedScore(page)));
