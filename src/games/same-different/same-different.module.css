@@ -1,62 +1,206 @@
-.game {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.25rem;
-}
+/*
+ * Same or Different in the Luz style. The game zone and the controls come from GameFrame, which centers its
+ * children, so the full-width rows below set their own width. Colors come from the Luz tokens (--game, --luz-*).
+ */
 
 .prompt {
-  margin: 0;
-  font-weight: 700;
+  margin: 0 0 1.25rem;
   min-height: 1.5em;
+  font-size: 1.125rem;
+  font-weight: 700;
+  text-align: center;
 }
 
+/* The symbol sits on a glass card. */
 .card {
   display: grid;
   place-items: center;
   width: min(60vw, 220px);
   aspect-ratio: 1;
-  border-radius: var(--radius);
-  background: var(--surface);
-  border: 1px solid var(--border);
-  box-shadow: 0 0 32px var(--glow);
+  border-radius: 18px;
+  background: var(--luz-glass);
+  box-shadow: inset 0 0 0 1.5px var(--luz-glass-border);
 }
 
+/*
+ * Every new symbol slides in from the right, so a repeat is noticed too. The card is re-mounted on each trial and
+ * carries the global .appear class (the fade-in of the other games); two classes here outrank that single one.
+ */
+.card:global(.appear) {
+  animation: slide-in 260ms ease-out both;
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0.1;
+    transform: translateX(56px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0.1;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* The figure is a neon outline in the color of the game. */
 .symbol {
   width: 70%;
   height: 70%;
-  color: var(--text);
+  color: var(--game);
+  filter: drop-shadow(0 0 8px var(--game));
+}
+
+/* Keeps the height of the pill when it is not there, so the card does not move when the streak starts. */
+.streakSlot {
+  display: flex;
+  justify-content: center;
+  min-height: 2rem;
+  margin-top: 0.75rem;
+}
+
+/* The streak pill: filled, small, and it jumps each time the multiplier goes up. */
+.streak {
+  align-self: center;
+  padding: 4px 14px;
+  border-radius: 999px;
+  background: var(--game);
+  color: var(--luz-ink);
+  box-shadow: 0 0 32px color-mix(in srgb, var(--game) 55%, transparent);
+  font-size: 0.875rem;
+  font-weight: 800;
+  animation: jump 450ms ease-out both;
+}
+
+@keyframes jump {
+  0% {
+    opacity: 0;
+    transform: translateY(10px) scale(0.8);
+  }
+
+  55% {
+    opacity: 1;
+    transform: translateY(-8px) scale(1.12);
+  }
+
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes jump-still {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 .controls {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
-  width: min(92vw, 420px);
+  width: 100%;
+  max-width: 26rem;
 }
 
+/* Big outline buttons with a glow of the game color. */
 .answer {
-  min-height: 72px;
+  min-height: 78px;
+  padding: 0 0.5rem;
   border: none;
-  border-radius: var(--radius);
-  background: var(--accent);
-  color: var(--accent-text);
-  font-weight: 800;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--game);
   font-size: 1.25rem;
+  font-weight: 700;
+  box-shadow:
+    inset 0 0 0 2.5px var(--game),
+    0 0 28px color-mix(in srgb, var(--game) 38%, transparent);
 }
 
+.answer:not(:disabled):active {
+  transform: scale(0.94);
+  filter: brightness(1.2);
+}
+
+/* Not answerable yet (the first symbol is only to remember): dimmed and without its glow. */
 .answer:disabled {
   opacity: 0.4;
+  box-shadow: inset 0 0 0 2.5px var(--game);
   cursor: default;
 }
 
+/* In the instructions: the previous symbol, and the new one that keeps sliding in. */
 .exampleRow {
   display: flex;
   gap: 1rem;
   align-items: center;
+  justify-content: center;
+}
+
+.exampleRow > span {
+  color: var(--luz-muted);
 }
 
 .exampleRow .card {
   width: 96px;
-  box-shadow: none;
+}
+
+.demoIn {
+  animation: demo-in 3.2s ease-out infinite;
+}
+
+@keyframes demo-in {
+  0% {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+
+  20%,
+  85% {
+    opacity: 1;
+    transform: none;
+  }
+
+  100% {
+    opacity: 0;
+    transform: none;
+  }
+}
+
+/*
+ * Reduced motion: nothing slides, jumps or shrinks; the symbol and the pill only fade in. The app-wide rule would
+ * cut every animation to nothing, so the ones that mark a new symbol keep their duration here, as .appear does.
+ */
+@media (prefers-reduced-motion: reduce) {
+  .card:global(.appear) {
+    animation-name: fade-in;
+    animation-duration: 160ms !important;
+  }
+
+  .streak {
+    animation-name: jump-still;
+    animation-duration: 160ms !important;
+  }
+
+  .demoIn {
+    animation: none;
+  }
+
+  .answer:not(:disabled):active {
+    transform: none;
+  }
 }

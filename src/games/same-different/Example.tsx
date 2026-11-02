@@ -12,7 +12,7 @@ export function SameDifferentExample() {
           <SymbolGlyph id="star" label={label} className={styles.symbol} />
         </div>
         <span aria-hidden="true">→</span>
-        <div className={styles.card}>
+        <div className={`${styles.card} ${styles.demoIn}`}>
           <SymbolGlyph id="star" label={label} className={styles.symbol} />
         </div>
       </div>

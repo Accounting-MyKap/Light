@@ -83,6 +83,7 @@
       "question": "¿Es igual al anterior?",
       "yes": "Sí",
       "no": "No",
+      "streak": "Racha ×{{n}}",
       "exampleAnswer": "Respuesta correcta: Sí",
       "symbols": {
         "circle": "círculo",
