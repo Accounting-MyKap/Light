@@ -5,6 +5,7 @@ import { answerHistory } from '../../data/quizAnswers';
 import { loadQuestions } from '../../quiz/banks/load';
 import { correctIndex, optionTexts, type QuizCategory } from '../../quiz/types';
 import { useGameClock, useTrialTimeout, type GameClock } from '../shared/clock';
+import { MIN_RT_MS } from '../shared/constants';
 import { useFeedback } from '../shared/feedback';
 import { GameHud } from '../shared/GameHud';
 import { useGameKeys } from '../shared/useGameKeys';
@@ -128,7 +129,9 @@ function QuizRound({ initial, clock, rng, paused, onFinish }: QuizRoundProps) {
     return true;
   };
   const choose = (shownIndex: number) => active && resolveWith(answerQuestion(round, shownIndex, clock.now()));
-  const skip = () => active && resolveWith(dontKnow(round));
+  // The engine's own MIN_RT_MS check covers the options; «No sé» takes no time there, so the same guard is applied here:
+  // a second tap on «Siguiente» must not land on the new question's «No sé» and record a skip.
+  const skip = () => active && clock.now() - askedAt >= MIN_RT_MS && resolveWith(dontKnow(round));
   const goNext = () => {
     if (!active || round.phase !== 'feedback') return false;
     const next = nextQuestion(round, rng, clock.now());

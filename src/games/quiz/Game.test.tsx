@@ -182,6 +182,41 @@ test('a tap right after Next does not answer the new question', async () => {
   expect(screen.getByRole('button', { name: 'Siguiente' })).toBeInTheDocument();
 });
 
+test("a tap on I don't know right after Next does not skip the new question", async () => {
+  await renderGame();
+  advance(1000);
+  fireEvent.click(correctOption());
+  fireEvent.click(screen.getByRole('button', { name: 'Siguiente' }));
+  const score = hud('Puntos');
+  advance(100);
+  fireEvent.click(screen.getByRole('button', { name: 'No sé' }));
+  fireEvent.keyDown(window, { key: '0' });
+  // Still asking: «No sé» is there, nothing was recorded, no feedback and the same points.
+  expect(screen.getByRole('button', { name: 'No sé' })).toBeInTheDocument();
+  expect(screen.queryByRole('button', { name: 'Siguiente' })).not.toBeInTheDocument();
+  expect(screen.queryByText(/^La respuesta era:/)).not.toBeInTheDocument();
+  expect(options()).toHaveLength(4);
+  expect(hud('Puntos')).toBe(score);
+
+  advance(50);
+  fireEvent.click(screen.getByRole('button', { name: 'No sé' }));
+  expect(screen.getByRole('button', { name: 'Siguiente' })).toBeInTheDocument();
+  expect(screen.getByText(/^La respuesta era: Correcta history-\d{4}$/)).toBeInTheDocument();
+});
+
+test('the 0 key does not skip within 150 ms of a new question, then it does', async () => {
+  await renderGame();
+  advance(1000);
+  fireEvent.keyDown(window, { key: '1' });
+  fireEvent.keyDown(window, { key: 'Enter' });
+  advance(149);
+  fireEvent.keyDown(window, { key: '0' });
+  expect(screen.getByRole('button', { name: 'No sé' })).toBeInTheDocument();
+  advance(1);
+  fireEvent.keyDown(window, { key: '0' });
+  expect(screen.getByRole('button', { name: 'Siguiente' })).toBeInTheDocument();
+});
+
 test('the timer stops while paused and keeps the time that was left', async () => {
   const onFinish = vi.fn();
   const view = render(gameElement({ onFinish }));
