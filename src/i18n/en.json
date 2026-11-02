@@ -156,6 +156,50 @@
     "saveError": "We couldn’t save your game.",
     "retry": "Retry"
   },
+  "quiz": {
+    "questionOf": "Question {{n}} of {{total}}",
+    "dontKnow": "I don't know",
+    "next": "Next",
+    "finish": "See results",
+    "true": "True",
+    "false": "False",
+    "correct": "Correct",
+    "yourAnswer": "Your answer",
+    "timeUp": "Time's up",
+    "announce": {
+      "correct": "Correct!",
+      "wrong": "Wrong. The answer was: {{answer}}",
+      "timeout": "Time's up. The answer was: {{answer}}",
+      "skipped": "The answer was: {{answer}}"
+    },
+    "asOf": "Current as of {{date}}",
+    "loading": "Loading questions…",
+    "loadError": "We couldn't load the questions.",
+    "categories": {
+      "history": "History",
+      "science": "Science",
+      "geography": "Geography",
+      "math": "Math",
+      "arts": "Arts & literature",
+      "entertainment": "Entertainment",
+      "sports": "Sports",
+      "technology": "Technology",
+      "concepts": "Accounting concepts",
+      "colombia": "Colombia",
+      "us": "United States",
+      "lending": "Lending & loan portfolio"
+    },
+    "example": {
+      "question": "Which is the largest planet in the Solar System?",
+      "options": [
+        "Jupiter",
+        "Saturn",
+        "Neptune",
+        "Earth"
+      ],
+      "explanation": "Jupiter has more than twice the mass of all the other planets combined."
+    }
+  },
   "today": {
     "title": "Today’s training",
     "intro": "Three short games, about 5 minutes in total.",

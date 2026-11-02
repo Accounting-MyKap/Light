@@ -1,0 +1,193 @@
+.game {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 40rem;
+  margin-inline: auto;
+}
+
+.counter {
+  margin: 0;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+.bar {
+  height: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+}
+
+.barFill {
+  height: 100%;
+  background: var(--accent-strong);
+  transition: width 100ms linear;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .barFill {
+    transition: none;
+  }
+}
+
+.question {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.card {
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.category {
+  margin: 0 0 0.35rem;
+  color: var(--text-muted);
+  font-size: 1rem;
+  font-weight: 700;
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.06em;
+}
+
+.prompt {
+  margin: 0;
+  font-size: 1.2rem;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.option {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  width: 100%;
+  min-height: 44px;
+  padding: 0.65rem 0.9rem;
+  border: 2px solid var(--border);
+  border-radius: 14px;
+  background: var(--surface);
+  color: var(--text);
+  font-weight: 600;
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+
+.option:not(:disabled):hover {
+  border-color: var(--accent-strong);
+}
+
+/* After the answer the options only show the result; keep their text as readable as before. */
+.option:disabled {
+  color: var(--text);
+  cursor: default;
+}
+
+.option[data-state='correct'] {
+  border-color: var(--success-strong);
+}
+
+.option[data-state='wrong'] {
+  border-color: var(--danger);
+}
+
+.number {
+  display: grid;
+  flex: none;
+  place-items: center;
+  min-width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background: var(--bg);
+  font-size: 0.85rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.optionBody {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.mark {
+  font-size: 0.85rem;
+  font-weight: 800;
+}
+
+.option[data-state='correct'] .mark {
+  color: var(--success-strong);
+}
+
+.dontKnow {
+  width: 100%;
+  min-height: 44px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: transparent;
+  padding: 0.5rem 1.5rem;
+}
+
+.feedback {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.feedback p {
+  margin: 0;
+}
+
+.timeUp {
+  font-weight: 800;
+}
+
+.asOf {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.next {
+  width: 100%;
+  min-height: 44px;
+  border: none;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--accent-text);
+  padding: 0.75rem 1.75rem;
+  font-weight: 700;
+  box-shadow: 0 0 24px var(--glow);
+}
+
+.status {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin: 0;
+  padding: 2rem 0;
+  text-align: center;
+}
+
+.retry {
+  border: none;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--accent-text);
+  padding: 0.75rem 1.75rem;
+  font-weight: 700;
+  box-shadow: 0 0 24px var(--glow);
+}

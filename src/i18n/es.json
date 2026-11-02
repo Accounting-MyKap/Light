@@ -156,6 +156,50 @@
     "saveError": "No pudimos guardar tu partida.",
     "retry": "Reintentar"
   },
+  "quiz": {
+    "questionOf": "Pregunta {{n}} de {{total}}",
+    "dontKnow": "No sé",
+    "next": "Siguiente",
+    "finish": "Ver resultado",
+    "true": "Verdadero",
+    "false": "Falso",
+    "correct": "Correcta",
+    "yourAnswer": "Tu respuesta",
+    "timeUp": "Se acabó el tiempo",
+    "announce": {
+      "correct": "¡Correcto!",
+      "wrong": "Incorrecto. La respuesta era: {{answer}}",
+      "timeout": "Se acabó el tiempo. La respuesta era: {{answer}}",
+      "skipped": "La respuesta era: {{answer}}"
+    },
+    "asOf": "Vigente a {{date}}",
+    "loading": "Cargando preguntas…",
+    "loadError": "No pudimos cargar las preguntas.",
+    "categories": {
+      "history": "Historia",
+      "science": "Ciencias",
+      "geography": "Geografía",
+      "math": "Matemáticas",
+      "arts": "Arte y literatura",
+      "entertainment": "Entretenimiento",
+      "sports": "Deportes",
+      "technology": "Tecnología",
+      "concepts": "Conceptos contables",
+      "colombia": "Colombia",
+      "us": "EE. UU.",
+      "lending": "Cartera y préstamos"
+    },
+    "example": {
+      "question": "¿Cuál es el planeta más grande del sistema solar?",
+      "options": [
+        "Júpiter",
+        "Saturno",
+        "Neptuno",
+        "Tierra"
+      ],
+      "explanation": "Júpiter tiene más del doble de masa que todos los demás planetas juntos."
+    }
+  },
   "today": {
     "title": "Entrenamiento de hoy",
     "intro": "Tres juegos cortos, unos 5 minutos en total.",
