@@ -43,6 +43,9 @@ for (const width of [320, 360, 375, 430]) {
   test(`no tab label overflows its column on a ${width} px screen`, async ({ page }) => {
     await page.setViewportSize({ width, height: 640 });
     await page.goto('./');
+    // Pin a phone-like font (Arial metrics): the CI fallback for system-ui (DejaVu Sans) is far wider than any phone font.
+    await page.addStyleTag({ content: 'nav a { font-family: "Liberation Sans", Arial, sans-serif !important; }' });
+    await page.evaluate(() => document.fonts.ready);
     const links = page.getByRole('navigation').getByRole('link');
     await expect(links).toHaveCount(5);
 

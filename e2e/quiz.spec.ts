@@ -11,11 +11,8 @@ test('plays a quiz round from the Quiz tab to the review', async ({ page }) => {
   await finishQuizRound(page);
 
   await expect(page.getByRole('button', { name: 'Jugar de nuevo' })).toBeVisible();
-  await expect(
-    page
-      .getByRole('heading', { name: 'Repasa tus errores' })
-      .or(page.getByText('¡Sin errores en esta ronda!')),
-  ).toBeVisible();
+  // The review section is always shown; whether it lists errors depends on which option 1 happened to be.
+  await expect(page.getByRole('heading', { name: 'Repasa tus errores' })).toBeVisible();
 
   await page.getByRole('button', { name: 'Volver' }).click();
   await expect(page).toHaveURL(/#\/quiz$/);
