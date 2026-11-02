@@ -73,12 +73,12 @@
     },
     {
       "id": "us-0009", "difficulty": 3, "type": "choice", "asOf": "2026-11",
-      "es": { "question": "¿Qué tema del ASC regula el reconocimiento de ingresos de contratos con clientes?",
-              "options": ["ASC 606", "ASC 842", "ASC 326", "ASC 350"],
-              "explanation": "El ASC 606 fija el modelo de cinco pasos para reconocer ingresos. El 842 trata de arrendamientos, el 326 de pérdidas crediticias y el 350 de intangibles." },
-      "en": { "question": "Which ASC topic governs revenue recognition for contracts with customers?",
-              "options": ["ASC 606", "ASC 842", "ASC 326", "ASC 350"],
-              "explanation": "ASC 606 sets the five-step model for recognizing revenue. ASC 842 covers leases, 326 credit losses and 350 intangibles." }
+      "es": { "question": "¿Qué norma de las NIIF se emitió en 2014 junto con el ASC 606, como norma convergente de ingresos de contratos con clientes?",
+              "options": ["NIIF 15", "NIIF 9", "NIIF 16", "NIC 18"],
+              "explanation": "La NIIF 15 y el ASC 606 (ASU 2014-09) se publicaron juntos en 2014, tras un proyecto conjunto. La NIC 18 era la norma de ingresos anterior; la NIIF 9 trata de instrumentos financieros y la 16, de arrendamientos." },
+      "en": { "question": "Which IFRS standard was issued in 2014 alongside ASC 606 as the converged standard on revenue from contracts with customers?",
+              "options": ["IFRS 15", "IFRS 9", "IFRS 16", "IAS 18"],
+              "explanation": "IFRS 15 and ASC 606 (ASU 2014-09) were issued together in 2014, after a joint project. IAS 18 was the earlier IFRS revenue standard; IFRS 9 covers financial instruments and IFRS 16 leases." }
     },
     {
       "id": "us-0010", "difficulty": 3, "type": "choice", "asOf": "2026-11",
@@ -230,7 +230,7 @@
               "explanation": "The Current column holds invoices that have not reached their due date yet, based on each invoice's payment terms." }
     },
     {
-      "id": "us-0027", "difficulty": 1, "type": "choice",
+      "id": "us-0027", "difficulty": 1, "type": "choice", "asOf": "2026-11",
       "es": { "question": "En QuickBooks Online, ¿qué función permite que una factura o un asiento se repita en forma automática cada mes?",
               "options": ["Recurring Transactions", "Bank Rules", "Batch Actions", "Custom Reports"],
               "explanation": "Recurring Transactions guarda una plantilla que QuickBooks crea sola con la frecuencia elegida, o que deja lista como recordatorio. En Desktop se llaman Memorized Transactions." },
@@ -242,10 +242,10 @@
       "id": "us-0028", "difficulty": 1, "type": "choice",
       "es": { "question": "En QuickBooks, ¿qué transacción registra el cobro de una factura que ya se le emitió a un cliente?",
               "options": ["Receive Payment", "Sales Receipt", "Deposit", "Refund Receipt"],
-              "explanation": "Receive Payment aplica el cobro a la factura abierta y reduce Accounts Receivable. Si el cobro se registra de otra forma, la factura sigue pendiente." },
+              "explanation": "Receive Payment aplica el cobro a la factura abierta y reduce Accounts Receivable. Si se registra como depósito o Sales Receipt, la factura sigue pendiente." },
       "en": { "question": "In QuickBooks, which transaction records the collection of an invoice already issued to a customer?",
               "options": ["Receive Payment", "Sales Receipt", "Deposit", "Refund Receipt"],
-              "explanation": "Receive Payment applies the money to the open invoice and reduces Accounts Receivable. If the payment is recorded any other way, the invoice stays open." }
+              "explanation": "Receive Payment applies the money to the open invoice and reduces Accounts Receivable. If it is recorded as a deposit or a Sales Receipt, the invoice stays open." }
     },
     {
       "id": "us-0029", "difficulty": 1, "type": "choice",
@@ -386,7 +386,7 @@
               "explanation": "The Accounting Standards Codification organizes authoritative U.S. GAAP into numbered topics; it took effect in 2009, replacing hundreds of separate pronouncements." }
     },
     {
-      "id": "us-0045", "difficulty": 1, "type": "choice",
+      "id": "us-0045", "difficulty": 1, "type": "choice", "asOf": "2026-11",
       "es": { "question": "En QuickBooks Online, ¿para qué sirven las reglas bancarias (bank rules)?",
               "options": ["Categorizar en forma automática lo que llega del banco", "Bloquear pagos sospechosos de la cuenta", "Calcular los intereses de la cuenta", "Fijar el saldo mínimo de la cuenta"],
               "explanation": "Una regla bancaria asigna categoría, beneficiario o clase a las transacciones del banco que cumplen ciertas condiciones, como una descripción o un monto." },
@@ -441,10 +441,10 @@
       "id": "us-0051", "difficulty": 2, "type": "choice", "asOf": "2026-11",
       "es": { "question": "Según los US GAAP, ¿cómo se contabilizan, por regla general, los costos de investigación y desarrollo?",
               "options": ["Como gasto cuando se incurren", "Como un intangible que se amortiza", "Como parte del costo del inventario", "Como un cargo directo al patrimonio"],
-              "explanation": "El ASC 730 lleva la investigación y el desarrollo a gasto al incurrirse, salvo reglas especiales, como las de ciertos costos de software. La NIC 38, en cambio, permite activar el desarrollo." },
+              "explanation": "El ASC 730 lleva la investigación y el desarrollo a gasto al incurrirse, salvo reglas especiales, como las de ciertos costos de software. La NIC 38, en cambio, exige activar el desarrollo si cumple ciertos criterios." },
       "en": { "question": "Under U.S. GAAP, how are research and development costs generally accounted for?",
               "options": ["Expensed as incurred", "As an intangible asset that is amortized", "As part of inventory cost", "As a direct charge to equity"],
-              "explanation": "ASC 730 expenses research and development as incurred, apart from special rules such as those for some software costs. IAS 38, by contrast, allows development costs to be capitalized." }
+              "explanation": "ASC 730 expenses research and development as incurred, apart from special rules such as those for some software costs. IAS 38, by contrast, requires development costs to be capitalized when set criteria are met." }
     },
     {
       "id": "us-0052", "difficulty": 2, "type": "truefalse", "answer": false, "asOf": "2026-11",
@@ -666,13 +666,13 @@
               "explanation": "Wayfair overturned the physical-presence rule of Quill (1992): a state can require remote sellers with enough sales there to collect its sales tax." }
     },
     {
-      "id": "us-0077", "difficulty": 2, "type": "choice",
-      "es": { "question": "En QuickBooks, ¿para qué sirve la cuenta Undeposited Funds?",
-              "options": ["Agrupar los cobros recibidos hasta registrar el depósito", "Registrar los cheques devueltos sin fondos", "Guardar el saldo de la caja menor", "Registrar los anticipos a proveedores"],
-              "explanation": "Los cobros quedan en Undeposited Funds y luego se agrupan en un solo depósito, igual al que muestra el extracto bancario; así es más fácil conciliar." },
-      "en": { "question": "In QuickBooks, what is the Undeposited Funds account for?",
-              "options": ["Holding payments received until the deposit is recorded", "Recording checks returned for insufficient funds", "Keeping the petty cash balance", "Recording advances to vendors"],
-              "explanation": "Payments sit in Undeposited Funds and are then grouped into one deposit that matches the bank statement, which makes reconciling easier." }
+      "id": "us-0077", "difficulty": 2, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "En QuickBooks, ¿para qué se dejan los cobros en Undeposited Funds antes de registrar el depósito?",
+              "options": ["Para que cada depósito cuadre con el del extracto", "Para no registrar el ingreso hasta el depósito", "Para que la factura siga abierta hasta el depósito", "Para que el banco no cobre comisión por cheque"],
+              "explanation": "Los cobros se agrupan en un solo depósito, igual al que muestra el extracto bancario, y así es fácil conciliar. En algunas cuentas de QuickBooks Online aparece como Payments to deposit." },
+      "en": { "question": "In QuickBooks, why are payments held in Undeposited Funds before the deposit is recorded?",
+              "options": ["So each deposit matches the one on the bank statement", "So income is not recorded until the deposit", "So the invoice stays open until the deposit", "So the bank charges no fee per check"],
+              "explanation": "Payments are grouped into one deposit that matches the bank statement, which makes reconciling easy. Some QuickBooks Online accounts show it as Payments to deposit." }
     },
     {
       "id": "us-0078", "difficulty": 2, "type": "choice",
@@ -684,7 +684,7 @@
               "explanation": "Classes tag each transaction or line so reports such as the P&L can be run by department, program or line of business, without adding accounts." }
     },
     {
-      "id": "us-0079", "difficulty": 2, "type": "choice",
+      "id": "us-0079", "difficulty": 2, "type": "choice", "asOf": "2026-11",
       "es": { "question": "En QuickBooks Online, ¿para qué se usan las ubicaciones (locations)?",
               "options": ["Ver resultados por sucursal, tienda o región", "Guardar las direcciones de envío de los clientes", "Fijar la zona horaria de la empresa", "Asignar la tarifa de sales tax de cada estado"],
               "explanation": "Las ubicaciones etiquetan cada transacción con una sucursal, tienda o región, y permiten sacar reportes, como el P&L, para cada una." },
@@ -693,7 +693,7 @@
               "explanation": "Locations tag each transaction with a branch, store or region, so reports such as the P&L can be run for each one." }
     },
     {
-      "id": "us-0080", "difficulty": 2, "type": "choice",
+      "id": "us-0080", "difficulty": 2, "type": "choice", "asOf": "2026-11",
       "es": { "question": "Al conciliar una cuenta en QuickBooks, ¿qué valor debe quedar en cero para que la conciliación cuadre?",
               "options": ["Difference (la diferencia)", "Beginning balance (saldo inicial)", "Ending balance (saldo final)", "Cleared balance (saldo marcado)"],
               "explanation": "Con Difference en cero, la conciliación cuadra. Si se intenta terminar con diferencia, QuickBooks ofrece registrar un ajuste, que luego habría que investigar." },
@@ -718,7 +718,7 @@
               "explanation": "A purchase order is non-posting: it records the order, and the accounts change only when the purchase itself is recorded." }
     },
     {
-      "id": "us-0083", "difficulty": 2, "type": "choice",
+      "id": "us-0083", "difficulty": 2, "type": "choice", "asOf": "2026-11",
       "es": { "question": "En QuickBooks Online, ¿qué se activa en el perfil de un proveedor para que sus pagos se tengan en cuenta en los formularios 1099?",
               "options": ["La casilla Track payments for 1099", "Los términos de pago (Terms)", "El límite de crédito del proveedor", "La moneda del proveedor"],
               "explanation": "Con esa casilla, QuickBooks suma los pagos del proveedor en las cuentas asignadas a cada recuadro del 1099 y luego ayuda a preparar los formularios." },
@@ -727,7 +727,7 @@
               "explanation": "With that box checked, QuickBooks totals the vendor's payments in the accounts mapped to each 1099 box and then helps prepare the forms." }
     },
     {
-      "id": "us-0084", "difficulty": 2, "type": "choice",
+      "id": "us-0084", "difficulty": 2, "type": "choice", "asOf": "2026-11",
       "es": { "question": "En QuickBooks Online, ¿qué diferencia hay entre anular (void) y eliminar (delete) una transacción?",
               "options": ["Anular la deja en cero; eliminar la borra", "Anular la borra; eliminar la deja en cero", "Solo se pueden anular las ya conciliadas", "Eliminar crea un asiento de reversión"],
               "explanation": "Al anularla, la transacción sigue visible con valor cero y la nota Voided; al eliminarla, desaparece de los registros, aunque queda rastro en el Audit Log." },
@@ -863,13 +863,13 @@
       "id": "us-0099", "difficulty": 3, "type": "choice", "asOf": "2026-11",
       "es": { "question": "¿Qué reglamento de la SEC fija la forma y el contenido de los estados financieros que se le presentan?",
               "options": ["Regulation S-X", "Regulation S-K", "Regulation FD", "Regulation D"],
-              "explanation": "La Regulation S-X (17 CFR 210) rige los estados financieros; la S-K, la información no financiera, como la descripción del negocio y los factores de riesgo." },
+              "explanation": "La Regulation S-X (17 CFR 210) rige los estados financieros; la S-K, las revelaciones fuera de los estados financieros, como la descripción del negocio y los factores de riesgo." },
       "en": { "question": "Which SEC regulation sets the form and content of the financial statements filed with it?",
               "options": ["Regulation S-X", "Regulation S-K", "Regulation FD", "Regulation D"],
-              "explanation": "Regulation S-X (17 CFR 210) governs the financial statements; Regulation S-K covers non-financial disclosures, such as the business description and risk factors." }
+              "explanation": "Regulation S-X (17 CFR 210) governs the financial statements; Regulation S-K covers disclosures outside the financial statements, such as the business description and risk factors." }
     },
     {
-      "id": "us-0100", "difficulty": 3, "type": "choice",
+      "id": "us-0100", "difficulty": 3, "type": "choice", "asOf": "2026-11",
       "es": { "question": "En QuickBooks, el cobro de una factura quedó en Undeposited Funds, pero luego el depósito se registró contra una cuenta de ingresos. ¿Qué pasa?",
               "options": ["El ingreso queda duplicado y Undeposited Funds con saldo", "El cobro se anula de forma automática", "La factura vuelve a quedar pendiente", "Nada: el saldo del banco cuadra y todo queda bien"],
               "explanation": "El ingreso ya se registró con la factura y el depósito lo registra otra vez, mientras el cobro sigue en Undeposited Funds. Se corrige eligiendo ese cobro en el depósito." },
