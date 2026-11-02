@@ -70,7 +70,7 @@
               "explanation": "The current ratio measures whether short-term assets cover short-term debts. The quick ratio is similar but excludes inventory." }
     },
     {
-      "id": "concepts-0009", "difficulty": 3, "type": "choice",
+      "id": "concepts-0009", "difficulty": 2, "type": "choice",
       "es": { "question": "¿Qué tipo de cuenta es la depreciación acumulada?",
               "options": ["Regularizadora del activo, con saldo crédito", "De gasto, con saldo débito", "De pasivo, con saldo crédito", "De patrimonio, con saldo débito"],
               "explanation": "Es una cuenta contra-activo: resta al costo del activo y tiene saldo crédito. El gasto por depreciación es la cuenta que va al estado de resultados." },
@@ -212,11 +212,11 @@
     {
       "id": "concepts-0025", "difficulty": 1, "type": "choice",
       "es": { "question": "¿Para qué se hacen los asientos de ajuste al final del período?",
-              "options": ["Para dejar ingresos y gastos en el período correcto", "Para llevar a cero las cuentas de resultados", "Para corregir los errores del extracto bancario", "Para pasar los saldos al libro del año siguiente"],
-              "explanation": "Los ajustes aplican la causación: registran lo causado y no facturado y reparten anticipos y diferidos. Llevar a cero los resultados es tarea del cierre." },
+              "options": ["Para dejar ingresos y gastos en el período correcto", "Para calcular los impuestos del período", "Para corregir los errores del extracto bancario", "Para pasar los saldos al libro del año siguiente"],
+              "explanation": "Los ajustes aplican la causación: registran lo causado y no facturado y reparten anticipos y diferidos." },
       "en": { "question": "Why are adjusting entries made at the end of the period?",
-              "options": ["To place revenue and expenses in the right period", "To bring the income statement accounts to zero", "To correct errors in the bank statement", "To carry balances forward to next year's books"],
-              "explanation": "Adjusting entries apply the accrual basis: they record accruals and allocate prepayments and deferrals. Zeroing out income accounts is done by closing entries." }
+              "options": ["To place revenue and expenses in the right period", "To calculate the period's taxes", "To correct errors in the bank statement", "To carry balances forward to next year's books"],
+              "explanation": "Adjusting entries apply the accrual basis: they record accruals and allocate prepayments and deferrals." }
     },
     {
       "id": "concepts-0026", "difficulty": 1, "type": "choice",
@@ -301,12 +301,12 @@
     },
     {
       "id": "concepts-0035", "difficulty": 1, "type": "choice",
-      "es": { "question": "¿En qué tres actividades clasifica sus movimientos el estado de flujos de efectivo?",
-              "options": ["Operación, inversión y financiación", "Ingresos, costos y gastos", "Corriente, no corriente y patrimonio", "Ventas, compras y nómina"],
-              "explanation": "Operación: el negocio diario. Inversión: compra y venta de activos de largo plazo. Financiación: préstamos recibidos y pagados, y aportes de capital." },
-      "en": { "question": "Into which three activities does the statement of cash flows classify cash movements?",
-              "options": ["Operating, investing and financing", "Revenue, costs and expenses", "Current, non-current and equity", "Sales, purchases and payroll"],
-              "explanation": "Operating: day-to-day business. Investing: buying and selling long-term assets. Financing: loans taken out and repaid, and capital contributions." }
+      "es": { "question": "Una empresa comercial recibe un préstamo bancario. ¿En qué actividad del estado de flujos de efectivo se presenta ese dinero?",
+              "options": ["Financiación", "Operación", "Inversión", "No se presenta en ese estado"],
+              "explanation": "Recibir préstamos y pagar su capital, igual que los aportes de los dueños, son actividades de financiación: muestran cómo se financia la empresa (NIC 7 y ASC 230)." },
+      "en": { "question": "A merchandising company receives a bank loan. In which section of the statement of cash flows is that cash shown?",
+              "options": ["Financing activities", "Operating activities", "Investing activities", "It is not shown in that statement"],
+              "explanation": "Taking out loans and repaying their principal, like owner contributions, are financing activities: they show how the company is funded (IAS 7 and ASC 230)." }
     },
     {
       "id": "concepts-0036", "difficulty": 1, "type": "choice",
@@ -433,20 +433,20 @@
     {
       "id": "concepts-0050", "difficulty": 2, "type": "choice",
       "es": { "question": "En diciembre una empresa prestó un servicio que facturará en enero. ¿Qué ajuste registra al 31 de diciembre?",
-              "options": ["Débito a cuentas por cobrar, crédito a ingresos", "Débito a ingresos, crédito a cuentas por cobrar", "Débito a efectivo, crédito a ingresos diferidos", "Débito a ingresos diferidos, crédito a ingresos"],
+              "options": ["Débito a cuentas por cobrar, crédito a ingresos", "Débito a ingresos, crédito a cuentas por cobrar", "Débito a efectivo, crédito a ingresos", "Débito a ingresos diferidos, crédito a ingresos"],
               "explanation": "Es un ingreso causado: ya se ganó en diciembre aunque no se haya facturado. Se reconocen el ingreso y el derecho de cobro, que se factura en enero." },
       "en": { "question": "In December a company performed a service that it will bill in January. What adjusting entry does it record at December 31?",
-              "options": ["Debit accounts receivable, credit revenue", "Debit revenue, credit accounts receivable", "Debit cash, credit deferred revenue", "Debit deferred revenue, credit revenue"],
+              "options": ["Debit accounts receivable, credit revenue", "Debit revenue, credit accounts receivable", "Debit cash, credit revenue", "Debit deferred revenue, credit revenue"],
               "explanation": "This is accrued revenue: it was earned in December even though it has not been billed. Revenue and the right to collect are recorded, then billed in January." }
     },
     {
       "id": "concepts-0051", "difficulty": 2, "type": "choice",
-      "es": { "question": "El 1 de noviembre una empresa cobra 6000 por adelantado por 6 meses de servicio. ¿Cuánto queda como ingreso diferido al 31 de diciembre?",
-              "options": ["4000", "2000", "6000", "1000"],
-              "explanation": "Cada mes se presta servicio por 1000. En noviembre y diciembre se ganan 2000, que pasan a ingreso; quedan 4000 como pasivo por los 4 meses pendientes." },
-      "en": { "question": "On November 1 a company collects 6,000 in advance for 6 months of service. How much remains as deferred revenue at December 31?",
-              "options": ["4,000", "2,000", "6,000", "1,000"],
-              "explanation": "Each month 1,000 of service is delivered. November and December earn 2,000, which moves to revenue; 4,000 stays as a liability for the 4 months left." }
+      "es": { "question": "El 1 de noviembre una empresa cobra 6000 por adelantado por 6 meses de servicio. Con causación, ¿cuánto ingreso reconoce hasta el 31 de diciembre?",
+              "options": ["2000", "4000", "6000", "1000"],
+              "explanation": "Cada mes presta servicio por 1000. En noviembre y diciembre gana 2000, que van a ingreso; los 4000 restantes se reconocen en los 4 meses siguientes. En base de caja serían 6000." },
+      "en": { "question": "On November 1 a company collects 6,000 in advance for 6 months of service. On an accrual basis, how much revenue does it recognize through December 31?",
+              "options": ["2,000", "4,000", "6,000", "1,000"],
+              "explanation": "Each month 1,000 of service is delivered. November and December earn 2,000, which is revenue; the other 4,000 is recognized over the next 4 months. On a cash basis it would be 6,000." }
     },
     {
       "id": "concepts-0052", "difficulty": 2, "type": "truefalse", "answer": true,
@@ -556,10 +556,10 @@
       "id": "concepts-0064", "difficulty": 2, "type": "choice",
       "es": { "question": "Si los precios de compra suben de forma sostenida, ¿qué método de inventario da la mayor utilidad bruta?",
               "options": ["PEPS (FIFO)", "UEPS (LIFO)", "Promedio ponderado", "Todos dan la misma utilidad"],
-              "explanation": "PEPS lleva al costo de ventas los costos más antiguos y bajos, así que la utilidad bruta es mayor. UEPS, permitido en US GAAP pero no en NIIF, daría la menor." },
+              "explanation": "PEPS lleva al costo de ventas los costos más antiguos y bajos, así que la utilidad bruta es mayor. UEPS daría la menor." },
       "en": { "question": "If purchase prices rise steadily, which inventory method gives the highest gross profit?",
               "options": ["FIFO", "LIFO", "Weighted average", "They all give the same profit"],
-              "explanation": "FIFO charges the oldest, lowest costs to cost of goods sold, so gross profit is highest. LIFO, allowed under US GAAP but not IFRS, would give the lowest." }
+              "explanation": "FIFO charges the oldest, lowest costs to cost of goods sold, so gross profit is highest. LIFO would give the lowest." }
     },
     {
       "id": "concepts-0065", "difficulty": 2, "type": "choice",
@@ -594,7 +594,7 @@
               "explanation": "Yes: if it sells heavily on credit or builds up inventory, profit is recorded but the cash has not come in yet. That is why both statements are analysed." }
     },
     {
-      "id": "concepts-0069", "difficulty": 2, "type": "choice",
+      "id": "concepts-0069", "difficulty": 3, "type": "choice",
       "es": { "question": "Un balance de prueba tiene una diferencia que es divisible exactamente por 9. ¿Qué error suele indicar?",
               "options": ["Dígitos invertidos, como 54 registrado como 45", "Un saldo puesto en la columna contraria", "Un débito registrado sin su crédito", "Una transacción omitida por completo"],
               "explanation": "Al invertir dos dígitos, la diferencia siempre es múltiplo de 9 (54 − 45 = 9). Un saldo en la columna contraria deja una diferencia del doble de su valor." },
@@ -623,11 +623,11 @@
     {
       "id": "concepts-0072", "difficulty": 2, "type": "choice",
       "es": { "question": "En el método indirecto del flujo de efectivo de operación, ¿qué se hace con el gasto por depreciación?",
-              "options": ["Se suma a la utilidad neta", "Se resta de la utilidad neta", "Se presenta en actividades de inversión", "Se presenta en actividades de financiación"],
-              "explanation": "El método indirecto parte de la utilidad neta. La depreciación la redujo sin mover efectivo, así que se vuelve a sumar." },
+              "options": ["Se vuelve a sumar al resultado", "Se resta del resultado", "Se presenta en actividades de inversión", "Se presenta en actividades de financiación"],
+              "explanation": "La depreciación redujo el resultado sin mover efectivo, así que se vuelve a sumar. US GAAP parte de la utilidad neta; con la NIIF 18, las NIIF parten de la utilidad operativa." },
       "en": { "question": "Under the indirect method for operating cash flow, what is done with depreciation expense?",
-              "options": ["It is added back to net income", "It is subtracted from net income", "It is shown under investing activities", "It is shown under financing activities"],
-              "explanation": "The indirect method starts from net income. Depreciation reduced it without moving cash, so it is added back." }
+              "options": ["It is added back to profit", "It is subtracted from profit", "It is shown under investing activities", "It is shown under financing activities"],
+              "explanation": "Depreciation reduced profit without moving cash, so it is added back. US GAAP starts from net income; under IFRS 18, IFRS starts from operating profit." }
     },
     {
       "id": "concepts-0073", "difficulty": 2, "type": "truefalse", "answer": true,
@@ -717,10 +717,10 @@
     },
     {
       "id": "concepts-0083", "difficulty": 3, "type": "choice",
-      "es": { "question": "Una empresa olvida ajustar un ingreso diferido que ya ganó al prestar el servicio. ¿Qué efecto tiene en sus estados financieros?",
+      "es": { "question": "Una empresa ya prestó un servicio que el cliente le pagó por adelantado, pero olvida hacer el ajuste. ¿Qué efecto tiene en sus estados financieros?",
               "options": ["Pasivo sobrestimado y utilidad subestimada", "Pasivo subestimado y utilidad sobrestimada", "Activo sobrestimado y utilidad sobrestimada", "Solo se subestima el efectivo"],
               "explanation": "El cobro anticipado sigue como pasivo aunque el servicio ya se prestó. Así, el pasivo queda mayor que el real, y el ingreso y la utilidad, menores." },
-      "en": { "question": "A company forgets to adjust deferred revenue that it has already earned by performing the service. What is the effect on its financial statements?",
+      "en": { "question": "A company has already performed a service the customer paid for in advance, but forgets to make the adjustment. What is the effect on its financial statements?",
               "options": ["Liabilities overstated, net income understated", "Liabilities understated, net income overstated", "Assets overstated, net income overstated", "Only cash is understated"],
               "explanation": "The advance payment stays as a liability even though the service was performed, so liabilities are too high and revenue and net income too low." }
     },
@@ -785,9 +785,9 @@
     },
     {
       "id": "concepts-0091", "difficulty": 3, "type": "truefalse", "answer": true,
-      "es": { "question": "Según la NIC 2, una rebaja del inventario al valor neto realizable puede revertirse si ese valor se recupera después.",
+      "es": { "question": "Según la NIC 2, una rebaja del valor de los inventarios puede revertirse si desaparecen las circunstancias que la causaron.",
               "explanation": "Sí, hasta el monto de la rebaja original, y la reversión reduce el costo de ventas. En US GAAP, en cambio, la rebaja crea una nueva base de costo y no se revierte." },
-      "en": { "question": "Under IAS 2, a write-down of inventory to net realizable value can be reversed if that value later recovers.",
+      "en": { "question": "Under IAS 2, a write-down of inventories can be reversed if the circumstances that caused it no longer exist.",
               "explanation": "Yes, up to the original write-down, and the reversal reduces cost of sales. Under US GAAP, by contrast, the write-down creates a new cost basis and is not reversed." }
     },
     {
@@ -811,10 +811,10 @@
     {
       "id": "concepts-0094", "difficulty": 3, "type": "choice",
       "es": { "question": "En el método indirecto, si las cuentas por cobrar aumentaron durante el año, ¿qué se hace con ese aumento en el flujo de operación?",
-              "options": ["Se resta de la utilidad neta", "Se suma a la utilidad neta", "Se presenta en actividades de inversión", "No se ajusta"],
+              "options": ["Se resta del resultado", "Se suma al resultado", "Se presenta en actividades de inversión", "No se ajusta"],
               "explanation": "Un aumento de la cartera significa ventas registradas como ingreso que aún no se han cobrado; por eso se resta para llegar al efectivo realmente recibido." },
       "en": { "question": "Under the indirect method, if accounts receivable increased during the year, how is the increase treated in operating cash flow?",
-              "options": ["Subtracted from net income", "Added to net income", "Shown under investing activities", "Not adjusted"],
+              "options": ["Subtracted from profit", "Added to profit", "Shown under investing activities", "Not adjusted"],
               "explanation": "A rise in receivables means sales recorded as revenue but not yet collected, so it is subtracted to arrive at the cash actually received." }
     },
     {
@@ -848,10 +848,10 @@
       "id": "concepts-0098", "difficulty": 3, "type": "choice",
       "es": { "question": "Un cheque girado por 450 se registró en libros como 540. Al conciliar, ¿qué ajuste se hace al saldo en libros?",
               "options": ["Sumar 90", "Restar 90", "Sumar 540", "Restar 450"],
-              "explanation": "En libros se restaron 540 en lugar de 450, así que el saldo quedó 90 por debajo. Se suman 90 con un asiento de corrección. Es una transposición: 90 es múltiplo de 9." },
+              "explanation": "En libros se restaron 540 en lugar de 450, así que el saldo quedó 90 por debajo. Se suman 90 con un asiento de corrección." },
       "en": { "question": "A check written for 450 was recorded in the books as 540. In the bank reconciliation, what adjustment is made to the book balance?",
               "options": ["Add 90", "Subtract 90", "Add 540", "Subtract 450"],
-              "explanation": "The books deducted 540 instead of 450, leaving the balance 90 too low. Add 90 with a correcting entry. It is a transposition: 90 is a multiple of 9." }
+              "explanation": "The books deducted 540 instead of 450, leaving the balance 90 too low. Add 90 with a correcting entry." }
     },
     {
       "id": "concepts-0099", "difficulty": 3, "type": "truefalse", "answer": false,
