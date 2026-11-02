@@ -60,8 +60,10 @@ sin sincronización.
    > arregla creando la variable y volviendo a publicar.
 
 6. **Crear las variables en GitHub.** En el repositorio, **Settings → Secrets and variables → Actions
-   → Variables** (la pestaña *Variables*, no *Secrets*), crea estas tres. Pega solo la *publishable
-   key*; nunca la *secret* / *service_role*:
+   → Variables** (la pestaña *Variables*, no *Secrets*), crea estas tres con **New repository
+   variable**. Tienen que quedar en *Repository variables*, no en *Environment variables* (las de
+   **Settings → Environments**, como `github-pages`): ni el build ni *Keep Supabase awake* usan
+   entornos y las verían vacías. Pega solo la *publishable key*; nunca la *secret* / *service_role*:
 
    | Variable | Valor |
    |---|---|
@@ -103,6 +105,7 @@ hace falta Turnstile.
   (**Authentication → Bot and Abuse Protection**).
 - Las únicas claves públicas son la *publishable key* de Supabase y la *site key* de Turnstile.
   Todo lo que empieza con `VITE_` termina visible en el código que se publica.
-- No crees las tres variables como *Secrets*: el workflow lee *Variables*, y sin ellas la app se
-  publica sin sincronización.
+- No crees las tres variables como *Secrets* ni como variables de un entorno (**Settings →
+  Environments**): el workflow lee *Repository variables*, y sin ellas la app se publica sin
+  sincronización. Si *Keep Supabase awake* termina como *skipped*, es que no las encuentra.
 - No subas `.env.local` al repositorio.
