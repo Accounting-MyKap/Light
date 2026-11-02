@@ -4,7 +4,7 @@ import { createRng, randomSeed } from '../../core/rng';
 import { useCountdown, useGameClock, useTrialTimeout } from '../shared/clock';
 import { GAME_DURATION_MS } from '../shared/constants';
 import { useFeedback } from '../shared/feedback';
-import { GameHud } from '../shared/GameHud';
+import { GameFrame } from '../shared/GameFrame';
 import { useGameKeys } from '../shared/useGameKeys';
 import type { GameProps } from '../types';
 import { ArrowIcon, ArrowRow } from './ArrowRow';
@@ -27,7 +27,7 @@ export function ArrowsGame({ startLevel, paused, onFinish }: GameProps) {
   const active = !paused && !finished;
 
   useTrialTimeout(clock, game.trialStartedAt, active ? arrowWindowMs(game.staircase.level) : null, paused, () => {
-    feedback('wrong');
+    feedback('timeout');
     setGame(timeoutArrow(game, clock.now(), rng));
   });
 
@@ -46,20 +46,27 @@ export function ArrowsGame({ startLevel, paused, onFinish }: GameProps) {
     return false;
   });
 
-  return (
-    <div className={styles.game}>
-      <GameHud remainingMs={remaining} score={game.score} level={game.staircase.level} />
-      <ArrowRow key={game.total} trial={game.trial} className="appear" />
-      <div className={styles.controls}>
-        <button type="button" className={styles.answer} onClick={() => answer('left')}>
-          <ArrowIcon direction="left" />
-          {t('games.arrows.left')}
-        </button>
-        <button type="button" className={styles.answer} onClick={() => answer('right')}>
-          {t('games.arrows.right')}
-          <ArrowIcon direction="right" />
-        </button>
-      </div>
+  const controls = (
+    <div className={styles.controls}>
+      <button type="button" className={styles.answer} onClick={() => answer('left')}>
+        <ArrowIcon direction="left" />
+        {t('games.arrows.left')}
+      </button>
+      <button type="button" className={styles.answer} onClick={() => answer('right')}>
+        {t('games.arrows.right')}
+        <ArrowIcon direction="right" />
+      </button>
     </div>
+  );
+
+  return (
+    <GameFrame
+      score={game.score}
+      level={game.staircase.level}
+      time={{ remainingMs: remaining, totalMs: GAME_DURATION_MS }}
+      controls={controls}
+    >
+      <ArrowRow key={game.total} trial={game.trial} className="appear" />
+    </GameFrame>
   );
 }
