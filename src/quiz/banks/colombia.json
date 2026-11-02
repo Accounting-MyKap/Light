@@ -67,9 +67,9 @@
     {
       "id": "colombia-0008", "difficulty": 2, "type": "truefalse", "answer": true, "asOf": "2026-11",
       "es": { "question": "Como regla general, en Colombia la factura electrónica de venta debe ser validada por la DIAN antes de entregarse al comprador.",
-              "explanation": "El facturador la genera, la DIAN la valida y solo entonces se entrega al comprador, salvo contingencia técnica (art. 616-1 del Estatuto Tributario y Resolución 000042 de 2020 y sus modificaciones)." },
+              "explanation": "El facturador la genera, la DIAN la valida y solo entonces se entrega al comprador, salvo contingencia técnica (art. 616-1 del Estatuto Tributario y Resolución 000165 de 2023 y sus modificaciones)." },
       "en": { "question": "As a general rule, in Colombia an electronic sales invoice must be validated by the DIAN (tax authority) before it is delivered to the buyer.",
-              "explanation": "The seller generates it, the DIAN validates it, and only then is it delivered to the buyer, except in a technical contingency (art. 616-1 of the Tax Code and Resolution 000042 of 2020, as amended)." }
+              "explanation": "The seller generates it, the DIAN validates it, and only then is it delivered to the buyer, except in a technical contingency (art. 616-1 of the Tax Code and Resolution 000165 of 2023, as amended)." }
     },
     {
       "id": "colombia-0009", "difficulty": 2, "type": "choice", "asOf": "2026-11",
@@ -129,10 +129,10 @@
       "id": "colombia-0015", "difficulty": 1, "type": "choice", "asOf": "2026-11",
       "es": { "question": "En la facturación electrónica, ¿para qué sirve una nota débito?",
               "options": ["Para aumentar el valor de una factura ya emitida", "Para disminuir el valor de una factura ya emitida", "Para registrar un pago hecho con tarjeta débito", "Para que el comprador le facture al vendedor"],
-              "explanation": "La nota débito electrónica aumenta el valor de una factura ya emitida, por ejemplo por un mayor precio o cargos adicionales; la nota crédito lo disminuye (Resolución 000042 de 2020 y sus modificaciones)." },
+              "explanation": "La nota débito electrónica aumenta el valor de una factura ya emitida, por ejemplo por un mayor precio o cargos adicionales; la nota crédito lo disminuye (Resolución 000165 de 2023 y sus modificaciones)." },
       "en": { "question": "In Colombian e-invoicing, what is a debit note (nota débito) used for?",
               "options": ["To increase the value of an invoice already issued", "To reduce the value of an invoice already issued", "To record a payment made with a debit card", "For the buyer to invoice the seller"],
-              "explanation": "An electronic debit note increases the value of an invoice already issued, for example for a higher price or extra charges; a credit note reduces it (Resolution 000042 of 2020, as amended)." }
+              "explanation": "An electronic debit note increases the value of an invoice already issued, for example for a higher price or extra charges; a credit note reduces it (Resolution 000165 of 2023, as amended)." }
     },
     {
       "id": "colombia-0016", "difficulty": 1, "type": "choice", "asOf": "2026-11",
@@ -199,10 +199,10 @@
       "id": "colombia-0023", "difficulty": 1, "type": "choice", "asOf": "2026-11",
       "es": { "question": "¿En qué formato se genera la factura electrónica de venta que valida la DIAN?",
               "options": ["XML", "PDF", "XLSX (Excel)", "DOCX (Word)"],
-              "explanation": "La factura electrónica es un archivo XML con el estándar UBL; el PDF es solo su representación gráfica (Resolución 000042 de 2020 de la DIAN y sus modificaciones)." },
+              "explanation": "La factura electrónica es un archivo XML con el estándar UBL; el PDF es solo su representación gráfica (Resolución 000165 de 2023 de la DIAN y sus modificaciones)." },
       "en": { "question": "In what format is the electronic sales invoice validated by the DIAN (Colombia's tax authority) generated?",
               "options": ["XML", "PDF", "XLSX (Excel)", "DOCX (Word)"],
-              "explanation": "The e-invoice is an XML file following the UBL standard; the PDF is only its graphic representation (DIAN Resolution 000042 of 2020, as amended)." }
+              "explanation": "The e-invoice is an XML file following the UBL standard; the PDF is only its graphic representation (DIAN Resolution 000165 of 2023, as amended)." }
     },
     {
       "id": "colombia-0024", "difficulty": 1, "type": "choice", "asOf": "2026-11",
@@ -329,9 +329,9 @@
     {
       "id": "colombia-0038", "difficulty": 1, "type": "truefalse", "answer": false, "asOf": "2026-11",
       "es": { "question": "Una factura electrónica ya validada por la DIAN se puede borrar si tiene un error.",
-              "explanation": "No se borra: se anula o se corrige con una nota crédito electrónica, que también se transmite a la DIAN (Resolución 000042 de 2020 y sus modificaciones)." },
+              "explanation": "No se borra: se anula o se corrige con una nota crédito electrónica, que también se transmite a la DIAN (Resolución 000165 de 2023 y sus modificaciones)." },
       "en": { "question": "An electronic invoice already validated by the DIAN (Colombia's tax authority) can be deleted if it has an error.",
-              "explanation": "It cannot be deleted: it is voided or corrected with an electronic credit note, which is also sent to the DIAN (Resolution 000042 of 2020, as amended)." }
+              "explanation": "It cannot be deleted: it is voided or corrected with an electronic credit note, which is also sent to the DIAN (Resolution 000165 of 2023, as amended)." }
     },
     {
       "id": "colombia-0039", "difficulty": 1, "type": "choice", "asOf": "2026-11",
@@ -712,10 +712,10 @@
       "id": "colombia-0082", "difficulty": 2, "type": "choice", "asOf": "2026-11",
       "es": { "question": "En la factura electrónica, ¿qué es el CUFE?",
               "options": ["El código único que identifica cada factura", "El número de la resolución de facturación", "El código del proveedor tecnológico", "El consecutivo interno de la empresa"],
-              "explanation": "El CUFE (Código Único de Factura Electrónica) se genera con los datos de la factura y la identifica de forma única ante la DIAN (Resolución 000042 de 2020 y sus modificaciones)." },
+              "explanation": "El CUFE (Código Único de Factura Electrónica) se genera con los datos de la factura y la identifica de forma única ante la DIAN (Resolución 000165 de 2023 y sus modificaciones)." },
       "en": { "question": "In Colombian e-invoicing, what is the CUFE?",
               "options": ["The unique code identifying each invoice", "The invoicing authorization number", "The technology provider's code", "The company's internal sequence number"],
-              "explanation": "The CUFE (Código Único de Factura Electrónica) is generated from the invoice data and uniquely identifies it with the DIAN (Resolution 000042 of 2020, as amended)." }
+              "explanation": "The CUFE (Código Único de Factura Electrónica) is generated from the invoice data and uniquely identifies it with the DIAN (Resolution 000165 of 2023, as amended)." }
     },
     {
       "id": "colombia-0083", "difficulty": 2, "type": "choice", "asOf": "2026-11",
