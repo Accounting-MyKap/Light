@@ -128,9 +128,12 @@ function PlaySession({ game, daily }: { game: GameDefinition; daily: string | nu
     [save, sound],
   );
 
+  // A quiz game belongs to the Quiz tab, so both ways out land there; the training games go to Games.
+  const home = game.quiz ? '/quiz' : '/games';
+
   const exit = () => {
     if (daily !== null) navigate('/');
-    else if (location.key === 'default') navigate('/games');
+    else if (location.key === 'default') navigate(home);
     else navigate(-1);
   };
 
@@ -192,7 +195,7 @@ function PlaySession({ game, daily }: { game: GameDefinition; daily: string | nu
           result={phase.result}
           previousBest={phase.previousBest}
           onPlayAgain={startPlaying}
-          onBack={() => navigate('/games')}
+          onBack={() => navigate(home)}
           daily={
             daily === null
               ? undefined

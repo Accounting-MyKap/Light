@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
+import { asOfLabel } from '../../quiz/asOf';
 import { correctIndex, optionTexts, type AnswerOutcome, type Question } from '../../quiz/types';
 import styles from './quiz.module.css';
 
@@ -19,15 +20,6 @@ export interface QuestionViewProps {
   onDontKnow?: () => void;
   onNext?: () => void;
   isLast?: boolean;
-}
-
-/** `asOf` is `YYYY-MM`; the label is the month and year in the player's language. */
-function asOfLabel(asOf: string, lang: 'es' | 'en'): string | null {
-  const match = /^(\d{4})-(\d{2})$/.exec(asOf);
-  if (!match) return null;
-  const first = new Date(Date.UTC(Number(match[1]), Number(match[2]) - 1, 1));
-  if (Number.isNaN(first.getTime())) return null;
-  return new Intl.DateTimeFormat(lang, { month: 'long', year: 'numeric', timeZone: 'UTC' }).format(first);
 }
 
 export function QuestionView({

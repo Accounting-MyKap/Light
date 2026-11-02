@@ -191,3 +191,61 @@
   font-weight: 700;
   box-shadow: 0 0 24px var(--glow);
 }
+
+/* «Repasa tus errores» on the result screen, whose text is centred: the review reads left to right.
+   Only the right answer is coloured: --danger is not contrast-checked as text, and «Tu respuesta:» says it anyway. */
+.review {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 40rem;
+  margin-inline: auto;
+  text-align: left;
+}
+
+.review h2 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.reviewNone {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+.reviewList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.reviewItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  overflow-wrap: anywhere;
+}
+
+.reviewItem p {
+  margin: 0;
+}
+
+.reviewPrompt {
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.35;
+}
+
+.reviewWrong {
+  font-weight: 700;
+}
+
+.reviewRight {
+  color: var(--success-strong);
+  font-weight: 700;
+}

@@ -16,6 +16,7 @@ export interface ResultViewProps {
 export function ResultView({ game, result, previousBest, onPlayAgain, onBack, daily }: ResultViewProps) {
   const { t } = useTranslation();
   const isNewBest = previousBest === null || result.score > previousBest;
+  const { ResultDetails } = game;
   return (
     <section className={`${styles.screen} ${styles.center}`}>
       <h1>{t(`games.${game.id}.title`)}</h1>
@@ -39,6 +40,7 @@ export function ResultView({ game, result, previousBest, onPlayAgain, onBack, da
           <dd>{result.levelReached}</dd>
         </div>
       </dl>
+      {ResultDetails && <ResultDetails result={result} />}
       {daily ? (
         <div className={styles.actions}>
           {daily.nextGameId ? (

@@ -237,6 +237,13 @@
       "skipped": "The answer was: {{answer}}"
     },
     "asOf": "Current as of {{date}}",
+    "review": {
+      "title": "Review your mistakes",
+      "none": "No mistakes this round!",
+      "yourAnswer": "Your answer: {{answer}}",
+      "noAnswer": "No answer",
+      "correctAnswer": "Correct answer: {{answer}}"
+    },
     "loading": "Loading questions…",
     "loadError": "We couldn't load the questions.",
     "categories": {

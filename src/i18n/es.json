@@ -237,6 +237,13 @@
       "skipped": "La respuesta era: {{answer}}"
     },
     "asOf": "Vigente a {{date}}",
+    "review": {
+      "title": "Repasa tus errores",
+      "none": "¡Sin errores en esta ronda!",
+      "yourAnswer": "Tu respuesta: {{answer}}",
+      "noAnswer": "Sin respuesta",
+      "correctAnswer": "Respuesta correcta: {{answer}}"
+    },
     "loading": "Cargando preguntas…",
     "loadError": "No pudimos cargar las preguntas.",
     "categories": {

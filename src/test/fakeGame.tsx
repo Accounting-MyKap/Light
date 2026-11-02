@@ -28,6 +28,15 @@ export const fakeGame2: GameDefinition = { ...fakeGame, id: 'fake2' };
 /** Takes its instructions from a shared i18n key, like the quiz games do. */
 export const fakeGame3: GameDefinition = { ...fakeGame, id: 'fake3', instructionsKey: 'quiz.instructions' };
 
+/** A game of the quiz section: it has a `quiz` config, so leaving it goes to the Quiz tab. */
+export const fakeQuizGame: GameDefinition = {
+  ...fakeGame,
+  id: 'fakeq',
+  area: 'trivia',
+  instructionsKey: 'quiz.instructions',
+  quiz: { bank: 'trivia', categories: ['history'] },
+};
+
 export function registerFakeGameTranslations(): void {
   const texts = {
     games: {
@@ -45,6 +54,10 @@ export function registerFakeGameTranslations(): void {
       fake3: {
         title: 'Tercer juego falso',
         description: 'Un juego con instrucciones compartidas',
+      },
+      fakeq: {
+        title: 'Juego de preguntas falso',
+        description: 'Un juego de preguntas para pruebas',
       },
     },
   };

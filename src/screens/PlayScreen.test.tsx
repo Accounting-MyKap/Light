@@ -1,5 +1,8 @@
-import { act, screen } from '@testing-library/react';
+import { act, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { MemoryRouter, useLocation } from 'react-router-dom';
+import { AppRoutes } from '../app/App';
+import { initI18n } from '../i18n';
 import { renderApp } from '../test/renderApp';
 import { registerFakeGameTranslations } from '../test/fakeGame';
 import { clearAllData, db } from '../data/db';
@@ -10,9 +13,15 @@ import { fetchPercentile, getRemote, requestSync } from '../sync';
 vi.mock('../sync');
 
 vi.mock('../games/registry', async () => {
-  const { fakeGame, fakeGame2, fakeGame3 } = await import('../test/fakeGame');
-  const games = [fakeGame, fakeGame2, fakeGame3];
-  return { GAMES: games, TRAINING_GAMES: games, QUIZ_GAMES: [], getGame: (id: string) => games.find((g) => g.id === id) };
+  const { fakeGame, fakeGame2, fakeGame3, fakeQuizGame } = await import('../test/fakeGame');
+  const training = [fakeGame, fakeGame2, fakeGame3];
+  const games = [...training, fakeQuizGame];
+  return {
+    GAMES: games,
+    TRAINING_GAMES: training,
+    QUIZ_GAMES: [fakeQuizGame],
+    getGame: (id: string) => games.find((g) => g.id === id),
+  };
 });
 
 function setHidden(hidden: boolean) {
@@ -38,6 +47,22 @@ afterEach(() => {
 
 async function open(route: string) {
   await renderApp(route);
+  registerFakeGameTranslations();
+}
+
+/** Shows where the router is, so a test can tell which route a navigation ended on. */
+function LocationProbe() {
+  return <p data-testid="pathname">{useLocation().pathname}</p>;
+}
+
+async function openWithProbe(route: string) {
+  await initI18n('es');
+  render(
+    <MemoryRouter initialEntries={[route]}>
+      <AppRoutes />
+      <LocationProbe />
+    </MemoryRouter>,
+  );
   registerFakeGameTranslations();
 }
 
@@ -174,4 +199,37 @@ test('the result screen shows the percentile once the game has been ranked', asy
   await userEvent.click(screen.getByRole('button', { name: 'Terminar' }));
   expect(await screen.findByText('Estás por encima del 73 % de los jugadores')).toBeInTheDocument();
   expect(fetchPercentile).toHaveBeenCalledWith(null, 'fake', expect.any(Date));
+});
+
+test('Back from a quiz result goes to the Quiz tab', async () => {
+  await updateSettings({ seenInstructions: ['fakeq'] });
+  await openWithProbe('/play/fakeq');
+  await userEvent.click(await screen.findByRole('button', { name: 'Comenzar' }));
+  await userEvent.click(screen.getByRole('button', { name: 'Terminar' }));
+  expect(await screen.findByText('120')).toBeInTheDocument();
+  await userEvent.click(screen.getByRole('button', { name: 'Volver' }));
+  expect(await screen.findByRole('heading', { level: 1, name: 'Preguntas' })).toBeInTheDocument();
+  expect(screen.getByTestId('pathname')).toHaveTextContent(/^\/quiz$/);
+});
+
+test('Back from a training result still goes to Games', async () => {
+  await updateSettings({ seenInstructions: ['fake'] });
+  await openWithProbe('/play/fake');
+  await userEvent.click(await screen.findByRole('button', { name: 'Comenzar' }));
+  await userEvent.click(screen.getByRole('button', { name: 'Terminar' }));
+  expect(await screen.findByText('120')).toBeInTheDocument();
+  await userEvent.click(screen.getByRole('button', { name: 'Volver' }));
+  expect(await screen.findByRole('heading', { level: 1, name: 'Juegos' })).toBeInTheDocument();
+  expect(screen.getByTestId('pathname')).toHaveTextContent(/^\/games$/);
+});
+
+test('leaving a quiz game opened with no history goes to the Quiz tab', async () => {
+  await updateSettings({ seenInstructions: ['fakeq'] });
+  await openWithProbe('/play/fakeq');
+  await userEvent.click(await screen.findByRole('button', { name: 'Comenzar' }));
+  await userEvent.click(screen.getByRole('button', { name: 'Salir del juego' }));
+  await userEvent.click(screen.getByRole('button', { name: 'Salir' }));
+  expect(await screen.findByRole('heading', { level: 1, name: 'Preguntas' })).toBeInTheDocument();
+  expect(screen.getByTestId('pathname')).toHaveTextContent(/^\/quiz$/);
+  expect(await db.results.count()).toBe(0);
 });

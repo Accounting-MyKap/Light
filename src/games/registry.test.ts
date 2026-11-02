@@ -1,4 +1,5 @@
 import { GAMES, QUIZ_GAMES, TRAINING_GAMES, getGame } from './registry';
+import { QuizReview } from './quiz/QuizReview';
 import { QUIZ_AREAS, V1_AREAS, type GameDefinition } from './types';
 import { ACCOUNTING_CATEGORIES, CATEGORIES_BY_BANK, TRIVIA_CATEGORIES } from '../quiz/types';
 import es from '../i18n/es.json';
@@ -56,6 +57,11 @@ test('training games are exactly the 5 v1 games', () =>
 test('only the quiz games carry a quiz config', () => {
   expect(TRAINING_GAMES.every((g) => g.quiz === undefined)).toBe(true);
   expect(QUIZ_GAMES.every((g) => g.quiz !== undefined)).toBe(true);
+});
+
+test('quiz games show the review of mistakes on the result; training games add nothing', () => {
+  expect(QUIZ_GAMES.every((g) => g.ResultDetails === QuizReview)).toBe(true);
+  expect(TRAINING_GAMES.every((g) => g.ResultDetails === undefined)).toBe(true);
 });
 
 test('quiz games are the 14 ids, their area is their bank and mixes cover the bank', () => {

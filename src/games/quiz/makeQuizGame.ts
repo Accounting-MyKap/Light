@@ -4,6 +4,7 @@ import type { GameDefinition, GameProps } from '../types';
 import { QUIZ_MAX_SCORE, QUIZ_REFERENCE_SCORE } from './engine';
 import { QuizExample } from './Example';
 import { QuizGame } from './Game';
+import { QuizReview } from './QuizReview';
 
 /**
  * Builds one quiz game. The component is created here, once per game, and closes over `categories`, so the
@@ -32,5 +33,6 @@ export function makeQuizGame({
     quiz: { bank, categories },
     Component,
     Example: QuizExample,
+    ResultDetails: QuizReview,
   };
 }
