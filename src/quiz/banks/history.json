@@ -259,7 +259,7 @@
     {
       "id": "history-0030", "difficulty": 1, "type": "choice",
       "es": { "question": "¿Quién gobernaba a los aztecas cuando Hernán Cortés llegó a su capital?",
-              "options": ["Moctezuma II", "Cuauhtémoc", "Cuitláhuac", "Netzahualcóyotl"],
+              "options": ["Moctezuma II", "Cuauhtémoc", "Cuitláhuac", "Nezahualcóyotl"],
               "explanation": "Moctezuma II era el soberano mexica en 1519 y murió en 1520, en circunstancias que aún se discuten. Cuauhtémoc fue el último soberano antes de la caída de la ciudad." },
       "en": { "question": "Who ruled the Aztecs when Hernán Cortés reached their capital?",
               "options": ["Moctezuma II", "Cuauhtémoc", "Cuitláhuac", "Nezahualcóyotl"],
@@ -278,10 +278,10 @@
       "id": "history-0032", "difficulty": 1, "type": "choice",
       "es": { "question": "¿Qué civilización construyó ciudades como Tikal y Palenque y creó un calendario y una escritura jeroglífica propios?",
               "options": ["Los mayas", "Los incas", "Los aztecas", "Los olmecas"],
-              "explanation": "Los mayas levantaron ciudades-Estado en México, Guatemala y Belice, y desarrollaron escritura jeroglífica, matemáticas con el cero y un calendario muy preciso." },
+              "explanation": "Los mayas levantaron ciudades-Estado en México, Guatemala, Belice y Honduras, y desarrollaron escritura jeroglífica, matemáticas con el cero y un calendario muy preciso." },
       "en": { "question": "Which civilization built cities such as Tikal and Palenque and created its own calendar and hieroglyphic writing?",
               "options": ["The Maya", "The Inca", "The Aztecs", "The Olmecs"],
-              "explanation": "The Maya built city-states in Mexico, Guatemala and Belize, and developed hieroglyphic writing, mathematics with the zero and a very accurate calendar." }
+              "explanation": "The Maya built city-states in Mexico, Guatemala, Belize and Honduras, and developed hieroglyphic writing, mathematics with the zero and a very accurate calendar." }
     },
     {
       "id": "history-0033", "difficulty": 1, "type": "choice",
@@ -515,10 +515,10 @@
     {
       "id": "history-0060", "difficulty": 2, "type": "choice",
       "es": { "question": "¿Qué príncipe portugués proclamó la independencia de Brasil con el «Grito de Ipiranga»?",
-              "options": ["Pedro I", "Juan VI", "Pedro II", "Tiradentes"],
+              "options": ["Pedro I", "Juan VI", "Pedro II", "Miguel I"],
               "explanation": "Pedro I la proclamó a orillas del río Ipiranga el 7 de septiembre de 1822 y fue el primer emperador de Brasil. Su padre, Juan VI, era rey de Portugal." },
       "en": { "question": "Which Portuguese prince proclaimed Brazil's independence with the \"Cry of Ipiranga\"?",
-              "options": ["Pedro I", "John VI", "Pedro II", "Tiradentes"],
+              "options": ["Pedro I", "John VI", "Pedro II", "Miguel I"],
               "explanation": "Pedro I proclaimed it on the banks of the Ipiranga River on 7 September 1822 and became Brazil's first emperor. His father, John VI, was the king of Portugal." }
     },
     {
@@ -664,7 +664,7 @@
       "es": { "question": "¿En qué año se promulgó la Constitución Política de Colombia que reemplazó a la de 1886?",
               "options": ["1991", "1986", "1994", "1981"],
               "explanation": "La Constitución de 1991 fue redactada por una Asamblea Nacional Constituyente y reemplazó a la de 1886, que había durado más de cien años." },
-      "en": { "question": "In what year was the Colombian Political Constitution that replaced the one of 1886 promulgated?",
+      "en": { "question": "In what year was the Colombian Constitution that replaced the 1886 one promulgated?",
               "options": ["1991", "1986", "1994", "1981"],
               "explanation": "The 1991 Constitution was drafted by a National Constituent Assembly and replaced the 1886 one, which had lasted more than a hundred years." }
     },
@@ -706,7 +706,7 @@
     },
     {
       "id": "history-0082", "difficulty": 2, "type": "choice",
-      "es": { "question": "¿Qué objeto pedían prestar los criollos al comerciante José González Llorente cuando comenzó la revuelta del 20 de julio en Santafé?",
+      "es": { "question": "¿Qué objeto pidieron prestado los criollos al comerciante José González Llorente cuando comenzó la revuelta del 20 de julio en Santafé?",
               "options": ["Un florero", "Un espejo", "Un reloj", "Un cuadro"],
               "explanation": "Según la tradición, los criollos pidieron prestado un florero para un banquete y Llorente se negó con desprecio. El incidente avivó el levantamiento que llevó a la independencia." },
       "en": { "question": "What object did the criollos (American-born Spaniards) ask to borrow from merchant José González Llorente when the 20 July uprising began in Santafé?",
@@ -772,18 +772,18 @@
       "es": { "question": "¿Cómo se llama el escrito de 1815 en el que Simón Bolívar analizó el pasado y el futuro de la América española?",
               "options": ["La Carta de Jamaica", "El Manifiesto de Cartagena", "El Discurso de Angostura", "El Decreto de Guerra a Muerte"],
               "explanation": "En la Carta de Jamaica, escrita en Kingston en septiembre de 1815, Bolívar explicó por qué luchaban las colonias e imaginó su futuro político." },
-      "en": { "question": "What is the 1815 writing in which Simón Bolívar analyzed the past and future of Spanish America called?",
-              "options": ["The Jamaica Letter", "The Cartagena Manifesto", "The Angostura Address", "The War to the Death Decree"],
+      "en": { "question": "What is the 1815 document in which Simón Bolívar analyzed the past and future of Spanish America called?",
+              "options": ["The Jamaica Letter", "The Cartagena Manifesto", "The Angostura Address", "The Decree of War to the Death"],
               "explanation": "In the Jamaica Letter, written in Kingston in September 1815, Bolívar explained why the colonies were fighting and imagined their political future." }
     },
     {
       "id": "history-0090", "difficulty": 3, "type": "choice",
-      "es": { "question": "¿Cómo se llama la guerra de 1864 a 1870 en la que Paraguay luchó contra Brasil, Argentina y Uruguay?",
+      "es": { "question": "¿Cómo se llama la guerra de 1864 a 1870 que dejó a Paraguay devastado?",
               "options": ["La Guerra de la Triple Alianza", "La Guerra del Pacífico", "La Guerra del Chaco", "La Guerra Federal"],
-              "explanation": "La Guerra de la Triple Alianza (1864-1870) dejó a Paraguay devastado, con enormes pérdidas de población y de territorio." },
-      "en": { "question": "What is the war of 1864 to 1870 in which Paraguay fought Brazil, Argentina and Uruguay called?",
+              "explanation": "En la Guerra de la Triple Alianza, Paraguay se enfrentó a Brasil, Argentina y Uruguay y sufrió enormes pérdidas de población y de territorio." },
+      "en": { "question": "What is the war of 1864 to 1870 that left Paraguay devastated called?",
               "options": ["The War of the Triple Alliance", "The War of the Pacific", "The Chaco War", "The Federal War"],
-              "explanation": "The War of the Triple Alliance (1864-1870) left Paraguay devastated, with huge losses of population and territory." }
+              "explanation": "In the War of the Triple Alliance, Paraguay fought Brazil, Argentina and Uruguay and suffered huge losses of population and territory." }
     },
     {
       "id": "history-0091", "difficulty": 3, "type": "choice",
@@ -802,11 +802,13 @@
               "explanation": "Brazil abolished it in 1888 with the Golden Law, signed by Princess Isabel. A year later the Empire fell and the republic was proclaimed." }
     },
     {
-      "id": "history-0093", "difficulty": 3, "type": "truefalse", "answer": true,
-      "es": { "question": "El primer virreinato que España creó en América fue el de Nueva España.",
-              "explanation": "Se creó en 1535, con capital en la Ciudad de México. El Virreinato del Perú se estableció poco después, en 1542." },
-      "en": { "question": "The first viceroyalty Spain created in the Americas was New Spain.",
-              "explanation": "It was created in 1535, with its capital in Mexico City. The Viceroyalty of Peru was established soon after, in 1542." }
+      "id": "history-0093", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Cuál de estos virreinatos españoles en América se creó primero?",
+              "options": ["Nueva España", "Perú", "Nueva Granada", "Río de la Plata"],
+              "explanation": "Nueva España se creó en 1535, con capital en la Ciudad de México. Perú vino en 1542, Nueva Granada en 1717 y Río de la Plata en 1776." },
+      "en": { "question": "Which of these Spanish viceroyalties in the Americas was created first?",
+              "options": ["New Spain", "Peru", "New Granada", "Río de la Plata"],
+              "explanation": "New Spain was created in 1535, with its capital in Mexico City. Peru followed in 1542, New Granada in 1717 and Río de la Plata in 1776." }
     },
     {
       "id": "history-0094", "difficulty": 3, "type": "choice",
