@@ -188,6 +188,8 @@
       "dark": "Dark"
     },
     "sound": "Sound",
+    "vibration": "Vibration",
+    "vibrationHint": "Only on phones that support it",
     "privacyTitle": "Privacy",
     "privacy": "Your progress is stored only on this device. Light uses no ads or analytics.",
     "privacySync": "Your progress is stored on this device. To compare you with other players, your games (score, level, accuracy, duration and date) are also sent anonymously, with no name or email, to our server. Light uses no ads or analytics.",

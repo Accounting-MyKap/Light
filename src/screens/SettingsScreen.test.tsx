@@ -73,6 +73,24 @@ test('sound can be turned off', async () => {
   await vi.waitFor(async () => expect((await getSettings()).sound).toBe(false));
 });
 
+test('vibration can be turned off', async () => {
+  await renderApp('/settings');
+  const toggle = screen.getByRole('switch', { name: 'Vibración' });
+  expect(toggle).toBeChecked();
+  expect(screen.getByText('Solo en teléfonos que lo permiten')).toBeInTheDocument();
+  await userEvent.click(toggle);
+  await vi.waitFor(async () => expect((await getSettings()).vibration).toBe(false));
+  // It is its own switch: the sound setting is left alone.
+  expect((await getSettings()).sound).toBe(true);
+});
+
+test('vibration and its note are in English when the language is English', async () => {
+  await initI18n('en');
+  render(<SettingsScreen />);
+  expect(screen.getByRole('switch', { name: 'Vibration' })).toBeChecked();
+  expect(screen.getByText('Only on phones that support it')).toBeInTheDocument();
+});
+
 test('privacy note is visible', async () => {
   await renderApp('/settings');
   expect(

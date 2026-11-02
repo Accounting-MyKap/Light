@@ -1,5 +1,7 @@
 import { StrictMode } from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { useFeedback, useFeedbackSignal } from '../feedback';
 import { LuzScope } from './LuzScope';
 
 const ORIGINAL_COLOR = '#0E0F1A';
@@ -80,4 +82,25 @@ test('works without a theme-color meta and does not leave one behind', () => {
   expect(() => unmount()).not.toThrow();
   expect(document.documentElement.hasAttribute('data-luz-active')).toBe(false);
   expect(document.querySelector('meta[name="theme-color"]')).toBeNull();
+});
+
+test('answers inside the scope publish their reaction signal', async () => {
+  function Game() {
+    const feedback = useFeedback();
+    const signal = useFeedbackSignal();
+    return (
+      <>
+        <button onClick={() => feedback('wrong')}>answer</button>
+        <p data-testid="signal">{signal ? `${signal.kind}#${signal.id}` : 'none'}</p>
+      </>
+    );
+  }
+  render(
+    <LuzScope area="memory">
+      <Game />
+    </LuzScope>,
+  );
+  expect(screen.getByTestId('signal')).toHaveTextContent('none');
+  await userEvent.click(screen.getByRole('button', { name: 'answer' }));
+  expect(screen.getByTestId('signal')).toHaveTextContent('wrong#1');
 });

@@ -1,0 +1,160 @@
+import { act, render, renderHook, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { useEffect, type ReactNode } from 'react';
+import { playTone } from '../../core/sound';
+import { clearAllData } from '../../data/db';
+import { DEFAULT_SETTINGS, updateSettings, useSettings } from '../../data/settings';
+import { FeedbackProvider, useFeedback, useFeedbackSignal, type FeedbackKind } from './feedback';
+
+vi.mock('../../core/sound');
+
+const vibrate = vi.fn();
+
+beforeEach(async () => {
+  vi.mocked(playTone).mockClear();
+  vibrate.mockClear();
+  Object.defineProperty(navigator, 'vibrate', { value: vibrate, configurable: true });
+  await clearAllData();
+});
+
+afterEach(() => {
+  Reflect.deleteProperty(navigator, 'vibrate');
+});
+
+/** The hook under test next to the settings it reads, so a test can wait until the stored settings have loaded. */
+function renderFeedback(wrapper?: ({ children }: { children: ReactNode }) => ReactNode) {
+  return renderHook(() => ({ feedback: useFeedback(), settings: useSettings() }), { wrapper });
+}
+
+test('correct plays the correct tone and a short vibration', () => {
+  const { result } = renderFeedback();
+  act(() => result.current.feedback('correct'));
+  expect(playTone).toHaveBeenCalledExactlyOnceWith('correct');
+  expect(vibrate).toHaveBeenCalledExactlyOnceWith(12);
+});
+
+test('wrong and timeout play the wrong tone and a double vibration', () => {
+  const { result } = renderFeedback();
+  act(() => result.current.feedback('wrong'));
+  act(() => result.current.feedback('timeout'));
+  expect(vi.mocked(playTone).mock.calls).toEqual([['wrong'], ['wrong']]);
+  expect(vibrate.mock.calls).toEqual([[[30, 50, 30]], [[30, 50, 30]]]);
+});
+
+test('sound and vibration follow their own switches', async () => {
+  await updateSettings({ sound: false });
+  const withoutSound = renderFeedback();
+  await vi.waitFor(() => expect(withoutSound.result.current.settings.sound).toBe(false));
+  act(() => withoutSound.result.current.feedback('correct'));
+  expect(playTone).not.toHaveBeenCalled();
+  expect(vibrate).toHaveBeenCalledExactlyOnceWith(12);
+  withoutSound.unmount();
+
+  vi.mocked(playTone).mockClear();
+  vibrate.mockClear();
+  await updateSettings({ sound: true, vibration: false });
+  const withoutVibration = renderFeedback();
+  await vi.waitFor(() => expect(withoutVibration.result.current.settings.vibration).toBe(false));
+  act(() => withoutVibration.result.current.feedback('correct'));
+  expect(playTone).toHaveBeenCalledExactlyOnceWith('correct');
+  expect(vibrate).not.toHaveBeenCalled();
+});
+
+test('no navigator.vibrate is not an error', () => {
+  Reflect.deleteProperty(navigator, 'vibrate');
+  const { result } = renderFeedback();
+  expect(() => act(() => result.current.feedback('wrong'))).not.toThrow();
+  expect(playTone).toHaveBeenCalledExactlyOnceWith('wrong');
+});
+
+function Probe() {
+  const signal = useFeedbackSignal();
+  return <p data-testid="signal">{signal ? `${signal.kind}#${signal.id}` : 'none'}</p>;
+}
+
+test('each call publishes a new signal to the provider', () => {
+  const wrapper = ({ children }: { children: ReactNode }) => (
+    <FeedbackProvider>
+      <Probe />
+      {children}
+    </FeedbackProvider>
+  );
+  const { result } = renderFeedback(wrapper);
+  expect(screen.getByTestId('signal')).toHaveTextContent('none');
+
+  act(() => result.current.feedback('correct'));
+  const first = screen.getByTestId('signal').textContent;
+  act(() => result.current.feedback('correct'));
+  const second = screen.getByTestId('signal').textContent;
+  expect(first).toMatch(/^correct#\d+$/);
+  expect(second).toMatch(/^correct#\d+$/);
+  expect(second).not.toBe(first);
+
+  act(() => result.current.feedback('timeout'));
+  expect(screen.getByTestId('signal')).toHaveTextContent(/^timeout#\d+$/);
+});
+
+test('the signal ids keep growing, also when two calls land in the same batch', () => {
+  const seen: Array<{ kind: FeedbackKind; id: number }> = [];
+  function Recorder() {
+    const signal = useFeedbackSignal();
+    if (signal) seen.push(signal);
+    return null;
+  }
+  const wrapper = ({ children }: { children: ReactNode }) => (
+    <FeedbackProvider>
+      <Recorder />
+      {children}
+    </FeedbackProvider>
+  );
+  const { result } = renderFeedback(wrapper);
+  act(() => {
+    result.current.feedback('wrong');
+    result.current.feedback('correct');
+  });
+  act(() => result.current.feedback('wrong'));
+  const ids = seen.map((signal) => signal.id);
+  expect(ids).toEqual([...ids].sort((a, b) => a - b));
+  expect(new Set(ids).size).toBe(ids.length);
+  expect(seen.at(-1)?.kind).toBe('wrong');
+});
+
+test('components that only call useFeedback do not re-render when a signal is published', async () => {
+  let renders = 0;
+  function Caller() {
+    const feedback = useFeedback();
+    useEffect(() => {
+      renders += 1;
+    });
+    return <button onClick={() => feedback('correct')}>go</button>;
+  }
+  function Loaded() {
+    return <p>{useSettings() === DEFAULT_SETTINGS ? 'loading' : 'loaded'}</p>;
+  }
+  render(
+    <FeedbackProvider>
+      <Loaded />
+      <Caller />
+      <Probe />
+    </FeedbackProvider>,
+  );
+  // Wait for the stored settings, which re-render the caller once, so only signals are counted below.
+  await screen.findByText('loaded');
+  const before = renders;
+  await userEvent.click(screen.getByRole('button', { name: 'go' }));
+  await userEvent.click(screen.getByRole('button', { name: 'go' }));
+  expect(screen.getByTestId('signal')).toHaveTextContent(/^correct#2$/);
+  expect(renders).toBe(before);
+});
+
+test('without a provider the sound still plays and nothing breaks', () => {
+  const { result } = renderHook(() => useFeedback());
+  expect(() => act(() => result.current('wrong'))).not.toThrow();
+  expect(playTone).toHaveBeenCalledExactlyOnceWith('wrong');
+  expect(vibrate).toHaveBeenCalledExactlyOnceWith([30, 50, 30]);
+});
+
+test('without a provider there is no signal', () => {
+  const { result } = renderHook(() => useFeedbackSignal());
+  expect(result.current).toBeNull();
+});

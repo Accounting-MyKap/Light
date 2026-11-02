@@ -6,6 +6,7 @@ import { db } from './db';
 export interface Settings {
   language: Language | null;
   sound: boolean;
+  vibration: boolean;
   theme: ThemeSetting;
   seenInstructions: string[];
 }
@@ -13,6 +14,7 @@ export interface Settings {
 export const DEFAULT_SETTINGS: Settings = {
   language: null,
   sound: true,
+  vibration: true,
   theme: 'auto',
   seenInstructions: [],
 };
@@ -22,6 +24,7 @@ export async function getSettings(): Promise<Settings> {
   return {
     language: stored?.language ?? DEFAULT_SETTINGS.language,
     sound: stored?.sound ?? DEFAULT_SETTINGS.sound,
+    vibration: stored?.vibration ?? DEFAULT_SETTINGS.vibration,
     theme: stored?.theme ?? DEFAULT_SETTINGS.theme,
     seenInstructions: stored?.seenInstructions ?? [],
   };

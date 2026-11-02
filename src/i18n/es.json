@@ -188,6 +188,8 @@
       "dark": "Oscuro"
     },
     "sound": "Sonido",
+    "vibration": "Vibración",
+    "vibrationHint": "Solo en teléfonos que lo permiten",
     "privacyTitle": "Privacidad",
     "privacy": "Tu progreso se guarda solo en este dispositivo. Light no usa publicidad ni analítica.",
     "privacySync": "Tu progreso se guarda en este dispositivo. Para compararte con otros jugadores, tus partidas (puntaje, nivel, precisión, duración y fecha) también se envían de forma anónima, sin nombre ni correo, a nuestro servidor. Light no usa publicidad ni analítica.",
