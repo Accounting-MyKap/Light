@@ -5,6 +5,11 @@ const RESULT_BUTTON = /Siguiente juego|Ver resumen|Jugar de nuevo/;
 /** Plays whichever game is open until its result screen appears. Requires page.clock to be installed. */
 export async function finishCurrentGame(page: Page): Promise<void> {
   await page.getByRole('button', { name: 'Comenzar' }).click();
+  await finishRunningGame(page);
+}
+
+/** Same, for a game that is already running (its «Comenzar» was pressed). */
+export async function finishRunningGame(page: Page): Promise<void> {
   const root = page.locator('[data-game]');
   await expect(root).toBeVisible();
   const id = await root.getAttribute('data-game');

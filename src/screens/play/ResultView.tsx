@@ -45,7 +45,7 @@ export function ResultView({ game, result, previousBest, onPlayAgain, onBack, da
         )}
         {/* Screen readers get the final score at once; the counting number is only for the eyes. */}
         <p className="visually-hidden">{t('play.scoreValue', { score: result.score })}</p>
-        <p className={styles.heroScore} aria-hidden="true">
+        <p className={styles.heroScore} aria-hidden="true" data-testid="result-score">
           {shownScore}
         </p>
       </div>
