@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { createRng, randomSeed } from '../../core/rng';
 import { useGameClock } from '../shared/clock';
 import { useFeedback } from '../shared/feedback';
-import { GameHud } from '../shared/GameHud';
+import { GameFrame } from '../shared/GameFrame';
 import type { GameProps } from '../types';
 import { Board } from './Board';
 import { createSequenceGame, GAP_MS, pressCell, ROUNDS, sequenceResult, SHOW_MS } from './engine';
@@ -13,6 +13,14 @@ const FEEDBACK_MS = 600;
 
 type Phase = 'show' | 'input' | 'feedback';
 
+/** The round that just ended, kept for the pause after it: `pressCell` has already moved on to the next round. */
+interface FinishedRound {
+  correct: boolean;
+  /** The path of that round and the board it was played on (the next round may need a bigger one). */
+  sequence: readonly number[];
+  size: number;
+}
+
 export function SequenceLightsGame({ startLevel, paused, onFinish }: GameProps) {
   const { t } = useTranslation();
   const feedback = useFeedback();
@@ -21,7 +29,7 @@ export function SequenceLightsGame({ startLevel, paused, onFinish }: GameProps) 
   const [game, setGame] = useState(() => createSequenceGame(startLevel, rng));
   const [phase, setPhase] = useState<Phase>('show');
   const [lit, setLit] = useState<number | null>(null);
-  const [lastCorrect, setLastCorrect] = useState(false);
+  const [finishedRound, setFinishedRound] = useState<FinishedRound | null>(null);
   const onFinishRef = useRef(onFinish);
 
   useEffect(() => {
@@ -51,34 +59,42 @@ export function SequenceLightsGame({ startLevel, paused, onFinish }: GameProps) 
 
   const press = (cell: number) => {
     if (phase !== 'input' || paused) return;
+    // Taken before pressing: the state that comes back already holds the next round.
+    const { sequence, gridSize } = game;
     const { state, outcome } = pressCell(game, cell, rng);
     setGame(state);
     if (outcome === 'continue') return;
     const correct = outcome === 'round-correct';
     feedback(correct ? 'correct' : 'wrong');
-    setLastCorrect(correct);
+    setFinishedRound({ correct, sequence, size: gridSize });
     setPhase('feedback');
   };
+
+  const resting = phase === 'feedback' && finishedRound !== null;
+  const celebrating = resting && finishedRound.correct;
+  // A correct round lights its whole path together for the pause between rounds; a wrong one lights nothing.
+  const litCells = new Set(celebrating ? finishedRound.sequence : lit === null ? [] : [lit]);
+  const boardSize = resting ? finishedRound.size : game.gridSize;
 
   const status =
     phase === 'show'
       ? t('games.sequence-lights.watch')
       : phase === 'input'
         ? t('games.sequence-lights.yourTurn')
-        : lastCorrect
+        : celebrating
           ? t('games.sequence-lights.correct')
           : t('games.sequence-lights.wrong');
 
   return (
-    <div className={styles.game}>
-      <GameHud score={game.score} level={game.level} />
-      <p className={styles.round}>
-        {t('games.sequence-lights.round', { n: Math.min(game.round + 1, ROUNDS), total: ROUNDS })}
-      </p>
-      <p className={styles.status} aria-live="polite">
+    <GameFrame
+      score={game.score}
+      level={game.level}
+      rounds={{ current: Math.min(game.round + 1, ROUNDS), total: ROUNDS }}
+      controls={<Board size={boardSize} lit={litCells} onPress={press} />}
+    >
+      <p className={styles.status} data-tone={celebrating ? 'ok' : undefined} aria-live="polite">
         {status}
       </p>
-      <Board size={game.gridSize} lit={new Set(lit === null ? [] : [lit])} onPress={press} />
-    </div>
+    </GameFrame>
   );
 }

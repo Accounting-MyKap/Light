@@ -53,9 +53,8 @@
       "cell": "Cell {{n}}",
       "watch": "Watch…",
       "yourTurn": "Your turn",
-      "correct": "Nice!",
-      "wrong": "Almost… keep going",
-      "round": "Round {{n}} of {{total}}"
+      "correct": "Perfect!",
+      "wrong": "Almost… keep going"
     },
     "arrows": {
       "title": "Arrows",

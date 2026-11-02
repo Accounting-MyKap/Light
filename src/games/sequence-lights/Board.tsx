@@ -14,7 +14,7 @@ export function Board({ size, lit, marks = {}, onPress, small = false }: BoardPr
   return (
     <div
       className={`${styles.board} ${small ? styles.small : ''}`}
-      style={{ gridTemplateColumns: `repeat(${size}, 1fr)` }}
+      style={{ gridTemplateColumns: `repeat(${size}, minmax(0, 1fr))` }}
     >
       {Array.from({ length: size * size }, (_, cell) => (
         <button

@@ -53,9 +53,8 @@
       "cell": "Casilla {{n}}",
       "watch": "Observa…",
       "yourTurn": "Tu turno",
-      "correct": "¡Bien!",
-      "wrong": "Casi… sigamos",
-      "round": "Ronda {{n}} de {{total}}"
+      "correct": "¡Perfecto!",
+      "wrong": "Casi… sigamos"
     },
     "arrows": {
       "title": "Flechas",
