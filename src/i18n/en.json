@@ -36,7 +36,9 @@
     "hud": {
       "time": "Time",
       "score": "Score",
-      "level": "Level"
+      "level": "Level",
+      "secondsLeft": "{{count}} s left",
+      "round": "Round {{n}} of {{total}}"
     }
   },
   "games": {

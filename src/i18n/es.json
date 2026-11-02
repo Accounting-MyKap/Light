@@ -36,7 +36,9 @@
     "hud": {
       "time": "Tiempo",
       "score": "Puntos",
-      "level": "Nivel"
+      "level": "Nivel",
+      "secondsLeft": "Quedan {{count}} s",
+      "round": "Ronda {{n}} de {{total}}"
     }
   },
   "games": {
