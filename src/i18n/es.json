@@ -6,6 +6,7 @@
   "nav": {
     "today": "Hoy",
     "games": "Juegos",
+    "quiz": "Preguntas",
     "progress": "Progreso",
     "settings": "Ajustes"
   },
@@ -213,6 +214,13 @@
     "retry": "Reintentar"
   },
   "quiz": {
+    "title": "Preguntas",
+    "intro": "Rondas de 10 preguntas de cultura general y de contabilidad.",
+    "banks": {
+      "trivia": "Cultura general",
+      "accounting": "Contabilidad"
+    },
+    "seen": "Vistas: {{seen}} de {{total}}",
     "questionOf": "Pregunta {{n}} de {{total}}",
     "dontKnow": "No sé",
     "next": "Siguiente",

@@ -43,6 +43,12 @@
   border-color: var(--accent);
 }
 
+/* The mix card that opens each quiz block. */
+.cardFeatured {
+  border-color: var(--accent);
+  box-shadow: 0 0 18px var(--glow);
+}
+
 .card h3 {
   margin: 0;
   font-size: 1.05rem;

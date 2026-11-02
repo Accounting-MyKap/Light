@@ -6,6 +6,7 @@
   "nav": {
     "today": "Today",
     "games": "Games",
+    "quiz": "Quiz",
     "progress": "Progress",
     "settings": "Settings"
   },
@@ -213,6 +214,13 @@
     "retry": "Retry"
   },
   "quiz": {
+    "title": "Quiz",
+    "intro": "10-question rounds of general knowledge and accounting.",
+    "banks": {
+      "trivia": "General knowledge",
+      "accounting": "Accounting"
+    },
+    "seen": "Seen: {{seen}} of {{total}}",
     "questionOf": "Question {{n}} of {{total}}",
     "dontKnow": "I don't know",
     "next": "Next",

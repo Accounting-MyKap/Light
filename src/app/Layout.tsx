@@ -7,6 +7,7 @@ import styles from './Layout.module.css';
 const NAV_ITEMS = [
   { to: '/', key: 'nav.today', end: true },
   { to: '/games', key: 'nav.games', end: false },
+  { to: '/quiz', key: 'nav.quiz', end: false },
   { to: '/progress', key: 'nav.progress', end: false },
   { to: '/settings', key: 'nav.settings', end: false },
 ] as const;

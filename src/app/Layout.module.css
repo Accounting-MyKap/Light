@@ -54,7 +54,7 @@
   position: fixed;
   inset: auto 0 0 0;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   background: var(--surface);
   border-top: 1px solid var(--border);
   padding-bottom: env(safe-area-inset-bottom);
@@ -68,6 +68,8 @@
   text-decoration: none;
   color: var(--text-muted);
   font-weight: 600;
+  /* Five tabs must fit in 320 px: «Preguntas» is the widest label. */
+  font-size: 0.75rem;
 }
 
 .navLink[aria-current='page'] {
