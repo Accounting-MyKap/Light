@@ -242,7 +242,7 @@
               "explanation": "When water freezes it expands by about 9%, so ice is less dense and floats. That is why icebergs float." }
     },
     {
-      "id": "science-0029", "difficulty": 1, "type": "choice",
+      "id": "science-0029", "difficulty": 2, "type": "choice",
       "es": { "question": "¿Qué símbolo químico tiene el oro?",
               "options": ["Au", "Ag", "Gd", "Pt"],
               "explanation": "Au viene del latín aurum, «oro». Ag es la plata, Gd el gadolinio y Pt el platino." },
@@ -288,10 +288,10 @@
       "id": "science-0034", "difficulty": 1, "type": "choice",
       "es": { "question": "¿Cuál es el animal más grande del planeta?",
               "options": ["La ballena azul", "El tiburón ballena", "El cachalote", "El calamar colosal"],
-              "explanation": "La ballena azul puede medir unos 30 metros y pesar más de 100 toneladas: es el mayor animal conocido de la historia." },
+              "explanation": "La ballena azul puede medir unos 30 metros y pesar más de 100 toneladas: es el animal más grande que existe hoy." },
       "en": { "question": "Which is the largest animal on the planet?",
               "options": ["The blue whale", "The whale shark", "The sperm whale", "The colossal squid"],
-              "explanation": "A blue whale can reach about 30 meters and weigh over 100 metric tons: it is the largest animal known ever to have lived." }
+              "explanation": "A blue whale can reach about 30 meters and weigh over 100 metric tons: it is the largest animal alive today." }
     },
     {
       "id": "science-0035", "difficulty": 1, "type": "choice",
@@ -472,7 +472,7 @@
               "explanation": "El sonido recorre más de 5000 m/s en el acero, unos 1500 en el agua y unos 340 en el aire. En los sólidos, las partículas están más unidas y transmiten la vibración más deprisa." },
       "en": { "question": "In which of these media does sound travel fastest?",
               "options": ["In steel", "In water", "In air", "In helium"],
-              "explanation": "Sound travels at over 5,000 m/s in steel, about 1,500 in water and about 340 in air. In solids, particles are closer together and pass the vibration along faster." }
+              "explanation": "Sound travels at over 5,000 m/s in steel, about 1,500 in water and about 340 in air. In solids, particles are more tightly bound and pass the vibration along faster." }
     },
     {
       "id": "science-0056", "difficulty": 2, "type": "choice",
@@ -622,7 +622,7 @@
               "explanation": "It develops from the flower and holds the seeds, which is what defines a fruit. In the kitchen it is treated as a vegetable, but botanically it is a fruit." }
     },
     {
-      "id": "science-0073", "difficulty": 2, "type": "choice",
+      "id": "science-0073", "difficulty": 1, "type": "choice",
       "es": { "question": "¿Cuántas cavidades, o cámaras, tiene el corazón humano?",
               "options": ["Cuatro", "Dos", "Tres", "Seis"],
               "explanation": "Tiene cuatro: dos aurículas arriba, que reciben la sangre, y dos ventrículos abajo, que la impulsan." },
@@ -711,10 +711,10 @@
     },
     {
       "id": "science-0083", "difficulty": 2, "type": "choice",
-      "es": { "question": "¿En qué era geológica vivieron los dinosaurios?",
+      "es": { "question": "¿En qué era geológica dominaron los dinosaurios?",
               "options": ["Mesozoico", "Paleozoico", "Cenozoico", "Precámbrico"],
               "explanation": "Los dinosaurios dominaron la Tierra durante el Mesozoico, de hace unos 252 a 66 millones de años. Los no aviares se extinguieron al final de esa era." },
-      "en": { "question": "In which geological era did the dinosaurs live?",
+      "en": { "question": "In which geological era did the dinosaurs dominate?",
               "options": ["The Mesozoic", "The Paleozoic", "The Cenozoic", "The Precambrian"],
               "explanation": "Dinosaurs dominated the Earth during the Mesozoic, from about 252 to 66 million years ago. The non-avian dinosaurs went extinct at the end of that era." }
     },
@@ -749,10 +749,10 @@
       "id": "science-0087", "difficulty": 3, "type": "choice",
       "es": { "question": "¿Qué físico alemán descubrió los rayos X en 1895?",
               "options": ["Wilhelm Röntgen", "Henri Becquerel", "Heinrich Hertz", "Ernest Rutherford"],
-              "explanation": "Röntgen observó en 1895 una radiación desconocida y la llamó «X». Con ella hizo la primera radiografía, la mano de su esposa, y ganó el primer Nobel de Física, en 1901." },
+              "explanation": "Röntgen observó en 1895 una radiación desconocida y la llamó «X». Con ella hizo la primera radiografía de una parte del cuerpo humano, la mano de su esposa, y ganó el primer Nobel de Física, en 1901." },
       "en": { "question": "Which German physicist discovered X-rays in 1895?",
               "options": ["Wilhelm Röntgen", "Henri Becquerel", "Heinrich Hertz", "Ernest Rutherford"],
-              "explanation": "Röntgen noticed an unknown radiation in 1895 and called it “X.” With it he took the first radiograph, of his wife's hand, and won the first Nobel Prize in Physics, in 1901." }
+              "explanation": "Röntgen noticed an unknown radiation in 1895 and called it “X.” With it he took the first radiograph of a human body part, his wife's hand, and won the first Nobel Prize in Physics, in 1901." }
     },
     {
       "id": "science-0088", "difficulty": 3, "type": "choice",
