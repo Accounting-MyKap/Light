@@ -52,7 +52,14 @@ type Phase =
   | { kind: 'loading' }
   | { kind: 'intro'; showInstructions: boolean; firstTime: boolean }
   | { kind: 'playing' }
-  | { kind: 'result'; result: GameResult; previousBest: number | null; nextGameId: string | null }
+  | {
+      kind: 'result';
+      result: GameResult;
+      previousBest: number | null;
+      nextGameId: string | null;
+      /** How many games of the daily plan are done, this one included (0 of 0 when there is no plan). */
+      progress: { done: number; total: number };
+    }
   | { kind: 'saveError'; result: GameResult; resultId: string };
 
 /** The pause of a running game: the sheet, then the 3-2-1 after «Continuar». The game stays paused through both. */
@@ -134,7 +141,8 @@ function PlaySession({ game, daily }: { game: GameDefinition; daily: string | nu
         const recorded = await recordGameResult({ game, startLevel, result, daily, resultId });
         setStartLevel(recorded.newStartLevel);
         const nextGameId = recorded.plan?.gameIds.find((id) => !recorded.plan?.completed.includes(id)) ?? null;
-        setPhase({ kind: 'result', result, previousBest: recorded.previousBest, nextGameId });
+        const progress = { done: recorded.plan?.completed.length ?? 0, total: recorded.plan?.gameIds.length ?? 0 };
+        setPhase({ kind: 'result', result, previousBest: recorded.previousBest, nextGameId, progress });
         // Once per finished game: only a save that went through gets here, and "play again" starts a new game.
         void requestSync();
       } catch (error) {
@@ -190,7 +198,13 @@ function PlaySession({ game, daily }: { game: GameDefinition; daily: string | nu
       case 'playing': {
         const { Component } = game;
         return (
-          <section ref={playRef} tabIndex={-1} className={`${styles.screen} ${styles.playing}`} data-game={game.id}>
+          <section
+            ref={playRef}
+            tabIndex={-1}
+            aria-label={title}
+            className={`${styles.screen} ${styles.playing}`}
+            data-game={game.id}
+          >
             {/* Dimmed, blurred and out of reach while the sheet or the countdown is on. */}
             <div className={styles.game} data-dimmed={paused} inert={paused}>
               <PlayChromeContext.Provider value={chrome}>
@@ -232,6 +246,7 @@ function PlaySession({ game, daily }: { game: GameDefinition; daily: string | nu
                 ? undefined
                 : {
                     nextGameId: phase.nextGameId,
+                    progress: phase.progress,
                     onNext: () => navigate(`/play/${phase.nextGameId}?daily=${daily}`, { replace: true }),
                     onSummary: () => navigate('/'),
                   }

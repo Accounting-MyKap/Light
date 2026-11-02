@@ -64,8 +64,9 @@
   justify-content: center;
 }
 
-/* Intro and instructions: the buttons sit at the bottom of the screen, where the thumb is. */
-.introActions {
+/* Intro, instructions and result: the buttons sit at the bottom of the screen, where the thumb is. */
+.introActions,
+.resultActions {
   display: grid;
   gap: 0.75rem;
   margin-top: auto;
@@ -144,7 +145,8 @@
   font-weight: 800;
 }
 
-/* The example: a glass card with the game's own mini scene and its caption. */
+/* The example: the game's own mini scene and its caption, straight on the background. The games draw their own
+   glass surfaces, so the card around them stays clear instead of putting glass inside glass. */
 .example {
   margin: 0;
   padding: 1rem;
@@ -152,9 +154,6 @@
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
-  border-radius: 18px;
-  background: var(--luz-glass);
-  box-shadow: inset 0 0 0 1.5px var(--luz-glass-border);
 }
 
 .example figcaption {
@@ -222,14 +221,14 @@
   gap: 0.75rem;
 }
 
-/* The 3, 2, 1 over the paused game. It sits above the dimmed game and never takes a tap. */
+/* The 3, 2, 1 over the paused game. It covers the screen and takes the taps, so a browser without `inert` still
+   cannot reach the game under it. */
 .countdown {
   position: fixed;
   inset: 0;
   display: grid;
   place-items: center;
   z-index: 10;
-  pointer-events: none;
 }
 
 .countdownNumber {
@@ -274,42 +273,272 @@
   }
 }
 
-.score {
-  font-size: 3.5rem;
-  font-weight: 800;
-  margin: 0;
-  text-shadow: 0 0 24px var(--glow);
-}
-
-.newBest {
-  color: var(--accent-strong);
-  font-weight: 700;
-}
-
-.percentile {
-  color: var(--text-muted);
-}
-
-.stats {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 0.5rem;
-  margin: 0;
-}
-
-.stats div {
+/* Result: the score in the middle of a light show on a new best, then the cards, and the buttons at the bottom. */
+.result {
+  align-items: center;
   text-align: center;
 }
 
-.stats dt {
-  color: var(--text-muted);
-  font-size: 0.85rem;
+.resultActions {
+  width: 100%;
 }
 
-.stats dd {
+.resultTitle {
   margin: 0;
+  color: var(--luz-muted);
+  font-size: 1.125rem;
   font-weight: 700;
-  font-size: 1.1rem;
+}
+
+.hero {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: min(100%, 15rem);
+  height: 11rem;
+  margin-top: 0.5rem;
+}
+
+.heroScore {
+  position: relative;
+  margin: 0;
+  font-size: 5.25rem;
+  font-weight: 800;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 0 2.25rem color-mix(in srgb, var(--game) 70%, transparent);
+}
+
+/* The celebration is a square, centered on the score, that clips what turns inside it. It starts while the number
+   is still landing and is never in the way of a tap. */
+.celebration {
+  --celebrate-delay: 0.4s;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 20rem;
+  height: 20rem;
+  margin: -10rem 0 0 -10rem;
+  overflow: clip;
+  pointer-events: none;
+}
+
+.rays {
+  position: absolute;
+  inset: 0;
+  background: repeating-conic-gradient(
+    from 0deg,
+    color-mix(in srgb, var(--game) 35%, transparent) 0deg 6deg,
+    transparent 6deg 24deg
+  );
+  -webkit-mask: radial-gradient(closest-side, #000 30%, transparent 75%);
+  mask: radial-gradient(closest-side, #000 30%, transparent 75%);
+  /* The rays come in once and then keep turning (the turn is its own property, so the two animations do not fight). */
+  animation:
+    rays-in 0.6s ease-out var(--celebrate-delay) both,
+    rays-turn 24s linear var(--celebrate-delay) infinite;
+}
+
+.spark {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--game);
+  box-shadow: 0 0 0.75rem var(--game);
+  opacity: 0;
+  animation: spark 0.9s ease-out var(--celebrate-delay) both;
+}
+
+/* Where each spark flies to, from the center. */
+.spark:nth-child(2) {
+  --dx: -7.3rem;
+  --dy: -3.9rem;
+}
+
+.spark:nth-child(3) {
+  --dx: 6.8rem;
+  --dy: -4.9rem;
+}
+
+.spark:nth-child(4) {
+  --dx: -5.9rem;
+  --dy: 3.4rem;
+}
+
+.spark:nth-child(5) {
+  --dx: 7.3rem;
+  --dy: 2.9rem;
+  background: var(--luz-ok);
+  box-shadow: 0 0 0.75rem var(--luz-ok);
+}
+
+.spark:nth-child(6) {
+  --dx: 0.5rem;
+  --dy: -6.3rem;
+  background: #fff;
+  box-shadow: 0 0 0.75rem #fff;
+}
+
+.spark:nth-child(7) {
+  --dx: -1.4rem;
+  --dy: 5.9rem;
+  background: var(--luz-ok);
+  box-shadow: 0 0 0.75rem var(--luz-ok);
+}
+
+/* These two sit under the celebration's square, so they take their own layer to stay in front of the rays. */
+.newBest,
+.percentile {
+  position: relative;
+  margin: 0;
+}
+
+.newBest {
+  color: var(--game);
+  font-size: 1.125rem;
+  font-weight: 800;
+  animation: rise-in 0.4s ease-out 0.55s both;
+}
+
+.percentile {
+  color: color-mix(in srgb, var(--luz-text) 80%, var(--luz-bg));
+  font-size: 0.9375rem;
+  animation: fade-in 0.4s ease-out both;
+}
+
+/* Accuracy, level and (after no record) the best mark: one glass card each, in as many columns as there are cards. */
+.statCards {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: 0.75rem;
+  width: 100%;
+  margin: 0;
+}
+
+/* The label on top and the number at the bottom: when a label takes two lines, the numbers still line up. */
+.statCards div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.2rem;
+  padding: 0.75rem 0.5rem;
+  border-radius: 18px;
+  background: var(--luz-glass);
+  box-shadow: inset 0 0 0 1.5px var(--luz-glass-border);
+}
+
+.statCards dt {
+  color: var(--luz-muted);
+  font-size: 0.8125rem;
+  text-wrap: balance;
+}
+
+.statCards dd {
+  margin: 0;
+  font-size: 1.45rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Today's training: one bar per game of the plan, the finished ones lit, and the count in words. */
+.dailyProgress {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 0;
+  color: var(--luz-muted);
+  font-size: 0.8125rem;
+}
+
+.progressBars {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.progressBars span {
+  width: 1.45rem;
+  height: 0.4rem;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.progressBars span[data-done='true'] {
+  background: var(--game);
+  box-shadow: 0 0 0.6rem var(--game);
+}
+
+@keyframes rays-in {
+  from {
+    opacity: 0;
+    scale: 0.6;
+  }
+
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+@keyframes rays-turn {
+  to {
+    rotate: 360deg;
+  }
+}
+
+@keyframes spark {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%);
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy)));
+  }
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* Reduced motion: no rays, no sparks and no rising text; the score is already final (see useCountUp). */
+@media (prefers-reduced-motion: reduce) {
+  .celebration {
+    display: none;
+  }
+
+  .newBest,
+  .percentile {
+    animation: none;
+  }
 }
 
 .center {

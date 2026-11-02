@@ -10,8 +10,12 @@ import { fetchPercentile, getRemote, requestSync } from '../sync';
 // UI code reaches sync only through this module, so one mock keeps these tests off the network.
 vi.mock('../sync');
 
-// The 3-2-1 countdown takes 3 steps. The tests that need to see the game while it is still counting raise the step.
+// The 3-2-1 countdown takes 3 steps. The tests that need to see the game while it is still counting raise the step
+// to one wide enough that a loaded runner cannot let the countdown end between a click and the next assertion.
 const resumeTiming = vi.hoisted(() => ({ stepMs: 5 }));
+const SLOW_STEP_MS = 200;
+// Waiting out a whole slow countdown (three steps) is the one thing those tests pay for.
+const SLOW_COUNTDOWN = { timeout: 5_000 };
 vi.mock('./play/resumeTiming', () => ({
   get RESUME_STEP_MS() {
     return resumeTiming.stepMs;
@@ -118,7 +122,7 @@ test('the frame shows the game title and its ✕ opens the pause sheet with time
 });
 
 test('the game behind the pause sheet cannot be reached until it runs again', async () => {
-  resumeTiming.stepMs = 40;
+  resumeTiming.stepMs = SLOW_STEP_MS;
   await updateSettings({ seenInstructions: ['fake'] });
   await open('/play/fake');
   await userEvent.click(await screen.findByRole('button', { name: 'Comenzar' }));
@@ -128,7 +132,7 @@ test('the game behind the pause sheet cannot be reached until it runs again', as
   expect(behindGame()).not.toBeNull();
   await userEvent.click(screen.getByRole('button', { name: 'Continuar' }));
   expect(behindGame()).not.toBeNull(); // still counting
-  expect(await screen.findByText('paused:false')).toBeInTheDocument();
+  expect(await screen.findByText('paused:false', undefined, SLOW_COUNTDOWN)).toBeInTheDocument();
   expect(behindGame()).toBeNull();
 });
 
@@ -146,7 +150,7 @@ test('hidden tab pauses the game', async () => {
 });
 
 test('continue counts down before the game runs again', async () => {
-  resumeTiming.stepMs = 40;
+  resumeTiming.stepMs = SLOW_STEP_MS;
   await updateSettings({ seenInstructions: ['fake'] });
   await open('/play/fake');
   await userEvent.click(await screen.findByRole('button', { name: 'Comenzar' }));
@@ -155,12 +159,12 @@ test('continue counts down before the game runs again', async () => {
   // The sheet is gone and the numbers are on screen, but the game has not started again.
   expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
   expect(screen.getByText('paused:true')).toBeInTheDocument();
-  expect(await screen.findByText('paused:false')).toBeInTheDocument();
+  expect(await screen.findByText('paused:false', undefined, SLOW_COUNTDOWN)).toBeInTheDocument();
   expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
 });
 
 test('hiding the app during the countdown returns to the pause sheet', async () => {
-  resumeTiming.stepMs = 60;
+  resumeTiming.stepMs = SLOW_STEP_MS;
   await updateSettings({ seenInstructions: ['fake'] });
   await open('/play/fake');
   await userEvent.click(await screen.findByRole('button', { name: 'Comenzar' }));
@@ -172,7 +176,7 @@ test('hiding the app during the countdown returns to the pause sheet', async () 
   expect(screen.getByText('paused:true')).toBeInTheDocument();
   setHidden(false);
   // The interrupted countdown does not finish behind the sheet: a whole countdown later, the game is still paused.
-  await new Promise((resolve) => setTimeout(resolve, 3 * 60 + 100));
+  await new Promise((resolve) => setTimeout(resolve, 3 * SLOW_STEP_MS + 100));
   expect(screen.getByText('Pausado')).toBeInTheDocument();
   expect(screen.getByText('paused:true')).toBeInTheDocument();
   // Continuing again starts a fresh countdown that does finish.
@@ -190,6 +194,18 @@ test('the sheet takes focus, and the game gets it back when the countdown ends',
   await userEvent.click(screen.getByRole('button', { name: 'Continuar' }));
   expect(await screen.findByText('paused:false')).toBeInTheDocument();
   expect(document.querySelector('[data-game="fake"]')).toHaveFocus();
+});
+
+test('the playing region has the name of the game, so the focus after the countdown lands on something named', async () => {
+  await updateSettings({ seenInstructions: ['fake'] });
+  await open('/play/fake');
+  await userEvent.click(await screen.findByRole('button', { name: 'Comenzar' }));
+  const region = screen.getByRole('region', { name: 'Juego falso' });
+  expect(region).toBe(document.querySelector('[data-game="fake"]'));
+  await userEvent.click(screen.getByRole('button', { name: 'Salir del juego' }));
+  await userEvent.click(screen.getByRole('button', { name: 'Continuar' }));
+  expect(await screen.findByText('paused:false')).toBeInTheDocument();
+  expect(screen.getByRole('region', { name: 'Juego falso' })).toHaveFocus();
 });
 
 test('exit from pause does not save', async () => {
@@ -218,6 +234,24 @@ test('daily mode offers the next game of the plan', async () => {
   await userEvent.click(await screen.findByRole('button', { name: 'Siguiente juego' }));
   expect(await screen.findByText('No encontramos ese juego')).toBeInTheDocument();
   expect((await db.dailyPlans.get('2026-10-20'))?.completed).toEqual(['fake']);
+});
+
+test('daily mode shows how many games of the plan are done, counting the one just played', async () => {
+  await updateSettings({ seenInstructions: ['fake'] });
+  await db.dailyPlans.put({ day: '2026-10-20', gameIds: ['other', 'fake', 'third'], completed: ['other'] });
+  await open('/play/fake?daily=2026-10-20');
+  await userEvent.click(await screen.findByRole('button', { name: 'Comenzar' }));
+  await userEvent.click(screen.getByRole('button', { name: 'Terminar' }));
+  expect(await screen.findByText('Entrenamiento de hoy: 2 de 3')).toBeInTheDocument();
+});
+
+test('free play shows no daily progress', async () => {
+  await updateSettings({ seenInstructions: ['fake'] });
+  await open('/play/fake');
+  await userEvent.click(await screen.findByRole('button', { name: 'Comenzar' }));
+  await userEvent.click(screen.getByRole('button', { name: 'Terminar' }));
+  expect(await screen.findByText('Puntaje: 120')).toBeInTheDocument();
+  expect(screen.queryByText(/Entrenamiento de hoy:/)).not.toBeInTheDocument();
 });
 
 test('daily mode on the last game offers the summary', async () => {
