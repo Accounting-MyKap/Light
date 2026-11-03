@@ -39,6 +39,10 @@
       "secondsLeft_one": "Queda {{count}} segundo",
       "secondsLeft_other": "Quedan {{count}} segundos",
       "round": "Ronda {{n}} de {{total}}"
+    },
+    "keypad": {
+      "delete": "Borrar",
+      "ok": "OK"
     }
   },
   "games": {
@@ -144,8 +148,6 @@
         "Pulsa OK (o Enter) para responder. Si una se te complica, puedes saltarla.",
         "Cada acierto suma puntos y cada error resta 10 (saltar no resta). Varios aciertos seguidos suben la dificultad."
       ],
-      "delete": "Borrar",
-      "ok": "OK",
       "skip": "Saltar"
     }
   },

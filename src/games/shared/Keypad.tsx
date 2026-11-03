@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import styles from './quick-math.module.css';
+import styles from './Keypad.module.css';
 
 // Pointer clicks should not move keyboard focus onto keypad buttons (Enter must keep submitting).
 const keepFocus = (e: { preventDefault: () => void }) => e.preventDefault();
@@ -20,12 +20,12 @@ export function Keypad({ onDigit, onDelete, onSubmit }: KeypadProps) {
   return (
     <div className={styles.keypad}>
       {[1, 2, 3, 4, 5, 6, 7, 8, 9].map(digit)}
-      <button type="button" className={styles.key} onMouseDown={keepFocus} onClick={onDelete} aria-label={t('games.quick-math.delete')}>
+      <button type="button" className={styles.key} onMouseDown={keepFocus} onClick={onDelete} aria-label={t('game.keypad.delete')}>
         ⌫
       </button>
       {digit(0)}
       <button type="button" className={`${styles.key} ${styles.ok}`} onMouseDown={keepFocus} onClick={onSubmit}>
-        {t('games.quick-math.ok')}
+        {t('game.keypad.ok')}
       </button>
     </div>
   );

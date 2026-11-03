@@ -1,22 +1,22 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { createRng, randomSeed } from '../../core/rng';
+import { formatProblem } from '../shared/arithmetic';
 import { useCountdown, useGameClock } from '../shared/clock';
 import { GAME_DURATION_MS } from '../shared/constants';
 import { useFeedback } from '../shared/feedback';
 import { GameFrame } from '../shared/GameFrame';
+import { Keypad } from '../shared/Keypad';
 import { useGameKeys } from '../shared/useGameKeys';
 import type { GameProps } from '../types';
 import {
   createQuickMathGame,
   deleteDigit,
-  formatProblem,
   quickMathResult,
   skipProblem,
   submitAnswer,
   typeDigit,
 } from './engine';
-import { Keypad } from './Keypad';
 import styles from './quick-math.module.css';
 
 /** Pointer clicks on game controls should not move keyboard focus onto them (Enter must keep submitting). */

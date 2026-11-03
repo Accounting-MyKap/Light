@@ -39,6 +39,10 @@
       "secondsLeft_one": "{{count}} second left",
       "secondsLeft_other": "{{count}} seconds left",
       "round": "Round {{n}} of {{total}}"
+    },
+    "keypad": {
+      "delete": "Delete",
+      "ok": "OK"
     }
   },
   "games": {
@@ -144,8 +148,6 @@
         "Press OK (or Enter) to answer. If one is tricky, you can skip it.",
         "Correct answers earn points and each wrong answer costs 10 (skipping costs nothing). Several correct answers in a row raise the difficulty."
       ],
-      "delete": "Delete",
-      "ok": "OK",
       "skip": "Skip"
     }
   },
