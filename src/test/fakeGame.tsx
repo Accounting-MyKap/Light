@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { GameFrame } from '../games/shared/GameFrame';
 import type { PracticeProps } from '../games/shared/practice/types';
 import type { GameDefinition, GameProps } from '../games/types';
@@ -15,6 +15,22 @@ function FakeGameComponent({ startLevel, paused, onFinish }: GameProps) {
       <p>startLevel:{startLevel}</p>
       <button onClick={() => setScore((s) => s + 10)}>Acertar</button>
       <button onClick={() => onFinish({ score: 120, accuracy: 0.9, levelReached: 2, durationMs: 60000 })}>Terminar</button>
+    </GameFrame>
+  );
+}
+
+/** Puts the focus on its own question whenever it runs, the first time and after a pause, as the quiz does. */
+function FakeFocusGameComponent({ paused }: GameProps) {
+  const questionRef = useRef<HTMLHeadingElement>(null);
+  useEffect(() => {
+    if (!paused) questionRef.current?.focus({ preventScroll: true });
+  }, [paused]);
+  return (
+    <GameFrame score={0} level={1}>
+      <h2 ref={questionRef} tabIndex={-1}>
+        Pregunta falsa
+      </h2>
+      <p>paused:{String(paused)}</p>
     </GameFrame>
   );
 }
@@ -63,6 +79,9 @@ export const fakeGameNoPractice: GameDefinition = {
 /** Takes its instructions from a shared i18n key, like the quiz games do. */
 export const fakeGame3: GameDefinition = { ...fakeGameNoPractice, id: 'fake3', instructionsKey: 'quiz.instructions' };
 
+/** Takes the focus itself when it resumes, like the quiz games. */
+export const fakeFocusGame: GameDefinition = { ...fakeGameNoPractice, id: 'fakefocus', Component: FakeFocusGameComponent };
+
 /** A game of the quiz section: it has a `quiz` config, so leaving it goes to the Quiz tab. */
 export const fakeQuizGame: GameDefinition = {
   ...fakeGameNoPractice,
@@ -98,6 +117,11 @@ export function registerFakeGameTranslations(): void {
       fakeq: {
         title: 'Juego de preguntas falso',
         description: 'Un juego de preguntas para pruebas',
+      },
+      fakefocus: {
+        title: 'Juego falso con foco propio',
+        description: 'Un juego que pone el foco en su pregunta',
+        instructions: ['Primera instrucción falsa'],
       },
     },
   };

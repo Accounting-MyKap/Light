@@ -475,6 +475,19 @@ describe('the focus around a pause and a failed load (keyboard and screen reader
     expect(screen.getByText('No pudimos cargar las preguntas.')).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Reintentar' })).toHaveFocus();
   });
+
+  test('«Reintentar», and «Recargar la página» once it is offered, carry the error: the focus move can cut the alert off', async () => {
+    const error = 'No pudimos cargar las preguntas.';
+    vi.mocked(loadQuestions).mockRejectedValue(new Error('offline'));
+    render(gameElement());
+    await settle();
+    expect(screen.getByRole('button', { name: 'Reintentar' })).toHaveAccessibleDescription(error);
+    fireEvent.click(screen.getByRole('button', { name: 'Reintentar' }));
+    await settle();
+    expect(screen.getByRole('button', { name: 'Reintentar' })).toHaveFocus();
+    expect(screen.getByRole('button', { name: 'Reintentar' })).toHaveAccessibleDescription(error);
+    expect(screen.getByRole('button', { name: 'Recargar la página' })).toHaveAccessibleDescription(error);
+  });
 });
 
 describe('a new question on a small screen', () => {

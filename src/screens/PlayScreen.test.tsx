@@ -26,9 +26,11 @@ vi.mock('./play/resumeTiming', () => ({
 }));
 
 vi.mock('../games/registry', async () => {
-  const { fakeGame, fakeGame2, fakeGame3, fakeGameNoPractice, fakeQuizGame } = await import('../test/fakeGame');
+  const { fakeGame, fakeGame2, fakeGame3, fakeGameNoPractice, fakeFocusGame, fakeQuizGame } = await import(
+    '../test/fakeGame'
+  );
   const training = [fakeGame, fakeGame2, fakeGame3, fakeGameNoPractice];
-  const games = [...training, fakeQuizGame];
+  const games = [...training, fakeFocusGame, fakeQuizGame];
   return {
     GAMES: games,
     TRAINING_GAMES: training,
@@ -482,6 +484,48 @@ test('the playing region has the name of the game, so the focus after the countd
   await userEvent.click(screen.getByRole('button', { name: 'Continuar' }));
   expect(await screen.findByText('paused:false')).toBeInTheDocument();
   expect(screen.getByRole('region', { name: 'Juego falso' })).toHaveFocus();
+});
+
+describe('where the focus goes when the countdown ends (screen readers announce every move)', () => {
+  /** Every element that receives the focus from now on, in order. */
+  function recordFocus() {
+    const targets: EventTarget[] = [];
+    const record = (event: FocusEvent) => targets.push(event.target!);
+    document.addEventListener('focusin', record);
+    onTestFinished(() => document.removeEventListener('focusin', record));
+    return targets;
+  }
+
+  test('a game that does not take the focus itself gets it on its play region, once', async () => {
+    await updateSettings({ seenInstructions: ['fake'] });
+    await open('/play/fake');
+    await userEvent.click(await screen.findByRole('button', { name: 'Comenzar' }));
+    const region = screen.getByRole('region', { name: 'Juego falso' });
+    await userEvent.click(screen.getByRole('button', { name: 'Salir del juego' }));
+    const continueButton = screen.getByRole('button', { name: 'Continuar' });
+    const focused = recordFocus();
+    await userEvent.click(continueButton);
+    expect(await screen.findByText('paused:false')).toBeInTheDocument();
+    await vi.waitFor(() => expect(region).toHaveFocus());
+    expect(focused.filter((target) => target !== continueButton)).toEqual([region]);
+  });
+
+  test('a game that puts the focus on its own element when it resumes keeps it there: the region never takes it', async () => {
+    await updateSettings({ seenInstructions: ['fakefocus'] });
+    await open('/play/fakefocus');
+    await userEvent.click(await screen.findByRole('button', { name: 'Comenzar' }));
+    const region = screen.getByRole('region', { name: 'Juego falso con foco propio' });
+    const question = screen.getByRole('heading', { level: 2, name: 'Pregunta falsa' });
+    expect(question).toHaveFocus();
+    await userEvent.click(screen.getByRole('button', { name: 'Salir del juego' }));
+    const continueButton = screen.getByRole('button', { name: 'Continuar' });
+    const focused = recordFocus();
+    await userEvent.click(continueButton);
+    expect(await screen.findByText('paused:false')).toBeInTheDocument();
+    await vi.waitFor(() => expect(question).toHaveFocus());
+    expect(focused).not.toContain(region);
+    expect(focused.filter((target) => target !== continueButton)).toEqual([question]);
+  });
 });
 
 test('exit from pause does not save', async () => {

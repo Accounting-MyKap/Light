@@ -1,6 +1,6 @@
 import { mkdirSync } from 'node:fs';
 import { expect, test } from '@playwright/test';
-import { finishQuizRound } from './helpers';
+import { finishQuizRound, startGame } from './helpers';
 
 test('plays a quiz round from the Quiz tab to the review', async ({ page }) => {
   await page.goto('./');
@@ -44,9 +44,21 @@ test('after a pause the focus goes back to the question, or to «Siguiente» onc
   await expect(page.getByText('Pregunta 1 de 10')).toBeVisible();
   const prompt = page.getByRole('heading', { level: 2 });
   const next = page.getByRole('button', { name: 'Siguiente', exact: true });
+  // Every element that takes the focus. On the way back from the pause the play region must never have it: a screen
+  // reader would announce the name of the region before the question.
+  await page.evaluate(() => {
+    const log: string[] = [];
+    (window as unknown as { focusLog: string[] }).focusLog = log;
+    document.addEventListener('focusin', (event) => {
+      const target = event.target as Element;
+      log.push(target.matches('[data-game]') ? 'play region' : (target.textContent ?? '').slice(0, 40));
+    });
+  });
+  const takeFocusLog = () => page.evaluate(() => (window as unknown as { focusLog: string[] }).focusLog.splice(0));
   // The ✕ opens the pause sheet; «Continuar» starts the 3-2-1 (three 1 s steps), and then the game runs again.
   const pauseAndResume = async () => {
     await page.locator('[data-game]').getByRole('button', { name: 'Salir del juego' }).click();
+    await takeFocusLog();
     await page.getByRole('button', { name: 'Continuar' }).click();
     await expect(page.getByText('Pausado')).toBeHidden();
   };
@@ -54,12 +66,28 @@ test('after a pause the focus goes back to the question, or to «Siguiente» onc
   await expect(prompt).toBeFocused();
   await pauseAndResume();
   await expect(prompt).toBeFocused({ timeout: 6000 });
+  expect(await takeFocusLog()).not.toContain('play region');
 
   await page.waitForTimeout(200); // longer than MIN_RT_MS, or the app ignores the tap
   await page.getByRole('button', { name: /^Opción 1: / }).click();
   await expect(next).toBeFocused();
   await pauseAndResume();
   await expect(next).toBeFocused({ timeout: 6000 });
+  expect(await takeFocusLog()).not.toContain('play region');
+});
+
+test('a training game puts the focus nowhere of its own, so after a pause it comes back to the play region', async ({
+  page,
+}) => {
+  for (const id of ['arrows', 'switchyard']) {
+    await page.goto(`./#/play/${id}`);
+    await startGame(page);
+    const game = page.locator(`[data-game="${id}"]`);
+    await game.getByRole('button', { name: 'Salir del juego' }).click();
+    await page.getByRole('button', { name: 'Continuar' }).click();
+    await expect(page.getByText('Pausado')).toBeHidden();
+    await expect(game, id).toBeFocused({ timeout: 6000 });
+  }
 });
 
 const LUZ_BACKGROUND = 'rgb(9, 11, 25)'; // #090b19
@@ -154,5 +182,88 @@ test.describe('the quiz result on a small screen', () => {
     await expect(page.getByRole('heading', { name: 'Repasa tus errores' })).toBeAttached();
     await expect(page.getByRole('heading', { level: 1, name: 'Historia' })).toBeInViewport({ ratio: 1 });
     expect(await page.evaluate(() => window.scrollY)).toBe(0);
+  });
+});
+
+test.describe('the top bar of a quiz on a small phone', () => {
+  // Reduced motion, so the page jumps back up for each new question instead of gliding: every scroll is over at once.
+  test.use({ viewport: { width: 320, height: 568 }, reducedMotion: 'reduce' });
+
+  test('after the answer to a long question it stays in view, and «Siguiente» is whole below it', async ({ page }) => {
+    await page.goto('./#/play/accounting-lending');
+    await page.getByRole('button', { name: 'Comenzar' }).click();
+    const game = page.locator('[data-game]');
+    const exit = game.getByRole('button', { name: 'Salir del juego' });
+    const time = game.getByRole('progressbar', { name: 'Tiempo' });
+    const next = page.getByRole('button', { name: 'Siguiente', exact: true });
+
+    // A long question: its explanation pushes «Siguiente» below the fold, so focusing it scrolls the page down. On
+    // this screen that is most of the lending bank; the first one that does it is the one looked at.
+    let scrolled = false;
+    for (let n = 1; n <= 9 && !scrolled; n++) {
+      await expect(page.getByText(`Pregunta ${n} de 10`)).toBeVisible();
+      await expect(exit).toBeInViewport({ ratio: 1 }); // each question starts with the top bar in view
+      await page.waitForTimeout(200); // longer than MIN_RT_MS, or the app ignores the tap
+      const asking = await page.evaluate(() => window.scrollY);
+      await page.getByRole('button', { name: /^Opción 1: / }).click();
+      await expect(next).toBeFocused();
+      scrolled = await page.evaluate((asking) => window.scrollY > asking, asking);
+      if (!scrolled) await next.click();
+    }
+    expect(scrolled, 'a question long enough to scroll the page').toBe(true);
+
+    // The ✕, the level, the points and the time bar are all on screen, and «Siguiente» is whole, under none of them.
+    await expect(exit).toBeInViewport({ ratio: 1 });
+    await expect(game.getByText('Nivel', { exact: true })).toBeInViewport({ ratio: 1 });
+    await expect(game.locator('dt', { hasText: 'Puntos' }).locator('xpath=following-sibling::dd')).toBeInViewport({
+      ratio: 1,
+    });
+    await expect(time).toBeInViewport({ ratio: 1 });
+    await expect(next).toBeInViewport({ ratio: 1 });
+    const timeBox = (await time.boundingBox())!;
+    const nextBox = (await next.boundingBox())!;
+    expect(nextBox.y).toBeGreaterThan(timeBox.y + timeBox.height);
+    // Nothing is drawn over it either: what the page has at its corners and its middle is «Siguiente» itself.
+    const covered = await next.evaluate((button) => {
+      const r = button.getBoundingClientRect();
+      const points = [
+        [r.left + r.width / 2, r.top + r.height / 2],
+        [r.left + 24, r.top + 2],
+        [r.right - 24, r.top + 2],
+        [r.left + 24, r.bottom - 2],
+        [r.right - 24, r.bottom - 2],
+      ];
+      return points.filter(([x, y]) => !button.contains(document.elementFromPoint(x, y))).length;
+    });
+    expect(covered, 'points of «Siguiente» covered by something else').toBe(0);
+  });
+});
+
+test.describe('the top bar of a quiz on a 390 × 844 phone', () => {
+  test.use({ viewport: { width: 390, height: 844 } });
+
+  test('a question that fits leaves the top bar where it always was, before and after the answer', async ({ page }) => {
+    await page.goto('./#/play/trivia-math');
+    await page.getByRole('button', { name: 'Comenzar' }).click();
+    await expect(page.getByText('Pregunta 1 de 10')).toBeVisible();
+    const scope = page.locator('[data-luz]');
+    const game = page.locator('[data-game]');
+    const exit = game.getByRole('button', { name: 'Salir del juego' });
+    const time = game.getByRole('progressbar', { name: 'Tiempo' });
+    // Where the top bar sits in the screen: right under the top padding of the Luz scope, with the time bar under it.
+    const offsets = async () => {
+      const top = (await scope.boundingBox())!.y;
+      return { exit: (await exit.boundingBox())!.y - top, time: (await time.boundingBox())!.y - top };
+    };
+    const asking = await offsets();
+    expect(asking.exit).toBe(8); // the scope's top padding, 0.5rem
+    expect(asking.time).toBe(8 + 44 + 16); // under the 44 px ✕ and the 1rem gap of the frame
+
+    await page.waitForTimeout(200); // longer than MIN_RT_MS, or the app ignores the tap
+    await page.getByRole('button', { name: /^Opción 1: / }).click();
+    await expect(page.getByRole('button', { name: 'Siguiente', exact: true })).toBeFocused();
+    expect(await page.evaluate(() => document.documentElement.scrollHeight <= window.innerHeight)).toBe(true);
+    expect(await page.evaluate(() => window.scrollY)).toBe(0);
+    expect(await offsets()).toEqual(asking);
   });
 });
