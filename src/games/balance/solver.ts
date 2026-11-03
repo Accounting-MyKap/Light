@@ -14,7 +14,7 @@ export interface Balance {
 export type Weights = Readonly<Record<number, number>>;
 
 export function panWeight(pan: readonly FigureId[], weights: Weights): number {
-  return pan.reduce((sum, figure) => sum + weights[figure], 0);
+  return pan.reduce<number>((sum, figure) => sum + weights[figure], 0);
 }
 
 export function outcomeOf(left: readonly FigureId[], right: readonly FigureId[], weights: Weights): Outcome {
