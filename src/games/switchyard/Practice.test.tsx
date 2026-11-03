@@ -6,6 +6,9 @@ import { destinationOf, spawnIntervalMs } from './engine';
 import { mapFor } from './maps';
 import { PRACTICE_ROUNDS, RESTART_MS, SwitchyardPractice } from './Practice';
 
+// Each test plays seconds of trains frame by frame: room to spare on a loaded runner.
+vi.setConfig({ testTimeout: 15_000 });
+
 vi.mock('../../core/sound');
 vi.mock('../../data/settings', async (importOriginal) => {
   const actual = await importOriginal<typeof import('../../data/settings')>();
@@ -30,9 +33,13 @@ function setup() {
 }
 
 const advance = (ms: number) => act(() => void vi.advanceTimersByTime(ms));
-/** Moves time on in short steps until `check` holds; fails if it never does. */
+/**
+ * Moves time on in steps until `check` holds; fails if it never does. A step is shorter than anything the tests wait
+ * for: «¡Bien!» stays up 700 ms and an arrival mark 900 ms, and a hint until the round is right.
+ */
+const STEP_MS = 500;
 function until(check: () => boolean, maxMs = 20_000) {
-  for (let t = 0; t < maxMs && !check(); t += 250) advance(250);
+  for (let t = 0; t < maxMs && !check(); t += STEP_MS) advance(STEP_MS);
   expect(check()).toBe(true);
 }
 const switchButton = (index: number) => document.querySelector<HTMLButtonElement>(`[data-switch="${index}"]`)!;
