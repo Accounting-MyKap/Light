@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import { QUIZ_GAMES } from '../registry';
+import { getGame, QUIZ_GAMES } from '../registry';
 import type { GameDefinition } from '../types';
 
 function drawingOf(game: GameDefinition) {
@@ -24,8 +24,28 @@ test('each quiz category has a motif of its own; both mixes share the mix motif'
   for (const [id, d] of drawings) expect(d.shapes, id).toBeGreaterThan(0);
 });
 
-test('the same quiz game always hands React the same thumbnail component', () => {
-  const thumbs = QUIZ_GAMES.map((g) => g.Thumb);
-  expect(new Set(thumbs).size).toBe(QUIZ_GAMES.length);
-  expect(QUIZ_GAMES.map((g) => g.Thumb)).toEqual(thumbs);
+test('each quiz thumbnail wears the colour of its bank and survives a re-render in place', () => {
+  const thumbnails = QUIZ_GAMES.map((game) => {
+    const { container, rerender, unmount } = render(<game.Thumb />);
+    const svg = container.querySelector('svg')!;
+    // A screen that renders again must update the same drawing, not mount a new one (a new component type would).
+    rerender(<game.Thumb />);
+    expect(container.querySelector('svg'), game.id).toBe(svg);
+    const thumbnail = {
+      id: game.id,
+      area: svg.closest('[data-area]')?.getAttribute('data-area'),
+      motif: svg.getAttribute('data-motif'),
+      markup: container.innerHTML,
+    };
+    unmount();
+    return thumbnail;
+  });
+
+  for (const { id, area, motif } of thumbnails) {
+    const quiz = getGame(id)!.quiz!;
+    expect(area, id).toBe(quiz.bank);
+    expect(motif, id).toBe(quiz.categories.length === 1 ? quiz.categories[0] : 'mix');
+  }
+  // Twelve category motifs and the mix motif in each of the two bank colours: fourteen different thumbnails.
+  expect(new Set(thumbnails.map((t) => t.markup)).size).toBe(14);
 });

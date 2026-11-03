@@ -73,17 +73,18 @@ export function QuizScreen() {
               return (
                 <li key={g.id} className={featured ? styles.featuredItem : undefined}>
                   <Link className={featured ? `${styles.card} ${styles.cardFeatured}` : styles.card} to={`/play/${g.id}`}>
-                    <span className={styles.thumb}>
+                    {/* Blocks, like the catalog card: a heading may not sit inside a span. */}
+                    <div className={styles.thumb}>
                       <g.Thumb />
-                    </span>
-                    <span className={styles.text}>
+                    </div>
+                    <div className={styles.text}>
                       <h3 className={styles.name}>{t(`games.${g.id}.title`)}</h3>
                       <span className={styles.description}>{t(`games.${g.id}.description`)}</span>
                       <span className={styles.meta}>
                         <span>{t('quiz.best', { score: best.get(g.id) ?? '—' })}</span>
                         <span>{t('quiz.seen', { seen: progress.seen, total: progress.total })}</span>
                       </span>
-                    </span>
+                    </div>
                   </Link>
                 </li>
               );

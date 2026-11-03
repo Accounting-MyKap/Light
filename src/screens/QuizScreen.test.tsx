@@ -109,6 +109,16 @@ test('the two mix cards are featured and the category cards are not', async () =
   expect(isFeatured(screen.getByRole('link', { name: /^Conceptos contables/ }))).toBe(false);
 });
 
+test('each card is valid HTML: its name heading and texts sit in blocks, never inside a span', async () => {
+  await renderApp('/quiz');
+  const names = screen.getAllByRole('heading', { level: 3 });
+  expect(names).toHaveLength(14);
+  for (const name of names) {
+    expect(name.closest('a'), name.textContent ?? '').not.toBeNull();
+    expect(name.closest('span'), name.textContent ?? '').toBeNull();
+  }
+});
+
 test('each card shows the thumbnail of its category, hidden from screen readers', async () => {
   await renderApp('/quiz');
   const motifOf = (link: HTMLElement) => {
