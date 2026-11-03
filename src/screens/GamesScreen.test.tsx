@@ -1,6 +1,7 @@
 import { fireEvent, screen, within } from '@testing-library/react';
 import { renderApp } from '../test/renderApp';
 import { clearAllData, db } from '../data/db';
+import { TRAINING_GAMES } from '../games/registry';
 
 const DAY = '2026-10-20';
 
@@ -96,4 +97,17 @@ test('a failing plan read hides only the today row', async () => {
   await new Promise((resolve) => setTimeout(resolve, 100)); // a rejected live query rethrows on a later render
   expect(h2s()).toHaveLength(5);
   expect(screen.queryByText('Tus juegos de hoy')).toBeNull();
+});
+
+test('the catalog holds only the training games: the quiz games live in the Preguntas tab', async () => {
+  await renderApp('/games');
+  const hrefs = screen
+    .getAllByRole('link')
+    .map((l) => l.getAttribute('href') ?? '')
+    .filter((href) => href.startsWith('/play/'));
+  expect([...hrefs].sort()).toEqual(TRAINING_GAMES.map((g) => `/play/${g.id}`).sort());
+  expect(hrefs.some((href) => /^\/play\/(trivia|accounting)-/.test(href))).toBe(false);
+  // No filter pill for the two quiz banks either.
+  const pills = within(screen.getByRole('group', { name: 'Categorías' })).getAllByRole('button');
+  expect(pills.map((b) => b.textContent)).toEqual(['Todo', 'Velocidad', 'Memoria', 'Atención', 'Flexibilidad mental', 'Matemáticas']);
 });
