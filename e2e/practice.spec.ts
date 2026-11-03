@@ -164,6 +164,73 @@ test('the practice opened from the pause leaves the paused game untouched', asyn
   expect(secondsNow).toBeLessThanOrEqual(secondsBefore);
 });
 
+// Guardagujas and the quiz games have no practice: they keep the instructions, also from the pause.
+test.describe('a game without a practice', () => {
+  const FIRST_STEP = 'Los trenes salen del túnel y avanzan solos por las vías.';
+
+  test('Guardagujas shows its instructions the first time, from «¿Cómo se juega?» and from the pause', async ({
+    page,
+  }) => {
+    await page.goto('./#/play/switchyard');
+    await expect(page.getByRole('heading', { level: 1, name: 'Guardagujas' })).toBeVisible();
+    await expect(page.getByText(FIRST_STEP)).toBeVisible();
+    await expect(page.getByText('Ejemplo', { exact: true })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Saltar práctica', exact: true })).toHaveCount(0);
+    await page.getByRole('button', { name: 'Comenzar', exact: true }).click();
+    await expect(page.locator('[data-game="switchyard"]')).toBeVisible();
+
+    await page.getByRole('button', { name: 'Salir del juego', exact: true }).click();
+    const sheet = page.getByRole('dialog', { name: 'Pausado' });
+    const readSheet = async () => (await sheet.locator('dl').innerText()).replace(/\s+/g, ' ');
+    const before = await readSheet();
+    const buttons = await sheet.getByRole('button').allTextContents();
+    expect(buttons).toEqual(['Continuar', '¿Cómo se juega?', 'Salir']);
+
+    await sheet.getByRole('button', { name: '¿Cómo se juega?', exact: true }).click();
+    const layer = page.getByRole('dialog', { name: '¿Cómo se juega?' });
+    await expect(layer.getByText(FIRST_STEP)).toBeVisible();
+    await expect(sheet).toHaveCount(0);
+    await expect(layer.getByRole('button', { name: 'Comenzar', exact: true })).toHaveCount(0);
+    // Both the ✕ and the main button are «Volver»; the main one is the one that says it.
+    await expect(layer.getByRole('button', { name: 'Volver', exact: true })).toHaveCount(2);
+    await page.waitForTimeout(2000); // a game clock that kept running would lose these seconds
+    await layer.getByRole('button', { name: 'Volver', exact: true }).filter({ hasText: 'Volver' }).click();
+    await expect(sheet).toBeVisible();
+    await expect(layer).toHaveCount(0);
+    expect(await readSheet()).toBe(before);
+
+    // A second visit (the address is the same, so reload): the intro, whose «¿Cómo se juega?» opens the instructions.
+    await page.reload();
+    const howTo = page.getByRole('button', { name: '¿Cómo se juega?', exact: true });
+    await expect(howTo).toBeVisible();
+    await expect(page.getByText(FIRST_STEP)).toHaveCount(0);
+    await howTo.click();
+    await expect(page.getByText(FIRST_STEP)).toBeVisible();
+    await page.getByRole('button', { name: 'Comenzar', exact: true }).click();
+    await expect(page.locator('[data-game="switchyard"]')).toBeVisible();
+  });
+
+  for (const [locale, names] of [
+    ['es-CO', { start: 'Comenzar', pause: 'Salir del juego', howTo: '¿Cómo se juega?' }],
+    ['en-US', { start: 'Start', pause: 'Quit game', howTo: 'How to play' }],
+  ] as const) {
+    test.describe(`narrow ${locale}`, () => {
+      test.use({ locale, viewport: { width: 320, height: 640 } });
+
+      test('the instructions in the pause do not scroll sideways', async ({ page }) => {
+        await page.goto('./#/play/switchyard');
+        await page.getByRole('button', { name: names.start, exact: true }).click();
+        await page.getByRole('button', { name: names.pause, exact: true }).click();
+        await page.getByRole('button', { name: names.howTo, exact: true }).click();
+        const layer = page.getByRole('dialog', { name: names.howTo });
+        await expect(layer.getByRole('list')).toBeVisible();
+        expect(await hasNoSidewaysScroll(page), 'the page scrolls sideways').toBe(true);
+        expect(await layer.evaluate((el) => el.scrollWidth <= el.clientWidth), 'the layer scrolls sideways').toBe(true);
+      });
+    });
+  }
+});
+
 test.describe('touch targets in the practice', () => {
   test.use({ viewport: { width: 390, height: 844 } });
 
@@ -237,7 +304,13 @@ test.describe('review screenshots', () => {
           { timeout: 3000 },
         )
         .catch(() => undefined);
-      const height = await page.evaluate(() => document.documentElement.scrollHeight);
+      // A layer over the paused game scrolls on its own, so its height counts too.
+      const height = await page.evaluate(() =>
+        Math.max(
+          document.documentElement.scrollHeight,
+          ...[...document.querySelectorAll('[role="dialog"]')].map((el) => el.scrollHeight),
+        ),
+      );
       await page.setViewportSize({ width: 390, height: Math.max(844, height) });
       await page.screenshot({ path: `${SCREENSHOT_DIR}/${name}.png` });
       await page.setViewportSize({ width: 390, height: 844 });
@@ -278,5 +351,14 @@ test.describe('review screenshots', () => {
     await shot('arrows-4-pause-sheet', page.getByRole('heading', { name: 'Pausado' }));
     await page.getByRole('button', { name: '¿Cómo se juega?', exact: true }).click();
     await shot('arrows-5-pause-practice', page.getByText(GUIDE.arrows));
+
+    // Guardagujas has no practice: its instructions the first time, then over the paused game.
+    const firstStep = 'Los trenes salen del túnel y avanzan solos por las vías.';
+    await page.goto('./#/play/switchyard');
+    await shot('switchyard-1-instructions', page.getByText(firstStep));
+    await page.getByRole('button', { name: 'Comenzar', exact: true }).click();
+    await page.getByRole('button', { name: 'Salir del juego', exact: true }).click();
+    await page.getByRole('button', { name: '¿Cómo se juega?', exact: true }).click();
+    await shot('switchyard-2-pause-instructions', page.getByRole('dialog').getByText(firstStep));
   });
 });
