@@ -6,7 +6,7 @@ import { headingName, offsetPolyline, type Point } from './geometry';
 import { BOARD, STATION_STYLES, type TrackMap, type Tunnel } from './maps';
 import { trainSprite, type CarSprite } from './sprite';
 import styles from './switchyard.module.css';
-import { SCENES, themeFor } from './themes';
+import { SCENES, themeFor, type SceneTheme } from './themes';
 
 /** How long the ring and the mark of an arrival stay on the station. */
 export const ARRIVAL_SHOW_MS = 900;
@@ -304,23 +304,48 @@ const Ground = memo(function Ground({ map, uid }: { map: TrackMap; uid: string }
   );
 });
 
-/** Fireflies over the meadow; they twinkle unless the person asked for less motion. */
+/** What drifts over each scene. */
+const DRIFT_CLASS: Record<SceneTheme, string> = { meadow: styles.firefly, autumn: styles.leaf, snow: styles.snowflake };
+
+/** Snow falls thicker than leaves: two flakes on each spot, half a fall apart. */
+const DRIFT_PER_SPOT: Record<SceneTheme, number> = { meadow: 1, autumn: 1, snow: 2 };
+
+/**
+ * Where the `round`-th firefly, leaf or snowflake of spot `i` is, and its own beat, so no two move together. The ones
+ * that fall start part of the way down, so the air is already full when the game starts.
+ */
+function driftStyle(theme: SceneTheme, at: Point, i: number, round: number) {
+  const place = { left: `${(at.x / BOARD.width) * 100}%`, top: `${(at.y / BOARD.height) * 100}%` };
+  if (theme === 'meadow') return { ...place, animationDelay: `${((i * 0.73) % 3).toFixed(2)}s` };
+  // Falling and swaying are two animations, each with its own length.
+  const fall = theme === 'autumn' ? 11 + (i % 4) * 1.4 : 9 + (i % 3) * 1.6;
+  const sway = 2.4 + ((i + round) % 3) * 0.5;
+  const beat = {
+    animationDuration: `${fall}s, ${sway}s`,
+    animationDelay: `-${((i * 3.7 + (round * fall) / 2) % fall).toFixed(2)}s, -${((i * 0.9) % sway).toFixed(2)}s`,
+  };
+  const { spots } = SCENES.autumn;
+  return theme === 'autumn'
+    ? { ...place, ...beat, backgroundColor: spots[i % spots.length] }
+    : // Smaller flakes are farther away: they fall a shorter way, so more slowly.
+      { ...place, ...beat, scale: `${[1, 0.62, 0.8][(i + round) % 3]}` };
+}
+
+/**
+ * What drifts in the air over the scene: fireflies that twinkle over the meadow, leaves that fall through the autumn
+ * forest, snowflakes in the snowy night, on the spots the map keeps for them. The browser animates them on its own;
+ * they stand still for whoever asked for less motion, and they never catch a tap.
+ */
 const Fireflies = memo(function Fireflies({ map }: { map: TrackMap }) {
+  const theme = themeFor(map);
   return (
-    <>
-      {map.fireflies.map((f, i) => (
-        <span
-          key={i}
-          className={styles.firefly}
-          style={{
-            left: `${(f.x / BOARD.width) * 100}%`,
-            top: `${(f.y / BOARD.height) * 100}%`,
-            animationDelay: `${((i * 0.73) % 3).toFixed(2)}s`,
-          }}
-          aria-hidden="true"
-        />
-      ))}
-    </>
+    <div className={styles.air} data-theme={theme} aria-hidden="true">
+      {Array.from({ length: DRIFT_PER_SPOT[theme] }, (_, round) =>
+        map.fireflies.map((f, i) => (
+          <span key={`${round}-${i}`} className={DRIFT_CLASS[theme]} style={driftStyle(theme, f, i, round)} />
+        )),
+      )}
+    </div>
   );
 });
 

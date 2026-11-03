@@ -35,14 +35,20 @@ test('a mirrored map keeps the scene of its map', () => {
   for (const n of [3, 4, 5, 6, 7]) expect(themeFor(mapFor(n, true))).toBe(themeFor(mapFor(n, false)));
 });
 
-test('the board says its scene on its ground', () => {
+test('the board says its scene on the ground and on what drifts over it', () => {
   for (const [stations, theme] of [
     [3, 'meadow'],
     [5, 'autumn'],
     [7, 'snow'],
   ] as const) {
-    const { container, unmount } = render(boardOf(mapFor(stations, false)));
-    expect(container.querySelector('svg g[data-theme]')?.getAttribute('data-theme')).toBe(theme);
+    const map = mapFor(stations, false);
+    const { container, unmount } = render(boardOf(map));
+    const themed = [...container.querySelectorAll<HTMLElement | SVGElement>('[data-theme]')];
+    expect(themed.map((el) => el.tagName.toLowerCase()).sort()).toEqual(['div', 'g']);
+    expect(themed.every((el) => el.dataset.theme === theme)).toBe(true);
+    // A firefly or a leaf on each spot the map keeps for them; the snow falls thicker, two flakes on each.
+    const perSpot = theme === 'snow' ? 2 : 1;
+    expect(container.querySelector('div[data-theme]')?.children).toHaveLength(perSpot * map.fireflies.length);
     unmount();
   }
 });
