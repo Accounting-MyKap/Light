@@ -45,6 +45,8 @@
 
 .line {
   display: flex;
+  /* With a large root font the control drops below its label at its natural width instead of being clipped. */
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
@@ -66,7 +68,6 @@
   color: var(--text);
   font: inherit;
   font-weight: 700;
-  min-width: 0;
   max-width: 100%;
 }
 

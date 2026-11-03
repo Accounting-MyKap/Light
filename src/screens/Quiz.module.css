@@ -71,6 +71,9 @@
 
 .card {
   display: flex;
+  /* The thumbnail and text sit side by side; when a word of the text no longer fits beside it (large root font),
+     the text drops below the thumbnail and gets the full card width. */
+  flex-wrap: wrap;
   align-items: flex-start;
   gap: 0.75rem;
   min-width: 0;
@@ -124,7 +127,9 @@
   display: flex;
   flex-direction: column;
   gap: 0.2rem;
-  min-width: 0;
+  /* 9rem fits beside the thumbnail at 16 px / 320 px but not with a large root font: the text then drops below. */
+  flex: 1 1 9rem;
+  min-width: min-content;
 }
 
 .name {
@@ -132,8 +137,6 @@
   font-size: 1rem;
   font-weight: 700;
   line-height: 1.25;
-  overflow-wrap: break-word;
-  hyphens: auto;
 }
 
 .cardFeatured .name {
@@ -145,8 +148,6 @@
   font-size: 0.82rem;
   line-height: 1.35;
   color: var(--text-muted);
-  overflow-wrap: break-word;
-  hyphens: auto;
 }
 
 .meta {

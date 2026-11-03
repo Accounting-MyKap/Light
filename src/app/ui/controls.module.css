@@ -91,10 +91,12 @@
 
 .segTrack {
   clear: both;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  display: flex;
+  /* Equal thirds while the three labels fit; otherwise whole words wrap onto a second row instead of splitting. */
+  flex-wrap: wrap;
   padding: 4px;
-  border-radius: 999px;
+  /* 52 px is one row (4 + 44 + 4): a full pill; with two or more rows it stays a rounded bar. */
+  border-radius: 26px;
   background: var(--border);
 }
 
@@ -102,13 +104,14 @@
   position: relative;
   display: grid;
   place-items: center;
+  flex: 1 1 0;
+  min-width: min-content;
   min-height: 44px;
   padding: 0.25rem 0.25rem;
-  border-radius: 999px;
+  border-radius: 22px;
   font-weight: 700;
   font-size: 0.9rem;
   text-align: center;
-  overflow-wrap: anywhere;
   cursor: pointer;
   transition: background-color 0.15s;
 }

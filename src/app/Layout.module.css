@@ -49,7 +49,6 @@
   padding-block: 10px 0.25rem;
   text-decoration: none;
   color: var(--text-muted);
-  font-size: 0.75rem;
   font-weight: 600;
   transition: color 0.2s;
 }
@@ -59,14 +58,13 @@
   height: 24px;
 }
 
-/* Five tabs: «Preguntas» fills its 64 px column at 320 px. With a larger root font a label wraps inside its own
-   column (hyphenated where the browser can) instead of running into its neighbours. */
+/* Five tabs: «Preguntas» fills its 64 px column at 320 px, so the label grows with the root font only as far as the
+   column allows (3.75vw is 0.75rem at 16 px / 320 px): the word stays whole on one line. */
 .navLink span {
   max-width: 100%;
   text-align: center;
   line-height: 1.15;
-  overflow-wrap: anywhere;
-  hyphens: auto;
+  font-size: min(0.75rem, 3.75vw);
 }
 
 .navLink[aria-current='page'] {
