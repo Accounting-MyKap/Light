@@ -212,6 +212,75 @@ test('hiding the app during the pause practice does not close it', async () => {
   expect(screen.getByText('fake practice')).toBeInTheDocument();
 });
 
+describe('a game without a practice (Guardagujas, the quiz games)', () => {
+  /** A second visit to the game without a practice, started and paused with 10 points. */
+  async function playAndPause() {
+    await updateSettings({ seenInstructions: ['fakenp'] });
+    await open('/play/fakenp');
+    await userEvent.click(await screen.findByRole('button', { name: 'Comenzar' }));
+    await userEvent.click(screen.getByRole('button', { name: 'Acertar' }));
+    await userEvent.click(screen.getByRole('button', { name: 'Salir del juego' }));
+  }
+
+  test('a returning player opens its instructions from «¿Cómo se juega?», and «Comenzar» starts the game', async () => {
+    await updateSettings({ seenInstructions: ['fakenp'] });
+    await open('/play/fakenp');
+    await userEvent.click(await screen.findByRole('button', { name: '¿Cómo se juega?' }));
+    expect(screen.getByText('Primera instrucción falsa')).toBeInTheDocument();
+    expect(screen.getByText('fake example')).toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: 'Saltar práctica' })).not.toBeInTheDocument();
+    await userEvent.click(screen.getByRole('button', { name: 'Comenzar' }));
+    expect(screen.getByText('paused:false')).toBeInTheDocument();
+  });
+
+  test('«¿Cómo se juega?» in the pause shows its instructions in the layer, and «Volver» comes back to the sheet', async () => {
+    await playAndPause();
+    const sheet = screen.getByRole('dialog', { name: 'Pausado' });
+    const buttons = within(sheet).getAllByRole('button').map((b) => b.textContent);
+    expect(buttons).toEqual(['Continuar', '¿Cómo se juega?', 'Salir']);
+
+    await userEvent.click(within(sheet).getByRole('button', { name: '¿Cómo se juega?' }));
+    const layer = screen.getByRole('dialog', { name: '¿Cómo se juega?' });
+    expect(screen.getAllByRole('dialog')).toHaveLength(1);
+    expect(layer.contains(document.activeElement)).toBe(true);
+    expect(within(layer).getByText('Primera instrucción falsa')).toBeInTheDocument();
+    expect(within(layer).getByText('fake example')).toBeInTheDocument();
+    // Its main button goes back, it does not start anything.
+    expect(within(layer).queryByRole('button', { name: 'Comenzar' })).not.toBeInTheDocument();
+    // The game is still there, paused and out of reach.
+    expect(screen.getByText('paused:true').closest('[inert]')).not.toBeNull();
+
+    await userEvent.click(within(layer).getByText('Volver', { selector: 'button' }));
+    expect(screen.queryByText('Primera instrucción falsa')).not.toBeInTheDocument();
+    const again = screen.getByRole('dialog', { name: 'Pausado' });
+    expect(within(again).getByText('puntos').parentElement).toHaveTextContent('10');
+    expect(within(again).getByText('quedan').parentElement).toHaveTextContent('35 s');
+    expect(screen.getByRole('button', { name: 'Continuar' })).toHaveFocus();
+    expect(await db.results.count()).toBe(0);
+  });
+
+  test('the ✕ of the instructions in the pause also comes back to the sheet, without leaving the game', async () => {
+    await playAndPause();
+    await userEvent.click(screen.getByRole('button', { name: '¿Cómo se juega?' }));
+    const layer = screen.getByRole('dialog', { name: '¿Cómo se juega?' });
+    await userEvent.click(within(layer).getByText('✕', { selector: 'button' }));
+    expect(screen.getByRole('dialog', { name: 'Pausado' })).toBeInTheDocument();
+    expect(screen.getByText('paused:true')).toBeInTheDocument();
+    await userEvent.click(screen.getByRole('button', { name: 'Continuar' }));
+    expect(await screen.findByText('paused:false')).toBeInTheDocument();
+  });
+
+  test('hiding the app while the instructions are open in the pause does not close them', async () => {
+    await playAndPause();
+    await userEvent.click(screen.getByRole('button', { name: '¿Cómo se juega?' }));
+    setHidden(true);
+    expect(screen.getByText('Primera instrucción falsa')).toBeInTheDocument();
+    expect(screen.queryByRole('dialog', { name: 'Pausado' })).not.toBeInTheDocument();
+    setHidden(false);
+    expect(screen.getByText('Primera instrucción falsa')).toBeInTheDocument();
+  });
+});
+
 test('instructions come from instructionsKey when a game sets it', async () => {
   await open('/play/fake3');
   expect(await screen.findByRole('heading', { name: 'Tercer juego falso' })).toBeInTheDocument();
@@ -598,6 +667,22 @@ describe('choosing the level', () => {
     await userEvent.click(await screen.findByRole('button', { name: 'Jugar de nuevo' }));
     expect(await screen.findByText('startLevel:1')).toBeInTheDocument();
     expect(await levels.getStartLevel('fake')).toBe(3);
+  });
+
+  test('the practice keeps the level chosen before it: skipping comes back with it, «Comenzar» on «¡Listo!» starts it', async () => {
+    await levels.setStartLevel('fake', 3);
+    await reached(5);
+    await openIntro();
+    const choice = await screen.findByRole('group', { name: 'Elige el nivel' });
+    await userEvent.click(within(choice).getByRole('button', { name: 'Nivel 5' }));
+    await userEvent.click(screen.getByRole('button', { name: '¿Cómo se juega?' }));
+    await userEvent.click(screen.getByRole('button', { name: 'Saltar práctica' }));
+    const group = screen.getByRole('group', { name: 'Elige el nivel' });
+    expect(within(group).getByRole('button', { name: 'Nivel 5' })).toHaveAttribute('aria-pressed', 'true');
+    await userEvent.click(screen.getByRole('button', { name: '¿Cómo se juega?' }));
+    await userEvent.click(screen.getByRole('button', { name: 'Terminar práctica' }));
+    await userEvent.click(screen.getByRole('button', { name: 'Comenzar' }));
+    expect(await screen.findByText('startLevel:5')).toBeInTheDocument();
   });
 
   test('the daily training has no level choice: the game picks it', async () => {
