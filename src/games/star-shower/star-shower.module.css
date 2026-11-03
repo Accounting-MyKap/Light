@@ -305,31 +305,10 @@
   pointer-events: none;
 }
 
+/* The shared slot (underline in the color of the game) with Star Shower's line height. */
 .answer {
-  --slot: var(--game);
-  position: relative;
-  min-width: 4ch;
-  padding: 0 0.5rem 0.2rem;
-  color: var(--luz-text);
-  font-weight: 800;
-  font-variant-numeric: tabular-nums;
+  composes: slot from '../shared/AnswerSlot.module.css';
   line-height: 1.15;
-  text-align: center;
-}
-
-.answer::after {
-  content: '';
-  position: absolute;
-  inset: auto 0 0;
-  height: 3px;
-  border-radius: 3px;
-  background: var(--slot);
-  box-shadow: 0 0 14px 1px var(--slot);
-}
-
-/* Nothing typed yet: the question mark waits dimmed. */
-.answer[data-empty='true'] {
-  color: var(--luz-muted);
 }
 
 /* A wrong number: the slot turns red and shakes. It is re-mounted for each one, so the shake starts over. */
