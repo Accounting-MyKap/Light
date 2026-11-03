@@ -66,6 +66,8 @@
   color: var(--text);
   font: inherit;
   font-weight: 700;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .muted {
