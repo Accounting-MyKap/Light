@@ -75,15 +75,14 @@ test('PendingSyncBadge is hidden with nothing pending and follows the pending co
   await vi.waitFor(() => expect(screen.queryByRole('status')).not.toBeInTheDocument());
 });
 
-test('the badge sits in the header, so it is hidden while playing', async () => {
+test('the badge sits on the Today screen, so it is hidden while playing', async () => {
   config.current = enabled;
   await addPending(1);
   const view = await renderApp('/');
   expect(await screen.findByRole('status')).toHaveTextContent('1 partida por sincronizar');
-  expect(screen.getByRole('banner')).toContainElement(screen.getByRole('status'));
+  expect(screen.getByRole('main')).toContainElement(screen.getByRole('status'));
   view.unmount();
 
   await renderApp('/play/anything');
-  expect(screen.queryByRole('banner')).not.toBeInTheDocument();
   expect(screen.queryByText(/por sincronizar/)).not.toBeInTheDocument();
 });

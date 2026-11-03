@@ -10,7 +10,7 @@ test('keeps working offline after the first visit', async ({ page, context }) =>
 
   await context.setOffline(true);
   await page.reload();
-  await expect(page.getByRole('link', { name: 'Light' })).toBeVisible();
+  await expect(page.getByRole('navigation').getByRole('link', { name: 'Hoy' })).toBeVisible();
   await page.getByRole('navigation').getByRole('link', { name: 'Juegos' }).click();
   await expect(page.getByRole('heading', { level: 3 })).toHaveCount(5);
 });

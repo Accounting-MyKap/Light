@@ -5,7 +5,7 @@ test.describe('English browser', () => {
   test('shows the app in English', async ({ page }) => {
     await page.goto('./');
     await expect(page.getByRole('navigation').getByRole('link', { name: 'Today' })).toBeVisible();
-    await expect(page.getByText('Light up your brain')).toBeVisible();
+    await expect(page.getByRole('heading', { level: 1, name: 'Today’s training' })).toBeVisible();
   });
 });
 
@@ -14,6 +14,6 @@ test.describe('Spanish browser', () => {
   test('shows the app in Spanish', async ({ page }) => {
     await page.goto('./');
     await expect(page.getByRole('navigation').getByRole('link', { name: 'Hoy' })).toBeVisible();
-    await expect(page.getByText('Ilumina tu cerebro')).toBeVisible();
+    await expect(page.getByRole('heading', { level: 1, name: 'Entrenamiento de hoy' })).toBeVisible();
   });
 });

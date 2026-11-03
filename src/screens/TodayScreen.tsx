@@ -2,23 +2,14 @@ import { useLiveQuery } from 'dexie-react-hooks';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
+import { PendingSyncBadge } from '../app/PendingSyncBadge';
+import { SunIcon } from '../app/NavIcons';
 import { useLocalDay } from '../app/useLocalDay';
 import { computeStreak } from '../core/streak';
 import { completedDays, getOrCreatePlan, getPlan, isPlanComplete } from '../data/dailyPlans';
 import { db } from '../data/db';
 import { getGame } from '../games/registry';
 import styles from './Today.module.css';
-
-function LightIcon() {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
-      <circle cx="12" cy="12" r="5" />
-      <g stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-        <path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1" />
-      </g>
-    </svg>
-  );
-}
 
 export function TodayScreen() {
   const { t } = useTranslation();
@@ -49,8 +40,9 @@ export function TodayScreen() {
   return (
     <section className={styles.screen}>
       <h1>{t('today.title')}</h1>
+      <PendingSyncBadge />
       <p className={styles.streak}>
-        <LightIcon />
+        <SunIcon />
         {t('today.streak', { count: streak.current })}
       </p>
 
