@@ -159,7 +159,6 @@ export function WorldBoard({
         onToggle={onToggle}
         reducedMotion={reducedMotion}
         width={boardWidth}
-        smokeCanvas={!reducedMotion}
       />
     </div>
   );
