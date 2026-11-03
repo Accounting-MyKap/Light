@@ -31,13 +31,13 @@ export interface BoardProps {
   arrivals?: readonly Arrival[];
   /** Game time, for the arrival animations. */
   now?: number;
-  /** Buttons over the switches. Without it the board is only looked at (the example). */
+  /** Buttons over the switches. Without it the board is only looked at. */
   onToggle?: (index: number) => void;
   reducedMotion?: boolean;
   /** Width in CSS pixels; without it the board takes the width of its box (up to 420 px). */
   width?: number;
   /** Draw the puffs on a canvas, cheap enough to redraw on every frame (the game). Without it they are drawn in the
-      picture, which suits a still board (the example). */
+      picture, which suits a still board. */
   smokeCanvas?: boolean;
   className?: string;
 }

@@ -236,12 +236,6 @@
       "title": "Guardagujas",
       "skill": "Atención dividida",
       "description": "Mueve los cambios de vía para que cada tren llegue a la estación de su color.",
-      "instructions": [
-        "Los trenes salen del túnel y avanzan solos por las vías.",
-        "Toca los cambios de vía (los círculos con flecha) para elegir por dónde sigue cada tren. Con teclado, usa los números 1 a 9.",
-        "Lleva cada tren a la estación de su mismo color y forma. Si llega a otra estación, no suma puntos.",
-        "Atento: puede haber varios trenes a la vez, y van más rápido mientras aciertas."
-      ],
       "board": "Mapa de vías",
       "switch": "Cambio {{n}}: {{direction}}",
       "directions": {
@@ -254,7 +248,6 @@
         "up": "hacia arriba",
         "up-right": "arriba a la derecha"
       },
-      "exampleAnswer": "Toca el cambio para que el tren rojo vaya a la estación roja, la del círculo.",
       "levelStations": "{{n}} estaciones",
       "levelSideTunnel": "túnel lateral",
       "levelMiddleStation": "estación central",
