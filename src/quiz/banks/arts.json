@@ -268,10 +268,10 @@
     {
       "id": "arts-0031", "difficulty": 1, "type": "choice",
       "es": { "question": "En la mitología griega, ¿por qué cayó Ícaro al mar?",
-              "options": ["La cera de sus alas se derritió con el sol", "Zeus lo fulminó con un rayo desde el Olimpo", "Poseidón levantó una ola y lo arrastró", "Una tormenta rompió sus alas de plumas"],
+              "options": ["La cera de sus alas se derritió con el sol", "Zeus lo fulminó con un rayo", "Un monstruo marino lo arrastró bajo las olas", "Una tormenta rompió sus alas de plumas"],
               "explanation": "Ícaro voló demasiado cerca del sol con las alas de plumas y cera que fabricó su padre, Dédalo. El calor derritió la cera y Ícaro cayó al mar." },
       "en": { "question": "In Greek mythology, why did Icarus fall into the sea?",
-              "options": ["The wax of his wings melted in the sun", "Zeus struck him down with a thunderbolt", "Poseidon raised a wave and dragged him under", "A storm tore apart his feathered wings"],
+              "options": ["The wax of his wings melted in the sun", "Zeus struck him down with a thunderbolt", "A sea monster dragged him under the waves", "A storm tore apart his feathered wings"],
               "explanation": "Icarus flew too close to the sun on the wings of feathers and wax made by his father, Daedalus. The heat melted the wax and Icarus fell into the sea." }
     },
     {
@@ -294,12 +294,12 @@
     },
     {
       "id": "arts-0034", "difficulty": 1, "type": "choice",
-      "es": { "question": "¿Qué técnica usa colores diluidos en agua, transparentes y casi siempre sobre papel?",
+      "es": { "question": "¿Qué técnica aplica capas finas y transparentes de pigmento, por lo general sobre papel, y deja ver el blanco del papel?",
               "options": ["Acuarela", "Óleo", "Pastel", "Encáustica"],
               "explanation": "Es la acuarela: los pigmentos se diluyen en agua y dejan ver el papel a través del color. El óleo usa aceite; el pastel, barras secas; la encáustica, cera caliente." },
-      "en": { "question": "Which technique uses water-thinned, transparent colors, almost always on paper?",
+      "en": { "question": "Which technique applies thin transparent washes of pigment, usually on paper, letting the paper's white show through?",
               "options": ["Watercolor", "Oil", "Pastel", "Encaustic"],
-              "explanation": "It is watercolor: the pigments are thinned with water and let the paper show through the color. Oil uses oil; pastel, dry sticks; encaustic, hot wax." }
+              "explanation": "It is watercolor: the pigments are thinned with water and let the paper show through the color. Oil paint uses oil; pastel, dry sticks; encaustic, hot wax." }
     },
     {
       "id": "arts-0035", "difficulty": 1, "type": "choice",
@@ -815,7 +815,7 @@
       "id": "arts-0093", "difficulty": 3, "type": "choice",
       "es": { "question": "¿Quién compuso la suite para piano «Cuadros de una exposición» (1874)?",
               "options": ["Modest Músorgski", "Aleksandr Borodín", "Mili Balákirev", "César Cui"],
-              "explanation": "Músorgski la compuso en 1874 en memoria del pintor y arquitecto Viktor Hartmann. Casi todas las piezas evocan una de las obras de una exposición suya." },
+              "explanation": "Músorgski la compuso en 1874 en memoria del pintor y arquitecto Viktor Hartmann. La mayoría de las piezas evocan una de las obras de una exposición suya." },
       "en": { "question": "Who composed the piano suite “Pictures at an Exhibition” (1874)?",
               "options": ["Modest Mussorgsky", "Alexander Borodin", "Mily Balakirev", "César Cui"],
               "explanation": "Mussorgsky composed it in 1874 in memory of the painter and architect Viktor Hartmann. Most pieces evoke one of the works in an exhibition of his art." }

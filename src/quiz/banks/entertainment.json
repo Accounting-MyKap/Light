@@ -339,10 +339,10 @@
       "id": "entertainment-0039", "difficulty": 1, "type": "choice",
       "es": { "question": "¿De qué isla del Caribe es el cantante Bad Bunny?",
               "options": ["Puerto Rico", "Cuba", "República Dominicana", "Jamaica"],
-              "explanation": "Bad Bunny nació en Bayamón y creció en Vega Baja, Puerto Rico, y es una de las figuras del reguetón y el trap latino." },
+              "explanation": "Bad Bunny creció en Vega Baja, Puerto Rico, y es una de las figuras del reguetón y el trap latino." },
       "en": { "question": "Which Caribbean island is the singer Bad Bunny from?",
               "options": ["Puerto Rico", "Cuba", "Dominican Republic", "Jamaica"],
-              "explanation": "Bad Bunny was born in Bayamón and raised in Vega Baja, Puerto Rico, and is one of the leading figures of reggaeton and Latin trap." }
+              "explanation": "Bad Bunny grew up in Vega Baja, Puerto Rico, and is one of the leading figures of reggaeton and Latin trap." }
     },
     {
       "id": "entertainment-0040", "difficulty": 1, "type": "choice",
@@ -754,10 +754,10 @@
     },
     {
       "id": "entertainment-0086", "difficulty": 3, "type": "choice",
-      "es": { "question": "¿Qué película de 1927 se considera el primer largometraje con escenas de diálogo y canto sincronizados?",
+      "es": { "question": "¿Qué película de 1927 se considera el primer largometraje con escenas de diálogo sincronizado?",
               "options": ["El cantante de jazz", "Metrópolis", "Amanecer", "Alas"],
               "explanation": "«El cantante de jazz», de Warner Bros., incluyó escenas habladas y cantadas sincronizadas y marcó el paso del cine mudo al sonoro." },
-      "en": { "question": "Which 1927 movie is considered the first feature film with synchronized dialogue and singing sequences?",
+      "en": { "question": "Which 1927 movie is considered the first feature film with synchronized dialogue sequences?",
               "options": ["The Jazz Singer", "Metropolis", "Sunrise", "Wings"],
               "explanation": "“The Jazz Singer”, from Warner Bros., included synchronized spoken and sung scenes and marked the shift from silent films to talkies." }
     },

@@ -309,10 +309,10 @@
     {
       "id": "sports-0036", "difficulty": 1, "type": "choice",
       "es": { "question": "¿Cuál de estos torneos de tenis es uno de los cuatro de Grand Slam?",
-              "options": ["Wimbledon", "Copa Davis", "Torneo de Miami", "Finales de la ATP"],
+              "options": ["Abierto de Australia", "Copa Davis", "Torneo de Miami", "Finales de la ATP"],
               "explanation": "Los cuatro Grand Slam son el Abierto de Australia, Roland Garros, Wimbledon y el Abierto de Estados Unidos." },
       "en": { "question": "Which of these tennis tournaments is one of the four Grand Slams?",
-              "options": ["Wimbledon", "Davis Cup", "Miami Open", "ATP Finals"],
+              "options": ["The Australian Open", "Davis Cup", "Miami Open", "ATP Finals"],
               "explanation": "The four Grand Slams are the Australian Open, the French Open, Wimbledon and the US Open." }
     },
     {
@@ -660,11 +660,11 @@
     },
     {
       "id": "sports-0076", "difficulty": 2, "type": "choice",
-      "es": { "question": "¿Cuál de los cuatro torneos de Grand Slam de tenis se juega sobre arcilla (tierra batida)?",
-              "options": ["Roland Garros", "Wimbledon", "Abierto de Australia", "Abierto de Estados Unidos"],
+      "es": { "question": "¿Sobre qué superficie se juega Roland Garros, uno de los cuatro torneos de Grand Slam de tenis?",
+              "options": ["Arcilla (tierra batida)", "Césped", "Cancha dura", "Alfombra sintética"],
               "explanation": "Roland Garros, en París, se juega sobre arcilla. Es el único Grand Slam en esa superficie." },
-      "en": { "question": "Which of tennis's four Grand Slam tournaments is played on clay?",
-              "options": ["The French Open", "Wimbledon", "The Australian Open", "The US Open"],
+      "en": { "question": "On what surface is the French Open (Roland Garros), one of tennis's four Grand Slam tournaments, played?",
+              "options": ["Clay", "Grass", "Hard court", "Synthetic carpet"],
               "explanation": "The French Open, at Roland Garros in Paris, is played on clay. It is the only Grand Slam on that surface." }
     },
     {

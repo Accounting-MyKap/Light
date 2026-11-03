@@ -359,10 +359,10 @@
     },
     {
       "id": "geography-0041", "difficulty": 1, "type": "choice",
-      "es": { "question": "¿Qué país latinoamericano es muy largo y angosto, entre los Andes y el Pacífico?",
+      "es": { "question": "¿Qué país latinoamericano es muy largo y angosto y se extiende junto a la costa del Pacífico?",
               "options": ["Chile", "Ecuador", "Uruguay", "Paraguay"],
               "explanation": "Chile mide más de 4000 km de norte a sur, pero en promedio tiene menos de 200 km de ancho." },
-      "en": { "question": "Which Latin American country is extremely long and narrow, between the Andes and the Pacific?",
+      "en": { "question": "Which Latin American country is extremely long and narrow, stretching along the Pacific coast?",
               "options": ["Chile", "Ecuador", "Uruguay", "Paraguay"],
               "explanation": "Chile is over 4,000 km long from north to south, but on average less than 200 km wide." }
     },

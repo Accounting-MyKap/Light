@@ -125,10 +125,10 @@
     },
     {
       "id": "technology-0015", "difficulty": 1, "type": "choice",
-      "es": { "question": "¿En qué año hicieron los hermanos Wright el primer vuelo controlado de un avión con motor?",
+      "es": { "question": "¿En qué año hicieron los hermanos Wright el que se considera el primer vuelo controlado de un avión con motor?",
               "options": ["1903", "1893", "1911", "1927"],
               "explanation": "El 17 de diciembre de 1903, en Kitty Hawk (Carolina del Norte), Orville Wright voló unos 12 segundos a bordo del Flyer." },
-      "en": { "question": "In what year did the Wright brothers make the first controlled, powered airplane flight?",
+      "en": { "question": "In what year did the Wright brothers make what is considered the first controlled, powered airplane flight?",
               "options": ["1903", "1893", "1911", "1927"],
               "explanation": "On 17 December 1903 at Kitty Hawk, North Carolina, Orville Wright flew the Flyer for about 12 seconds." }
     },
@@ -180,10 +180,10 @@
     {
       "id": "technology-0021", "difficulty": 1, "type": "choice",
       "es": { "question": "Cuando guardas tus fotos «en la nube», ¿dónde se almacenan realmente?",
-              "options": ["En servidores remotos, por internet", "En la memoria RAM de tu celular", "Dentro del router de tu casa", "En satélites que orbitan la Tierra"],
+              "options": ["En servidores remotos, por internet", "En la memoria RAM de tu celular", "En el disco duro de tu computador", "En satélites que orbitan la Tierra"],
               "explanation": "La nube son servidores de una empresa, conectados a internet, que guardan tus archivos para que puedas abrirlos desde varios dispositivos." },
       "en": { "question": "When you save your photos 'in the cloud', where are they actually stored?",
-              "options": ["On remote servers, over the internet", "In your phone's temporary memory", "Inside the router in your home", "On satellites orbiting the Earth"],
+              "options": ["On remote servers, over the internet", "In your phone's temporary memory", "On your computer's hard drive", "On satellites orbiting the Earth"],
               "explanation": "The cloud is servers owned by a company, connected to the internet, that store your files so you can open them from several devices." }
     },
     {
@@ -232,7 +232,7 @@
               "explanation": "From smallest to largest: kilobyte, megabyte, gigabyte and terabyte. Each is about a thousand times the previous one." }
     },
     {
-      "id": "technology-0027", "difficulty": 1, "type": "choice",
+      "id": "technology-0027", "difficulty": 2, "type": "choice",
       "es": { "question": "¿Quiénes fundaron Google en 1998, cuando eran estudiantes de doctorado en la Universidad de Stanford?",
               "options": ["Larry Page y Sergey Brin", "Jerry Yang y David Filo", "Steve Jobs y Steve Wozniak", "Bill Hewlett y David Packard"],
               "explanation": "Larry Page y Sergey Brin crearon Google en Stanford. Yang y Filo fundaron Yahoo; Jobs y Wozniak, Apple; Hewlett y Packard, HP." },
@@ -292,7 +292,7 @@
               "explanation": "Un dron es una aeronave no tripulada que se maneja a distancia o con un programa. Se usa para fotografía, agricultura y vigilancia, entre otras cosas." },
       "en": { "question": "What is a flying machine that is controlled remotely and has no pilot on board called?",
               "options": ["Drone", "Hot-air balloon", "Glider", "Airship"],
-              "explanation": "A drone is an uncrewed aircraft flown remotely or by a program. It is used for photography, farming and surveying, among other things." }
+              "explanation": "A drone is an uncrewed aircraft flown remotely or by a program. It is used for photography, farming and surveillance, among other things." }
     },
     {
       "id": "technology-0034", "difficulty": 1, "type": "choice",
@@ -375,7 +375,7 @@
       "id": "technology-0043", "difficulty": 1, "type": "truefalse", "answer": true,
       "es": { "question": "Comprimir archivos en formato ZIP permite reducir el espacio que ocupan.",
               "explanation": "Un archivo ZIP agrupa uno o varios archivos y los comprime, así que suele ocupar menos espacio y es más fácil de enviar." },
-      "en": { "question": "Compressing files into a ZIP archive reduces the space they take up.",
+      "en": { "question": "Compressing files into a ZIP archive can reduce the space they take up.",
               "explanation": "A ZIP archive bundles one or more files and compresses them, so it usually takes less space and is easier to send." }
     },
     {
@@ -447,7 +447,7 @@
               "explanation": "La ENIAC se presentó en febrero de 1946, en la Universidad de Pensilvania. Funcionaba con miles de tubos de vacío y pesaba unas 27 toneladas." },
       "en": { "question": "In what year was the ENIAC, one of the first general-purpose electronic computers, unveiled to the public?",
               "options": ["1946", "1936", "1951", "1957"],
-              "explanation": "The ENIAC was unveiled in February 1946 at the University of Pennsylvania. It ran on thousands of vacuum tubes and weighed about 27 tons." }
+              "explanation": "The ENIAC was unveiled in February 1946 at the University of Pennsylvania. It ran on thousands of vacuum tubes and weighed about 27 tonnes." }
     },
     {
       "id": "technology-0053", "difficulty": 2, "type": "choice",
@@ -603,7 +603,7 @@
               "explanation": "Deep Blue won the 1997 match 3.5 to 2.5, the first time a computer beat a reigning world champion in a match under tournament time controls." }
     },
     {
-      "id": "technology-0070", "difficulty": 2, "type": "choice",
+      "id": "technology-0070", "difficulty": 1, "type": "choice",
       "es": { "question": "¿Cómo se llamó el primer satélite artificial puesto en órbita, lanzado por la Unión Soviética en 1957?",
               "options": ["Sputnik 1", "Explorer 1", "Vostok 1", "Apolo 11"],
               "explanation": "El Sputnik 1 orbitó la Tierra desde el 4 de octubre de 1957 y abrió la carrera espacial. Explorer 1, el primer satélite de EE. UU., llegó en 1958." },
@@ -625,7 +625,7 @@
       "es": { "question": "Antes del año 2000, ¿qué temían muchos expertos que pasara con ciertos computadores en el llamado «efecto 2000»?",
               "options": ["Que leyeran el año 2000 como 1900", "Que se apagaran todos a la vez", "Que se llenaran sus discos duros", "Que perdieran la conexión a internet"],
               "explanation": "Muchos sistemas guardaban el año con dos cifras, así que «00» podía leerse como 1900. Se corrigieron programas durante años y hubo muy pocas fallas graves." },
-      "en": { "question": "Before the year 2000, what did many experts fear would happen to some computers in the so-called 'Y2K bug'?",
+      "en": { "question": "Before the year 2000, what did many experts fear would happen to some computers because of the so-called 'Y2K bug'?",
               "options": ["That they would read 2000 as 1900", "That they would all shut down at once", "That their hard drives would fill up", "That they would lose internet access"],
               "explanation": "Many systems stored the year with two digits, so '00' could be read as 1900. Programs were fixed for years and there were very few serious failures." }
     },
@@ -640,10 +640,10 @@
     },
     {
       "id": "technology-0074", "difficulty": 2, "type": "choice",
-      "es": { "question": "¿Por qué se llama QWERTY el diseño de teclado más usado en español y en inglés?",
+      "es": { "question": "¿Por qué se llama QWERTY el diseño de teclado habitual en español y en inglés?",
               "options": ["Por las seis primeras letras de la fila superior", "Por las siglas de la empresa que lo fabricó primero", "Por el apellido del inventor de la máquina de escribir", "Por una palabra inglesa que significa «teclado»"],
               "explanation": "Su nombre sale de las seis primeras letras de la fila superior: Q, W, E, R, T e Y. Se popularizó con las máquinas de escribir de fines del siglo XIX." },
-      "en": { "question": "Why is the most widely used keyboard layout called QWERTY?",
+      "en": { "question": "Why is the standard keyboard layout in Spanish and English called QWERTY?",
               "options": ["For the first six letters of the top row", "For the initials of the company that first made it", "For the surname of the typewriter's inventor", "For an English word meaning 'keyboard'"],
               "explanation": "Its name comes from the first six letters of the top row: Q, W, E, R, T and Y. It spread with typewriters in the late 19th century." }
     },
@@ -741,10 +741,10 @@
     },
     {
       "id": "technology-0087", "difficulty": 3, "type": "choice",
-      "es": { "question": "¿Qué ingeniero alemán construyó en 1941 el Z3, considerado el primer computador programable plenamente funcional?",
+      "es": { "question": "¿Qué ingeniero alemán construyó en 1941 el que se considera el primer computador programable plenamente funcional?",
               "options": ["Konrad Zuse", "Howard Aiken", "John Atanasoff", "Herman Hollerith"],
               "explanation": "Konrad Zuse terminó el Z3 en 1941, en Berlín. Funcionaba con relés eléctricos, no con tubos de vacío, y se programaba con cinta perforada." },
-      "en": { "question": "Which German engineer built the Z3 in 1941, considered the first fully working programmable computer?",
+      "en": { "question": "Which German engineer built, in 1941, what is considered the first fully working programmable computer?",
               "options": ["Konrad Zuse", "Howard Aiken", "John Atanasoff", "Herman Hollerith"],
               "explanation": "Konrad Zuse completed the Z3 in 1941 in Berlin. It used electrical relays, not vacuum tubes, and was programmed with punched tape." }
     },
@@ -778,10 +778,10 @@
     {
       "id": "technology-0091", "difficulty": 3, "type": "choice",
       "es": { "question": "¿Qué ingeniero envió en 1971 el primer correo electrónico entre dos computadores conectados en red?",
-              "options": ["Ray Tomlinson", "Vint Cerf", "Larry Roberts", "Robert Kahn"],
+              "options": ["Ray Tomlinson", "Vint Cerf", "Larry Roberts", "Leonard Kleinrock"],
               "explanation": "Tomlinson lo envió entre dos computadores situados en la misma sala, conectados en red. Además, definió la forma de las direcciones de correo, con el nombre del usuario y el del equipo." },
       "en": { "question": "Which engineer sent the first email between two networked computers, in 1971?",
-              "options": ["Ray Tomlinson", "Vint Cerf", "Larry Roberts", "Robert Kahn"],
+              "options": ["Ray Tomlinson", "Vint Cerf", "Larry Roberts", "Leonard Kleinrock"],
               "explanation": "Tomlinson sent it between two computers sitting in the same room, linked by a network. He also defined the form of email addresses, with a user name and a machine name." }
     },
     {
@@ -805,10 +805,10 @@
     {
       "id": "technology-0094", "difficulty": 3, "type": "choice",
       "es": { "question": "¿De qué personaje histórico toma su nombre la tecnología inalámbrica Bluetooth?",
-              "options": ["Harald I, rey de Dinamarca", "Erik el Rojo, explorador vikingo", "Ragnar Lothbrok, guerrero legendario", "Leif Eriksson, navegante vikingo"],
+              "options": ["Harald I, rey de Dinamarca", "Erik el Rojo, explorador vikingo", "Canuto el Grande, rey de Inglaterra", "Leif Eriksson, navegante vikingo"],
               "explanation": "Harald I de Dinamarca, apodado «Diente Azul», unió a varias tribus en el siglo X. El nombre alude a unir dispositivos, y el logo combina sus iniciales en runas." },
       "en": { "question": "Which historical figure gives the wireless technology Bluetooth its name?",
-              "options": ["Harald I, king of Denmark", "Erik the Red, Viking explorer", "Ragnar Lothbrok, legendary warrior", "Leif Erikson, Viking navigator"],
+              "options": ["Harald I, king of Denmark", "Erik the Red, Viking explorer", "Cnut the Great, king of England", "Leif Erikson, Viking navigator"],
               "explanation": "Harald I of Denmark, nicknamed 'Bluetooth', united several tribes in the 10th century. The name hints at uniting devices, and the logo merges his initials in runes." }
     },
     {
@@ -822,12 +822,12 @@
     },
     {
       "id": "technology-0096", "difficulty": 3, "type": "choice",
-      "es": { "question": "¿En qué año se publicó en la Web la primera fotografía, una imagen del grupo musical «Les Horribles Cernettes»?",
+      "es": { "question": "¿En qué año se publicó en la Web la que se considera la primera fotografía, una imagen del grupo musical «Les Horribles Cernettes»?",
               "options": ["1992", "1990", "1995", "1998"],
-              "explanation": "La foto de Les Horribles Cernettes, un grupo formado por empleadas del CERN, se subió a la Web en 1992 y se considera la primera fotografía publicada en ella." },
-      "en": { "question": "In what year was the first photograph published on the Web, an image of the band 'Les Horribles Cernettes'?",
+              "explanation": "La foto de Les Horribles Cernettes, un grupo vinculado al CERN, se subió a la Web en 1992 y se considera la primera fotografía publicada en ella." },
+      "en": { "question": "What is considered the first photograph published on the Web shows the band 'Les Horribles Cernettes'. In what year was it posted?",
               "options": ["1992", "1990", "1995", "1998"],
-              "explanation": "The photo of Les Horribles Cernettes, a band made up of CERN employees, was put on the Web in 1992 and is regarded as the first photograph published there." }
+              "explanation": "The photo of Les Horribles Cernettes, a band formed at CERN, was put on the Web in 1992 and is regarded as the first photograph published there." }
     },
     {
       "id": "technology-0097", "difficulty": 3, "type": "truefalse", "answer": false,

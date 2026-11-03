@@ -75,7 +75,7 @@
       "id": "math-0009", "difficulty": 3, "type": "choice",
       "es": { "question": "¿Quién demostró el último teorema de Fermat en la década de 1990?",
               "options": ["Andrew Wiles", "Grigori Perelman", "Terence Tao", "John Nash"],
-              "explanation": "Andrew Wiles la presentó en 1993; tras corregir un error, la completó en 1994 y se publicó en 1995. Perelman demostró la conjetura de Poincaré." },
+              "explanation": "Andrew Wiles presentó la demostración en 1993; tras corregir un error, la completó en 1994 y se publicó en 1995. Perelman demostró la conjetura de Poincaré." },
       "en": { "question": "Who proved Fermat's Last Theorem in the 1990s?",
               "options": ["Andrew Wiles", "Grigori Perelman", "Terence Tao", "John Nash"],
               "explanation": "Andrew Wiles presented it in 1993; after fixing a gap, he completed it in 1994 and it was published in 1995. Perelman proved the Poincaré conjecture." }
@@ -108,7 +108,7 @@
               "explanation": "There are 8: 2, 3, 5, 7, 11, 13, 17 and 19. The number 1 is not prime." }
     },
     {
-      "id": "math-0013", "difficulty": 2, "type": "choice",
+      "id": "math-0013", "difficulty": 3, "type": "choice",
       "es": { "question": "Un artículo de $100 sube un 10 % y luego baja un 10 %. ¿Cuánto cuesta al final?",
               "options": ["$99", "$100", "$101", "$90"],
               "explanation": "Sube a $110, y el 10 % de 110 es $11, así que baja a $99. El segundo 10 % se aplica sobre un precio mayor, por eso no se compensan." },
@@ -424,7 +424,7 @@
               "explanation": "There are eight: 1, 2, 3, 4, 6, 8, 12 and 24. The 1 and 24 itself also count as divisors." }
     },
     {
-      "id": "math-0049", "difficulty": 2, "type": "choice",
+      "id": "math-0049", "difficulty": 3, "type": "choice",
       "es": { "question": "La palabra «algoritmo» viene del nombre de un matemático persa del siglo IX. ¿De quién?",
               "options": ["Al-Juarismi", "Omar Jayam", "Avicena", "Averroes"],
               "explanation": "Muhammad ibn Musa al-Juarismi trabajó en Bagdad hacia el año 820. De su nombre viene «algoritmo», y «álgebra» viene de al-jabr, una palabra del título de su libro." },
@@ -477,7 +477,7 @@
     },
     {
       "id": "math-0055", "difficulty": 3, "type": "choice",
-      "es": { "question": "Recorres una ruta a 60 km/h y regresas por la misma ruta a 30 km/h. ¿Cuál es tu velocidad media en el viaje de ida y vuelta?",
+      "es": { "question": "Recorres una ruta a 60 km/h y regresas por la misma ruta a 30 km/h. ¿Cuál es tu rapidez media en el viaje de ida y vuelta?",
               "options": ["40 km/h", "45 km/h", "50 km/h", "30 km/h"],
               "explanation": "Si la ruta mide 60 km: ida, 1 h; vuelta, 2 h. Son 120 km en 3 h = 40 km/h, no 45: pasas más tiempo a la velocidad menor." },
       "en": { "question": "You drive a route at 60 km/h and return along the same route at 30 km/h. What is your average speed for the round trip?",
@@ -541,7 +541,7 @@
       "es": { "question": "El triángulo de números 1 / 1 1 / 1 2 1 / 1 3 3 1 / …, donde cada número es la suma de los dos que tiene encima, ¿cómo se llama?",
               "options": ["Triángulo de Pascal", "Triángulo de Fibonacci", "Triángulo de Euler", "Triángulo de Tales"],
               "explanation": "Es el triángulo de Pascal, aunque se conocía antes en China, India y Persia. Sus filas dan los coeficientes de (a + b)ⁿ: la fila 1 2 1 corresponde a (a + b)²." },
-      "en": { "question": "What is the triangle of numbers 1 / 1 1 / 1 2 1 / 1 3 3 1 / … called, where each number is the sum of the two above it?",
+      "en": { "question": "In the triangle of numbers 1 / 1 1 / 1 2 1 / 1 3 3 1 / …, each number is the sum of the two above it. What is it called?",
               "options": ["Pascal's triangle", "Fibonacci's triangle", "Euler's triangle", "Thales' triangle"],
               "explanation": "It is Pascal's triangle, though it was known earlier in China, India and Persia. Its rows give the coefficients of (a + b)ⁿ: the row 1 2 1 matches (a + b)²." }
     },
@@ -561,7 +561,7 @@
               "explanation": "Se alternan dos series: 1, 2, 3, … en los lugares impares y 10, 20, 30, … en los pares. Ahora toca la primera: el 4." },
       "en": { "question": "What number comes next in the series 1, 10, 2, 20, 3, 30, …?",
               "options": ["4", "40", "31", "5"],
-              "explanation": "Two series alternate: 1, 2, 3, … in the odd places and 10, 20, 30, … in the even ones. Now it is the first one’s turn: 4." }
+              "explanation": "Two series alternate: 1, 2, 3, … in the odd positions and 10, 20, 30, … in the even ones. Now it is the first one’s turn: 4." }
     },
     {
       "id": "math-0065", "difficulty": 3, "type": "choice",
@@ -652,7 +652,7 @@
       "es": { "question": "¿Cómo se llaman dos rectas de un plano que nunca se cruzan, por mucho que se prolonguen?",
               "options": ["Paralelas", "Perpendiculares", "Secantes", "Oblicuas"],
               "explanation": "Las rectas paralelas mantienen siempre la misma distancia y no se cortan. Las secantes sí se cortan y las perpendiculares lo hacen formando 90°." },
-      "en": { "question": "What are two lines in a plane that never meet, however far they are extended?",
+      "en": { "question": "What are two lines in a plane called if they never meet, however far they are extended?",
               "options": ["Parallel", "Perpendicular", "Intersecting", "Oblique"],
               "explanation": "Parallel lines always stay the same distance apart and never meet. Intersecting lines do meet, and perpendicular lines meet at 90°." }
     },
@@ -666,7 +666,7 @@
               "explanation": "Each number is double the previous one, so the next is 24 × 2 = 48. Adding 12 again (36) does not follow the pattern." }
     },
     {
-      "id": "math-0077", "difficulty": 3, "type": "choice",
+      "id": "math-0077", "difficulty": 2, "type": "choice",
       "es": { "question": "¿Qué número sigue en la serie 1, 3, 7, 15, 31, …?",
               "options": ["63", "47", "62", "64"],
               "explanation": "Cada término es el doble del anterior más 1: 31 × 2 + 1 = 63. Las diferencias (2, 4, 8, 16) se duplican, así que sigue 32: 31 + 32 = 63." },
@@ -698,7 +698,7 @@
               "explanation": "X is 10 and IV is 4 (5 − 1), so XIV is 14. XVI would be 16 and XXIV would be 24." }
     },
     {
-      "id": "math-0081", "difficulty": 3, "type": "choice",
+      "id": "math-0081", "difficulty": 2, "type": "choice",
       "es": { "question": "¿Cuántos poliedros regulares convexos (sólidos platónicos) existen?",
               "options": ["5", "4", "6", "7"],
               "explanation": "Solo hay cinco: tetraedro, cubo, octaedro, dodecaedro e icosaedro. Ya se conocían en la Grecia clásica y llevan el nombre de Platón." },
@@ -731,7 +731,7 @@
               "explanation": "En decimales: 5/6 ≈ 0,83; 4/5 = 0,8; 7/9 ≈ 0,78; 2/3 ≈ 0,67. A 5/6 solo le falta 1/6 para llegar a 1, menos que a las demás." },
       "en": { "question": "Which of these fractions is the greatest?",
               "options": ["5/6", "4/5", "7/9", "2/3"],
-              "explanation": "As decimals: 5/6 ≈ 0.83; 4/5 = 0.8; 7/9 ≈ 0.78; 2/3 ≈ 0.67. Only 1/6 is missing for 5/6 to reach 1, less than for the others." }
+              "explanation": "As decimals: 5/6 ≈ 0.83; 4/5 = 0.8; 7/9 ≈ 0.78; 2/3 ≈ 0.67. 5/6 is only 1/6 short of 1, less than the others." }
     },
     {
       "id": "math-0085", "difficulty": 1, "type": "choice",
@@ -791,10 +791,10 @@
       "id": "math-0091", "difficulty": 3, "type": "choice",
       "es": { "question": "¿Cómo se llama la conjetura que propone que todo número par mayor que 2 es la suma de dos números primos?",
               "options": ["Goldbach", "Collatz", "Riemann", "Catalan"],
-              "explanation": "Se formuló en 1742 en una carta de Christian Goldbach a Euler. Por ejemplo, 10 = 3 + 7 y 20 = 3 + 17." },
+              "explanation": "Surgió en 1742, en la correspondencia entre Christian Goldbach y Euler. Por ejemplo, 10 = 3 + 7 y 20 = 3 + 17." },
       "en": { "question": "What is the name of the conjecture proposing that every even number greater than 2 is the sum of two prime numbers?",
               "options": ["Goldbach", "Collatz", "Riemann", "Catalan"],
-              "explanation": "It was stated in 1742 in a letter from Christian Goldbach to Euler. For example, 10 = 3 + 7 and 20 = 3 + 17." }
+              "explanation": "It arose in 1742 in correspondence between Christian Goldbach and Euler. For example, 10 = 3 + 7 and 20 = 3 + 17." }
     },
     {
       "id": "math-0092", "difficulty": 1, "type": "choice",
@@ -809,10 +809,10 @@
       "id": "math-0093", "difficulty": 3, "type": "choice",
       "es": { "question": "El problema de los siete puentes de Königsberg, resuelto en 1736, se considera el origen de una rama de las matemáticas. ¿Cuál?",
               "options": ["Teoría de grafos", "Geometría fractal", "Trigonometría", "Álgebra lineal"],
-              "explanation": "Euler demostró que no se pueden cruzar los siete puentes pasando una sola vez por cada uno. Para ello representó la ciudad con puntos y líneas, la base de la teoría de grafos." },
+              "explanation": "Euler demostró que no se pueden cruzar los siete puentes pasando una sola vez por cada uno. Para ello redujo la ciudad a zonas de tierra y sus conexiones, la base de la teoría de grafos." },
       "en": { "question": "The Seven Bridges of Königsberg problem, solved in 1736, is considered the origin of a branch of mathematics. Which one?",
               "options": ["Graph theory", "Fractal geometry", "Trigonometry", "Linear algebra"],
-              "explanation": "Euler proved that the seven bridges cannot be crossed using each exactly once. To do so he represented the city with points and lines, the basis of graph theory." }
+              "explanation": "Euler proved that the seven bridges cannot be crossed using each exactly once. To do so he reduced the city to land areas and their connections, the basis of graph theory." }
     },
     {
       "id": "math-0094", "difficulty": 2, "type": "choice",
