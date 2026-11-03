@@ -172,7 +172,14 @@
       ],
       "delete": "Borrar",
       "ok": "OK",
-      "skip": "Saltar"
+      "skip": "Saltar",
+      "practice": {
+        "round1": "Escribe el resultado y toca OK",
+        "round2": "¡Así! Otra",
+        "round3": "Si una se te complica, puedes tocar Saltar",
+        "hint": "Casi: {{problem}} = {{answer}}. Inténtalo otra vez",
+        "recap": "Tienes 60 segundos. Cada acierto suma, cada error resta 10 y saltar no resta."
+      }
     }
   },
   "play": {

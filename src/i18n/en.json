@@ -172,7 +172,14 @@
       ],
       "delete": "Delete",
       "ok": "OK",
-      "skip": "Skip"
+      "skip": "Skip",
+      "practice": {
+        "round1": "Type the answer and tap OK",
+        "round2": "Like that! Another one",
+        "round3": "If one is too hard, you can tap Skip",
+        "hint": "Close: {{problem}} = {{answer}}. Try again",
+        "recap": "You have 60 seconds. Each right answer scores, each mistake costs 10, and skipping costs nothing."
+      }
     }
   },
   "play": {

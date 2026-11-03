@@ -3,6 +3,7 @@ import { QUICK_MATH_MAX_SCORE, QUICK_MATH_REFERENCE_SCORE } from './engine';
 import { QuickMathExample } from './Example';
 import { QuickMathThumb } from './Thumb';
 import { QuickMathGame } from './Game';
+import { QuickMathPractice } from './Practice';
 
 export const quickMathGame: GameDefinition = {
   id: 'quick-math',
@@ -12,4 +13,5 @@ export const quickMathGame: GameDefinition = {
   Component: QuickMathGame,
   Example: QuickMathExample,
   Thumb: QuickMathThumb,
+  Practice: QuickMathPractice,
 };
