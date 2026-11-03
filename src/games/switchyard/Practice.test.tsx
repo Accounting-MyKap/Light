@@ -264,6 +264,32 @@ test('round 3: one train at the wrong station shows the hint and starts the roun
   expect(onComplete).not.toHaveBeenCalled();
 });
 
+test('the switches hold still while «¡Bien!» shows and in the second before the round starts over', () => {
+  setup();
+  advance(100);
+  fireEvent.click(switchButton(0));
+  until(says('¡Bien!'));
+  const home = options();
+  // Not used, so the browser keeps the key.
+  expect(key('1')).toBe(true);
+  fireEvent.click(switchButton(1));
+  expect(options()).toEqual(home);
+
+  advance(PRACTICE_NEXT_MS);
+  frames();
+  until(says(HINT_YELLOW));
+  const missed = options();
+  expect(key('2')).toBe(true);
+  fireEvent.click(switchButton(0));
+  expect(options()).toEqual(missed);
+
+  // Once the round has started over, they answer again.
+  advance(RESTART_MS);
+  frames();
+  key('2');
+  expect(options()).toEqual([PRACTICE_ROUNDS[1].switches[0], 1 - PRACTICE_ROUNDS[1].switches[1]]);
+});
+
 test('the keys 1 and 2 flip the switches; a number without a switch does nothing', () => {
   setup();
   const before = options();

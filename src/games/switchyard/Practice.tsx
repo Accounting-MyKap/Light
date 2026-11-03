@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { createStaircase } from '../../core/difficulty';
 import { createRng } from '../../core/rng';
@@ -190,7 +190,18 @@ export function SwitchyardPractice({ onComplete, onSkip }: PracticeProps) {
     },
   });
 
-  useGameKeys((key) => (/^[1-9]$/.test(key) ? toggle(Number(key) - 1) : false));
+  // The switches hold still once the try is decided: while «¡Bien!» shows (all its trains are home) and from a miss
+  // until the round starts over. The yard keeps running, so the train that arrived rolls on into its station.
+  const flip = useCallback(
+    (index: number) => {
+      const attempt = attemptRef.current;
+      const decided = attempt.failedAt !== null || attempt.home === PRACTICE_ROUNDS[attempt.round].trains.length;
+      return decided ? false : toggle(index);
+    },
+    [toggle],
+  );
+
+  useGameKeys((key) => (/^[1-9]$/.test(key) ? flip(Number(key) - 1) : false));
 
   const setup = PRACTICE_ROUNDS[round];
   const message =
@@ -207,7 +218,7 @@ export function SwitchyardPractice({ onComplete, onSkip }: PracticeProps) {
       tone={status === 'right' ? 'ok' : status === 'wrong' ? 'hint' : 'normal'}
       onSkip={onSkip}
     >
-      <WorldBoard world={world} onToggle={toggle} reducedMotion={reducedMotion} />
+      <WorldBoard world={world} onToggle={flip} reducedMotion={reducedMotion} />
     </PracticeFrame>
   );
 }
