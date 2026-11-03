@@ -65,6 +65,18 @@ test('theme radio applies and persists', async () => {
   await vi.waitFor(() => expect(document.documentElement.hasAttribute('data-theme')).toBe(false));
 });
 
+test('settings are grouped', async () => {
+  await renderApp('/settings');
+  expect(screen.getAllByRole('heading', { level: 2 }).map((h) => h.textContent)).toEqual([
+    'Apariencia',
+    'Durante el juego',
+    'Privacidad',
+    'Tus datos',
+  ]);
+  const group = screen.getByRole('group', { name: 'Tema' });
+  expect(within(group).getAllByRole('radio')).toHaveLength(3);
+});
+
 test('sound can be turned off', async () => {
   await renderApp('/settings');
   const toggle = screen.getByRole('switch', { name: 'Sonido' });

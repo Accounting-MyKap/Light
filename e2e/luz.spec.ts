@@ -85,7 +85,7 @@ test.describe('light app theme', () => {
     // The app itself is light here: its background is not the dark one.
     await expect(page.locator('body')).not.toHaveCSS('background-color', LUZ_BACKGROUND);
     await expect(html).not.toHaveAttribute('data-luz-active', /.*/);
-    await expect(themeColor).toHaveAttribute('content', '#0E0F1A');
+    await expect(themeColor).toHaveAttribute('content', '#090b19');
 
     await page.goto('./#/play/arrows');
     await expect(page.locator('[data-luz]')).toHaveCSS('background-color', LUZ_BACKGROUND);
@@ -95,7 +95,7 @@ test.describe('light app theme', () => {
     await page.goto('./#/games');
     await expect(page.locator('[data-luz]')).toHaveCount(0);
     await expect(html).not.toHaveAttribute('data-luz-active', /.*/);
-    await expect(themeColor).toHaveAttribute('content', '#0E0F1A');
+    await expect(themeColor).toHaveAttribute('content', '#090b19');
   });
 });
 

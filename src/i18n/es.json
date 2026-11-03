@@ -1,7 +1,6 @@
 {
   "app": {
-    "name": "Light",
-    "tagline": "Ilumina tu cerebro"
+    "name": "Light"
   },
   "nav": {
     "today": "Hoy",
@@ -48,6 +47,7 @@
   "games": {
     "sequence-lights": {
       "title": "Secuencia de luces",
+      "skill": "Memoria espacial",
       "description": "Recuerda en qué orden se encienden las casillas.",
       "instructions": [
         "Observa cómo se encienden las casillas, una tras otra.",
@@ -62,6 +62,7 @@
     },
     "arrows": {
       "title": "Flechas",
+      "skill": "Atención selectiva",
       "description": "Fíjate solo en la flecha del centro, aunque las demás intenten confundirte.",
       "instructions": [
         "Verás una fila de cinco flechas.",
@@ -75,6 +76,7 @@
     },
     "same-different": {
       "title": "¿Igual o distinto?",
+      "skill": "Velocidad de procesamiento",
       "description": "Decide lo más rápido que puedas si cada símbolo es igual al anterior.",
       "instructions": [
         "Primero verás un símbolo: recuérdalo.",
@@ -110,6 +112,7 @@
     },
     "rule-switch": {
       "title": "Cambio de regla",
+      "skill": "Cambio de tareas",
       "description": "Empareja cartas por color o por forma, y adáptate cuando la regla cambie.",
       "instructions": [
         "Arriba verás la regla actual: COLOR o FORMA.",
@@ -137,6 +140,7 @@
     },
     "quick-math": {
       "title": "Cálculo relámpago",
+      "skill": "Aritmética mental",
       "description": "Resuelve operaciones contra el reloj; la dificultad sube mientras aciertas.",
       "instructions": [
         "Aparece una operación: escribe el resultado con el teclado en pantalla o el de tu computador.",
@@ -149,58 +153,72 @@
     },
     "trivia-mix": {
       "title": "Mezcla de cultura general",
+      "skill": "Cultura general",
       "description": "Preguntas de las 8 categorías en cada ronda."
     },
     "trivia-history": {
       "title": "Historia",
+      "skill": "Conocimiento histórico",
       "description": "Historia universal y de América Latina."
     },
     "trivia-science": {
       "title": "Ciencias",
+      "skill": "Conocimiento científico",
       "description": "Física, química, biología, astronomía y cuerpo humano."
     },
     "trivia-geography": {
       "title": "Geografía",
+      "skill": "Conocimiento geográfico",
       "description": "Países, capitales, ríos, montañas y regiones."
     },
     "trivia-math": {
       "title": "Matemáticas",
+      "skill": "Razonamiento matemático",
       "description": "Conceptos, geometría, cálculo sencillo e historia de las matemáticas."
     },
     "trivia-arts": {
       "title": "Arte y literatura",
+      "skill": "Cultura artística",
       "description": "Pintura, autores y obras, música clásica y mitología."
     },
     "trivia-entertainment": {
       "title": "Entretenimiento",
+      "skill": "Cultura popular",
       "description": "Cine, música y televisión."
     },
     "trivia-sports": {
       "title": "Deportes",
+      "skill": "Cultura deportiva",
       "description": "Mundiales, Juegos Olímpicos y reglas de cada deporte."
     },
     "trivia-technology": {
       "title": "Tecnología",
+      "skill": "Cultura tecnológica",
       "description": "Inventos, computación e historia de internet."
     },
     "accounting-mix": {
       "title": "Mezcla contable",
+      "skill": "Contabilidad práctica",
       "description": "Preguntas de las 4 subcategorías contables."
     },
     "accounting-concepts": {
       "title": "Conceptos contables",
+      "skill": "Fundamentos contables",
       "description": "Partida doble, estados financieros, causación y conciliaciones."
     },
     "accounting-colombia": {
       "title": "Contabilidad en Colombia",
+      "skill": "Normativa colombiana",
       "description": "PUC, NIIF, IVA, retención en la fuente, ICA y facturación electrónica."
     },
     "accounting-us": {
       "title": "Contabilidad en EE. UU.",
+      "skill": "Normativa de EE. UU.",
       "description": "US GAAP, temas ASC, formularios del IRS y QuickBooks."
     },
     "accounting-lending": {
       "title": "Cartera y préstamos",
+      "skill": "Gestión de cartera",
       "description": "Intereses, amortización, payoff, aging, provisiones y castigos."
     }
   },
@@ -230,6 +248,7 @@
       "accounting": "Contabilidad"
     },
     "seen": "Vistas: {{seen}} de {{total}}",
+    "best": "Mejor marca: {{score}}",
     "questionOf": "Pregunta {{n}} de {{total}}",
     "optionLabel": "Opción {{n}}:",
     "dontKnow": "No sé",
@@ -296,18 +315,38 @@
     "completed": "¡Entrenamiento de hoy completado!",
     "done": "Hecho",
     "comeBack": "Vuelve mañana para mantener tu racha.",
-    "loadError": "No pudimos preparar tu entrenamiento de hoy. Intenta recargar la página."
+    "loadError": "No pudimos preparar tu entrenamiento de hoy. Intenta recargar la página.",
+    "streakDays_one": "{{count}} día",
+    "streakDays_other": "{{count}} días",
+    "weekdays": [
+      "L",
+      "M",
+      "M",
+      "J",
+      "V",
+      "S",
+      "D"
+    ],
+    "week": "{{done}} de 7 días entrenados esta semana",
+    "next": "Sigue",
+    "continueStep": "Continuar · {{step}} de {{total}}",
+    "explore": "Explorar juegos"
   },
   "gamesScreen": {
-    "best": "Mejor marca: {{score}}"
+    "all": "Todo",
+    "filters": "Categorías",
+    "today": "Tus juegos de hoy",
+    "played": "Jugado"
   },
   "progress": {
     "empty": "Todavía no hay partidas. ¡Juega una para ver tu progreso!",
     "byArea": "Puntaje por área",
     "byGame": "Por juego",
-    "streakCurrent": "Racha actual: {{count}}",
-    "streakBest": "Mejor racha: {{count}}",
-    "daysTrained": "Días entrenados: {{count}}",
+    "statStreak": "Racha actual",
+    "statBest": "Mejor racha",
+    "statDays": "Días entrenados",
+    "best": "Mejor {{score}}",
+    "goToday": "Ir a Hoy",
     "chartLabel": "Últimos {{count}} puntajes: mínimo {{min}}, máximo {{max}}, último {{last}}",
     "notEnoughData": "Juega al menos dos partidas para ver tu evolución.",
     "trainingEmpty": "Juega un juego de entrenamiento para ver tus rachas y tu puntaje por área.",
@@ -317,6 +356,8 @@
     "quizNone": "Sin respuestas en los últimos 30 días"
   },
   "settings": {
+    "appearance": "Apariencia",
+    "duringGame": "Durante el juego",
     "language": "Idioma",
     "theme": "Tema",
     "themes": {

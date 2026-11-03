@@ -74,7 +74,7 @@ export function QuizScreen() {
                   >
                     <h3>{t(`games.${g.id}.title`)}</h3>
                     <p className={styles.muted}>{t(`games.${g.id}.description`)}</p>
-                    <p>{t('gamesScreen.best', { score: best.get(g.id) ?? '—' })}</p>
+                    <p>{t('quiz.best', { score: best.get(g.id) ?? '—' })}</p>
                     <p className={styles.muted}>{t('quiz.seen', { seen: progress.seen, total: progress.total })}</p>
                   </Link>
                 </li>

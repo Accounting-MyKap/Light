@@ -30,7 +30,7 @@ test('a quiz round works offline after the first visit', async ({ page, context 
 
   await context.setOffline(true);
   await page.reload();
-  await expect(page.getByRole('link', { name: 'Light' })).toBeVisible();
+  await expect(page.getByRole('navigation').getByRole('link', { name: 'Hoy' })).toBeVisible();
   await page.getByRole('navigation').getByRole('link', { name: 'Preguntas' }).click();
   // A category the player never opened online: its bank chunk has to come from the precache.
   await page.getByRole('link', { name: /^Ciencias/ }).click();

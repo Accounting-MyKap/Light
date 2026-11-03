@@ -11,6 +11,12 @@ import { ProgressScreen } from './ProgressScreen';
 
 const base = { level: 1, accuracy: 1, durationMs: 60000, isDaily: false };
 
+/** The number on the stat card labelled `label` (e.g. «Días entrenados»). */
+async function statValue(label: string) {
+  const card = (await screen.findByText(label)).closest('li') as HTMLElement;
+  return within(card).getByText(/^\d+$/).textContent;
+}
+
 beforeEach(async () => {
   vi.useFakeTimers({ toFake: ['Date'] });
   vi.setSystemTime(new Date(2026, 9, 20, 10));
@@ -24,6 +30,7 @@ afterEach(() => {
 test('empty state', async () => {
   await renderApp('/progress');
   expect(await screen.findByText('Todavía no hay partidas. ¡Juega una para ver tu progreso!')).toBeInTheDocument();
+  expect(screen.getByRole('link', { name: 'Ir a Hoy' })).toHaveAttribute('href', '/');
 });
 
 test('area meters, streaks, days trained and charts', async () => {
@@ -33,12 +40,18 @@ test('area meters, streaks, days trained and charts', async () => {
   await db.dailyPlans.put({ day: '2026-10-19', gameIds: ['arrows', 'quick-math', 'rule-switch'], completed: ['arrows', 'quick-math', 'rule-switch'] });
   await renderApp('/progress');
   const attention = await screen.findByRole('meter', { name: 'Atención' });
-  expect(attention).toHaveAttribute('value', '143');
-  expect(screen.getByRole('meter', { name: 'Matemáticas' })).toHaveAttribute('value', '100');
+  expect(attention).toHaveAttribute('aria-valuenow', '143');
+  expect(screen.getByRole('meter', { name: 'Matemáticas' })).toHaveAttribute('aria-valuenow', '100');
   expect(screen.queryByRole('meter', { name: 'Memoria' })).not.toBeInTheDocument();
-  expect(screen.getByText('Racha actual: 1')).toBeInTheDocument();
-  expect(screen.getByText('Mejor racha: 1')).toBeInTheDocument();
-  expect(screen.getByText('Días entrenados: 2')).toBeInTheDocument();
+  const stat = (label: string) => within(screen.getByText(label).closest('li') as HTMLElement);
+  expect(stat('Racha actual').getByText('1')).toBeInTheDocument();
+  expect(stat('Mejor racha').getByText('1')).toBeInTheDocument();
+  expect(stat('Días entrenados').getByText('2')).toBeInTheDocument();
+  const labels = ['Velocidad', 'Memoria', 'Atención', 'Flexibilidad mental', 'Matemáticas'];
+  const areaCard = screen.getByRole('heading', { name: 'Puntaje por área' }).parentElement as HTMLElement;
+  const order = within(areaCard).getAllByText((_, el) => labels.includes(el?.textContent ?? '') && el?.tagName === 'SPAN');
+  expect(order.map((e) => e.textContent)).toEqual(labels);
+  expect(screen.getByText('Mejor 200')).toBeInTheDocument();
   expect(screen.getByRole('img', { name: /máximo 200, último 200/ })).toBeInTheDocument();
   expect(screen.getByText('Juega al menos dos partidas para ver tu evolución.')).toBeInTheDocument();
 });
@@ -58,8 +71,7 @@ test('days trained and per-game charts ignore quiz games', async () => {
   await addResult({ ...base, gameId: 'arrows', score: 100, playedAt: new Date(2026, 9, 19, 9) });
   await addResult({ ...base, gameId: 'trivia-history', score: 250, playedAt: new Date(2026, 9, 20, 9) });
   await renderApp('/progress');
-  expect(await screen.findByText('Días entrenados: 1')).toBeInTheDocument();
-  expect(screen.queryByText('Días entrenados: 2')).not.toBeInTheDocument();
+  expect(await statValue('Días entrenados')).toBe('1');
 
   const byGame = screen.getByRole('heading', { level: 2, name: 'Por juego' }).closest('section')!;
   expect(within(byGame).getAllByRole('heading', { level: 3 }).map((h) => h.textContent)).toEqual(['Flechas']);
@@ -115,7 +127,7 @@ test('hides the quiz block when there are no quiz games', async () => {
   await addQuizAnswers('r1', round('history', ['correct']), new Date(2026, 9, 20, 9));
   await renderApp('/progress');
 
-  expect(await screen.findByText('Días entrenados: 1')).toBeInTheDocument();
+  expect(await statValue('Días entrenados')).toBe('1');
   expect(screen.queryByRole('heading', { name: 'Preguntas' })).not.toBeInTheDocument();
   expect(screen.queryByRole('meter', { name: 'Historia' })).not.toBeInTheDocument();
 });
@@ -169,7 +181,7 @@ test('the progress screen stays usable when the quiz answers cannot be read', as
     throw new Error('IndexedDB closed');
   });
   await renderApp('/progress');
-  expect(await screen.findByText('Días entrenados: 1')).toBeInTheDocument();
+  expect(await statValue('Días entrenados')).toBe('1');
   expect(await screen.findByRole('heading', { level: 2, name: 'Preguntas' })).toBeInTheDocument();
   expect(screen.queryByText('Algo salió mal')).not.toBeInTheDocument();
 });

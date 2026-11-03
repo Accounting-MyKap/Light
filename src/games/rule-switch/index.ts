@@ -1,6 +1,7 @@
 import type { GameDefinition } from '../types';
 import { RULE_SWITCH_MAX_SCORE, RULE_SWITCH_REFERENCE_SCORE } from './engine';
 import { RuleSwitchExample } from './Example';
+import { RuleSwitchThumb } from './Thumb';
 import { RuleSwitchGame } from './Game';
 
 export const ruleSwitchGame: GameDefinition = {
@@ -10,4 +11,5 @@ export const ruleSwitchGame: GameDefinition = {
   maxScore: RULE_SWITCH_MAX_SCORE,
   Component: RuleSwitchGame,
   Example: RuleSwitchExample,
+  Thumb: RuleSwitchThumb,
 };

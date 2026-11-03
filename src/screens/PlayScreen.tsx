@@ -177,13 +177,17 @@ function PlaySession({ game, daily }: { game: GameDefinition; daily: string | nu
     [save, sound],
   );
 
-  // A quiz game belongs to the Quiz tab, so both ways out land there; the training games go to Games.
+  // A quiz game belongs to the Quiz tab, so a deep link with no history lands there; the training games go to Games.
   const home = game.quiz ? '/quiz' : '/games';
 
+  // Free play goes back in history (the catalog keeps its filter in the address); a deep link has none.
+  const leaveFreePlay = () => {
+    if (location.key === 'default') navigate(home);
+    else navigate(-1);
+  };
   const exit = () => {
     if (daily !== null) navigate('/');
-    else if (location.key === 'default') navigate(home);
-    else navigate(-1);
+    else leaveFreePlay();
   };
 
   const title = t(`games.${game.id}.title`);
@@ -257,7 +261,7 @@ function PlaySession({ game, daily }: { game: GameDefinition; daily: string | nu
             result={phase.result}
             previousBest={phase.previousBest}
             onPlayAgain={startPlaying}
-            onBack={() => navigate(home)}
+            onBack={leaveFreePlay}
             daily={
               daily === null
                 ? undefined

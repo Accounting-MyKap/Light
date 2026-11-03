@@ -32,7 +32,7 @@ export interface GameProps {
 }
 
 /**
- * A pluggable game. Texts live in i18n under `games.<id>.title|description|instructions`;
+ * A pluggable game. Texts live in i18n under `games.<id>.title|description|skill|instructions`;
  * `instructionsKey` points the instructions somewhere else when several games share them.
  */
 export interface GameDefinition {
@@ -45,6 +45,8 @@ export interface GameDefinition {
   Component: ComponentType<GameProps>;
   /** Static visual example shown with the instructions. */
   Example: ComponentType;
+  /** Decorative square thumbnail (no props) that fills the width of its container; size it with a wrapper. */
+  Thumb: ComponentType;
   /** Present only on the games of the quiz section. */
   quiz?: QuizConfig;
   /** i18n key of the instructions; defaults to `games.<id>.instructions`. */

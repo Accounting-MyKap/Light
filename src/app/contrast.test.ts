@@ -4,11 +4,21 @@ import css from './theme.css?raw';
 
 // Finds the block by its exact selector text followed by ` {`, so `[data-luz] {` never matches the longer
 // `[data-luz][data-area='…'] {` selectors that also contain it.
-function tokensIn(source: string, selector: string): Record<string, string> {
+function rawTokensIn(source: string, selector: string, valueRe: string): Record<string, string> {
   const start = source.indexOf(`${selector} {`);
   if (start === -1) throw new Error(`Selector not found: ${selector}`);
   const block = source.slice(source.indexOf('{', start) + 1, source.indexOf('}', start));
-  return Object.fromEntries([...block.matchAll(/--([\w-]+):\s*(#[0-9a-fA-F]{6})/g)].map((m) => [m[1], m[2]]));
+  return Object.fromEntries([...block.matchAll(new RegExp(`--([\\w-]+):\\s*(${valueRe})`, 'g'))].map((m) => [m[1], m[2]]));
+}
+
+/** The hex tokens of one block, for the contrast math. */
+function tokensIn(source: string, selector: string): Record<string, string> {
+  return rawTokensIn(source, selector, '#[0-9a-fA-F]{6}');
+}
+
+/** Every token of one block, whatever its value, for the sync checks. */
+function allTokensIn(source: string, selector: string): Record<string, string> {
+  return rawTokensIn(source, selector, '[^;]+');
 }
 
 function tokens(selector: string): Record<string, string> {
@@ -47,6 +57,13 @@ const TEXT_PAIRS: [string, string][] = [
   ['accent-strong', 'surface'],
   ['success-strong', 'bg'],
   ['success-strong', 'surface'],
+  ['danger', 'bg'],
+  ['danger', 'surface'],
+  ['danger-text', 'danger'],
+  ...(['memory', 'attention', 'speed', 'flexibility', 'math'] as const).flatMap((area): [string, string][] => [
+    [`area-${area}`, 'bg'],
+    [`area-${area}`, 'surface'],
+  ]),
 ];
 
 describe.each([`:root[data-theme='light']`, `:root[data-theme='dark']`])('%s', (selector) => {
@@ -54,6 +71,15 @@ describe.each([`:root[data-theme='light']`, `:root[data-theme='dark']`])('%s', (
   test.each(TEXT_PAIRS)('--%s on --%s meets WCAG AA (4.5:1)', (fg, bg) => {
     expect(t[fg], `--${fg} defined`).toBeDefined();
     expect(contrast(t[fg], t[bg])).toBeGreaterThanOrEqual(4.5);
+  });
+});
+
+describe('theme blocks stay in sync', () => {
+  test('the default block is the light palette', () => {
+    expect(allTokensIn(css, ':root')).toEqual(allTokensIn(css, ":root[data-theme='light']"));
+  });
+  test('the system-dark block is the dark palette', () => {
+    expect(allTokensIn(css, ':root:not([data-theme])')).toEqual(allTokensIn(css, ":root[data-theme='dark']"));
   });
 });
 

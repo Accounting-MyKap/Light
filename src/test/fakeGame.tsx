@@ -21,6 +21,10 @@ function FakeExample() {
   return <p>fake example</p>;
 }
 
+function FakeThumb() {
+  return <span aria-hidden="true" />;
+}
+
 export const fakeGame: GameDefinition = {
   id: 'fake',
   area: 'memory',
@@ -28,6 +32,7 @@ export const fakeGame: GameDefinition = {
   maxScore: 1000,
   Component: FakeGameComponent,
   Example: FakeExample,
+  Thumb: FakeThumb,
 };
 
 export const fakeGame2: GameDefinition = { ...fakeGame, id: 'fake2' };

@@ -5,10 +5,11 @@ import { QUIZ_MAX_SCORE, QUIZ_REFERENCE_SCORE } from './engine';
 import { QuizExample } from './Example';
 import { QuizGame } from './Game';
 import { QuizReview } from './QuizReview';
+import { QuizThumb } from './Thumb';
 
 /**
- * Builds one quiz game. The component is created here, once per game, and closes over `categories`, so the
- * registry hands React the same component type on every render instead of remounting the round.
+ * Builds one quiz game. The component and the thumbnail are created here, once per game, and close over its
+ * config, so the registry hands React the same component type on every render instead of remounting the round.
  */
 export function makeQuizGame({
   id,
@@ -23,6 +24,10 @@ export function makeQuizGame({
     return createElement(QuizGame, { ...props, categories });
   }
   Component.displayName = `QuizGame(${id})`;
+  function Thumb() {
+    return createElement(QuizThumb, { bank });
+  }
+  Thumb.displayName = `QuizThumb(${id})`;
 
   return {
     id,
@@ -33,6 +38,7 @@ export function makeQuizGame({
     quiz: { bank, categories },
     Component,
     Example: QuizExample,
+    Thumb,
     ResultDetails: QuizReview,
   };
 }

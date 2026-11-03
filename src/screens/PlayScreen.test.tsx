@@ -464,3 +464,36 @@ test('leaving a quiz game opened with no history goes to the Quiz tab', async ()
   expect(screen.getByTestId('pathname')).toHaveTextContent(/^\/quiz$/);
   expect(await db.results.count()).toBe(0);
 });
+
+async function openWithHistory(entries: string[], index: number) {
+  await initI18n('es');
+  render(
+    <MemoryRouter initialEntries={entries} initialIndex={index}>
+      <AppRoutes />
+    </MemoryRouter>,
+  );
+  registerFakeGameTranslations();
+}
+
+async function finishFakeGame() {
+  await userEvent.click(await screen.findByRole('button', { name: 'Comenzar' }));
+  await userEvent.click(screen.getByRole('button', { name: 'Terminar' }));
+  await screen.findByText('Puntaje: 120');
+}
+
+test('«Volver» on the free-play result returns to the catalog with its filter', async () => {
+  await updateSettings({ seenInstructions: ['fake'] });
+  await openWithHistory(['/games?area=memory', '/play/fake'], 1);
+  await finishFakeGame();
+  await userEvent.click(screen.getByRole('button', { name: 'Volver' }));
+  expect(await screen.findByRole('heading', { level: 1, name: 'Juegos' })).toBeInTheDocument();
+  expect(screen.getByRole('button', { name: 'Memoria' })).toHaveAttribute('aria-pressed', 'true');
+});
+
+test('«Volver» on the free-play result of a deep link goes to the catalog', async () => {
+  await updateSettings({ seenInstructions: ['fake'] });
+  await openWithHistory(['/play/fake'], 0);
+  await finishFakeGame();
+  await userEvent.click(screen.getByRole('button', { name: 'Volver' }));
+  expect(await screen.findByRole('heading', { level: 1, name: 'Juegos' })).toBeInTheDocument();
+});
