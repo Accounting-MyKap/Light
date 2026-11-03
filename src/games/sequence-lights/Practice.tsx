@@ -83,7 +83,8 @@ function PracticeRound({ index, status, answer, onSkip }: RoundProps) {
       round={index + 1}
       total={ROUNDS.length}
       message={message}
-      tone={status === 'right' ? 'ok' : 'hint'}
+      title={t('games.sequence-lights.title')}
+      tone={status === 'right' ? 'ok' : phase === 'hint' ? 'hint' : 'normal'}
       onSkip={onSkip}
       controls={<Board size={SIZE} lit={litCells} onPress={press} />}
     >

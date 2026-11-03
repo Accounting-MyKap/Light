@@ -73,7 +73,7 @@
         "trick": "Careful: the side arrows try to trick you. Only the middle one counts",
         "hintRight": "The middle one points right",
         "hintLeft": "The middle one points left",
-        "recap": "You have 60 seconds. Each mistake costs 20 points: be quick, but don't guess."
+        "recap": "You have 60 seconds. Each mistake costs 20 points: be quick, but don't guess. On a keyboard: ← and →."
       }
     },
     "same-different": {
@@ -141,7 +141,7 @@
         "round4": "Always check the sign on top",
         "hintColor": "The rule is COLOR and the middle card is {{color}}",
         "hintShape": "The rule is SHAPE and the middle card is a {{shape}}",
-        "recap": "You have 60 seconds. Each mistake costs 20 points: be quick, but don't guess."
+        "recap": "You have 60 seconds. Each mistake costs 20 points: be quick, but don't guess. On a keyboard: ← and →."
       }
     },
     "quick-math": {
@@ -156,7 +156,7 @@
         "round2": "Like that! Another one",
         "round3": "If one is too hard, you can tap Skip",
         "hint": "Close: {{problem}} = {{answer}}. Try again",
-        "recap": "You have 60 seconds. Each right answer scores, each mistake costs 10, and skipping costs nothing."
+        "recap": "You have 60 seconds. Each right answer scores, each mistake costs 10, and skipping costs nothing. On a keyboard: type and press Enter."
       }
     },
     "trivia-mix": {

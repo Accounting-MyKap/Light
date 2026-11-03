@@ -89,7 +89,8 @@ export function RuleSwitchPractice({ onComplete, onSkip }: PracticeProps) {
       round={round + 1}
       total={ROUNDS.length}
       message={message}
-      tone={status === 'right' ? 'ok' : 'hint'}
+      title={t('games.rule-switch.title')}
+      tone={status === 'right' ? 'ok' : status === 'wrong' ? 'hint' : 'normal'}
       onSkip={onSkip}
       controls={controls}
     >

@@ -116,6 +116,15 @@ test('first visit of a game without a practice shows instructions, then plays an
   expect(await db.results.count()).toBe(1);
 });
 
+test('the instructions have a ✕ that leaves without playing or saving', async () => {
+  await open('/play/fakenp');
+  expect(await screen.findByText('Primera instrucción falsa')).toBeInTheDocument();
+  await userEvent.click(screen.getByRole('button', { name: 'Salir del juego' }));
+  expect(await screen.findByRole('heading', { level: 1, name: 'Juegos' })).toBeInTheDocument();
+  expect(await db.results.count()).toBe(0);
+  expect((await getSettings()).seenInstructions).not.toContain('fakenp');
+});
+
 test('skipping from the first-visit intro starts the game and marks it seen', async () => {
   await open('/play/fake');
   await startFirstVisit();

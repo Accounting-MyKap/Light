@@ -7,7 +7,7 @@ Fecha: 2026-11-03 · Estado: diseño aprobado por partes en la conversación. El
 Hoy, la primera vez que se abre un juego, aparece una pantalla de pasos con un ejemplo animado. Leer no es lo mismo que entender. El dueño pidió un **minitutorial**: una **práctica guiada** donde la persona juega unas pocas rondas fáciles mientras un guía le explica qué hacer. Además pidió que, para quien ya jugó, la **pausa** ofrezca esa práctica por si no recuerda cómo se juega.
 
 **Éxito:**
-- La primera vez, cada juego enseña jugando.
+- La primera vez, cada juego enseña jugando (los que no tienen práctica conservan la pantalla de pasos, §3.6).
 - La práctica está disponible en la entrada (para quien ya jugó) y en la pausa.
 - Nadie pierde datos.
 - Nadie que ya conoce un juego recibe la práctica a la fuerza.
@@ -231,7 +231,7 @@ Las cifras salen de las constantes del juego (duración, rondas y penalizaciones
   - Quien ya jugó: «¿Cómo se juega?» abre la práctica; saltarla vuelve a la entrada.
   - Pausa → «¿Cómo se juega?» → práctica → vuelta a la hoja, con el tiempo y los puntos iguales; ocultar la app no la cierra.
   - En modo diario funciona igual.
-- **Textos:** cada juego del registro tiene `Practice` y sus textos en ES y EN. El resumen nombra la penalización exacta de cada juego (reemplaza la prueba actual sobre las instrucciones).
+- **Textos:** cada juego del registro tiene `Practice` o `Example` (§3.6) y sus textos en ES y EN. El resumen nombra la penalización exacta de cada juego (reemplaza la prueba actual sobre las instrucciones).
 - **E2E (Playwright):**
   - Una práctica completa de principio a fin (Flechas), hasta el juego.
   - Los ayudantes actuales usan «Saltar práctica» cuando aparece.

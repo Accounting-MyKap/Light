@@ -143,7 +143,7 @@ test('the practice opened from the pause leaves the paused game untouched', asyn
   for (const key of ['ArrowLeft', 'ArrowLeft', 'ArrowLeft', 'ArrowRight', 'ArrowRight', 'ArrowLeft']) {
     await page.keyboard.press(key);
   }
-  await page.waitForTimeout(4000); // a game clock that kept running would lose these seconds, and the countdown's
+  await page.waitForTimeout(4000); // a game clock that kept running would lose these seconds, and so would the countdown's
 
   await layer.getByRole('button', { name: 'Saltar práctica', exact: true }).click();
   await expect(page.getByRole('dialog', { name: 'Pausado' })).toBeVisible();
@@ -198,6 +198,22 @@ test.describe('a game without a practice', () => {
     await expect(sheet).toBeVisible();
     await expect(layer).toHaveCount(0);
     expect(await readSheet()).toBe(before);
+
+    // The sheet is only a snapshot: resume, and read the game's own HUD once the 3-2-1 is over.
+    const pointsBefore = Number(/puntos (\d+)/.exec(before)?.[1]);
+    const secondsBefore = Number(/quedan (\d+) s/.exec(before)?.[1]);
+    expect(secondsBefore).toBeGreaterThan(0);
+    await sheet.getByRole('button', { name: 'Continuar', exact: true }).click();
+    await expect(page.locator('[data-dimmed="false"]')).toBeVisible({ timeout: 10_000 });
+    const game = page.locator('[data-game="switchyard"]');
+    await expect(game.locator('dt', { hasText: 'Puntos' }).locator('xpath=following-sibling::dd')).toHaveText(
+      String(pointsBefore),
+    );
+    const secondsNow = Number(await game.getByRole('progressbar', { name: 'Tiempo' }).getAttribute('aria-valuenow'));
+    expect(secondsNow, 'the game clock stayed frozen during the instructions and the countdown').toBeGreaterThanOrEqual(
+      secondsBefore - 1,
+    );
+    expect(secondsNow).toBeLessThanOrEqual(secondsBefore);
 
     // A second visit (the address is the same, so reload): the intro, whose «¿Cómo se juega?» opens the instructions.
     await page.reload();

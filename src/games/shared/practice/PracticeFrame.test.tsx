@@ -13,6 +13,7 @@ function renderFrame(props: Partial<React.ComponentProps<typeof PracticeFrame>> 
         round={2}
         total={4}
         message="Mira el centro"
+        title="Flechas"
         onSkip={() => undefined}
         controls={<button>Sí</button>}
         {...props}
@@ -46,7 +47,7 @@ test('the message lives in a polite live region with its tone', () => {
   expect(bubble).toHaveAttribute('data-tone', 'hint');
   rerender(
     <FeedbackProvider>
-      <PracticeFrame round={2} total={4} message="Mira el centro" tone="ok" onSkip={() => undefined}>
+      <PracticeFrame round={2} total={4} message="Mira el centro" title="Flechas" tone="ok" onSkip={() => undefined}>
         <p>Escena</p>
       </PracticeFrame>
     </FeedbackProvider>,
@@ -58,4 +59,26 @@ test('has a stage and a controls zone', () => {
   const { container } = renderFrame();
   expect(container.querySelector('[data-zone="stage"]')).toHaveTextContent('Escena');
   expect(container.querySelector('[data-zone="controls"]')).toHaveTextContent('Sí');
+});
+
+test('the tone is normal by default', () => {
+  renderFrame();
+  expect(screen.getByText('Mira el centro')).toHaveAttribute('data-tone', 'normal');
+});
+
+test('has a heading with the game title and takes the focus on mount', () => {
+  const { container } = renderFrame();
+  expect(screen.getByRole('heading', { level: 1, name: 'Flechas' })).toBeInTheDocument();
+  expect(container.firstElementChild).toHaveFocus();
+});
+
+test('leaves the focus alone when it is already inside', () => {
+  render(
+    <FeedbackProvider>
+      <PracticeFrame round={1} total={4} message="m" title="Flechas" onSkip={() => undefined}>
+        <input aria-label="dentro" autoFocus />
+      </PracticeFrame>
+    </FeedbackProvider>,
+  );
+  expect(screen.getByLabelText('dentro')).toHaveFocus();
 });

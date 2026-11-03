@@ -81,3 +81,13 @@ test('skip calls onSkip', () => {
   click('Saltar práctica');
   expect(onSkip).toHaveBeenCalledTimes(1);
 });
+
+test('the guide bubble is normal at first, hint after a wrong answer and ok after a right one', () => {
+  setup();
+  const tone = () => document.querySelector('[data-tone]')?.getAttribute('data-tone');
+  expect(tone()).toBe('normal');
+  click('Izquierda');
+  expect(tone()).toBe('hint');
+  click('Derecha');
+  expect(tone()).toBe('ok');
+});

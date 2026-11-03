@@ -318,6 +318,7 @@
   inset: 0;
   z-index: 10;
   overflow-y: auto;
+  overscroll-behavior: contain;
   padding: var(--luz-pad-top) max(1.25rem, env(safe-area-inset-right), calc((100% - 680px) / 2))
     var(--luz-pad-bottom) max(1.25rem, env(safe-area-inset-left), calc((100% - 680px) / 2));
   background-color: var(--luz-bg);

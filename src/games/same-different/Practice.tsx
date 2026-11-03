@@ -74,7 +74,8 @@ export function SameDifferentPractice({ onComplete, onSkip }: PracticeProps) {
       round={round + 1}
       total={ROUNDS.length}
       message={message}
-      tone={status === 'right' ? 'ok' : 'hint'}
+      title={t('games.same-different.title')}
+      tone={status === 'right' ? 'ok' : status === 'wrong' ? 'hint' : 'normal'}
       onSkip={onSkip}
       controls={controls}
     >

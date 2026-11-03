@@ -73,7 +73,7 @@
         "trick": "Ojo: las de los lados quieren engañarte. Solo cuenta la del centro",
         "hintRight": "La del centro apunta a la derecha",
         "hintLeft": "La del centro apunta a la izquierda",
-        "recap": "Tienes 60 segundos. Cada error resta 20 puntos: responde rápido, pero sin adivinar."
+        "recap": "Tienes 60 segundos. Cada error resta 20 puntos: responde rápido, pero sin adivinar. Con teclado: ← y →."
       }
     },
     "same-different": {
@@ -141,7 +141,7 @@
         "round4": "Fíjate siempre en el cartel de arriba",
         "hintColor": "La regla es COLOR y el centro es {{color}}",
         "hintShape": "La regla es FORMA y el centro es un {{shape}}",
-        "recap": "Tienes 60 segundos. Cada error resta 20 puntos: responde rápido, pero sin adivinar."
+        "recap": "Tienes 60 segundos. Cada error resta 20 puntos: responde rápido, pero sin adivinar. Con teclado: ← y →."
       }
     },
     "quick-math": {
@@ -156,7 +156,7 @@
         "round2": "¡Así! Otra",
         "round3": "Si una se te complica, puedes tocar Saltar",
         "hint": "Casi: {{problem}} = {{answer}}. Inténtalo otra vez",
-        "recap": "Tienes 60 segundos. Cada acierto suma, cada error resta 10 y saltar no resta."
+        "recap": "Tienes 60 segundos. Cada acierto suma, cada error resta 10 y saltar no resta. Con teclado: escribe y pulsa Enter."
       }
     },
     "trivia-mix": {
