@@ -11,6 +11,10 @@ const BANKS: readonly QuizBank[] = ['trivia', 'accounting'];
 const WINDOW_MS = 30 * 86_400_000;
 
 type Mastery = { answered: number; correct: number };
+type ReadAnswers = { mastery: ReadonlyMap<QuizCategory, Mastery>; seen: ReadonlyMap<QuizCategory, number> };
+/** What the block shows: the answers read from this device, or that they could not be read. */
+type Answers = ReadAnswers | 'unreadable';
+const NO_ANSWERS: ReadAnswers = { mastery: new Map(), seen: new Map() };
 
 /** The best score of the single-category game for each category, over all the results. */
 function bestByCategory(results: readonly StoredResult[]): Map<QuizCategory, number> {
@@ -31,29 +35,34 @@ function bestByCategory(results: readonly StoredResult[]): Map<QuizCategory, num
 export function QuizProgress({ results, now }: { results: StoredResult[]; now: Date }) {
   const { t } = useTranslation();
   const time = now.getTime();
-  // A local read that fails (IndexedDB closed or blocked) shows an empty block rather than breaking the screen.
-  const data = useLiveQuery(
-    async () => ({
-      mastery: await masteryByCategory(new Date(time - WINDOW_MS)).catch(() => new Map<QuizCategory, Mastery>()),
-      seen: await seenCounts().catch(() => new Map<QuizCategory, number>()),
-    }),
-    [time],
-  );
+  // A local read that fails (IndexedDB closed or blocked) says so in the block rather than breaking the screen, and
+  // never passes for «no answers».
+  const data = useLiveQuery(async (): Promise<Answers> => {
+    try {
+      return { mastery: await masteryByCategory(new Date(time - WINDOW_MS)), seen: await seenCounts() };
+    } catch {
+      return 'unreadable';
+    }
+  }, [time]);
 
   const quizIds = new Set(QUIZ_GAMES.map((g) => g.id));
   // Nothing until the answers are read, so the heading never shows on its own.
   if (!data || !results.some((r) => quizIds.has(r.gameId))) return null;
 
   const best = bestByCategory(results);
+  // Unreadable answers draw no bars.
+  const { mastery, seen } = data === 'unreadable' ? NO_ANSWERS : data;
   const banks = BANKS.map((bank) => ({
     bank,
-    categories: CATEGORIES_BY_BANK[bank].filter((c) => (data.mastery.get(c)?.answered ?? 0) > 0),
+    categories: CATEGORIES_BY_BANK[bank].filter((c) => (mastery.get(c)?.answered ?? 0) > 0),
   })).filter(({ categories }) => categories.length > 0);
+  const line =
+    data === 'unreadable' ? 'progress.quizUnreadable' : banks.length > 0 ? 'progress.mastery' : 'progress.quizNone';
 
   return (
     <section className={styles.block} aria-labelledby="progress-quiz">
       <h2 id="progress-quiz">{t('progress.quizTitle')}</h2>
-      <p className={styles.muted}>{t(banks.length > 0 ? 'progress.mastery' : 'progress.quizNone')}</p>
+      <p className={styles.muted}>{t(line)}</p>
       {banks.map(({ bank, categories }) => (
         <section
           key={bank}
@@ -66,9 +75,9 @@ export function QuizProgress({ results, now }: { results: StoredResult[]; now: D
             {t(`quiz.banks.${bank}`)}
           </h3>
           {categories.map((category) => {
-            const { answered, correct } = data.mastery.get(category)!;
+            const { answered, correct } = mastery.get(category)!;
             const percent = Math.round((100 * correct) / answered);
-            const progress = seenFor({ bank, categories: [category] }, data.seen);
+            const progress = seenFor({ bank, categories: [category] }, seen);
             const id = `quiz-meter-${category}`;
             return (
               <div key={category} className={styles.quizCategory}>

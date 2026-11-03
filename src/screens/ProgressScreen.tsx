@@ -6,6 +6,7 @@ import { areaScores } from '../core/areaScore';
 import { useLocalDay } from '../app/useLocalDay';
 import { computeStreak } from '../core/streak';
 import { completedDays } from '../data/dailyPlans';
+import type { StoredResult } from '../data/db';
 import { listResults } from '../data/results';
 import { TRAINING_GAMES } from '../games/registry';
 import { CATALOG_AREAS, catalogAreas } from '../games/catalog';
@@ -20,8 +21,9 @@ export function ProgressScreen() {
   const today = useLocalDay();
   // The 30-day window is measured from the end of the current local day.
   const now = useMemo(() => new Date(`${today}T23:59:59`), [today]);
-  const results = useLiveQuery(() => listResults(), []);
-  const days = useLiveQuery(completedDays, [], []);
+  // A local read that fails (IndexedDB closed or blocked) shows what an empty history would, never the error screen.
+  const results = useLiveQuery(() => listResults().catch((): StoredResult[] => []), []);
+  const days = useLiveQuery(() => completedDays().catch((): string[] => []), [], []);
 
   if (!results) return <h1>{t('nav.progress')}</h1>;
 
@@ -51,8 +53,12 @@ export function ProgressScreen() {
       <h1>{t('nav.progress')}</h1>
 
       {training.length === 0 ? (
-        // A quiz-only player: the streaks, area scores and per-game charts would all be empty.
-        <p className={styles.muted}>{t('progress.trainingEmpty')}</p>
+        // A quiz-only player: the streaks, area scores and per-game charts would all be empty. The way into training
+        // is the empty state's.
+        <>
+          <p className={styles.muted}>{t('progress.trainingEmpty')}</p>
+          <Link to="/" className={styles.cta}>{t('progress.goToday')}</Link>
+        </>
       ) : (
         <>
           <ul className={styles.stats}>

@@ -1,4 +1,5 @@
 import { render, screen, within } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
 import { initI18n } from '../i18n';
 import { renderApp } from '../test/renderApp';
 import { clearAllData, db } from '../data/db';
@@ -148,6 +149,8 @@ test('a quiz-only player sees no empty training sections', async () => {
   expect(screen.queryByText(/Días entrenados/)).not.toBeInTheDocument();
   expect(screen.queryByRole('heading', { name: 'Puntaje por área' })).not.toBeInTheDocument();
   expect(screen.queryByRole('heading', { name: 'Por juego' })).not.toBeInTheDocument();
+  // The same way into training as the empty state.
+  expect(screen.getByRole('link', { name: 'Ir a Hoy' })).toHaveAttribute('href', '/');
 });
 
 test('says so when no question was answered in the last 30 days', async () => {
@@ -168,23 +171,51 @@ test('the quiz-only and no-recent-answers lines are in English too', async () =>
   await addResult({ ...base, gameId: 'trivia-science', score: 140, playedAt: new Date(2026, 8, 1, 9) });
   await addQuizAnswers('r1', round('science', ['correct']), new Date(2026, 8, 1, 9));
   await initI18n('en');
-  render(<ProgressScreen />);
+  render(
+    <MemoryRouter>
+      <ProgressScreen />
+    </MemoryRouter>,
+  );
   expect(
     await screen.findByText('Play a training game to see your streaks and your score by area.'),
   ).toBeInTheDocument();
+  expect(screen.getByRole('link', { name: 'Go to Today' })).toBeInTheDocument();
   expect(await screen.findByText('No answers in the last 30 days')).toBeInTheDocument();
 });
 
-test('the progress screen stays usable when the quiz answers cannot be read', async () => {
-  vi.spyOn(console, 'error').mockImplementation(() => {});
-  await addResult({ ...base, gameId: 'arrows', score: 100, playedAt: new Date(2026, 9, 20, 9) });
-  await addResult({ ...base, gameId: 'trivia-history', score: 250, playedAt: new Date(2026, 9, 20, 9) });
+/** The local quiz answers cannot be read (IndexedDB closed or blocked). */
+function failQuizAnswerReads() {
   vi.spyOn(db.quizAnswers, 'each').mockRejectedValue(new Error('IndexedDB closed'));
   vi.spyOn(db.quizAnswers, 'where').mockImplementation(() => {
     throw new Error('IndexedDB closed');
   });
+}
+
+test('the progress screen stays usable when the quiz answers cannot be read, and says so', async () => {
+  vi.spyOn(console, 'error').mockImplementation(() => {});
+  await addResult({ ...base, gameId: 'arrows', score: 100, playedAt: new Date(2026, 9, 20, 9) });
+  await addResult({ ...base, gameId: 'trivia-history', score: 250, playedAt: new Date(2026, 9, 20, 9) });
+  failQuizAnswerReads();
   await renderApp('/progress');
   expect(await statValue('Días entrenados')).toBe('1');
-  expect(await screen.findByRole('heading', { level: 2, name: 'Preguntas' })).toBeInTheDocument();
+  const block = (await screen.findByRole('heading', { level: 2, name: 'Preguntas' })).closest('section')!;
+  // Not «no answers»: the answers may well be there, this device just could not read them.
+  expect(await within(block).findByText('No pudimos leer tus respuestas en este dispositivo.')).toBeInTheDocument();
+  expect(within(block).queryByText('Sin respuestas en los últimos 30 días')).not.toBeInTheDocument();
+  expect(within(block).queryByText('Dominio (últimos 30 días)')).not.toBeInTheDocument();
+  expect(within(block).queryByRole('meter')).not.toBeInTheDocument();
   expect(screen.queryByText('Algo salió mal')).not.toBeInTheDocument();
+});
+
+test('the unreadable-answers line is in English too', async () => {
+  await addResult({ ...base, gameId: 'trivia-history', score: 250, playedAt: new Date(2026, 9, 20, 9) });
+  failQuizAnswerReads();
+  await initI18n('en');
+  render(
+    <MemoryRouter>
+      <ProgressScreen />
+    </MemoryRouter>,
+  );
+  expect(await screen.findByText("We couldn't read your answers on this device.")).toBeInTheDocument();
+  expect(screen.queryByText('No answers in the last 30 days')).not.toBeInTheDocument();
 });

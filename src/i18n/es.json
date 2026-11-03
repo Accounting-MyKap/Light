@@ -353,7 +353,8 @@
     "quizTitle": "Preguntas",
     "mastery": "Dominio (últimos 30 días)",
     "quizLine": "Vistas: {{seen}} de {{total}} · Mejor marca: {{best}}",
-    "quizNone": "Sin respuestas en los últimos 30 días"
+    "quizNone": "Sin respuestas en los últimos 30 días",
+    "quizUnreadable": "No pudimos leer tus respuestas en este dispositivo."
   },
   "settings": {
     "appearance": "Apariencia",

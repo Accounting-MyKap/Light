@@ -353,7 +353,8 @@
     "quizTitle": "Quiz",
     "mastery": "Mastery (last 30 days)",
     "quizLine": "Seen: {{seen}} of {{total}} · Best: {{best}}",
-    "quizNone": "No answers in the last 30 days"
+    "quizNone": "No answers in the last 30 days",
+    "quizUnreadable": "We couldn't read your answers on this device."
   },
   "settings": {
     "appearance": "Appearance",
