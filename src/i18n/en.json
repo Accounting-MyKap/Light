@@ -69,7 +69,14 @@
       ],
       "left": "Left",
       "right": "Right",
-      "exampleAnswer": "Correct answer: Left"
+      "exampleAnswer": "Correct answer: Left",
+      "practice": {
+        "center": "Tap the way the middle arrow points",
+        "trick": "Careful: the side arrows try to trick you. Only the middle one counts",
+        "hintRight": "The middle one points right",
+        "hintLeft": "The middle one points left",
+        "recap": "You have 60 seconds. Each mistake costs 20 points: be quick, but don't guess."
+      }
     },
     "same-different": {
       "title": "Same or Different?",

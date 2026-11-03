@@ -3,6 +3,7 @@ import { ARROWS_MAX_SCORE, ARROWS_REFERENCE_SCORE } from './engine';
 import { ArrowsExample } from './Example';
 import { ArrowsThumb } from './Thumb';
 import { ArrowsGame } from './Game';
+import { ArrowsPractice } from './Practice';
 
 export const arrowsGame: GameDefinition = {
   id: 'arrows',
@@ -12,4 +13,5 @@ export const arrowsGame: GameDefinition = {
   Component: ArrowsGame,
   Example: ArrowsExample,
   Thumb: ArrowsThumb,
+  Practice: ArrowsPractice,
 };

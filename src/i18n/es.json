@@ -69,7 +69,14 @@
       ],
       "left": "Izquierda",
       "right": "Derecha",
-      "exampleAnswer": "Respuesta correcta: Izquierda"
+      "exampleAnswer": "Respuesta correcta: Izquierda",
+      "practice": {
+        "center": "Toca hacia dónde apunta la flecha del centro",
+        "trick": "Ojo: las de los lados quieren engañarte. Solo cuenta la del centro",
+        "hintRight": "La del centro apunta a la derecha",
+        "hintLeft": "La del centro apunta a la izquierda",
+        "recap": "Tienes 60 segundos. Cada error resta 20 puntos: responde rápido, pero sin adivinar."
+      }
     },
     "same-different": {
       "title": "¿Igual o distinto?",
