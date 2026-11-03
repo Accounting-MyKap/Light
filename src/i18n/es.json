@@ -179,7 +179,11 @@
     "loadError": "No pudimos preparar tu entrenamiento de hoy. Intenta recargar la página."
   },
   "gamesScreen": {
-    "best": "Mejor marca: {{score}}"
+    "best": "Mejor marca: {{score}}",
+    "all": "Todo",
+    "filters": "Categorías",
+    "today": "Tus juegos de hoy",
+    "played": "Jugado"
   },
   "progress": {
     "empty": "Todavía no hay partidas. ¡Juega una para ver tu progreso!",
