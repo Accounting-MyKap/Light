@@ -7,6 +7,12 @@ import type { Rng } from '../../core/rng';
 
 export const PUFF_EVERY_MS = 80;
 export const PUFF_LIFE_MS = 1500;
+/**
+ * A frame later than this many puffs gets them all, so smoke stays even when frames come irregularly. After a longer
+ * stall the chimney is somewhere else and the missed puffs would all be born on its new spot, in one thick cloud: it
+ * lets out a single puff instead and carries on from there.
+ */
+export const MAX_CATCH_UP_PUFFS = 3;
 
 const START_RADIUS = 3;
 const END_RADIUS = 15;
@@ -53,7 +59,7 @@ export function emitPuffs(smoke: SmokeState, sources: readonly Chimney[], now: n
 
   for (const source of sources) {
     let last = smoke.lastEmit.get(source.trainId);
-    if (last === undefined) {
+    if (last === undefined || now - last > MAX_CATCH_UP_PUFFS * PUFF_EVERY_MS) {
       puff(source, now);
       last = now;
     }

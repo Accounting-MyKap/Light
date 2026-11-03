@@ -52,6 +52,7 @@ export interface TrackSegment {
 }
 
 export interface TrackSwitch {
+  /** Its number on the board, less one: switches are numbered in reading order (see numberInReadingOrder). */
   id: number;
   at: Point;
   /** The two segments a train can take: option 0 and option 1. */
@@ -394,8 +395,51 @@ export function compileMap(blueprint: Blueprint, key: string, tunnel: Tunnel = T
   };
 
   visit(blueprint, tunnel.at, 'tunnel', []);
-  const map: TrackMap = { key, tunnel, segments, switches, stations, decor: [], ponds: [], fireflies: [], patches: [] };
+  const map = numberInReadingOrder({
+    key,
+    tunnel,
+    segments,
+    switches,
+    stations,
+    decor: [],
+    ponds: [],
+    fireflies: [],
+    patches: [],
+  });
   return { ...map, ...growNature(map) };
+}
+
+/** Switches whose heights differ by less than this are read as one row. */
+const ROW_TOLERANCE = 20;
+
+/**
+ * The same map with its switches numbered the way the board is read: top to bottom, and left to right within a row.
+ * A blueprint is walked branch by branch, so on the big maps that order jumps around the board (1, 4, 2, 5…), and
+ * the numbers are what the keys 1–9 and the spoken names of the switches use. Every reference to a switch follows.
+ */
+function numberInReadingOrder(map: TrackMap): TrackMap {
+  const rows: TrackSwitch[][] = [];
+  for (const sw of [...map.switches].sort((a, b) => a.at.y - b.at.y)) {
+    const row = rows[rows.length - 1];
+    if (row && sw.at.y - row[0].at.y < ROW_TOLERANCE) row.push(sw);
+    else rows.push([sw]);
+  }
+  const order = rows.flatMap((row) => row.sort((a, b) => a.at.x - b.at.x));
+  const numbers = new Map(order.map((sw, i) => [sw.id, i]));
+  const renumber = (id: number) => numbers.get(id)!;
+  return {
+    ...map,
+    segments: map.segments.map((s) => ({
+      ...s,
+      from: s.from === 'tunnel' ? s.from : { switch: renumber(s.from.switch) },
+      end: 'switch' in s.end ? { switch: renumber(s.end.switch) } : s.end,
+    })),
+    switches: order.map((sw, i) => ({ ...sw, id: i })),
+    stations: map.stations.map((st) => ({
+      ...st,
+      route: st.route.map(([sw, option]): [number, 0 | 1] => [renumber(sw), option]),
+    })),
+  };
 }
 
 function distToPolyline(p: Point, points: readonly Point[]): number {
@@ -514,9 +558,13 @@ function growNature(map: TrackMap): Pick<TrackMap, 'decor' | 'ponds' | 'fireflie
 const mirrorPoint = (p: Point): Point => ({ x: BOARD.width - p.x, y: p.y });
 const mirrorAngle = (angle: number): number => 180 - angle;
 
-/** The same map seen in a mirror (left and right swapped). Routes and option numbers stay the same. */
+/**
+ * The same map seen in a mirror (left and right swapped). Each switch keeps its exits and their option numbers, but
+ * the switches are numbered again in the mirror's own reading order, so a row of two swaps numbers and the routes name
+ * the new ones.
+ */
 export function mirrorMap(map: TrackMap): TrackMap {
-  return {
+  return numberInReadingOrder({
     key: `${map.key}m`,
     tunnel: { at: mirrorPoint(map.tunnel.at), angle: mirrorAngle(map.tunnel.angle) },
     segments: map.segments.map((s) => ({ ...s, line: polyline(s.line.points.map(mirrorPoint)) })),
@@ -530,7 +578,7 @@ export function mirrorMap(map: TrackMap): TrackMap {
     ponds: map.ponds.map((p) => ({ ...p, x: BOARD.width - p.x })),
     fireflies: map.fireflies.map(mirrorPoint),
     patches: map.patches.map((p) => ({ ...p, x: BOARD.width - p.x })),
-  };
+  });
 }
 
 /** Levels 1–2 → 3 stations, 3–4 → 4, 5–6 → 5, 7–8 → 6, 9–10 → 7. */

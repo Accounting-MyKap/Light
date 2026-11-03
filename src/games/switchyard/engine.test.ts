@@ -15,6 +15,7 @@ import {
   trainSpeed,
   type Arrival,
   type SwitchyardState,
+  type Train,
 } from './engine';
 import { poseAt } from './geometry';
 import { ALL_MAPS, mapFor, stationCountForLevel } from './maps';
@@ -26,14 +27,21 @@ function routeTo(state: SwitchyardState, stationId: number): SwitchyardState {
   return s;
 }
 
-/** A perfect player: every switch points the way the first train that still has to cross it needs. */
-function steer(state: SwitchyardState): SwitchyardState {
+/**
+ * A perfect player: every switch points the way the first train that still has to cross it needs. A train whose
+ * front is within SWITCH_GRACE past a switch still has to cross it: flipping it then would send that train the other
+ * way. `sendTo` picks the station each train is sent to: its own, unless the test wants a miss.
+ */
+function steer(state: SwitchyardState, sendTo: (train: Train) => number = (train) => train.station): SwitchyardState {
   let s = state;
   const claimed = new Set<number>();
   for (const train of [...s.trains].sort((x, y) => x.id - y.id)) {
     if (train.arrived) continue;
-    for (const [sw, option] of s.map.stations[train.station].route) {
-      const crossed = s.map.switches[sw].exits.some((exit) => train.route.includes(exit));
+    const current = train.route[train.route.length - 1];
+    for (const [sw, option] of s.map.stations[sendTo(train)].route) {
+      const { exits } = s.map.switches[sw];
+      const overIt = exits.includes(current) && train.distance <= SWITCH_GRACE;
+      const crossed = !overIt && exits.some((exit) => train.route.includes(exit));
       if (crossed || claimed.has(sw)) continue;
       claimed.add(sw);
       if (s.switches[sw] !== option) s = toggleSwitch(s, sw);
@@ -159,6 +167,22 @@ describe('arrivals', () => {
     let s = run(createSwitchyardGame(7, rng, 0), FIRST_TRAIN_MS, rng).state;
     s = routeTo(s, s.trains[0].station);
     expect(untilArrival(s, rng).arrival.points).toBe(arrivalPoints(7));
+  });
+
+  test('a perfect player sends every train home, on every map', () => {
+    for (const level of [1, 3, 5, 7, 9, 10]) {
+      const rng = createRng(300 + level);
+      let s = createSwitchyardGame(level, rng, 0);
+      const arrivals: Arrival[] = [];
+      while (s.now < 60_000) {
+        s = steer(s);
+        const res = advanceSwitchyard(s, s.now + 16, rng);
+        s = res.state;
+        arrivals.push(...res.arrivals);
+      }
+      expect(arrivals.length).toBeGreaterThan(10);
+      expect(arrivals.filter((a) => !a.correct), `level ${level}`).toEqual([]);
+    }
   });
 
   test('four trains home in a row move the level up', () => {
@@ -315,6 +339,54 @@ test('one long jump gives the same result as many short frames (the phone froze 
   expect(long.arrivals).toEqual(arrivals);
 });
 
+describe('the frame rate never changes the game', () => {
+  /** Plays a whole game from `level`, with frames as long as `frame()` says and the player acting after each one. */
+  function play(level: number, seed: number, frame: () => number, player: (s: SwitchyardState) => SwitchyardState) {
+    const rng = createRng(seed);
+    let s = createSwitchyardGame(level, rng, 0);
+    const arrivals: Arrival[] = [];
+    while (s.now < 90_000) {
+      s = player(s);
+      const res = advanceSwitchyard(s, Math.min(90_000, s.now + frame()), rng);
+      s = res.state;
+      arrivals.push(...res.arrivals);
+    }
+    return { state: s, arrivals };
+  }
+
+  const players = { 'nobody at the switches': (s: SwitchyardState) => s, 'a perfect player': steer };
+  const frames = {
+    '60 fps': () => () => 1000 / 60,
+    'random 5–50 ms frames': () => {
+      const jitter = createRng(77);
+      return () => 5 + jitter() * 45;
+    },
+  };
+
+  describe.each(Object.entries(players))('%s', (_name, player) => {
+    test.each(Object.entries(frames).flatMap(([name, make]) => [1, 5, 10].map((level) => [name, level, make] as const)))(
+      '%s at level %i play out like 20 ms frames',
+      (_frames, level, make) => {
+        const reference = play(level, 40 + level, () => 20, player);
+        const other = play(level, 40 + level, make(), player);
+        const sum = ({ trainId, station, correct, points }: Arrival) => ({ trainId, station, correct, points });
+        expect(other.arrivals.map(sum)).toEqual(reference.arrivals.map(sum));
+        expect(other.arrivals.length).toBeGreaterThan(15);
+        other.arrivals.forEach((a, i) => expect(Math.abs(a.at - reference.arrivals[i].at)).toBeLessThan(1e-6));
+        expect(other.state.score).toBe(reference.state.score);
+        expect(other.state.nextTrainId).toBe(reference.state.nextTrainId);
+        expect(other.state.staircase).toEqual(reference.state.staircase);
+        expect(other.state.trains.map((t) => [t.id, t.route, t.arrived])).toEqual(
+          reference.state.trains.map((t) => [t.id, t.route, t.arrived]),
+        );
+        other.state.trains.forEach((t, i) =>
+          expect(Math.abs(t.distance - reference.state.trains[i].distance)).toBeLessThan(1e-6),
+        );
+      },
+    );
+  });
+});
+
 test('going back in time changes nothing', () => {
   const rng = createRng(14);
   const s = run(createSwitchyardGame(1, rng, 0), 3000, rng).state;
@@ -354,8 +426,56 @@ test('the result counts arrived trains only', () => {
     accuracy: s.correct / s.total,
     levelReached: s.staircase.maxLevel,
     durationMs: 90_000,
+    switchyard: { home: 3, arrived: 3, bestStreak: 3, missed: [] },
   });
   expect(s.total).toBe(3);
+});
+
+test('the result sums up the trains: home of arrived, the best run home, and the misses by the station they were for', () => {
+  const rng = createRng(19);
+  let s = createSwitchyardGame(5, rng, 0);
+  // Trains 2, 9, 10 and 14 are sent to the wrong station, always the same one, so the misses tell apart the station a
+  // train was for from the one it reached.
+  const missing = new Set([2, 9, 10, 14]);
+  const sendTo = (train: Train) => (missing.has(train.id) ? (train.station === 0 ? 1 : 0) : train.station);
+  const arrivals: Arrival[] = [];
+  while (arrivals.length < 18) {
+    s = steer(s, sendTo);
+    const res = advanceSwitchyard(s, s.now + 16, rng);
+    s = res.state;
+    arrivals.push(...res.arrivals);
+  }
+
+  let run = 0;
+  let best = 0;
+  for (const a of arrivals) {
+    run = a.correct ? run + 1 : 0;
+    best = Math.max(best, run);
+  }
+  const misses = arrivals.filter((a) => !a.correct);
+  const byStyle = new Map<number, number>();
+  for (const a of misses) {
+    const style = s.map.stations[a.target].style;
+    byStyle.set(style, (byStyle.get(style) ?? 0) + 1);
+  }
+  const missed = [...byStyle]
+    .map(([style, count]) => ({ style, count }))
+    .sort((a, b) => b.count - a.count || a.style - b.style);
+
+  expect(misses.map((a) => a.trainId).sort((a, b) => a - b)).toEqual([...missing]);
+  expect(switchyardResult(s, 90_000).switchyard).toEqual({
+    home: arrivals.length - misses.length,
+    arrived: arrivals.length,
+    bestStreak: best,
+    missed,
+  });
+  expect(best).toBeGreaterThanOrEqual(5);
+  expect(missed.length).toBeGreaterThanOrEqual(2);
+});
+
+test('the best run and the misses start afresh with every game', () => {
+  const s = createSwitchyardGame(3, createRng(20), 0);
+  expect(switchyardResult(s, 90_000).switchyard).toEqual({ home: 0, arrived: 0, bestStreak: 0, missed: [] });
 });
 
 test('a train still coming out of the tunnel lines up on the straight track behind the mouth', () => {
