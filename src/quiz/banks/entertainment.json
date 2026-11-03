@@ -3,10 +3,10 @@
   "questions": [
     {
       "id": "entertainment-0001", "difficulty": 1, "type": "choice",
-      "es": { "question": "¿Qué banda británica grabó el álbum «Abbey Road»?",
+      "es": { "question": "¿Qué banda grabó el álbum «Abbey Road»?",
               "options": ["The Beatles", "The Rolling Stones", "Queen", "Pink Floyd"],
               "explanation": "The Beatles lo lanzaron en 1969. Su portada, con los cuatro cruzando una calle, es una de las más famosas de la historia." },
-      "en": { "question": "Which British band recorded the album “Abbey Road”?",
+      "en": { "question": "Which band recorded the album “Abbey Road”?",
               "options": ["The Beatles", "The Rolling Stones", "Queen", "Pink Floyd"],
               "explanation": "The Beatles released it in 1969. Its cover, with the four of them crossing a street, is one of the most famous ever." }
     },
@@ -90,7 +90,7 @@
               "explanation": "Akira Kurosawa directed “Seven Samurai”. Miyazaki is the animation director of Studio Ghibli, and Ozu made family dramas like “Tokyo Story”." }
     },
     {
-      "id": "entertainment-0011", "difficulty": 3, "type": "choice",
+      "id": "entertainment-0011", "difficulty": 2, "type": "choice",
       "es": { "question": "¿Quién dirigió «2001: Una odisea del espacio» (1968)?",
               "options": ["Stanley Kubrick", "Steven Spielberg", "George Lucas", "Ridley Scott"],
               "explanation": "Stanley Kubrick dirigió y coescribió la película con Arthur C. Clarke, basándose en un relato corto de este." },
@@ -104,6 +104,786 @@
               "explanation": "Estrenada en diciembre de 1937, fue el primer largometraje de animación de Walt Disney Productions." },
       "en": { "question": "“Snow White and the Seven Dwarfs” (1937) was Disney's first feature-length animated film.",
               "explanation": "Released in December 1937, it was the first feature-length animated film from Walt Disney Productions." }
+    },
+    {
+      "id": "entertainment-0013", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué actor interpretó a Harry Potter en las películas de la saga?",
+              "options": ["Daniel Radcliffe", "Robert Pattinson", "Rupert Grint", "Tom Felton"],
+              "explanation": "Daniel Radcliffe fue Harry en las ocho películas. Rupert Grint interpretó a Ron Weasley y Tom Felton, a Draco Malfoy." },
+      "en": { "question": "Which actor played Harry Potter in the movie series?",
+              "options": ["Daniel Radcliffe", "Robert Pattinson", "Rupert Grint", "Tom Felton"],
+              "explanation": "Daniel Radcliffe played Harry in all eight films. Rupert Grint played Ron Weasley and Tom Felton played Draco Malfoy." }
+    },
+    {
+      "id": "entertainment-0014", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué cantante interpretó «My Heart Will Go On», el tema de la película «Titanic»?",
+              "options": ["Céline Dion", "Whitney Houston", "Shania Twain", "Barbra Streisand"],
+              "explanation": "Céline Dion, cantante canadiense, grabó esta balada en 1997 para la banda sonora de «Titanic»." },
+      "en": { "question": "Which singer performed “My Heart Will Go On”, the theme of the movie “Titanic”?",
+              "options": ["Céline Dion", "Whitney Houston", "Shania Twain", "Barbra Streisand"],
+              "explanation": "Canadian singer Céline Dion recorded this ballad in 1997 for the soundtrack of “Titanic”." }
+    },
+    {
+      "id": "entertainment-0015", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cómo se llama el pueblo donde viven Los Simpson?",
+              "options": ["Springfield", "Quahog", "South Park", "Arlen"],
+              "explanation": "Los Simpson viven en Springfield, un pueblo ficticio. Quahog es el de «Padre de familia» y South Park es el de la serie del mismo nombre." },
+      "en": { "question": "What is the name of the town where The Simpsons live?",
+              "options": ["Springfield", "Quahog", "South Park", "Arlen"],
+              "explanation": "The Simpsons live in Springfield, a fictional town. Quahog is the town in “Family Guy” and South Park is the town in the series of the same name." }
+    },
+    {
+      "id": "entertainment-0016", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué actor interpretó a Iron Man (Tony Stark) en las películas de Marvel?",
+              "options": ["Robert Downey Jr.", "Chris Evans", "Chris Hemsworth", "Mark Ruffalo"],
+              "explanation": "Robert Downey Jr. dio vida a Tony Stark desde 2008. Chris Evans fue el Capitán América, Chris Hemsworth fue Thor y Mark Ruffalo fue Hulk." },
+      "en": { "question": "Which actor played Iron Man (Tony Stark) in the Marvel movies?",
+              "options": ["Robert Downey Jr.", "Chris Evans", "Chris Hemsworth", "Mark Ruffalo"],
+              "explanation": "Robert Downey Jr. played Tony Stark from 2008. Chris Evans played Captain America, Chris Hemsworth played Thor and Mark Ruffalo played Hulk." }
+    },
+    {
+      "id": "entertainment-0017", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Quién fue el cantante principal de la banda Queen?",
+              "options": ["Freddie Mercury", "Mick Jagger", "Robert Plant", "Roger Daltrey"],
+              "explanation": "Freddie Mercury fue la voz de Queen y compuso «Bohemian Rhapsody». Murió en 1991." },
+      "en": { "question": "Who was the lead singer of the band Queen?",
+              "options": ["Freddie Mercury", "Mick Jagger", "Robert Plant", "Roger Daltrey"],
+              "explanation": "Freddie Mercury was Queen's voice and wrote “Bohemian Rhapsody”. He died in 1991." }
+    },
+    {
+      "id": "entertainment-0018", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿En qué ciudad ficticia vive el superhéroe Batman?",
+              "options": ["Gotham City", "Metrópolis", "Central City", "Star City"],
+              "explanation": "Batman protege Gotham City. Metrópolis es la ciudad de Superman y Central City, la de Flash." },
+      "en": { "question": "In which fictional city does the superhero Batman live?",
+              "options": ["Gotham City", "Metropolis", "Central City", "Star City"],
+              "explanation": "Batman protects Gotham City. Metropolis is Superman's city and Central City is the Flash's." }
+    },
+    {
+      "id": "entertainment-0019", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿De qué raza es el perro Scooby-Doo?",
+              "options": ["Gran danés", "Labrador", "Pastor alemán", "Bulldog"],
+              "explanation": "Scooby-Doo es un gran danés cobarde y glotón que resuelve misterios con Shaggy y sus amigos." },
+      "en": { "question": "What breed of dog is Scooby-Doo?",
+              "options": ["Great Dane", "Labrador", "German Shepherd", "Bulldog"],
+              "explanation": "Scooby-Doo is a cowardly, food-loving Great Dane who solves mysteries with Shaggy and his friends." }
+    },
+    {
+      "id": "entertainment-0020", "difficulty": 1, "type": "choice",
+      "es": { "question": "En «Buscando a Nemo» (2003), ¿qué tipo de pez es Nemo?",
+              "options": ["Pez payaso", "Pez globo", "Pez ángel", "Pez espada"],
+              "explanation": "Nemo es un pez payaso, de color naranja con rayas blancas. Dory, su amiga, es un pez cirujano azul." },
+      "en": { "question": "In “Finding Nemo” (2003), what kind of fish is Nemo?",
+              "options": ["Clownfish", "Pufferfish", "Angelfish", "Swordfish"],
+              "explanation": "Nemo is a clownfish, orange with white stripes. His friend Dory is a blue tang." }
+    },
+    {
+      "id": "entertainment-0021", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿En qué ciudad colombiana nació la cantante Shakira?",
+              "options": ["Barranquilla", "Medellín", "Cali", "Cartagena"],
+              "explanation": "Shakira nació en Barranquilla, en la costa Caribe de Colombia, en 1977." },
+      "en": { "question": "In which Colombian city was the singer Shakira born?",
+              "options": ["Barranquilla", "Medellín", "Cali", "Cartagena"],
+              "explanation": "Shakira was born in Barranquilla, on Colombia's Caribbean coast, in 1977." }
+    },
+    {
+      "id": "entertainment-0022", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿En qué país se produjo la telenovela «Yo soy Betty, la fea» (1999)?",
+              "options": ["Colombia", "México", "Venezuela", "Argentina"],
+              "explanation": "Es una telenovela colombiana creada por Fernando Gaitán y emitida por RCN desde 1999. Tuvo adaptaciones en muchos países." },
+      "en": { "question": "In which country was the telenovela “Yo soy Betty, la fea” (1999) produced?",
+              "options": ["Colombia", "Mexico", "Venezuela", "Argentina"],
+              "explanation": "It is a Colombian telenovela created by Fernando Gaitán and aired by RCN from 1999. It was adapted in many countries." }
+    },
+    {
+      "id": "entertainment-0023", "difficulty": 1, "type": "choice",
+      "es": { "question": "En «Volver al futuro», ¿qué automóvil se convierte en máquina del tiempo?",
+              "options": ["DeLorean", "Ford Mustang", "Chevrolet Camaro", "Pontiac Firebird"],
+              "explanation": "Doc Brown convierte un DeLorean en máquina del tiempo, y Marty McFly viaja con él al pasado." },
+      "en": { "question": "In “Back to the Future”, which car becomes a time machine?",
+              "options": ["DeLorean", "Ford Mustang", "Chevrolet Camaro", "Pontiac Firebird"],
+              "explanation": "Doc Brown turns a DeLorean into a time machine, and Marty McFly uses it to travel to the past." }
+    },
+    {
+      "id": "entertainment-0024", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué cantante británico lanzó «Shape of You» en 2017?",
+              "options": ["Ed Sheeran", "Harry Styles", "Sam Smith", "Calvin Harris"],
+              "explanation": "Ed Sheeran lanzó «Shape of You» en enero de 2017; la canción forma parte de su álbum «÷» (Divide)." },
+      "en": { "question": "Which British singer released “Shape of You” in 2017?",
+              "options": ["Ed Sheeran", "Harry Styles", "Sam Smith", "Calvin Harris"],
+              "explanation": "Ed Sheeran released “Shape of You” in January 2017; the song is part of his album “÷” (Divide)." }
+    },
+    {
+      "id": "entertainment-0025", "difficulty": 1, "type": "truefalse", "answer": false,
+      "es": { "question": "El Pokémon Pikachu es de tipo fuego.",
+              "explanation": "Pikachu es de tipo eléctrico. Charmander es un Pokémon de tipo fuego." },
+      "en": { "question": "The Pokémon Pikachu is a Fire type.",
+              "explanation": "Pikachu is an Electric type. Charmander is a Fire-type Pokémon." }
+    },
+    {
+      "id": "entertainment-0026", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué celebración mexicana inspira la película «Coco» (2017), de Pixar?",
+              "options": ["Día de Muertos", "Las posadas", "Cinco de Mayo", "Fiestas patrias"],
+              "explanation": "En «Coco», el joven Miguel llega a la Tierra de los Muertos en el Día de Muertos, que se celebra el 1 y el 2 de noviembre." },
+      "en": { "question": "Which Mexican celebration inspires Pixar's movie “Coco” (2017)?",
+              "options": ["Day of the Dead", "Las Posadas", "Cinco de Mayo", "Mexican Independence Day"],
+              "explanation": "In “Coco”, young Miguel enters the Land of the Dead on the Day of the Dead, celebrated on 1 and 2 November." }
+    },
+    {
+      "id": "entertainment-0027", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué cantante cubana, famosa por su grito «¡Azúcar!», es conocida como la «Reina de la Salsa»?",
+              "options": ["Celia Cruz", "La Lupe", "Gloria Estefan", "Olga Tañón"],
+              "explanation": "Celia Cruz, nacida en La Habana, fue la gran voz de la salsa y convirtió el grito «¡Azúcar!» en su sello." },
+      "en": { "question": "Which Cuban singer, famous for shouting “¡Azúcar!”, is known as the “Queen of Salsa”?",
+              "options": ["Celia Cruz", "La Lupe", "Gloria Estefan", "Olga Tañón"],
+              "explanation": "Celia Cruz, born in Havana, was salsa's great voice and made the shout “¡Azúcar!” her trademark." }
+    },
+    {
+      "id": "entertainment-0028", "difficulty": 1, "type": "choice",
+      "es": { "question": "En «Dora la exploradora», ¿qué animal es Botas, su mejor amigo?",
+              "options": ["Mono", "Zorro", "Perro", "Loro"],
+              "explanation": "Botas es un mono que acompaña a Dora en sus aventuras. El zorro Swiper intenta quitarles sus cosas." },
+      "en": { "question": "In “Dora the Explorer”, what kind of animal is Boots, her best friend?",
+              "options": ["Monkey", "Fox", "Dog", "Parrot"],
+              "explanation": "Boots is a monkey who joins Dora on her adventures. Swiper the fox tries to swipe their things." }
+    },
+    {
+      "id": "entertainment-0029", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿De qué planeta ficticio proviene Superman?",
+              "options": ["Krypton", "Pandora", "Tatooine", "Vulcano"],
+              "explanation": "Superman nació en Krypton, un planeta que fue destruido. Sus padres lo enviaron a la Tierra siendo un bebé." },
+      "en": { "question": "Which fictional planet does Superman come from?",
+              "options": ["Krypton", "Pandora", "Tatooine", "Vulcan"],
+              "explanation": "Superman was born on Krypton, a planet that was destroyed. His parents sent him to Earth as a baby." }
+    },
+    {
+      "id": "entertainment-0030", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿A qué cantante se la conoce como la «Reina del Pop»?",
+              "options": ["Madonna", "Cher", "Cyndi Lauper", "Janet Jackson"],
+              "explanation": "Madonna recibió ese apodo por su larga carrera y su influencia en la música pop desde los años ochenta." },
+      "en": { "question": "Which singer is known as the “Queen of Pop”?",
+              "options": ["Madonna", "Cher", "Cyndi Lauper", "Janet Jackson"],
+              "explanation": "Madonna earned that nickname for her long career and her influence on pop music since the 1980s." }
+    },
+    {
+      "id": "entertainment-0031", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué apodo, que significa «pequeño Shakespeare», tenía Roberto Gómez Bolaños, creador de «El Chavo del 8»?",
+              "options": ["Chespirito", "Cantinflas", "Tin Tan", "Capulina"],
+              "explanation": "Chespirito viene de «Shakespearito». Gómez Bolaños creó «El Chavo del 8» y «El Chapulín Colorado», y él mismo interpretó a ambos personajes." },
+      "en": { "question": "What nickname, meaning “little Shakespeare”, did Roberto Gómez Bolaños, creator of “El Chavo del 8”, go by?",
+              "options": ["Chespirito", "Cantinflas", "Tin Tan", "Capulina"],
+              "explanation": "Chespirito comes from a diminutive of “Shakespeare”. Gómez Bolaños created “El Chavo del 8” and “El Chapulín Colorado”, and played both characters himself." }
+    },
+    {
+      "id": "entertainment-0032", "difficulty": 1, "type": "choice",
+      "es": { "question": "En «Frozen» (2013), ¿cómo se llama la hermana de la reina Elsa?",
+              "options": ["Anna", "Ariel", "Aurora", "Bella"],
+              "explanation": "Anna es la hermana menor de Elsa, la reina con poderes de hielo. Ariel, Aurora y Bella son princesas de otras películas de Disney." },
+      "en": { "question": "In “Frozen” (2013), what is the name of Queen Elsa's sister?",
+              "options": ["Anna", "Ariel", "Aurora", "Belle"],
+              "explanation": "Anna is the younger sister of Elsa, the queen with ice powers. Ariel, Aurora and Belle are princesses from other Disney movies." }
+    },
+    {
+      "id": "entertainment-0033", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué cantante lanzó el éxito «Despacito» en 2017?",
+              "options": ["Luis Fonsi", "Maluma", "J Balvin", "Carlos Vives"],
+              "explanation": "Luis Fonsi lanzó «Despacito» en 2017, y la versión con Justin Bieber lo llevó a un público aún mayor." },
+      "en": { "question": "Which singer released the hit “Despacito” in 2017?",
+              "options": ["Luis Fonsi", "Maluma", "J Balvin", "Carlos Vives"],
+              "explanation": "Luis Fonsi released “Despacito” in 2017, and the version with Justin Bieber took it to an even bigger audience." }
+    },
+    {
+      "id": "entertainment-0034", "difficulty": 1, "type": "choice",
+      "es": { "question": "En «La casa de papel», ¿cómo se hace llamar el cerebro que planea el atraco?",
+              "options": ["El Profesor", "Berlín", "Tokio", "Denver"],
+              "explanation": "El Profesor ideó el atraco a la Fábrica Nacional de Moneda y Timbre. Berlín, Tokio y Denver son miembros de su banda." },
+      "en": { "question": "In “Money Heist” (La casa de papel), what name does the mastermind behind the robbery go by?",
+              "options": ["The Professor", "Berlin", "Tokyo", "Denver"],
+              "explanation": "The Professor devised the heist on Spain's Royal Mint. Berlin, Tokyo and Denver are members of his crew." }
+    },
+    {
+      "id": "entertainment-0035", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué actor protagonizó la trilogía original de «Indiana Jones», con látigo y sombrero?",
+              "options": ["Harrison Ford", "Tom Selleck", "Kurt Russell", "Mel Gibson"],
+              "explanation": "Harrison Ford interpretó al arqueólogo Indiana Jones desde la primera película, estrenada en 1981." },
+      "en": { "question": "Which actor starred in the original “Indiana Jones” trilogy, with his whip and fedora?",
+              "options": ["Harrison Ford", "Tom Selleck", "Kurt Russell", "Mel Gibson"],
+              "explanation": "Harrison Ford played the archaeologist Indiana Jones from the first film, released in 1981." }
+    },
+    {
+      "id": "entertainment-0036", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cómo se llama el famoso paso de baile en el que la persona parece deslizarse hacia atrás?",
+              "options": ["Moonwalk", "Robot", "Twist", "Macarena"],
+              "explanation": "El moonwalk («paso de la luna») lo popularizó Michael Jackson en 1983, cuando lo bailó al cantar «Billie Jean»." },
+      "en": { "question": "What is the name of the famous dance move in which the dancer seems to glide backward?",
+              "options": ["Moonwalk", "Robot", "Twist", "Macarena"],
+              "explanation": "Michael Jackson popularized the moonwalk in 1983, when he danced it while performing “Billie Jean”." }
+    },
+    {
+      "id": "entertainment-0037", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cómo se llama la novia de Mickey Mouse?",
+              "options": ["Minnie", "Daisy", "Blancanieves", "Cenicienta"],
+              "explanation": "Minnie Mouse es la novia de Mickey desde sus primeros dibujos animados, en 1928. Daisy es la novia del Pato Donald." },
+      "en": { "question": "What is the name of Mickey Mouse's girlfriend?",
+              "options": ["Minnie", "Daisy", "Snow White", "Cinderella"],
+              "explanation": "Minnie Mouse has been Mickey's girlfriend since his first cartoons, in 1928. Daisy is Donald Duck's girlfriend." }
+    },
+    {
+      "id": "entertainment-0038", "difficulty": 1, "type": "truefalse", "answer": true,
+      "es": { "question": "Bob Esponja vive en una piña bajo el mar.",
+              "explanation": "Su casa es una piña en Fondo de Bikini. Patricio vive bajo una roca y Calamardo, en una escultura de la isla de Pascua." },
+      "en": { "question": "SpongeBob SquarePants lives in a pineapple under the sea.",
+              "explanation": "His home is a pineapple in Bikini Bottom. Patrick lives under a rock and Squidward lives in an Easter Island head." }
+    },
+    {
+      "id": "entertainment-0039", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿De qué isla del Caribe es el cantante Bad Bunny?",
+              "options": ["Puerto Rico", "Cuba", "República Dominicana", "Jamaica"],
+              "explanation": "Bad Bunny nació en Vega Baja, Puerto Rico, y es una de las figuras del reguetón y el trap latino." },
+      "en": { "question": "Which Caribbean island is the singer Bad Bunny from?",
+              "options": ["Puerto Rico", "Cuba", "Dominican Republic", "Jamaica"],
+              "explanation": "Bad Bunny was born in Vega Baja, Puerto Rico, and is one of the leading figures of reggaeton and Latin trap." }
+    },
+    {
+      "id": "entertainment-0040", "difficulty": 1, "type": "choice",
+      "es": { "question": "En «La Sirenita», ¿qué animal es Sebastián, el amigo de Ariel?",
+              "options": ["Cangrejo", "Langosta", "Pulpo", "Tortuga"],
+              "explanation": "Sebastián es un cangrejo, el compositor de la corte del rey Tritón, que cuida de Ariel." },
+      "en": { "question": "In “The Little Mermaid”, what kind of animal is Sebastian, Ariel's friend?",
+              "options": ["Crab", "Lobster", "Octopus", "Turtle"],
+              "explanation": "Sebastian is a crab, King Triton's court composer, who looks after Ariel." }
+    },
+    {
+      "id": "entertainment-0041", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿De qué país es la serie «El juego del calamar» (2021)?",
+              "options": ["Corea del Sur", "Japón", "China", "Estados Unidos"],
+              "explanation": "Es una serie surcoreana de Netflix, creada por Hwang Dong-hyuk y estrenada en 2021." },
+      "en": { "question": "Which country is the series “Squid Game” (2021) from?",
+              "options": ["South Korea", "Japan", "China", "United States"],
+              "explanation": "It is a South Korean Netflix series, created by Hwang Dong-hyuk and released in 2021." }
+    },
+    {
+      "id": "entertainment-0042", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué cantante lanzó «...Baby One More Time» en 1998?",
+              "options": ["Britney Spears", "Christina Aguilera", "Jessica Simpson", "Avril Lavigne"],
+              "explanation": "Britney Spears debutó con ese sencillo en 1998, y su primer álbum, con el mismo título, salió en 1999." },
+      "en": { "question": "Which singer released “...Baby One More Time” in 1998?",
+              "options": ["Britney Spears", "Christina Aguilera", "Jessica Simpson", "Avril Lavigne"],
+              "explanation": "Britney Spears debuted with that single in 1998, and her first album, with the same title, came out in 1999." }
+    },
+    {
+      "id": "entertainment-0043", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cómo se llama el auto de carreras protagonista de la película «Cars» (2006)?",
+              "options": ["Rayo McQueen", "Mate", "Doc Hudson", "Sally"],
+              "explanation": "Rayo McQueen es un joven auto de carreras que acaba en el pueblo de Radiador Springs. Mate es una grúa y Doc Hudson, un viejo campeón." },
+      "en": { "question": "What is the name of the race car who stars in the movie “Cars” (2006)?",
+              "options": ["Lightning McQueen", "Mater", "Doc Hudson", "Sally"],
+              "explanation": "Lightning McQueen is a young race car who ends up in the town of Radiator Springs. Mater is a tow truck and Doc Hudson is a retired champion." }
+    },
+    {
+      "id": "entertainment-0044", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué cantante lanzó en 1994 la canción navideña «All I Want for Christmas Is You»?",
+              "options": ["Mariah Carey", "Whitney Houston", "Toni Braxton", "Gloria Estefan"],
+              "explanation": "Mariah Carey la lanzó en 1994 en su álbum «Merry Christmas», y suena cada diciembre en muchos países." },
+      "en": { "question": "Which singer released the Christmas song “All I Want for Christmas Is You” in 1994?",
+              "options": ["Mariah Carey", "Whitney Houston", "Toni Braxton", "Gloria Estefan"],
+              "explanation": "Mariah Carey released it in 1994 on her album “Merry Christmas”, and it plays every December in many countries." }
+    },
+    {
+      "id": "entertainment-0045", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cómo se apellida la familia mágica de la película «Encanto» (2021)?",
+              "options": ["Madrigal", "Rivera", "Mendoza", "Salazar"],
+              "explanation": "Los Madrigal viven en una casa mágica en Colombia. Rivera es el apellido de la familia de Miguel, en «Coco»." },
+      "en": { "question": "What is the last name of the magical family in the movie “Encanto” (2021)?",
+              "options": ["Madrigal", "Rivera", "Mendoza", "Salazar"],
+              "explanation": "The Madrigals live in a magical house in Colombia. Rivera is the last name of Miguel's family in “Coco”." }
+    },
+    {
+      "id": "entertainment-0046", "difficulty": 1, "type": "truefalse", "answer": false,
+      "es": { "question": "Bob Marley, figura del reggae, nació en Cuba.",
+              "explanation": "Bob Marley nació en Jamaica en 1945. El reggae surgió en esa isla a finales de los años sesenta." },
+      "en": { "question": "Bob Marley, the reggae icon, was born in Cuba.",
+              "explanation": "Bob Marley was born in Jamaica in 1945. Reggae emerged on that island in the late 1960s." }
+    },
+    {
+      "id": "entertainment-0047", "difficulty": 1, "type": "choice",
+      "es": { "question": "En «Star Wars», ¿cómo se llama el pequeño maestro Jedi de piel verde?",
+              "options": ["Yoda", "Obi-Wan Kenobi", "Chewbacca", "Darth Vader"],
+              "explanation": "Yoda es un sabio maestro Jedi que entrena a Luke Skywalker en «El imperio contraataca»." },
+      "en": { "question": "In “Star Wars”, what is the name of the small green Jedi master?",
+              "options": ["Yoda", "Obi-Wan Kenobi", "Chewbacca", "Darth Vader"],
+              "explanation": "Yoda is a wise Jedi master who trains Luke Skywalker in “The Empire Strikes Back”." }
+    },
+    {
+      "id": "entertainment-0048", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuántas cuerdas tiene una guitarra estándar?",
+              "options": ["6", "4", "5", "8"],
+              "explanation": "La guitarra estándar tiene seis cuerdas. El bajo eléctrico suele tener cuatro." },
+      "en": { "question": "How many strings does a standard guitar have?",
+              "options": ["6", "4", "5", "8"],
+              "explanation": "A standard guitar has six strings. An electric bass usually has four." }
+    },
+    {
+      "id": "entertainment-0049", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué director mexicano dirigió la película «Roma» (2018)?",
+              "options": ["Alfonso Cuarón", "Guillermo del Toro", "Alejandro González Iñárritu", "Carlos Reygadas"],
+              "explanation": "Alfonso Cuarón escribió, dirigió y fotografió «Roma», inspirada en su infancia en la colonia Roma de Ciudad de México. Ganó el Óscar a Mejor Director en 2019." },
+      "en": { "question": "Which Mexican director made the movie “Roma” (2018)?",
+              "options": ["Alfonso Cuarón", "Guillermo del Toro", "Alejandro González Iñárritu", "Carlos Reygadas"],
+              "explanation": "Alfonso Cuarón wrote, directed and shot “Roma”, inspired by his childhood in Mexico City's Roma neighborhood. He won the Oscar for Best Director in 2019." }
+    },
+    {
+      "id": "entertainment-0050", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué banda lanzó el álbum «Nevermind» (1991), que incluye «Smells Like Teen Spirit»?",
+              "options": ["Nirvana", "Pearl Jam", "Soundgarden", "Green Day"],
+              "explanation": "Nirvana, liderada por Kurt Cobain, lanzó «Nevermind» en 1991, un álbum clave del grunge." },
+      "en": { "question": "Which band released the album “Nevermind” (1991), which includes “Smells Like Teen Spirit”?",
+              "options": ["Nirvana", "Pearl Jam", "Soundgarden", "Green Day"],
+              "explanation": "Nirvana, led by Kurt Cobain, released “Nevermind” in 1991, a key album of the grunge scene." }
+    },
+    {
+      "id": "entertainment-0051", "difficulty": 2, "type": "choice",
+      "es": { "question": "En «Yo soy Betty, la fea», ¿cómo se llama la empresa de modas donde trabaja Betty?",
+              "options": ["Ecomoda", "Modas Élite", "Casa Mendoza", "Nueva Moda"],
+              "explanation": "Betty trabaja en Ecomoda, donde es secretaria de Armando Mendoza, el presidente de la empresa." },
+      "en": { "question": "In “Yo soy Betty, la fea”, what is the name of the fashion company where Betty works?",
+              "options": ["Ecomoda", "Modas Élite", "Casa Mendoza", "Nueva Moda"],
+              "explanation": "Betty works at Ecomoda, where she is the secretary of Armando Mendoza, the company's president." }
+    },
+    {
+      "id": "entertainment-0052", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué actor interpretó a Vito Corleone en «El padrino» (1972)?",
+              "options": ["Marlon Brando", "Al Pacino", "James Caan", "Robert Duvall"],
+              "explanation": "Marlon Brando interpretó a Vito Corleone, el patriarca de la familia. Al Pacino fue su hijo Michael." },
+      "en": { "question": "Which actor played Vito Corleone in “The Godfather” (1972)?",
+              "options": ["Marlon Brando", "Al Pacino", "James Caan", "Robert Duvall"],
+              "explanation": "Marlon Brando played Vito Corleone, the family patriarch. Al Pacino played his son Michael." }
+    },
+    {
+      "id": "entertainment-0053", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué álbum de 1982 incluye los éxitos «Billie Jean» y «Beat It»?",
+              "options": ["Thriller", "Bad", "Dangerous", "Off the Wall"],
+              "explanation": "Ambas canciones son de «Thriller», el álbum de Michael Jackson de 1982. «Off the Wall» es de 1979, «Bad» de 1987 y «Dangerous» de 1991." },
+      "en": { "question": "Which 1982 album includes the hits “Billie Jean” and “Beat It”?",
+              "options": ["Thriller", "Bad", "Dangerous", "Off the Wall"],
+              "explanation": "Both songs are on “Thriller”, Michael Jackson's 1982 album. “Off the Wall” came out in 1979, “Bad” in 1987 and “Dangerous” in 1991." }
+    },
+    {
+      "id": "entertainment-0054", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cómo se llama la cafetería donde se reúnen los amigos de la serie «Friends»?",
+              "options": ["Central Perk", "Monk's Café", "Café Nervosa", "MacLaren's Pub"],
+              "explanation": "Central Perk es el café de Nueva York donde se juntan Rachel, Monica, Phoebe, Joey, Chandler y Ross." },
+      "en": { "question": "What is the name of the coffee shop where the friends hang out in the series “Friends”?",
+              "options": ["Central Perk", "Monk's Café", "Café Nervosa", "MacLaren's Pub"],
+              "explanation": "Central Perk is the New York coffee shop where Rachel, Monica, Phoebe, Joey, Chandler and Ross meet." }
+    },
+    {
+      "id": "entertainment-0055", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué película de habla no inglesa ganó por primera vez el Óscar a Mejor Película, en la ceremonia de 2020?",
+              "options": ["Parásitos", "Roma", "Amour", "Cartas desde Iwo Jima"],
+              "explanation": "«Parásitos», del surcoreano Bong Joon-ho, fue la primera película de habla no inglesa en ganar Mejor Película. «Roma» y «Amour» solo fueron nominadas." },
+      "en": { "question": "Which non-English-language movie became the first to win the Oscar for Best Picture, at the 2020 ceremony?",
+              "options": ["Parasite", "Roma", "Amour", "Letters from Iwo Jima"],
+              "explanation": "“Parasite”, by South Korean director Bong Joon-ho, was the first non-English-language film to win Best Picture. “Roma” and “Amour” were only nominated." }
+    },
+    {
+      "id": "entertainment-0056", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué tema de Shakira fue la canción oficial del Mundial de Sudáfrica 2010?",
+              "options": ["Waka Waka", "Hips Don't Lie", "La tortura", "Loca"],
+              "explanation": "«Waka Waka (This Time for Africa)» se estrenó en 2010 y Shakira la cantó en la ceremonia de clausura del Mundial." },
+      "en": { "question": "Which Shakira song was the official song of the 2010 World Cup in South Africa?",
+              "options": ["Waka Waka", "Hips Don't Lie", "La tortura", "Loca"],
+              "explanation": "“Waka Waka (This Time for Africa)” came out in 2010, and Shakira performed it at the World Cup closing ceremony." }
+    },
+    {
+      "id": "entertainment-0057", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cómo se llama la nave que comanda el capitán Kirk en la serie original «Star Trek»?",
+              "options": ["USS Enterprise", "USS Voyager", "USS Reliant", "USS Excelsior"],
+              "explanation": "El capitán James T. Kirk comanda la nave estelar Enterprise, con Spock y el doctor McCoy a bordo." },
+      "en": { "question": "What is the name of the starship Captain Kirk commands in the original “Star Trek” series?",
+              "options": ["USS Enterprise", "USS Voyager", "USS Reliant", "USS Excelsior"],
+              "explanation": "Captain James T. Kirk commands the starship Enterprise, with Spock and Dr. McCoy on board." }
+    },
+    {
+      "id": "entertainment-0058", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cómo se llama el máximo premio del Festival de Cine de Cannes?",
+              "options": ["Palma de Oro", "León de Oro", "Oso de Oro", "Concha de Oro"],
+              "explanation": "La Palma de Oro es el premio principal de Cannes. El León de Oro es de Venecia, el Oso de Oro de Berlín y la Concha de Oro de San Sebastián." },
+      "en": { "question": "What is the top prize of the Cannes Film Festival called?",
+              "options": ["Palme d'Or", "Golden Lion", "Golden Bear", "Golden Shell"],
+              "explanation": "The Palme d'Or is Cannes' top prize. The Golden Lion belongs to Venice, the Golden Bear to Berlin and the Golden Shell to San Sebastián." }
+    },
+    {
+      "id": "entertainment-0059", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué cantautor colombiano lanzó en 2002 la canción «A Dios le pido»?",
+              "options": ["Juanes", "Carlos Vives", "Fonseca", "Maluma"],
+              "explanation": "Juanes, nacido en Carolina del Príncipe, Antioquia, la incluyó en su álbum «Un día normal», de 2002." },
+      "en": { "question": "Which Colombian singer-songwriter released the song “A Dios le pido” in 2002?",
+              "options": ["Juanes", "Carlos Vives", "Fonseca", "Maluma"],
+              "explanation": "Juanes, born in Carolina del Príncipe, Antioquia, included it on his album “Un día normal”, from 2002." }
+    },
+    {
+      "id": "entertainment-0060", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿De qué telenovela mexicana nació el grupo pop RBD?",
+              "options": ["Rebelde", "Floricienta", "Patito feo", "Violetta"],
+              "explanation": "RBD se formó para la telenovela «Rebelde» (2004), y sus integrantes eran también sus protagonistas." },
+      "en": { "question": "Which Mexican telenovela gave rise to the pop group RBD?",
+              "options": ["Rebelde", "Floricienta", "Patito Feo", "Violetta"],
+              "explanation": "RBD was formed for the telenovela “Rebelde” (2004), and its members were also its stars." }
+    },
+    {
+      "id": "entertainment-0061", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué actriz interpretó a Dorothy en «El mago de Oz» (1939)?",
+              "options": ["Judy Garland", "Shirley Temple", "Deanna Durbin", "Ginger Rogers"],
+              "explanation": "Judy Garland fue Dorothy y cantó «Over the Rainbow», que ganó el Óscar a Mejor Canción Original." },
+      "en": { "question": "Which actress played Dorothy in “The Wizard of Oz” (1939)?",
+              "options": ["Judy Garland", "Shirley Temple", "Deanna Durbin", "Ginger Rogers"],
+              "explanation": "Judy Garland played Dorothy and sang “Over the Rainbow”, which won the Oscar for Best Original Song." }
+    },
+    {
+      "id": "entertainment-0062", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué álbum de Taylor Swift tiene como título su año de nacimiento?",
+              "options": ["1989", "Red", "Fearless", "Reputation"],
+              "explanation": "Taylor Swift nació en 1989 y le puso ese año a su álbum de 2014." },
+      "en": { "question": "Which Taylor Swift album is titled after the year she was born?",
+              "options": ["1989", "Red", "Fearless", "Reputation"],
+              "explanation": "Taylor Swift was born in 1989 and gave that year to her 2014 album." }
+    },
+    {
+      "id": "entertainment-0063", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Quién creó la serie animada «Los Simpson»?",
+              "options": ["Matt Groening", "Seth MacFarlane", "Trey Parker", "Mike Judge"],
+              "explanation": "Matt Groening creó a la familia Simpson, que debutó como serie propia en 1989." },
+      "en": { "question": "Who created the animated series “The Simpsons”?",
+              "options": ["Matt Groening", "Seth MacFarlane", "Trey Parker", "Mike Judge"],
+              "explanation": "Matt Groening created the Simpson family, which debuted as a series of its own in 1989." }
+    },
+    {
+      "id": "entertainment-0064", "difficulty": 2, "type": "truefalse", "answer": true,
+      "es": { "question": "Los hermanos Lumière ofrecieron en París, en 1895, una de las primeras proyecciones públicas de cine.",
+              "explanation": "El 28 de diciembre de 1895 proyectaron sus películas en el Grand Café de París ante un público que pagó su entrada." },
+      "en": { "question": "The Lumière brothers gave one of the first public film screenings in Paris in 1895.",
+              "explanation": "On 28 December 1895 they screened their films at the Grand Café in Paris for an audience that paid for admission." }
+    },
+    {
+      "id": "entertainment-0065", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿En qué ciudad murió el cantante de tango Carlos Gardel, en 1935?",
+              "options": ["Medellín", "Buenos Aires", "Montevideo", "Bogotá"],
+              "explanation": "Gardel murió el 24 de junio de 1935 en un accidente de aviación en el aeropuerto Olaya Herrera, de Medellín." },
+      "en": { "question": "In which city did the tango singer Carlos Gardel die, in 1935?",
+              "options": ["Medellín", "Buenos Aires", "Montevideo", "Bogotá"],
+              "explanation": "Gardel died on 24 June 1935 in a plane crash at Olaya Herrera airport in Medellín, Colombia." }
+    },
+    {
+      "id": "entertainment-0066", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué personaje de Looney Tunes cierra los dibujos diciendo «¡Eso es todo, amigos!»?",
+              "options": ["Porky", "Bugs Bunny", "Pato Lucas", "Silvestre"],
+              "explanation": "El cerdo Porky se despide con «¡Eso es todo, amigos!» al final de los dibujos de Looney Tunes." },
+      "en": { "question": "Which Looney Tunes character closes the cartoons by saying “That's all, folks!”?",
+              "options": ["Porky Pig", "Bugs Bunny", "Daffy Duck", "Sylvester"],
+              "explanation": "Porky Pig signs off with “That's all, folks!” at the end of the Looney Tunes cartoons." }
+    },
+    {
+      "id": "entertainment-0067", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cuál fue el primer largometraje realizado totalmente con animación por computadora, estrenado en 1995?",
+              "options": ["Toy Story", "Bichos", "Shrek", "Buscando a Nemo"],
+              "explanation": "«Toy Story», de Pixar y Disney, fue el primer largometraje animado totalmente por computadora." },
+      "en": { "question": "What was the first feature film made entirely with computer animation, released in 1995?",
+              "options": ["Toy Story", "A Bug's Life", "Shrek", "Finding Nemo"],
+              "explanation": "“Toy Story”, by Pixar and Disney, was the first feature-length film animated entirely by computer." }
+    },
+    {
+      "id": "entertainment-0068", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué músico recibió el Premio Nobel de Literatura en 2016?",
+              "options": ["Bob Dylan", "Leonard Cohen", "Paul Simon", "Bruce Springsteen"],
+              "explanation": "Bob Dylan lo recibió «por haber creado nuevas expresiones poéticas dentro de la gran tradición de la canción estadounidense»." },
+      "en": { "question": "Which musician won the Nobel Prize in Literature in 2016?",
+              "options": ["Bob Dylan", "Leonard Cohen", "Paul Simon", "Bruce Springsteen"],
+              "explanation": "Bob Dylan won it “for having created new poetic expressions within the great American song tradition”." }
+    },
+    {
+      "id": "entertainment-0069", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cómo se llama el pueblo de Indiana donde transcurre la serie «Stranger Things»?",
+              "options": ["Hawkins", "Derry", "Castle Rock", "Twin Peaks"],
+              "explanation": "Hawkins es un pueblo ficticio de Indiana, escenario de «Stranger Things», ambientada en los años ochenta." },
+      "en": { "question": "What is the name of the Indiana town where the series “Stranger Things” takes place?",
+              "options": ["Hawkins", "Derry", "Castle Rock", "Twin Peaks"],
+              "explanation": "Hawkins is a fictional town in Indiana, the setting of “Stranger Things”, which is set in the 1980s." }
+    },
+    {
+      "id": "entertainment-0070", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué actor interpretó por primera vez a James Bond en el cine, en «Dr. No» (1962)?",
+              "options": ["Sean Connery", "Roger Moore", "Pierce Brosnan", "Daniel Craig"],
+              "explanation": "Sean Connery fue el primer James Bond del cine. Roger Moore, Pierce Brosnan y Daniel Craig lo interpretaron después." },
+      "en": { "question": "Which actor first played James Bond on the big screen, in “Dr. No” (1962)?",
+              "options": ["Sean Connery", "Roger Moore", "Pierce Brosnan", "Daniel Craig"],
+              "explanation": "Sean Connery was the first big-screen James Bond. Roger Moore, Pierce Brosnan and Daniel Craig played him later." }
+    },
+    {
+      "id": "entertainment-0071", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué cantante lanzó «Gasolina» en 2004, un éxito clave del reguetón?",
+              "options": ["Daddy Yankee", "Don Omar", "Tito El Bambino", "Tego Calderón"],
+              "explanation": "Daddy Yankee lanzó «Gasolina» en 2004; la canción ayudó a difundir el reguetón fuera de Latinoamérica." },
+      "en": { "question": "Which singer released “Gasolina” in 2004, a key hit of reggaeton?",
+              "options": ["Daddy Yankee", "Don Omar", "Tito El Bambino", "Tego Calderón"],
+              "explanation": "Daddy Yankee released “Gasolina” in 2004; the song helped spread reggaeton beyond Latin America." }
+    },
+    {
+      "id": "entertainment-0072", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Quién creó el manga «Dragon Ball», que inspiró la serie animada de Goku?",
+              "options": ["Akira Toriyama", "Hayao Miyazaki", "Osamu Tezuka", "Masashi Kishimoto"],
+              "explanation": "Akira Toriyama creó «Dragon Ball» en 1984. La serie de Goku es muy querida en América Latina." },
+      "en": { "question": "Who created the manga “Dragon Ball”, which inspired the animated series about Goku?",
+              "options": ["Akira Toriyama", "Hayao Miyazaki", "Osamu Tezuka", "Masashi Kishimoto"],
+              "explanation": "Akira Toriyama created “Dragon Ball” in 1984. The Goku series is very popular in Latin America." }
+    },
+    {
+      "id": "entertainment-0073", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Quién dirigió «El laberinto del fauno» (2006)?",
+              "options": ["Guillermo del Toro", "Alfonso Cuarón", "Pedro Almodóvar", "Alejandro Amenábar"],
+              "explanation": "Guillermo del Toro dirigió esta fantasía ambientada en la España de 1944, y la película ganó tres Óscar." },
+      "en": { "question": "Who directed “Pan's Labyrinth” (2006)?",
+              "options": ["Guillermo del Toro", "Alfonso Cuarón", "Pedro Almodóvar", "Alejandro Amenábar"],
+              "explanation": "Guillermo del Toro directed this fantasy set in Spain in 1944, and the film won three Oscars." }
+    },
+    {
+      "id": "entertainment-0074", "difficulty": 2, "type": "truefalse", "answer": true,
+      "es": { "question": "El tango nació a fines del siglo XIX en la región del Río de la Plata, entre Argentina y Uruguay.",
+              "explanation": "Surgió en los barrios de Buenos Aires y Montevideo. La UNESCO lo declaró Patrimonio Cultural Inmaterial de la Humanidad en 2009." },
+      "en": { "question": "Tango was born in the late 19th century in the Río de la Plata region, between Argentina and Uruguay.",
+              "explanation": "It emerged in the neighborhoods of Buenos Aires and Montevideo. UNESCO listed it as Intangible Cultural Heritage of Humanity in 2009." }
+    },
+    {
+      "id": "entertainment-0075", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Quién presentó durante décadas el programa de variedades «Sábado Gigante»?",
+              "options": ["Don Francisco", "Raúl de Molina", "Jorge Ramos", "Cristián de la Fuente"],
+              "explanation": "El chileno Mario Kreutzberger, conocido como Don Francisco, condujo «Sábado Gigante», que salió al aire desde 1962." },
+      "en": { "question": "Who hosted the variety show “Sábado Gigante” for decades?",
+              "options": ["Don Francisco", "Raúl de Molina", "Jorge Ramos", "Cristián de la Fuente"],
+              "explanation": "Chilean host Mario Kreutzberger, known as Don Francisco, hosted “Sábado Gigante”, which went on the air in 1962." }
+    },
+    {
+      "id": "entertainment-0076", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Quién dirigió la trilogía cinematográfica de «El señor de los anillos» (2001-2003)?",
+              "options": ["Peter Jackson", "Sam Raimi", "Chris Columbus", "Ron Howard"],
+              "explanation": "El neozelandés Peter Jackson dirigió las tres películas, basadas en las novelas de J. R. R. Tolkien." },
+      "en": { "question": "Who directed “The Lord of the Rings” movie trilogy (2001-2003)?",
+              "options": ["Peter Jackson", "Sam Raimi", "Chris Columbus", "Ron Howard"],
+              "explanation": "New Zealander Peter Jackson directed all three films, based on J. R. R. Tolkien's novels." }
+    },
+    {
+      "id": "entertainment-0077", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Quién fue el cantante principal de la banda argentina Soda Stereo?",
+              "options": ["Gustavo Cerati", "Charly García", "Fito Páez", "Andrés Calamaro"],
+              "explanation": "Gustavo Cerati cantaba y tocaba la guitarra en Soda Stereo, banda formada en Buenos Aires en 1982." },
+      "en": { "question": "Who was the lead singer of the Argentine band Soda Stereo?",
+              "options": ["Gustavo Cerati", "Charly García", "Fito Páez", "Andrés Calamaro"],
+              "explanation": "Gustavo Cerati sang and played guitar in Soda Stereo, a band formed in Buenos Aires in 1982." }
+    },
+    {
+      "id": "entertainment-0078", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué película de Hayao Miyazaki ganó el Óscar a Mejor Película de Animación en la ceremonia de 2003?",
+              "options": ["El viaje de Chihiro", "Mi vecino Totoro", "La princesa Mononoke", "El castillo ambulante"],
+              "explanation": "«El viaje de Chihiro» (2001), del Studio Ghibli, ganó ese premio en la ceremonia de 2003." },
+      "en": { "question": "Which Hayao Miyazaki film won the Oscar for Best Animated Feature at the 2003 ceremony?",
+              "options": ["Spirited Away", "My Neighbor Totoro", "Princess Mononoke", "Howl's Moving Castle"],
+              "explanation": "“Spirited Away” (2001), from Studio Ghibli, won that award at the 2003 ceremony." }
+    },
+    {
+      "id": "entertainment-0079", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿De qué canción es el verso «con dinero y sin dinero hago siempre lo que quiero»?",
+              "options": ["El rey", "Volver, volver", "Amor eterno", "Cucurrucucú paloma"],
+              "explanation": "«El rey» es una canción ranchera escrita por el mexicano José Alfredo Jiménez." },
+      "en": { "question": "Which song contains the line “con dinero y sin dinero hago siempre lo que quiero”?",
+              "options": ["El rey", "Volver, volver", "Amor eterno", "Cucurrucucú paloma"],
+              "explanation": "“El rey” is a ranchera song written by the Mexican composer José Alfredo Jiménez." }
+    },
+    {
+      "id": "entertainment-0080", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Por qué película ganó Leonardo DiCaprio el Óscar a Mejor Actor en la ceremonia de 2016?",
+              "options": ["El renacido", "El lobo de Wall Street", "El aviador", "Diamante de sangre"],
+              "explanation": "Ganó por «El renacido» (2015), en la que interpreta a un cazador de pieles. Las otras tres películas le valieron nominaciones." },
+      "en": { "question": "For which movie did Leonardo DiCaprio win the Oscar for Best Actor at the 2016 ceremony?",
+              "options": ["The Revenant", "The Wolf of Wall Street", "The Aviator", "Blood Diamond"],
+              "explanation": "He won for “The Revenant” (2015), playing a fur trapper. The other three films earned him nominations." }
+    },
+    {
+      "id": "entertainment-0081", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿En qué ciudad colombiana se celebra el Festival de la Leyenda Vallenata?",
+              "options": ["Valledupar", "Barranquilla", "Santa Marta", "Montería"],
+              "explanation": "Se celebra desde 1968 en Valledupar, capital del Cesar, y reúne a acordeoneros y cantantes de vallenato." },
+      "en": { "question": "In which Colombian city is the Vallenato Legend Festival held?",
+              "options": ["Valledupar", "Barranquilla", "Santa Marta", "Montería"],
+              "explanation": "It has been held since 1968 in Valledupar, the capital of Cesar, and gathers vallenato accordionists and singers." }
+    },
+    {
+      "id": "entertainment-0082", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Quién dirigió y protagonizó «Tiempos modernos» (1936), con su personaje de Charlot?",
+              "options": ["Charles Chaplin", "Buster Keaton", "Harold Lloyd", "Stan Laurel"],
+              "explanation": "Charles Chaplin dirigió, escribió y protagonizó la película, que critica el trabajo en las fábricas. Charlot es su personaje más conocido." },
+      "en": { "question": "Who directed and starred in “Modern Times” (1936), as his character the Tramp?",
+              "options": ["Charles Chaplin", "Buster Keaton", "Harold Lloyd", "Stan Laurel"],
+              "explanation": "Charles Chaplin directed, wrote and starred in the film, which criticizes factory work. The Tramp is his best-known character." }
+    },
+    {
+      "id": "entertainment-0083", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué película ganó el Óscar a Mejor Película en la ceremonia de 2024?",
+              "options": ["Oppenheimer", "Barbie", "Pobres criaturas", "Anatomía de una caída"],
+              "explanation": "«Oppenheimer» ganó siete Óscar, entre ellos Mejor Película y Mejor Director para Christopher Nolan." },
+      "en": { "question": "Which movie won the Oscar for Best Picture at the 2024 ceremony?",
+              "options": ["Oppenheimer", "Barbie", "Poor Things", "Anatomy of a Fall"],
+              "explanation": "“Oppenheimer” won seven Oscars, including Best Picture and Best Director for Christopher Nolan." }
+    },
+    {
+      "id": "entertainment-0084", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Qué actriz interpretó a Scarlett O'Hara en «Lo que el viento se llevó» (1939)?",
+              "options": ["Vivien Leigh", "Ingrid Bergman", "Bette Davis", "Katharine Hepburn"],
+              "explanation": "Vivien Leigh fue Scarlett O'Hara y ganó el Óscar a Mejor Actriz por ese papel. Clark Gable interpretó a Rhett Butler." },
+      "en": { "question": "Which actress played Scarlett O'Hara in “Gone with the Wind” (1939)?",
+              "options": ["Vivien Leigh", "Ingrid Bergman", "Bette Davis", "Katharine Hepburn"],
+              "explanation": "Vivien Leigh played Scarlett O'Hara and won the Oscar for Best Actress for the role. Clark Gable played Rhett Butler." }
+    },
+    {
+      "id": "entertainment-0085", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿De qué álbum de 1975 de Queen forma parte «Bohemian Rhapsody»?",
+              "options": ["A Night at the Opera", "A Day at the Races", "News of the World", "Sheer Heart Attack"],
+              "explanation": "«Bohemian Rhapsody» está en «A Night at the Opera» (1975). «A Day at the Races» salió en 1976 y «News of the World», en 1977." },
+      "en": { "question": "Which 1975 Queen album includes “Bohemian Rhapsody”?",
+              "options": ["A Night at the Opera", "A Day at the Races", "News of the World", "Sheer Heart Attack"],
+              "explanation": "“Bohemian Rhapsody” is on “A Night at the Opera” (1975). “A Day at the Races” came out in 1976 and “News of the World” in 1977." }
+    },
+    {
+      "id": "entertainment-0086", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Qué película de 1927 se considera el primer largometraje con diálogos y canciones sincronizados?",
+              "options": ["El cantante de jazz", "Metrópolis", "Luces de la ciudad", "El gabinete del doctor Caligari"],
+              "explanation": "«El cantante de jazz», de Warner Bros., tenía partes habladas y cantadas sincronizadas y marcó el paso del cine mudo al sonoro." },
+      "en": { "question": "Which 1927 movie is considered the first feature film with synchronized dialogue and songs?",
+              "options": ["The Jazz Singer", "Metropolis", "City Lights", "The Cabinet of Dr. Caligari"],
+              "explanation": "“The Jazz Singer”, from Warner Bros., had synchronized spoken and sung passages and marked the shift from silent films to talkies." }
+    },
+    {
+      "id": "entertainment-0087", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Con qué canción ganó ABBA el Festival de Eurovisión de 1974?",
+              "options": ["Waterloo", "Dancing Queen", "Mamma Mia", "Fernando"],
+              "explanation": "ABBA, de Suecia, ganó Eurovisión con «Waterloo» en Brighton, Reino Unido, y el grupo se dio a conocer en todo el mundo." },
+      "en": { "question": "With which song did ABBA win the Eurovision Song Contest in 1974?",
+              "options": ["Waterloo", "Dancing Queen", "Mamma Mia", "Fernando"],
+              "explanation": "ABBA, from Sweden, won Eurovision with “Waterloo” in Brighton, United Kingdom, and the group became known worldwide." }
+    },
+    {
+      "id": "entertainment-0088", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Qué telenovela de 1994 tiene como protagonista a Gaviota, una joven recolectora de café?",
+              "options": ["Café con aroma de mujer", "Los ricos también lloran", "Marimar", "La usurpadora"],
+              "explanation": "«Café con aroma de mujer» es una telenovela colombiana de RCN, protagonizada por Margarita Rosa de Francisco y Guy Ecker." },
+      "en": { "question": "Which 1994 telenovela stars Gaviota, a young coffee picker?",
+              "options": ["Café con aroma de mujer", "Los ricos también lloran", "Marimar", "La usurpadora"],
+              "explanation": "“Café con aroma de mujer” is a Colombian telenovela from RCN, starring Margarita Rosa de Francisco and Guy Ecker." }
+    },
+    {
+      "id": "entertainment-0089", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Quién dirigió y protagonizó «Ciudadano Kane» (1941)?",
+              "options": ["Orson Welles", "John Ford", "Frank Capra", "Howard Hawks"],
+              "explanation": "Orson Welles dirigió, coescribió y protagonizó «Ciudadano Kane», a menudo citada entre las mejores películas de la historia." },
+      "en": { "question": "Who directed and starred in “Citizen Kane” (1941)?",
+              "options": ["Orson Welles", "John Ford", "Frank Capra", "Howard Hawks"],
+              "explanation": "Orson Welles directed, co-wrote and starred in “Citizen Kane”, often cited among the best films ever made." }
+    },
+    {
+      "id": "entertainment-0090", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Qué videoclip fue el primero que emitió MTV, cuando el canal comenzó a transmitir en 1981?",
+              "options": ["Video Killed the Radio Star", "Take On Me", "Like a Virgin", "Girls Just Want to Have Fun"],
+              "explanation": "«Video Killed the Radio Star», de The Buggles, abrió la programación de MTV el 1 de agosto de 1981." },
+      "en": { "question": "Which music video was the first one aired by MTV when the channel launched in 1981?",
+              "options": ["Video Killed the Radio Star", "Take On Me", "Like a Virgin", "Girls Just Want to Have Fun"],
+              "explanation": "“Video Killed the Radio Star”, by The Buggles, opened MTV's programming on 1 August 1981." }
+    },
+    {
+      "id": "entertainment-0091", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Qué película de Pedro Almodóvar ganó el Óscar a Mejor Película Extranjera en la ceremonia de 2000?",
+              "options": ["Todo sobre mi madre", "Hable con ella", "Volver", "Julieta"],
+              "explanation": "«Todo sobre mi madre» (1999) ganó el Óscar a Mejor Película Extranjera. «Hable con ella» ganó años después el de Mejor Guion Original." },
+      "en": { "question": "Which Pedro Almodóvar film won the Oscar for Best Foreign Language Film at the 2000 ceremony?",
+              "options": ["All About My Mother", "Talk to Her", "Volver", "Julieta"],
+              "explanation": "“All About My Mother” (1999) won the Oscar for Best Foreign Language Film. “Talk to Her” later won Best Original Screenplay." }
+    },
+    {
+      "id": "entertainment-0092", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿En qué año se celebró el concierto benéfico Live Aid, en Londres y Filadelfia?",
+              "options": ["1985", "1983", "1987", "1989"],
+              "explanation": "Se celebró el 13 de julio de 1985 y reunió fondos para combatir la hambruna en Etiopía." },
+      "en": { "question": "In what year was the Live Aid benefit concert held, in London and Philadelphia?",
+              "options": ["1985", "1983", "1987", "1989"],
+              "explanation": "It took place on 13 July 1985 and raised funds to fight the famine in Ethiopia." }
+    },
+    {
+      "id": "entertainment-0093", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Quién fue la primera mujer en ganar el Óscar a Mejor Director, en la ceremonia de 2010?",
+              "options": ["Kathryn Bigelow", "Jane Campion", "Sofia Coppola", "Greta Gerwig"],
+              "explanation": "Kathryn Bigelow lo ganó por «The Hurt Locker», sobre un equipo de desactivación de bombas en Irak." },
+      "en": { "question": "Who became the first woman to win the Oscar for Best Director, at the 2010 ceremony?",
+              "options": ["Kathryn Bigelow", "Jane Campion", "Sofia Coppola", "Greta Gerwig"],
+              "explanation": "Kathryn Bigelow won for “The Hurt Locker”, about a bomb disposal team in Iraq." }
+    },
+    {
+      "id": "entertainment-0094", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Qué cantante colombiano renovó el vallenato con sonidos de rock y pop en su álbum «Clásicos de la provincia» (1993)?",
+              "options": ["Carlos Vives", "Juanes", "Silvestre Dangond", "Fonseca"],
+              "explanation": "Carlos Vives, nacido en Santa Marta, combinó el vallenato con ritmos modernos y llevó el género a un público más amplio." },
+      "en": { "question": "Which Colombian singer renewed vallenato with rock and pop sounds on his album “Clásicos de la provincia” (1993)?",
+              "options": ["Carlos Vives", "Juanes", "Silvestre Dangond", "Fonseca"],
+              "explanation": "Carlos Vives, born in Santa Marta, blended vallenato with modern rhythms and brought the genre to a wider audience." }
+    },
+    {
+      "id": "entertainment-0095", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Qué película animada de Disney fue la primera nominada al Óscar a Mejor Película, en 1992?",
+              "options": ["La Bella y la Bestia", "La bella durmiente", "El rey león", "Aladdín"],
+              "explanation": "«La Bella y la Bestia» (1991) fue la primera animada nominada a Mejor Película. No ganó, pero sí los Óscar a Mejor Banda Sonora y Mejor Canción." },
+      "en": { "question": "Which Disney animated film was the first nominated for the Oscar for Best Picture, in 1992?",
+              "options": ["Beauty and the Beast", "Sleeping Beauty", "The Lion King", "Aladdin"],
+              "explanation": "“Beauty and the Beast” (1991) was the first animated film nominated for Best Picture. It did not win, but it took the Oscars for Best Score and Best Song." }
+    },
+    {
+      "id": "entertainment-0096", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Quién compuso «Pedro Navaja», salsa del álbum «Siembra» (1978)?",
+              "options": ["Rubén Blades", "Héctor Lavoe", "Ismael Rivera", "Joe Arroyo"],
+              "explanation": "Rubén Blades escribió y cantó «Pedro Navaja», la historia de un matón de barrio, con la orquesta de Willie Colón." },
+      "en": { "question": "Who composed “Pedro Navaja”, a salsa song from the album “Siembra” (1978)?",
+              "options": ["Rubén Blades", "Héctor Lavoe", "Ismael Rivera", "Joe Arroyo"],
+              "explanation": "Rubén Blades wrote and sang “Pedro Navaja”, the story of a neighborhood thug, with Willie Colón's orchestra." }
+    },
+    {
+      "id": "entertainment-0097", "difficulty": 3, "type": "truefalse", "answer": false,
+      "es": { "question": "Las ocho películas de «Harry Potter» fueron dirigidas por una sola persona.",
+              "explanation": "Fueron cuatro directores distintos; David Yates dirigió las últimas cuatro películas." },
+      "en": { "question": "All eight “Harry Potter” movies were directed by the same person.",
+              "explanation": "There were four different directors; David Yates directed the last four films." }
+    },
+    {
+      "id": "entertainment-0098", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Qué compositor argentino creó el «nuevo tango» con obras como «Libertango»?",
+              "options": ["Astor Piazzolla", "Carlos Gardel", "Aníbal Troilo", "Osvaldo Pugliese"],
+              "explanation": "Astor Piazzolla (1921-1992) mezcló el tango con el jazz y la música clásica. «Libertango» es de 1974." },
+      "en": { "question": "Which Argentine composer created “nuevo tango” with works such as “Libertango”?",
+              "options": ["Astor Piazzolla", "Carlos Gardel", "Aníbal Troilo", "Osvaldo Pugliese"],
+              "explanation": "Astor Piazzolla (1921-1992) blended tango with jazz and classical music. “Libertango” dates from 1974." }
+    },
+    {
+      "id": "entertainment-0099", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Qué película muda y en blanco y negro ganó el Óscar a Mejor Película en la ceremonia de 2012?",
+              "options": ["El artista", "La invención de Hugo", "Medianoche en París", "Caballo de guerra"],
+              "explanation": "«El artista», del francés Michel Hazanavicius, evoca el Hollywood de fines de los años veinte, cuando el cine mudo daba paso al sonoro." },
+      "en": { "question": "Which silent black-and-white movie won the Oscar for Best Picture at the 2012 ceremony?",
+              "options": ["The Artist", "Hugo", "Midnight in Paris", "War Horse"],
+              "explanation": "“The Artist”, by French director Michel Hazanavicius, evokes late-1920s Hollywood, when silent film gave way to sound." }
+    },
+    {
+      "id": "entertainment-0100", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Quién compuso «Gracias a la vida» (1966), canción que luego popularizó Mercedes Sosa?",
+              "options": ["Violeta Parra", "Chavela Vargas", "Soledad Bravo", "Atahualpa Yupanqui"],
+              "explanation": "La chilena Violeta Parra la compuso en 1966 y la incluyó en su álbum «Las últimas composiciones». Mercedes Sosa la grabó después." },
+      "en": { "question": "Who composed “Gracias a la vida” (1966), the song later popularized by Mercedes Sosa?",
+              "options": ["Violeta Parra", "Chavela Vargas", "Soledad Bravo", "Atahualpa Yupanqui"],
+              "explanation": "Chilean artist Violeta Parra composed it in 1966 and included it on her album “Las últimas composiciones”. Mercedes Sosa recorded it later." }
     }
   ]
 }
