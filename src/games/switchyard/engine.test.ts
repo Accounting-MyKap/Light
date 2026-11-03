@@ -26,14 +26,21 @@ function routeTo(state: SwitchyardState, stationId: number): SwitchyardState {
   return s;
 }
 
-/** A perfect player: every switch points the way the first train that still has to cross it needs. */
+/**
+ * A perfect player: every switch points the way the first train that still has to cross it needs. A train whose
+ * front is within SWITCH_GRACE past a switch still has to cross it: flipping it then would send that train the other
+ * way.
+ */
 function steer(state: SwitchyardState): SwitchyardState {
   let s = state;
   const claimed = new Set<number>();
   for (const train of [...s.trains].sort((x, y) => x.id - y.id)) {
     if (train.arrived) continue;
+    const current = train.route[train.route.length - 1];
     for (const [sw, option] of s.map.stations[train.station].route) {
-      const crossed = s.map.switches[sw].exits.some((exit) => train.route.includes(exit));
+      const { exits } = s.map.switches[sw];
+      const overIt = exits.includes(current) && train.distance <= SWITCH_GRACE;
+      const crossed = !overIt && exits.some((exit) => train.route.includes(exit));
       if (crossed || claimed.has(sw)) continue;
       claimed.add(sw);
       if (s.switches[sw] !== option) s = toggleSwitch(s, sw);
@@ -159,6 +166,22 @@ describe('arrivals', () => {
     let s = run(createSwitchyardGame(7, rng, 0), FIRST_TRAIN_MS, rng).state;
     s = routeTo(s, s.trains[0].station);
     expect(untilArrival(s, rng).arrival.points).toBe(arrivalPoints(7));
+  });
+
+  test('a perfect player sends every train home, on every map', () => {
+    for (const level of [1, 3, 5, 7, 9, 10]) {
+      const rng = createRng(300 + level);
+      let s = createSwitchyardGame(level, rng, 0);
+      const arrivals: Arrival[] = [];
+      while (s.now < 60_000) {
+        s = steer(s);
+        const res = advanceSwitchyard(s, s.now + 16, rng);
+        s = res.state;
+        arrivals.push(...res.arrivals);
+      }
+      expect(arrivals.length).toBeGreaterThan(10);
+      expect(arrivals.filter((a) => !a.correct), `level ${level}`).toEqual([]);
+    }
   });
 
   test('four trains home in a row move the level up', () => {
