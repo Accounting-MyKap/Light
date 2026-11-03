@@ -414,6 +414,326 @@
       "en": { "question": "In which sport did Brazil's Ayrton Senna win three world titles, in 1988, 1990 and 1991?",
               "options": ["Formula 1", "Rally", "Motorcycle racing", "Karting"],
               "explanation": "Senna won the Formula 1 world championship in 1988, 1990 and 1991. He died in a crash at Imola in 1994." }
+    },
+    {
+      "id": "sports-0049", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Contra qué selección marcó Maradona el gol de la «Mano de Dios» en el Mundial de 1986?",
+              "options": ["Inglaterra", "Alemania Occidental", "Bélgica", "Italia"],
+              "explanation": "Fue en los cuartos de final, el 22 de junio de 1986: Argentina ganó 2-1 con la «Mano de Dios» y el «gol del siglo» de Maradona." },
+      "en": { "question": "Against which team did Maradona score the “Hand of God” goal at the 1986 World Cup?",
+              "options": ["England", "West Germany", "Belgium", "Italy"],
+              "explanation": "It came in the quarterfinal on 22 June 1986: Argentina won 2-1 with the “Hand of God” and Maradona's “Goal of the Century”." }
+    },
+    {
+      "id": "sports-0050", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué estadio de Río de Janeiro se construyó para el Mundial de fútbol de 1950?",
+              "options": ["Maracaná", "Morumbi", "Mineirão", "Pacaembu"],
+              "explanation": "El Maracaná se inauguró en 1950. Allí Uruguay venció 2-1 a Brasil en el partido decisivo del torneo, el «Maracanazo»." },
+      "en": { "question": "Which stadium in Rio de Janeiro was built for the 1950 World Cup?",
+              "options": ["Maracanã", "Morumbi", "Mineirão", "Pacaembu"],
+              "explanation": "The Maracanã opened in 1950. There Uruguay beat Brazil 2-1 in the deciding match of the tournament, the “Maracanazo”." }
+    },
+    {
+      "id": "sports-0051", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué selección ganó el Mundial de 1966, jugado en su propio país?",
+              "options": ["Inglaterra", "Alemania Occidental", "Portugal", "Brasil"],
+              "explanation": "Inglaterra venció 4-2 a Alemania Occidental en la prórroga de la final, jugada en el estadio de Wembley." },
+      "en": { "question": "Which national team won the 1966 World Cup, played on its home soil?",
+              "options": ["England", "West Germany", "Portugal", "Brazil"],
+              "explanation": "England beat West Germany 4-2 after extra time in the final, played at Wembley Stadium." }
+    },
+    {
+      "id": "sports-0052", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué selección ganó el Mundial de 1994, en Estados Unidos, la primera final decidida en una tanda de penales?",
+              "options": ["Brasil", "Italia", "Alemania", "Países Bajos"],
+              "explanation": "Brasil e Italia empataron 0-0 y Brasil ganó 3-2 en los penales, en el estadio Rose Bowl de Pasadena." },
+      "en": { "question": "Which team won the 1994 World Cup in the United States, the first final decided by a penalty shootout?",
+              "options": ["Brazil", "Italy", "Germany", "Netherlands"],
+              "explanation": "Brazil and Italy drew 0-0 and Brazil won the shootout 3-2, at the Rose Bowl in Pasadena." }
+    },
+    {
+      "id": "sports-0053", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué dos países organizaron juntos el Mundial de fútbol de 2002, el primero en Asia?",
+              "options": ["Corea del Sur y Japón", "China y Corea del Sur", "Japón y Tailandia", "China y Japón"],
+              "explanation": "Fue el primer Mundial en Asia y el primero con dos países anfitriones: Corea del Sur y Japón." },
+      "en": { "question": "Which two countries co-hosted the 2002 FIFA World Cup, the first in Asia?",
+              "options": ["South Korea and Japan", "China and South Korea", "Japan and Thailand", "China and Japan"],
+              "explanation": "It was the first World Cup in Asia and the first with two host countries: South Korea and Japan." }
+    },
+    {
+      "id": "sports-0054", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿A qué jugador italiano le dio un cabezazo Zinedine Zidane en la final del Mundial de 2006?",
+              "options": ["Marco Materazzi", "Gennaro Gattuso", "Fabio Cannavaro", "Andrea Pirlo"],
+              "explanation": "Zidane golpeó a Marco Materazzi en la prórroga y fue expulsado. Italia ganó la final en los penales." },
+      "en": { "question": "Which Italian player did Zinedine Zidane headbutt in the 2006 World Cup final?",
+              "options": ["Marco Materazzi", "Gennaro Gattuso", "Fabio Cannavaro", "Andrea Pirlo"],
+              "explanation": "Zidane headbutted Marco Materazzi in extra time and was sent off. Italy won the final on penalties." }
+    },
+    {
+      "id": "sports-0055", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué selección ganó su primer Mundial en 2010, al vencer a los Países Bajos en la final?",
+              "options": ["España", "Alemania", "Uruguay", "Brasil"],
+              "explanation": "España ganó 1-0 con gol de Andrés Iniesta en la prórroga, en Johannesburgo, y fue campeona por primera vez." },
+      "en": { "question": "Which national team won its first World Cup in 2010, beating the Netherlands in the final?",
+              "options": ["Spain", "Germany", "Uruguay", "Brazil"],
+              "explanation": "Spain won 1-0 with an Andrés Iniesta goal in extra time, in Johannesburg, and became champion for the first time." }
+    },
+    {
+      "id": "sports-0056", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Con qué marcador venció Alemania a Brasil en la semifinal del Mundial de 2014?",
+              "options": ["7-1", "6-1", "5-0", "4-0"],
+              "explanation": "Alemania ganó 7-1 en el estadio Mineirão, en Belo Horizonte, con cinco goles en los primeros 29 minutos." },
+      "en": { "question": "What was the score when Germany beat Brazil in the 2014 World Cup semifinal?",
+              "options": ["7-1", "6-1", "5-0", "4-0"],
+              "explanation": "Germany won 7-1 at the Mineirão stadium in Belo Horizonte, with five goals in the first 29 minutes." }
+    },
+    {
+      "id": "sports-0057", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué colombiano fue el máximo goleador del Mundial de 2014, con seis goles?",
+              "options": ["James Rodríguez", "Radamel Falcao", "Carlos Bacca", "Teófilo Gutiérrez"],
+              "explanation": "James Rodríguez ganó la Bota de Oro de Brasil 2014 con seis goles, y Colombia llegó a los cuartos de final." },
+      "en": { "question": "Which Colombian was the top scorer of the 2014 World Cup, with six goals?",
+              "options": ["James Rodríguez", "Radamel Falcao", "Carlos Bacca", "Teófilo Gutiérrez"],
+              "explanation": "James Rodríguez won the Golden Boot at Brazil 2014 with six goals, and Colombia reached the quarterfinals." }
+    },
+    {
+      "id": "sports-0058", "difficulty": 2, "type": "choice",
+      "es": { "question": "En 1993, Colombia ganó 5-0 como visitante en las eliminatorias para el Mundial de 1994. ¿A qué selección goleó?",
+              "options": ["Argentina", "Brasil", "Paraguay", "Perú"],
+              "explanation": "Fue en el estadio Monumental, en Buenos Aires: Colombia goleó 5-0 a Argentina, en un resultado histórico para su fútbol." },
+      "en": { "question": "In 1993, Colombia won 5-0 away in qualifying for the 1994 World Cup. Which national team did it thrash?",
+              "options": ["Argentina", "Brazil", "Paraguay", "Peru"],
+              "explanation": "It was at the Monumental stadium in Buenos Aires: Colombia thrashed Argentina 5-0, a historic result for its soccer." }
+    },
+    {
+      "id": "sports-0059", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué selección ganó la Copa América 2001, jugada en su propio país?",
+              "options": ["Colombia", "México", "Honduras", "Uruguay"],
+              "explanation": "Colombia venció 1-0 a México en la final, en Bogotá, con gol de Iván Córdoba. Fue su primera Copa América." },
+      "en": { "question": "Which national team won the 2001 Copa América, played on its home soil?",
+              "options": ["Colombia", "Mexico", "Honduras", "Uruguay"],
+              "explanation": "Colombia beat Mexico 1-0 in the final, in Bogotá, with a goal by Iván Córdoba. It was its first Copa América." }
+    },
+    {
+      "id": "sports-0060", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué club fue el primer equipo colombiano campeón de la Copa Libertadores, en 1989?",
+              "options": ["Atlético Nacional", "Millonarios", "América de Cali", "Deportivo Cali"],
+              "explanation": "Atlético Nacional, dirigido por Francisco Maturana, venció al Olimpia de Paraguay en la final, en los penales." },
+      "en": { "question": "Which club became the first Colombian team to win the Copa Libertadores, in 1989?",
+              "options": ["Atlético Nacional", "Millonarios", "América de Cali", "Deportivo Cali"],
+              "explanation": "Atlético Nacional, coached by Francisco Maturana, beat Paraguay's Olimpia in the final on penalties." }
+    },
+    {
+      "id": "sports-0061", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué portero colombiano hizo la jugada del «escorpión» en un amistoso en Wembley, en 1995?",
+              "options": ["René Higuita", "Óscar Córdoba", "Faryd Mondragón", "Miguel Calero"],
+              "explanation": "René Higuita despejó un remate con los talones en el amistoso contra Inglaterra de 1995. La jugada es famosa como «el escorpión»." },
+      "en": { "question": "Which Colombian goalkeeper made the “scorpion kick” save in a friendly at Wembley in 1995?",
+              "options": ["René Higuita", "Óscar Córdoba", "Faryd Mondragón", "Miguel Calero"],
+              "explanation": "René Higuita cleared a shot with his heels in the 1995 friendly against England. The move is famous as “the scorpion”." }
+    },
+    {
+      "id": "sports-0062", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cuántas medallas de oro ganó el atleta estadounidense Jesse Owens en los Juegos de Berlín 1936?",
+              "options": ["4", "3", "5", "2"],
+              "explanation": "Ganó los 100 m, los 200 m, el salto de longitud y el relevo 4×100 m." },
+      "en": { "question": "How many gold medals did American athlete Jesse Owens win at the 1936 Berlin Games?",
+              "options": ["4", "3", "5", "2"],
+              "explanation": "He won the 100 m, the 200 m, the long jump and the 4×100 m relay." }
+    },
+    {
+      "id": "sports-0063", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué gimnasta obtuvo la primera nota perfecta de 10 en la historia olímpica, en Montreal 1976?",
+              "options": ["Nadia Comăneci", "Olga Korbut", "Simone Biles", "Larisa Latynina"],
+              "explanation": "La rumana Nadia Comăneci, de 14 años, sacó el 10 en las barras asimétricas. El marcador mostró 1,00 porque no estaba preparado para esa nota." },
+      "en": { "question": "Which gymnast scored the first perfect 10 in Olympic history, at Montreal 1976?",
+              "options": ["Nadia Comăneci", "Olga Korbut", "Simone Biles", "Larisa Latynina"],
+              "explanation": "Romania's Nadia Comăneci, aged 14, scored the 10 on the uneven bars. The scoreboard showed 1.00 because it was not built to display that score." }
+    },
+    {
+      "id": "sports-0064", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cuántas medallas de oro ganó el nadador estadounidense Michael Phelps en los Juegos de Pekín 2008?",
+              "options": ["8", "7", "6", "9"],
+              "explanation": "Ganó ocho oros en esos Juegos, entre pruebas individuales y de relevos." },
+      "en": { "question": "How many gold medals did American swimmer Michael Phelps win at the 2008 Beijing Games?",
+              "options": ["8", "7", "6", "9"],
+              "explanation": "He won eight golds at those Games, across individual events and relays." }
+    },
+    {
+      "id": "sports-0065", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿En qué Juegos Olímpicos jugó por primera vez el «Dream Team» de Estados Unidos, con estrellas de la NBA?",
+              "options": ["Barcelona 1992", "Seúl 1988", "Atlanta 1996", "Los Ángeles 1984"],
+              "explanation": "En Barcelona 1992 se permitió por primera vez jugar a profesionales de la NBA. El Dream Team ganó el oro con Michael Jordan, Magic Johnson y Larry Bird." },
+      "en": { "question": "At which Olympic Games did the United States' “Dream Team” of NBA stars play for the first time?",
+              "options": ["Barcelona 1992", "Seoul 1988", "Atlanta 1996", "Los Angeles 1984"],
+              "explanation": "NBA professionals were first allowed to play at Barcelona 1992. The Dream Team won gold with Michael Jordan, Magic Johnson and Larry Bird." }
+    },
+    {
+      "id": "sports-0066", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué ciudad fue la primera de América Latina en organizar unos Juegos Olímpicos, en 1968?",
+              "options": ["Ciudad de México", "Río de Janeiro", "Buenos Aires", "Bogotá"],
+              "explanation": "Ciudad de México los organizó en octubre de 1968, a más de 2000 metros de altitud, algo que influyó en las pruebas de resistencia." },
+      "en": { "question": "Which city was the first in Latin America to host the Olympic Games, in 1968?",
+              "options": ["Mexico City", "Rio de Janeiro", "Buenos Aires", "Bogotá"],
+              "explanation": "Mexico City hosted them in October 1968, at an altitude above 2,000 meters, which affected the endurance events." }
+    },
+    {
+      "id": "sports-0067", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Quién fundó el Comité Olímpico Internacional en 1894 e impulsó los Juegos Olímpicos modernos?",
+              "options": ["Pierre de Coubertin", "Avery Brundage", "Juan Antonio Samaranch", "Dimitrios Vikelas"],
+              "explanation": "El francés Pierre de Coubertin fundó el COI en 1894, y los primeros Juegos modernos se celebraron en Atenas en 1896." },
+      "en": { "question": "Who founded the International Olympic Committee in 1894 and drove the creation of the modern Olympic Games?",
+              "options": ["Pierre de Coubertin", "Avery Brundage", "Juan Antonio Samaranch", "Dimitrios Vikelas"],
+              "explanation": "France's Pierre de Coubertin founded the IOC in 1894, and the first modern Games were held in Athens in 1896." }
+    },
+    {
+      "id": "sports-0068", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿En qué disciplina ganó la colombiana Mariana Pajón sus oros olímpicos de Londres 2012 y Río 2016?",
+              "options": ["BMX", "Ciclismo de ruta", "Patinaje de velocidad", "Ciclismo de montaña"],
+              "explanation": "Mariana Pajón ganó el oro en BMX en Londres 2012 y en Río 2016. En Tokio 2020 sumó una medalla de plata." },
+      "en": { "question": "In which discipline did Colombia's Mariana Pajón win her Olympic golds at London 2012 and Rio 2016?",
+              "options": ["BMX", "Road cycling", "Speed skating", "Mountain biking"],
+              "explanation": "Mariana Pajón won gold in BMX at London 2012 and Rio 2016. At Tokyo 2020 she added a silver medal." }
+    },
+    {
+      "id": "sports-0069", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿En qué prueba ganó la colombiana Caterine Ibargüen el oro olímpico en Río 2016?",
+              "options": ["Salto triple", "Salto de longitud", "Salto alto", "Lanzamiento de jabalina"],
+              "explanation": "Caterine Ibargüen ganó el oro en salto triple en Río 2016, después de la plata de Londres 2012." },
+      "en": { "question": "In which event did Colombia's Caterine Ibargüen win Olympic gold at Rio 2016?",
+              "options": ["Triple jump", "Long jump", "High jump", "Javelin throw"],
+              "explanation": "Caterine Ibargüen won gold in the triple jump at Rio 2016, after her silver at London 2012." }
+    },
+    {
+      "id": "sports-0070", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cuántos jugadores por equipo hay en la cancha en el balonmano, incluido el portero?",
+              "options": ["7", "6", "8", "9"],
+              "explanation": "Cada equipo juega con siete jugadores: seis de campo y un portero." },
+      "en": { "question": "How many players per team are on the court in handball, including the goalkeeper?",
+              "options": ["7", "6", "8", "9"],
+              "explanation": "Each team plays with seven players: six court players and a goalkeeper." }
+    },
+    {
+      "id": "sports-0071", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿A qué altura sobre el suelo está el aro en el baloncesto?",
+              "options": ["3,05 metros", "2,75 metros", "3,35 metros", "2,60 metros"],
+              "explanation": "El aro está a 3,05 metros (10 pies) del suelo, tanto en la NBA como en el baloncesto internacional." },
+      "en": { "question": "How high above the floor is the rim in basketball?",
+              "options": ["3.05 meters", "2.75 meters", "3.35 meters", "2.60 meters"],
+              "explanation": "The rim is 3.05 meters (10 feet) above the floor, in both the NBA and international basketball." }
+    },
+    {
+      "id": "sports-0072", "difficulty": 2, "type": "choice",
+      "es": { "question": "En tenis, ¿cómo se llama el empate a 40 puntos dentro de un juego?",
+              "options": ["Iguales", "Ventaja", "Tie-break", "Doble falta"],
+              "explanation": "A 40-40 se dice «iguales» (deuce, en inglés). Luego hay que ganar dos puntos seguidos para llevarse el juego." },
+      "en": { "question": "In tennis, what is a tie at 40-40 within a game called?",
+              "options": ["Deuce", "Advantage", "Tie-break", "Double fault"],
+              "explanation": "At 40-40 the score is called deuce. A player must then win two points in a row to take the game." }
+    },
+    {
+      "id": "sports-0073", "difficulty": 2, "type": "choice",
+      "es": { "question": "En el golf, ¿cómo se llama terminar un hoyo con un golpe menos que el par?",
+              "options": ["Birdie", "Bogey", "Par", "Chip"],
+              "explanation": "Un birdie es un golpe bajo el par del hoyo. Un bogey es lo contrario: un golpe sobre el par." },
+      "en": { "question": "In golf, what is it called to finish a hole one stroke under par?",
+              "options": ["Birdie", "Bogey", "Par", "Chip"],
+              "explanation": "A birdie is one stroke under the par of the hole. A bogey is the opposite: one stroke over par." }
+    },
+    {
+      "id": "sports-0074", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cuántos asaltos tiene como máximo una pelea profesional por un título mundial de boxeo?",
+              "options": ["12", "10", "15", "8"],
+              "explanation": "Los combates por títulos mundiales se pactan a un máximo de 12 asaltos de tres minutos desde los años ochenta; antes eran de 15." },
+      "en": { "question": "What is the maximum number of rounds in a professional world title boxing fight?",
+              "options": ["12", "10", "15", "8"],
+              "explanation": "World title fights have been capped at 12 three-minute rounds since the 1980s; before that they went up to 15." }
+    },
+    {
+      "id": "sports-0075", "difficulty": 2, "type": "choice",
+      "es": { "question": "En el fútbol americano, ¿cuántos puntos vale un touchdown?",
+              "options": ["6", "7", "3", "5"],
+              "explanation": "Un touchdown vale 6 puntos. Después, el equipo puede intentar un punto extra (1) o una conversión de 2 puntos." },
+      "en": { "question": "In American football, how many points is a touchdown worth?",
+              "options": ["6", "7", "3", "5"],
+              "explanation": "A touchdown is worth 6 points. The team can then try for an extra point (1) or a two-point conversion." }
+    },
+    {
+      "id": "sports-0076", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cuál de los cuatro torneos de Grand Slam de tenis se juega sobre arcilla (tierra batida)?",
+              "options": ["Roland Garros", "Wimbledon", "Abierto de Australia", "Abierto de Estados Unidos"],
+              "explanation": "Roland Garros, en París, se juega sobre arcilla. Es el único Grand Slam en esa superficie." },
+      "en": { "question": "Which of tennis's four Grand Slam tournaments is played on clay?",
+              "options": ["The French Open", "Wimbledon", "The Australian Open", "The US Open"],
+              "explanation": "The French Open, at Roland Garros in Paris, is played on clay. It is the only Grand Slam on that surface." }
+    },
+    {
+      "id": "sports-0077", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué deporte de invierno se juega deslizando piedras de granito sobre el hielo mientras se barre su trayectoria?",
+              "options": ["Curling", "Biatlón", "Skeleton", "Luge"],
+              "explanation": "En el curling, dos equipos lanzan piedras hacia una diana y sus compañeros barren el hielo para guiarlas." },
+      "en": { "question": "Which winter sport is played by sliding granite stones across the ice while sweeping their path?",
+              "options": ["Curling", "Biathlon", "Skeleton", "Luge"],
+              "explanation": "In curling, two teams slide stones toward a target while teammates sweep the ice to guide them." }
+    },
+    {
+      "id": "sports-0078", "difficulty": 2, "type": "truefalse", "answer": true,
+      "es": { "question": "En el rugby, el balón solo se puede pasar con las manos hacia atrás o hacia los lados.",
+              "explanation": "Un pase hacia adelante con la mano es falta. Para ganar terreno, los jugadores corren con el balón o lo patean." },
+      "en": { "question": "In rugby, the ball may only be passed by hand backward or sideways.",
+              "explanation": "A forward pass by hand is a foul. To gain ground, players run with the ball or kick it." }
+    },
+    {
+      "id": "sports-0079", "difficulty": 2, "type": "truefalse", "answer": true,
+      "es": { "question": "En el voleibol de playa, cada equipo juega con dos jugadores.",
+              "explanation": "Cada equipo tiene solo dos jugadores en la arena, sin suplentes." },
+      "en": { "question": "In beach volleyball, each team plays with two players.",
+              "explanation": "Each team has just two players on the sand, with no substitutes." }
+    },
+    {
+      "id": "sports-0080", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Quién inventó el baloncesto en 1891?",
+              "options": ["James Naismith", "Walter Camp", "Abner Doubleday", "Alexander Cartwright"],
+              "explanation": "El canadiense James Naismith lo inventó en Springfield, Massachusetts, y colgó cestas de duraznos como aros." },
+      "en": { "question": "Who invented basketball in 1891?",
+              "options": ["James Naismith", "Walter Camp", "Abner Doubleday", "Alexander Cartwright"],
+              "explanation": "The Canadian James Naismith invented it in Springfield, Massachusetts, and hung peach baskets as hoops." }
+    },
+    {
+      "id": "sports-0081", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué colombiano ganó el Tour de Francia de 2019, la primera victoria de un latinoamericano?",
+              "options": ["Egan Bernal", "Nairo Quintana", "Rigoberto Urán", "Esteban Chaves"],
+              "explanation": "Egan Bernal ganó el Tour de 2019 con 22 años y fue el primer colombiano y el primer latinoamericano en lograrlo." },
+      "en": { "question": "Which Colombian won the 2019 Tour de France, the first victory by a Latin American?",
+              "options": ["Egan Bernal", "Nairo Quintana", "Rigoberto Urán", "Esteban Chaves"],
+              "explanation": "Egan Bernal won the 2019 Tour aged 22 and was the first Colombian and the first Latin American to do it." }
+    },
+    {
+      "id": "sports-0082", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿En qué año ganó el colombiano Nairo Quintana el Giro de Italia?",
+              "options": ["2014", "2016", "2013", "2015"],
+              "explanation": "Nairo Quintana ganó el Giro de Italia de 2014. En 2016 ganó la Vuelta a España." },
+      "en": { "question": "In what year did Colombia's Nairo Quintana win the Giro d'Italia?",
+              "options": ["2014", "2016", "2013", "2015"],
+              "explanation": "Nairo Quintana won the 2014 Giro d'Italia. In 2016 he won the Vuelta a España." }
+    },
+    {
+      "id": "sports-0083", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué famosa carrera ganó el piloto colombiano Juan Pablo Montoya en el año 2000, en su primera participación?",
+              "options": ["Las 500 Millas de Indianápolis", "El Gran Premio de Mónaco", "Las 24 Horas de Le Mans", "El Gran Premio de Brasil"],
+              "explanation": "Montoya ganó las 500 Millas de Indianápolis en 2000, en su debut en esa carrera, y volvió a ganarlas en 2015." },
+      "en": { "question": "Which famous race did Colombian driver Juan Pablo Montoya win in 2000, on his first attempt?",
+              "options": ["The Indianapolis 500", "The Monaco Grand Prix", "The Le Mans 24 Hours", "The Brazilian Grand Prix"],
+              "explanation": "Montoya won the Indianapolis 500 in 2000, on his debut in the race, and won it again in 2015." }
+    },
+    {
+      "id": "sports-0084", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué deporte autóctono de origen indígena fue declarado deporte nacional de Colombia por ley?",
+              "options": ["Tejo", "Fútbol", "Patinaje", "Ciclismo"],
+              "explanation": "El tejo, que consiste en lanzar un disco metálico para hacer estallar mechas con pólvora, fue declarado deporte nacional por la Ley 613 de 2000." },
+      "en": { "question": "Which native sport of Indigenous origin was declared Colombia's national sport by law?",
+              "options": ["Tejo", "Soccer", "Roller skating", "Cycling"],
+              "explanation": "Tejo, in which players throw a metal disc to make gunpowder packets explode, was declared the national sport by Law 613 of 2000." }
     }
   ]
 }
