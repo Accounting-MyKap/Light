@@ -46,6 +46,11 @@ function setHidden(hidden: boolean) {
 
 // Finishing a game asks for a sync twice: once to upload the result, once from the percentile line on the result screen.
 const FINISH_SYNCS = 2;
+// The percentile line asks from an effect, which React runs in a later task than the one that puts the score on screen,
+// so a busy runner can resume a test that found the score before that second sync. The line's sentence only shows once
+// its sync was asked for: the tests that count the syncs give the game a rank and wait for the sentence first.
+const RANK = 73;
+const RANKED = `Estás por encima del ${RANK} % de los jugadores`;
 
 beforeEach(async () => {
   resumeTiming.stepMs = 5;
@@ -585,12 +590,14 @@ test('exiting a later daily game returns to Today, not to the previous game', as
 });
 
 test('finishing a game requests a sync', async () => {
+  vi.mocked(fetchPercentile).mockResolvedValue(RANK);
   await updateSettings({ seenInstructions: ['fake'] });
   await open('/play/fake');
   await userEvent.click(await screen.findByRole('button', { name: 'Comenzar' }));
   expect(requestSync).not.toHaveBeenCalled();
   await userEvent.click(screen.getByRole('button', { name: 'Terminar' }));
   expect(await screen.findByText('120')).toBeInTheDocument();
+  expect(await screen.findByText(RANKED)).toBeInTheDocument();
   expect(requestSync).toHaveBeenCalledTimes(FINISH_SYNCS);
   // The sync starts after the result is in storage, so it has something to upload.
   expect(await db.results.where('synced').equals(0).count()).toBe(1);
@@ -601,6 +608,7 @@ test('finishing a game requests a sync', async () => {
 });
 
 test('a failed save does not request a sync; the successful retry does, once', async () => {
+  vi.mocked(fetchPercentile).mockResolvedValue(RANK);
   await updateSettings({ seenInstructions: ['fake'] });
   vi.spyOn(console, 'error').mockImplementation(() => {});
   vi.spyOn(db.results, 'put').mockRejectedValueOnce(new Error('QuotaExceededError'));
@@ -611,6 +619,7 @@ test('a failed save does not request a sync; the successful retry does, once', a
   expect(requestSync).not.toHaveBeenCalled();
   await userEvent.click(screen.getByRole('button', { name: 'Reintentar' }));
   expect(await screen.findByText('120')).toBeInTheDocument();
+  expect(await screen.findByText(RANKED)).toBeInTheDocument();
   expect(requestSync).toHaveBeenCalledTimes(FINISH_SYNCS);
 });
 
