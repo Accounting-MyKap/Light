@@ -16,6 +16,7 @@
     "lint": "eslint .",
     "e2e": "playwright test",
     "icons": "node scripts/make-icons.mjs",
+    "quiz:stats": "node scripts/quiz-stats.mjs",
     "db:start": "supabase start -x studio,imgproxy,edge-runtime,logflare,vector,realtime,storage-api,mailpit,postgres-meta,supavisor",
     "db:stop": "supabase stop",
     "db:reset": "supabase db reset",

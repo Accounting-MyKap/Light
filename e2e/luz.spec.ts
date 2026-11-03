@@ -110,7 +110,7 @@ test.describe('light app theme', () => {
     // The app itself is light here: its background is not the dark one.
     await expect(page.locator('body')).not.toHaveCSS('background-color', LUZ_BACKGROUND);
     await expect(html).not.toHaveAttribute('data-luz-active', /.*/);
-    await expect(themeColor).toHaveAttribute('content', '#0E0F1A');
+    await expect(themeColor).toHaveAttribute('content', '#090b19');
 
     await page.goto('./#/play/arrows');
     await expect(page.locator('[data-luz]')).toHaveCSS('background-color', LUZ_BACKGROUND);
@@ -120,7 +120,7 @@ test.describe('light app theme', () => {
     await page.goto('./#/games');
     await expect(page.locator('[data-luz]')).toHaveCount(0);
     await expect(html).not.toHaveAttribute('data-luz-active', /.*/);
-    await expect(themeColor).toHaveAttribute('content', '#0E0F1A');
+    await expect(themeColor).toHaveAttribute('content', '#090b19');
   });
 });
 
@@ -228,6 +228,8 @@ test.describe('review screenshots', () => {
   test.use({ viewport: { width: 390, height: 844 }, colorScheme: 'dark' });
 
   test('screenshots of the six games for review', async ({ page }) => {
+    // Six games one after the other, Guardagujas with two trains sent home first: more than the default 90 s.
+    test.setTimeout(180_000);
     mkdirSync(SCREENSHOT_DIR, { recursive: true });
     await page.clock.install({ time: CLOCK_TIME });
 

@@ -1,5 +1,8 @@
-import { act, screen, within } from '@testing-library/react';
+import { act, render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { MemoryRouter, useLocation } from 'react-router-dom';
+import { AppRoutes } from '../app/App';
+import { initI18n } from '../i18n';
 import { renderApp } from '../test/renderApp';
 import { registerFakeGameTranslations } from '../test/fakeGame';
 import { clearAllData, db } from '../data/db';
@@ -23,9 +26,15 @@ vi.mock('./play/resumeTiming', () => ({
 }));
 
 vi.mock('../games/registry', async () => {
-  const { fakeGame, fakeGame2 } = await import('../test/fakeGame');
-  const games = [fakeGame, fakeGame2];
-  return { GAMES: games, getGame: (id: string) => games.find((g) => g.id === id) };
+  const { fakeGame, fakeGame2, fakeGame3, fakeQuizGame } = await import('../test/fakeGame');
+  const training = [fakeGame, fakeGame2, fakeGame3];
+  const games = [...training, fakeQuizGame];
+  return {
+    GAMES: games,
+    TRAINING_GAMES: training,
+    QUIZ_GAMES: [fakeQuizGame],
+    getGame: (id: string) => games.find((g) => g.id === id),
+  };
 });
 
 function setHidden(hidden: boolean) {
@@ -55,6 +64,22 @@ async function open(route: string) {
   registerFakeGameTranslations();
 }
 
+/** Shows where the router is, so a test can tell which route a navigation ended on. */
+function LocationProbe() {
+  return <p data-testid="pathname">{useLocation().pathname}</p>;
+}
+
+async function openWithProbe(route: string) {
+  await initI18n('es');
+  render(
+    <MemoryRouter initialEntries={[route]}>
+      <AppRoutes />
+      <LocationProbe />
+    </MemoryRouter>,
+  );
+  registerFakeGameTranslations();
+}
+
 test('first visit shows instructions, then plays and shows result with new best', async () => {
   await open('/play/fake');
   expect(await screen.findByRole('heading', { name: 'Juego falso' })).toBeInTheDocument();
@@ -66,6 +91,34 @@ test('first visit shows instructions, then plays and shows result with new best'
   expect(await screen.findByText('120')).toBeInTheDocument();
   expect(screen.getByText('¡Nueva mejor marca!')).toBeInTheDocument();
   expect(await db.results.count()).toBe(1);
+});
+
+test('instructions come from instructionsKey when a game sets it', async () => {
+  await open('/play/fake3');
+  expect(await screen.findByRole('heading', { name: 'Tercer juego falso' })).toBeInTheDocument();
+  expect(screen.getByText('Responde 10 preguntas; tienes 20 segundos para cada una.')).toBeInTheDocument();
+  expect(screen.getByText('fake example')).toBeInTheDocument();
+});
+
+test('games that share instructions show them only once', async () => {
+  // fake3 and the quiz game both use `quiz.instructions`.
+  await open('/play/fake3');
+  expect(await screen.findByText('Responde 10 preguntas; tienes 20 segundos para cada una.')).toBeInTheDocument();
+  await userEvent.click(screen.getByRole('button', { name: 'Comenzar' }));
+  await vi.waitFor(async () => expect((await getSettings()).seenInstructions).toEqual(['quiz.instructions']));
+});
+
+test('instructions seen under a shared key are not shown again by another game with that key', async () => {
+  await updateSettings({ seenInstructions: ['quiz.instructions'] });
+  await open('/play/fakeq');
+  expect(await screen.findByRole('button', { name: '¿Cómo se juega?' })).toBeInTheDocument();
+  expect(screen.queryByText('Responde 10 preguntas; tienes 20 segundos para cada una.')).not.toBeInTheDocument();
+});
+
+test('a game without a shared key still uses its own id', async () => {
+  await updateSettings({ seenInstructions: ['quiz.instructions'] });
+  await open('/play/fake');
+  expect(await screen.findByText('Primera instrucción falsa')).toBeInTheDocument();
 });
 
 test('every phase of the game screen sits inside the dark Luz scope of the game area', async () => {
@@ -93,6 +146,21 @@ test('second visit skips instructions but offers how-to-play', async () => {
 test('the intro shows the area label', async () => {
   await open('/play/fake');
   expect(await screen.findByText('Memoria')).toBeInTheDocument();
+});
+
+test('the intro of a quiz game shows its bank as the area label', async () => {
+  await open('/play/fakeq');
+  expect(await screen.findByText('Cultura general')).toBeInTheDocument();
+  expect(screen.getByText('Cultura general').closest('[data-luz][data-area="trivia"]')).not.toBeNull();
+});
+
+test('the ✕ on the intro of a quiz game opened with no history goes to the Quiz tab', async () => {
+  await updateSettings({ seenInstructions: ['quiz.instructions'] });
+  await openWithProbe('/play/fakeq');
+  await userEvent.click(await screen.findByRole('button', { name: 'Salir del juego' }));
+  expect(await screen.findByRole('heading', { level: 1, name: 'Preguntas' })).toBeInTheDocument();
+  expect(screen.getByTestId('pathname')).toHaveTextContent(/^\/quiz$/);
+  expect(await db.results.count()).toBe(0);
 });
 
 test('the intro for a returning player shows the area label too', async () => {
@@ -279,6 +347,26 @@ test('free play shows no daily progress', async () => {
   expect(screen.queryByText(/Entrenamiento de hoy:/)).not.toBeInTheDocument();
 });
 
+test('the result screen opens at the top of the page, every time a game ends', async () => {
+  // A game can leave the page scrolled down (a long quiz question with its explanation); the result must start at its title.
+  const scrollTo = vi.spyOn(window, 'scrollTo').mockImplementation(() => {});
+  await updateSettings({ seenInstructions: ['fake'] });
+  await open('/play/fake');
+  await userEvent.click(await screen.findByRole('button', { name: 'Comenzar' }));
+  expect(scrollTo).not.toHaveBeenCalled();
+  await userEvent.click(screen.getByRole('button', { name: 'Terminar' }));
+  expect(await screen.findByText('Puntaje: 120')).toBeInTheDocument();
+  expect(scrollTo).toHaveBeenCalledTimes(1);
+  // A jump, never a smooth scroll: it is a new screen, and nothing should glide for whoever asked for less motion.
+  expect(scrollTo).toHaveBeenCalledWith({ top: 0, behavior: 'instant' });
+
+  await userEvent.click(screen.getByRole('button', { name: 'Jugar de nuevo' }));
+  expect(scrollTo).toHaveBeenCalledTimes(1);
+  await userEvent.click(screen.getByRole('button', { name: 'Terminar' }));
+  expect(await screen.findByText('Puntaje: 120')).toBeInTheDocument();
+  expect(scrollTo).toHaveBeenCalledTimes(2);
+});
+
 test('daily mode on the last game offers the summary', async () => {
   await updateSettings({ seenInstructions: ['fake'] });
   await db.dailyPlans.put({ day: '2026-10-20', gameIds: ['other', 'fake'], completed: ['other'] });
@@ -408,4 +496,78 @@ describe('choosing the level', () => {
     await userEvent.click(screen.getByRole('button', { name: 'Comenzar' }));
     expect(await screen.findByText('startLevel:3')).toBeInTheDocument();
   });
+});
+
+test('Back from a quiz result goes to the Quiz tab', async () => {
+  await updateSettings({ seenInstructions: ['fakeq'] });
+  await openWithProbe('/play/fakeq');
+  await userEvent.click(await screen.findByRole('button', { name: 'Comenzar' }));
+  await userEvent.click(screen.getByRole('button', { name: 'Terminar' }));
+  expect(await screen.findByText('120')).toBeInTheDocument();
+  await userEvent.click(screen.getByRole('button', { name: 'Volver' }));
+  expect(await screen.findByRole('heading', { level: 1, name: 'Preguntas' })).toBeInTheDocument();
+  expect(screen.getByTestId('pathname')).toHaveTextContent(/^\/quiz$/);
+});
+
+test('Back from a training result still goes to Games', async () => {
+  await updateSettings({ seenInstructions: ['fake'] });
+  await openWithProbe('/play/fake');
+  await userEvent.click(await screen.findByRole('button', { name: 'Comenzar' }));
+  await userEvent.click(screen.getByRole('button', { name: 'Terminar' }));
+  expect(await screen.findByText('120')).toBeInTheDocument();
+  await userEvent.click(screen.getByRole('button', { name: 'Volver' }));
+  expect(await screen.findByRole('heading', { level: 1, name: 'Juegos' })).toBeInTheDocument();
+  expect(screen.getByTestId('pathname')).toHaveTextContent(/^\/games$/);
+});
+
+test('leaving a quiz game opened with no history goes to the Quiz tab', async () => {
+  await updateSettings({ seenInstructions: ['fakeq'] });
+  await openWithProbe('/play/fakeq');
+  await userEvent.click(await screen.findByRole('button', { name: 'Comenzar' }));
+  await userEvent.click(screen.getByRole('button', { name: 'Salir del juego' }));
+  await userEvent.click(screen.getByRole('button', { name: 'Salir' }));
+  expect(await screen.findByRole('heading', { level: 1, name: 'Preguntas' })).toBeInTheDocument();
+  expect(screen.getByTestId('pathname')).toHaveTextContent(/^\/quiz$/);
+  expect(await db.results.count()).toBe(0);
+});
+
+async function openWithHistory(entries: string[], index: number) {
+  await initI18n('es');
+  render(
+    <MemoryRouter initialEntries={entries} initialIndex={index}>
+      <AppRoutes />
+    </MemoryRouter>,
+  );
+  registerFakeGameTranslations();
+}
+
+async function finishFakeGame() {
+  await userEvent.click(await screen.findByRole('button', { name: 'Comenzar' }));
+  await userEvent.click(screen.getByRole('button', { name: 'Terminar' }));
+  await screen.findByText('Puntaje: 120');
+}
+
+test('«Volver» on the free-play result returns to the catalog with its filter', async () => {
+  await updateSettings({ seenInstructions: ['fake'] });
+  await openWithHistory(['/games?area=memory', '/play/fake'], 1);
+  await finishFakeGame();
+  await userEvent.click(screen.getByRole('button', { name: 'Volver' }));
+  expect(await screen.findByRole('heading', { level: 1, name: 'Juegos' })).toBeInTheDocument();
+  expect(screen.getByRole('button', { name: 'Memoria' })).toHaveAttribute('aria-pressed', 'true');
+});
+
+test('«Volver» on the free-play result of a deep link goes to the catalog', async () => {
+  await updateSettings({ seenInstructions: ['fake'] });
+  await openWithHistory(['/play/fake'], 0);
+  await finishFakeGame();
+  await userEvent.click(screen.getByRole('button', { name: 'Volver' }));
+  expect(await screen.findByRole('heading', { level: 1, name: 'Juegos' })).toBeInTheDocument();
+});
+
+test('«Volver» on a quiz result opened from the Quiz tab goes back to it', async () => {
+  await updateSettings({ seenInstructions: ['quiz.instructions'] });
+  await openWithHistory(['/quiz', '/play/fakeq'], 1);
+  await finishFakeGame();
+  await userEvent.click(screen.getByRole('button', { name: 'Volver' }));
+  expect(await screen.findByRole('heading', { level: 1, name: 'Preguntas' })).toBeInTheDocument();
 });

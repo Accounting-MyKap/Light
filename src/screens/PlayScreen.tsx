@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { playTone } from '../core/sound';
@@ -43,10 +43,16 @@ function GameNotFound() {
   );
 }
 
-async function markInstructionsSeen(gameId: string): Promise<void> {
+/**
+ * What «instructions seen» is stored under: the shared instructions key when several games use the same
+ * instructions (the 14 quiz games), so they show only once; otherwise the game id, as it always was.
+ */
+const instructionsSeenKey = (game: GameDefinition) => game.instructionsKey ?? game.id;
+
+async function markInstructionsSeen(key: string): Promise<void> {
   const settings = await getSettings();
-  if (!settings.seenInstructions.includes(gameId)) {
-    await updateSettings({ seenInstructions: [...settings.seenInstructions, gameId] });
+  if (!settings.seenInstructions.includes(key)) {
+    await updateSettings({ seenInstructions: [...settings.seenInstructions, key] });
   }
 }
 
@@ -98,7 +104,7 @@ function PlaySession({ game, daily }: { game: GameDefinition; daily: string | nu
       highestLevelReached(game.id).catch(() => 0),
     ]).then(([level, settings, highest]) => {
       if (!alive) return;
-      const firstTime = !settings.seenInstructions.includes(game.id);
+      const firstTime = !settings.seenInstructions.includes(instructionsSeenKey(game));
       setSuggestedLevel(level);
       setStartLevel(level);
       setHighestLevel(Math.max(level, highest));
@@ -107,7 +113,7 @@ function PlaySession({ game, daily }: { game: GameDefinition; daily: string | nu
     return () => {
       alive = false;
     };
-  }, [game.id]);
+  }, [game]);
 
   const pauseGame = useCallback(() => {
     setPausedHud(hudRef.current);
@@ -125,6 +131,14 @@ function PlaySession({ game, daily }: { game: GameDefinition; daily: string | nu
     return () => document.removeEventListener('visibilitychange', onVisibility);
   }, [isPlaying, pauseGame]);
 
+  // A game can leave the page scrolled down (a long quiz question with its explanation, then «Ver resultado» at the
+  // bottom), so every result opens at the top, with the title and the score in view. Before paint, so the result is never
+  // drawn scrolled; and a jump, not a glide: it is a new screen, and nothing moves for whoever asked for less motion.
+  const isResult = phase.kind === 'result';
+  useLayoutEffect(() => {
+    if (isResult) window.scrollTo({ top: 0, behavior: 'instant' });
+  }, [isResult]);
+
   // The game runs again and gets the focus back: it was on the pause sheet, which is gone.
   const resumeGame = useCallback(() => {
     setPause('off');
@@ -139,7 +153,7 @@ function PlaySession({ game, daily }: { game: GameDefinition; daily: string | nu
   }, []);
 
   const handleStart = () => {
-    if (phase.kind === 'intro' && phase.firstTime) void markInstructionsSeen(game.id);
+    if (phase.kind === 'intro' && phase.firstTime) void markInstructionsSeen(instructionsSeenKey(game));
     startPlaying();
   };
 
@@ -175,10 +189,17 @@ function PlaySession({ game, daily }: { game: GameDefinition; daily: string | nu
     [save, sound],
   );
 
+  // A quiz game belongs to the Quiz tab, so a deep link with no history lands there; the training games go to Games.
+  const home = game.quiz ? '/quiz' : '/games';
+
+  // Free play goes back in history (the catalog keeps its filter in the address); a deep link has none.
+  const leaveFreePlay = () => {
+    if (location.key === 'default') navigate(home);
+    else navigate(-1);
+  };
   const exit = () => {
     if (daily !== null) navigate('/');
-    else if (location.key === 'default') navigate('/games');
-    else navigate(-1);
+    else leaveFreePlay();
   };
 
   const title = t(`games.${game.id}.title`);
@@ -261,7 +282,7 @@ function PlaySession({ game, daily }: { game: GameDefinition; daily: string | nu
             result={phase.result}
             previousBest={phase.previousBest}
             onPlayAgain={startPlaying}
-            onBack={() => navigate('/games')}
+            onBack={leaveFreePlay}
             daily={
               daily === null
                 ? undefined

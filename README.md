@@ -2,8 +2,9 @@
 
 Light es una app web gratuita con ejercicios cortos para ejercitar la mente: memoria, atención,
 velocidad, flexibilidad mental y matemáticas. Propone un entrenamiento diario de 3 juegos
-(unos 5 minutos), lleva tu racha de días y muestra tu progreso. Funciona en español e inglés,
-se puede instalar en el celular y sigue funcionando sin internet.
+(unos 5 minutos), lleva tu racha de días y muestra tu progreso. La sección **Preguntas** ofrece
+rondas de 10 preguntas de cultura general y de contabilidad, con su explicación y el repaso de tus
+errores. Funciona en español e inglés, se puede instalar en el celular y sigue funcionando sin internet.
 
 Todo el progreso se guarda en el dispositivo. Si el sitio se publica con las variables de Supabase
 (ver [`SETUP.md`](SETUP.md)), tus puntajes además se envían de forma anónima, sin nombre ni correo,
@@ -77,8 +78,9 @@ aplica las migraciones, activa Turnstile y define las variables del repositorio 
 ```
 src/
   app/        marco de la app: rutas, navegación, tema, errores, aviso de versión nueva
-  screens/    pantallas: Hoy, Juegos, Partida, Progreso, Ajustes
+  screens/    pantallas: Hoy, Juegos, Preguntas, Partida, Progreso, Ajustes
   games/      un juego por carpeta + registro y piezas comunes (reloj, puntaje, sonido)
+  quiz/       bancos de preguntas (un JSON por categoría) y su validación
   core/       lógica pura: azar, fechas, dificultad, plan diario, racha, puntaje por área
   data/       base de datos local (IndexedDB con Dexie)
   play/       guardar el resultado de una partida
@@ -87,7 +89,7 @@ src/
 e2e/          pruebas de punta a punta
 tests/        pruebas de integración contra el Supabase local
 supabase/     base de datos: configuración, migraciones SQL y pruebas pgTAP
-docs/         especificación y planes de implementación
+docs/         especificación, planes de implementación y guía de contenido de Preguntas (docs/quiz/)
 ```
 
 ## Cómo agregar un juego
@@ -106,3 +108,30 @@ tabla coincida con el registro.
 `main` publica la app. Si el juego nuevo llega a los jugadores antes que su fila en `games`, el
 servidor rechaza cada uno de sus resultados y los dispositivos los marcan como no sincronizables para
 siempre (no se reintentan).
+
+## Cómo agregar preguntas
+
+Las preguntas viven en `src/quiz/banks/`, un archivo JSON por categoría (12 en total).
+
+1. Edita `src/quiz/banks/<categoría>.json` y agrega la pregunta con el id siguiente: el número más alto que
+   haya existido **alguna vez** en ese banco más uno, con cuatro dígitos (`history-0101` después de
+   `history-0100`). No basta con mirar el archivo actual: si se borró la última pregunta, su id tampoco se
+   reutiliza, porque el historial local de cada jugador lo recuerda. Si dudas, revisa
+   `git log -p -- src/quiz/banks/<categoría>.json`. Sigue el formato de la guía, con la pregunta en español y en
+   inglés.
+2. Actualiza el tamaño de esa categoría en `src/quiz/banks/manifest.ts`; la pantalla Preguntas lo usa para
+   mostrar «Vistas: N de M».
+3. Corre `npm run quiz:stats`, que imprime por categoría el total, el reparto por dificultad y la cantidad de
+   verdadero/falso (compáralo con la forma objetivo 40 / 40 / 20), y `npm test`, que valida el formato, los ids,
+   los largos, que el manifiesto coincida con los archivos y los pisos de los bancos: al menos 100 preguntas por
+   banco, con al menos 35 fáciles, 35 medias y 15 difíciles, y al menos 1 200 en total. Son mínimos: agregar
+   preguntas no toca código.
+
+Las reglas de calidad, los ejemplos, la asignación de dificultad y el proceso de revisión están en
+[`docs/quiz/guia-de-contenido.md`](docs/quiz/guia-de-contenido.md). Agregar preguntas no requiere migración:
+los bancos son parte de la app y se precargan para que funcione sin conexión.
+
+Lo que sí requiere migración son los 14 juegos de preguntas (`supabase/migrations/20261102000000_quiz_games.sql`),
+igual que cualquier juego nuevo: **aplícala en el proyecto de Supabase antes de unir el cambio a `main`**, porque
+unir a `main` publica la app. Si los juegos llegan a los jugadores antes que sus filas en `games`, el servidor
+rechaza cada uno de sus resultados y los dispositivos los marcan como no sincronizables para siempre.

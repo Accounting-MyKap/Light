@@ -1,7 +1,8 @@
 import { nextStartLevel } from '../core/difficulty';
 import { markDailyGameDone } from '../data/dailyPlans';
-import type { DailyPlan, StoredResult } from '../data/db';
+import { db, type DailyPlan, type StoredResult } from '../data/db';
 import { setStartLevel } from '../data/levels';
+import { addQuizAnswers } from '../data/quizAnswers';
 import { addResult, bestScore } from '../data/results';
 import type { GameDefinition, GameResult } from '../games/types';
 
@@ -22,14 +23,19 @@ export async function recordGameResult(args: {
 }): Promise<{ stored: StoredResult; previousBest: number | null; newStartLevel: number; plan: DailyPlan | null }> {
   const { game, startLevel, suggestedLevel = startLevel, result, daily, resultId } = args;
   const previousBest = await bestScore(game.id);
-  const stored = await addResult({
-    id: resultId,
-    gameId: game.id,
-    level: result.levelReached,
-    score: result.score,
-    accuracy: result.accuracy,
-    durationMs: result.durationMs,
-    isDaily: daily !== null,
+  // One transaction: if the answers cannot be written, the result is not kept either, and a retry saves both.
+  const stored = await db.transaction('rw', db.results, db.quizAnswers, async () => {
+    const saved = await addResult({
+      id: resultId,
+      gameId: game.id,
+      level: result.levelReached,
+      score: result.score,
+      accuracy: result.accuracy,
+      durationMs: result.durationMs,
+      isDaily: daily !== null,
+    });
+    if (result.quiz) await addQuizAnswers(saved.id, result.quiz, new Date(saved.playedAt));
+    return saved;
   });
   const practice = startLevel !== suggestedLevel;
   const newStartLevel = practice ? suggestedLevel : nextStartLevel(startLevel, result.accuracy);

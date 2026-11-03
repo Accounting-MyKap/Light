@@ -34,7 +34,7 @@ test('continue points to the next unfinished game', async () => {
   await renderApp('/');
   const p = await plan();
   await markDailyGameDone(DAY, p.gameIds[0]);
-  const link = await screen.findByRole('link', { name: 'Continuar' });
+  const link = await screen.findByRole('link', { name: 'Continuar · 2 de 3' });
   expect(link).toHaveAttribute('href', `/play/${p.gameIds[1]}?daily=${DAY}`);
   expect(within(screen.getAllByRole('listitem')[0]).getByText('Hecho')).toBeInTheDocument();
 });
@@ -49,7 +49,8 @@ test('completed day shows the summary with today scores and streak 1', async () 
   expect(await screen.findByRole('heading', { name: '¡Entrenamiento de hoy completado!' })).toBeInTheDocument();
   expect(await screen.findByText('1 día seguido')).toBeInTheDocument();
   for (const score of ['100', '101', '102']) expect(screen.getByText(score)).toBeInTheDocument();
-  expect(screen.queryByRole('link', { name: 'Continuar' })).not.toBeInTheDocument();
+  expect(screen.queryByRole('link', { name: /Continuar/ })).not.toBeInTheDocument();
+  expect(screen.getByRole('link', { name: 'Explorar juegos' })).toHaveAttribute('href', '/games');
   expect(await db.dailyPlans.count()).toBe(1);
 });
 
@@ -62,4 +63,34 @@ test('coming back the next morning shows the new day plan', async () => {
   await vi.waitFor(async () => expect(await getPlan('2026-10-19')).toBeDefined());
   const link = await screen.findByRole('link', { name: 'Comenzar' });
   await vi.waitFor(() => expect(link.getAttribute('href')).toContain('daily=2026-10-19'));
+});
+
+test('the next game says «Sigue» and played ones show ✓ and their score', async () => {
+  await renderApp('/');
+  const p = await plan();
+  await addResult({ gameId: p.gameIds[0], level: 1, score: 321, accuracy: 1, durationMs: 60000, isDaily: true });
+  await markDailyGameDone(DAY, p.gameIds[0]);
+  await screen.findByRole('link', { name: 'Continuar · 2 de 3' });
+  const items = screen.getAllByRole('listitem');
+  expect(within(items[0]).getByText('Hecho')).toBeInTheDocument();
+  expect(within(items[0]).getByText('321')).toBeInTheDocument();
+  expect(within(items[1]).getByText('Sigue')).toBeInTheDocument();
+  expect(within(items[2]).queryByText('Sigue')).not.toBeInTheDocument();
+  expect(within(items[2]).queryByText('Hecho')).not.toBeInTheDocument();
+});
+
+test('streak pill and week summary', async () => {
+  await renderApp('/');
+  const p = await plan();
+  expect(await screen.findByText('0 días')).toBeInTheDocument();
+  expect(screen.getByText('0 días seguidos')).toBeInTheDocument();
+  for (const id of p.gameIds) await markDailyGameDone(DAY, id);
+  expect(await screen.findByText('1 de 7 días entrenados esta semana')).toBeInTheDocument();
+});
+
+test('a stale plan id does not break the screen', async () => {
+  await db.dailyPlans.put({ day: DAY, gameIds: ['old-game', 'arrows', 'quick-math'], completed: [] });
+  await renderApp('/');
+  expect(await screen.findAllByRole('listitem')).toHaveLength(3);
+  expect(screen.getByRole('link', { name: 'Comenzar' })).toBeInTheDocument();
 });

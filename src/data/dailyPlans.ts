@@ -1,6 +1,6 @@
 import { generateDailyPlan } from '../core/dailyPlan';
 import { addDays } from '../core/dates';
-import { GAMES } from '../games/registry';
+import { TRAINING_GAMES } from '../games/registry';
 import { db, type DailyPlan } from './db';
 
 export function getPlan(day: string): Promise<DailyPlan | undefined> {
@@ -18,7 +18,7 @@ export async function getOrCreatePlan(day: string): Promise<DailyPlan> {
       day,
       gameIds: generateDailyPlan({
         day,
-        games: GAMES,
+        games: TRAINING_GAMES,
         recentPlays: recent.map((r) => ({ gameId: r.gameId, day: r.day })),
         yesterdayPlan: yesterday?.gameIds ?? null,
       }),

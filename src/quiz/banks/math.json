@@ -1,0 +1,881 @@
+{
+  "category": "math",
+  "questions": [
+    {
+      "id": "math-0001", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuánto es 7 × 8?",
+              "options": ["56", "54", "49", "63"],
+              "explanation": "7 × 8 = 56. Un truco para recordarlo: 5, 6, 7, 8 → 56 = 7 × 8." },
+      "en": { "question": "What is 7 × 8?",
+              "options": ["56", "54", "49", "63"],
+              "explanation": "7 × 8 = 56. A memory trick: 5, 6, 7, 8 → 56 = 7 × 8." }
+    },
+    {
+      "id": "math-0002", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuántos grados suman los ángulos interiores de un triángulo?",
+              "options": ["180°", "90°", "360°", "270°"],
+              "explanation": "Los tres ángulos interiores de cualquier triángulo suman siempre 180°." },
+      "en": { "question": "How many degrees do the interior angles of a triangle add up to?",
+              "options": ["180°", "90°", "360°", "270°"],
+              "explanation": "The three interior angles of any triangle always add up to 180°." }
+    },
+    {
+      "id": "math-0003", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuántos lados tiene un hexágono?",
+              "options": ["6", "5", "7", "8"],
+              "explanation": "Hexágono viene del griego «seis ángulos»: tiene seis lados, como las celdas de un panal." },
+      "en": { "question": "How many sides does a hexagon have?",
+              "options": ["6", "5", "7", "8"],
+              "explanation": "Hexagon comes from the Greek for “six angles”: it has six sides, like the cells of a honeycomb." }
+    },
+    {
+      "id": "math-0004", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuánto vale aproximadamente π (pi), redondeado a dos decimales?",
+              "options": ["3,14", "3,41", "3,24", "3,16"],
+              "explanation": "π es la razón entre la circunferencia y el diámetro de un círculo: 3,14159… Es un número irracional." },
+      "en": { "question": "What is the approximate value of π (pi), rounded to two decimal places?",
+              "options": ["3.14", "3.41", "3.24", "3.16"],
+              "explanation": "π is the ratio of a circle's circumference to its diameter: 3.14159… It is an irrational number." }
+    },
+    {
+      "id": "math-0005", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cuál es el siguiente número primo después del 7?",
+              "options": ["11", "9", "13", "15"],
+              "explanation": "El 8, el 9 y el 10 son compuestos (9 = 3 × 3), así que el siguiente primo es el 11. El 13 es primo, pero no el siguiente." },
+      "en": { "question": "What is the next prime number after 7?",
+              "options": ["11", "9", "13", "15"],
+              "explanation": "8, 9 and 10 are composite (9 = 3 × 3), so the next prime is 11. 13 is prime too, but it is not the next one." }
+    },
+    {
+      "id": "math-0006", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cuál es la fórmula del área de un círculo de radio r?",
+              "options": ["π × r²", "2 × π × r", "π × r", "2 × π × r²"],
+              "explanation": "El área es π × r². La fórmula 2 × π × r es la longitud de la circunferencia." },
+      "en": { "question": "What is the formula for the area of a circle of radius r?",
+              "options": ["π × r²", "2 × π × r", "π × r", "2 × π × r²"],
+              "explanation": "The area is π × r². The formula 2 × π × r gives the circumference instead." }
+    },
+    {
+      "id": "math-0007", "difficulty": 2, "type": "truefalse", "answer": true,
+      "es": { "question": "El cero es un número par.",
+              "explanation": "Un número es par si es divisible entre 2 sin residuo, y 0 ÷ 2 = 0. Por eso el cero es par." },
+      "en": { "question": "Zero is an even number.",
+              "explanation": "A number is even if it is divisible by 2 with no remainder, and 0 ÷ 2 = 0. So zero is even." }
+    },
+    {
+      "id": "math-0008", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cómo se llama un polígono de ocho lados?",
+              "options": ["Octágono", "Heptágono", "Eneágono", "Decágono"],
+              "explanation": "Octágono viene del griego «ocho ángulos». El heptágono tiene siete lados, el eneágono nueve y el decágono diez." },
+      "en": { "question": "What is a polygon with eight sides called?",
+              "options": ["Octagon", "Heptagon", "Nonagon", "Decagon"],
+              "explanation": "Octagon comes from the Greek for “eight angles”. A heptagon has seven sides, a nonagon nine and a decagon ten." }
+    },
+    {
+      "id": "math-0009", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Quién demostró el último teorema de Fermat en la década de 1990?",
+              "options": ["Andrew Wiles", "Grigori Perelman", "Terence Tao", "John Nash"],
+              "explanation": "Andrew Wiles presentó la demostración en 1993; tras corregir un error, la completó en 1994 y se publicó en 1995. Perelman demostró la conjetura de Poincaré." },
+      "en": { "question": "Who proved Fermat's Last Theorem in the 1990s?",
+              "options": ["Andrew Wiles", "Grigori Perelman", "Terence Tao", "John Nash"],
+              "explanation": "Andrew Wiles presented it in 1993; after fixing a gap, he completed it in 1994 and it was published in 1995. Perelman proved the Poincaré conjecture." }
+    },
+    {
+      "id": "math-0010", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cuánto suman los ángulos interiores de un pentágono?",
+              "options": ["540°", "360°", "720°", "450°"],
+              "explanation": "La suma es (n − 2) × 180°. Con n = 5: 3 × 180° = 540°. El cuadrilátero suma 360° y el hexágono, 720°." },
+      "en": { "question": "What do the interior angles of a pentagon add up to?",
+              "options": ["540°", "360°", "720°", "450°"],
+              "explanation": "The sum is (n − 2) × 180°. With n = 5: 3 × 180° = 540°. A quadrilateral adds up to 360° and a hexagon to 720°." }
+    },
+    {
+      "id": "math-0011", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Cuánto vale 0! (cero factorial)?",
+              "options": ["1", "0", "Indefinido", "−1"],
+              "explanation": "Por definición 0! = 1. Así funcionan las fórmulas de combinatoria: por ejemplo, hay una sola forma de ordenar cero elementos." },
+      "en": { "question": "What is the value of 0! (zero factorial)?",
+              "options": ["1", "0", "Undefined", "−1"],
+              "explanation": "By definition, 0! = 1. That keeps combinatorics formulas working: for example, there is exactly one way to arrange zero items." }
+    },
+    {
+      "id": "math-0012", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cuántos números primos hay entre 1 y 20?",
+              "options": ["8", "7", "9", "10"],
+              "explanation": "Son 8: 2, 3, 5, 7, 11, 13, 17 y 19. El 1 no es primo." },
+      "en": { "question": "How many prime numbers are there between 1 and 20?",
+              "options": ["8", "7", "9", "10"],
+              "explanation": "There are 8: 2, 3, 5, 7, 11, 13, 17 and 19. The number 1 is not prime." }
+    },
+    {
+      "id": "math-0013", "difficulty": 3, "type": "choice",
+      "es": { "question": "Un artículo de $100 sube un 10 % y luego baja un 10 %. ¿Cuánto cuesta al final?",
+              "options": ["$99", "$100", "$101", "$90"],
+              "explanation": "Sube a $110, y el 10 % de 110 es $11, así que baja a $99. El segundo 10 % se aplica sobre un precio mayor, por eso no se compensan." },
+      "en": { "question": "An item priced at $100 goes up 10% and then goes down 10%. What does it cost at the end?",
+              "options": ["$99", "$100", "$101", "$90"],
+              "explanation": "It rises to $110, and 10% of 110 is $11, so it falls to $99. The second 10% is taken from a higher price, so they do not cancel out." }
+    },
+    {
+      "id": "math-0014", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuánto es el 10 % de 350?",
+              "options": ["35", "3,5", "70", "17,5"],
+              "explanation": "El 10 % es la décima parte: 350 ÷ 10 = 35. El 5 % sería 17,5 y el 20 %, 70." },
+      "en": { "question": "What is 10% of 350?",
+              "options": ["35", "3.5", "70", "17.5"],
+              "explanation": "10% is one tenth: 350 ÷ 10 = 35. 5% would be 17.5 and 20% would be 70." }
+    },
+    {
+      "id": "math-0015", "difficulty": 3, "type": "truefalse", "answer": false,
+      "es": { "question": "Todos los conjuntos infinitos tienen el mismo tamaño.",
+              "explanation": "Georg Cantor demostró en el siglo XIX que hay infinitos de distinto tamaño: por ejemplo, hay más números reales que números naturales." },
+      "en": { "question": "All infinite sets are the same size.",
+              "explanation": "In the 19th century Georg Cantor proved that there are infinities of different sizes: for example, there are more real numbers than natural numbers." }
+    },
+    {
+      "id": "math-0016", "difficulty": 1, "type": "truefalse", "answer": true,
+      "es": { "question": "La suma de dos números impares siempre da un número par.",
+              "explanation": "Por ejemplo, 3 + 5 = 8 y 7 + 9 = 16. Cada impar es un par más 1, y esos dos 1 sueltos forman otro par." },
+      "en": { "question": "The sum of two odd numbers is always an even number.",
+              "explanation": "For example, 3 + 5 = 8 and 7 + 9 = 16. Each odd number is an even number plus 1, and those two extra 1s make another even number." }
+    },
+    {
+      "id": "math-0017", "difficulty": 2, "type": "choice",
+      "es": { "question": "Isaac Newton y Gottfried Leibniz desarrollaron por separado, en el siglo XVII, una misma rama de las matemáticas. ¿Cuál?",
+              "options": ["Cálculo", "Trigonometría", "Teoría de conjuntos", "Álgebra de Boole"],
+              "explanation": "Ambos formularon el cálculo diferencial e integral, base del análisis moderno. La teoría de conjuntos y el álgebra de Boole surgieron en el siglo XIX." },
+      "en": { "question": "Isaac Newton and Gottfried Leibniz independently developed the same branch of mathematics in the 17th century. Which one?",
+              "options": ["Calculus", "Trigonometry", "Set theory", "Boolean algebra"],
+              "explanation": "Both formulated differential and integral calculus, the basis of modern analysis. Set theory and Boolean algebra appeared in the 19th century." }
+    },
+    {
+      "id": "math-0018", "difficulty": 2, "type": "truefalse", "answer": true,
+      "es": { "question": "El 2 es el único número primo que es par.",
+              "explanation": "Todo número par mayor que 2 es divisible entre 2, así que además de 1 y de sí mismo tiene otro divisor y no es primo. Solo el 2 se salva." },
+      "en": { "question": "The number 2 is the only prime number that is even.",
+              "explanation": "Any even number greater than 2 is divisible by 2, so besides 1 and itself it has another divisor and is not prime. Only 2 escapes." }
+    },
+    {
+      "id": "math-0019", "difficulty": 1, "type": "choice",
+      "es": { "question": "En una división, ¿cómo se llama el resultado?",
+              "options": ["Cociente", "Producto", "Divisor", "Residuo"],
+              "explanation": "En 12 ÷ 4 = 3, el 12 es el dividendo, el 4 el divisor y el 3 el cociente. El producto es el resultado de una multiplicación." },
+      "en": { "question": "In a division, what is the result called?",
+              "options": ["Quotient", "Product", "Divisor", "Remainder"],
+              "explanation": "In 12 ÷ 4 = 3, the 12 is the dividend, the 4 is the divisor and the 3 is the quotient. The product is the result of a multiplication." }
+    },
+    {
+      "id": "math-0020", "difficulty": 2, "type": "choice",
+      "es": { "question": "Regla: si el número es par, se divide entre 2; si es impar, se multiplica por 3 y se suma 1. Empezando en 6, ¿qué número resulta tras 3 pasos?",
+              "options": ["5", "3", "10", "16"],
+              "explanation": "6 → 3 → 10 → 5. Tras un paso se tiene 3, tras dos 10 y tras tres 5; el 16 llega en el cuarto paso (5 × 3 + 1)." },
+      "en": { "question": "Rule: if the number is even, divide it by 2; if it is odd, multiply it by 3 and add 1. Starting at 6, what number do you get after 3 steps?",
+              "options": ["5", "3", "10", "16"],
+              "explanation": "6 → 3 → 10 → 5. After one step you have 3, after two you have 10 and after three you have 5; 16 comes at the fourth step (5 × 3 + 1)." }
+    },
+    {
+      "id": "math-0021", "difficulty": 2, "type": "choice",
+      "es": { "question": "Una receta para 4 personas usa 300 g de harina. ¿Cuánta harina se necesita para 6 personas?",
+              "options": ["450 g", "600 g", "400 g", "500 g"],
+              "explanation": "Para una persona se usan 300 ÷ 4 = 75 g, y para 6 personas, 75 × 6 = 450 g. También es 300 g más la mitad de 300 g." },
+      "en": { "question": "A recipe for 4 people uses 300 g of flour. How much flour is needed for 6 people?",
+              "options": ["450 g", "600 g", "400 g", "500 g"],
+              "explanation": "One person uses 300 ÷ 4 = 75 g, so 6 people need 75 × 6 = 450 g. It is also 300 g plus half of 300 g." }
+    },
+    {
+      "id": "math-0022", "difficulty": 2, "type": "choice",
+      "es": { "question": "El plano cartesiano, con sus ejes x e y, lleva el nombre de un filósofo y matemático francés. ¿De quién?",
+              "options": ["René Descartes", "Pierre de Fermat", "Henri Poincaré", "Joseph Fourier"],
+              "explanation": "«Cartesiano» viene de Cartesius, la forma latina del nombre de René Descartes, quien en el siglo XVII unió el álgebra y la geometría con coordenadas." },
+      "en": { "question": "The Cartesian plane, with its x and y axes, is named after a French philosopher and mathematician. Who was he?",
+              "options": ["René Descartes", "Pierre de Fermat", "Henri Poincaré", "Joseph Fourier"],
+              "explanation": "“Cartesian” comes from Cartesius, the Latin form of René Descartes’s name. In the 17th century he joined algebra and geometry through coordinates." }
+    },
+    {
+      "id": "math-0023", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuántos grados mide una vuelta completa alrededor de un punto?",
+              "options": ["360°", "180°", "100°", "270°"],
+              "explanation": "Una vuelta completa mide 360°. Media vuelta son 180° y un cuarto de vuelta, 90°." },
+      "en": { "question": "How many degrees is one full turn around a point?",
+              "options": ["360°", "180°", "100°", "270°"],
+              "explanation": "A full turn is 360°. A half turn is 180° and a quarter turn is 90°." }
+    },
+    {
+      "id": "math-0024", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuántos metros hay en 3 kilómetros?",
+              "options": ["3000 m", "300 m", "30 m", "30 000 m"],
+              "explanation": "Un kilómetro tiene 1000 metros, así que 3 km = 3 × 1000 = 3000 m." },
+      "en": { "question": "How many meters are there in 3 kilometers?",
+              "options": ["3,000 m", "300 m", "30 m", "30,000 m"],
+              "explanation": "A kilometer has 1,000 meters, so 3 km = 3 × 1,000 = 3,000 m." }
+    },
+    {
+      "id": "math-0025", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué número sigue en la serie 1, 1, 2, 3, 5, 8, …?",
+              "options": ["13", "11", "12", "16"],
+              "explanation": "Cada término es la suma de los dos anteriores: 5 + 8 = 13." },
+      "en": { "question": "What number comes next in the series 1, 1, 2, 3, 5, 8, …?",
+              "options": ["13", "11", "12", "16"],
+              "explanation": "Each term is the sum of the two before it: 5 + 8 = 13." }
+    },
+    {
+      "id": "math-0026", "difficulty": 3, "type": "choice",
+      "es": { "question": "Un poliedro convexo tiene 12 caras y 20 vértices. ¿Cuántas aristas tiene?",
+              "options": ["30", "32", "28", "24"],
+              "explanation": "En todo poliedro convexo, vértices − aristas + caras = 2 (fórmula de Euler): 20 − A + 12 = 2, así que A = 30. Es el dodecaedro regular." },
+      "en": { "question": "A convex polyhedron has 12 faces and 20 vertices. How many edges does it have?",
+              "options": ["30", "32", "28", "24"],
+              "explanation": "In any convex polyhedron, vertices − edges + faces = 2 (Euler's formula): 20 − E + 12 = 2, so E = 30. It is the regular dodecahedron." }
+    },
+    {
+      "id": "math-0027", "difficulty": 2, "type": "choice",
+      "es": { "question": "Un triángulo tiene 10 cm de base y 6 cm de altura. ¿Cuál es su área?",
+              "options": ["30 cm²", "60 cm²", "16 cm²", "32 cm²"],
+              "explanation": "El área es base × altura ÷ 2 = 10 × 6 ÷ 2 = 30 cm². Si olvidas dividir entre 2 obtienes 60 cm², el área de un rectángulo con esas medidas." },
+      "en": { "question": "A triangle has a base of 10 cm and a height of 6 cm. What is its area?",
+              "options": ["30 cm²", "60 cm²", "16 cm²", "32 cm²"],
+              "explanation": "The area is base × height ÷ 2 = 10 × 6 ÷ 2 = 30 cm². If you forget to divide by 2 you get 60 cm², the area of a rectangle with those measures." }
+    },
+    {
+      "id": "math-0028", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuánto es 12² (12 al cuadrado)?",
+              "options": ["144", "24", "132", "122"],
+              "explanation": "12² = 12 × 12 = 144. El 24 sería 12 × 2 y el 132, 12 × 11." },
+      "en": { "question": "What is 12² (12 squared)?",
+              "options": ["144", "24", "132", "122"],
+              "explanation": "12² = 12 × 12 = 144. The 24 would be 12 × 2 and the 132 would be 12 × 11." }
+    },
+    {
+      "id": "math-0029", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cuántas aristas (bordes) tiene un cubo?",
+              "options": ["12", "8", "6", "10"],
+              "explanation": "Un cubo tiene 12 aristas: 4 arriba, 4 abajo y 4 verticales que las unen. Además tiene 6 caras y 8 vértices." },
+      "en": { "question": "How many edges does a cube have?",
+              "options": ["12", "8", "6", "10"],
+              "explanation": "A cube has 12 edges: 4 on top, 4 on the bottom and 4 vertical ones joining them. It also has 6 faces and 8 vertices." }
+    },
+    {
+      "id": "math-0030", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuánto es 2⁵?",
+              "options": ["32", "10", "25", "16"],
+              "explanation": "2⁵ = 2 × 2 × 2 × 2 × 2 = 32. No es 2 × 5 = 10 ni 5² = 25." },
+      "en": { "question": "What is 2⁵?",
+              "options": ["32", "10", "25", "16"],
+              "explanation": "2⁵ = 2 × 2 × 2 × 2 × 2 = 32. It is not 2 × 5 = 10 or 5² = 25." }
+    },
+    {
+      "id": "math-0031", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Cuánto es 49 × 51?",
+              "options": ["2499", "2500", "2501", "2599"],
+              "explanation": "49 × 51 = (50 − 1)(50 + 1) = 50² − 1 = 2499. Truco: (a − b)(a + b) = a² − b²." },
+      "en": { "question": "What is 49 × 51?",
+              "options": ["2,499", "2,500", "2,501", "2,599"],
+              "explanation": "49 × 51 = (50 − 1)(50 + 1) = 50² − 1 = 2,499. Trick: (a − b)(a + b) = a² − b²." }
+    },
+    {
+      "id": "math-0032", "difficulty": 1, "type": "choice",
+      "es": { "question": "Al redondear 4,76 a las décimas (un decimal), ¿qué número resulta?",
+              "options": ["4,8", "4,7", "5", "4,6"],
+              "explanation": "La cifra de las centésimas es 6, que es mayor o igual que 5, así que la décima sube: 4,7 pasa a 4,8." },
+      "en": { "question": "When you round 4.76 to the nearest tenth (one decimal place), what do you get?",
+              "options": ["4.8", "4.7", "5", "4.6"],
+              "explanation": "The hundredths digit is 6, which is 5 or more, so the tenths digit goes up: 4.7 becomes 4.8." }
+    },
+    {
+      "id": "math-0033", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿A qué matemático griego se atribuye el teorema a² + b² = c² sobre los lados de un triángulo rectángulo?",
+              "options": ["Pitágoras", "Euclides", "Arquímedes", "Tales"],
+              "explanation": "Se atribuye a Pitágoras, aunque los babilonios ya conocían casos particulares siglos antes." },
+      "en": { "question": "To which Greek mathematician is the theorem a² + b² = c², about the sides of a right triangle, attributed?",
+              "options": ["Pythagoras", "Euclid", "Archimedes", "Thales"],
+              "explanation": "It is attributed to Pythagoras, although the Babylonians already knew particular cases centuries earlier." }
+    },
+    {
+      "id": "math-0034", "difficulty": 1, "type": "choice",
+      "es": { "question": "La temperatura baja de 3 °C a −5 °C. ¿Cuántos grados bajó?",
+              "options": ["8 °C", "2 °C", "5 °C", "3 °C"],
+              "explanation": "Pasa de 3 a 0 (3 grados) y de 0 a −5 (otros 5): en total 8 °C. En cuentas, 3 − (−5) = 8." },
+      "en": { "question": "The temperature falls from 3 °C to −5 °C. By how many degrees did it drop?",
+              "options": ["8 °C", "2 °C", "5 °C", "3 °C"],
+              "explanation": "It goes from 3 to 0 (3 degrees) and from 0 to −5 (5 more): 8 °C in total. In math terms, 3 − (−5) = 8." }
+    },
+    {
+      "id": "math-0035", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuánto es 1/2 + 1/4?",
+              "options": ["3/4", "2/6", "1/6", "1/8"],
+              "explanation": "Con denominador común, 1/2 = 2/4, y 2/4 + 1/4 = 3/4. Sumar numeradores y denominadores por separado (2/6) es un error común." },
+      "en": { "question": "What is 1/2 + 1/4?",
+              "options": ["3/4", "2/6", "1/6", "1/8"],
+              "explanation": "With a common denominator, 1/2 = 2/4, and 2/4 + 1/4 = 3/4. Adding numerators and denominators separately (2/6) is a common mistake." }
+    },
+    {
+      "id": "math-0036", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué fracción equivale al 25 %?",
+              "options": ["1/4", "1/5", "2/5", "1/2"],
+              "explanation": "El 25 % es 25 de cada 100, es decir, un cuarto: 25/100 = 1/4. El 20 % sería 1/5 y el 50 %, 1/2." },
+      "en": { "question": "Which fraction equals 25%?",
+              "options": ["1/4", "1/5", "2/5", "1/2"],
+              "explanation": "25% is 25 out of every 100, which is a quarter: 25/100 = 1/4. 20% would be 1/5 and 50% would be 1/2." }
+    },
+    {
+      "id": "math-0037", "difficulty": 3, "type": "truefalse", "answer": true,
+      "es": { "question": "El número 0,999… (con infinitos nueves) es igual a 1.",
+              "explanation": "Si 1/3 = 0,333…, al multiplicar por 3 queda 3/3 = 0,999… = 1. No hay ningún número entre 0,999… y 1, porque son el mismo número." },
+      "en": { "question": "The number 0.999… (with the nines going on forever) is equal to 1.",
+              "explanation": "If 1/3 = 0.333…, multiplying by 3 gives 3/3 = 0.999… = 1. There is no number between 0.999… and 1, because they are the same number." }
+    },
+    {
+      "id": "math-0038", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuál es el promedio (la media) de 2, 4 y 9?",
+              "options": ["5", "4", "7", "15"],
+              "explanation": "La suma es 2 + 4 + 9 = 15, y se divide entre los 3 datos: 15 ÷ 3 = 5. El 4 es la mediana y el 15, la suma sin dividir." },
+      "en": { "question": "What is the average (mean) of 2, 4 and 9?",
+              "options": ["5", "4", "7", "15"],
+              "explanation": "The sum is 2 + 4 + 9 = 15, divided by the 3 values: 15 ÷ 3 = 5. The 4 is the median and the 15 is the sum before dividing." }
+    },
+    {
+      "id": "math-0039", "difficulty": 1, "type": "choice",
+      "es": { "question": "Un rectángulo mide 8 m de largo y 3 m de ancho. ¿Cuál es su área?",
+              "options": ["24 m²", "22 m²", "11 m²", "48 m²"],
+              "explanation": "Área = largo × ancho = 8 × 3 = 24 m². El 22 sería el perímetro (en metros) y el 11, la suma del largo y el ancho." },
+      "en": { "question": "A rectangle is 8 m long and 3 m wide. What is its area?",
+              "options": ["24 m²", "22 m²", "11 m²", "48 m²"],
+              "explanation": "Area = length × width = 8 × 3 = 24 m². The 22 would be the perimeter (in meters) and the 11 is the length plus the width." }
+    },
+    {
+      "id": "math-0040", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Quién fue la primera mujer en ganar la Medalla Fields, el premio que se entrega cada cuatro años a matemáticos menores de 40 años?",
+              "options": ["Maryam Mirzakhani", "Maryna Viazovska", "Karen Uhlenbeck", "Emmy Noether"],
+              "explanation": "La iraní Maryam Mirzakhani la recibió en 2014. Maryna Viazovska la ganó en 2022; Karen Uhlenbeck obtuvo en 2019 el Premio Abel, otro gran premio de las matemáticas." },
+      "en": { "question": "Who was the first woman to win the Fields Medal, the prize awarded every four years to mathematicians under 40?",
+              "options": ["Maryam Mirzakhani", "Maryna Viazovska", "Karen Uhlenbeck", "Emmy Noether"],
+              "explanation": "The Iranian Maryam Mirzakhani received it in 2014. Maryna Viazovska won it in 2022; Karen Uhlenbeck won the Abel Prize in 2019, another major mathematics prize." }
+    },
+    {
+      "id": "math-0041", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuál es el valor absoluto de −9?",
+              "options": ["9", "−9", "0", "1/9"],
+              "explanation": "El valor absoluto es la distancia al cero, así que nunca es negativo: |−9| = 9." },
+      "en": { "question": "What is the absolute value of −9?",
+              "options": ["9", "−9", "0", "1/9"],
+              "explanation": "The absolute value is the distance from zero, so it is never negative: |−9| = 9." }
+    },
+    {
+      "id": "math-0042", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuánto es un tercio de 12?",
+              "options": ["4", "3", "6", "36"],
+              "explanation": "Un tercio de 12 es 12 ÷ 3 = 4. Multiplicar por 3 daría 36." },
+      "en": { "question": "What is one third of 12?",
+              "options": ["4", "3", "6", "36"],
+              "explanation": "One third of 12 is 12 ÷ 3 = 4. Multiplying by 3 would give 36." }
+    },
+    {
+      "id": "math-0043", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuántos segundos tiene una hora?",
+              "options": ["3600", "360", "6000", "1440"],
+              "explanation": "Una hora tiene 60 minutos y cada minuto, 60 segundos: 60 × 60 = 3600. El 1440 es la cantidad de minutos de un día." },
+      "en": { "question": "How many seconds are there in one hour?",
+              "options": ["3,600", "360", "6,000", "1,440"],
+              "explanation": "An hour has 60 minutes and each minute has 60 seconds: 60 × 60 = 3,600. The 1,440 is the number of minutes in a day." }
+    },
+    {
+      "id": "math-0044", "difficulty": 3, "type": "choice",
+      "es": { "question": "Un número perfecto es igual a la suma de sus divisores propios (los menores que él). ¿Cuál es el menor número perfecto?",
+              "options": ["6", "28", "12", "10"],
+              "explanation": "Los divisores propios de 6 son 1, 2 y 3, y 1 + 2 + 3 = 6. El siguiente perfecto es 28. El 12 no lo es: sus divisores propios suman 16." },
+      "en": { "question": "A perfect number equals the sum of its proper divisors (those smaller than itself). What is the smallest perfect number?",
+              "options": ["6", "28", "12", "10"],
+              "explanation": "The proper divisors of 6 are 1, 2 and 3, and 1 + 2 + 3 = 6. The next perfect number is 28. 12 is not one: its proper divisors add up to 16." }
+    },
+    {
+      "id": "math-0045", "difficulty": 1, "type": "choice",
+      "es": { "question": "Con el orden habitual de las operaciones, ¿cuánto es 2 + 3 × 4?",
+              "options": ["14", "20", "24", "9"],
+              "explanation": "Primero se multiplica y después se suma: 3 × 4 = 12 y 12 + 2 = 14. Sumar primero daría 20, un error común." },
+      "en": { "question": "Using the usual order of operations, what is 2 + 3 × 4?",
+              "options": ["14", "20", "24", "9"],
+              "explanation": "Multiplication comes before addition: 3 × 4 = 12 and 12 + 2 = 14. Adding first would give 20, a common mistake." }
+    },
+    {
+      "id": "math-0046", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cuánto mide el ángulo complementario de uno de 30°?",
+              "options": ["60°", "150°", "120°", "330°"],
+              "explanation": "Dos ángulos complementarios suman 90°, y 30° + 60° = 90°. El 150° es el suplementario (suman 180°), un error común." },
+      "en": { "question": "What is the complement of a 30° angle?",
+              "options": ["60°", "150°", "120°", "330°"],
+              "explanation": "Two complementary angles add up to 90°, and 30° + 60° = 90°. The 150° is the supplement (they add up to 180°), a common mistake." }
+    },
+    {
+      "id": "math-0047", "difficulty": 1, "type": "choice",
+      "es": { "question": "En un triángulo rectángulo, ¿cómo se llama el lado opuesto al ángulo recto?",
+              "options": ["Hipotenusa", "Cateto", "Diagonal", "Cuerda"],
+              "explanation": "La hipotenusa es el lado más largo y queda frente al ángulo recto. Los catetos son los dos lados que forman ese ángulo." },
+      "en": { "question": "In a right triangle, what is the side opposite the right angle called?",
+              "options": ["Hypotenuse", "Leg", "Diagonal", "Chord"],
+              "explanation": "The hypotenuse is the longest side and lies opposite the right angle. The legs are the two sides that form that angle." }
+    },
+    {
+      "id": "math-0048", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cuántos divisores positivos tiene el número 24?",
+              "options": ["8", "6", "9", "12"],
+              "explanation": "Son ocho: 1, 2, 3, 4, 6, 8, 12 y 24. El 1 y el propio 24 también cuentan como divisores." },
+      "en": { "question": "How many positive divisors does the number 24 have?",
+              "options": ["8", "6", "9", "12"],
+              "explanation": "There are eight: 1, 2, 3, 4, 6, 8, 12 and 24. The 1 and 24 itself also count as divisors." }
+    },
+    {
+      "id": "math-0049", "difficulty": 3, "type": "choice",
+      "es": { "question": "La palabra «algoritmo» viene del nombre de un matemático persa del siglo IX. ¿De quién?",
+              "options": ["Al-Juarismi", "Omar Jayam", "Avicena", "Averroes"],
+              "explanation": "Muhammad ibn Musa al-Juarismi trabajó en Bagdad hacia el año 820. De su nombre viene «algoritmo», y «álgebra» viene de al-jabr, una palabra del título de su libro." },
+      "en": { "question": "The word “algorithm” comes from the name of a 9th-century Persian mathematician. Who was he?",
+              "options": ["Al-Khwarizmi", "Omar Khayyam", "Avicenna", "Averroes"],
+              "explanation": "Muhammad ibn Musa al-Khwarizmi worked in Baghdad around the year 820. “Algorithm” comes from his name, and “algebra” from al-jabr, a word in the title of his book." }
+    },
+    {
+      "id": "math-0050", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué número sigue en la serie 1, 3, 6, 10, 15, …?",
+              "options": ["21", "20", "18", "25"],
+              "explanation": "Las diferencias entre términos son 2, 3, 4 y 5, así que sigue 6: 15 + 6 = 21. Son los números triangulares." },
+      "en": { "question": "What number comes next in the series 1, 3, 6, 10, 15, …?",
+              "options": ["21", "20", "18", "25"],
+              "explanation": "The differences between terms are 2, 3, 4 and 5, so the next one is 6: 15 + 6 = 21. These are the triangular numbers." }
+    },
+    {
+      "id": "math-0051", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cómo se llama un ángulo que mide 45°?",
+              "options": ["Agudo", "Recto", "Obtuso", "Llano"],
+              "explanation": "Un ángulo agudo mide menos de 90°. El recto mide justo 90°, el obtuso está entre 90° y 180° y el llano mide 180°." },
+      "en": { "question": "What is an angle of 45° called?",
+              "options": ["Acute", "Right", "Obtuse", "Straight"],
+              "explanation": "An acute angle measures less than 90°. A right angle is exactly 90°, an obtuse one is between 90° and 180°, and a straight angle is 180°." }
+    },
+    {
+      "id": "math-0052", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuál de estas figuras tiene siempre sus cuatro lados iguales y sus cuatro ángulos rectos?",
+              "options": ["Cuadrado", "Rombo", "Rectángulo", "Trapecio"],
+              "explanation": "Solo el cuadrado cumple siempre las dos condiciones. El rombo no siempre tiene ángulos rectos y el rectángulo no siempre tiene los lados iguales." },
+      "en": { "question": "Which of these shapes always has four equal sides and four right angles?",
+              "options": ["Square", "Rhombus", "Rectangle", "Trapezoid"],
+              "explanation": "Only the square always meets both conditions. A rhombus does not always have right angles and a rectangle does not always have equal sides." }
+    },
+    {
+      "id": "math-0053", "difficulty": 2, "type": "choice",
+      "es": { "question": "Un auto recorre 60 km en 45 minutos. ¿A qué velocidad media va?",
+              "options": ["80 km/h", "60 km/h", "75 km/h", "90 km/h"],
+              "explanation": "En 15 minutos recorre 20 km (60 ÷ 3). Como una hora tiene cuatro tramos de 15 minutos, en una hora recorrería 4 × 20 = 80 km." },
+      "en": { "question": "A car travels 60 km in 45 minutes. What is its average speed?",
+              "options": ["80 km/h", "60 km/h", "75 km/h", "90 km/h"],
+              "explanation": "In 15 minutes it covers 20 km (60 ÷ 3). Since an hour has four 15-minute stretches, in one hour it would cover 4 × 20 = 80 km." }
+    },
+    {
+      "id": "math-0054", "difficulty": 2, "type": "truefalse", "answer": false,
+      "es": { "question": "Con tres varillas de 2 cm, 3 cm y 7 cm se puede formar un triángulo.",
+              "explanation": "En un triángulo, la suma de dos lados siempre supera al tercero. Aquí 2 + 3 = 5 es menor que 7, así que las varillas no llegan a cerrarse." },
+      "en": { "question": "You can form a triangle with three sticks of 2 cm, 3 cm and 7 cm.",
+              "explanation": "In a triangle, the sum of any two sides must exceed the third. Here 2 + 3 = 5 is less than 7, so the sticks cannot close up." }
+    },
+    {
+      "id": "math-0055", "difficulty": 3, "type": "choice",
+      "es": { "question": "Recorres una ruta a 60 km/h y regresas por la misma ruta a 30 km/h. ¿Cuál es tu rapidez media en el viaje de ida y vuelta?",
+              "options": ["40 km/h", "45 km/h", "50 km/h", "30 km/h"],
+              "explanation": "Si la ruta mide 60 km: ida, 1 h; vuelta, 2 h. Son 120 km en 3 h = 40 km/h, no 45: pasas más tiempo a la velocidad menor." },
+      "en": { "question": "You drive a route at 60 km/h and return along the same route at 30 km/h. What is your average speed for the round trip?",
+              "options": ["40 km/h", "45 km/h", "50 km/h", "30 km/h"],
+              "explanation": "If the route is 60 km: going takes 1 h, returning takes 2 h. That is 120 km in 3 h = 40 km/h, not 45: you spend more time at the lower speed." }
+    },
+    {
+      "id": "math-0056", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cuál es la mediana de los datos 5, 1, 9, 3 y 12?",
+              "options": ["5", "6", "9", "12"],
+              "explanation": "Ordenados: 1, 3, 5, 9, 12. La mediana es el valor central: 5. El 6 es la media (30 ÷ 5) y el 9 es el que queda en el centro sin ordenar." },
+      "en": { "question": "What is the median of the values 5, 1, 9, 3 and 12?",
+              "options": ["5", "6", "9", "12"],
+              "explanation": "In order: 1, 3, 5, 9, 12. The median is the middle value: 5. The 6 is the mean (30 ÷ 5) and the 9 is the one in the middle before sorting." }
+    },
+    {
+      "id": "math-0057", "difficulty": 2, "type": "truefalse", "answer": true,
+      "es": { "question": "El 30 % de 50 es igual al 50 % de 30.",
+              "explanation": "Ambos valen 15: 0,3 × 50 = 15 y la mitad de 30 es 15. En general, el a % de b es igual al b % de a." },
+      "en": { "question": "30% of 50 equals 50% of 30.",
+              "explanation": "Both are 15: 0.3 × 50 = 15 and half of 30 is 15. In general, a% of b equals b% of a." }
+    },
+    {
+      "id": "math-0058", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué número decimal equivale a la fracción 3/5?",
+              "options": ["0,6", "0,35", "0,53", "0,3"],
+              "explanation": "3 ÷ 5 = 0,6. Otra forma de verlo: 3/5 = 6/10 = 0,6." },
+      "en": { "question": "Which decimal equals the fraction 3/5?",
+              "options": ["0.6", "0.35", "0.53", "0.3"],
+              "explanation": "3 ÷ 5 = 0.6. Another way to see it: 3/5 = 6/10 = 0.6." }
+    },
+    {
+      "id": "math-0059", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cuál de estos números es irracional?",
+              "options": ["√2", "0,25", "1/3", "−7"],
+              "explanation": "Un irracional no se puede escribir como fracción de enteros; √2 tiene infinitos decimales sin patrón. 0,25 = 1/4, 1/3 y −7 son racionales." },
+      "en": { "question": "Which of these numbers is irrational?",
+              "options": ["√2", "0.25", "1/3", "−7"],
+              "explanation": "An irrational number cannot be written as a fraction of integers; √2 has infinitely many decimals with no pattern. 0.25 = 1/4, 1/3 and −7 are rational." }
+    },
+    {
+      "id": "math-0060", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Cuánto suman los ángulos exteriores (uno por vértice) de cualquier polígono convexo?",
+              "options": ["360°", "180°", "720°", "270°"],
+              "explanation": "Siempre suman 360°, sin importar cuántos lados tenga: al recorrer el contorno das una vuelta completa. En un cuadrado son 4 × 90°." },
+      "en": { "question": "What do the exterior angles (one per vertex) of any convex polygon add up to?",
+              "options": ["360°", "180°", "720°", "270°"],
+              "explanation": "They always add up to 360°, however many sides there are: walking around the outline you make one full turn. In a square it is 4 × 90°." }
+    },
+    {
+      "id": "math-0061", "difficulty": 2, "type": "choice",
+      "es": { "question": "Si lanzas una moneda tres veces seguidas, ¿cuántas secuencias distintas de caras y cruces pueden salir?",
+              "options": ["8", "6", "9", "3"],
+              "explanation": "Cada lanzamiento tiene 2 resultados, así que hay 2 × 2 × 2 = 8 secuencias. Sumar (2 + 2 + 2 = 6) es un error común." },
+      "en": { "question": "If you flip a coin three times in a row, how many different sequences of heads and tails can come up?",
+              "options": ["8", "6", "9", "3"],
+              "explanation": "Each flip has 2 outcomes, so there are 2 × 2 × 2 = 8 sequences. Adding (2 + 2 + 2 = 6) is a common mistake." }
+    },
+    {
+      "id": "math-0062", "difficulty": 2, "type": "choice",
+      "es": { "question": "El triángulo de números 1 / 1 1 / 1 2 1 / 1 3 3 1 / …, donde cada número es la suma de los dos que tiene encima, ¿cómo se llama?",
+              "options": ["Triángulo de Pascal", "Triángulo de Fibonacci", "Triángulo de Euler", "Triángulo de Tales"],
+              "explanation": "Es el triángulo de Pascal, aunque se conocía antes en China, India y Persia. Sus filas dan los coeficientes de (a + b)ⁿ: la fila 1 2 1 corresponde a (a + b)²." },
+      "en": { "question": "In the triangle of numbers 1 / 1 1 / 1 2 1 / 1 3 3 1 / …, each number is the sum of the two above it. What is it called?",
+              "options": ["Pascal's triangle", "Fibonacci's triangle", "Euler's triangle", "Thales' triangle"],
+              "explanation": "It is Pascal's triangle, though it was known earlier in China, India and Persia. Its rows give the coefficients of (a + b)ⁿ: the row 1 2 1 matches (a + b)²." }
+    },
+    {
+      "id": "math-0063", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué número sigue en la serie 1, 4, 9, 16, 25, …?",
+              "options": ["36", "30", "35", "49"],
+              "explanation": "Son los cuadrados de 1, 2, 3, 4 y 5. El siguiente es 6² = 36. Las diferencias entre términos (3, 5, 7, 9) crecen de 2 en 2." },
+      "en": { "question": "What number comes next in the series 1, 4, 9, 16, 25, …?",
+              "options": ["36", "30", "35", "49"],
+              "explanation": "They are the squares of 1, 2, 3, 4 and 5. The next one is 6² = 36. The differences between terms (3, 5, 7, 9) grow by 2 each time." }
+    },
+    {
+      "id": "math-0064", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué número sigue en la serie 1, 10, 2, 20, 3, 30, …?",
+              "options": ["4", "40", "31", "5"],
+              "explanation": "Se alternan dos series: 1, 2, 3, … en los lugares impares y 10, 20, 30, … en los pares. Ahora toca la primera: el 4." },
+      "en": { "question": "What number comes next in the series 1, 10, 2, 20, 3, 30, …?",
+              "options": ["4", "40", "31", "5"],
+              "explanation": "Two series alternate: 1, 2, 3, … in the odd positions and 10, 20, 30, … in the even ones. Now it is the first one’s turn: 4." }
+    },
+    {
+      "id": "math-0065", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Qué matemático de la Antigüedad acotó el valor de π con polígonos de 96 lados dentro y fuera de una circunferencia?",
+              "options": ["Arquímedes", "Euclides", "Eratóstenes", "Hiparco"],
+              "explanation": "Arquímedes (siglo III a. C.) mostró que π está entre 223/71 y 22/7, midiendo los perímetros de polígonos de 96 lados inscritos y circunscritos." },
+      "en": { "question": "Which ancient mathematician bounded the value of π using 96-sided polygons inside and outside a circle?",
+              "options": ["Archimedes", "Euclid", "Eratosthenes", "Hipparchus"],
+              "explanation": "Archimedes (3rd century BC) showed that π lies between 223/71 and 22/7, by measuring the perimeters of inscribed and circumscribed 96-sided polygons." }
+    },
+    {
+      "id": "math-0066", "difficulty": 2, "type": "truefalse", "answer": false,
+      "es": { "question": "La matemática y astrónoma Hipatia de Alejandría vivió en el siglo XVII.",
+              "explanation": "Hipatia vivió entre los siglos IV y V d. C., en la Alejandría de la Antigüedad tardía. Enseñó matemáticas, astronomía y filosofía." },
+      "en": { "question": "The mathematician and astronomer Hypatia of Alexandria lived in the 17th century.",
+              "explanation": "Hypatia lived in the 4th and 5th centuries AD, in late-antique Alexandria. She taught mathematics, astronomy and philosophy." }
+    },
+    {
+      "id": "math-0067", "difficulty": 1, "type": "truefalse", "answer": false,
+      "es": { "question": "Dividir un número entre cero da como resultado cero.",
+              "explanation": "La división entre cero no está definida: ningún número multiplicado por 0 da un resultado distinto de 0." },
+      "en": { "question": "Dividing a number by zero gives zero.",
+              "explanation": "Division by zero is undefined: no number multiplied by 0 gives a result other than 0." }
+    },
+    {
+      "id": "math-0068", "difficulty": 2, "type": "choice",
+      "es": { "question": "Con el orden habitual de las operaciones, ¿cuánto es 8 ÷ 2 × 4?",
+              "options": ["16", "1", "4", "12"],
+              "explanation": "La multiplicación y la división tienen la misma prioridad y se resuelven de izquierda a derecha: 8 ÷ 2 = 4 y 4 × 4 = 16. Multiplicar primero daría 1." },
+      "en": { "question": "Using the usual order of operations, what is 8 ÷ 2 × 4?",
+              "options": ["16", "1", "4", "12"],
+              "explanation": "Multiplication and division have the same priority and are done left to right: 8 ÷ 2 = 4 and 4 × 4 = 16. Multiplying first would give 1." }
+    },
+    {
+      "id": "math-0069", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cuál es el mínimo común múltiplo de 4 y 6?",
+              "options": ["12", "24", "2", "10"],
+              "explanation": "Los múltiplos de 4 son 4, 8, 12… y los de 6 son 6, 12…; el primero que comparten es el 12. El 24 es 4 × 6 y el 2 es el máximo común divisor." },
+      "en": { "question": "What is the least common multiple of 4 and 6?",
+              "options": ["12", "24", "2", "10"],
+              "explanation": "The multiples of 4 are 4, 8, 12… and those of 6 are 6, 12…; the first one they share is 12. The 24 is 4 × 6 and the 2 is the greatest common divisor." }
+    },
+    {
+      "id": "math-0070", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Qué matemático indio, en gran parte autodidacta, envió una carta con fórmulas a G. H. Hardy y terminó trabajando con él en Cambridge?",
+              "options": ["Ramanujan", "Aryabhata", "Brahmagupta", "Bhaskara"],
+              "explanation": "Srinivasa Ramanujan (1887-1920) escribió a Hardy en 1913 y llegó a Cambridge en 1914. Aryabhata, Brahmagupta y Bhaskara fueron matemáticos indios de siglos anteriores." },
+      "en": { "question": "Which largely self-taught Indian mathematician sent a letter of formulas to G. H. Hardy and ended up working with him at Cambridge?",
+              "options": ["Ramanujan", "Aryabhata", "Brahmagupta", "Bhaskara"],
+              "explanation": "Srinivasa Ramanujan (1887-1920) wrote to Hardy in 1913 and arrived at Cambridge in 1914. Aryabhata, Brahmagupta and Bhaskara were Indian mathematicians of earlier centuries." }
+    },
+    {
+      "id": "math-0071", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuál es el perímetro de un cuadrado de 5 cm de lado?",
+              "options": ["20 cm", "25 cm", "10 cm", "15 cm"],
+              "explanation": "El perímetro es la suma de los cuatro lados: 4 × 5 = 20 cm. Los 25 corresponden al área, que se mide en cm²." },
+      "en": { "question": "What is the perimeter of a square with sides of 5 cm?",
+              "options": ["20 cm", "25 cm", "10 cm", "15 cm"],
+              "explanation": "The perimeter is the sum of the four sides: 4 × 5 = 20 cm. The 25 is the area, which is measured in cm²." }
+    },
+    {
+      "id": "math-0072", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Qué matemático suizo da nombre a la identidad e^(iπ) + 1 = 0, que une cinco constantes fundamentales?",
+              "options": ["Euler", "Gauss", "Riemann", "Cauchy"],
+              "explanation": "Es la identidad de Euler: une e, i, π, 1 y 0. Sale de su fórmula e^(ix) = cos x + i sen x con x = π, porque cos π = −1 y sen π = 0." },
+      "en": { "question": "Which Swiss mathematician gives his name to the identity e^(iπ) + 1 = 0, which links five fundamental constants?",
+              "options": ["Euler", "Gauss", "Riemann", "Cauchy"],
+              "explanation": "It is Euler's identity: it links e, i, π, 1 and 0. It comes from his formula e^(ix) = cos x + i sin x with x = π, because cos π = −1 and sin π = 0." }
+    },
+    {
+      "id": "math-0073", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuál es la raíz cuadrada de 81?",
+              "options": ["9", "8", "7", "40,5"],
+              "explanation": "9 × 9 = 81, así que la raíz cuadrada de 81 es 9. Dividir entre 2 (40,5) es un error común." },
+      "en": { "question": "What is the square root of 81?",
+              "options": ["9", "8", "7", "40.5"],
+              "explanation": "9 × 9 = 81, so the square root of 81 is 9. Dividing by 2 (40.5) is a common mistake." }
+    },
+    {
+      "id": "math-0074", "difficulty": 2, "type": "truefalse", "answer": true,
+      "es": { "question": "El cero no es ni positivo ni negativo.",
+              "explanation": "Los positivos son los mayores que cero y los negativos, los menores que cero. El cero es el punto de separación y no pertenece a ninguno de los dos grupos." },
+      "en": { "question": "Zero is neither positive nor negative.",
+              "explanation": "Positive numbers are those greater than zero and negative numbers are those less than zero. Zero is the dividing point and belongs to neither group." }
+    },
+    {
+      "id": "math-0075", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cómo se llaman dos rectas de un plano que nunca se cruzan, por mucho que se prolonguen?",
+              "options": ["Paralelas", "Perpendiculares", "Secantes", "Oblicuas"],
+              "explanation": "Las rectas paralelas mantienen siempre la misma distancia y no se cortan. Las secantes sí se cortan y las perpendiculares lo hacen formando 90°." },
+      "en": { "question": "What are two lines in a plane called if they never meet, however far they are extended?",
+              "options": ["Parallel", "Perpendicular", "Intersecting", "Oblique"],
+              "explanation": "Parallel lines always stay the same distance apart and never meet. Intersecting lines do meet, and perpendicular lines meet at 90°." }
+    },
+    {
+      "id": "math-0076", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué número sigue en la serie 3, 6, 12, 24, …?",
+              "options": ["48", "36", "30", "27"],
+              "explanation": "Cada número es el doble del anterior, así que sigue 24 × 2 = 48. Sumar 12 otra vez (36) no respeta el patrón." },
+      "en": { "question": "What number comes next in the series 3, 6, 12, 24, …?",
+              "options": ["48", "36", "30", "27"],
+              "explanation": "Each number is double the previous one, so the next is 24 × 2 = 48. Adding 12 again (36) does not follow the pattern." }
+    },
+    {
+      "id": "math-0077", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué número sigue en la serie 1, 3, 7, 15, 31, …?",
+              "options": ["63", "47", "62", "64"],
+              "explanation": "Cada término es el doble del anterior más 1: 31 × 2 + 1 = 63. Las diferencias (2, 4, 8, 16) se duplican, así que sigue 32: 31 + 32 = 63." },
+      "en": { "question": "What number comes next in the series 1, 3, 7, 15, 31, …?",
+              "options": ["63", "47", "62", "64"],
+              "explanation": "Each term is double the previous one plus 1: 31 × 2 + 1 = 63. The differences (2, 4, 8, 16) double, so the next is 32: 31 + 32 = 63." }
+    },
+    {
+      "id": "math-0078", "difficulty": 1, "type": "truefalse", "answer": false,
+      "es": { "question": "El número −7 es mayor que −3.",
+              "explanation": "En la recta numérica, −3 queda a la derecha de −7, así que −3 es mayor. Entre dos negativos, el más cercano al cero es el mayor." },
+      "en": { "question": "The number −7 is greater than −3.",
+              "explanation": "On the number line, −3 is to the right of −7, so −3 is greater. Between two negative numbers, the one closer to zero is greater." }
+    },
+    {
+      "id": "math-0079", "difficulty": 2, "type": "truefalse", "answer": false,
+      "es": { "question": "Si una moneda justa salió cara cinco veces seguidas, en el siguiente lanzamiento es más probable que salga cruz.",
+              "explanation": "Cada lanzamiento es independiente: la moneda no recuerda los anteriores y la probabilidad de cruz sigue siendo 1/2. Creer lo contrario es la «falacia del jugador»." },
+      "en": { "question": "If a fair coin has come up heads five times in a row, tails is more likely on the next flip.",
+              "explanation": "Each flip is independent: the coin does not remember the previous ones and the probability of tails is still 1/2. Believing otherwise is the “gambler’s fallacy”." }
+    },
+    {
+      "id": "math-0080", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué número representa el numeral romano XIV?",
+              "options": ["14", "16", "6", "24"],
+              "explanation": "X vale 10 e IV vale 4 (5 − 1), así que XIV es 14. XVI sería 16 y XXIV, 24." },
+      "en": { "question": "Which number does the Roman numeral XIV stand for?",
+              "options": ["14", "16", "6", "24"],
+              "explanation": "X is 10 and IV is 4 (5 − 1), so XIV is 14. XVI would be 16 and XXIV would be 24." }
+    },
+    {
+      "id": "math-0081", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cuántos poliedros regulares convexos (sólidos platónicos) existen?",
+              "options": ["5", "4", "6", "7"],
+              "explanation": "Solo hay cinco: tetraedro, cubo, octaedro, dodecaedro e icosaedro. Ya se conocían en la Grecia clásica y llevan el nombre de Platón." },
+      "en": { "question": "How many convex regular polyhedra (Platonic solids) exist?",
+              "options": ["5", "4", "6", "7"],
+              "explanation": "There are only five: tetrahedron, cube, octahedron, dodecahedron and icosahedron. They were known in classical Greece and are named after Plato." }
+    },
+    {
+      "id": "math-0082", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué antigua civilización contaba en base 60, un sistema del que heredamos los 60 minutos de la hora?",
+              "options": ["Los babilonios", "Los egipcios", "Los romanos", "Los mayas"],
+              "explanation": "Sumerios y babilonios contaban en base 60 hace unos 4000 años. De ahí que la hora tenga 60 minutos y el minuto, 60 segundos." },
+      "en": { "question": "Which ancient civilization counted in base 60, the system we inherited the 60 minutes of an hour from?",
+              "options": ["The Babylonians", "The Egyptians", "The Romans", "The Maya"],
+              "explanation": "The Sumerians and Babylonians counted in base 60 some 4,000 years ago. That is why an hour has 60 minutes and a minute has 60 seconds." }
+    },
+    {
+      "id": "math-0083", "difficulty": 1, "type": "choice",
+      "es": { "question": "Si 3 manzanas cuestan $6, ¿cuánto cuestan 5 manzanas al mismo precio?",
+              "options": ["$10", "$9", "$12", "$8"],
+              "explanation": "Cada manzana cuesta 6 ÷ 3 = $2, así que 5 manzanas cuestan 5 × 2 = $10." },
+      "en": { "question": "If 3 apples cost $6, how much do 5 apples cost at the same price?",
+              "options": ["$10", "$9", "$12", "$8"],
+              "explanation": "Each apple costs 6 ÷ 3 = $2, so 5 apples cost 5 × 2 = $10." }
+    },
+    {
+      "id": "math-0084", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cuál de estas fracciones es la mayor?",
+              "options": ["5/6", "4/5", "7/9", "2/3"],
+              "explanation": "En decimales: 5/6 ≈ 0,83; 4/5 = 0,8; 7/9 ≈ 0,78; 2/3 ≈ 0,67. A 5/6 solo le falta 1/6 para llegar a 1, menos que a las demás." },
+      "en": { "question": "Which of these fractions is the greatest?",
+              "options": ["5/6", "4/5", "7/9", "2/3"],
+              "explanation": "As decimals: 5/6 ≈ 0.83; 4/5 = 0.8; 7/9 ≈ 0.78; 2/3 ≈ 0.67. 5/6 is only 1/6 short of 1, less than the others." }
+    },
+    {
+      "id": "math-0085", "difficulty": 1, "type": "choice",
+      "es": { "question": "Al lanzar un dado normal de seis caras, ¿cuál es la probabilidad de sacar un número par?",
+              "options": ["1/2", "1/3", "1/6", "2/3"],
+              "explanation": "Los pares son 2, 4 y 6: hay 3 casos favorables entre 6 posibles, y 3/6 = 1/2." },
+      "en": { "question": "When you roll a standard six-sided die, what is the probability of getting an even number?",
+              "options": ["1/2", "1/3", "1/6", "2/3"],
+              "explanation": "The even numbers are 2, 4 and 6: there are 3 favorable outcomes out of 6 possible, and 3/6 = 1/2." }
+    },
+    {
+      "id": "math-0086", "difficulty": 3, "type": "choice",
+      "es": { "question": "Un descuento del 20 % seguido de otro del 10 % sobre el precio ya rebajado equivale a un único descuento de…",
+              "options": ["28 %", "30 %", "25 %", "15 %"],
+              "explanation": "Pagas 0,8 × 0,9 = 0,72 del precio, es decir, un descuento total del 28 %. No se suman porque el segundo se aplica a un precio ya menor." },
+      "en": { "question": "A 20% discount followed by another 10% off the already reduced price equals a single discount of…",
+              "options": ["28%", "30%", "25%", "15%"],
+              "explanation": "You pay 0.8 × 0.9 = 0.72 of the price, a total discount of 28%. They do not add up because the second applies to an already lower price." }
+    },
+    {
+      "id": "math-0087", "difficulty": 2, "type": "choice",
+      "es": { "question": "En el sistema binario, ¿a qué número decimal equivale 101?",
+              "options": ["5", "3", "6", "7"],
+              "explanation": "Cada cifra vale una potencia de 2: 1 × 4 + 0 × 2 + 1 × 1 = 5." },
+      "en": { "question": "In the binary system, which decimal number is 101 equal to?",
+              "options": ["5", "3", "6", "7"],
+              "explanation": "Each digit is worth a power of 2: 1 × 4 + 0 × 2 + 1 × 1 = 5." }
+    },
+    {
+      "id": "math-0088", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuánto es 3³ (3 elevado al cubo)?",
+              "options": ["27", "9", "6", "81"],
+              "explanation": "3³ = 3 × 3 × 3 = 27. El 9 es 3² y el 81 es 3⁴." },
+      "en": { "question": "What is 3³ (3 cubed)?",
+              "options": ["27", "9", "6", "81"],
+              "explanation": "3³ = 3 × 3 × 3 = 27. The 9 is 3² and the 81 is 3⁴." }
+    },
+    {
+      "id": "math-0089", "difficulty": 2, "type": "choice",
+      "es": { "question": "Cuenta la anécdota que, de niño, Gauss sumó en pocos segundos todos los números del 1 al 100. ¿Cuál es el resultado?",
+              "options": ["5050", "5000", "5100", "5500"],
+              "explanation": "Agrupó los números en parejas que suman 101 (1 + 100, 2 + 99, …). Hay 50 parejas y 50 × 101 = 5050." },
+      "en": { "question": "The story goes that, as a child, Gauss added all the numbers from 1 to 100 in a few seconds. What is the total?",
+              "options": ["5,050", "5,000", "5,100", "5,500"],
+              "explanation": "He paired the numbers so that each pair adds up to 101 (1 + 100, 2 + 99, …). There are 50 pairs and 50 × 101 = 5,050." }
+    },
+    {
+      "id": "math-0090", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué ángulo forman las manecillas de un reloj a las 4:00 (el menor de los dos ángulos)?",
+              "options": ["120°", "90°", "150°", "135°"],
+              "explanation": "La esfera tiene 12 horas de 30° cada una. Entre las 12 y las 4 hay 4 × 30° = 120°. A las 3:00 serían 90° y a las 5:00, 150°." },
+      "en": { "question": "What angle do the hands of a clock form at 4:00 (the smaller of the two angles)?",
+              "options": ["120°", "90°", "150°", "135°"],
+              "explanation": "The clock face has 12 hours of 30° each. Between 12 and 4 there are 4 × 30° = 120°. At 3:00 it would be 90° and at 5:00, 150°." }
+    },
+    {
+      "id": "math-0091", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Cómo se llama la conjetura que propone que todo número par mayor que 2 es la suma de dos números primos?",
+              "options": ["Goldbach", "Collatz", "Riemann", "Catalan"],
+              "explanation": "Surgió en 1742, en la correspondencia entre Christian Goldbach y Euler. Por ejemplo, 10 = 3 + 7 y 20 = 3 + 17." },
+      "en": { "question": "What is the name of the conjecture proposing that every even number greater than 2 is the sum of two prime numbers?",
+              "options": ["Goldbach", "Collatz", "Riemann", "Catalan"],
+              "explanation": "It arose in 1742 in correspondence between Christian Goldbach and Euler. For example, 10 = 3 + 7 and 20 = 3 + 17." }
+    },
+    {
+      "id": "math-0092", "difficulty": 1, "type": "choice",
+      "es": { "question": "Si el radio de un círculo mide 5 cm, ¿cuánto mide su diámetro?",
+              "options": ["10 cm", "2,5 cm", "25 cm", "5 cm"],
+              "explanation": "El diámetro es el doble del radio: 2 × 5 = 10 cm. Dividir entre dos (2,5 cm) es el error más común." },
+      "en": { "question": "If a circle's radius is 5 cm, what is its diameter?",
+              "options": ["10 cm", "2.5 cm", "25 cm", "5 cm"],
+              "explanation": "The diameter is twice the radius: 2 × 5 = 10 cm. Dividing by two (2.5 cm) is the most common mistake." }
+    },
+    {
+      "id": "math-0093", "difficulty": 3, "type": "choice",
+      "es": { "question": "El problema de los siete puentes de Königsberg, resuelto en 1736, se considera el origen de una rama de las matemáticas. ¿Cuál?",
+              "options": ["Teoría de grafos", "Geometría fractal", "Trigonometría", "Álgebra lineal"],
+              "explanation": "Euler demostró que no se pueden cruzar los siete puentes pasando una sola vez por cada uno. Para ello redujo la ciudad a zonas de tierra y sus conexiones, la base de la teoría de grafos." },
+      "en": { "question": "The Seven Bridges of Königsberg problem, solved in 1736, is considered the origin of a branch of mathematics. Which one?",
+              "options": ["Graph theory", "Fractal geometry", "Trigonometry", "Linear algebra"],
+              "explanation": "Euler proved that the seven bridges cannot be crossed using each exactly once. To do so he reduced the city to land areas and their connections, the basis of graph theory." }
+    },
+    {
+      "id": "math-0094", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué matemático griego escribió «Elementos», un tratado de geometría que se estudió durante siglos?",
+              "options": ["Euclides", "Pitágoras", "Apolonio", "Ptolomeo"],
+              "explanation": "Euclides (hacia el 300 a. C.) reunió en «Elementos» definiciones, postulados y demostraciones de geometría. Fue texto de estudio durante siglos." },
+      "en": { "question": "Which Greek mathematician wrote the “Elements”, a geometry treatise studied for centuries?",
+              "options": ["Euclid", "Pythagoras", "Apollonius", "Ptolemy"],
+              "explanation": "Euclid (around 300 BC) gathered definitions, postulates and proofs of geometry in the “Elements”. It was a standard textbook for centuries." }
+    },
+    {
+      "id": "math-0095", "difficulty": 1, "type": "choice",
+      "es": { "question": "En el plano cartesiano, ¿cómo se llama el punto (0, 0), donde se cruzan los dos ejes?",
+              "options": ["Origen", "Vértice", "Centro", "Cuadrante"],
+              "explanation": "El punto (0, 0) es el origen de coordenadas. Los dos ejes dividen el plano en cuatro cuadrantes." },
+      "en": { "question": "On the coordinate plane, what is the point (0, 0), where the two axes cross, called?",
+              "options": ["Origin", "Vertex", "Center", "Quadrant"],
+              "explanation": "The point (0, 0) is the origin. The two axes divide the plane into four quadrants." }
+    },
+    {
+      "id": "math-0096", "difficulty": 1, "type": "choice",
+      "es": { "question": "Una camiseta cuesta $40 y tiene un 25 % de descuento. ¿Cuánto cuesta con el descuento?",
+              "options": ["$30", "$10", "$15", "$25"],
+              "explanation": "El 25 % de $40 es $10, así que el precio con descuento es 40 − 10 = $30. Los $10 son solo lo que se ahorra." },
+      "en": { "question": "A T-shirt costs $40 and is 25% off. What does it cost after the discount?",
+              "options": ["$30", "$10", "$15", "$25"],
+              "explanation": "25% of $40 is $10, so the discounted price is 40 − 10 = $30. The $10 is only the amount saved." }
+    },
+    {
+      "id": "math-0097", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Dónde se originó el sistema de numeración con los dígitos del 0 al 9 que usamos hoy?",
+              "options": ["En la India", "En Grecia", "En Roma", "En Egipto"],
+              "explanation": "Surgió en la India hace más de mil años y los árabes lo difundieron hacia Europa; por eso se llama indoarábigo. Los romanos usaban letras como V, X o L." },
+      "en": { "question": "Where did the number system with the digits 0 to 9 that we use today originate?",
+              "options": ["In India", "In Greece", "In Rome", "In Egypt"],
+              "explanation": "It arose in India over a thousand years ago and Arab scholars spread it to Europe, hence the name Hindu-Arabic. The Romans used letters such as V, X or L." }
+    },
+    {
+      "id": "math-0098", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Cuántas diagonales tiene un polígono convexo de 7 lados?",
+              "options": ["14", "7", "21", "28"],
+              "explanation": "Cada vértice se une con 4 no vecinos (7 − 3). 7 × 4 = 28 cuenta cada diagonal dos veces, así que son 28 ÷ 2 = 14." },
+      "en": { "question": "How many diagonals does a convex polygon with 7 sides have?",
+              "options": ["14", "7", "21", "28"],
+              "explanation": "Each vertex connects to 4 non-neighbors (7 − 3). 7 × 4 = 28 counts each diagonal twice, so there are 28 ÷ 2 = 14." }
+    },
+    {
+      "id": "math-0099", "difficulty": 2, "type": "choice",
+      "es": { "question": "Si 2x + 5 = 17, ¿cuánto vale x?",
+              "options": ["6", "12", "11", "8,5"],
+              "explanation": "Se resta 5 en ambos lados: 2x = 12; luego se divide entre 2: x = 6. Comprobación: 2 × 6 + 5 = 17." },
+      "en": { "question": "If 2x + 5 = 17, what is x?",
+              "options": ["6", "12", "11", "8.5"],
+              "explanation": "Subtract 5 from both sides: 2x = 12; then divide by 2: x = 6. Check: 2 × 6 + 5 = 17." }
+    },
+    {
+      "id": "math-0100", "difficulty": 3, "type": "choice",
+      "es": { "question": "Un bate y una pelota cuestan $1,10 en total. El bate cuesta $1 más que la pelota. ¿Cuánto cuesta la pelota?",
+              "options": ["$0,05", "$0,10", "$0,15", "$0,01"],
+              "explanation": "Si la pelota cuesta $0,05, el bate cuesta $1,05 y suman $1,10. Con $0,10, el bate costaría $1,10 y el total sería $1,20." },
+      "en": { "question": "A bat and a ball cost $1.10 in total. The bat costs $1.00 more than the ball. How much does the ball cost?",
+              "options": ["$0.05", "$0.10", "$0.15", "$0.01"],
+              "explanation": "If the ball costs $0.05, the bat costs $1.05 and together they cost $1.10. With $0.10, the bat would cost $1.10 and the total would be $1.20." }
+    }
+  ]
+}

@@ -1,0 +1,400 @@
+/*
+ * The quiz in the Luz style. Everything here is drawn inside the dark Luz scope (the play screen, its instructions and
+ * its result), so it uses the Luz tokens (--game, --luz-*) and never the app theme. Text sits on glass that can be over
+ * the glow of the area: it is written in --luz-text, --luz-soft or --luz-ok, which keep 4.5:1 there; --luz-muted and
+ * --luz-bad do not, so they are not used for text (src/app/contrast.test.ts, «quiz text in Luz»).
+ */
+
+/* A round fills the play screen the way the frame of every game does. */
+.game {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+/* The frame centers what is in its zones; the question and its answers take the whole width. */
+.zone,
+.answers {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+/* «Pregunta N de 10», under the time bar and over the glow, so --luz-soft. */
+.counter {
+  margin: 0;
+  color: var(--luz-soft);
+  font-size: 0.875rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+
+/* The solved example of the instructions: the card and its answers one after the other. */
+.question {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+/* The question: a glass card that glows with the color of its bank. */
+.card {
+  padding: 1.1rem 1.25rem;
+  border-radius: 22px;
+  background: var(--luz-glass);
+  box-shadow: inset 0 0 0 1.5px var(--luz-glass-border);
+  box-shadow:
+    inset 0 0 0 1.5px color-mix(in srgb, var(--game) 45%, transparent),
+    0 0 28px color-mix(in srgb, var(--game) 16%, transparent);
+}
+
+/* The category, with a dot of the bank color (the text itself stays --luz-soft: small text). */
+.category {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 0.45rem;
+  color: var(--luz-soft);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.category::before {
+  content: '';
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--game);
+  box-shadow: 0 0 10px var(--game);
+}
+
+.prompt {
+  margin: 0;
+  color: var(--luz-text);
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+/* The prompt takes the focus on each new question (for the keyboard and screen readers), but it is not a control. */
+.prompt:focus {
+  outline: none;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+/* Each option is a glass key outlined in the bank color, like the answer buttons of the other games. */
+.option {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  width: 100%;
+  min-height: 44px;
+  padding: 0.7rem 0.95rem;
+  border: none;
+  border-radius: 18px;
+  background: var(--luz-glass);
+  box-shadow: inset 0 0 0 1.5px var(--luz-glass-border);
+  box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--game) 55%, transparent);
+  color: var(--luz-text);
+  font: inherit;
+  font-weight: 600;
+  line-height: 1.35;
+  text-align: left;
+  overflow-wrap: anywhere;
+  cursor: pointer;
+}
+
+.option:not(:disabled):hover,
+.option:focus-visible {
+  box-shadow:
+    inset 0 0 0 1.5px var(--game),
+    0 0 18px color-mix(in srgb, var(--game) 35%, transparent);
+}
+
+.option:not(:disabled):active {
+  transform: scale(0.97);
+  filter: brightness(1.2);
+}
+
+/* After the answer the options only show the result; their text stays as readable as before. */
+.option:disabled {
+  color: var(--luz-text);
+  cursor: default;
+}
+
+/* The options that are not marked step back to plain glass. */
+.option:disabled:not([data-state]) {
+  box-shadow: inset 0 0 0 1.5px var(--luz-glass-border);
+}
+
+/* The right answer and a wrong pick: the glass tinted and outlined with --luz-ok / --luz-bad, with a halo. */
+.option[data-state='correct'] {
+  box-shadow: inset 0 0 0 2px var(--luz-ok);
+  box-shadow:
+    inset 0 0 0 2px var(--luz-ok),
+    0 0 22px color-mix(in srgb, var(--luz-ok) 35%, transparent);
+  background: color-mix(in srgb, var(--luz-ok) 10%, var(--luz-glass));
+}
+
+.option[data-state='wrong'] {
+  box-shadow: inset 0 0 0 2px var(--luz-bad);
+  box-shadow:
+    inset 0 0 0 2px var(--luz-bad),
+    0 0 22px color-mix(in srgb, var(--luz-bad) 30%, transparent);
+  background: color-mix(in srgb, var(--luz-bad) 10%, var(--luz-glass));
+}
+
+/* The number of the option: a dot filled with the bank color, like the numbered steps of the instructions. */
+.number {
+  display: grid;
+  flex: none;
+  place-items: center;
+  min-width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 50%;
+  background: var(--game);
+  color: var(--luz-ink);
+  font-size: 0.85rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.option:disabled:not([data-state]) .number {
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--luz-text);
+}
+
+.option[data-state='correct'] .number {
+  background: var(--luz-ok);
+}
+
+.option[data-state='wrong'] .number {
+  background: var(--luz-bad);
+}
+
+.optionBody {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.3rem;
+  min-width: 0;
+}
+
+/* «✓ Correcta» / «✗ Tu respuesta»: a pill filled with --luz-ok / --luz-bad, written in --luz-ink. */
+.mark {
+  padding: 0.1rem 0.6rem;
+  border-radius: 99px;
+  color: var(--luz-ink);
+  font-size: 0.8125rem;
+  font-weight: 800;
+}
+
+.option[data-state='correct'] .mark {
+  background: var(--luz-ok);
+}
+
+.option[data-state='wrong'] .mark {
+  background: var(--luz-bad);
+}
+
+/* «No sé»: costs nothing, so it is the quiet button, outlined like the secondary buttons of the play screen. */
+.dontKnow {
+  width: 100%;
+  min-height: 44px;
+  padding: 0.5rem 1.5rem;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, 0.2);
+  color: var(--luz-text);
+  font: inherit;
+  font-weight: 600;
+}
+
+/* The answer explained, on glass, then «Siguiente». */
+.feedback {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.feedback p {
+  margin: 0;
+}
+
+.explanation {
+  padding: 0.9rem 1.1rem;
+  border-radius: 18px;
+  background: var(--luz-glass);
+  box-shadow: inset 0 0 0 1.5px var(--luz-glass-border);
+  color: var(--luz-text);
+  line-height: 1.45;
+}
+
+.timeUp {
+  color: var(--luz-text);
+  font-weight: 800;
+}
+
+.asOf {
+  color: var(--luz-soft);
+  font-size: 0.875rem;
+}
+
+/* «Siguiente» / «Ver resultado» and «Reintentar»: the filled pill of the play screen («Comenzar», «Continuar»). */
+.next,
+.retry {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  min-height: 3.5rem;
+  padding: 0 1.75rem;
+  border: none;
+  border-radius: 999px;
+  background: var(--game);
+  color: var(--luz-ink);
+  font: inherit;
+  font-size: 1.125rem;
+  font-weight: 800;
+  box-shadow: 0 0 32px color-mix(in srgb, var(--game) 55%, transparent);
+}
+
+.reload {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  min-height: 3.25rem;
+  padding: 0 1.5rem;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, 0.2);
+  color: var(--luz-text);
+  font: inherit;
+  font-weight: 600;
+}
+
+.dontKnow:active,
+.next:active,
+.retry:active,
+.reload:active {
+  transform: scale(0.94);
+  filter: brightness(1.2);
+}
+
+/* Loading, and a load that failed. */
+.status {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  max-width: 24rem;
+  margin: 0;
+  padding: 2rem 0;
+  color: var(--luz-text);
+  text-align: center;
+}
+
+.status p {
+  margin: 0;
+}
+
+/* The loading line takes the focus after «Reintentar», like the prompt on each question, but it is not a control. */
+.status:focus {
+  outline: none;
+}
+
+/* Reduced motion: the keys do not shrink when pressed, only their color changes. */
+@media (prefers-reduced-motion: reduce) {
+  .option:not(:disabled):active,
+  .dontKnow:active,
+  .next:active,
+  .retry:active,
+  .reload:active {
+    transform: none;
+  }
+}
+
+/* «Repasa tus errores» on the result screen, whose text is centred: the review reads left to right. */
+.review {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+  text-align: left;
+}
+
+.review h2 {
+  margin: 0;
+  color: var(--luz-text);
+  font-size: 1.125rem;
+  font-weight: 800;
+}
+
+.reviewNone {
+  margin: 0;
+  color: var(--luz-soft);
+}
+
+.reviewList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* One glass card per missed question. */
+.reviewItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  padding: 1rem 1.15rem;
+  border-radius: 18px;
+  background: var(--luz-glass);
+  box-shadow: inset 0 0 0 1.5px var(--luz-glass-border);
+  color: var(--luz-text);
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.reviewItem p {
+  margin: 0;
+}
+
+.reviewPrompt {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+/* «Tu respuesta» and «Respuesta correcta», each with a bar of its color. The bar is decoration: the words say which is
+   which, and only the right answer is written in its color (--luz-bad is not readable enough as text here). */
+.reviewWrong,
+.reviewRight {
+  padding-left: 0.65rem;
+  border-left: 3px solid;
+  font-weight: 700;
+}
+
+.reviewWrong {
+  border-color: var(--luz-bad);
+  color: var(--luz-text);
+}
+
+.reviewRight {
+  border-color: var(--luz-ok);
+  color: var(--luz-ok);
+}

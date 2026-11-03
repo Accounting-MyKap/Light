@@ -1,0 +1,869 @@
+{
+  "category": "science",
+  "questions": [
+    {
+      "id": "science-0001", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuál es el planeta más grande del sistema solar?",
+              "options": ["Júpiter", "Saturno", "Neptuno", "La Tierra"],
+              "explanation": "Júpiter es el planeta más grande: su diámetro es unas once veces el de la Tierra." },
+      "en": { "question": "Which is the largest planet in the solar system?",
+              "options": ["Jupiter", "Saturn", "Neptune", "Earth"],
+              "explanation": "Jupiter is the largest planet: its diameter is about eleven times that of Earth." }
+    },
+    {
+      "id": "science-0002", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué gas toman las plantas del aire para hacer la fotosíntesis?",
+              "options": ["Dióxido de carbono", "Oxígeno", "Nitrógeno", "Helio"],
+              "explanation": "Las plantas absorben dióxido de carbono y, con la luz del sol y el agua, producen azúcares y liberan oxígeno." },
+      "en": { "question": "Which gas do plants take from the air to carry out photosynthesis?",
+              "options": ["Carbon dioxide", "Oxygen", "Nitrogen", "Helium"],
+              "explanation": "Plants absorb carbon dioxide and, using sunlight and water, make sugars and release oxygen." }
+    },
+    {
+      "id": "science-0003", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuál es la fórmula química del agua?",
+              "options": ["H2O", "CO2", "O2", "NaCl"],
+              "explanation": "Cada molécula de agua tiene dos átomos de hidrógeno (H) y uno de oxígeno (O): H2O." },
+      "en": { "question": "What is the chemical formula of water?",
+              "options": ["H2O", "CO2", "O2", "NaCl"],
+              "explanation": "Each water molecule has two hydrogen (H) atoms and one oxygen (O) atom: H2O." }
+    },
+    {
+      "id": "science-0004", "difficulty": 1, "type": "truefalse", "answer": false,
+      "es": { "question": "Los murciélagos son aves.",
+              "explanation": "Son mamíferos: tienen pelo, amamantan a sus crías y son los únicos mamíferos capaces de volar de verdad." },
+      "en": { "question": "Bats are birds.",
+              "explanation": "They are mammals: they have fur, nurse their young, and are the only mammals capable of true flight." }
+    },
+    {
+      "id": "science-0005", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cuál es el hueso más largo del cuerpo humano?",
+              "options": ["El fémur", "La tibia", "El húmero", "El peroné"],
+              "explanation": "El fémur, en el muslo, es el hueso más largo y también el más fuerte del cuerpo humano." },
+      "en": { "question": "What is the longest bone in the human body?",
+              "options": ["The femur", "The tibia", "The humerus", "The fibula"],
+              "explanation": "The femur, in the thigh, is the longest and also the strongest bone in the human body." }
+    },
+    {
+      "id": "science-0006", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué elemento químico tiene el símbolo Fe?",
+              "options": ["Hierro", "Flúor", "Fósforo", "Francio"],
+              "explanation": "Fe viene del latín ferrum, «hierro». El flúor es F, el fósforo es P y el francio es Fr." },
+      "en": { "question": "Which chemical element has the symbol Fe?",
+              "options": ["Iron", "Fluorine", "Phosphorus", "Francium"],
+              "explanation": "Fe comes from the Latin ferrum, “iron”. Fluorine is F, phosphorus is P and francium is Fr." }
+    },
+    {
+      "id": "science-0007", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cuál es la velocidad aproximada de la luz en el vacío?",
+              "options": ["300 000 km/s", "30 000 km/s", "3 000 000 km/s", "150 000 km/s"],
+              "explanation": "La luz viaja a unos 299 792 km por segundo en el vacío, es decir, cerca de 300 000 km/s." },
+      "en": { "question": "What is the approximate speed of light in a vacuum?",
+              "options": ["300,000 km/s", "30,000 km/s", "3,000,000 km/s", "150,000 km/s"],
+              "explanation": "Light travels at about 299,792 km per second in a vacuum, that is, close to 300,000 km/s." }
+    },
+    {
+      "id": "science-0008", "difficulty": 2, "type": "choice",
+      "es": { "question": "En una célula animal, ¿qué orgánulo produce la mayor parte del ATP, su fuente de energía?",
+              "options": ["La mitocondria", "El núcleo", "El ribosoma", "El aparato de Golgi"],
+              "explanation": "Las mitocondrias producen la mayor parte del ATP mediante la respiración celular; por eso se llaman «las centrales de energía»." },
+      "en": { "question": "In an animal cell, which organelle produces most of the ATP, its energy source?",
+              "options": ["The mitochondrion", "The nucleus", "The ribosome", "The Golgi apparatus"],
+              "explanation": "Mitochondria produce most of the ATP through cellular respiration, which is why they are called “the powerhouses of the cell”." }
+    },
+    {
+      "id": "science-0009", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Cuál es el elemento más abundante en la corteza terrestre?",
+              "options": ["Oxígeno", "Silicio", "Hierro", "Aluminio"],
+              "explanation": "El oxígeno es casi la mitad de la masa de la corteza, combinado en minerales. Le siguen el silicio y el aluminio." },
+      "en": { "question": "Which is the most abundant element in Earth's crust?",
+              "options": ["Oxygen", "Silicon", "Iron", "Aluminum"],
+              "explanation": "Oxygen makes up nearly half of the crust's mass, combined in minerals. Silicon and aluminum follow." }
+    },
+    {
+      "id": "science-0010", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Cuál es el hueso más pequeño del cuerpo humano?",
+              "options": ["El estribo", "El yunque", "El martillo", "El escafoides"],
+              "explanation": "El estribo, en el oído medio, mide unos 3 mm. El martillo y el yunque son los otros dos huesecillos del oído, algo mayores." },
+      "en": { "question": "What is the smallest bone in the human body?",
+              "options": ["The stapes", "The incus", "The malleus", "The scaphoid"],
+              "explanation": "The stapes, in the middle ear, is about 3 mm long. The malleus and incus are the other two ear bones, slightly larger." }
+    },
+    {
+      "id": "science-0011", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Quién ganó premios Nobel en dos ciencias distintas: Física (1903) y Química (1911)?",
+              "options": ["Marie Curie", "Rosalind Franklin", "Lise Meitner", "Dorothy Hodgkin"],
+              "explanation": "Marie Curie es la única persona con premios Nobel en dos ciencias distintas. Franklin y Meitner nunca ganaron uno, y Hodgkin ganó solo el de Química." },
+      "en": { "question": "Who won Nobel Prizes in two different sciences: Physics (1903) and Chemistry (1911)?",
+              "options": ["Marie Curie", "Rosalind Franklin", "Lise Meitner", "Dorothy Hodgkin"],
+              "explanation": "Marie Curie is the only person with Nobel Prizes in two different sciences. Franklin and Meitner never won one, and Hodgkin won only the Chemistry prize." }
+    },
+    {
+      "id": "science-0012", "difficulty": 3, "type": "truefalse", "answer": true,
+      "es": { "question": "En el vacío, una pluma y un martillo caen con la misma aceleración.",
+              "explanation": "Sin aire no hay resistencia, y todos los cuerpos caen igual. Lo comprobó un astronauta del Apolo 15 en la Luna, en 1971." },
+      "en": { "question": "In a vacuum, a feather and a hammer fall with the same acceleration.",
+              "explanation": "With no air there is no drag, so all objects fall alike. An Apollo 15 astronaut demonstrated it on the Moon in 1971." }
+    },
+    {
+      "id": "science-0013", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuál es el planeta más cercano al Sol?",
+              "options": ["Mercurio", "Venus", "Marte", "La Tierra"],
+              "explanation": "Mercurio es el planeta más cercano al Sol y también el más pequeño. Su año dura solo 88 días terrestres." },
+      "en": { "question": "Which planet is closest to the Sun?",
+              "options": ["Mercury", "Venus", "Mars", "Earth"],
+              "explanation": "Mercury is the closest planet to the Sun and also the smallest. Its year lasts only 88 Earth days." }
+    },
+    {
+      "id": "science-0014", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué planeta se conoce como el «planeta rojo»?",
+              "options": ["Marte", "Mercurio", "Venus", "Júpiter"],
+              "explanation": "Marte se ve rojizo por el óxido de hierro, el mismo compuesto de la herrumbre, que cubre gran parte de su superficie." },
+      "en": { "question": "Which planet is known as the “Red Planet”?",
+              "options": ["Mars", "Mercury", "Venus", "Jupiter"],
+              "explanation": "Mars looks reddish because of the iron oxide, the same compound as rust, that covers much of its surface." }
+    },
+    {
+      "id": "science-0015", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cómo se llama la galaxia donde está el sistema solar?",
+              "options": ["La Vía Láctea", "Andrómeda", "El Remolino", "El Sombrero"],
+              "explanation": "Vivimos en la Vía Láctea, una galaxia espiral con cientos de miles de millones de estrellas. Andrómeda es otra galaxia espiral, la gran vecina de la nuestra." },
+      "en": { "question": "What is the name of the galaxy that contains our solar system?",
+              "options": ["The Milky Way", "Andromeda", "The Whirlpool", "The Sombrero"],
+              "explanation": "We live in the Milky Way, a spiral galaxy with hundreds of billions of stars. Andromeda is another spiral galaxy, the big neighbor of ours." }
+    },
+    {
+      "id": "science-0016", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué hace que en la Tierra haya día y noche?",
+              "options": ["La Tierra gira sobre su propio eje", "La Tierra gira alrededor del Sol", "La Luna tapa al Sol cada día", "El Sol gira alrededor de la Tierra"],
+              "explanation": "La Tierra da una vuelta sobre su eje cada 24 horas: el lado que mira al Sol tiene día y el opuesto, noche. Su vuelta alrededor del Sol dura un año." },
+      "en": { "question": "What causes day and night on Earth?",
+              "options": ["The Earth spins on its own axis", "The Earth orbits around the Sun", "The Moon blocks the Sun every day", "The Sun orbits around the Earth"],
+              "explanation": "The Earth turns once on its axis every 24 hours: the side facing the Sun has day and the far side has night. Its trip around the Sun takes a year." }
+    },
+    {
+      "id": "science-0017", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuántos planetas tiene el sistema solar?",
+              "options": ["Ocho", "Nueve", "Siete", "Diez"],
+              "explanation": "Son ocho planetas. Plutón dejó de contarse como planeta en 2006, cuando la Unión Astronómica Internacional lo clasificó como planeta enano." },
+      "en": { "question": "How many planets does the solar system have?",
+              "options": ["Eight", "Nine", "Seven", "Ten"],
+              "explanation": "Eight planets. Pluto stopped counting as a planet in 2006, when the International Astronomical Union classified it as a dwarf planet." }
+    },
+    {
+      "id": "science-0018", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué planeta es famoso por sus anillos, visibles con un telescopio pequeño?",
+              "options": ["Saturno", "Marte", "Venus", "Mercurio"],
+              "explanation": "Los anillos de Saturno, hechos de hielo y roca, son los más grandes y brillantes. Júpiter, Urano y Neptuno también tienen anillos, pero mucho más tenues." },
+      "en": { "question": "Which planet is famous for its rings, visible through a small telescope?",
+              "options": ["Saturn", "Mars", "Venus", "Mercury"],
+              "explanation": "Saturn's rings, made of ice and rock, are the largest and brightest. Jupiter, Uranus and Neptune have rings too, but much fainter ones." }
+    },
+    {
+      "id": "science-0019", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Quién fue la primera persona en pisar la Luna?",
+              "options": ["Neil Armstrong", "Buzz Aldrin", "John Glenn", "Alan Shepard"],
+              "explanation": "Neil Armstrong pisó la Luna en julio de 1969, durante la misión Apolo 11. Buzz Aldrin bajó poco después y lo acompañó en la superficie." },
+      "en": { "question": "Who was the first person to walk on the Moon?",
+              "options": ["Neil Armstrong", "Buzz Aldrin", "John Glenn", "Alan Shepard"],
+              "explanation": "Neil Armstrong stepped onto the Moon in July 1969, during the Apollo 11 mission. Buzz Aldrin followed shortly after and joined him on the surface." }
+    },
+    {
+      "id": "science-0020", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué mide un año luz?",
+              "options": ["Una distancia", "Un tiempo", "Una velocidad", "Una masa"],
+              "explanation": "Un año luz es la distancia que recorre la luz en un año: casi 9,5 billones de kilómetros. Aunque lleve la palabra «año», no mide tiempo." },
+      "en": { "question": "What does a light-year measure?",
+              "options": ["A distance", "A time", "A speed", "A mass"],
+              "explanation": "A light-year is the distance light travels in one year: almost 9.5 trillion kilometers. Despite the word “year,” it does not measure time." }
+    },
+    {
+      "id": "science-0021", "difficulty": 1, "type": "truefalse", "answer": false,
+      "es": { "question": "La Luna produce su propia luz.",
+              "explanation": "La Luna no brilla por sí sola: refleja la luz del Sol. Sus fases dependen de cuánto de su cara iluminada vemos desde la Tierra." },
+      "en": { "question": "The Moon produces its own light.",
+              "explanation": "The Moon does not shine by itself: it reflects sunlight. Its phases depend on how much of its lit face we can see from Earth." }
+    },
+    {
+      "id": "science-0022", "difficulty": 1, "type": "choice",
+      "es": { "question": "A nivel del mar, ¿a qué temperatura hierve el agua?",
+              "options": ["100 °C", "90 °C", "120 °C", "80 °C"],
+              "explanation": "A nivel del mar, el agua hierve a 100 °C. En una montaña alta hierve a menos temperatura, porque la presión del aire es menor." },
+      "en": { "question": "At sea level, at what temperature does water boil?",
+              "options": ["100 °C", "90 °C", "120 °C", "80 °C"],
+              "explanation": "At sea level, water boils at 100 °C (212 °F). On a high mountain it boils at a lower temperature, because the air pressure is lower." }
+    },
+    {
+      "id": "science-0023", "difficulty": 1, "type": "truefalse", "answer": false,
+      "es": { "question": "Dos polos magnéticos iguales se atraen.",
+              "explanation": "Los polos iguales se repelen y los opuestos se atraen: el norte de un imán se pega al sur de otro, pero se aleja de otro norte." },
+      "en": { "question": "Two like magnetic poles attract each other.",
+              "explanation": "Like poles repel and opposite poles attract: the north pole of one magnet sticks to the south pole of another but pushes away another north pole." }
+    },
+    {
+      "id": "science-0024", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuál de estos materiales conduce bien la electricidad?",
+              "options": ["El cobre", "La madera", "El vidrio", "El caucho"],
+              "explanation": "Los metales, como el cobre, dejan pasar la corriente con facilidad; por eso los cables llevan hilos de cobre. La madera, el vidrio y el caucho son aislantes." },
+      "en": { "question": "Which of these materials conducts electricity well?",
+              "options": ["Copper", "Wood", "Glass", "Rubber"],
+              "explanation": "Metals such as copper let current flow easily, which is why wires contain copper strands. Wood, glass and rubber are insulators." }
+    },
+    {
+      "id": "science-0025", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Por qué vemos el relámpago antes de oír el trueno?",
+              "options": ["La luz viaja mucho más rápido que el sonido", "El sonido viaja más rápido que la luz", "El trueno se forma mucho después del rayo", "Los ojos reaccionan antes que los oídos"],
+              "explanation": "La luz llega casi al instante, mientras que el sonido recorre solo unos 340 metros por segundo en el aire. Por eso el trueno llega segundos después, aunque se produce a la vez que el rayo." },
+      "en": { "question": "Why do we see lightning before we hear thunder?",
+              "options": ["Light travels much faster than sound", "Sound travels faster than light", "Thunder forms long after the lightning", "Our eyes react before our ears do"],
+              "explanation": "Light arrives almost instantly, while sound covers only about 340 meters per second in air. So thunder reaches us seconds later, even though it is produced at the same moment as the lightning." }
+    },
+    {
+      "id": "science-0026", "difficulty": 1, "type": "truefalse", "answer": false,
+      "es": { "question": "El sonido puede viajar por el vacío del espacio.",
+              "explanation": "El sonido necesita un medio, como el aire o el agua, para propagarse. En el vacío no hay partículas que vibren, así que en el espacio reina el silencio." },
+      "en": { "question": "Sound can travel through the vacuum of space.",
+              "explanation": "Sound needs a medium, such as air or water, to spread. In a vacuum there are no particles to vibrate, so space is silent." }
+    },
+    {
+      "id": "science-0027", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Quién formuló la teoría de la relatividad?",
+              "options": ["Albert Einstein", "Niels Bohr", "Max Planck", "Stephen Hawking"],
+              "explanation": "Albert Einstein publicó la relatividad especial en 1905 y la general en 1915. Su ecuación E = mc² relaciona la masa con la energía." },
+      "en": { "question": "Who formulated the theory of relativity?",
+              "options": ["Albert Einstein", "Niels Bohr", "Max Planck", "Stephen Hawking"],
+              "explanation": "Albert Einstein published special relativity in 1905 and general relativity in 1915. His equation E = mc² relates mass to energy." }
+    },
+    {
+      "id": "science-0028", "difficulty": 1, "type": "truefalse", "answer": true,
+      "es": { "question": "El hielo flota en el agua porque es menos denso que el agua líquida.",
+              "explanation": "Al congelarse, el agua se expande cerca de un 9 %, así que el hielo es menos denso y flota. Por eso los icebergs flotan." },
+      "en": { "question": "Ice floats on water because it is less dense than liquid water.",
+              "explanation": "When water freezes it expands by about 9%, so ice is less dense and floats. That is why icebergs float." }
+    },
+    {
+      "id": "science-0029", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué símbolo químico tiene el oro?",
+              "options": ["Au", "Ag", "Gd", "Pt"],
+              "explanation": "Au viene del latín aurum, «oro». Ag es la plata, Gd el gadolinio y Pt el platino." },
+      "en": { "question": "Which chemical symbol stands for gold?",
+              "options": ["Au", "Ag", "Gd", "Pt"],
+              "explanation": "Au comes from the Latin aurum, “gold”. Ag is silver, Gd is gadolinium and Pt is platinum." }
+    },
+    {
+      "id": "science-0030", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué estado de la materia tiene forma y volumen propios?",
+              "options": ["Sólido", "Líquido", "Gaseoso", "Plasma"],
+              "explanation": "Un sólido conserva su forma y su volumen. Un líquido toma la forma del recipiente que lo contiene y un gas se expande hasta ocupar todo el espacio disponible." },
+      "en": { "question": "Which state of matter has its own shape and volume?",
+              "options": ["Solid", "Liquid", "Gas", "Plasma"],
+              "explanation": "A solid keeps its shape and volume. A liquid takes the shape of its container, and a gas expands to fill all the space available." }
+    },
+    {
+      "id": "science-0031", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cómo se llama el paso de un líquido a gas cuando se calienta?",
+              "options": ["Evaporación", "Condensación", "Fusión", "Solidificación"],
+              "explanation": "Al calentarse, el agua líquida se evapora y pasa a vapor. El cambio contrario, de gas a líquido, es la condensación." },
+      "en": { "question": "What is it called when a liquid turns into a gas as it is heated?",
+              "options": ["Evaporation", "Condensation", "Melting", "Freezing"],
+              "explanation": "When heated, liquid water evaporates and becomes vapor. The opposite change, from gas to liquid, is condensation." }
+    },
+    {
+      "id": "science-0032", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué metal es líquido a temperatura ambiente?",
+              "options": ["Mercurio", "Aluminio", "Estaño", "Plomo"],
+              "explanation": "El mercurio (Hg) se funde a unos −39 °C, así que es líquido a temperatura ambiente. Se usaba en los termómetros antiguos, pero es tóxico." },
+      "en": { "question": "Which metal is liquid at room temperature?",
+              "options": ["Mercury", "Aluminum", "Tin", "Lead"],
+              "explanation": "Mercury (Hg) melts at about −39 °C, so it is liquid at room temperature. It was used in old thermometers, but it is toxic." }
+    },
+    {
+      "id": "science-0033", "difficulty": 1, "type": "truefalse", "answer": true,
+      "es": { "question": "El jugo de limón es ácido.",
+              "explanation": "El limón contiene ácido cítrico, que le da su sabor agrio; su pH ronda 2. Una base, como el bicarbonato de sodio, tiene un pH mayor que 7." },
+      "en": { "question": "Lemon juice is acidic.",
+              "explanation": "Lemons contain citric acid, which gives them their sour taste; their pH is around 2. A base, such as baking soda, has a pH above 7." }
+    },
+    {
+      "id": "science-0034", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuál es el animal más grande del planeta?",
+              "options": ["La ballena azul", "El tiburón ballena", "El cachalote", "El calamar colosal"],
+              "explanation": "La ballena azul puede medir unos 30 metros y pesar más de 100 toneladas: es el animal más grande que existe hoy." },
+      "en": { "question": "Which is the largest animal on the planet?",
+              "options": ["The blue whale", "The whale shark", "The sperm whale", "The colossal squid"],
+              "explanation": "A blue whale can reach about 30 meters and weigh over 100 metric tons: it is the largest animal alive today." }
+    },
+    {
+      "id": "science-0035", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuál es el animal terrestre más pesado?",
+              "options": ["El elefante africano", "El hipopótamo", "El rinoceronte blanco", "La jirafa"],
+              "explanation": "El elefante africano de sabana puede pesar unas 6 toneladas. La jirafa es el animal más alto, pero pesa mucho menos." },
+      "en": { "question": "Which is the heaviest land animal?",
+              "options": ["The African elephant", "The hippopotamus", "The white rhinoceros", "The giraffe"],
+              "explanation": "The African savanna elephant can weigh about 6 metric tons. The giraffe is the tallest animal, but it weighs far less." }
+    },
+    {
+      "id": "science-0036", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué parte de la planta absorbe el agua del suelo?",
+              "options": ["La raíz", "La hoja", "El tallo", "La flor"],
+              "explanation": "La raíz absorbe agua y sales minerales, y además sujeta la planta al suelo. El tallo las conduce hacia las hojas." },
+      "en": { "question": "Which part of a plant absorbs water from the soil?",
+              "options": ["The root", "The leaf", "The stem", "The flower"],
+              "explanation": "The root absorbs water and minerals, and it also anchors the plant in the soil. The stem carries them up to the leaves." }
+    },
+    {
+      "id": "science-0037", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué pigmento da su color verde a las plantas?",
+              "options": ["La clorofila", "La melanina", "El caroteno", "La antocianina"],
+              "explanation": "La clorofila absorbe la luz del sol que la planta usa para fabricar su alimento y refleja la luz verde, por eso las hojas se ven verdes." },
+      "en": { "question": "Which pigment gives plants their green color?",
+              "options": ["Chlorophyll", "Melanin", "Carotene", "Anthocyanin"],
+              "explanation": "Chlorophyll absorbs the sunlight a plant uses to make its food and reflects green light, which is why leaves look green." }
+    },
+    {
+      "id": "science-0038", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuál es la unidad básica de los seres vivos?",
+              "options": ["La célula", "El átomo", "El órgano", "El tejido"],
+              "explanation": "Todos los seres vivos están hechos de células. Una bacteria tiene una sola; el cuerpo humano, decenas de billones." },
+      "en": { "question": "What is the basic unit of living things?",
+              "options": ["The cell", "The atom", "The organ", "The tissue"],
+              "explanation": "All living things are made of cells. A bacterium has just one; the human body has tens of trillions." }
+    },
+    {
+      "id": "science-0039", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuál de estos animales es un anfibio?",
+              "options": ["La rana", "El lagarto", "La tortuga", "El cocodrilo"],
+              "explanation": "Los anfibios, como las ranas, viven una parte de su vida en el agua y otra en tierra. Lagartos, tortugas y cocodrilos son reptiles." },
+      "en": { "question": "Which of these animals is an amphibian?",
+              "options": ["The frog", "The lizard", "The turtle", "The crocodile"],
+              "explanation": "Amphibians, like frogs, live part of their lives in water and part on land. Lizards, turtles and crocodiles are reptiles." }
+    },
+    {
+      "id": "science-0040", "difficulty": 1, "type": "truefalse", "answer": false,
+      "es": { "question": "Las arañas son insectos.",
+              "explanation": "Son arácnidos: tienen ocho patas y el cuerpo en dos partes. Los insectos tienen seis patas y el cuerpo en tres: cabeza, tórax y abdomen." },
+      "en": { "question": "Spiders are insects.",
+              "explanation": "They are arachnids: they have eight legs and a two-part body. Insects have six legs and a three-part body: head, thorax and abdomen." }
+    },
+    {
+      "id": "science-0041", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuál es el animal terrestre más veloz?",
+              "options": ["El guepardo", "El león", "El caballo", "El leopardo"],
+              "explanation": "El guepardo alcanza cerca de 100 km/h en carreras de pocos segundos, más que cualquier otro animal terrestre." },
+      "en": { "question": "Which is the fastest land animal?",
+              "options": ["The cheetah", "The lion", "The horse", "The leopard"],
+              "explanation": "The cheetah reaches close to 100 km/h (about 62 mph) in sprints of a few seconds, faster than any other land animal." }
+    },
+    {
+      "id": "science-0042", "difficulty": 1, "type": "truefalse", "answer": true,
+      "es": { "question": "Un fuego necesita oxígeno para mantenerse encendido.",
+              "explanation": "La combustión consume oxígeno. Por eso una vela se apaga si la tapas con un vaso: se acaba el oxígeno que había adentro." },
+      "en": { "question": "A fire needs oxygen to keep burning.",
+              "explanation": "Burning uses up oxygen. That is why a candle goes out when you cover it with a glass: the oxygen inside runs out." }
+    },
+    {
+      "id": "science-0043", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Quién publicó «El origen de las especies» en 1859?",
+              "options": ["Charles Darwin", "Carlos Linneo", "Jean-Baptiste Lamarck", "Alexander von Humboldt"],
+              "explanation": "Darwin explicó que las especies cambian con el tiempo por selección natural: los individuos mejor adaptados sobreviven y se reproducen más." },
+      "en": { "question": "Who published On the Origin of Species in 1859?",
+              "options": ["Charles Darwin", "Carl Linnaeus", "Jean-Baptiste Lamarck", "Alexander von Humboldt"],
+              "explanation": "Darwin explained that species change over time through natural selection: the best-adapted individuals survive and reproduce more." }
+    },
+    {
+      "id": "science-0044", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuál es el órgano más grande del cuerpo humano?",
+              "options": ["La piel", "El hígado", "El cerebro", "El pulmón"],
+              "explanation": "La piel cubre cerca de 2 m² en un adulto y pesa varios kilos. El hígado es el órgano interno más grande." },
+      "en": { "question": "What is the largest organ of the human body?",
+              "options": ["The skin", "The liver", "The brain", "The lung"],
+              "explanation": "The skin covers about 2 m² in an adult and weighs several kilograms. The liver is the largest internal organ." }
+    },
+    {
+      "id": "science-0045", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué órganos filtran la sangre y producen la orina?",
+              "options": ["Los riñones", "Los pulmones", "El hígado", "El estómago"],
+              "explanation": "Los dos riñones limpian la sangre de desechos y del exceso de agua, y forman la orina, que baja por los uréteres hasta la vejiga." },
+      "en": { "question": "Which organs filter the blood and produce urine?",
+              "options": ["The kidneys", "The lungs", "The liver", "The stomach"],
+              "explanation": "The two kidneys clear waste and excess water from the blood and form urine, which flows down the ureters to the bladder." }
+    },
+    {
+      "id": "science-0046", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuál es la temperatura normal del cuerpo humano?",
+              "options": ["Alrededor de 37 °C", "Alrededor de 34 °C", "Alrededor de 40 °C", "Alrededor de 31 °C"],
+              "explanation": "La temperatura corporal normal ronda los 37 °C. A partir de unos 38 °C se habla de fiebre." },
+      "en": { "question": "What is the normal temperature of the human body?",
+              "options": ["About 37 °C", "About 34 °C", "About 40 °C", "About 31 °C"],
+              "explanation": "Normal body temperature is around 37 °C (98.6 °F). From about 38 °C (100.4 °F) it counts as a fever." }
+    },
+    {
+      "id": "science-0047", "difficulty": 1, "type": "truefalse", "answer": false,
+      "es": { "question": "Los seres humanos usamos solo el 10 % del cerebro.",
+              "explanation": "Es un mito: usamos todo el cerebro, y casi todas sus regiones se activan en algún momento del día, incluso mientras dormimos." },
+      "en": { "question": "Humans use only 10% of their brains.",
+              "explanation": "It is a myth: we use the whole brain, and nearly all of its regions become active at some point during the day, even while we sleep." }
+    },
+    {
+      "id": "science-0048", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué instrumento sirve para observar células y otros seres diminutos?",
+              "options": ["El microscopio", "El telescopio", "El periscopio", "El estetoscopio"],
+              "explanation": "El microscopio amplía lo que no se ve a simple vista, como células y bacterias. El telescopio, en cambio, sirve para ver objetos lejanos." },
+      "en": { "question": "Which instrument is used to observe cells and other tiny organisms?",
+              "options": ["The microscope", "The telescope", "The periscope", "The stethoscope"],
+              "explanation": "The microscope magnifies what cannot be seen with the naked eye, such as cells and bacteria. A telescope, on the other hand, is for viewing distant objects." }
+    },
+    {
+      "id": "science-0049", "difficulty": 2, "type": "choice",
+      "es": { "question": "Aparte del Sol, ¿cuál es la estrella más cercana a la Tierra?",
+              "options": ["Próxima Centauri", "La estrella de Barnard", "Sirio", "Betelgeuse"],
+              "explanation": "Próxima Centauri está a unos 4,2 años luz. La estrella de Barnard está a unos 6 años luz, y Sirio, a unos 8,6." },
+      "en": { "question": "Apart from the Sun, which is the closest star to Earth?",
+              "options": ["Proxima Centauri", "Barnard's Star", "Sirius", "Betelgeuse"],
+              "explanation": "Proxima Centauri is about 4.2 light-years away. Barnard's Star is about 6 light-years away, and Sirius about 8.6." }
+    },
+    {
+      "id": "science-0050", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cuál es el planeta más caliente del sistema solar?",
+              "options": ["Venus", "Mercurio", "Marte", "Júpiter"],
+              "explanation": "Venus alcanza unos 460 °C en su superficie por el efecto invernadero de su densa atmósfera, que atrapa el calor del Sol." },
+      "en": { "question": "Which is the hottest planet in the solar system?",
+              "options": ["Venus", "Mercury", "Mars", "Jupiter"],
+              "explanation": "Venus reaches about 460 °C at its surface because of the greenhouse effect of its dense atmosphere, which traps the Sun's heat." }
+    },
+    {
+      "id": "science-0051", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué planeta gira «de lado», con su eje inclinado unos 98°?",
+              "options": ["Urano", "Neptuno", "Saturno", "Marte"],
+              "explanation": "Urano tiene el eje inclinado unos 98° respecto a su órbita, así que recorre su camino alrededor del Sol casi «rodando» de lado." },
+      "en": { "question": "Which planet spins “on its side,” with its axis tilted about 98°?",
+              "options": ["Uranus", "Neptune", "Saturn", "Mars"],
+              "explanation": "Uranus has its axis tilted about 98° relative to its orbit, so it travels around the Sun almost “rolling” on its side." }
+    },
+    {
+      "id": "science-0052", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué proceso produce la energía del Sol?",
+              "options": ["La fusión nuclear", "La fisión nuclear", "La combustión de gases", "La fricción interna"],
+              "explanation": "En el núcleo del Sol, los átomos ligeros se fusionan y forman otros más pesados, liberando enorme energía. La fisión, que parte átomos pesados, es la que usan las centrales nucleares." },
+      "en": { "question": "What process produces the Sun's energy?",
+              "options": ["Nuclear fusion", "Nuclear fission", "Gas combustion", "Internal friction"],
+              "explanation": "In the Sun's core, light atoms fuse into heavier ones, releasing enormous energy. Fission, which splits heavy atoms, is what nuclear power plants use." }
+    },
+    {
+      "id": "science-0053", "difficulty": 2, "type": "truefalse", "answer": true,
+      "es": { "question": "En un eclipse lunar, la Tierra queda entre el Sol y la Luna.",
+              "explanation": "La sombra de la Tierra cae sobre la Luna, que se oscurece o se vuelve rojiza. Los eclipses lunares ocurren siempre en luna llena." },
+      "en": { "question": "During a lunar eclipse, the Earth lies between the Sun and the Moon.",
+              "explanation": "Earth's shadow falls on the Moon, which darkens or turns reddish. Lunar eclipses always happen at full moon." }
+    },
+    {
+      "id": "science-0054", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿En qué unidad se mide la fuerza en el Sistema Internacional?",
+              "options": ["Newton", "Julio", "Vatio", "Pascal"],
+              "explanation": "El newton (N) es la fuerza que da a una masa de 1 kg una aceleración de 1 m/s². El julio mide energía; el vatio, potencia; y el pascal, presión." },
+      "en": { "question": "In which unit is force measured in the International System of Units?",
+              "options": ["Newton", "Joule", "Watt", "Pascal"],
+              "explanation": "The newton (N) is the force that gives a 1 kg mass an acceleration of 1 m/s². The joule measures energy, the watt power and the pascal pressure." }
+    },
+    {
+      "id": "science-0055", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿En cuál de estos medios viaja más rápido el sonido?",
+              "options": ["En el acero", "En el agua", "En el aire", "En el helio"],
+              "explanation": "El sonido recorre más de 5000 m/s en el acero, unos 1500 en el agua y unos 340 en el aire. En los sólidos, las partículas están más unidas y transmiten la vibración más deprisa." },
+      "en": { "question": "In which of these media does sound travel fastest?",
+              "options": ["In steel", "In water", "In air", "In helium"],
+              "explanation": "Sound travels at over 5,000 m/s in steel, about 1,500 in water and about 340 in air. In solids, particles are more tightly bound and pass the vibration along faster." }
+    },
+    {
+      "id": "science-0056", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Por qué el cielo se ve azul durante el día?",
+              "options": ["La atmósfera dispersa más la luz azul", "El cielo refleja el color del mar", "El oxígeno del aire es de color azul", "El Sol emite solo luz de color azul"],
+              "explanation": "Las moléculas del aire dispersan la luz azul del Sol mucho más que la roja, y esa luz nos llega desde todas partes del cielo." },
+      "en": { "question": "Why does the sky look blue during the day?",
+              "options": ["The atmosphere scatters blue light the most", "The sky reflects the color of the sea", "The oxygen in the air is blue", "The Sun emits only blue light"],
+              "explanation": "Air molecules scatter the Sun's blue light much more than its red light, and that scattered light reaches us from every part of the sky." }
+    },
+    {
+      "id": "science-0057", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué unidad mide la intensidad de una corriente eléctrica?",
+              "options": ["Amperio", "Voltio", "Ohmio", "Vatio"],
+              "explanation": "El amperio (A) mide cuánta carga eléctrica pasa por un cable cada segundo. El voltio mide la tensión, y el ohmio, la resistencia." },
+      "en": { "question": "Which unit measures the strength of an electric current?",
+              "options": ["Ampere", "Volt", "Ohm", "Watt"],
+              "explanation": "The ampere (A) measures how much electric charge flows through a wire each second. The volt measures voltage, and the ohm, resistance." }
+    },
+    {
+      "id": "science-0058", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿A cuántos grados Celsius equivale el cero absoluto, la temperatura más baja posible?",
+              "options": ["−273 °C", "−173 °C", "−373 °C", "−100 °C"],
+              "explanation": "El cero absoluto es 0 kelvin, o sea −273,15 °C. Es el límite inferior de la temperatura: allí las partículas tienen la mínima energía posible." },
+      "en": { "question": "What is absolute zero, the lowest possible temperature, in degrees Celsius?",
+              "options": ["−273 °C", "−173 °C", "−373 °C", "−100 °C"],
+              "explanation": "Absolute zero is 0 kelvin, or −273.15 °C. It is the lower limit of temperature: there, particles have the minimum possible energy." }
+    },
+    {
+      "id": "science-0059", "difficulty": 2, "type": "truefalse", "answer": true,
+      "es": { "question": "Un astronauta pesa menos en la Luna que en la Tierra, pero su masa es la misma.",
+              "explanation": "La gravedad lunar es de cerca de una sexta parte de la terrestre, así que el peso baja a un sexto. La masa, la cantidad de materia, no cambia." },
+      "en": { "question": "An astronaut weighs less on the Moon than on Earth, but has the same mass.",
+              "explanation": "Lunar gravity is about one sixth of Earth's, so weight drops to a sixth. Mass, the amount of matter, does not change." }
+    },
+    {
+      "id": "science-0060", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Quién publicó en 1869 una tabla periódica con huecos para elementos aún por descubrir?",
+              "options": ["Dmitri Mendeléyev", "Antoine Lavoisier", "John Dalton", "Robert Boyle"],
+              "explanation": "Mendeléyev ordenó los elementos por su masa atómica y sus propiedades, y predijo elementos que faltaban, como el galio y el germanio, descubiertos años después." },
+      "en": { "question": "Who published a periodic table in 1869 with gaps left for elements yet to be discovered?",
+              "options": ["Dmitri Mendeleev", "Antoine Lavoisier", "John Dalton", "Robert Boyle"],
+              "explanation": "Mendeleev arranged the elements by atomic mass and properties, and predicted missing ones such as gallium and germanium, discovered years later." }
+    },
+    {
+      "id": "science-0061", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cuál es el gas más abundante del aire que respiramos?",
+              "options": ["Nitrógeno", "Oxígeno", "Dióxido de carbono", "Vapor de agua"],
+              "explanation": "El aire contiene cerca de un 78 % de nitrógeno y un 21 % de oxígeno. El resto, alrededor de un 1 %, son otros gases en pequeñas cantidades." },
+      "en": { "question": "Which is the most abundant gas in the air we breathe?",
+              "options": ["Nitrogen", "Oxygen", "Carbon dioxide", "Water vapor"],
+              "explanation": "Air is about 78% nitrogen and 21% oxygen. The remaining 1% or so is made up of other gases in small amounts." }
+    },
+    {
+      "id": "science-0062", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cuál es el elemento más abundante del universo?",
+              "options": ["Hidrógeno", "Helio", "Oxígeno", "Nitrógeno"],
+              "explanation": "El hidrógeno forma cerca de tres cuartas partes de la materia ordinaria del universo; el helio, casi todo el resto." },
+      "en": { "question": "Which is the most abundant element in the universe?",
+              "options": ["Hydrogen", "Helium", "Oxygen", "Nitrogen"],
+              "explanation": "Hydrogen makes up about three quarters of the ordinary matter in the universe; helium accounts for nearly all the rest." }
+    },
+    {
+      "id": "science-0063", "difficulty": 2, "type": "choice",
+      "es": { "question": "El diamante y el grafito de un lápiz son formas del mismo elemento. ¿Cuál es?",
+              "options": ["Carbono", "Silicio", "Azufre", "Boro"],
+              "explanation": "Ambos son carbono puro, con los átomos ordenados de otra manera: en el diamante forman una red rígida y en el grafito, láminas que se deslizan." },
+      "en": { "question": "Diamond and the graphite in a pencil are forms of the same element. Which one?",
+              "options": ["Carbon", "Silicon", "Sulfur", "Boron"],
+              "explanation": "Both are pure carbon with their atoms arranged differently: in diamond they form a rigid lattice, and in graphite, sheets that slide over each other." }
+    },
+    {
+      "id": "science-0064", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué tipo de enlace une al sodio y al cloro en la sal de mesa?",
+              "options": ["Iónico", "Covalente", "Metálico", "Dipolo-dipolo"],
+              "explanation": "El sodio cede un electrón al cloro y los iones resultantes, Na⁺ y Cl⁻, se atraen por tener cargas opuestas: eso es un enlace iónico." },
+      "en": { "question": "What type of bond joins sodium and chlorine in table salt?",
+              "options": ["Ionic", "Covalent", "Metallic", "Dipole-dipole"],
+              "explanation": "Sodium gives up an electron to chlorine, and the resulting ions, Na⁺ and Cl⁻, attract each other because of their opposite charges: that is an ionic bond." }
+    },
+    {
+      "id": "science-0065", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué símbolo químico tiene el potasio?",
+              "options": ["K", "P", "Po", "Pb"],
+              "explanation": "K viene de kalium, el nombre en latín científico del potasio. P es el fósforo, Po el polonio y Pb el plomo." },
+      "en": { "question": "Which chemical symbol stands for potassium?",
+              "options": ["K", "P", "Po", "Pb"],
+              "explanation": "K comes from kalium, the scientific Latin name for potassium. P is phosphorus, Po is polonium and Pb is lead." }
+    },
+    {
+      "id": "science-0066", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Quién es considerado el padre de la genética por sus experimentos con guisantes?",
+              "options": ["Gregor Mendel", "Louis Pasteur", "Francis Crick", "Thomas Hunt Morgan"],
+              "explanation": "Mendel, un monje agustino, cruzó plantas de guisante en el siglo XIX y descubrió las reglas básicas de la herencia, mucho antes de conocerse el ADN." },
+      "en": { "question": "Who is regarded as the father of genetics for his experiments with pea plants?",
+              "options": ["Gregor Mendel", "Louis Pasteur", "Francis Crick", "Thomas Hunt Morgan"],
+              "explanation": "Mendel, an Augustinian monk, crossed pea plants in the 19th century and uncovered the basic rules of heredity, long before DNA was known." }
+    },
+    {
+      "id": "science-0067", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cuál de estos mamíferos pone huevos?",
+              "options": ["El ornitorrinco", "El canguro", "El murciélago", "El delfín"],
+              "explanation": "El ornitorrinco, de Australia, es un monotrema: un mamífero que pone huevos y amamanta a sus crías. Los otros tres paren crías vivas." },
+      "en": { "question": "Which of these mammals lays eggs?",
+              "options": ["The platypus", "The kangaroo", "The bat", "The dolphin"],
+              "explanation": "The platypus, from Australia, is a monotreme: a mammal that lays eggs and nurses its young. The other three give birth to live young." }
+    },
+    {
+      "id": "science-0068", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cuántos cromosomas tiene una célula típica del cuerpo humano, sin contar óvulos ni espermatozoides?",
+              "options": ["46", "23", "44", "48"],
+              "explanation": "Las células humanas tienen 46 cromosomas, organizados en 23 pares. Los óvulos y los espermatozoides tienen solo 23, la mitad." },
+      "en": { "question": "How many chromosomes does a typical human body cell have, not counting eggs and sperm?",
+              "options": ["46", "23", "44", "48"],
+              "explanation": "Human cells have 46 chromosomes, arranged in 23 pairs. Eggs and sperm have only 23, half as many." }
+    },
+    {
+      "id": "science-0069", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿En qué orgánulo de la célula vegetal ocurre la fotosíntesis?",
+              "options": ["El cloroplasto", "La vacuola", "El núcleo", "La mitocondria"],
+              "explanation": "Los cloroplastos captan la luz solar y la usan para fabricar azúcares, liberando oxígeno. Las células animales no los tienen." },
+      "en": { "question": "Which organelle of a plant cell carries out photosynthesis?",
+              "options": ["The chloroplast", "The vacuole", "The nucleus", "The mitochondrion"],
+              "explanation": "Chloroplasts capture sunlight and use it to make sugars, releasing oxygen. Animal cells do not have them." }
+    },
+    {
+      "id": "science-0070", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cómo se llama la relación entre dos especies en la que ambas salen beneficiadas?",
+              "options": ["Mutualismo", "Parasitismo", "Depredación", "Competencia"],
+              "explanation": "Un ejemplo son las abejas y las flores: ellas obtienen néctar, y la planta logra que su polen se transporte. En el parasitismo, solo uno de los dos gana." },
+      "en": { "question": "What is the relationship between two species called when both benefit?",
+              "options": ["Mutualism", "Parasitism", "Predation", "Competition"],
+              "explanation": "An example is bees and flowers: bees get nectar, and the plant gets its pollen carried. In parasitism, only one of the two gains." }
+    },
+    {
+      "id": "science-0071", "difficulty": 2, "type": "truefalse", "answer": false,
+      "es": { "question": "Los antibióticos son eficaces contra los virus, como el del resfriado.",
+              "explanation": "Los antibióticos actúan contra las bacterias, no contra los virus. Usarlos sin necesidad favorece que las bacterias se vuelvan resistentes." },
+      "en": { "question": "Antibiotics are effective against viruses, such as the one that causes the common cold.",
+              "explanation": "Antibiotics work against bacteria, not viruses. Using them when they are not needed helps bacteria become resistant." }
+    },
+    {
+      "id": "science-0072", "difficulty": 2, "type": "truefalse", "answer": true,
+      "es": { "question": "Desde el punto de vista botánico, el tomate es un fruto.",
+              "explanation": "Se forma a partir de la flor y contiene las semillas, lo que define a un fruto. En la cocina se trata como una hortaliza, pero botánicamente es un fruto." },
+      "en": { "question": "Botanically, a tomato is a fruit.",
+              "explanation": "It develops from the flower and holds the seeds, which is what defines a fruit. In the kitchen it is treated as a vegetable, but botanically it is a fruit." }
+    },
+    {
+      "id": "science-0073", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuántas cavidades, o cámaras, tiene el corazón humano?",
+              "options": ["Cuatro", "Dos", "Tres", "Seis"],
+              "explanation": "Tiene cuatro: dos aurículas arriba, que reciben la sangre, y dos ventrículos abajo, que la impulsan." },
+      "en": { "question": "How many chambers does the human heart have?",
+              "options": ["Four", "Two", "Three", "Six"],
+              "explanation": "It has four: two atria on top, which receive the blood, and two ventricles below, which pump it out." }
+    },
+    {
+      "id": "science-0074", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cuántos huesos tiene el esqueleto de una persona adulta?",
+              "options": ["206", "300", "150", "256"],
+              "explanation": "Un adulto tiene 206 huesos. Los bebés nacen con cerca de 300, pero varios se van fusionando durante el crecimiento." },
+      "en": { "question": "How many bones are in the skeleton of an adult?",
+              "options": ["206", "300", "150", "256"],
+              "explanation": "An adult has 206 bones. Babies are born with about 300, but several of them fuse together as the child grows." }
+    },
+    {
+      "id": "science-0075", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué hormona del páncreas permite que las células usen la glucosa de la sangre?",
+              "options": ["La insulina", "La adrenalina", "El cortisol", "La tiroxina"],
+              "explanation": "La insulina ayuda a las células a absorber la glucosa y así baja el azúcar en la sangre. En la diabetes tipo 1, el páncreas casi no la produce." },
+      "en": { "question": "Which hormone from the pancreas lets cells use the glucose in the blood?",
+              "options": ["Insulin", "Adrenaline", "Cortisol", "Thyroxine"],
+              "explanation": "Insulin helps cells take in glucose, which lowers blood sugar. In type 1 diabetes, the pancreas makes almost none." }
+    },
+    {
+      "id": "science-0076", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué órgano produce la bilis, que ayuda a digerir las grasas?",
+              "options": ["El hígado", "El páncreas", "El bazo", "El estómago"],
+              "explanation": "El hígado fabrica la bilis y la vesícula biliar la almacena hasta que hace falta en el intestino." },
+      "en": { "question": "Which organ produces bile, which helps digest fats?",
+              "options": ["The liver", "The pancreas", "The spleen", "The stomach"],
+              "explanation": "The liver makes bile, and the gallbladder stores it until it is needed in the intestine." }
+    },
+    {
+      "id": "science-0077", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué parte coloreada del ojo regula la cantidad de luz que entra?",
+              "options": ["El iris", "La córnea", "El cristalino", "La retina"],
+              "explanation": "El iris, que da el color a los ojos, abre o cierra la pupila para dejar pasar más o menos luz." },
+      "en": { "question": "Which colored part of the eye regulates how much light enters?",
+              "options": ["The iris", "The cornea", "The lens", "The retina"],
+              "explanation": "The iris, which gives the eyes their color, widens or narrows the pupil to let in more or less light." }
+    },
+    {
+      "id": "science-0078", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué parte del cerebro coordina el equilibrio y los movimientos precisos?",
+              "options": ["El cerebelo", "El hipocampo", "El bulbo raquídeo", "El hipotálamo"],
+              "explanation": "El cerebelo, situado en la parte baja y posterior del cerebro, coordina el equilibrio, la postura y la precisión de los movimientos." },
+      "en": { "question": "Which part of the brain coordinates balance and precise movements?",
+              "options": ["The cerebellum", "The hippocampus", "The medulla oblongata", "The hypothalamus"],
+              "explanation": "The cerebellum, at the lower back of the brain, coordinates balance, posture and the precision of movements." }
+    },
+    {
+      "id": "science-0079", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué vitamina produce la piel al recibir luz solar?",
+              "options": ["La vitamina D", "La vitamina C", "La vitamina A", "La vitamina K"],
+              "explanation": "Con los rayos UVB del sol, la piel fabrica vitamina D, necesaria para absorber calcio y fortalecer los huesos." },
+      "en": { "question": "Which vitamin does the skin produce when exposed to sunlight?",
+              "options": ["Vitamin D", "Vitamin C", "Vitamin A", "Vitamin K"],
+              "explanation": "With the Sun's UVB rays, the skin makes vitamin D, which is needed to absorb calcium and strengthen bones." }
+    },
+    {
+      "id": "science-0080", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué grupo sanguíneo es el donante universal de glóbulos rojos?",
+              "options": ["O negativo", "AB positivo", "A positivo", "B negativo"],
+              "explanation": "Los glóbulos rojos O negativo carecen de los antígenos A, B y Rh, así que casi cualquier receptor los tolera. AB positivo es el receptor universal." },
+      "en": { "question": "Which blood type is the universal donor of red blood cells?",
+              "options": ["O negative", "AB positive", "A positive", "B negative"],
+              "explanation": "O-negative red cells lack the A, B and Rh antigens, so almost any recipient can tolerate them. AB positive is the universal recipient." }
+    },
+    {
+      "id": "science-0081", "difficulty": 2, "type": "truefalse", "answer": false,
+      "es": { "question": "La lengua tiene zonas separadas, y cada una detecta un solo sabor.",
+              "explanation": "El «mapa de la lengua» es un mito: cualquier zona con papilas gustativas percibe los sabores básicos: dulce, salado, ácido, amargo y umami." },
+      "en": { "question": "The tongue has separate zones, and each one detects only a single taste.",
+              "explanation": "The “tongue map” is a myth: any area with taste buds picks up the basic tastes: sweet, salty, sour, bitter and umami." }
+    },
+    {
+      "id": "science-0082", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué capa de la Tierra ocupa la mayor parte de su volumen?",
+              "options": ["El manto", "La corteza", "El núcleo externo", "El núcleo interno"],
+              "explanation": "El manto, entre la corteza y el núcleo, ocupa cerca del 84 % del volumen del planeta. La corteza es solo una capa muy delgada." },
+      "en": { "question": "Which layer of the Earth makes up most of its volume?",
+              "options": ["The mantle", "The crust", "The outer core", "The inner core"],
+              "explanation": "The mantle, between the crust and the core, makes up about 84% of the planet's volume. The crust is only a very thin layer." }
+    },
+    {
+      "id": "science-0083", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿En qué era geológica dominaron los dinosaurios?",
+              "options": ["Mesozoico", "Paleozoico", "Cenozoico", "Precámbrico"],
+              "explanation": "Los dinosaurios dominaron la Tierra durante el Mesozoico, de hace unos 252 a 66 millones de años. Los no aviares se extinguieron al final de esa era." },
+      "en": { "question": "In which geological era did the dinosaurs dominate?",
+              "options": ["The Mesozoic", "The Paleozoic", "The Cenozoic", "The Precambrian"],
+              "explanation": "Dinosaurs dominated the Earth during the Mesozoic, from about 252 to 66 million years ago. The non-avian dinosaurs went extinct at the end of that era." }
+    },
+    {
+      "id": "science-0084", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Cuál es la luna más grande del sistema solar?",
+              "options": ["Ganímedes", "Titán", "Calisto", "Europa"],
+              "explanation": "Ganímedes, que orbita a Júpiter, mide unos 5270 km de diámetro: es incluso más grande que el planeta Mercurio." },
+      "en": { "question": "Which is the largest moon in the solar system?",
+              "options": ["Ganymede", "Titan", "Callisto", "Europa"],
+              "explanation": "Ganymede, which orbits Jupiter, is about 5,270 km across: it is even larger than the planet Mercury." }
+    },
+    {
+      "id": "science-0085", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Cuál de estas lunas es la única del sistema solar con una atmósfera realmente densa?",
+              "options": ["Titán", "Encélado", "Europa", "Tritón"],
+              "explanation": "Titán, una luna de Saturno, tiene una atmósfera más densa que la de la Tierra: su presión en superficie es cerca de 1,5 veces la terrestre. Tritón, de Neptuno, solo conserva una muy tenue." },
+      "en": { "question": "Which of these moons is the only one in the solar system with a truly dense atmosphere?",
+              "options": ["Titan", "Enceladus", "Europa", "Triton"],
+              "explanation": "Titan, a moon of Saturn, has an atmosphere denser than Earth's: its surface pressure is about 1.5 times Earth's. Triton, a moon of Neptune, keeps only a very thin one." }
+    },
+    {
+      "id": "science-0086", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Cómo se llama la región de cuerpos helados que empieza cerca de la órbita de Neptuno y donde está Plutón?",
+              "options": ["El cinturón de Kuiper", "El cinturón de asteroides", "La nube de Oort", "El cinturón de Van Allen"],
+              "explanation": "El cinturón de Kuiper reúne cuerpos helados desde la órbita de Neptuno hacia afuera, incluido Plutón. El cinturón de asteroides está entre Marte y Júpiter." },
+      "en": { "question": "What is the region of icy bodies that begins near Neptune's orbit, home to Pluto, called?",
+              "options": ["The Kuiper Belt", "The asteroid belt", "The Oort Cloud", "The Van Allen belt"],
+              "explanation": "The Kuiper Belt holds icy bodies from Neptune's orbit outward, Pluto among them. The asteroid belt lies between Mars and Jupiter." }
+    },
+    {
+      "id": "science-0087", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Qué físico alemán descubrió los rayos X en 1895?",
+              "options": ["Wilhelm Röntgen", "Henri Becquerel", "Heinrich Hertz", "Ernest Rutherford"],
+              "explanation": "Röntgen observó en 1895 una radiación desconocida y la llamó «X». Con ella hizo la primera radiografía de una parte del cuerpo humano, la mano de su esposa, y ganó el primer Nobel de Física, en 1901." },
+      "en": { "question": "Which German physicist discovered X-rays in 1895?",
+              "options": ["Wilhelm Röntgen", "Henri Becquerel", "Heinrich Hertz", "Ernest Rutherford"],
+              "explanation": "Röntgen noticed an unknown radiation in 1895 and called it “X.” With it he took the first radiograph of a human body part, his wife's hand, and won the first Nobel Prize in Physics, in 1901." }
+    },
+    {
+      "id": "science-0088", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Qué físico formuló en 1927 el principio de incertidumbre de la mecánica cuántica?",
+              "options": ["Werner Heisenberg", "Wolfgang Pauli", "Erwin Schrödinger", "Paul Dirac"],
+              "explanation": "Heisenberg mostró que no se pueden conocer a la vez, con exactitud, la posición y la velocidad de una partícula. No es un fallo de los instrumentos, sino una propiedad de la naturaleza." },
+      "en": { "question": "Which physicist formulated the uncertainty principle of quantum mechanics in 1927?",
+              "options": ["Werner Heisenberg", "Wolfgang Pauli", "Erwin Schrödinger", "Paul Dirac"],
+              "explanation": "Heisenberg showed that the position and the velocity of a particle cannot both be known exactly at the same time. It is not a flaw of instruments but a property of nature." }
+    },
+    {
+      "id": "science-0089", "difficulty": 3, "type": "choice",
+      "es": { "question": "En el Sistema Internacional, ¿qué unidad base mide la cantidad de sustancia?",
+              "options": ["El mol", "El gramo", "El kelvin", "La candela"],
+              "explanation": "El mol contiene unas 6,02 × 10²³ partículas, el número de Avogadro. El kelvin mide la temperatura y la candela, la intensidad luminosa." },
+      "en": { "question": "In the International System of Units, which base unit measures the amount of substance?",
+              "options": ["The mole", "The gram", "The kelvin", "The candela"],
+              "explanation": "The mole contains about 6.02 × 10²³ particles, Avogadro's number. The kelvin measures temperature and the candela, luminous intensity." }
+    },
+    {
+      "id": "science-0090", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Qué ley de la termodinámica afirma que la entropía de un sistema aislado no disminuye?",
+              "options": ["La segunda ley", "La primera ley", "La tercera ley", "La ley cero"],
+              "explanation": "En un sistema aislado, la entropía (el desorden) tiende a aumentar con el tiempo. Por eso el calor fluye de forma espontánea del cuerpo caliente al frío." },
+      "en": { "question": "Which law of thermodynamics states that the entropy of an isolated system never decreases?",
+              "options": ["The second law", "The first law", "The third law", "The zeroth law"],
+              "explanation": "In an isolated system, entropy (disorder) tends to increase over time. That is why heat flows spontaneously from the hot body to the cold one." }
+    },
+    {
+      "id": "science-0091", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Qué elemento químico tiene el símbolo W?",
+              "options": ["Tungsteno", "Vanadio", "Uranio", "Circonio"],
+              "explanation": "W viene del alemán Wolfram, otro nombre del tungsteno. Este metal tiene el punto de fusión más alto de todos los metales, unos 3400 °C." },
+      "en": { "question": "Which chemical element has the symbol W?",
+              "options": ["Tungsten", "Vanadium", "Uranium", "Zirconium"],
+              "explanation": "W comes from the German Wolfram, another name for tungsten. It has the highest melting point of any metal, about 3,400 °C." }
+    },
+    {
+      "id": "science-0092", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Cuál es el elemento más electronegativo de la tabla periódica?",
+              "options": ["Flúor", "Oxígeno", "Cloro", "Nitrógeno"],
+              "explanation": "El flúor atrae los electrones con más fuerza que cualquier otro elemento. El oxígeno es el segundo." },
+      "en": { "question": "Which is the most electronegative element in the periodic table?",
+              "options": ["Fluorine", "Oxygen", "Chlorine", "Nitrogen"],
+              "explanation": "Fluorine pulls electrons more strongly than any other element. Oxygen is second." }
+    },
+    {
+      "id": "science-0093", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Cuál es el único elemento no metálico que es líquido a temperatura ambiente?",
+              "options": ["Bromo", "Yodo", "Cloro", "Azufre"],
+              "explanation": "El bromo es un líquido rojizo de olor fuerte a temperatura ambiente. El cloro es un gas, y el yodo y el azufre son sólidos." },
+      "en": { "question": "Which is the only nonmetallic element that is liquid at room temperature?",
+              "options": ["Bromine", "Iodine", "Chlorine", "Sulfur"],
+              "explanation": "Bromine is a reddish liquid with a strong smell at room temperature. Chlorine is a gas, while iodine and sulfur are solids." }
+    },
+    {
+      "id": "science-0094", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Cuál es el gas noble más abundante en la atmósfera terrestre?",
+              "options": ["Argón", "Neón", "Helio", "Criptón"],
+              "explanation": "El argón forma cerca del 0,9 % del aire, mucho más que el neón, el helio o el criptón." },
+      "en": { "question": "Which noble gas is the most abundant in Earth's atmosphere?",
+              "options": ["Argon", "Neon", "Helium", "Krypton"],
+              "explanation": "Argon makes up about 0.9% of the air, far more than neon, helium or krypton." }
+    },
+    {
+      "id": "science-0095", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Qué orgánulo de la célula animal contiene enzimas digestivas que degradan partículas ingeridas y orgánulos viejos?",
+              "options": ["El lisosoma", "El peroxisoma", "El retículo endoplasmático liso", "El centriolo"],
+              "explanation": "Los lisosomas contienen enzimas que descomponen moléculas y restos celulares; funcionan como el «sistema de reciclaje» de la célula." },
+      "en": { "question": "Which organelle of an animal cell contains digestive enzymes that break down ingested particles and worn-out organelles?",
+              "options": ["The lysosome", "The peroxisome", "The smooth endoplasmic reticulum", "The centriole"],
+              "explanation": "Lysosomes contain enzymes that break down molecules and cell debris; they work as the cell's “recycling system”." }
+    },
+    {
+      "id": "science-0096", "difficulty": 3, "type": "truefalse", "answer": true,
+      "es": { "question": "Los glóbulos rojos humanos maduros no tienen núcleo.",
+              "explanation": "Al madurar pierden el núcleo, lo que deja más espacio para la hemoglobina. Viven unos 120 días y la médula ósea fabrica otros nuevos." },
+      "en": { "question": "Mature human red blood cells have no nucleus.",
+              "explanation": "As they mature they lose their nucleus, leaving more room for hemoglobin. They live about 120 days, and the bone marrow makes new ones." }
+    },
+    {
+      "id": "science-0097", "difficulty": 3, "type": "truefalse", "answer": false,
+      "es": { "question": "Todas las venas del cuerpo llevan sangre pobre en oxígeno.",
+              "explanation": "Las venas pulmonares llevan sangre rica en oxígeno desde los pulmones hasta el corazón. Y la arteria pulmonar lleva sangre pobre en oxígeno hacia los pulmones." },
+      "en": { "question": "All the veins in the body carry oxygen-poor blood.",
+              "explanation": "The pulmonary veins carry oxygen-rich blood from the lungs to the heart. And the pulmonary artery carries oxygen-poor blood to the lungs." }
+    },
+    {
+      "id": "science-0098", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Quién descubrió en 1901 los grupos sanguíneos del sistema ABO?",
+              "options": ["Karl Landsteiner", "Jonas Salk", "Paul Ehrlich", "Ignaz Semmelweis"],
+              "explanation": "Landsteiner vio que la sangre de unas personas se aglutina al mezclarse con la de otras y así descubrió los grupos A, B y O. Ganó el Nobel de Medicina en 1930." },
+      "en": { "question": "Who discovered the ABO blood groups in 1901?",
+              "options": ["Karl Landsteiner", "Jonas Salk", "Paul Ehrlich", "Ignaz Semmelweis"],
+              "explanation": "Landsteiner saw that the blood of some people clumps when mixed with that of others, and so discovered groups A, B and O. He won the Nobel Prize in Medicine in 1930." }
+    },
+    {
+      "id": "science-0099", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Qué científico propuso en 1912 la teoría de la deriva continental?",
+              "options": ["Alfred Wegener", "Charles Lyell", "James Hutton", "Harry Hess"],
+              "explanation": "Wegener planteó que los continentes estuvieron unidos y se fueron separando. No lo creyeron hasta que, décadas después, la tectónica de placas explicó cómo se mueven." },
+      "en": { "question": "Which scientist proposed the theory of continental drift in 1912?",
+              "options": ["Alfred Wegener", "Charles Lyell", "James Hutton", "Harry Hess"],
+              "explanation": "Wegener argued that the continents were once joined and slowly drifted apart. He was not believed until, decades later, plate tectonics explained how they move." }
+    },
+    {
+      "id": "science-0100", "difficulty": 3, "type": "truefalse", "answer": true,
+      "es": { "question": "El ADN mitocondrial de una persona se hereda normalmente de su madre.",
+              "explanation": "Las mitocondrias del embrión vienen casi siempre del óvulo, así que este ADN pasa de madres a hijos; por eso se usa para rastrear linajes maternos." },
+      "en": { "question": "A person's mitochondrial DNA is normally inherited from their mother.",
+              "explanation": "An embryo's mitochondria almost always come from the egg, so this DNA passes from mothers to their children; that is why it is used to trace maternal lineages." }
+    }
+  ]
+}

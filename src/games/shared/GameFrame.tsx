@@ -8,8 +8,12 @@ import styles from './GameFrame.module.css';
 export interface GameFrameProps {
   score: number;
   level: number;
-  /** Games with a clock. */
-  time?: { remainingMs: number; totalMs: number };
+  /**
+   * Games with a clock. `stopped` is a clock that is not counting down and keeps the time it had (the quiz, while
+   * the answer to a question is shown): with nothing to hurry for, its bar is never urgent. `urgentMs` is the
+   * window at the end when the bar turns urgent (default 10 s); the quiz, with 20 s questions, uses 5 s.
+   */
+  time?: { remainingMs: number; totalMs: number; stopped?: boolean; urgentMs?: number };
   /** Games played in rounds (Secuencia de luces). */
   rounds?: { current: number; total: number };
   /** Bottom zone: the answer buttons. */
@@ -105,7 +109,14 @@ export function GameFrame({ score, level, time, rounds, controls, stageFlash = t
         </div>
       </div>
 
-      {time && <TimeBar remainingMs={time.remainingMs} totalMs={time.totalMs} />}
+      {time && (
+        <TimeBar
+          remainingMs={time.remainingMs}
+          totalMs={time.totalMs}
+          stopped={time.stopped ?? false}
+          urgentMs={time.urgentMs ?? URGENT_MS}
+        />
+      )}
       {rounds && <RoundDots current={rounds.current} total={rounds.total} />}
 
       <div ref={stageRef} className={styles.stage} data-zone="stage">
@@ -131,7 +142,17 @@ function Flash({ signal }: { signal: FeedbackSignal | null }) {
   return <span key={signal.id} className={styles.flash} data-flash={signal.kind} aria-hidden="true" />;
 }
 
-function TimeBar({ remainingMs, totalMs }: { remainingMs: number; totalMs: number }) {
+function TimeBar({
+  remainingMs,
+  totalMs,
+  stopped,
+  urgentMs,
+}: {
+  remainingMs: number;
+  totalMs: number;
+  stopped: boolean;
+  urgentMs: number;
+}) {
   const { t } = useTranslation();
   const left = totalMs > 0 ? Math.min(1, Math.max(0, remainingMs / totalMs)) : 0;
   const secondsLeft = Math.ceil(remainingMs / 1000);
@@ -144,7 +165,7 @@ function TimeBar({ remainingMs, totalMs }: { remainingMs: number; totalMs: numbe
       aria-valuemax={Math.round(totalMs / 1000)}
       aria-valuenow={secondsLeft}
       aria-valuetext={t('game.hud.secondsLeft', { count: secondsLeft })}
-      data-urgent={remainingMs <= URGENT_MS}
+      data-urgent={!stopped && remainingMs <= urgentMs}
     >
       <div className={styles.fill} style={{ transform: `scaleX(${left})` }} />
     </div>

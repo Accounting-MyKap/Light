@@ -22,6 +22,10 @@ function FakeExample() {
   return <p>fake example</p>;
 }
 
+function FakeThumb() {
+  return <span aria-hidden="true" />;
+}
+
 export const fakeGame: GameDefinition = {
   id: 'fake',
   area: 'memory',
@@ -29,9 +33,22 @@ export const fakeGame: GameDefinition = {
   maxScore: 1000,
   Component: FakeGameComponent,
   Example: FakeExample,
+  Thumb: FakeThumb,
 };
 
 export const fakeGame2: GameDefinition = { ...fakeGame, id: 'fake2' };
+
+/** Takes its instructions from a shared i18n key, like the quiz games do. */
+export const fakeGame3: GameDefinition = { ...fakeGame, id: 'fake3', instructionsKey: 'quiz.instructions' };
+
+/** A game of the quiz section: it has a `quiz` config, so leaving it goes to the Quiz tab. */
+export const fakeQuizGame: GameDefinition = {
+  ...fakeGame,
+  id: 'fakeq',
+  area: 'trivia',
+  instructionsKey: 'quiz.instructions',
+  quiz: { bank: 'trivia', categories: ['history'] },
+};
 
 export function registerFakeGameTranslations(): void {
   const texts = {
@@ -45,6 +62,15 @@ export function registerFakeGameTranslations(): void {
         title: 'Segundo juego falso',
         description: 'Otro juego para pruebas',
         instructions: ['Instrucción A', 'Instrucción B'],
+      },
+      // No `instructions` here on purpose: they come from the game's `instructionsKey`.
+      fake3: {
+        title: 'Tercer juego falso',
+        description: 'Un juego con instrucciones compartidas',
+      },
+      fakeq: {
+        title: 'Juego de preguntas falso',
+        description: 'Un juego de preguntas para pruebas',
       },
     },
   };

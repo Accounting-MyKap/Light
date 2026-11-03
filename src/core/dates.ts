@@ -21,3 +21,9 @@ export function addDays(day: string, delta: number): string {
 export function daysBetween(from: string, to: string): number {
   return Math.round((toUtcMs(to) - toUtcMs(from)) / DAY_MS);
 }
+
+/** The seven days, Monday to Sunday, of the week that holds `day`. */
+export function weekOf(day: string): string[] {
+  const monday = addDays(day, -((new Date(`${day}T12:00:00`).getDay() + 6) % 7));
+  return Array.from({ length: 7 }, (_, i) => addDays(monday, i));
+}

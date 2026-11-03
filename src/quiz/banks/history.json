@@ -1,0 +1,875 @@
+{
+  "category": "history",
+  "questions": [
+    {
+      "id": "history-0001", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿En qué año terminó la Segunda Guerra Mundial?",
+              "options": ["1945", "1939", "1950", "1918"],
+              "explanation": "Terminó en 1945: en mayo en Europa y en septiembre, con la rendición de Japón, en Asia." },
+      "en": { "question": "In what year did the Second World War end?",
+              "options": ["1945", "1939", "1950", "1918"],
+              "explanation": "It ended in 1945: in May in Europe and in September, with Japan's surrender, in Asia." }
+    },
+    {
+      "id": "history-0002", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Quién fue el primer presidente de Estados Unidos?",
+              "options": ["George Washington", "Thomas Jefferson", "Abraham Lincoln", "Benjamin Franklin"],
+              "explanation": "George Washington gobernó de 1789 a 1797. Jefferson fue el tercer presidente, Lincoln el decimosexto, y Franklin nunca fue presidente." },
+      "en": { "question": "Who was the first president of the United States?",
+              "options": ["George Washington", "Thomas Jefferson", "Abraham Lincoln", "Benjamin Franklin"],
+              "explanation": "George Washington served from 1789 to 1797. Jefferson was the third president, Lincoln the sixteenth, and Franklin never held the office." }
+    },
+    {
+      "id": "history-0003", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué civilización construyó las pirámides de Giza?",
+              "options": ["La egipcia", "La maya", "La azteca", "La romana"],
+              "explanation": "Las pirámides de Giza las levantaron los antiguos egipcios hace unos 4500 años, como tumbas de faraones." },
+      "en": { "question": "Which civilization built the pyramids of Giza?",
+              "options": ["Ancient Egypt", "The Maya", "The Aztecs", "Ancient Rome"],
+              "explanation": "The ancient Egyptians built the Giza pyramids about 4,500 years ago, as tombs for pharaohs." }
+    },
+    {
+      "id": "history-0004", "difficulty": 1, "type": "truefalse", "answer": true,
+      "es": { "question": "Abraham Lincoln fue presidente de Estados Unidos durante la Guerra de Secesión.",
+              "explanation": "Gobernó de 1861 a 1865, los años de la guerra civil entre el Norte y el Sur." },
+      "en": { "question": "Abraham Lincoln was president of the United States during the American Civil War.",
+              "explanation": "He served from 1861 to 1865, the years of the war between the North and the South." }
+    },
+    {
+      "id": "history-0005", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cuál fue la capital del Imperio inca?",
+              "options": ["Cusco", "Machu Picchu", "Lima", "La Paz"],
+              "explanation": "Cusco fue el centro político y religioso del Imperio inca. Machu Picchu era una propiedad real, y Lima la fundaron los españoles en 1535." },
+      "en": { "question": "What was the capital of the Inca Empire?",
+              "options": ["Cusco", "Machu Picchu", "Lima", "La Paz"],
+              "explanation": "Cusco was the political and religious center of the Inca Empire. Machu Picchu was a royal estate, and Lima was founded by the Spanish in 1535." }
+    },
+    {
+      "id": "history-0006", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿En qué año fue el Grito de Independencia de Colombia, el 20 de julio?",
+              "options": ["1810", "1819", "1821", "1830"],
+              "explanation": "El 20 de julio de 1810, en Santafé de Bogotá, comenzó el movimiento de independencia. La batalla de Boyacá fue el 7 de agosto de 1819." },
+      "en": { "question": "In what year did Colombia's Cry of Independence take place, on 20 July?",
+              "options": ["1810", "1819", "1821", "1830"],
+              "explanation": "On 20 July 1810, in Santafé de Bogotá, the independence movement began. The Battle of Boyacá came later, on 7 August 1819." }
+    },
+    {
+      "id": "history-0007", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué documento firmó el rey Juan de Inglaterra en 1215 y limitó el poder del monarca?",
+              "options": ["La Carta Magna", "La Declaración de Derechos", "El Edicto de Nantes", "La Bula de Oro"],
+              "explanation": "La Carta Magna se firmó en Runnymede y estableció que el rey también debía respetar la ley." },
+      "en": { "question": "Which document did King John of England sign in 1215, limiting the monarch's power?",
+              "options": ["The Magna Carta", "The Bill of Rights", "The Edict of Nantes", "The Golden Bull"],
+              "explanation": "The Magna Carta was sealed at Runnymede and established that the king, too, had to respect the law." }
+    },
+    {
+      "id": "history-0008", "difficulty": 2, "type": "truefalse", "answer": false,
+      "es": { "question": "La Guerra de los Cien Años entre Inglaterra y Francia duró exactamente cien años.",
+              "explanation": "Duró 116 años, de 1337 a 1453, con varias treguas. El nombre es solo una aproximación." },
+      "en": { "question": "The Hundred Years' War between England and France lasted exactly one hundred years.",
+              "explanation": "It lasted 116 years, from 1337 to 1453, with several truces. The name is only an approximation." }
+    },
+    {
+      "id": "history-0009", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿En qué año cayó Tenochtitlan ante Hernán Cortés y sus aliados indígenas?",
+              "options": ["1521", "1519", "1532", "1535"],
+              "explanation": "Cayó el 13 de agosto de 1521. En 1519 Cortés había llegado a la ciudad; en 1532 Pizarro entró al Perú." },
+      "en": { "question": "In what year did Tenochtitlan fall to Hernán Cortés and his Indigenous allies?",
+              "options": ["1521", "1519", "1532", "1535"],
+              "explanation": "It fell on 13 August 1521. Cortés had first reached the city in 1519, and Pizarro entered Peru in 1532." }
+    },
+    {
+      "id": "history-0010", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Qué acuerdos de 1648 pusieron fin a la Guerra de los Treinta Años?",
+              "options": ["La Paz de Westfalia", "La Paz de Augsburgo", "El Tratado de Utrecht", "El Congreso de Viena"],
+              "explanation": "La Paz de Westfalia (1648) cerró la guerra y sentó las bases del sistema de Estados soberanos. Augsburgo es de 1555 y Utrecht, de 1713." },
+      "en": { "question": "Which agreements of 1648 ended the Thirty Years' War?",
+              "options": ["The Peace of Westphalia", "The Peace of Augsburg", "The Treaty of Utrecht", "The Congress of Vienna"],
+              "explanation": "The Peace of Westphalia (1648) ended the war and laid the foundations of the system of sovereign states. Augsburg dates from 1555 and Utrecht from 1713." }
+    },
+    {
+      "id": "history-0011", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Qué emperador, depuesto en el año 476, se considera el último del Imperio romano de Occidente?",
+              "options": ["Rómulo Augústulo", "Odoacro", "Justiniano", "Constantino"],
+              "explanation": "Rómulo Augústulo fue depuesto en 476 por el caudillo germano Odoacro; esa fecha suele marcar el fin del Imperio de Occidente." },
+      "en": { "question": "Which emperor, deposed in the year 476, is considered the last of the Western Roman Empire?",
+              "options": ["Romulus Augustulus", "Odoacer", "Justinian", "Constantine"],
+              "explanation": "Romulus Augustulus was deposed in 476 by the Germanic chieftain Odoacer; that date usually marks the end of the Western Empire." }
+    },
+    {
+      "id": "history-0012", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿En qué año se firmó el Tratado de Tordesillas entre España y Portugal?",
+              "options": ["1494", "1492", "1500", "1513"],
+              "explanation": "Se firmó en 1494 y repartió las tierras por descubrir con una línea trazada al oeste de las islas de Cabo Verde." },
+      "en": { "question": "In what year was the Treaty of Tordesillas between Spain and Portugal signed?",
+              "options": ["1494", "1492", "1500", "1513"],
+              "explanation": "It was signed in 1494 and divided the lands yet to be explored along a line drawn west of the Cape Verde islands." }
+    },
+    {
+      "id": "history-0013", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿En qué año llegó Cristóbal Colón a América por primera vez?",
+              "options": ["1492", "1482", "1502", "1592"],
+              "explanation": "Llegó a una isla de las Bahamas el 12 de octubre de 1492, convencido de que había alcanzado el extremo oriental de Asia." },
+      "en": { "question": "In what year did Christopher Columbus first reach the Americas?",
+              "options": ["1492", "1482", "1502", "1592"],
+              "explanation": "He landed on an island in the Bahamas on 12 October 1492, convinced that he had reached the eastern edge of Asia." }
+    },
+    {
+      "id": "history-0014", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Quién lideró la Alemania nazi durante la Segunda Guerra Mundial?",
+              "options": ["Adolf Hitler", "Benito Mussolini", "Iósif Stalin", "Francisco Franco"],
+              "explanation": "Adolf Hitler gobernó Alemania desde 1933 hasta su muerte. Mussolini lideró Italia, Stalin la Unión Soviética y Franco España." },
+      "en": { "question": "Who led Nazi Germany during the Second World War?",
+              "options": ["Adolf Hitler", "Benito Mussolini", "Joseph Stalin", "Francisco Franco"],
+              "explanation": "Adolf Hitler ruled Germany from 1933 until his death. Mussolini led Italy, Stalin the Soviet Union and Franco Spain." }
+    },
+    {
+      "id": "history-0015", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué gobernante romano murió apuñalado por un grupo de senadores en los idus de marzo del año 44 a. C.?",
+              "options": ["Julio César", "Nerón", "Trajano", "Marco Antonio"],
+              "explanation": "Julio César, dictador de Roma, fue atacado en el Senado el 15 de marzo del 44 a. C. por conspiradores entre los que estaban Bruto y Casio." },
+      "en": { "question": "Which Roman ruler was stabbed by a group of senators on the Ides of March in 44 BC?",
+              "options": ["Julius Caesar", "Nero", "Trajan", "Mark Antony"],
+              "explanation": "Julius Caesar, dictator of Rome, was attacked in the Senate on 15 March 44 BC by conspirators who included Brutus and Cassius." }
+    },
+    {
+      "id": "history-0016", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué ciudad-estado de la antigua Grecia es considerada la cuna de la democracia?",
+              "options": ["Atenas", "Esparta", "Corinto", "Tebas"],
+              "explanation": "Desde fines del siglo VI a. C., los ciudadanos de Atenas decidían las leyes en una asamblea, aunque las mujeres y los esclavos quedaban excluidos." },
+      "en": { "question": "Which city-state of ancient Greece is considered the birthplace of democracy?",
+              "options": ["Athens", "Sparta", "Corinth", "Thebes"],
+              "explanation": "From the late 6th century BC, the citizens of Athens decided laws in an assembly, although women and slaves were excluded." }
+    },
+    {
+      "id": "history-0017", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿De qué región de Europa procedían los vikingos?",
+              "options": ["De Escandinavia", "De los Balcanes", "De la península ibérica", "De las islas británicas"],
+              "explanation": "Los vikingos salían de Escandinavia (hoy Noruega, Suecia y Dinamarca) y desde fines del siglo VIII navegaron hasta las islas británicas, Rusia y Norteamérica." },
+      "en": { "question": "Which region of Europe did the Vikings come from?",
+              "options": ["Scandinavia", "The Balkans", "The Iberian Peninsula", "The British Isles"],
+              "explanation": "The Vikings set out from Scandinavia (today's Norway, Sweden and Denmark) and from the late 8th century sailed to the British Isles, Russia and North America." }
+    },
+    {
+      "id": "history-0018", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿En qué país europeo comenzó el Renacimiento?",
+              "options": ["Italia", "Francia", "Inglaterra", "Alemania"],
+              "explanation": "Surgió en ciudades italianas como Florencia entre los siglos XIV y XV, y de allí se extendió al resto de Europa." },
+      "en": { "question": "In which European country did the Renaissance begin?",
+              "options": ["Italy", "France", "England", "Germany"],
+              "explanation": "It emerged in Italian cities such as Florence between the 14th and 15th centuries, and spread from there across Europe." }
+    },
+    {
+      "id": "history-0019", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿En qué año se hundió el Titanic después de chocar con un iceberg?",
+              "options": ["1912", "1905", "1921", "1898"],
+              "explanation": "Se hundió en el Atlántico Norte en abril de 1912, en su primer viaje, que iba de Southampton a Nueva York." },
+      "en": { "question": "In what year did the Titanic sink after hitting an iceberg?",
+              "options": ["1912", "1905", "1921", "1898"],
+              "explanation": "It sank in the North Atlantic in April 1912, on its maiden voyage from Southampton to New York." }
+    },
+    {
+      "id": "history-0020", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Quién lideró la lucha no violenta por la independencia de la India frente al dominio británico?",
+              "options": ["Mahatma Gandhi", "Mustafa Kemal Atatürk", "Ho Chi Minh", "Sun Yat-sen"],
+              "explanation": "Mahatma Gandhi impulsó la desobediencia civil y la no violencia; la India se independizó del Reino Unido en 1947." },
+      "en": { "question": "Who led the nonviolent struggle for India's independence from British rule?",
+              "options": ["Mahatma Gandhi", "Mustafa Kemal Atatürk", "Ho Chi Minh", "Sun Yat-sen"],
+              "explanation": "Mahatma Gandhi promoted civil disobedience and nonviolence; India became independent from the United Kingdom in 1947." }
+    },
+    {
+      "id": "history-0021", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué rey de Macedonia conquistó el Imperio persa y llegó hasta la India en el siglo IV a. C.?",
+              "options": ["Alejandro Magno", "Leónidas", "Pericles", "Darío III"],
+              "explanation": "Alejandro Magno venció a los persas, conquistó Egipto y avanzó hasta el valle del Indo. Murió en Babilonia a los 32 años." },
+      "en": { "question": "Which king of Macedonia conquered the Persian Empire and reached India in the 4th century BC?",
+              "options": ["Alexander the Great", "Leonidas", "Pericles", "Darius III"],
+              "explanation": "Alexander the Great defeated the Persians, conquered Egypt and advanced to the Indus valley. He died in Babylon at the age of 32." }
+    },
+    {
+      "id": "history-0022", "difficulty": 1, "type": "truefalse", "answer": true,
+      "es": { "question": "Winston Churchill fue primer ministro del Reino Unido durante la Segunda Guerra Mundial.",
+              "explanation": "Dirigió el gobierno británico desde 1940 y se volvió un símbolo de la resistencia contra la Alemania nazi." },
+      "en": { "question": "Winston Churchill was prime minister of the United Kingdom during the Second World War.",
+              "explanation": "He led the British government from 1940 and became a symbol of resistance against Nazi Germany." }
+    },
+    {
+      "id": "history-0023", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué país fue el primero de América en declarar su independencia de una potencia europea?",
+              "options": ["Estados Unidos", "Venezuela", "México", "Brasil"],
+              "explanation": "Las Trece Colonias declararon su independencia de Gran Bretaña el 4 de julio de 1776; los países latinoamericanos lo hicieron décadas después." },
+      "en": { "question": "Which country was the first in the Americas to declare independence from a European power?",
+              "options": ["The United States", "Venezuela", "Mexico", "Brazil"],
+              "explanation": "The Thirteen Colonies declared independence from Great Britain on 4 July 1776; the Latin American countries followed decades later." }
+    },
+    {
+      "id": "history-0024", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué volcán entró en erupción en el año 79 y sepultó la ciudad romana de Pompeya?",
+              "options": ["El Vesubio", "El Etna", "El Estrómboli", "El Popocatépetl"],
+              "explanation": "La erupción del Vesubio, en el año 79, cubrió de ceniza Pompeya y Herculano. Las ruinas se conservaron y hoy se pueden visitar." },
+      "en": { "question": "Which volcano erupted in AD 79 and buried the Roman city of Pompeii?",
+              "options": ["Mount Vesuvius", "Mount Etna", "Stromboli", "Popocatépetl"],
+              "explanation": "The eruption of Vesuvius in AD 79 covered Pompeii and Herculaneum in ash. The ruins were preserved and can be visited today." }
+    },
+    {
+      "id": "history-0025", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué joven faraón egipcio es famoso porque su tumba se halló casi intacta en 1922?",
+              "options": ["Tutankamón", "Ramsés II", "Keops", "Akenatón"],
+              "explanation": "El arqueólogo Howard Carter encontró su tumba en el Valle de los Reyes, con miles de objetos. Tutankamón murió siendo adolescente." },
+      "en": { "question": "Which young Egyptian pharaoh is famous because his tomb was found almost intact in 1922?",
+              "options": ["Tutankhamun", "Ramses II", "Khufu", "Akhenaten"],
+              "explanation": "The archaeologist Howard Carter found his tomb in the Valley of the Kings, with thousands of objects. Tutankhamun died as a teenager." }
+    },
+    {
+      "id": "history-0026", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué país atacó por sorpresa la base naval estadounidense de Pearl Harbor en 1941?",
+              "options": ["Japón", "Alemania", "Italia", "La Unión Soviética"],
+              "explanation": "Japón atacó Pearl Harbor, en Hawái, el 7 de diciembre de 1941. Al día siguiente, Estados Unidos le declaró la guerra y entró en la Segunda Guerra Mundial." },
+      "en": { "question": "Which country launched a surprise attack on the US naval base at Pearl Harbor in 1941?",
+              "options": ["Japan", "Germany", "Italy", "The Soviet Union"],
+              "explanation": "Japan attacked Pearl Harbor, in Hawaii, on 7 December 1941. The next day the United States declared war on Japan and entered the Second World War." }
+    },
+    {
+      "id": "history-0027", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cómo se llamó la epidemia que mató a una gran parte de la población de Europa en el siglo XIV?",
+              "options": ["La peste negra", "La viruela", "La gripe española", "El cólera"],
+              "explanation": "La peste negra llegó a Europa hacia 1347 desde Asia por las rutas comerciales, y se calcula que mató al menos a un tercio de la población." },
+      "en": { "question": "What was the epidemic that killed a large share of Europe's population in the 14th century called?",
+              "options": ["The Black Death", "Smallpox", "The Spanish flu", "Cholera"],
+              "explanation": "The Black Death reached Europe around 1347 from Asia along trade routes, and is estimated to have killed at least a third of the population." }
+    },
+    {
+      "id": "history-0028", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué prisión de París tomó el pueblo el 14 de julio de 1789, símbolo de la Revolución Francesa?",
+              "options": ["La Bastilla", "La Conciergerie", "La prisión de la Santé", "El castillo de Vincennes"],
+              "explanation": "La Bastilla era una fortaleza-prisión que simbolizaba el poder del rey. Su toma, el 14 de julio, marcó el inicio de la Revolución Francesa." },
+      "en": { "question": "Which Paris prison did the people storm on 14 July 1789, a symbol of the French Revolution?",
+              "options": ["The Bastille", "The Conciergerie", "The Santé Prison", "The Château de Vincennes"],
+              "explanation": "The Bastille was a fortress-prison that symbolized the king's power. Its fall, on 14 July, marked the start of the French Revolution." }
+    },
+    {
+      "id": "history-0029", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿En honor a quién lleva su nombre Bolivia?",
+              "options": ["Simón Bolívar", "José de San Martín", "Antonio José de Sucre", "Francisco de Miranda"],
+              "explanation": "Lleva el nombre de Simón Bolívar: al fundarse, en 1825, nació como República de Bolívar y poco después adoptó el nombre de Bolivia." },
+      "en": { "question": "In whose honor is Bolivia named?",
+              "options": ["Simón Bolívar", "José de San Martín", "Antonio José de Sucre", "Francisco de Miranda"],
+              "explanation": "It bears the name of Simón Bolívar: founded in 1825 as the Republic of Bolívar, it soon adopted the name Bolivia." }
+    },
+    {
+      "id": "history-0030", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Quién gobernaba a los aztecas cuando Hernán Cortés llegó a su capital?",
+              "options": ["Moctezuma II", "Cuauhtémoc", "Cuitláhuac", "Nezahualcóyotl"],
+              "explanation": "Moctezuma II era el soberano mexica en 1519 y murió en 1520, en circunstancias que aún se discuten. Cuauhtémoc fue el último soberano antes de la caída de la ciudad." },
+      "en": { "question": "Who ruled the Aztecs when Hernán Cortés reached their capital?",
+              "options": ["Moctezuma II", "Cuauhtémoc", "Cuitláhuac", "Nezahualcóyotl"],
+              "explanation": "Moctezuma II was the Mexica ruler in 1519 and died in 1520, in circumstances still debated. Cuauhtémoc was the last ruler before the city fell." }
+    },
+    {
+      "id": "history-0031", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué sacerdote inició la lucha por la independencia de México con el Grito de Dolores?",
+              "options": ["Miguel Hidalgo", "José María Morelos", "Ignacio Allende", "Vicente Guerrero"],
+              "explanation": "El cura Miguel Hidalgo llamó a levantarse contra el dominio español en el pueblo de Dolores, en septiembre. Su llamado dio inicio a una guerra que duró once años." },
+      "en": { "question": "Which priest began Mexico's fight for independence with the Cry of Dolores?",
+              "options": ["Miguel Hidalgo", "José María Morelos", "Ignacio Allende", "Vicente Guerrero"],
+              "explanation": "Father Miguel Hidalgo called for an uprising against Spanish rule in the town of Dolores, in September. His call began a war that lasted eleven years." }
+    },
+    {
+      "id": "history-0032", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué civilización construyó ciudades como Tikal y Palenque y creó un calendario y una escritura jeroglífica propios?",
+              "options": ["Los mayas", "Los incas", "Los aztecas", "Los olmecas"],
+              "explanation": "Los mayas levantaron ciudades-Estado en México, Guatemala, Belice y Honduras, y desarrollaron escritura jeroglífica, matemáticas con el cero y un calendario muy preciso." },
+      "en": { "question": "Which civilization built cities such as Tikal and Palenque and created its own calendar and hieroglyphic writing?",
+              "options": ["The Maya", "The Inca", "The Aztecs", "The Olmecs"],
+              "explanation": "The Maya built city-states in Mexico, Guatemala, Belize and Honduras, and developed hieroglyphic writing, mathematics with the zero and a very accurate calendar." }
+    },
+    {
+      "id": "history-0033", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿De qué explorador deriva el nombre «América»?",
+              "options": ["Américo Vespucio", "Cristóbal Colón", "Hernán Cortés", "Vasco Núñez de Balboa"],
+              "explanation": "En un mapa de 1507, el cartógrafo Martin Waldseemüller usó «América» en honor al navegante florentino Américo Vespucio, quien sostuvo que eran tierras nuevas." },
+      "en": { "question": "Which explorer is the name \"America\" derived from?",
+              "options": ["Amerigo Vespucci", "Christopher Columbus", "Hernán Cortés", "Vasco Núñez de Balboa"],
+              "explanation": "On a 1507 map, the cartographer Martin Waldseemüller used \"America\" in honor of the Florentine navigator Amerigo Vespucci, who argued these were new lands." }
+    },
+    {
+      "id": "history-0034", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué general es considerado el Padre de la Patria argentina y ayudó a liberar también a Chile y Perú?",
+              "options": ["José de San Martín", "Simón Bolívar", "Bernardo O'Higgins", "Mariano Moreno"],
+              "explanation": "José de San Martín cruzó los Andes en 1817 con su ejército y contribuyó a la independencia de Chile y Perú. Es el máximo héroe nacional de Argentina." },
+      "en": { "question": "Which general is regarded as the Father of the Argentine Nation and also helped liberate Chile and Peru?",
+              "options": ["José de San Martín", "Simón Bolívar", "Bernardo O'Higgins", "Mariano Moreno"],
+              "explanation": "José de San Martín crossed the Andes in 1817 with his army and helped win independence for Chile and Peru. He is Argentina's foremost national hero." }
+    },
+    {
+      "id": "history-0035", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿En qué siglo se independizaron de España la mayoría de los países de América Latina?",
+              "options": ["En el siglo XIX", "En el siglo XVIII", "En el siglo XVII", "En el siglo XX"],
+              "explanation": "Casi todas las colonias españolas se independizaron en las primeras décadas del siglo XIX. Cuba y Puerto Rico siguieron bajo España hasta 1898." },
+      "en": { "question": "In which century did most Latin American countries gain independence from Spain?",
+              "options": ["The 19th century", "The 18th century", "The 17th century", "The 20th century"],
+              "explanation": "Nearly all the Spanish colonies became independent in the early decades of the 19th century. Cuba and Puerto Rico remained under Spain until 1898." }
+    },
+    {
+      "id": "history-0036", "difficulty": 1, "type": "truefalse", "answer": false,
+      "es": { "question": "Brasil fue una colonia de España, como casi toda América Latina.",
+              "explanation": "Brasil fue colonia de Portugal, no de España. Por eso allí se habla portugués y no español." },
+      "en": { "question": "Brazil was a Spanish colony, like most of Latin America.",
+              "explanation": "Brazil was a Portuguese colony, not a Spanish one. That is why Portuguese, not Spanish, is spoken there." }
+    },
+    {
+      "id": "history-0037", "difficulty": 1, "type": "truefalse", "answer": false,
+      "es": { "question": "Los pueblos indígenas de América montaban caballos antes de la llegada de los europeos.",
+              "explanation": "No había caballos en América: los llevaron los europeos desde el segundo viaje de Colón. Después, varios pueblos indígenas aprendieron a criarlos y montarlos." },
+      "en": { "question": "The Indigenous peoples of the Americas rode horses before the Europeans arrived.",
+              "explanation": "There were no horses in the Americas: Europeans brought them, starting with Columbus's second voyage. Later, several Indigenous peoples learned to breed and ride them." }
+    },
+    {
+      "id": "history-0038", "difficulty": 1, "type": "truefalse", "answer": true,
+      "es": { "question": "La papa y el maíz son alimentos originarios de América.",
+              "explanation": "Los pueblos andinos domesticaron la papa y los de Mesoamérica, el maíz. Los europeos los llevaron al resto del mundo, donde hoy son básicos en la alimentación." },
+      "en": { "question": "Potatoes and corn are foods that originated in the Americas.",
+              "explanation": "Andean peoples domesticated the potato and Mesoamerican peoples, corn. Europeans carried both to the rest of the world, where they are now dietary staples." }
+    },
+    {
+      "id": "history-0039", "difficulty": 1, "type": "truefalse", "answer": false,
+      "es": { "question": "Hernán Cortés conquistó el Imperio inca.",
+              "explanation": "Cortés derrotó a los aztecas, en México. El Imperio inca, en los Andes, cayó ante otro conquistador español: Francisco Pizarro." },
+      "en": { "question": "Hernán Cortés conquered the Inca Empire.",
+              "explanation": "Cortés defeated the Aztecs, in Mexico. The Inca Empire, in the Andes, fell to another Spanish conquistador: Francisco Pizarro." }
+    },
+    {
+      "id": "history-0040", "difficulty": 1, "type": "truefalse", "answer": true,
+      "es": { "question": "Durante la época colonial, millones de africanos fueron llevados a la fuerza a América como esclavizados.",
+              "explanation": "Entre los siglos XVI y XIX, más de diez millones de africanos fueron embarcados hacia América, donde trabajaron en minas, plantaciones y haciendas." },
+      "en": { "question": "During the colonial era, millions of Africans were taken by force to the Americas as enslaved people.",
+              "explanation": "Between the 16th and 19th centuries, more than ten million Africans were shipped to the Americas, where they worked in mines, plantations and haciendas." }
+    },
+    {
+      "id": "history-0041", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿En qué país nació Simón Bolívar?",
+              "options": ["Venezuela", "Colombia", "Bolivia", "Perú"],
+              "explanation": "Nació en Caracas el 24 de julio de 1783. Con sus campañas contribuyó a independizar a Venezuela, Colombia, Ecuador, Perú y Bolivia." },
+      "en": { "question": "In which country was Simón Bolívar born?",
+              "options": ["Venezuela", "Colombia", "Bolivia", "Peru"],
+              "explanation": "He was born in Caracas on 24 July 1783. His campaigns helped win independence for Venezuela, Colombia, Ecuador, Peru and Bolivia." }
+    },
+    {
+      "id": "history-0042", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué leyenda llevó a muchos conquistadores a buscar una tierra de oro en el norte de Suramérica?",
+              "options": ["El Dorado", "La Fuente de la Juventud", "Las Siete Ciudades de Cíbola", "La Atlántida"],
+              "explanation": "La leyenda nació de un ritual muisca en la laguna de Guatavita, donde un cacique se cubría de polvo de oro. Varias expediciones buscaron El Dorado sin éxito." },
+      "en": { "question": "Which legend led many conquistadors to search for a land of gold in northern South America?",
+              "options": ["El Dorado", "The Fountain of Youth", "The Seven Cities of Cíbola", "Atlantis"],
+              "explanation": "The legend grew out of a Muisca ritual at Lake Guatavita, where a chief covered himself in gold dust. Several expeditions searched for El Dorado without success." }
+    },
+    {
+      "id": "history-0043", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿En honor a quién se llama Colombia?",
+              "options": ["Cristóbal Colón", "Simón Bolívar", "Francisco de Miranda", "Francisco de Paula Santander"],
+              "explanation": "El nombre rinde homenaje a Cristóbal Colón. Francisco de Miranda lo propuso para toda Hispanoamérica y, en 1819, Bolívar lo usó para la Gran Colombia." },
+      "en": { "question": "In whose honor is Colombia named?",
+              "options": ["Christopher Columbus", "Simón Bolívar", "Francisco de Miranda", "Francisco de Paula Santander"],
+              "explanation": "The name honors Christopher Columbus. Francisco de Miranda proposed it for all of Spanish America and, in 1819, Bolívar used it for Gran Colombia (Greater Colombia)." }
+    },
+    {
+      "id": "history-0044", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué ciudad colombiana de murallas coloniales fue uno de los principales puertos del imperio español en el Caribe?",
+              "options": ["Cartagena de Indias", "Barranquilla", "Riohacha", "Valledupar"],
+              "explanation": "Cartagena de Indias, fundada en 1533, recibía los galeones españoles y se rodeó de murallas y castillos para defenderse de los piratas." },
+      "en": { "question": "Which Colombian city with colonial walls was one of the Spanish Empire's main ports in the Caribbean?",
+              "options": ["Cartagena de Indias", "Barranquilla", "Riohacha", "Valledupar"],
+              "explanation": "Cartagena de Indias, founded in 1533, received the Spanish galleons and was surrounded by walls and forts to defend it against pirates." }
+    },
+    {
+      "id": "history-0045", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué monarcas españoles apoyaron el primer viaje de Cristóbal Colón?",
+              "options": ["Isabel I de Castilla y Fernando II de Aragón", "Carlos I y su madre, Juana", "Felipe II y Ana de Austria", "Felipe V y María Luisa de Saboya"],
+              "explanation": "Isabel y Fernando, los Reyes Católicos, aceptaron financiar el viaje en las Capitulaciones de Santa Fe, donde se fijó lo que recibiría Colón." },
+      "en": { "question": "Which Spanish monarchs backed Christopher Columbus's first voyage?",
+              "options": ["Isabella I of Castile and Ferdinand II of Aragon", "Charles I and his mother, Joanna", "Philip II and Anna of Austria", "Philip V and Maria Luisa of Savoy"],
+              "explanation": "Isabella and Ferdinand, the Catholic Monarchs, agreed to fund the voyage in the Capitulations of Santa Fe, which set out what Columbus would receive." }
+    },
+    {
+      "id": "history-0046", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿De qué lengua antigua desciende el español?",
+              "options": ["Del latín", "Del griego", "Del árabe", "Del hebreo"],
+              "explanation": "El español viene del latín que hablaban los romanos en Hispania, por eso se parece al italiano, al francés y al portugués. Del árabe tomó muchas palabras." },
+      "en": { "question": "Which ancient language is Spanish descended from?",
+              "options": ["Latin", "Greek", "Arabic", "Hebrew"],
+              "explanation": "Spanish comes from the Latin spoken by the Romans in Hispania, which is why it resembles Italian, French and Portuguese. It borrowed many words from Arabic." }
+    },
+    {
+      "id": "history-0047", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cómo se llamaba la nao capitana de Colón en su primer viaje?",
+              "options": ["La Santa María", "La Pinta", "La Niña", "La Victoria"],
+              "explanation": "La Santa María era la nao capitana; la Pinta y la Niña eran carabelas más pequeñas. La Santa María encalló frente a La Española durante ese mismo viaje." },
+      "en": { "question": "What was the name of Columbus's flagship on his first voyage?",
+              "options": ["The Santa María", "The Pinta", "The Niña", "The Victoria"],
+              "explanation": "The Santa María was the flagship; the Pinta and the Niña were smaller caravels. The Santa María ran aground off Hispaniola during that same voyage." }
+    },
+    {
+      "id": "history-0048", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cómo se llama el largo proceso en el que los reinos cristianos recuperaron la península ibérica de manos musulmanas?",
+              "options": ["La Reconquista", "La Contrarreforma", "La Conquista", "La Ilustración"],
+              "explanation": "La Reconquista duró casi ocho siglos, desde la llegada de los musulmanes en el 711 hasta fines del siglo XV." },
+      "en": { "question": "What is the long process called in which the Christian kingdoms recovered the Iberian Peninsula from Muslim rule?",
+              "options": ["The Reconquista", "The Counter-Reformation", "The Conquest", "The Enlightenment"],
+              "explanation": "The Reconquista lasted nearly eight centuries, from the Muslim arrival in 711 until the late 15th century." }
+    },
+    {
+      "id": "history-0049", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿En qué año cayó el Muro de Berlín?",
+              "options": ["1989", "1991", "1985", "1979"],
+              "explanation": "Cayó el 9 de noviembre de 1989; Alemania se reunificó en 1990." },
+      "en": { "question": "In what year did the Berlin Wall fall?",
+              "options": ["1989", "1991", "1985", "1979"],
+              "explanation": "It fell on 9 November 1989; Germany reunified in 1990." }
+    },
+    {
+      "id": "history-0050", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿En qué año tomaron el poder los bolcheviques de Lenin en la Revolución rusa de Octubre?",
+              "options": ["1917", "1905", "1921", "1914"],
+              "explanation": "Fue en octubre de 1917 según el calendario ruso de entonces, que equivale a noviembre en el nuestro. La Unión Soviética se formó en 1922." },
+      "en": { "question": "In what year did Lenin's Bolsheviks seize power in the Russian October Revolution?",
+              "options": ["1917", "1905", "1921", "1914"],
+              "explanation": "It was October 1917 by the Russian calendar of the time, which is November by ours. The Soviet Union was formed in 1922." }
+    },
+    {
+      "id": "history-0051", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿En qué batalla de 1815 fue derrotado definitivamente Napoleón Bonaparte?",
+              "options": ["Waterloo", "Austerlitz", "Trafalgar", "Leipzig"],
+              "explanation": "Fue en Waterloo, en la actual Bélgica, el 18 de junio de 1815. Napoleón fue desterrado a la isla de Santa Elena, donde murió en 1821." },
+      "en": { "question": "In which 1815 battle was Napoleon Bonaparte finally defeated?",
+              "options": ["Waterloo", "Austerlitz", "Trafalgar", "Leipzig"],
+              "explanation": "It was Waterloo, in present-day Belgium, on 18 June 1815. Napoleon was exiled to the island of Saint Helena, where he died in 1821." }
+    },
+    {
+      "id": "history-0052", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿En qué año publicó Martín Lutero sus 95 tesis, el inicio de la Reforma protestante?",
+              "options": ["1517", "1527", "1534", "1555"],
+              "explanation": "Las difundió desde Wittenberg en 1517; la tradición dice que las clavó en la puerta de la iglesia. Criticaba la venta de indulgencias por parte de la Iglesia." },
+      "en": { "question": "In what year did Martin Luther publish his 95 Theses, the start of the Protestant Reformation?",
+              "options": ["1517", "1527", "1534", "1555"],
+              "explanation": "He circulated them from Wittenberg in 1517; tradition says he nailed them to the church door. He criticized the Church's sale of indulgences." }
+    },
+    {
+      "id": "history-0053", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿En qué ciudad pronunció Martin Luther King Jr. su discurso «Tengo un sueño», en 1963?",
+              "options": ["Washington D. C.", "Atlanta", "Memphis", "Montgomery"],
+              "explanation": "Lo pronunció el 28 de agosto de 1963 frente al Monumento a Lincoln, durante la Marcha sobre Washington por el trabajo y la libertad." },
+      "en": { "question": "In which city did Martin Luther King Jr. deliver his \"I Have a Dream\" speech in 1963?",
+              "options": ["Washington, D.C.", "Atlanta", "Memphis", "Montgomery"],
+              "explanation": "He gave it on 28 August 1963 in front of the Lincoln Memorial, during the March on Washington for Jobs and Freedom." }
+    },
+    {
+      "id": "history-0054", "difficulty": 2, "type": "truefalse", "answer": true,
+      "es": { "question": "Cleopatra, la última reina del Egipto antiguo, pertenecía a una dinastía de origen griego.",
+              "explanation": "Cleopatra VII era de la dinastía ptolemaica: descendía de Ptolomeo I, general macedonio de Alejandro Magno, y su familia gobernó Egipto casi tres siglos." },
+      "en": { "question": "Cleopatra, the last queen of ancient Egypt, belonged to a dynasty of Greek origin.",
+              "explanation": "Cleopatra VII belonged to the Ptolemaic dynasty: she descended from Ptolemy I, a Macedonian general of Alexander the Great, and her family ruled Egypt for nearly three centuries." }
+    },
+    {
+      "id": "history-0055", "difficulty": 2, "type": "truefalse", "answer": false,
+      "es": { "question": "Los guerreros vikingos llevaban cascos con cuernos en combate.",
+              "explanation": "No hay pruebas de ello. La imagen viene del arte y la ópera del siglo XIX; el casco vikingo mejor conservado, el de Gjermundbu, no tiene cuernos." },
+      "en": { "question": "Viking warriors wore horned helmets in battle.",
+              "explanation": "There is no evidence for this. The image comes from 19th-century art and opera; the best-preserved Viking helmet, the one from Gjermundbu, has no horns." }
+    },
+    {
+      "id": "history-0056", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Quién fue el primer emperador de Roma?",
+              "options": ["Augusto", "Julio César", "Calígula", "Marco Aurelio"],
+              "explanation": "Augusto, sobrino nieto y heredero de Julio César, gobernó desde el 27 a. C. y fundó el Imperio romano. César fue dictador, pero nunca emperador." },
+      "en": { "question": "Who was the first emperor of Rome?",
+              "options": ["Augustus", "Julius Caesar", "Caligula", "Marcus Aurelius"],
+              "explanation": "Augustus, Julius Caesar's great-nephew and heir, ruled from 27 BC and founded the Roman Empire. Caesar was a dictator, but never an emperor." }
+    },
+    {
+      "id": "history-0057", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Quién unificó a las tribus mongolas y fundó el Imperio mongol en el año 1206?",
+              "options": ["Gengis Kan", "Kublai Kan", "Tamerlán", "Atila"],
+              "explanation": "Temujin recibió el título de Gengis Kan en 1206. Él y sus sucesores crearon un imperio que llegó de China a Europa oriental. Kublai Kan fue su nieto." },
+      "en": { "question": "Who united the Mongol tribes and founded the Mongol Empire in 1206?",
+              "options": ["Genghis Khan", "Kublai Khan", "Tamerlane", "Attila"],
+              "explanation": "Temüjin took the title Genghis Khan in 1206. He and his successors built an empire that stretched from China to Eastern Europe. Kublai Khan was his grandson." }
+    },
+    {
+      "id": "history-0058", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué país de América Latina fue el primero en independizarse, en 1804, tras una revolución de personas esclavizadas?",
+              "options": ["Haití", "México", "Venezuela", "Argentina"],
+              "explanation": "Haití se independizó de Francia el 1 de enero de 1804, tras una revolución en la que Toussaint Louverture y Jean-Jacques Dessalines tuvieron un papel central." },
+      "en": { "question": "Which Latin American country was the first to win independence, in 1804, after a revolution by enslaved people?",
+              "options": ["Haiti", "Mexico", "Venezuela", "Argentina"],
+              "explanation": "Haiti became independent from France on 1 January 1804, after a revolution in which Toussaint Louverture and Jean-Jacques Dessalines played a central role." }
+    },
+    {
+      "id": "history-0059", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Quién creó la bandera de Argentina, izada por primera vez en 1812?",
+              "options": ["Manuel Belgrano", "Bernardino Rivadavia", "Domingo F. Sarmiento", "Juan Manuel de Rosas"],
+              "explanation": "Manuel Belgrano la creó en 1812 y la izó por primera vez a orillas del río Paraná, en Rosario. El 20 de junio, día de su muerte, se celebra el Día de la Bandera." },
+      "en": { "question": "Who created the flag of Argentina, first raised in 1812?",
+              "options": ["Manuel Belgrano", "Bernardino Rivadavia", "Domingo F. Sarmiento", "Juan Manuel de Rosas"],
+              "explanation": "Manuel Belgrano created it in 1812 and first raised it on the banks of the Paraná River, in Rosario. Flag Day is held on 20 June, the day he died." }
+    },
+    {
+      "id": "history-0060", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué príncipe proclamó la independencia de Brasil con el «Grito de Ipiranga»?",
+              "options": ["Pedro I", "Juan VI", "Pedro II", "Miguel I"],
+              "explanation": "Pedro I la proclamó a orillas del río Ipiranga el 7 de septiembre de 1822 y fue el primer emperador de Brasil. Su padre, Juan VI, era rey de Portugal." },
+      "en": { "question": "Which prince proclaimed Brazil's independence with the \"Cry of Ipiranga\"?",
+              "options": ["Pedro I", "John VI", "Pedro II", "Miguel I"],
+              "explanation": "Pedro I proclaimed it on the banks of the Ipiranga River on 7 September 1822 and became Brazil's first emperor. His father, John VI, was the king of Portugal." }
+    },
+    {
+      "id": "history-0061", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué emperador inca fue capturado por Francisco Pizarro en Cajamarca?",
+              "options": ["Atahualpa", "Huáscar", "Túpac Amaru", "Pachacútec"],
+              "explanation": "Atahualpa fue capturado en Cajamarca; pese a entregar un enorme rescate en oro y plata, los españoles lo ejecutaron en 1533." },
+      "en": { "question": "Which Inca emperor was captured by Francisco Pizarro at Cajamarca?",
+              "options": ["Atahualpa", "Huáscar", "Túpac Amaru", "Pachacuti"],
+              "explanation": "Atahualpa was captured at Cajamarca; despite paying an enormous ransom in gold and silver, the Spaniards executed him in 1533." }
+    },
+    {
+      "id": "history-0062", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué líder campesino de la Revolución mexicana, del estado de Morelos, proclamó el Plan de Ayala?",
+              "options": ["Emiliano Zapata", "Pancho Villa", "Francisco I. Madero", "Venustiano Carranza"],
+              "explanation": "Zapata encabezó el Ejército Libertador del Sur y exigió devolver las tierras a los campesinos en el Plan de Ayala, de 1911. Villa actuó sobre todo en el norte." },
+      "en": { "question": "Which peasant leader of the Mexican Revolution, from the state of Morelos, proclaimed the Plan of Ayala?",
+              "options": ["Emiliano Zapata", "Pancho Villa", "Francisco I. Madero", "Venustiano Carranza"],
+              "explanation": "Zapata led the Liberation Army of the South and demanded that land be returned to the peasants in the Plan of Ayala, of 1911. Villa operated mainly in the north." }
+    },
+    {
+      "id": "history-0063", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué presidente mexicano de origen zapoteca gobernó durante la Reforma y resistió la intervención francesa?",
+              "options": ["Benito Juárez", "Porfirio Díaz", "Antonio López de Santa Anna", "Lázaro Cárdenas"],
+              "explanation": "Benito Juárez, nacido en Oaxaca, encabezó la Reforma liberal y restauró la república en 1867, tras la derrota del imperio de Maximiliano." },
+      "en": { "question": "Which Mexican president of Zapotec origin governed during the Reform and resisted the French intervention?",
+              "options": ["Benito Juárez", "Porfirio Díaz", "Antonio López de Santa Anna", "Lázaro Cárdenas"],
+              "explanation": "Benito Juárez, born in Oaxaca, led the liberal Reform and restored the republic in 1867, after the defeat of Maximilian's empire." }
+    },
+    {
+      "id": "history-0064", "difficulty": 2, "type": "truefalse", "answer": false,
+      "es": { "question": "El 5 de mayo se celebra en México el Día de la Independencia.",
+              "explanation": "El 5 de mayo recuerda la victoria mexicana sobre el ejército francés en Puebla, en 1862. La independencia se celebra el 16 de septiembre." },
+      "en": { "question": "Mexico celebrates its Independence Day on 5 May.",
+              "explanation": "The 5th of May commemorates the Mexican victory over the French army at Puebla, in 1862. Independence is celebrated on 16 September." }
+    },
+    {
+      "id": "history-0065", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿En qué año ocurrió la crisis de los misiles de Cuba, que llevó al mundo al borde de una guerra nuclear?",
+              "options": ["1962", "1959", "1965", "1973"],
+              "explanation": "Ocurrió en octubre de 1962, cuando Estados Unidos descubrió misiles soviéticos en Cuba. La crisis terminó con un acuerdo entre Kennedy y Jruschov." },
+      "en": { "question": "In what year did the Cuban Missile Crisis, which brought the world to the brink of nuclear war, take place?",
+              "options": ["1962", "1959", "1965", "1973"],
+              "explanation": "It happened in October 1962, when the United States discovered Soviet missiles in Cuba. The crisis ended with an agreement between Kennedy and Khrushchev." }
+    },
+    {
+      "id": "history-0066", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué poeta, llamado el «Apóstol» de la independencia de Cuba, murió en combate en 1895?",
+              "options": ["José Martí", "Antonio Maceo", "Máximo Gómez", "Carlos Manuel de Céspedes"],
+              "explanation": "José Martí fundó el Partido Revolucionario Cubano y murió en Dos Ríos el 19 de mayo de 1895, poco después de comenzar la guerra. También escribió «Versos sencillos»." },
+      "en": { "question": "Which poet, known as the \"Apostle\" of Cuban independence, died in battle in 1895?",
+              "options": ["José Martí", "Antonio Maceo", "Máximo Gómez", "Carlos Manuel de Céspedes"],
+              "explanation": "José Martí founded the Cuban Revolutionary Party and died at Dos Ríos on 19 May 1895, shortly after the war began. He also wrote \"Simple Verses\"." }
+    },
+    {
+      "id": "history-0067", "difficulty": 2, "type": "truefalse", "answer": false,
+      "es": { "question": "Los mayas desaparecieron por completo después del abandono de sus grandes ciudades.",
+              "explanation": "Los mayas siguen vivos: millones de personas mayas viven hoy en Guatemala, el sur de México, Belice y Honduras, y muchas hablan lenguas mayas." },
+      "en": { "question": "The Maya disappeared completely after their great cities were abandoned.",
+              "explanation": "The Maya are still here: millions of Maya people live today in Guatemala, southern Mexico, Belize and Honduras, and many speak Mayan languages." }
+    },
+    {
+      "id": "history-0068", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cómo se llamaba el sistema de cuerdas con nudos que usaban los incas para registrar datos?",
+              "options": ["El quipu", "El ayllu", "El tumi", "El chasqui"],
+              "explanation": "Con cuerdas de colores y nudos, los incas registraban censos, tributos y cuentas. El chasqui era el mensajero; el ayllu, la comunidad andina." },
+      "en": { "question": "What was the system of knotted cords that the Incas used to record data called?",
+              "options": ["The quipu", "The ayllu", "The tumi", "The chasqui"],
+              "explanation": "With colored cords and knots, the Incas recorded censuses, tributes and accounts. The chasqui was the messenger; the ayllu, the Andean community." }
+    },
+    {
+      "id": "history-0069", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué conquistador español fundó Santafé de Bogotá, en 1538?",
+              "options": ["Gonzalo Jiménez de Quesada", "Sebastián de Belalcázar", "Nicolás de Federmán", "Pedro de Valdivia"],
+              "explanation": "Gonzalo Jiménez de Quesada fundó Santafé el 6 de agosto de 1538, en territorio muisca. Belalcázar y Federmán llegaron a la sabana de Bogotá un año después." },
+      "en": { "question": "Which Spanish conquistador founded Santafé de Bogotá, in 1538?",
+              "options": ["Gonzalo Jiménez de Quesada", "Sebastián de Belalcázar", "Nikolaus Federmann", "Pedro de Valdivia"],
+              "explanation": "Gonzalo Jiménez de Quesada founded Santafé on 6 August 1538, in Muisca territory. Belalcázar and Federmann reached the Bogotá savanna a year later." }
+    },
+    {
+      "id": "history-0070", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué prócer colombiano es conocido como «el Hombre de las Leyes»?",
+              "options": ["Francisco de Paula Santander", "José María Obando", "Tomás Cipriano de Mosquera", "Rafael Núñez"],
+              "explanation": "Santander fue vicepresidente de la Gran Colombia y luego presidente de la Nueva Granada; impulsó la educación y el orden legal, de ahí su apodo." },
+      "en": { "question": "Which Colombian founding figure is known as \"the Man of the Laws\"?",
+              "options": ["Francisco de Paula Santander", "José María Obando", "Tomás Cipriano de Mosquera", "Rafael Núñez"],
+              "explanation": "Santander was vice president of Gran Colombia and later president of New Granada; he promoted education and the rule of law, hence his nickname." }
+    },
+    {
+      "id": "history-0071", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Quién fue «La Pola», la joven patriota fusilada por los realistas en Santafé en 1817?",
+              "options": ["Policarpa Salavarrieta", "Manuela Beltrán", "Antonia Santos", "Manuela Sáenz"],
+              "explanation": "Policarpa Salavarrieta ayudó a la causa patriota con información y reclutas, y fue fusilada en Bogotá el 14 de noviembre de 1817. Es heroína de la independencia." },
+      "en": { "question": "Who was \"La Pola\", the young patriot shot by the royalists in Santafé in 1817?",
+              "options": ["Policarpa Salavarrieta", "Manuela Beltrán", "Antonia Santos", "Manuela Sáenz"],
+              "explanation": "Policarpa Salavarrieta helped the patriot cause with information and recruits, and was shot in Bogotá on 14 November 1817. She is a heroine of independence." }
+    },
+    {
+      "id": "history-0072", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué líder político fue asesinado en Bogotá el 9 de abril de 1948, hecho que desató el «Bogotazo»?",
+              "options": ["Jorge Eliécer Gaitán", "Rafael Uribe Uribe", "Alfonso López Pumarejo", "Eduardo Santos"],
+              "explanation": "Gaitán, líder del Partido Liberal y aspirante a la presidencia, murió a tiros; su asesinato provocó disturbios en Bogotá y otras ciudades, y agravó la violencia en el país." },
+      "en": { "question": "Which political leader was assassinated in Bogotá on 9 April 1948, the event that set off the \"Bogotazo\" riots?",
+              "options": ["Jorge Eliécer Gaitán", "Rafael Uribe Uribe", "Alfonso López Pumarejo", "Eduardo Santos"],
+              "explanation": "Gaitán, a Liberal Party leader and presidential hopeful, was shot dead; his murder sparked riots in Bogotá and other cities and deepened the violence in the country." }
+    },
+    {
+      "id": "history-0073", "difficulty": 2, "type": "truefalse", "answer": true,
+      "es": { "question": "Hasta 1903, Panamá formaba parte de Colombia.",
+              "explanation": "Panamá declaró su separación el 3 de noviembre de 1903, y pocos días después se firmó con Estados Unidos el tratado para construir el canal." },
+      "en": { "question": "Until 1903, Panama was part of Colombia.",
+              "explanation": "Panama declared its separation on 3 November 1903, and a few days later the treaty to build the canal was signed with the United States." }
+    },
+    {
+      "id": "history-0074", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cómo se llamó la guerra civil colombiana entre liberales y conservadores que duró de 1899 a 1902?",
+              "options": ["La Guerra de los Mil Días", "La Guerra de los Supremos", "La Violencia", "La Guerra del Chaco"],
+              "explanation": "La Guerra de los Mil Días enfrentó a liberales y conservadores y dejó decenas de miles de muertos y un país devastado." },
+      "en": { "question": "What was the Colombian civil war between Liberals and Conservatives that lasted from 1899 to 1902 called?",
+              "options": ["The Thousand Days' War", "The War of the Supremes", "La Violencia", "The Chaco War"],
+              "explanation": "The Thousand Days' War pitted Liberals against Conservatives and left tens of thousands dead and a devastated country." }
+    },
+    {
+      "id": "history-0075", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué científico español dirigió la Real Expedición Botánica de la Nueva Granada, iniciada en 1783?",
+              "options": ["José Celestino Mutis", "Francisco José de Caldas", "Alexander von Humboldt", "Aimé Bonpland"],
+              "explanation": "José Celestino Mutis, médico y botánico nacido en Cádiz, dirigió la expedición, que describió y dibujó miles de plantas del territorio de la Nueva Granada." },
+      "en": { "question": "Which Spanish scientist led the Royal Botanical Expedition of New Granada, begun in 1783?",
+              "options": ["José Celestino Mutis", "Francisco José de Caldas", "Alexander von Humboldt", "Aimé Bonpland"],
+              "explanation": "José Celestino Mutis, a physician and botanist born in Cádiz, led the expedition, which described and drew thousands of plants from the territory of New Granada." }
+    },
+    {
+      "id": "history-0076", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿En qué ciudad colombiana murió Simón Bolívar?",
+              "options": ["Santa Marta", "Cartagena", "Bogotá", "Cúcuta"],
+              "explanation": "Murió el 17 de diciembre de 1830 en la quinta de San Pedro Alejandrino, cerca de Santa Marta, cuando se preparaba para salir del país." },
+      "en": { "question": "In which Colombian city did Simón Bolívar die?",
+              "options": ["Santa Marta", "Cartagena", "Bogotá", "Cúcuta"],
+              "explanation": "He died on 17 December 1830 at the San Pedro Alejandrino estate, near Santa Marta, as he was preparing to leave the country." }
+    },
+    {
+      "id": "history-0077", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿En qué año se promulgó la Constitución Política de Colombia que reemplazó a la de 1886?",
+              "options": ["1991", "1986", "1994", "1981"],
+              "explanation": "La Constitución de 1991 fue redactada por una Asamblea Nacional Constituyente y reemplazó a la de 1886, que había durado más de cien años." },
+      "en": { "question": "In what year was the Colombian Constitution that replaced the 1886 one promulgated?",
+              "options": ["1991", "1986", "1994", "1981"],
+              "explanation": "The 1991 Constitution was drafted by a National Constituent Assembly and replaced the 1886 one, which had lasted more than a hundred years." }
+    },
+    {
+      "id": "history-0078", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cuál de estos países formó parte de la Gran Colombia que creó Simón Bolívar?",
+              "options": ["Ecuador", "Perú", "Bolivia", "Chile"],
+              "explanation": "La Gran Colombia (1819-1831) reunió los territorios de las actuales Colombia, Venezuela, Ecuador y Panamá, y se disolvió por rivalidades entre sus regiones." },
+      "en": { "question": "Which of these countries was part of the Gran Colombia created by Simón Bolívar?",
+              "options": ["Ecuador", "Peru", "Bolivia", "Chile"],
+              "explanation": "Gran Colombia (1819-1831) brought together the territories of today's Colombia, Venezuela, Ecuador and Panama, and broke up because of rivalries between its regions." }
+    },
+    {
+      "id": "history-0079", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué rey de España envió la Armada Invencible contra Inglaterra en 1588?",
+              "options": ["Felipe II", "Carlos I", "Felipe III", "Fernando VII"],
+              "explanation": "Felipe II la envió para invadir Inglaterra, pero los combates y las tormentas la deshicieron. Aun así, España siguió siendo una gran potencia durante décadas." },
+      "en": { "question": "Which king of Spain sent the Invincible Armada against England in 1588?",
+              "options": ["Philip II", "Charles I", "Philip III", "Ferdinand VII"],
+              "explanation": "Philip II sent it to invade England, but battles and storms shattered it. Even so, Spain remained a great power for decades." }
+    },
+    {
+      "id": "history-0080", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cuál fue el último reino musulmán de la península ibérica?",
+              "options": ["El reino nazarí de Granada", "El califato de Córdoba", "La taifa de Toledo", "La taifa de Zaragoza"],
+              "explanation": "El reino nazarí de Granada, famoso por la Alhambra, resistió hasta el siglo XV, cuando fue conquistado por Castilla y Aragón." },
+      "en": { "question": "What was the last Muslim kingdom on the Iberian Peninsula?",
+              "options": ["The Nasrid Kingdom of Granada", "The Caliphate of Córdoba", "The Taifa of Toledo", "The Taifa of Zaragoza"],
+              "explanation": "The Nasrid Kingdom of Granada, famous for the Alhambra, held out until the 15th century, when it was conquered by Castile and Aragon." }
+    },
+    {
+      "id": "history-0081", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué suceso de 1808 en España aceleró los movimientos de independencia en América?",
+              "options": ["La invasión de Napoleón y la abdicación de los reyes", "La muerte del rey Carlos III", "La guerra de Sucesión española", "La expulsión de los jesuitas"],
+              "explanation": "En 1808 Napoleón invadió España y obligó a abdicar a los reyes. Sin un monarca legítimo, en América se formaron juntas de gobierno, muchas de las cuales llevaron a la independencia." },
+      "en": { "question": "Which event in Spain in 1808 hastened the independence movements in the Americas?",
+              "options": ["Napoleon's invasion and the abdication of the monarchs", "The death of King Charles III", "The War of the Spanish Succession", "The expulsion of the Jesuits"],
+              "explanation": "In 1808 Napoleon invaded Spain and forced the monarchs to abdicate. With no legitimate king, governing juntas formed in the Americas, many of which led to independence." }
+    },
+    {
+      "id": "history-0082", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué objeto pidieron prestado los criollos al comerciante José González Llorente cuando comenzó la revuelta del 20 de julio en Santafé?",
+              "options": ["Un florero", "Un espejo", "Un reloj", "Un cuadro"],
+              "explanation": "Según la tradición, los criollos pidieron prestado un florero para un banquete y Llorente se negó con desprecio. El incidente avivó el levantamiento que llevó a la independencia." },
+      "en": { "question": "What object did the criollos (American-born Spaniards) ask to borrow from merchant José González Llorente when the 20 July uprising began in Santafé?",
+              "options": ["A flower vase", "A mirror", "A clock", "A painting"],
+              "explanation": "According to tradition, the criollos asked to borrow a flower vase for a banquet and Llorente refused scornfully. The incident fueled the uprising that led to independence." }
+    },
+    {
+      "id": "history-0083", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Quién completó la primera vuelta al mundo, en 1522, tras la muerte de Magallanes?",
+              "options": ["Juan Sebastián Elcano", "Vasco da Gama", "Francis Drake", "Pedro Álvares Cabral"],
+              "explanation": "Elcano asumió el mando de la expedición tras la muerte de Magallanes y regresó a España en septiembre de 1522 a bordo de la nao Victoria." },
+      "en": { "question": "Who completed the first circumnavigation of the globe, in 1522, after Magellan's death?",
+              "options": ["Juan Sebastián Elcano", "Vasco da Gama", "Francis Drake", "Pedro Álvares Cabral"],
+              "explanation": "Elcano took command of the expedition after Magellan's death and returned to Spain in September 1522 aboard the Victoria." }
+    },
+    {
+      "id": "history-0084", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué explorador español cruzó el istmo de Panamá y fue el primer europeo en ver el océano Pacífico desde América, en 1513?",
+              "options": ["Vasco Núñez de Balboa", "Juan Ponce de León", "Hernando de Soto", "Pánfilo de Narváez"],
+              "explanation": "Balboa avistó el Pacífico en septiembre de 1513 desde una cima del istmo y lo llamó Mar del Sur. Años después fue ejecutado por orden del gobernador Pedrarias Dávila." },
+      "en": { "question": "Which Spanish explorer crossed the Isthmus of Panama and became the first European to see the Pacific Ocean from the Americas, in 1513?",
+              "options": ["Vasco Núñez de Balboa", "Juan Ponce de León", "Hernando de Soto", "Pánfilo de Narváez"],
+              "explanation": "Balboa sighted the Pacific in September 1513 from a ridge on the isthmus and named it the South Sea. Years later he was executed on the orders of Governor Pedrarias Dávila." }
+    },
+    {
+      "id": "history-0085", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Qué batalla de 490 a. C. ganaron los atenienses al ejército persa de Darío I?",
+              "options": ["Maratón", "Salamina", "Platea", "Termópilas"],
+              "explanation": "En Maratón, a unos 40 kilómetros de Atenas, los atenienses vencieron a los persas. La leyenda de un mensajero que corrió hasta Atenas dio nombre a la carrera de maratón." },
+      "en": { "question": "Which battle of 490 BC did the Athenians win against the Persian army of Darius I?",
+              "options": ["Marathon", "Salamis", "Plataea", "Thermopylae"],
+              "explanation": "At Marathon, about 40 kilometers from Athens, the Athenians defeated the Persians. The legend of a messenger who ran to Athens gave the marathon race its name." }
+    },
+    {
+      "id": "history-0086", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Qué sultán otomano conquistó Constantinopla y puso fin al Imperio bizantino?",
+              "options": ["Mehmed II", "Solimán el Magnífico", "Selim I", "Osmán I"],
+              "explanation": "Mehmed II, de 21 años, tomó Constantinopla en 1453 tras un asedio de casi dos meses. La ciudad se convirtió en la capital otomana, la actual Estambul." },
+      "en": { "question": "Which Ottoman sultan conquered Constantinople and ended the Byzantine Empire?",
+              "options": ["Mehmed II", "Suleiman the Magnificent", "Selim I", "Osman I"],
+              "explanation": "Mehmed II, aged 21, took Constantinople in 1453 after a siege of almost two months. The city became the Ottoman capital, present-day Istanbul." }
+    },
+    {
+      "id": "history-0087", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Quién fue coronado emperador por el papa León III en Roma, en la Navidad del año 800?",
+              "options": ["Carlomagno", "Otón I", "Clodoveo", "Carlos Martel"],
+              "explanation": "Carlomagno, rey de los francos, fue coronado en la basílica de San Pedro. Su imperio reunió gran parte de Europa occidental y dio impulso a la cultura carolingia." },
+      "en": { "question": "Who was crowned emperor by Pope Leo III in Rome on Christmas Day in the year 800?",
+              "options": ["Charlemagne", "Otto I", "Clovis", "Charles Martel"],
+              "explanation": "Charlemagne, king of the Franks, was crowned in St. Peter's Basilica. His empire united much of Western Europe and gave a boost to Carolingian culture." }
+    },
+    {
+      "id": "history-0088", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Qué batalla de 1824, ganada por Antonio José de Sucre, selló la independencia del Perú?",
+              "options": ["Ayacucho", "Boyacá", "Carabobo", "Pichincha"],
+              "explanation": "En Ayacucho, el 9 de diciembre de 1824, Sucre derrotó al ejército realista. Fue la última gran batalla de la independencia de Sudamérica." },
+      "en": { "question": "Which 1824 battle, won by Antonio José de Sucre, sealed Peru's independence?",
+              "options": ["Ayacucho", "Boyacá", "Carabobo", "Pichincha"],
+              "explanation": "At Ayacucho, on 9 December 1824, Sucre defeated the royalist army. It was the last major battle of South American independence." }
+    },
+    {
+      "id": "history-0089", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Cómo se llama el escrito de 1815 en el que Simón Bolívar analizó el pasado y el futuro de la América española?",
+              "options": ["La Carta de Jamaica", "El Manifiesto de Cartagena", "El Discurso de Angostura", "El Decreto de Guerra a Muerte"],
+              "explanation": "En la Carta de Jamaica, escrita en Kingston en septiembre de 1815, Bolívar explicó por qué luchaban las colonias e imaginó su futuro político." },
+      "en": { "question": "What is the 1815 document in which Simón Bolívar analyzed the past and future of Spanish America called?",
+              "options": ["The Jamaica Letter", "The Cartagena Manifesto", "The Angostura Address", "The Decree of War to the Death"],
+              "explanation": "In the Jamaica Letter, written in Kingston in September 1815, Bolívar explained why the colonies were fighting and imagined their political future." }
+    },
+    {
+      "id": "history-0090", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Cómo se llama la guerra de 1864 a 1870 que dejó a Paraguay devastado?",
+              "options": ["La Guerra de la Triple Alianza", "La Guerra del Pacífico", "La Guerra del Chaco", "La Guerra Federal"],
+              "explanation": "En la Guerra de la Triple Alianza, Paraguay se enfrentó a Brasil, Argentina y Uruguay y sufrió enormes pérdidas de población y de territorio." },
+      "en": { "question": "What is the war of 1864 to 1870 that left Paraguay devastated called?",
+              "options": ["The War of the Triple Alliance", "The War of the Pacific", "The Chaco War", "The Federal War"],
+              "explanation": "In the War of the Triple Alliance, Paraguay fought Brazil, Argentina and Uruguay and suffered huge losses of population and territory." }
+    },
+    {
+      "id": "history-0091", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Qué fraile dominico defendió a los indígenas y escribió la «Brevísima relación de la destrucción de las Indias»?",
+              "options": ["Bartolomé de las Casas", "Francisco de Vitoria", "Antonio de Montesinos", "Junípero Serra"],
+              "explanation": "Bartolomé de las Casas denunció los abusos de los conquistadores e influyó en las Leyes Nuevas de 1542. Escribió la «Brevísima relación» ese año; se publicó en 1552." },
+      "en": { "question": "Which Dominican friar defended the Indigenous peoples and wrote \"A Short Account of the Destruction of the Indies\"?",
+              "options": ["Bartolomé de las Casas", "Francisco de Vitoria", "Antonio de Montesinos", "Junípero Serra"],
+              "explanation": "Bartolomé de las Casas denounced the abuses of the conquistadors and influenced the New Laws of 1542. He wrote the account that year; it was published in 1552." }
+    },
+    {
+      "id": "history-0092", "difficulty": 3, "type": "truefalse", "answer": true,
+      "es": { "question": "Brasil fue el último país de América en abolir la esclavitud.",
+              "explanation": "Brasil la abolió en 1888 con la Ley Áurea, firmada por la princesa Isabel. Un año después cayó el Imperio y se proclamó la república." },
+      "en": { "question": "Brazil was the last country in the Americas to abolish slavery.",
+              "explanation": "Brazil abolished it in 1888 with the Golden Law, signed by Princess Isabel. A year later the Empire fell and the republic was proclaimed." }
+    },
+    {
+      "id": "history-0093", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Cuál de estos virreinatos españoles en América se creó primero?",
+              "options": ["Nueva España", "Perú", "Nueva Granada", "Río de la Plata"],
+              "explanation": "Nueva España se creó en 1535, con capital en la Ciudad de México. Perú vino en 1542, Nueva Granada en 1717 y Río de la Plata en 1776." },
+      "en": { "question": "Which of these Spanish viceroyalties in the Americas was created first?",
+              "options": ["New Spain", "Peru", "New Granada", "Río de la Plata"],
+              "explanation": "New Spain was created in 1535, with its capital in Mexico City. Peru followed in 1542, New Granada in 1717 and Río de la Plata in 1776." }
+    },
+    {
+      "id": "history-0094", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Qué levantamiento de 1781 contra nuevos impuestos comenzó en El Socorro, en la Nueva Granada?",
+              "options": ["La Revolución de los Comuneros", "La rebelión de Túpac Amaru II", "La Revolución de Quito", "La Conspiración de los Pasquines"],
+              "explanation": "Los comuneros, con líderes como Juan Francisco Berbeo y José Antonio Galán, protestaron contra los impuestos de la Corona. Fue un antecedente de las luchas por la independencia." },
+      "en": { "question": "Which 1781 uprising against new taxes began in El Socorro, in New Granada?",
+              "options": ["The Comuneros' Revolt", "The rebellion of Túpac Amaru II", "The Quito Revolution", "The Conspiracy of the Pasquinades"],
+              "explanation": "The Comuneros, with leaders such as Juan Francisco Berbeo and José Antonio Galán, protested against the Crown's taxes. It was a forerunner of the struggles for independence." }
+    },
+    {
+      "id": "history-0095", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Qué precursor de la independencia tradujo e imprimió en Santafé la Declaración de los Derechos del Hombre, en 1794?",
+              "options": ["Antonio Nariño", "Camilo Torres", "Francisco José de Caldas", "Francisco Antonio Zea"],
+              "explanation": "Antonio Nariño imprimió en secreto la traducción de la Declaración de los Derechos del Hombre y del Ciudadano; por ello fue condenado a prisión y desterrado." },
+      "en": { "question": "Which forerunner of independence translated and printed the Declaration of the Rights of Man in Santafé in 1794?",
+              "options": ["Antonio Nariño", "Camilo Torres", "Francisco José de Caldas", "Francisco Antonio Zea"],
+              "explanation": "Antonio Nariño secretly printed his translation of the Declaration of the Rights of Man and of the Citizen; for this he was sentenced to prison and exile." }
+    },
+    {
+      "id": "history-0096", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Qué general español, apodado «el Pacificador», dirigió en 1815-1816 la campaña para recuperar la Nueva Granada?",
+              "options": ["Pablo Morillo", "Juan de Sámano", "José Tomás Boves", "Francisco Tomás Morales"],
+              "explanation": "Pablo Morillo llegó con un gran ejército expedicionario y recuperó Cartagena y Santafé para la Corona; su gobierno, de mano dura, dejó fusilados a muchos patriotas." },
+      "en": { "question": "Which Spanish general, nicknamed \"the Pacifier\", led the 1815-1816 campaign to retake New Granada?",
+              "options": ["Pablo Morillo", "Juan de Sámano", "José Tomás Boves", "Francisco Tomás Morales"],
+              "explanation": "Pablo Morillo arrived with a large expeditionary army and retook Cartagena and Santafé for the Crown; his harsh rule left many patriots executed." }
+    },
+    {
+      "id": "history-0097", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Qué almirante británico fue derrotado en 1741 en su ataque al puerto caribeño defendido por Blas de Lezo?",
+              "options": ["Edward Vernon", "Francis Drake", "George Anson", "Horatio Nelson"],
+              "explanation": "Edward Vernon atacó Cartagena de Indias con una enorme flota, pero fracasó ante la defensa del almirante Blas de Lezo y del virrey Sebastián de Eslava." },
+      "en": { "question": "Which British admiral was defeated in 1741 in his attack on the Caribbean port defended by Blas de Lezo?",
+              "options": ["Edward Vernon", "Francis Drake", "George Anson", "Horatio Nelson"],
+              "explanation": "Edward Vernon attacked Cartagena de Indias with an enormous fleet, but failed against the defense led by Admiral Blas de Lezo and Viceroy Sebastián de Eslava." }
+    },
+    {
+      "id": "history-0098", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Cómo se llamó el acuerdo que alternó la presidencia de Colombia entre liberales y conservadores de 1958 a 1974?",
+              "options": ["El Frente Nacional", "La Regeneración", "La República Liberal", "La Hegemonía Conservadora"],
+              "explanation": "El Frente Nacional (1958-1974) alternó la presidencia y repartió por igual los cargos entre liberales y conservadores, tras la caída del general Rojas Pinilla." },
+      "en": { "question": "What was the agreement called that alternated the presidency of Colombia between Liberals and Conservatives from 1958 to 1974?",
+              "options": ["The National Front", "The Regeneration", "The Liberal Republic", "The Conservative Hegemony"],
+              "explanation": "The National Front (1958-1974) alternated the presidency and split public posts equally between Liberals and Conservatives, after the fall of General Rojas Pinilla." }
+    },
+    {
+      "id": "history-0099", "difficulty": 3, "type": "truefalse", "answer": true,
+      "es": { "question": "Colombia fue el único país de América Latina que envió tropas de combate a la Guerra de Corea.",
+              "explanation": "El Batallón Colombia llegó a Corea en 1951 y combatió bajo la bandera de las Naciones Unidas. Ningún otro país latinoamericano envió tropas de combate." },
+      "en": { "question": "Colombia was the only Latin American country to send combat troops to the Korean War.",
+              "explanation": "The Colombia Battalion reached Korea in 1951 and fought under the United Nations flag. No other Latin American country sent combat troops." }
+    },
+    {
+      "id": "history-0100", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Qué caudillo astur venció a un ejército musulmán en la batalla de Covadonga, hacia el año 722, según la tradición?",
+              "options": ["Don Pelayo", "El Cid", "Don Rodrigo, último rey visigodo", "Alfonso X el Sabio"],
+              "explanation": "Pelayo, noble que encabezó la rebelión en Asturias, es recordado como el primer rey astur. Su victoria en Covadonga se toma como símbolo del inicio de la resistencia cristiana." },
+      "en": { "question": "Which Asturian leader defeated a Muslim army at the Battle of Covadonga, around the year 722, according to tradition?",
+              "options": ["Pelayo", "El Cid", "Roderic, the last Visigothic king", "Alfonso X the Wise"],
+              "explanation": "Pelayo, a noble who led the revolt in Asturias, is remembered as the first king of Asturias. His victory at Covadonga is taken as the symbol of the start of Christian resistance." }
+    }
+  ]
+}

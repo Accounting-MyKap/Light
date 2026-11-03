@@ -201,8 +201,9 @@ de esa área (en la v1 hay un juego por área).
 | `meta` | Contabilidad de la sincronización: `{ id: 'sync', remoteUserId }`, la identidad del servidor a la que se refieren las marcas `synced = 1`. Si cambia (por ejemplo, el servidor borró al invitado), esas partidas vuelven a `synced = 0`; las de `synced = 2` se quedan como están |
 
 La base local es la fuente principal. La sesión de Supabase la guarda la librería
-`supabase-js` en `localStorage`. El esquema de Dexie está en la versión 2: la tabla `meta` y el
-campo `syncedCompletion` son lo único que añadió a la versión 1.
+`supabase-js` en `localStorage`. El esquema de Dexie está en la versión 3: la tabla `meta` y el
+campo `syncedCompletion` son lo que añadió la versión 2 a la 1, y la versión 3 agrega la tabla
+`quizAnswers` (respuestas por pregunta de los juegos de preguntas, solo locales: nunca se sincronizan).
 
 ### 5.2 Esquema en Supabase (Postgres)
 
