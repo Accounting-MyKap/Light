@@ -4,10 +4,17 @@ import { createRng, randomSeed } from '../../core/rng';
 import { useCountdown, useGameClock, useTrialTimeout } from '../shared/clock';
 import { GAME_DURATION_MS } from '../shared/constants';
 import { useFeedback } from '../shared/feedback';
-import { GameHud } from '../shared/GameHud';
+import { GameFrame } from '../shared/GameFrame';
 import { useGameKeys } from '../shared/useGameKeys';
 import type { GameProps } from '../types';
-import { answerSameDiff, createSameDiffGame, sameDiffResult, timeLimitMs, timeoutSameDiff } from './engine';
+import {
+  answerSameDiff,
+  createSameDiffGame,
+  sameDiffResult,
+  streakMultiplier,
+  timeLimitMs,
+  timeoutSameDiff,
+} from './engine';
 import { SymbolGlyph } from './symbols';
 import styles from './same-different.module.css';
 
@@ -34,7 +41,7 @@ export function SameDifferentGame({ startLevel, paused, onFinish }: GameProps) {
   const active = introDone && !paused && !finished;
 
   useTrialTimeout(clock, game.trialStartedAt, active ? timeLimitMs(game.staircase.level) : null, paused, () => {
-    feedback('wrong');
+    feedback('timeout');
     setGame(timeoutSameDiff(game, clock.now(), rng));
   });
 
@@ -54,28 +61,41 @@ export function SameDifferentGame({ startLevel, paused, onFinish }: GameProps) {
   });
 
   const shown = introDone ? game.current : game.previous;
+  const multiplier = streakMultiplier(game.streak);
+
+  const controls = (
+    <div className={styles.controls}>
+      <button type="button" className={styles.answer} disabled={!introDone} onClick={() => answer('different')}>
+        {t('games.same-different.no')}
+      </button>
+      <button type="button" className={styles.answer} disabled={!introDone} onClick={() => answer('same')}>
+        {t('games.same-different.yes')}
+      </button>
+    </div>
+  );
 
   return (
-    <div className={styles.game}>
-      <GameHud remainingMs={remaining} score={game.score} level={game.staircase.level} />
+    <GameFrame
+      score={game.score}
+      level={game.staircase.level}
+      time={{ remainingMs: remaining, totalMs: GAME_DURATION_MS }}
+      controls={controls}
+    >
       <p className={styles.prompt} aria-live="polite">
         {introDone ? t('games.same-different.question') : t('games.same-different.remember')}
       </p>
       <div key={`${game.total}-${introDone}`} className={`${styles.card} appear`} data-testid="symbol-card">
-        <SymbolGlyph
-          id={shown}
-          label={t(`games.same-different.symbols.${shown}`)}
-          className={styles.symbol}
-        />
+        <SymbolGlyph id={shown} label={t(`games.same-different.symbols.${shown}`)} className={styles.symbol} />
       </div>
-      <div className={styles.controls}>
-        <button type="button" className={styles.answer} disabled={!introDone} onClick={() => answer('different')}>
-          {t('games.same-different.no')}
-        </button>
-        <button type="button" className={styles.answer} disabled={!introDone} onClick={() => answer('same')}>
-          {t('games.same-different.yes')}
-        </button>
+      {/* The slot keeps its height when the pill is not there, so nothing moves when it shows up. */}
+      <div className={styles.streakSlot}>
+        {multiplier >= 2 && (
+          // Keyed by the multiplier: going from ×2 to ×3 re-mounts the pill, so it jumps again.
+          <span key={multiplier} className={styles.streak}>
+            {t('games.same-different.streak', { n: multiplier })}
+          </span>
+        )}
       </div>
-    </div>
+    </GameFrame>
   );
 }

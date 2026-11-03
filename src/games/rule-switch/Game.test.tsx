@@ -1,6 +1,8 @@
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import { initI18n } from '../../i18n';
+import { FeedbackProvider } from '../shared/feedback';
 import { RuleSwitchGame } from './Game';
+import { ruleWindowMs } from './engine';
 
 beforeEach(async () => {
   await initI18n('es');
@@ -12,6 +14,16 @@ afterEach(() => {
 
 const advance = (ms: number) => act(() => vi.advanceTimersByTime(ms));
 const hud = (label: string) => screen.getByText(label).nextElementSibling?.textContent;
+const flashes = () => Array.from(document.querySelectorAll<HTMLElement>('[data-flash]')).map((el) => el.dataset.flash);
+
+/** The game inside the feedback provider, as the play screen mounts it, so the frame can draw the reactions. */
+function renderGame({ paused = false, onFinish = vi.fn() } = {}) {
+  return render(
+    <FeedbackProvider>
+      <RuleSwitchGame startLevel={1} paused={paused} onFinish={onFinish} />
+    </FeedbackProvider>,
+  );
+}
 
 function correctKey(): string {
   const rule = screen.getByTestId('rule-banner').dataset.rule as 'color' | 'shape';
@@ -80,4 +92,47 @@ test('cards never pile up across rule switches', () => {
   }
   expect(switches).toBeGreaterThan(2);
   expect(errors.mock.calls.flat().join(' ')).not.toMatch(/same key/);
+});
+
+test('the two options sit in the controls area, below the stimulus', () => {
+  const { container } = renderGame();
+  const controls = container.querySelector('[data-zone="controls"]');
+  const stage = container.querySelector('[data-zone="stage"]');
+  const stimulus = screen.getByTestId('stimulus');
+  const left = screen.getByTestId('target-left');
+  const right = screen.getByTestId('target-right');
+  expect(controls).toContainElement(left);
+  expect(controls).toContainElement(right);
+  expect(controls).not.toContainElement(stimulus);
+  // The rule and the stimulus are the game zone, which comes before the controls.
+  expect(stage).toContainElement(stimulus);
+  expect(stage).toContainElement(screen.getByTestId('rule-banner'));
+  expect(stimulus.compareDocumentPosition(left) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+});
+
+test('a timeout is not a wrong answer', () => {
+  renderGame();
+  advance(ruleWindowMs(1) - 100);
+  expect(flashes()).toEqual([]);
+  advance(200);
+  expect(flashes()).toEqual(['timeout']);
+  expect(hud('Puntos')).toBe('0');
+});
+
+test('a wrong answer flashes as wrong and a right one as correct', () => {
+  renderGame();
+  advance(300);
+  fireEvent.keyDown(window, { key: correctKey() === 'ArrowLeft' ? 'ArrowRight' : 'ArrowLeft' });
+  expect(flashes()).toEqual(['wrong']);
+  advance(300);
+  fireEvent.keyDown(window, { key: correctKey() });
+  expect(flashes()).toEqual(['correct']);
+});
+
+test('the on-screen cards answer too', () => {
+  renderGame();
+  advance(300);
+  const key = correctKey();
+  fireEvent.click(screen.getByTestId(key === 'ArrowLeft' ? 'target-left' : 'target-right'));
+  expect(Number(hud('Puntos'))).toBeGreaterThan(10);
 });

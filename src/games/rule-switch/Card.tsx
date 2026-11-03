@@ -7,7 +7,7 @@ function CardShape({ card }: { card: Card }) {
   const patternId = `p${useId().replace(/[^a-zA-Z0-9_-]/g, '')}`;
   const { hex, pattern } = COLOR_STYLE[card.color];
   const fill = pattern === 'solid' ? hex : `url(#${patternId})`;
-  const common = { fill, stroke: 'var(--text)', strokeWidth: 3 };
+  const common = { fill, stroke: 'var(--luz-text)', strokeWidth: 3 };
   return (
     <svg viewBox="0 0 100 100" aria-hidden="true">
       <defs>
@@ -71,7 +71,8 @@ export function CardView({ card, testId, className = '', onSelect }: CardViewPro
 
 export function RuleIcon({ rule }: { rule: 'color' | 'shape' }) {
   return rule === 'color' ? (
-    <svg viewBox="0 0 24 24" aria-hidden="true">
+    // A dark outline keeps the purple dot apart from the pill, which is purple-ish too.
+    <svg viewBox="0 0 24 24" aria-hidden="true" stroke="var(--luz-ink)" strokeWidth="1.5">
       <circle cx="7" cy="12" r="4" fill="#3D7BFF" />
       <circle cx="12" cy="7" r="4" fill="#FF9F1C" />
       <circle cx="17" cy="12" r="4" fill="#B05CFF" />

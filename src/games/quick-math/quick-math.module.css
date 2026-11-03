@@ -1,52 +1,184 @@
-.game {
+/*
+ * Quick Math in the Luz style. The game zone and the controls come from GameFrame, which centers its children,
+ * so the full-width rows below set their own width. Colors come from the Luz tokens (--game, --luz-*).
+ */
+
+.display {
+  width: 100%;
+  text-align: center;
+}
+
+/* The operation with its answer slot. It is re-mounted for every problem, so the new one enters from below. */
+.operation {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
 }
 
-.display {
-  display: flex;
-  align-items: baseline;
-  gap: 0.75rem;
-  font-size: clamp(2rem, 9vw, 3rem);
+.operation[data-enter='true'] {
+  animation: enter 300ms ease-out both;
+}
+
+@keyframes enter {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* The operation: big, in the color of the game, with a soft glow. The longest one (a + b × c) must fit a phone. */
+.problem {
+  color: var(--game);
+  font-size: clamp(2.25rem, 12vw, 3.5rem);
   font-weight: 800;
+  line-height: 1.1;
   font-variant-numeric: tabular-nums;
+  text-shadow: 0 0 22px color-mix(in srgb, var(--game) 55%, transparent);
+  white-space: nowrap;
 }
 
-.answer {
-  min-width: 3ch;
-  padding: 0 0.5rem;
-  border-bottom: 3px solid var(--accent);
-  text-align: center;
-  text-shadow: 0 0 18px var(--glow);
+.equals {
+  position: relative;
+  display: flex;
+  font-size: clamp(1.75rem, 9vw, 2.5rem);
 }
 
-.keypad {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.6rem;
-  width: min(92vw, 360px);
-}
-
-.key {
-  min-height: 60px;
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  background: var(--surface);
-  font-size: 1.4rem;
+/* The equals sign hangs to the left of the slot, so the slot itself sits under the middle of the operation. */
+.sign {
+  position: absolute;
+  right: 100%;
+  bottom: 0.15rem;
+  margin-right: 0.5rem;
+  color: var(--luz-muted);
   font-weight: 700;
 }
 
-.ok {
-  background: var(--accent);
-  color: var(--accent-text);
-  border: none;
+/* The slot: what is typed sits on a glowing underline in the color of the game. */
+.answer {
+  --slot: var(--game);
+  position: relative;
+  min-width: 4ch;
+  padding: 0 0.5rem 0.2rem;
+  color: var(--luz-text);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
 }
 
+.answer::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0;
+  height: 3px;
+  border-radius: 3px;
+  background: var(--slot);
+  box-shadow: 0 0 14px 1px var(--slot);
+}
+
+/* Nothing typed yet: the question mark waits dimmed. */
+.answer[data-empty='true'] {
+  color: var(--luz-muted);
+}
+
+/* Glass keys in a 3 x 4 grid; OK is the only one lit. */
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  width: 100%;
+  max-width: 26rem;
+}
+
+.key {
+  min-height: 54px;
+  padding: 0;
+  border: none;
+  border-radius: 18px;
+  background: var(--luz-glass);
+  box-shadow: inset 0 0 0 1.5px var(--luz-glass-border);
+  color: var(--luz-text);
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.key:active {
+  transform: scale(0.94);
+  filter: brightness(1.2);
+}
+
+.ok {
+  background: var(--game);
+  box-shadow: 0 0 32px color-mix(in srgb, var(--game) 55%, transparent);
+  color: var(--luz-ink);
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+/* Skip: small, quiet text under the keypad; it still has a 44 px touch target. */
 .skip {
-  border: 1px solid var(--border);
-  border-radius: 999px;
+  padding: 0 1.25rem;
+  border: none;
   background: transparent;
-  padding: 0.5rem 1.5rem;
+  color: var(--luz-muted);
+  font-size: 0.875rem;
+}
+
+.skip:active {
+  color: var(--luz-text);
+}
+
+/* In the instructions the answer is typed into the slot and flashes once it is right. (In the game, the flash is the frame's.) */
+.demo {
+  padding-bottom: 0.5rem;
+}
+
+.demo .answer[data-confirmed='true'] {
+  --slot: var(--luz-ok);
+  color: var(--luz-ok);
+  text-shadow: 0 0 10px var(--luz-ok);
+  animation: confirm 600ms ease-out both;
+}
+
+@keyframes confirm {
+  from {
+    transform: scale(1.18);
+    filter: brightness(1.4);
+  }
+
+  to {
+    transform: none;
+    filter: none;
+  }
+}
+
+/*
+ * Reduced motion: nothing slides, scales or moves; the new operation fades in and the keys only brighten. The
+ * app-wide rule would cut every animation to nothing, so the fade that marks the new problem keeps its duration.
+ */
+@media (prefers-reduced-motion: reduce) {
+  .operation[data-enter='true'] {
+    animation-name: enter-still;
+    animation-duration: 200ms !important;
+  }
+
+  .key:active {
+    transform: none;
+  }
+}
+
+@keyframes enter-still {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }

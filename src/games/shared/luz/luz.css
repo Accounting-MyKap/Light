@@ -1,0 +1,84 @@
+@import '@fontsource-variable/sora';
+
+/*
+ * Luz: the always-dark look of the game screens. It does not follow the app theme, so a phone in light
+ * mode still gets a dark game. Everything is scoped to [data-luz]; the rest of the app is untouched.
+ */
+[data-luz] {
+  --luz-bg: #090b19;
+  --luz-text: #eef1ff;
+  --luz-muted: #8e94b8;
+  /* Muted text that sits in the top band, over the colored glow: lighter than --luz-muted, which only
+     reaches 4.5:1 on the flat background. */
+  --luz-soft: #b4b9d8;
+  --luz-glass: rgba(255, 255, 255, 0.045);
+  --luz-glass-border: rgba(255, 255, 255, 0.09);
+  --luz-ok: #4dffa6;
+  --luz-bad: #ff5d7a;
+  --luz-ink: #0b0d1a;
+  /* Fallback for an area without its own color below; any area block outranks this one. */
+  --game: var(--luz-muted);
+
+  /* Remap the app tokens so screens not styled for Luz yet (intro, pause, result) stay readable. */
+  --bg: var(--luz-bg);
+  --surface: #141729;
+  --text: var(--luz-text);
+  --text-muted: var(--luz-muted);
+  --accent: var(--game);
+  --accent-text: var(--luz-ink);
+  --accent-strong: var(--game);
+  --success: var(--luz-ok);
+  --success-strong: var(--luz-ok);
+  --danger: var(--luz-bad);
+  --glow: color-mix(in srgb, var(--game) 40%, transparent);
+  --border: rgba(255, 255, 255, 0.12);
+
+  /*
+   * The scope fills the viewport edge to edge and carries the screen padding itself (the app's 720px column
+   * with 1.25rem gutters, plus the safe-area insets), so the dark background never leaves light strips.
+   */
+  --luz-pad-top: max(0.5rem, env(safe-area-inset-top));
+  --luz-pad-bottom: max(2rem, env(safe-area-inset-bottom));
+  /* Lets a game screen (Play.module.css .screen) fill the viewport exactly, so it does not scroll. */
+  --screen-inset: calc(var(--luz-pad-top) + var(--luz-pad-bottom));
+  min-height: 100dvh;
+  padding: var(--luz-pad-top) max(1.25rem, env(safe-area-inset-right), calc((100% - 680px) / 2))
+    var(--luz-pad-bottom) max(1.25rem, env(safe-area-inset-left), calc((100% - 680px) / 2));
+  color-scheme: dark;
+  color: var(--luz-text);
+  font-family: 'Sora Variable', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--luz-bg);
+  /* A glow of the area color at the top that fades out by 60% of the height. Kept apart from the color above,
+     so a browser without color-mix() still gets the plain dark background. */
+  background-image: radial-gradient(
+    ellipse 100% 60% at 50% 0,
+    color-mix(in srgb, var(--game) 28%, transparent),
+    transparent
+  );
+}
+
+[data-luz][data-area='memory'] {
+  --game: #ffb52e;
+}
+
+[data-luz][data-area='attention'] {
+  --game: #3fd4ff;
+}
+
+[data-luz][data-area='speed'] {
+  --game: #ff5fd2;
+}
+
+[data-luz][data-area='flexibility'] {
+  --game: #a98bff;
+}
+
+[data-luz][data-area='math'] {
+  --game: #8dff6a;
+}
+
+/* The page behind the game is dark too, so overscroll and bounce never flash the light app background. */
+html[data-luz-active],
+html[data-luz-active] body {
+  background: #090b19;
+}

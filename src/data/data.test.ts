@@ -1,4 +1,4 @@
-import { clearAllData, db } from './db';
+import { clearAllData, db, type StoredSettings } from './db';
 import { addResult, bestScore, listResults } from './results';
 import { getStartLevel, setStartLevel } from './levels';
 import { DEFAULT_SETTINGS, getSettings, updateSettings } from './settings';
@@ -47,6 +47,19 @@ test('settings default and merge', async () => {
   expect(await getSettings()).toEqual({ ...DEFAULT_SETTINGS, sound: false });
   await updateSettings({ theme: 'dark' });
   expect(await getSettings()).toEqual({ ...DEFAULT_SETTINGS, sound: false, theme: 'dark' });
+});
+
+test('settings stored before vibration existed read as vibration on', async () => {
+  // A row written by an older version, without the field.
+  const legacy: Omit<StoredSettings, 'vibration'> = {
+    id: 'settings',
+    language: 'es',
+    sound: false,
+    theme: 'dark',
+    seenInstructions: [],
+  };
+  await db.settings.put(legacy as StoredSettings);
+  expect(await getSettings()).toEqual({ ...DEFAULT_SETTINGS, language: 'es', sound: false, theme: 'dark', vibration: true });
 });
 
 test('clearAllData empties every table', async () => {

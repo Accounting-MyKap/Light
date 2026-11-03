@@ -4,7 +4,7 @@ import { createRng, randomSeed } from '../../core/rng';
 import { useCountdown, useGameClock } from '../shared/clock';
 import { GAME_DURATION_MS } from '../shared/constants';
 import { useFeedback } from '../shared/feedback';
-import { GameHud } from '../shared/GameHud';
+import { GameFrame } from '../shared/GameFrame';
 import { useGameKeys } from '../shared/useGameKeys';
 import type { GameProps } from '../types';
 import {
@@ -59,7 +59,8 @@ export function QuickMathGame({ startLevel, paused, onFinish }: GameProps) {
     },
     skip: () => {
       if (!active) return false;
-      feedback('wrong');
+      // Skipping costs nothing, so it is not a mistake: it reads as a timeout, not as a wrong answer.
+      feedback('timeout');
       setGame(skipProblem(game, rng));
       return true;
     },
@@ -72,20 +73,38 @@ export function QuickMathGame({ startLevel, paused, onFinish }: GameProps) {
     return false;
   });
 
-  return (
-    <div className={styles.game}>
-      <GameHud remainingMs={remaining} score={game.score} level={game.staircase.level} />
-      <div className={styles.display} aria-live="polite">
-        <span data-testid="problem">{formatProblem(game.problem)}</span>
-        <span aria-hidden="true">=</span>
-        <span className={styles.answer} data-testid="answer">
-          {game.input || '?'}
-        </span>
-      </div>
+  const controls = (
+    <>
       <Keypad onDigit={actions.digit} onDelete={actions.remove} onSubmit={actions.submit} />
       <button type="button" className={styles.skip} onMouseDown={keepFocus} onClick={actions.skip}>
         {t('games.quick-math.skip')}
       </button>
-    </div>
+    </>
+  );
+
+  return (
+    <GameFrame
+      score={game.score}
+      level={game.staircase.level}
+      time={{ remainingMs: remaining, totalMs: GAME_DURATION_MS }}
+      controls={controls}
+    >
+      {/* The announcement region stays put; only the operation inside it is replaced, and it enters from below. */}
+      <div className={styles.display} aria-live="polite">
+        <div key={game.total} className={styles.operation} data-enter="true">
+          <span className={styles.problem} data-testid="problem">
+            {formatProblem(game.problem)}
+          </span>
+          <span className={styles.equals}>
+            <span className={styles.sign} aria-hidden="true">
+              =
+            </span>
+            <span className={styles.answer} data-testid="answer" data-empty={game.input === ''}>
+              {game.input || '?'}
+            </span>
+          </span>
+        </div>
+      </div>
+    </GameFrame>
   );
 }

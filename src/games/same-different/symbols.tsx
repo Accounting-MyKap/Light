@@ -1,10 +1,12 @@
 import type { ReactNode } from 'react';
 import type { SymbolId } from './engine';
 
+// Every figure is an outline: the <svg> sets fill="none" and the stroke, the shapes inherit them. The dot
+// of the dot figures is the one filled part.
 const dotFrame = (cx: number | null, cy: number | null) => (
   <>
-    <rect x="14" y="14" width="72" height="72" rx="8" fill="none" stroke="currentColor" strokeWidth="6" />
-    {cx !== null && cy !== null && <circle cx={cx} cy={cy} r="11" />}
+    <rect x="14" y="14" width="72" height="72" rx="8" />
+    {cx !== null && cy !== null && <circle cx={cx} cy={cy} r="11" fill="currentColor" stroke="none" />}
   </>
 );
 
@@ -30,8 +32,19 @@ const SHAPES: Record<SymbolId, ReactNode> = {
 
 export function SymbolGlyph({ id, label, className }: { id: SymbolId; label: string; className?: string }) {
   return (
-    <svg viewBox="0 0 100 100" className={className} role="img" aria-label={label} data-testid="symbol" data-symbol={id}>
-      <g fill="currentColor">{SHAPES[id]}</g>
+    <svg
+      viewBox="0 0 100 100"
+      className={className}
+      role="img"
+      aria-label={label}
+      data-testid="symbol"
+      data-symbol={id}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="6"
+      strokeLinejoin="round"
+    >
+      {SHAPES[id]}
     </svg>
   );
 }

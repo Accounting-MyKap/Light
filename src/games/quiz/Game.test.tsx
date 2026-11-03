@@ -29,6 +29,8 @@ afterEach(() => {
 
 const advance = (ms: number) => act(() => vi.advanceTimersByTime(ms));
 const hud = (label: string) => screen.getByText(label).nextElementSibling?.textContent;
+/** The whole seconds left on the time bar of the frame. */
+const secondsLeft = () => screen.getByRole('progressbar', { name: 'Tiempo' }).getAttribute('aria-valuenow');
 const settle = () => act(async () => {});
 
 function gameElement(props: { paused?: boolean; onFinish?: () => void } = {}) {
@@ -60,7 +62,7 @@ test("shows question 1 of 10 with four options and I don't know", async () => {
   expect(options()).toHaveLength(4);
   expect(screen.getByRole('button', { name: 'No sé' })).toBeInTheDocument();
   expect(screen.queryByRole('button', { name: 'Siguiente' })).not.toBeInTheDocument();
-  expect(hud('Tiempo')).toBe('20');
+  expect(secondsLeft()).toBe('20');
   expect(hud('Puntos')).toBe('0');
   expect(hud('Nivel')).toBe('1');
   const bar = screen.getByRole('progressbar');
@@ -138,7 +140,7 @@ test('time runs out after 20 seconds without a penalty', async () => {
   expect(within(correctOption()).getByText('✓ Correcta')).toBeInTheDocument();
   expect(screen.queryByText('✗ Tu respuesta')).not.toBeInTheDocument();
   expect(hud('Puntos')).toBe('0');
-  expect(hud('Tiempo')).toBe('0');
+  expect(secondsLeft()).toBe('0');
   expect(screen.getByRole('button', { name: 'Siguiente' })).toBeInTheDocument();
 });
 
@@ -223,12 +225,12 @@ test('the timer stops while paused and keeps the time that was left', async () =
   const view = render(gameElement({ onFinish }));
   await settle();
   advance(5000);
-  expect(hud('Tiempo')).toBe('15');
+  expect(secondsLeft()).toBe('15');
 
   view.rerender(gameElement({ paused: true, onFinish }));
   advance(30_000);
   expect(screen.queryByText('Se acabó el tiempo')).not.toBeInTheDocument();
-  expect(hud('Tiempo')).toBe('15');
+  expect(secondsLeft()).toBe('15');
   // Answers are blocked while paused.
   fireEvent.keyDown(window, { key: '1' });
   fireEvent.keyDown(window, { key: '0' });
@@ -252,7 +254,7 @@ test('the question is hidden while paused, so a pause gives no extra time to thi
   expect(screen.queryAllByRole('button', { name: /^Opción [1-4]: / })).toHaveLength(0);
   expect(screen.queryByRole('button', { name: 'No sé' })).not.toBeInTheDocument();
   // The HUD and the counter stay, with the clock stopped.
-  expect(hud('Tiempo')).toBe('20');
+  expect(secondsLeft()).toBe('20');
   expect(screen.getByText('Pregunta 1 de 10')).toBeInTheDocument();
 
   view.rerender(gameElement({ paused: false }));
@@ -286,7 +288,7 @@ test('the question clock starts when the first question appears, not while it lo
   render(gameElement());
   advance(5000);
   await act(async () => release(historyPool()));
-  expect(hud('Tiempo')).toBe('20');
+  expect(secondsLeft()).toBe('20');
   advance(19_000);
   expect(screen.queryByText('Se acabó el tiempo')).not.toBeInTheDocument();
   advance(1000);

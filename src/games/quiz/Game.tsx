@@ -7,7 +7,7 @@ import { correctIndex, optionTexts, type QuizCategory } from '../../quiz/types';
 import { useGameClock, useTrialTimeout, type GameClock } from '../shared/clock';
 import { MIN_RT_MS } from '../shared/constants';
 import { useFeedback } from '../shared/feedback';
-import { GameHud } from '../shared/GameHud';
+import { GameFrame } from '../shared/GameFrame';
 import { useGameKeys } from '../shared/useGameKeys';
 import type { GameProps, GameResult } from '../types';
 import {
@@ -182,37 +182,32 @@ function QuizRound({ initial, clock, rng, paused, onFinish }: QuizRoundProps) {
 
   return (
     <div ref={gameRef} className={styles.game}>
-      <GameHud remainingMs={remaining} score={round.score} level={round.staircase.level} />
-      <p className={styles.counter}>{t('quiz.questionOf', { n: number, total: QUIZ_ROUND_LENGTH })}</p>
-      <div
-        className={styles.bar}
-        role="progressbar"
-        aria-label={t('game.hud.time')}
-        aria-valuemin={0}
-        aria-valuemax={QUIZ_QUESTION_MS / 1000}
-        aria-valuenow={Math.ceil(remaining / 1000)}
+      <GameFrame
+        score={round.score}
+        level={round.staircase.level}
+        time={{ remainingMs: remaining, totalMs: QUIZ_QUESTION_MS }}
       >
-        <div className={styles.barFill} style={{ width: `${(remaining / QUIZ_QUESTION_MS) * 100}%` }} />
-      </div>
-      {/* Hidden, not removed, while paused: the clock is stopped, so the question must not stay readable. */}
-      <div key={question.id} className="appear" style={paused ? { visibility: 'hidden' } : undefined}>
-        <QuestionView
-          question={question}
-          order={order}
-          lang={lang}
-          phase={asking ? 'asking' : 'feedback'}
-          outcome={resolved?.outcome}
-          chosen={resolved?.chosen ?? null}
-          onChoose={choose}
-          onDontKnow={skip}
-          onNext={goNext}
-          isLast={round.items.length >= QUIZ_ROUND_LENGTH}
-          promptRef={promptRef}
-        />
-      </div>
-      <div className="visually-hidden" aria-live="polite" aria-atomic="true">
-        {announcement}
-      </div>
+        <p className={styles.counter}>{t('quiz.questionOf', { n: number, total: QUIZ_ROUND_LENGTH })}</p>
+        {/* Hidden, not removed, while paused: the clock is stopped, so the question must not stay readable. */}
+        <div key={question.id} className="appear" style={paused ? { visibility: 'hidden' } : undefined}>
+          <QuestionView
+            question={question}
+            order={order}
+            lang={lang}
+            phase={asking ? 'asking' : 'feedback'}
+            outcome={resolved?.outcome}
+            chosen={resolved?.chosen ?? null}
+            onChoose={choose}
+            onDontKnow={skip}
+            onNext={goNext}
+            isLast={round.items.length >= QUIZ_ROUND_LENGTH}
+            promptRef={promptRef}
+          />
+        </div>
+        <div className="visually-hidden" aria-live="polite" aria-atomic="true">
+          {announcement}
+        </div>
+      </GameFrame>
     </div>
   );
 }

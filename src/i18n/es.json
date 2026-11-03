@@ -17,7 +17,9 @@
     "flexibility": "Flexibilidad mental",
     "math": "Matemáticas",
     "logic": "Lógica",
-    "language": "Lenguaje"
+    "language": "Lenguaje",
+    "trivia": "Cultura general",
+    "accounting": "Contabilidad"
   },
   "common": {
     "start": "Comenzar",
@@ -37,7 +39,10 @@
     "hud": {
       "time": "Tiempo",
       "score": "Puntos",
-      "level": "Nivel"
+      "level": "Nivel",
+      "secondsLeft_one": "Queda {{count}} segundo",
+      "secondsLeft_other": "Quedan {{count}} segundos",
+      "round": "Ronda {{n}} de {{total}}"
     }
   },
   "games": {
@@ -52,9 +57,8 @@
       "cell": "Casilla {{n}}",
       "watch": "Observa…",
       "yourTurn": "Tu turno",
-      "correct": "¡Bien!",
-      "wrong": "Casi… sigamos",
-      "round": "Ronda {{n}} de {{total}}"
+      "correct": "¡Perfecto!",
+      "wrong": "Casi… sigamos"
     },
     "arrows": {
       "title": "Flechas",
@@ -82,6 +86,7 @@
       "question": "¿Es igual al anterior?",
       "yes": "Sí",
       "no": "No",
+      "streak": "Racha ×{{n}}",
       "exampleAnswer": "Respuesta correcta: Sí",
       "symbols": {
         "circle": "círculo",
@@ -127,7 +132,8 @@
         "orange": "naranja",
         "purple": "morado"
       },
-      "exampleAnswer": "Regla COLOR: la respuesta es el cuadrado azul."
+      "exampleAnswer": "Regla COLOR: la respuesta es el cuadrado azul.",
+      "exampleAnswerShape": "Regla FORMA: la respuesta es el círculo naranja."
     },
     "quick-math": {
       "title": "Cálculo relámpago",
@@ -201,14 +207,17 @@
   "play": {
     "exit": "Salir del juego",
     "paused": "Pausado",
+    "timeLeft": "quedan",
+    "points": "puntos",
     "newBest": "¡Nueva mejor marca!",
     "percentile": "Estás por encima del {{percent}} % de los jugadores",
-    "score": "Puntaje",
+    "scoreValue": "Puntaje: {{score}}",
     "best": "Mejor marca",
     "accuracy": "Precisión",
     "levelReached": "Nivel alcanzado",
     "example": "Ejemplo",
     "nextGame": "Siguiente juego",
+    "dailyProgress": "Entrenamiento de hoy: {{done}} de {{total}}",
     "seeSummary": "Ver resumen",
     "saveError": "No pudimos guardar tu partida.",
     "retry": "Reintentar"
@@ -316,6 +325,8 @@
       "dark": "Oscuro"
     },
     "sound": "Sonido",
+    "vibration": "Vibración",
+    "vibrationHint": "Solo en teléfonos que lo permiten",
     "privacyTitle": "Privacidad",
     "privacy": "Tu progreso se guarda solo en este dispositivo. Light no usa publicidad ni analítica.",
     "privacySync": "Tu progreso se guarda en este dispositivo. Para compararte con otros jugadores, tus partidas (puntaje, nivel, precisión, duración y fecha) también se envían de forma anónima, sin nombre ni correo, a nuestro servidor. Light no usa publicidad ni analítica.",

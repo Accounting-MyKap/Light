@@ -78,6 +78,22 @@ export function SettingsScreen() {
         {t('settings.sound')}
       </label>
 
+      <div className={styles.section}>
+        <label className={styles.option}>
+          <input
+            type="checkbox"
+            role="switch"
+            aria-describedby="vibration-hint"
+            checked={settings.vibration}
+            onChange={(e) => void updateSettings({ vibration: e.target.checked })}
+          />{' '}
+          {t('settings.vibration')}
+        </label>
+        <p id="vibration-hint" className={styles.muted}>
+          {t('settings.vibrationHint')}
+        </p>
+      </div>
+
       <section className={styles.section}>
         <h2>{t('settings.privacyTitle')}</h2>
         <p className={styles.muted}>{t(syncConfig ? 'settings.privacySync' : 'settings.privacy')}</p>

@@ -1,9 +1,18 @@
 import type { ArrowTrial, Direction } from './engine';
 import styles from './arrows.module.css';
 
-export function ArrowIcon({ direction, className }: { direction: Direction; className?: string }) {
+export function ArrowIcon({
+  direction,
+  className,
+  target = false,
+}: {
+  direction: Direction;
+  className?: string;
+  /** The arrow the person answers about: the center one of the row. */
+  target?: boolean;
+}) {
   return (
-    <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
+    <svg viewBox="0 0 24 24" className={className} data-target={target ? 'true' : undefined} aria-hidden="true">
       <path
         d="M4 12h15M13 6l6 6-6 6"
         fill="none"
@@ -23,7 +32,7 @@ export function ArrowRow({ trial, className = '' }: { trial: ArrowTrial; classNa
   return (
     <div className={`${styles.row} ${className}`} data-testid="arrows-row" data-direction={trial.direction} aria-hidden="true">
       {directions.map((d, i) => (
-        <ArrowIcon key={i} direction={d} className={styles.arrow} />
+        <ArrowIcon key={i} direction={d} className={styles.arrow} target={i === 2} />
       ))}
     </div>
   );

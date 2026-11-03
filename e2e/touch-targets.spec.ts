@@ -21,6 +21,15 @@ test('the way back from a missing game is at least 44 px tall', async ({ page })
   await expectTall(page.getByRole('link', { name: 'Volver al inicio' }));
 });
 
+test('game controls are at least 44 px tall', async ({ page }) => {
+  for (const id of ['arrows', 'quick-math']) {
+    await page.goto(`./#/play/${id}`);
+    await page.getByRole('button', { name: 'Comenzar' }).click();
+    // Arrows: «Izquierda» and «Derecha». Quick Math: the whole keypad and «Saltar».
+    await expectTall(page.locator('[data-game] [data-zone="controls"] button'));
+  }
+});
+
 test('quiz controls are at least 44 px tall on a 320 px screen', async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 640 });
 
@@ -47,8 +56,10 @@ test('after «Siguiente» the new question starts in view on a 320 × 568 screen
 
   for (let n = 1; n <= 5; n++) {
     await expect(page.getByText(`Pregunta ${n} de 10`)).toBeVisible();
+    // The top of the game frame: the ✕, the level and the time bar.
+    await expect(page.locator('[data-game]').getByRole('button', { name: 'Salir del juego' })).toBeInViewport({ ratio: 1 });
+    await expect(page.getByText('Nivel', { exact: true })).toBeInViewport({ ratio: 1 });
     await expect(page.getByRole('progressbar')).toBeInViewport({ ratio: 1 });
-    await expect(page.getByText('Puntos', { exact: true })).toBeInViewport({ ratio: 1 });
     await expect(page.getByRole('heading', { level: 2 })).toBeFocused();
     await page.waitForTimeout(200); // longer than MIN_RT_MS, or the app ignores the tap
     await page.getByRole('button', { name: /^Opción 1: / }).click();
