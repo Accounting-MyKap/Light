@@ -246,6 +246,7 @@
     },
     "loading": "Cargando preguntas…",
     "loadError": "No pudimos cargar las preguntas.",
+    "reload": "Recargar la página",
     "categories": {
       "history": "Historia",
       "science": "Ciencias",

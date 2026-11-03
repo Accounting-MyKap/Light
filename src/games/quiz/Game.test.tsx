@@ -24,6 +24,7 @@ beforeEach(async () => {
 });
 afterEach(() => {
   vi.useRealTimers();
+  vi.unstubAllGlobals();
 });
 
 const advance = (ms: number) => act(() => vi.advanceTimersByTime(ms));
@@ -338,6 +339,31 @@ test('shows an error and retries when questions cannot load', async () => {
   expect(screen.getByText('Pregunta 1 de 10')).toBeInTheDocument();
 });
 
+test('after a second failure in a row it also offers to reload the page', async () => {
+  const reload = vi.fn();
+  vi.stubGlobal('location', { ...window.location, reload });
+  vi.mocked(loadQuestions).mockRejectedValueOnce(new Error('stale chunk')).mockRejectedValueOnce(new Error('stale chunk'));
+  render(gameElement());
+  await settle();
+  expect(screen.queryByRole('button', { name: 'Recargar la página' })).not.toBeInTheDocument();
+  fireEvent.click(screen.getByRole('button', { name: 'Reintentar' }));
+  await settle();
+  expect(screen.getByText('No pudimos cargar las preguntas.')).toBeInTheDocument();
+  expect(screen.getByRole('button', { name: 'Reintentar' })).toBeInTheDocument();
+  fireEvent.click(screen.getByRole('button', { name: 'Recargar la página' }));
+  expect(reload).toHaveBeenCalledTimes(1);
+});
+
+test('the reload button is in English too', async () => {
+  await initI18n('en');
+  vi.mocked(loadQuestions).mockRejectedValue(new Error('offline'));
+  render(gameElement());
+  await settle();
+  fireEvent.click(screen.getByRole('button', { name: 'Retry' }));
+  await settle();
+  expect(screen.getByRole('button', { name: 'Reload the page' })).toBeInTheDocument();
+});
+
 test('plays with an empty history when it cannot be read', async () => {
   vi.mocked(answerHistory).mockRejectedValueOnce(new Error('db closed'));
   await renderGame();
@@ -382,7 +408,6 @@ describe('a new question on a small screen', () => {
   });
   afterEach(() => {
     delete (Element.prototype as Partial<Element>).scrollIntoView;
-    vi.unstubAllGlobals();
   });
 
   test('after Next, focus moves to the new question and the game scrolls back into view', async () => {

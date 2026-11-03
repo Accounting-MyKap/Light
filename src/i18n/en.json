@@ -246,6 +246,7 @@
     },
     "loading": "Loading questions…",
     "loadError": "We couldn't load the questions.",
+    "reload": "Reload the page",
     "categories": {
       "history": "History",
       "science": "Science",

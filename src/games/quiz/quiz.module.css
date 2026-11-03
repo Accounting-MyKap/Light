@@ -197,6 +197,14 @@
   box-shadow: 0 0 24px var(--glow);
 }
 
+.reload {
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+}
+
 /* «Repasa tus errores» on the result screen, whose text is centred: the review reads left to right.
    Only the right answer is coloured: --danger is not contrast-checked as text, and «Tu respuesta:» says it anyway. */
 .review {

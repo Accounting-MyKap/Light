@@ -47,6 +47,7 @@ export function QuizGame({ startLevel, paused, onFinish, categories }: GameProps
   const [firstLevel] = useState(startLevel);
   const [wanted] = useState(() => [...categories]);
   const [attempt, setAttempt] = useState(0);
+  const [failures, setFailures] = useState(0);
   const [load, setLoad] = useState<Load>({ kind: 'loading' });
 
   useEffect(() => {
@@ -58,7 +59,9 @@ export function QuizGame({ startLevel, paused, onFinish, categories }: GameProps
         // The question clock starts now, when the first question is about to appear, not when the screen mounted.
         setLoad({ kind: 'ready', round: createQuizRound(pool, history, firstLevel, rng, clock.now()) });
       } catch {
-        if (alive) setLoad({ kind: 'error' });
+        if (!alive) return;
+        setFailures((n) => n + 1);
+        setLoad({ kind: 'error' });
       }
     })();
     return () => {
@@ -78,6 +81,12 @@ export function QuizGame({ startLevel, paused, onFinish, categories }: GameProps
         <button type="button" className={styles.retry} onClick={retry}>
           {t('play.retry')}
         </button>
+        {/* Retrying cannot help when the app itself is stale (a bank chunk of an older version is gone). */}
+        {failures >= 2 && (
+          <button type="button" className={styles.reload} onClick={() => window.location.reload()}>
+            {t('quiz.reload')}
+          </button>
+        )}
       </div>
     );
   }
