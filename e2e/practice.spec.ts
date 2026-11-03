@@ -409,40 +409,45 @@ test.describe('review screenshots', () => {
     test.setTimeout(120_000);
     mkdirSync(SCREENSHOT_DIR, { recursive: true });
     await page.clock.install({ time: new Date('2026-10-20T10:00:00') });
-    /** The first train's locomotive is near the tunnel, at the top of the board. */
+    /** The first train's locomotive is near the tunnel, at the top of the board: for about a second after it sets
+        off, so the polls that wait for it look every 50 ms. */
     const trainAtTunnel = () =>
       page.evaluate(() => {
         const loco = document.querySelector('[data-train] [data-car="loco"]')?.getAttribute('transform') ?? '';
         return Number(/translate\(\S+ (\S+)\)/.exec(loco)?.[1] ?? Infinity) < 100;
       });
+    const wrongMark = page.locator('[data-arrival="wrong"]');
 
     await page.goto('./#/play/switchyard');
     await page.getByRole('button', { name: 'Empezar práctica', exact: true }).click();
     await expect(page.getByText('Práctica 1 de 3')).toBeVisible();
     await shot(page, 'switchyard-1-guide', page.getByText(/^Toca el cambio \(el círculo con flecha\)/));
 
-    // Round 1: the red train waits until switch 1 sends it home.
+    // Round 1: the red train waits until switch 1 sends it home. The next round's progress stays on screen, unlike
+    // the 700 ms of «¡Bien!».
     await switches(page).nth(0).click();
-    await expect(bubble(page)).toHaveText('¡Bien!', { timeout: 15_000 });
-    await expect(page.getByText('Práctica 2 de 3')).toBeVisible();
+    await expect(page.getByText('Práctica 2 de 3')).toBeVisible({ timeout: 15_000 });
     await expect(bubble(page)).toHaveText(/^Ahora el tren avanza solo/);
 
-    // Round 2, left alone: the yellow train reaches the green station. The clock stops on the hint, with the
-    // mark of the miss on the station.
-    await expect(bubble(page)).toHaveText(/^El tren amarillo va a la estación amarilla/, { timeout: 15_000 });
+    // Round 2, left alone: the yellow train reaches the green station. The clock stops here and moves on in short
+    // steps until the miss, so the shot has the hint and the mark of the miss on the station.
     await page.clock.pauseAt(new Date((await page.evaluate(() => Date.now())) + 50));
-    await shot(page, 'switchyard-2-hint', page.locator('[data-arrival="wrong"]'));
+    for (let i = 0; i < 150 && !(await wrongMark.isVisible()); i++) await page.clock.runFor(100);
+    // 400 ms more: the train has rolled into the station, and the mark (up for 900 ms) is still whole.
+    await page.clock.runFor(400);
+    await expect(wrongMark).toBeVisible();
+    await expect(bubble(page)).toHaveText(/^El tren amarillo va a la estación amarilla/);
+    await shot(page, 'switchyard-2-hint', wrongMark);
     await page.clock.resume();
 
     // The round starts over with the yellow train back at the tunnel; switch 2 sends it home this time.
-    await expect.poll(trainAtTunnel, { timeout: 5_000 }).toBe(true);
+    await expect.poll(trainAtTunnel, { intervals: [50], timeout: 5_000 }).toBe(true);
     await page.keyboard.press('2');
-    await expect(bubble(page)).toHaveText('¡Bien!', { timeout: 15_000 });
 
     // Round 3: green goes on to green (switch 2). Once it is well past switch 1 (it gets there after 1.3 s), switch
     // 1 turns back to the left for red, which comes out 4 s into the round and reaches switch 1 at 5.3 s.
-    await expect(page.getByText('Práctica 3 de 3')).toBeVisible();
-    await expect.poll(trainAtTunnel, { timeout: 5_000 }).toBe(true);
+    await expect(page.getByText('Práctica 3 de 3')).toBeVisible({ timeout: 15_000 });
+    await expect.poll(trainAtTunnel, { intervals: [50], timeout: 5_000 }).toBe(true);
     await page.keyboard.press('2');
     await page.waitForTimeout(2500);
     await page.keyboard.press('1');
