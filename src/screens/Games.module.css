@@ -101,7 +101,8 @@
 .name {
   display: block;
   margin: 0.4rem 0 0;
-  font-size: clamp(0.75rem, calc(0.75rem + (100vw - 320px) * 0.0229), 0.85rem);
+  /* 0.72rem at 320 px so «Guardagujas» fits whole in a third of the screen; the same 0.85rem from 390 px up. */
+  font-size: clamp(0.72rem, calc(0.72rem + (100vw - 320px) * 0.0297), 0.85rem);
   font-weight: 700;
   line-height: 1.2;
 }
