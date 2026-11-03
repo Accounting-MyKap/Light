@@ -1,0 +1,160 @@
+/* The Preguntas tab, in the look of the games catalog (Games.module.css): day and night tokens, cards with a thumbnail. */
+.screen {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.screen h1 {
+  margin: 0;
+  font-size: 1.9rem;
+  font-weight: 800;
+}
+
+.muted {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+.screen > .muted {
+  margin-top: -0.75rem;
+}
+
+.section {
+  --c: var(--accent-strong);
+  display: grid;
+  gap: 0.75rem;
+}
+
+.section[data-area='trivia'] { --c: var(--area-trivia); }
+.section[data-area='accounting'] { --c: var(--area-accounting); }
+
+.section h2 {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
+.dot {
+  flex: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--c);
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+/* Two columns once a card has room for its description; the mix keeps the whole row. */
+@media (min-width: 600px) {
+  .list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.list > li {
+  min-width: 0;
+  display: grid;
+}
+
+.featuredItem {
+  grid-column: 1 / -1;
+}
+
+.card {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  min-width: 0;
+  padding: 0.75rem;
+  border-radius: var(--radius);
+  background: var(--card-bg);
+  box-shadow: var(--card-shadow);
+  text-decoration: none;
+  color: var(--text);
+}
+
+.card:focus-visible {
+  box-shadow: var(--card-shadow), 0 0 0 2px var(--accent);
+}
+
+@media (hover: hover) {
+  .card:hover {
+    box-shadow: var(--card-shadow), 0 0 0 2px var(--accent);
+  }
+}
+
+/* The mix that opens each block: a larger thumbnail, a tint and a ring in the colour of the bank. */
+.cardFeatured {
+  align-items: center;
+  padding: 0.9rem;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--c) 12%, transparent), transparent 70%), var(--card-bg);
+  box-shadow: var(--card-shadow), inset 0 0 0 1.5px color-mix(in srgb, var(--c) 50%, transparent),
+    0 6px 24px color-mix(in srgb, var(--c) 16%, transparent);
+}
+
+.cardFeatured:focus-visible {
+  box-shadow: var(--card-shadow), inset 0 0 0 1.5px color-mix(in srgb, var(--c) 50%, transparent), 0 0 0 2px var(--accent);
+}
+
+@media (hover: hover) {
+  .cardFeatured:hover {
+    box-shadow: var(--card-shadow), inset 0 0 0 1.5px color-mix(in srgb, var(--c) 50%, transparent), 0 0 0 2px var(--accent);
+  }
+}
+
+.thumb {
+  flex: none;
+  width: 52px;
+}
+
+.cardFeatured .thumb {
+  width: 72px;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+.name {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.25;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+.cardFeatured .name {
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
+.description {
+  font-size: 0.82rem;
+  line-height: 1.35;
+  color: var(--text-muted);
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.15rem 0.9rem;
+  margin-top: 0.2rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}

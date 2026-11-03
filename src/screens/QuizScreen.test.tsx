@@ -109,6 +109,22 @@ test('the two mix cards are featured and the category cards are not', async () =
   expect(isFeatured(screen.getByRole('link', { name: /^Conceptos contables/ }))).toBe(false);
 });
 
+test('each card shows the thumbnail of its category, hidden from screen readers', async () => {
+  await renderApp('/quiz');
+  const motifOf = (link: HTMLElement) => {
+    const svg = link.querySelector('svg');
+    expect(svg?.closest('[aria-hidden="true"]')).not.toBeNull();
+    return svg?.getAttribute('data-motif');
+  };
+  expect(motifOf(screen.getByRole('link', { name: /^Historia/ }))).toBe('history');
+  expect(motifOf(screen.getByRole('link', { name: /^Cartera y préstamos/ }))).toBe('lending');
+  expect(motifOf(screen.getByRole('link', { name: /^Mezcla de cultura general/ }))).toBe('mix');
+  expect(motifOf(screen.getByRole('link', { name: /^Mezcla contable/ }))).toBe('mix');
+  // The thumbnail takes the colour of the bank.
+  const thumb = screen.getByRole('link', { name: /^Mezcla contable/ }).querySelector('[data-area]');
+  expect(thumb).toHaveAttribute('data-area', 'accounting');
+});
+
 test('the nav has five tabs in order', async () => {
   await renderApp('/quiz');
   const nav = screen.getByRole('navigation');

@@ -60,7 +60,8 @@ const TEXT_PAIRS: [string, string][] = [
   ['danger', 'bg'],
   ['danger', 'surface'],
   ['danger-text', 'danger'],
-  ...(['memory', 'attention', 'speed', 'flexibility', 'math'] as const).flatMap((area): [string, string][] => [
+  // The five training areas and the two quiz banks (the Preguntas screen and its Progress block use their colours).
+  ...[...V1_AREAS, ...QUIZ_AREAS].flatMap((area): [string, string][] => [
     [`area-${area}`, 'bg'],
     [`area-${area}`, 'surface'],
   ]),

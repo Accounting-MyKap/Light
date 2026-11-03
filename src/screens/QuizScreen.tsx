@@ -7,7 +7,7 @@ import { QUIZ_GAMES } from '../games/registry';
 import type { GameDefinition } from '../games/types';
 import { BANK_SIZES } from '../quiz/banks/manifest';
 import { CATEGORIES_BY_BANK, type QuizBank, type QuizCategory, type QuizConfig } from '../quiz/types';
-import styles from './Screens.module.css';
+import styles from './Quiz.module.css';
 
 const BANKS: readonly QuizBank[] = ['trivia', 'accounting'];
 
@@ -61,21 +61,29 @@ export function QuizScreen() {
       <h1>{t('quiz.title')}</h1>
       <p className={styles.muted}>{t('quiz.intro')}</p>
       {BANKS.map((bank) => (
-        <section key={bank} className={styles.section} aria-labelledby={`quiz-bank-${bank}`}>
-          <h2 id={`quiz-bank-${bank}`}>{t(`quiz.banks.${bank}`)}</h2>
-          <ul className={styles.cards}>
+        <section key={bank} className={styles.section} data-area={bank} aria-labelledby={`quiz-bank-${bank}`}>
+          <h2 id={`quiz-bank-${bank}`}>
+            <span className={styles.dot} aria-hidden="true" />
+            {t(`quiz.banks.${bank}`)}
+          </h2>
+          <ul className={styles.list}>
             {gamesOf(bank).map((g) => {
               const progress = seenFor(g.quiz, seen);
+              const featured = isMix(g);
               return (
-                <li key={g.id}>
-                  <Link
-                    className={isMix(g) ? `${styles.card} ${styles.cardFeatured}` : styles.card}
-                    to={`/play/${g.id}`}
-                  >
-                    <h3>{t(`games.${g.id}.title`)}</h3>
-                    <p className={styles.muted}>{t(`games.${g.id}.description`)}</p>
-                    <p>{t('quiz.best', { score: best.get(g.id) ?? '—' })}</p>
-                    <p className={styles.muted}>{t('quiz.seen', { seen: progress.seen, total: progress.total })}</p>
+                <li key={g.id} className={featured ? styles.featuredItem : undefined}>
+                  <Link className={featured ? `${styles.card} ${styles.cardFeatured}` : styles.card} to={`/play/${g.id}`}>
+                    <span className={styles.thumb}>
+                      <g.Thumb />
+                    </span>
+                    <span className={styles.text}>
+                      <h3 className={styles.name}>{t(`games.${g.id}.title`)}</h3>
+                      <span className={styles.description}>{t(`games.${g.id}.description`)}</span>
+                      <span className={styles.meta}>
+                        <span>{t('quiz.best', { score: best.get(g.id) ?? '—' })}</span>
+                        <span>{t('quiz.seen', { seen: progress.seen, total: progress.total })}</span>
+                      </span>
+                    </span>
                   </Link>
                 </li>
               );
