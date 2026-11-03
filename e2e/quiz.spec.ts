@@ -1,5 +1,5 @@
 import { mkdirSync } from 'node:fs';
-import { expect, test } from '@playwright/test';
+import { expect, test, type Locator } from '@playwright/test';
 import { finishQuizRound, startGame } from './helpers';
 
 test('plays a quiz round from the Quiz tab to the review', async ({ page }) => {
@@ -189,6 +189,20 @@ test.describe('the top bar of a quiz on a small phone', () => {
   // Reduced motion, so the page jumps back up for each new question instead of gliding: every scroll is over at once.
   test.use({ viewport: { width: 320, height: 568 }, reducedMotion: 'reduce' });
 
+  /** How many of the corners and the middle of a control show something else: the top bar drawn over it, say. */
+  const coveredPoints = (control: Locator) =>
+    control.evaluate((element) => {
+      const r = element.getBoundingClientRect();
+      const points = [
+        [r.left + r.width / 2, r.top + r.height / 2],
+        [r.left + 24, r.top + 2],
+        [r.right - 24, r.top + 2],
+        [r.left + 24, r.bottom - 2],
+        [r.right - 24, r.bottom - 2],
+      ];
+      return points.filter(([x, y]) => !element.contains(document.elementFromPoint(x, y))).length;
+    });
+
   test('after the answer to a long question it stays in view, and «Siguiente» is whole below it', async ({ page }) => {
     await page.goto('./#/play/accounting-lending');
     await page.getByRole('button', { name: 'Comenzar' }).click();
@@ -224,18 +238,29 @@ test.describe('the top bar of a quiz on a small phone', () => {
     const nextBox = (await next.boundingBox())!;
     expect(nextBox.y).toBeGreaterThan(timeBox.y + timeBox.height);
     // Nothing is drawn over it either: what the page has at its corners and its middle is «Siguiente» itself.
-    const covered = await next.evaluate((button) => {
-      const r = button.getBoundingClientRect();
-      const points = [
-        [r.left + r.width / 2, r.top + r.height / 2],
-        [r.left + 24, r.top + 2],
-        [r.right - 24, r.top + 2],
-        [r.left + 24, r.bottom - 2],
-        [r.right - 24, r.bottom - 2],
-      ];
-      return points.filter(([x, y]) => !button.contains(document.elementFromPoint(x, y))).length;
-    });
-    expect(covered, 'points of «Siguiente» covered by something else').toBe(0);
+    expect(await coveredPoints(next), 'points of «Siguiente» covered by something else').toBe(0);
+  });
+
+  test('an option that takes the focus while the bar stays up is scrolled clear of it, never left under it', async ({
+    page,
+  }) => {
+    // Shorter still, so that while a question is asked its first options can be scrolled up under the bar.
+    await page.setViewportSize({ width: 320, height: 400 });
+    await page.goto('./#/play/accounting-lending');
+    await page.getByRole('button', { name: 'Comenzar' }).click();
+    await expect(page.getByText('Pregunta 1 de 10')).toBeVisible();
+    const options = page.getByRole('button', { name: /^Opción \d: / });
+    const count = await options.count();
+
+    // From the bottom of the page, the keyboard walks back up through the options, the first ones under the bar.
+    await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
+    await page.getByRole('button', { name: 'No sé', exact: true }).focus();
+    for (let n = count; n >= 1; n--) {
+      await page.keyboard.press('Shift+Tab');
+      const option = page.getByRole('button', { name: new RegExp(`^Opción ${n}: `) });
+      await expect(option).toBeFocused();
+      expect(await coveredPoints(option), `points of option ${n} covered by something else`).toBe(0);
+    }
   });
 });
 
