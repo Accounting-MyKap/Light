@@ -7,6 +7,7 @@ import { RULE_SWITCH_WRONG_PENALTY } from './rule-switch/engine';
 import { SAME_DIFF_WRONG_PENALTY } from './same-different/engine';
 import { ROUNDS } from './sequence-lights/engine';
 import { GAME_DURATION_MS } from './shared/constants';
+import { SWITCHYARD_DURATION_MS } from './switchyard/engine';
 
 const dicts = { es, en } as unknown as Record<
   string,
@@ -30,6 +31,16 @@ test.each([
 test('sequence-lights recap states the number of rounds (es and en)', () => {
   for (const lang of ['es', 'en']) {
     expect(dicts[lang].games['sequence-lights'].practice.recap, lang).toMatch(word(ROUNDS));
+  }
+});
+
+test('switchyard recap states the seconds of its own clock and that a train at another station scores nothing (es and en)', () => {
+  expect(SWITCHYARD_DURATION_MS / 1000).toBe(90);
+  const nothing = { es: /si llega a otra, no suma/, en: /if it reaches another, it scores nothing/ };
+  for (const lang of ['es', 'en'] as const) {
+    const recap = dicts[lang].games.switchyard.practice.recap;
+    expect(recap, lang).toMatch(word(SWITCHYARD_DURATION_MS / 1000));
+    expect(recap, lang).toMatch(nothing[lang]);
   }
 });
 

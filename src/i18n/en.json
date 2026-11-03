@@ -257,7 +257,15 @@
       "exampleAnswer": "Tap the switch so the red train goes to the red station, the one with the circle.",
       "levelStations": "{{n}} stations",
       "levelSideTunnel": "side tunnel",
-      "levelMiddleStation": "station in the middle"
+      "levelMiddleStation": "station in the middle",
+      "practice": {
+        "tap": "Tap the switch (the circle with an arrow) so the red train goes to the red station, the circle one",
+        "moving": "Now the train moves on its own: switch the track before it reaches the switch",
+        "two": "Several can come at once: take each one to its station",
+        "hintYellow": "The yellow train goes to the yellow station, the square one. Try again",
+        "hintEach": "Each train goes to the station of its color and shape. Try again",
+        "recap": "You have 90 seconds. Each train that reaches its station scores; if it reaches another, it scores nothing. They speed up while you get them right. On a keyboard: numbers 1 to 9."
+      }
     },
     "star-shower": {
       "title": "Star Shower",

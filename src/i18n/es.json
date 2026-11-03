@@ -257,7 +257,15 @@
       "exampleAnswer": "Toca el cambio para que el tren rojo vaya a la estación roja, la del círculo.",
       "levelStations": "{{n}} estaciones",
       "levelSideTunnel": "túnel lateral",
-      "levelMiddleStation": "estación central"
+      "levelMiddleStation": "estación central",
+      "practice": {
+        "tap": "Toca el cambio (el círculo con flecha) para que el tren rojo vaya a la estación roja, la del círculo",
+        "moving": "Ahora el tren avanza solo: cambia la vía antes de que llegue al cambio",
+        "two": "Pueden venir varios a la vez: lleva cada uno a su estación",
+        "hintYellow": "El tren amarillo va a la estación amarilla, la del cuadrado. Inténtalo otra vez",
+        "hintEach": "Cada tren va a la estación de su color y forma. Inténtalo otra vez",
+        "recap": "Tienes 90 segundos. Cada tren que llega a su estación suma; si llega a otra, no suma. Van más rápido mientras aciertas. Con teclado: números 1 a 9."
+      }
     },
     "star-shower": {
       "title": "Lluvia de estrellas",
