@@ -213,29 +213,29 @@ test.describe('Star Shower at 320 px', () => {
     await page.getByRole('button', { name: 'Start' }).click();
     const stars = page.getByTestId('star');
     await expect(stars).toHaveCount(3, { timeout: 15_000 });
-    // A star is born above the sky and comes down anchored by its bottom edge, so wait until the newest one has
-    // fully entered before looking at the boxes.
+    // A star is born above the sky and comes down anchored by its bottom edge, and a new one can be born at any moment.
+    // So measure the sky and every star in one snapshot, keep the stars that have fully entered, and wait until at
+    // least two of them are in: those are the ones whose sums must fit their lane.
     const stage = page.locator('[data-zone="stage"]');
-    await expect
-      .poll(async () => {
-        const sky = await stage.boundingBox();
-        const newest = await stars.last().boundingBox();
-        return newest !== null && sky !== null && newest.y >= sky.y;
-      })
-      .toBe(true);
-    const sky = await stage.boundingBox();
-    expect(sky).not.toBeNull();
-    const count = await stars.count();
-    expect(count).toBeGreaterThanOrEqual(2);
-    for (let i = 0; i < count; i++) {
-      const box = await stars.nth(i).boundingBox();
-      const text = await stars.nth(i).textContent();
-      expect(text, `star ${i} is a level-10 sum`).toMatch(/^\d+ \+ \d+ × \d+$/);
-      expect(box, `star ${i} «${text}»`).not.toBeNull();
-      expect(box!.x, `«${text}» left edge`).toBeGreaterThanOrEqual(sky!.x);
-      expect(box!.y, `«${text}» top edge`).toBeGreaterThanOrEqual(sky!.y);
-      expect(box!.x + box!.width, `«${text}» right edge`).toBeLessThanOrEqual(sky!.x + sky!.width);
-      expect(box!.y + box!.height, `«${text}» bottom edge`).toBeLessThanOrEqual(sky!.y + sky!.height);
+    type Box = { x: number; y: number; width: number; height: number };
+    const snapshot = async () => {
+      const sky = (await stage.boundingBox()) as Box;
+      const all = await stars.evaluateAll((els) =>
+        els.map((el) => {
+          const r = el.getBoundingClientRect();
+          return { text: el.textContent ?? '', x: r.x, y: r.y, width: r.width, height: r.height };
+        }),
+      );
+      return { sky, entered: all.filter((star) => star.y >= sky.y) };
+    };
+    await expect.poll(async () => (await snapshot()).entered.length, { timeout: 15_000 }).toBeGreaterThanOrEqual(2);
+    const { sky, entered } = await snapshot();
+    expect(entered.length).toBeGreaterThanOrEqual(2);
+    for (const [i, star] of entered.entries()) {
+      expect(star.text, `star ${i} is a level-10 sum`).toMatch(/^\d+ \+ \d+ × \d+$/);
+      expect(star.x, `«${star.text}» left edge`).toBeGreaterThanOrEqual(sky.x);
+      expect(star.x + star.width, `«${star.text}» right edge`).toBeLessThanOrEqual(sky.x + sky.width);
+      expect(star.y + star.height, `«${star.text}» bottom edge`).toBeLessThanOrEqual(sky.y + sky.height);
     }
     expect(await hasNoSidewaysScroll(page)).toBe(true);
   });

@@ -201,10 +201,19 @@ test.describe('a game without a practice', () => {
     // The game has no clock: the stars, frozen where they were, show that it stays paused. A star falls through the
     // sky in 9 s, some 11 % a second, so 2 s of falling would move it far more than the half percent allowed for
     // the last frame drawn before the pause.
-    const readStars = () => stars.evaluateAll((els) => els.map((el) => parseFloat((el as HTMLElement).style.top)));
+    // Each star hangs from a rail that the game moves with `translateY(<height>%)` (0 at the top of the sky, 100 on
+    // the horizon); read that height.
+    const readStars = () =>
+      stars.evaluateAll((els) =>
+        els.map((el) => {
+          const rail = el.closest<HTMLElement>('[data-rail]');
+          return Number(/translateY\((-?[\d.]+)%\)/.exec(rail?.style.transform ?? '')?.[1]);
+        }),
+      );
     const before = await readSheet();
     const starsBefore = await readStars();
     expect(starsBefore.length).toBeGreaterThan(0);
+    starsBefore.forEach((height, i) => expect(Number.isFinite(height), `star ${i + 1} has a readable height`).toBe(true));
     const buttons = await sheet.getByRole('button').allTextContents();
     expect(buttons).toEqual(['Continuar', '¿Cómo se juega?', 'Salir']);
 
