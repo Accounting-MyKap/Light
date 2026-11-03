@@ -74,10 +74,18 @@ type Pause = 'off' | 'sheet' | 'practice' | 'resuming';
 
 /** The practice opened from the pause: an opaque Luz layer over the dimmed game, with the focus inside. */
 function PracticeLayer({ children }: { children: ReactNode }) {
+  const { t } = useTranslation();
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => ref.current?.focus({ preventScroll: true }), []);
   return (
-    <div ref={ref} tabIndex={-1} className={styles.practiceLayer}>
+    <div
+      ref={ref}
+      tabIndex={-1}
+      role="dialog"
+      aria-modal="true"
+      aria-label={t('common.howToPlay')}
+      className={styles.practiceLayer}
+    >
       {children}
     </div>
   );

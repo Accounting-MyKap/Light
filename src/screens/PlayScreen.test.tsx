@@ -72,7 +72,7 @@ test('first visit offers the practice, then the «¡Listo!» screen, then the ga
   await userEvent.click(screen.getByRole('button', { name: 'Terminar práctica' }));
   expect(screen.getByRole('heading', { name: '¡Listo! Ahora va en serio' })).toBeInTheDocument();
   expect(screen.getByText('Resumen falso')).toBeInTheDocument();
-  expect((await getSettings()).seenInstructions).toContain('fake');
+  await vi.waitFor(async () => expect((await getSettings()).seenInstructions).toContain('fake'));
   await userEvent.click(screen.getByRole('button', { name: 'Comenzar' }));
   await userEvent.click(screen.getByRole('button', { name: 'Terminar' }));
   expect(await screen.findByText('120')).toBeInTheDocument();
@@ -100,6 +100,7 @@ test('the ✕ of the first-visit intro does not mark the game as seen', async ()
   await userEvent.click(await screen.findByRole('button', { name: 'Salir del juego' }));
   expect(await screen.findByRole('heading', { level: 1, name: 'Juegos' })).toBeInTheDocument();
   expect((await getSettings()).seenInstructions).not.toContain('fake');
+  expect(await db.results.count()).toBe(0);
 });
 
 test('a returning player opens the practice from «¿Cómo se juega?»; skipping goes back to the intro', async () => {
@@ -134,7 +135,9 @@ test('«¿Cómo se juega?» in the pause shows the practice over the game and co
   expect(buttons).toEqual(['Continuar', '¿Cómo se juega?', 'Salir']);
 
   await userEvent.click(within(sheet).getByRole('button', { name: '¿Cómo se juega?' }));
-  expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+  expect(screen.getByRole('dialog', { name: '¿Cómo se juega?' })).toBeInTheDocument();
+  expect(screen.getAllByRole('dialog')).toHaveLength(1);
+  expect(screen.getByRole('dialog', { name: '¿Cómo se juega?' }).contains(document.activeElement)).toBe(true);
   expect(screen.getByText('fake practice')).toBeInTheDocument();
   // The game is still there, paused and out of reach.
   expect(screen.getByText('paused:true').closest('[inert]')).not.toBeNull();
@@ -168,7 +171,7 @@ test('hiding the app during the pause practice does not close it', async () => {
   await userEvent.click(screen.getByRole('button', { name: '¿Cómo se juega?' }));
   setHidden(true);
   expect(screen.getByText('fake practice')).toBeInTheDocument();
-  expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+  expect(screen.queryByRole('dialog', { name: 'Pausado' })).not.toBeInTheDocument();
   setHidden(false);
   expect(screen.getByText('fake practice')).toBeInTheDocument();
 });

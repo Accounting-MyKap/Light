@@ -93,9 +93,11 @@ docs/         especificación y planes de implementación
 ## Cómo agregar un juego
 
 1. Crea `src/games/<id>/` con el motor (`engine.ts`, lógica pura y probada), el componente
-   (`Game.tsx`), un ejemplo visual (`Example.tsx`) y su definición (`index.ts`).
+   (`Game.tsx`), la práctica guiada (`Practice.tsx`, que recibe `onComplete` y `onSkip`) y su definición
+   (`index.ts`, con `Practice`, que es obligatoria).
 2. Agrega una línea en `src/games/registry.ts`.
-3. Agrega `games.<id>.title`, `description` e `instructions` en `es.json` y `en.json`.
+3. Agrega `games.<id>.title`, `description` y `practice.*` en `es.json` y `en.json`; `practice.recap`
+   es el resumen de las reglas en una línea, que se ve en la pantalla «¡Listo!».
 
 Las pruebas verifican que cada juego registrado tenga sus textos en ambos idiomas. Para la
 sincronización con Supabase también hace falta una fila en la tabla `games` (en una migración nueva de

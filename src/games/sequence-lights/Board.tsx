@@ -4,11 +4,10 @@ import styles from './sequence-lights.module.css';
 export interface BoardProps {
   size: number;
   lit: ReadonlySet<number>;
-  marks?: Readonly<Record<number, string>>;
-  onPress?: (cell: number) => void;
+  onPress: (cell: number) => void;
 }
 
-export function Board({ size, lit, marks = {}, onPress }: BoardProps) {
+export function Board({ size, lit, onPress }: BoardProps) {
   const { t } = useTranslation();
   return (
     <div
@@ -22,11 +21,8 @@ export function Board({ size, lit, marks = {}, onPress }: BoardProps) {
           className={styles.cell}
           data-lit={lit.has(cell)}
           aria-label={t('games.sequence-lights.cell', { n: cell + 1 })}
-          tabIndex={onPress ? 0 : -1}
-          onClick={onPress ? () => onPress(cell) : undefined}
-        >
-          {marks[cell] ?? ''}
-        </button>
+          onClick={() => onPress(cell)}
+        />
       ))}
     </div>
   );
