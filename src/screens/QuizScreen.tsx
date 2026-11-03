@@ -39,18 +39,22 @@ function gamesOf(bank: QuizBank): (GameDefinition & { quiz: QuizConfig })[] {
   return [...games.filter(isMix), ...games.filter((g) => !isMix(g))];
 }
 
+/** The best score of every game played. */
+async function bestScores(): Promise<Map<string, number>> {
+  const map = new Map<string, number>();
+  await db.results.each((r) => map.set(r.gameId, Math.max(map.get(r.gameId) ?? 0, r.score)));
+  return map;
+}
+
 export function QuizScreen() {
   const { t } = useTranslation();
-  const best = useLiveQuery(
-    async () => {
-      const map = new Map<string, number>();
-      await db.results.each((r) => map.set(r.gameId, Math.max(map.get(r.gameId) ?? 0, r.score)));
-      return map;
-    },
+  // A local read that fails (IndexedDB closed or blocked) only loses the marks: the cards stay playable.
+  const best = useLiveQuery(() => bestScores().catch(() => new Map<string, number>()), [], new Map<string, number>());
+  const seen = useLiveQuery(
+    () => seenCounts().catch(() => new Map<QuizCategory, number>()),
     [],
-    new Map<string, number>(),
+    new Map<QuizCategory, number>(),
   );
-  const seen = useLiveQuery(seenCounts, [], new Map<QuizCategory, number>());
 
   return (
     <section className={styles.screen}>

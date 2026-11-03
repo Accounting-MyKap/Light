@@ -18,6 +18,7 @@ beforeEach(async () => {
 });
 afterEach(() => {
   vi.useRealTimers();
+  vi.restoreAllMocks();
 });
 
 test('empty state', async () => {
@@ -125,7 +126,9 @@ test('a quiz-only player sees no empty training sections', async () => {
   await renderApp('/progress');
 
   expect(await screen.findByRole('meter', { name: 'Historia' })).toBeInTheDocument();
-  expect(screen.getByText('Juega un juego de entrenamiento para ver tus rachas y tu puntaje por área.')).toBeInTheDocument();
+  expect(
+    screen.getByText('Juega un juego de entrenamiento para ver tus rachas y tu puntaje por área.'),
+  ).toBeInTheDocument();
   expect(screen.queryByText(/Racha actual/)).not.toBeInTheDocument();
   expect(screen.queryByText(/Días entrenados/)).not.toBeInTheDocument();
   expect(screen.queryByRole('heading', { name: 'Puntaje por área' })).not.toBeInTheDocument();
@@ -151,6 +154,22 @@ test('the quiz-only and no-recent-answers lines are in English too', async () =>
   await addQuizAnswers('r1', round('science', ['correct']), new Date(2026, 8, 1, 9));
   await initI18n('en');
   render(<ProgressScreen />);
-  expect(await screen.findByText('Play a training game to see your streaks and your score by area.')).toBeInTheDocument();
+  expect(
+    await screen.findByText('Play a training game to see your streaks and your score by area.'),
+  ).toBeInTheDocument();
   expect(await screen.findByText('No answers in the last 30 days')).toBeInTheDocument();
+});
+
+test('the progress screen stays usable when the quiz answers cannot be read', async () => {
+  vi.spyOn(console, 'error').mockImplementation(() => {});
+  await addResult({ ...base, gameId: 'arrows', score: 100, playedAt: new Date(2026, 9, 20, 9) });
+  await addResult({ ...base, gameId: 'trivia-history', score: 250, playedAt: new Date(2026, 9, 20, 9) });
+  vi.spyOn(db.quizAnswers, 'each').mockRejectedValue(new Error('IndexedDB closed'));
+  vi.spyOn(db.quizAnswers, 'where').mockImplementation(() => {
+    throw new Error('IndexedDB closed');
+  });
+  await renderApp('/progress');
+  expect(await screen.findByText('Días entrenados: 1')).toBeInTheDocument();
+  expect(await screen.findByRole('heading', { level: 2, name: 'Preguntas' })).toBeInTheDocument();
+  expect(screen.queryByText('Algo salió mal')).not.toBeInTheDocument();
 });

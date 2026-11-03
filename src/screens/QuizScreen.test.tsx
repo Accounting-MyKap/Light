@@ -1,6 +1,6 @@
 import { screen, within } from '@testing-library/react';
 import { renderApp } from '../test/renderApp';
-import { clearAllData } from '../data/db';
+import { clearAllData, db } from '../data/db';
 import { addResult } from '../data/results';
 import { addQuizAnswers } from '../data/quizAnswers';
 import { BANK_SIZES } from '../quiz/banks/manifest';
@@ -9,6 +9,9 @@ import { makeChoice } from '../test/quizFixtures';
 import { seenFor } from './QuizScreen';
 
 beforeEach(clearAllData);
+afterEach(() => {
+  vi.restoreAllMocks();
+});
 
 /** `count` distinct answered questions of one category, as one saved round. */
 function answered(category: QuizCategory, count: number): QuizRoundDetails {
@@ -139,4 +142,19 @@ describe('seenFor', () => {
     });
     expect(seenFor(trivia, new Map())).toEqual({ seen: 0, total: sumOfBanks(TRIVIA_CATEGORIES) });
   });
+});
+
+test('the cards stay usable when the local history cannot be read', async () => {
+  vi.spyOn(console, 'error').mockImplementation(() => {});
+  vi.spyOn(db.results, 'each').mockRejectedValue(new Error('IndexedDB closed'));
+  vi.spyOn(db.quizAnswers, 'each').mockRejectedValue(new Error('IndexedDB closed'));
+  await renderApp('/quiz');
+  const history = await screen.findByRole('link', { name: /^Historia/ });
+  expect(history).toHaveAttribute('href', '/play/trivia-history');
+  // Give the failed reads time to settle: the screen must not fall back to the error boundary.
+  await new Promise((resolve) => setTimeout(resolve, 50));
+  expect(screen.queryByText('Algo salió mal')).not.toBeInTheDocument();
+  const card = within(screen.getByRole('link', { name: /^Historia/ }));
+  expect(card.getByText('Mejor marca: —')).toBeInTheDocument();
+  expect(card.getByText(`Vistas: 0 de ${BANK_SIZES.history}`)).toBeInTheDocument();
 });

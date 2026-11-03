@@ -10,6 +10,8 @@ import styles from '../Screens.module.css';
 const BANKS: readonly QuizBank[] = ['trivia', 'accounting'];
 const WINDOW_MS = 30 * 86_400_000;
 
+type Mastery = { answered: number; correct: number };
+
 /** The best score of the single-category game for each category, over all the results. */
 function bestByCategory(results: readonly StoredResult[]): Map<QuizCategory, number> {
   const best = new Map<QuizCategory, number>();
@@ -29,10 +31,11 @@ function bestByCategory(results: readonly StoredResult[]): Map<QuizCategory, num
 export function QuizProgress({ results, now }: { results: StoredResult[]; now: Date }) {
   const { t } = useTranslation();
   const time = now.getTime();
+  // A local read that fails (IndexedDB closed or blocked) shows an empty block rather than breaking the screen.
   const data = useLiveQuery(
     async () => ({
-      mastery: await masteryByCategory(new Date(time - WINDOW_MS)),
-      seen: await seenCounts(),
+      mastery: await masteryByCategory(new Date(time - WINDOW_MS)).catch(() => new Map<QuizCategory, Mastery>()),
+      seen: await seenCounts().catch(() => new Map<QuizCategory, number>()),
     }),
     [time],
   );
