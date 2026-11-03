@@ -67,12 +67,20 @@
   box-shadow: var(--card-shadow);
 }
 
-.row[data-state='done'] {
-  opacity: 0.6;
+.row[data-state='done'] .thumb {
+  opacity: 0.5;
 }
 
-.plan[data-complete='true'] .row {
+.row[data-state='done'] .itemTitle {
+  color: var(--text-muted);
+}
+
+.plan[data-complete='true'] .row .thumb {
   opacity: 1;
+}
+
+.plan[data-complete='true'] .row .itemTitle {
+  color: var(--text);
 }
 
 .thumb {
