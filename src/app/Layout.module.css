@@ -44,6 +44,7 @@
   align-content: center;
   gap: 2px;
   min-height: 60px;
+  padding-block: 0.25rem;
   text-decoration: none;
   color: var(--text-muted);
   font-size: 0.75rem;
@@ -54,6 +55,16 @@
 .navLink svg {
   width: 24px;
   height: 24px;
+}
+
+/* Five tabs: «Preguntas» fills its 64 px column at 320 px. With a larger root font a label wraps inside its own
+   column (hyphenated where the browser can) instead of running into its neighbours. */
+.navLink span {
+  max-width: 100%;
+  text-align: center;
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+  hyphens: auto;
 }
 
 .navLink[aria-current='page'] {

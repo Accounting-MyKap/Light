@@ -68,26 +68,33 @@ test('after «Siguiente» the new question starts in view on a 320 × 568 screen
 });
 
 for (const width of [320, 360, 375, 430]) {
-  test(`no tab label overflows its column on a ${width} px screen`, async ({ page }) => {
+  test(`every tab label fits its column on one line on a ${width} px screen`, async ({ page }) => {
     await page.setViewportSize({ width, height: 640 });
     await page.goto('./');
-    // Pin a phone-like font (Arial metrics): the CI fallback for system-ui (DejaVu Sans) is far wider than any phone font.
-    await page.addStyleTag({ content: 'nav a { font-family: "Liberation Sans", Arial, sans-serif !important; }' });
+    // The app font (Sora) is bundled, so this measures what a phone shows.
     await page.evaluate(() => document.fonts.ready);
     const links = page.getByRole('navigation').getByRole('link');
     await expect(links).toHaveCount(5);
+    await expectTall(links);
 
     const measures = await links.evaluateAll((els) =>
-      els.map((el) => ({
-        label: el.textContent,
-        clientWidth: el.clientWidth,
-        scrollWidth: el.scrollWidth,
-        left: el.getBoundingClientRect().left,
-        right: el.getBoundingClientRect().right,
-      })),
+      els.map((el) => {
+        const label = el.querySelector('span')!;
+        return {
+          label: el.textContent,
+          clientWidth: el.clientWidth,
+          scrollWidth: el.scrollWidth,
+          left: el.getBoundingClientRect().left,
+          right: el.getBoundingClientRect().right,
+          labelHeight: label.getBoundingClientRect().height,
+          lineHeight: parseFloat(getComputedStyle(label).lineHeight),
+        };
+      }),
     );
     for (const m of measures) {
       expect(m.scrollWidth, `${m.label} fits its tab`).toBeLessThanOrEqual(m.clientWidth);
+      // A label may wrap only with a large root font: at the default size every label is one line.
+      expect(m.labelHeight, `${m.label} is on one line`).toBeLessThan(1.5 * m.lineHeight);
       expect(m.left, `${m.label} starts on screen`).toBeGreaterThanOrEqual(0);
       expect(m.right, `${m.label} ends on screen`).toBeLessThanOrEqual(width);
     }
