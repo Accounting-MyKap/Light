@@ -3,6 +3,7 @@ import { SEQUENCE_MAX_SCORE, SEQUENCE_REFERENCE_SCORE } from './engine';
 import { SequenceLightsExample } from './Example';
 import { SequenceLightsThumb } from './Thumb';
 import { SequenceLightsGame } from './Game';
+import { SequenceLightsPractice } from './Practice';
 
 export const sequenceLightsGame: GameDefinition = {
   id: 'sequence-lights',
@@ -12,4 +13,5 @@ export const sequenceLightsGame: GameDefinition = {
   Component: SequenceLightsGame,
   Example: SequenceLightsExample,
   Thumb: SequenceLightsThumb,
+  Practice: SequenceLightsPractice,
 };

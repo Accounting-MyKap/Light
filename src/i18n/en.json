@@ -55,7 +55,14 @@
       "watch": "Watch…",
       "yourTurn": "Your turn",
       "correct": "Perfect!",
-      "wrong": "Almost… keep going"
+      "wrong": "Almost… keep going",
+      "practice": {
+        "watch": "Watch which squares light up…",
+        "yourTurn": "Now tap them in the same order",
+        "grows": "Get it right and the sequence grows longer",
+        "hint": "Almost. Watch again",
+        "recap": "There are 8 rounds. Get one right and the sequence grows; miss and it shrinks."
+      }
     },
     "arrows": {
       "title": "Arrows",

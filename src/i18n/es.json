@@ -55,7 +55,14 @@
       "watch": "Observa…",
       "yourTurn": "Tu turno",
       "correct": "¡Perfecto!",
-      "wrong": "Casi… sigamos"
+      "wrong": "Casi… sigamos",
+      "practice": {
+        "watch": "Mira qué casillas se encienden…",
+        "yourTurn": "Ahora tócalas en el mismo orden",
+        "grows": "Si aciertas, la secuencia se alarga",
+        "hint": "Casi. Mira otra vez",
+        "recap": "Son 8 rondas. Si aciertas, la secuencia se alarga; si fallas, se acorta."
+      }
     },
     "arrows": {
       "title": "Flechas",
