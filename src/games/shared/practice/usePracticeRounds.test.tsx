@@ -78,6 +78,29 @@ test('answers while the status is right are ignored', () => {
   expect(api.current.status).toBe('right');
 });
 
+test('two right answers in one batch on the last round complete exactly once', () => {
+  const onComplete = vi.fn();
+  const { api } = setup(1, onComplete);
+  act(() => {
+    api.current.answer(true);
+    api.current.answer(true);
+  });
+  act(() => void vi.advanceTimersByTime(PRACTICE_NEXT_MS));
+  expect(onComplete).toHaveBeenCalledTimes(1);
+});
+
+test('two right answers in one batch advance a single round', () => {
+  const { api } = setup(4, vi.fn());
+  act(() => {
+    api.current.answer(true);
+    api.current.answer(true);
+  });
+  act(() => void vi.advanceTimersByTime(PRACTICE_NEXT_MS));
+  expect(api.current.round).toBe(1);
+  act(() => void vi.advanceTimersByTime(PRACTICE_NEXT_MS * 3));
+  expect(api.current.round).toBe(1);
+});
+
 test('unmounting during the pause does not complete nor warn', () => {
   const error = vi.spyOn(console, 'error').mockImplementation(() => undefined);
   const warn = vi.spyOn(console, 'warn').mockImplementation(() => undefined);

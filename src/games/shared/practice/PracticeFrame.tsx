@@ -45,6 +45,7 @@ export function PracticeFrame({
       </div>
 
       <div ref={stageRef} className={styles.stage} data-zone="stage">
+        {/* Its own key scope, apart from the flash: a keyed scene can never clash with the flash's key. */}
         <>{children}</>
         <Flash signal={signal} />
       </div>

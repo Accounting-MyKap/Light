@@ -22,27 +22,33 @@ export function usePracticeRounds(total: number, onComplete: () => void) {
     complete.current = onComplete;
   });
 
+  // Set synchronously on a right answer, so a second answer in the same batch (before any re-render) is ignored.
+  const busy = useRef(false);
+
   useEffect(() => () => clearTimeout(timer.current), []);
 
   const answer = useCallback(
     (correct: boolean) => {
-      if (status === 'right') return;
+      if (busy.current) return;
       feedback(correct ? 'correct' : 'wrong');
       if (!correct) {
         setStatus('wrong');
         return;
       }
+      busy.current = true;
       setStatus('right');
+      clearTimeout(timer.current);
       timer.current = setTimeout(() => {
         if (round + 1 >= total) {
           complete.current();
         } else {
           setRound(round + 1);
           setStatus('asking');
+          busy.current = false;
         }
       }, PRACTICE_NEXT_MS);
     },
-    [status, feedback, round, total],
+    [feedback, round, total],
   );
 
   return { round, status, answer };
