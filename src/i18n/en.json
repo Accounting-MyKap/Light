@@ -264,11 +264,6 @@
       "title": "Star Shower",
       "skill": "Math under pressure",
       "description": "Solve the sums on the falling stars before they reach the horizon.",
-      "instructions": [
-        "Stars with sums are falling. Type the answer on the on-screen keypad or your keyboard and press OK (or Enter) to pop them.",
-        "The golden comet pops every star on the screen. A wrong number costs no points: just try again.",
-        "If a star reaches the horizon, you lose a life and the other stars vanish. Lose 3 and the game ends."
-      ],
       "practice": {
         "pop": "Type the star's answer and press OK to pop it",
         "falling": "The stars fall: pop both before they touch the horizon",
