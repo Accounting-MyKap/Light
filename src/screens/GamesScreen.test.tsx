@@ -14,5 +14,6 @@ test('games are grouped by area with links and best marks', async () => {
   expect(screen.getByRole('link', { name: /Flechas/ })).toHaveAttribute('href', '/play/arrows');
   expect(screen.getByRole('link', { name: /Cálculo relámpago/ })).toHaveAttribute('href', '/play/quick-math');
   expect(await screen.findByText('Mejor marca: 77')).toBeInTheDocument();
-  expect(screen.getAllByText('Mejor marca: —')).toHaveLength(4);
+  expect(screen.getByRole('link', { name: /Guardagujas/ })).toHaveAttribute('href', '/play/switchyard');
+  expect(screen.getAllByText('Mejor marca: —')).toHaveLength(5);
 });
