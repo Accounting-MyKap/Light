@@ -185,7 +185,15 @@ export function trainPose(map: TrackMap, train: Train, back: number): Pose {
     index -= 1;
     distance += map.segments[train.route[index]].line.length;
   }
-  return poseAt(map.segments[train.route[index]].line, distance);
+  const line = map.segments[train.route[index]].line;
+  if (distance < 0) {
+    // Still inside the tunnel: carry on straight back from its mouth (hidden by the portal), so a train comes out
+    // whole instead of squeezed onto the mouth.
+    const start = poseAt(line, 0);
+    const rad = (start.angle * Math.PI) / 180;
+    return { x: start.x + Math.cos(rad) * distance, y: start.y + Math.sin(rad) * distance, angle: start.angle };
+  }
+  return poseAt(line, distance);
 }
 
 export function switchyardResult(state: SwitchyardState, durationMs: number): GameResult {

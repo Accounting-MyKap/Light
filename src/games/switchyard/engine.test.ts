@@ -299,3 +299,19 @@ test('the result counts arrived trains only', () => {
   });
   expect(s.total).toBe(3);
 });
+
+test('a train still coming out of the tunnel lines up on the straight track behind the mouth', () => {
+  const rng = createRng(17);
+  const s = run(createSwitchyardGame(1, rng, 0), FIRST_TRAIN_MS, rng).state;
+  const train = { ...s.trains[0], distance: 10 };
+  const start = poseAt(s.map.segments[0].line, 0);
+  const rad = (start.angle * Math.PI) / 180;
+  const tail = trainPose(s.map, train, 40);
+  expect(tail.x).toBeCloseTo(start.x - Math.cos(rad) * 30);
+  expect(tail.y).toBeCloseTo(start.y - Math.sin(rad) * 30);
+  expect(tail.angle).toBeCloseTo(start.angle);
+  // The wagon's two ends never collapse into one point, so it is never drawn sideways.
+  const wagonFront = trainPose(s.map, train, 40);
+  const wagonBack = trainPose(s.map, train, 66);
+  expect(Math.hypot(wagonFront.x - wagonBack.x, wagonFront.y - wagonBack.y)).toBeCloseTo(26);
+});
