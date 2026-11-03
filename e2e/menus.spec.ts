@@ -4,7 +4,23 @@ import { finishCurrentGame } from './helpers';
 
 const CLOCK_TIME = new Date('2026-10-20T10:00:00');
 const SCREENSHOT_DIR = 'test-results/menus';
-const MENUS = ['./#/', './#/games', './#/progress', './#/settings'] as const;
+const MENUS = {
+  'es-CO': [
+    ['./#/', 'Entrenamiento de hoy'],
+    ['./#/games', 'Juegos'],
+    ['./#/progress', 'Progreso'],
+    ['./#/settings', 'Ajustes'],
+  ],
+  'en-US': [
+    ['./#/', 'Today’s training'],
+    ['./#/games', 'Games'],
+    ['./#/progress', 'Progress'],
+    ['./#/settings', 'Settings'],
+  ],
+} as const;
+
+/** The h1 of one screen. A hash change keeps the old screen's h1 for a moment, so always wait for the right one. */
+const title = (page: Page, name: string) => page.getByRole('heading', { level: 1, name, exact: true });
 
 /** True when nothing of the page sticks out sideways. */
 const hasNoSidewaysScroll = (page: Page) =>
@@ -40,9 +56,9 @@ for (const locale of ['es-CO', 'en-US']) {
     test.use({ locale, viewport: { width: 320, height: 640 } });
 
     test('no sideways scroll on the four menus', async ({ page }) => {
-      for (const url of MENUS) {
+      for (const [url, name] of MENUS[locale as keyof typeof MENUS]) {
         await page.goto(url);
-        await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+        await expect(title(page, name)).toBeVisible();
         expect(await hasNoSidewaysScroll(page), `${url} scrolls sideways`).toBe(true);
       }
     });
@@ -53,9 +69,9 @@ test.describe('large root font menus', () => {
   test.use({ viewport: { width: 390, height: 844 } });
 
   test('no sideways scroll with a 24 px root font', async ({ page }) => {
-    for (const url of ['./#/', './#/games']) {
+    for (const [url, name] of [MENUS['es-CO'][0], MENUS['es-CO'][1]]) {
       await page.goto(url);
-      await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+      await expect(title(page, name)).toBeVisible();
       await page.evaluate(() => {
         document.documentElement.style.fontSize = '24px';
       });
@@ -80,31 +96,35 @@ for (const colorScheme of ['light', 'dark'] as const) {
 
     test('screenshots of the menus for review', async ({ page }) => {
       mkdirSync(SCREENSHOT_DIR, { recursive: true });
-      const shot = async (name: string, fullPage = true) => {
-        await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
-        await page.screenshot({ path: `${SCREENSHOT_DIR}/${colorScheme}-${name}.png`, fullPage });
+      const shot = async (name: string, h1: string) => {
+        await expect(title(page, h1)).toBeVisible();
+        await page.mouse.move(0, 0); // no card should show its hover ring
+        const height = await page.evaluate(() => document.documentElement.scrollHeight);
+        await page.setViewportSize({ width: 390, height: Math.max(844, height) });
+        await page.screenshot({ path: `${SCREENSHOT_DIR}/${colorScheme}-${name}.png` });
+        await page.setViewportSize({ width: 390, height: 844 });
       };
       await page.clock.install({ time: CLOCK_TIME });
 
       await page.goto('./#/');
-      await shot('1-today-fresh');
+      await shot('1-today-fresh', 'Entrenamiento de hoy');
 
       await page.getByRole('link', { name: 'Comenzar' }).click();
       await finishCurrentGame(page);
       // After the first game the result offers only «Siguiente juego»: go back to Today by the address.
       await page.goto('./#/');
       await expect(page.getByRole('link', { name: /Continuar/ })).toBeVisible();
-      await shot('2-today-one-done');
+      await shot('2-today-one-done', 'Entrenamiento de hoy');
 
       await page.goto('./#/games');
-      await shot('3-games');
+      await shot('3-games', 'Juegos');
       await page.goto('./#/progress');
-      await shot('4-progress');
+      await shot('4-progress', 'Progreso');
       await page.goto('./#/settings');
-      await shot('5-settings');
+      await shot('5-settings', 'Ajustes');
       await page.getByRole('button', { name: 'Borrar mis datos' }).click();
       await expect(page.getByRole('alertdialog')).toBeVisible();
-      await shot('6-settings-delete');
+      await shot('6-settings-delete', 'Ajustes');
     });
   });
 }
