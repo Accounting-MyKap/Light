@@ -30,4 +30,6 @@ export interface GameDefinition {
   Component: ComponentType<GameProps>;
   /** Static visual example shown with the instructions. */
   Example: ComponentType;
+  /** Decorative square thumbnail (no props) that fills the width of its container; size it with a wrapper. */
+  Thumb: ComponentType;
 }

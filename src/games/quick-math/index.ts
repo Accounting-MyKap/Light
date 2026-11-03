@@ -1,6 +1,7 @@
 import type { GameDefinition } from '../types';
 import { QUICK_MATH_MAX_SCORE, QUICK_MATH_REFERENCE_SCORE } from './engine';
 import { QuickMathExample } from './Example';
+import { QuickMathThumb } from './Thumb';
 import { QuickMathGame } from './Game';
 
 export const quickMathGame: GameDefinition = {
@@ -10,4 +11,5 @@ export const quickMathGame: GameDefinition = {
   maxScore: QUICK_MATH_MAX_SCORE,
   Component: QuickMathGame,
   Example: QuickMathExample,
+  Thumb: QuickMathThumb,
 };

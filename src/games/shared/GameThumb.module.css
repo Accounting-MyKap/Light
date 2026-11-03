@@ -1,0 +1,26 @@
+.thumb {
+  --g: #ffb52e;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 22%;
+  overflow: hidden;
+  background:
+    radial-gradient(85% 70% at 50% 15%, color-mix(in srgb, var(--g) 45%, transparent), transparent 75%),
+    #0d1024;
+  box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--g) 35%, transparent);
+  color: var(--g);
+}
+
+.thumb svg {
+  width: 64%;
+  height: 64%;
+  filter: drop-shadow(0 0 6px var(--g));
+}
+
+.thumb[data-area='memory'] { --g: #ffb52e; }
+.thumb[data-area='attention'] { --g: #3fd4ff; }
+.thumb[data-area='speed'] { --g: #ff5fd2; }
+.thumb[data-area='flexibility'] { --g: #a98bff; }
+.thumb[data-area='math'] { --g: #8dff6a; }

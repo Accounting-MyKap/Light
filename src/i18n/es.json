@@ -45,6 +45,7 @@
   "games": {
     "sequence-lights": {
       "title": "Secuencia de luces",
+      "skill": "Memoria espacial",
       "description": "Recuerda en qué orden se encienden las casillas.",
       "instructions": [
         "Observa cómo se encienden las casillas, una tras otra.",
@@ -59,6 +60,7 @@
     },
     "arrows": {
       "title": "Flechas",
+      "skill": "Atención selectiva",
       "description": "Fíjate solo en la flecha del centro, aunque las demás intenten confundirte.",
       "instructions": [
         "Verás una fila de cinco flechas.",
@@ -72,6 +74,7 @@
     },
     "same-different": {
       "title": "¿Igual o distinto?",
+      "skill": "Velocidad de procesamiento",
       "description": "Decide lo más rápido que puedas si cada símbolo es igual al anterior.",
       "instructions": [
         "Primero verás un símbolo: recuérdalo.",
@@ -107,6 +110,7 @@
     },
     "rule-switch": {
       "title": "Cambio de regla",
+      "skill": "Cambio de tareas",
       "description": "Empareja cartas por color o por forma, y adáptate cuando la regla cambie.",
       "instructions": [
         "Arriba verás la regla actual: COLOR o FORMA.",
@@ -134,6 +138,7 @@
     },
     "quick-math": {
       "title": "Cálculo relámpago",
+      "skill": "Aritmética mental",
       "description": "Resuelve operaciones contra el reloj; la dificultad sube mientras aciertas.",
       "instructions": [
         "Aparece una operación: escribe el resultado con el teclado en pantalla o el de tu computador.",
