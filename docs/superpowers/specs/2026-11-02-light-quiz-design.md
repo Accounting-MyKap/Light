@@ -259,6 +259,10 @@ pestaña y salida con ✕.
 - **Lo de entrenamiento queda igual**:
   - Racha, días entrenados, puntaje por área y gráficos por juego.
   - «Días entrenados» y «Por juego» cuentan **solo los juegos de entrenamiento**.
+- **Solo preguntas:** si el jugador no tiene ninguna partida de entrenamiento, las cifras, el puntaje por área y
+  «Por juego» (que estarían vacíos) se reemplazan por la línea «Juega un juego de entrenamiento para ver tus rachas
+  y tu puntaje por área.» (EN: «Play a training game to see your streaks and your score by area.») y el botón
+  «Ir a Hoy» («Go to Today») del estado sin partidas. Debajo sigue el bloque «Preguntas».
 - **Bloque nuevo «Preguntas»** (aparece solo si hay alguna partida de preguntas), con Cultura general y
   Contabilidad. Para cada categoría con datos muestra:
   - **Dominio:** porcentaje de aciertos de los últimos 30 días, como barra de 0 a 100 %. Cuenta todas las
@@ -266,6 +270,15 @@ pestaña y salida con ✕.
     acertadas.
   - Preguntas vistas.
   - Mejor marca de la categoría.
+- **La línea bajo el título del bloque:**
+  - Con respuestas en los últimos 30 días: «Dominio (últimos 30 días)» y las barras.
+  - Sin respuestas en esos 30 días: «Sin respuestas en los últimos 30 días» («No answers in the last 30 days»),
+    sin barras.
+  - Si las respuestas no se pueden leer en el dispositivo (IndexedDB cerrada o bloqueada): «No pudimos leer tus
+    respuestas en este dispositivo.» («We couldn't read your answers on this device.»), sin barras. Nunca se hace
+    pasar por «sin respuestas».
+- Si no se pueden leer las partidas o los días completos, Progreso muestra lo que mostraría sin datos (el estado
+  sin partidas, o la racha en 0), nunca la pantalla de error.
 
 **Sin cambios:** Hoy y Ajustes. El aviso de privacidad sigue siendo cierto tal como está.
 
@@ -288,6 +301,58 @@ la app.
   puntos (como «Saltar» en Cálculo relámpago).
 - **Resultado:** el resultado de Luz siempre se abre arriba. «Repasa tus errores» va debajo de las tarjetas de
   precisión y nivel, en tarjetas de vidrio, sobre el fondo oscuro.
+
+**Menús Luz de día y de noche** (al integrar `main`, ver `2026-11-03-light-menus-luz-design.md`). La pestaña
+Preguntas y su bloque de Progreso siguen el tema de la app, como los demás menús.
+- **Barra inferior:**
+  - La pestaña Preguntas lleva su ícono en la barra de íconos: un globo de diálogo con «?».
+  - Usa la misma cuadrícula de 24 px, trazo de 2 px y `currentColor` que los demás íconos, y está oculto para
+    lectores de pantalla: el nombre del enlace es solo «Preguntas» / «Quiz».
+  - Las cinco columnas son iguales. Con la letra grande, una etiqueta se parte en dos líneas dentro de su columna
+    («Pregun-tas»).
+  - Los cinco íconos quedan siempre en una misma fila, a 10 px del borde superior, aunque alguna etiqueta ocupe
+    dos líneas.
+- **Miniaturas:**
+  - Cada uno de los 14 juegos tiene la suya, sobre el marco común `GameThumb` en el color de su banco.
+  - Cada categoría tiene su motivo:
+
+    | Categoría | Motivo |
+    |---|---|
+    | Historia | un edificio clásico |
+    | Ciencias | un átomo |
+    | Geografía | un globo terráqueo |
+    | Matemáticas | π |
+    | Arte y literatura | una paleta |
+    | Entretenimiento | una pantalla con «play» |
+    | Deportes | un balón |
+    | Tecnología | un chip |
+    | Conceptos contables | una balanza |
+    | Colombia | «CO» en una placa |
+    | EE. UU. | «US» en una placa |
+    | Cartera y préstamos | una moneda con «%» |
+
+  - Las dos Mezclas llevan un «?» con tres puntos de luz.
+  - Cada miniatura se crea una sola vez por juego, así que React recibe siempre el mismo componente.
+- **Colores de los bancos:**
+  - Son los tokens `--area-trivia` y `--area-accounting` de `theme.css`, de día y de noche.
+  - Los de noche son los mismos de la partida.
+  - La prueba de contraste exige ≥ 4,5:1 sobre `--bg` y sobre `--surface`, porque se usan como texto.
+
+  | Token | Luz de día | Luz de noche |
+  |---|---|---|
+  | `--area-trivia` | `#b8461b`: 4,99:1 sobre `--bg`, 5,34:1 sobre `--surface` | `#ff7b45`: 7,61:1 y 6,90:1 |
+  | `--area-accounting` | `#0b6bcb`: 4,93:1 y 5,28:1 | `#3399ff`: 6,65:1 y 6,03:1 |
+
+- **Pantalla Preguntas**, con el aspecto de las tarjetas del catálogo de Juegos:
+  - Título grande y subtítulo.
+  - Cada bloque lleva un punto del color de su banco antes del nombre.
+  - Cada tarjeta muestra la miniatura, el nombre, la descripción, la mejor marca y «Vistas».
+  - La Mezcla abre cada bloque destacada: miniatura más grande, y un tinte y un anillo del color del banco.
+  - Desde 600 px de ancho las tarjetas van en dos columnas, y la Mezcla ocupa la fila entera.
+- **Bloque de Progreso**, con el aspecto de las barras por área:
+  - Una tarjeta por banco, con su punto de color.
+  - Por categoría, la barra de dominio en el color del banco, con el porcentaje a la derecha.
+  - Debajo de cada barra, «Vistas: N de M · Mejor marca: X».
 
 ## 5. Datos y código
 
@@ -521,6 +586,7 @@ respuestas pregunta por pregunta no se suben.
 |---|---|
 | No carga un banco (caché dañada, sin conexión antes de la primera visita) | «No pudimos cargar las preguntas» + «Reintentar» y «Salir»; tras un segundo fallo seguido, también «Recargar la página». No se registra nada |
 | No se puede leer el historial local | Se juega con historial vacío (alguna pregunta puede repetirse); nunca bloquea |
+| No se pueden leer los datos locales en Preguntas o Progreso | Las pantallas siguen usables. Preguntas pierde solo las marcas («Mejor marca», «Vistas»). En Progreso, el bloque Preguntas dice «No pudimos leer tus respuestas en este dispositivo.» y el resto se muestra como sin datos (§4) |
 | Falla el guardado | El flujo actual de «Reintentar» con el mismo `resultId`; el resultado y sus respuestas se guardan en una sola transacción, así que no queda uno sin las otras ni se duplican |
 | Ronda de menos de 5 s o más de 1 h activa | El servidor la rechaza (regla actual de `duration_ms`); queda guardada en el dispositivo |
 | Una pregunta con un dato equivocado | Se corrige su JSON y se publica una versión nueva; su id se mantiene |
@@ -590,6 +656,12 @@ respuestas pregunta por pregunta no se suben.
 - Se cumple el contraste WCAG AA (lo comprueba la prueba de contraste existente) y se respeta
   `prefers-reduced-motion` en la barra de tiempo.
 - Se puede jugar entero con teclado.
+- **Foco:** el teclado y los lectores de pantalla nunca se quedan en el vacío de la página.
+  - Cada pregunta nueva lleva el foco a su enunciado, y al responder pasa a «Siguiente».
+  - Al volver de la pausa, el foco va al enunciado, o a «Siguiente» si la pregunta ya se respondió. Esto vale
+    también para una primera pregunta que cargó durante la pausa.
+  - Tras «Reintentar», va a la línea «Cargando preguntas…» y luego a la primera pregunta, o de nuevo a
+    «Reintentar» si vuelve a fallar.
 - **Una mejora frente a los demás juegos:** el texto es legible por lectores de pantalla. Aun así, el límite de
   20 s puede ser corto para quien lo usa, y este diseño no añade un modo sin tiempo (ver §8).
 
