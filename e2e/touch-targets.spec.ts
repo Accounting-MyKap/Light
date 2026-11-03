@@ -172,7 +172,7 @@ for (const rootPx of [16, 24]) {
 
 // A word split over two lines (hyphenated or not) looks broken, so no word on a tab screen may do that.
 for (const locale of ['es', 'en'] as const) {
-  test.describe(`no word broken across lines: 320 px screen, ${locale}`, () => {
+  test.describe(`no word broken across lines or spilling out of its box: 320 px screen, ${locale}`, () => {
     test.use({ locale });
     for (const rootPx of [16, 24]) {
       test(`${rootPx} px root font`, async ({ page }) => {
@@ -191,7 +191,7 @@ for (const locale of ['es', 'en'] as const) {
             for (let n = walker.nextNode(); n; n = walker.nextNode()) {
               const parent = n.parentElement;
               if (!parent || !parent.closest('main, nav')) continue;
-              if (parent.closest('script, style') || parent.getClientRects().length === 0) continue;
+              if (parent.closest('script, style, .visually-hidden') || parent.getClientRects().length === 0) continue;
               const text = n.textContent ?? '';
               for (const m of text.matchAll(/[\p{L}\p{N}]+/gu)) {
                 const range = document.createRange();
@@ -201,9 +201,29 @@ for (const locale of ['es', 'en'] as const) {
                 const tops = new Set(rects.map((r) => Math.round(r.top)));
                 // One line's rects share a top; a split word has tops a line apart.
                 if (rects.length > 1 && Math.max(...tops) - Math.min(...tops) > 3) {
-                  out.push(`«${m[0]}» in <${parent.tagName.toLowerCase()} class="${parent.className}">`);
+                  out.push(`«${m[0]}» split in <${parent.tagName.toLowerCase()} class="${parent.className}">`);
+                  continue;
+                }
+                // A whole word must also stay inside the box of its nearest non-inline ancestor.
+                let box: HTMLElement = parent;
+                while (getComputedStyle(box).display === 'inline' && box.parentElement) box = box.parentElement;
+                const b = box.getBoundingClientRect();
+                if (rects.some((r) => r.left < b.left - 0.5 || r.right > b.right + 0.5)) {
+                  out.push(`«${m[0]}» spills out of <${box.tagName.toLowerCase()} class="${box.className}">`);
                 }
               }
+            }
+            // A select must be wide enough to show its whole selected option.
+            const ctx = document.createElement('canvas').getContext('2d')!;
+            for (const sel of document.querySelectorAll('main select, nav select')) {
+              const el = sel as HTMLSelectElement;
+              if (el.getClientRects().length === 0) continue;
+              const cs = getComputedStyle(el);
+              ctx.font = `${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;
+              const need = ctx.measureText(el.selectedOptions[0]?.text ?? '').width;
+              const have = el.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+              // The native arrow takes room too, so the content box must exceed the text, not just match it.
+              if (have < need) out.push(`select «${el.selectedOptions[0]?.text}» is clipped: ${have.toFixed(1)} px for ${need.toFixed(1)} px of text`);
             }
             return out;
           });
