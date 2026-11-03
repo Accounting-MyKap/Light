@@ -197,10 +197,10 @@
       "id": "sports-0023", "difficulty": 1, "type": "choice",
       "es": { "question": "¿Qué país organizó el Mundial de fútbol de 2014?",
               "options": ["Brasil", "Sudáfrica", "Rusia", "Argentina"],
-              "explanation": "Brasil fue sede del Mundial de 2014, por segunda vez después de 1950." },
+              "explanation": "Brasil fue sede del Mundial de 2014; ya lo había organizado en 1950." },
       "en": { "question": "Which country hosted the 2014 FIFA World Cup?",
               "options": ["Brazil", "South Africa", "Russia", "Argentina"],
-              "explanation": "Brazil hosted the 2014 World Cup, for the second time after 1950." }
+              "explanation": "Brazil hosted the 2014 World Cup; it had also hosted it in 1950." }
     },
     {
       "id": "sports-0024", "difficulty": 1, "type": "choice",
@@ -215,10 +215,10 @@
       "id": "sports-0025", "difficulty": 1, "type": "choice",
       "es": { "question": "¿Qué selección ganó el Mundial de 2022, en una final decidida por penales ante Francia?",
               "options": ["Argentina", "Croacia", "Marruecos", "Brasil"],
-              "explanation": "La final terminó 3-3 y Argentina ganó la tanda de penales 4-2, con lo que logró su tercer título mundial." },
+              "explanation": "La final terminó 3-3 tras la prórroga y Argentina ganó la tanda de penales 4-2, con lo que logró su tercer título mundial." },
       "en": { "question": "Which national team won the 2022 World Cup, in a final decided on penalties against France?",
               "options": ["Argentina", "Croatia", "Morocco", "Brazil"],
-              "explanation": "The final ended 3-3 and Argentina won the shootout 4-2, claiming its third world title." }
+              "explanation": "The final ended 3-3 after extra time and Argentina won the shootout 4-2, claiming its third world title." }
     },
     {
       "id": "sports-0026", "difficulty": 1, "type": "choice",
@@ -730,10 +730,154 @@
       "id": "sports-0084", "difficulty": 2, "type": "choice",
       "es": { "question": "¿Qué deporte autóctono de origen indígena fue declarado deporte nacional de Colombia por ley?",
               "options": ["Tejo", "Fútbol", "Patinaje", "Ciclismo"],
-              "explanation": "El tejo, que consiste en lanzar un disco metálico para hacer estallar mechas con pólvora, fue declarado deporte nacional por la Ley 613 de 2000." },
+              "explanation": "El tejo, que consiste en lanzar un disco metálico para hacer estallar mechas con pólvora, fue declarado deporte nacional por ley en el año 2000." },
       "en": { "question": "Which native sport of Indigenous origin was declared Colombia's national sport by law?",
               "options": ["Tejo", "Soccer", "Roller skating", "Cycling"],
-              "explanation": "Tejo, in which players throw a metal disc to make gunpowder packets explode, was declared the national sport by Law 613 of 2000." }
+              "explanation": "Tejo, in which players throw a metal disc to make gunpowder packets explode, was declared the national sport by law in 2000." }
+    },
+    {
+      "id": "sports-0085", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Qué selección ganó el Mundial de 1954, en Suiza, al vencer 3-2 a la gran favorita, Hungría?",
+              "options": ["Alemania Occidental", "Uruguay", "Brasil", "Austria"],
+              "explanation": "Alemania Occidental remontó un 0-2 inicial y ganó 3-2 la final, en Berna, en el llamado «Milagro de Berna»." },
+      "en": { "question": "Which team won the 1954 World Cup in Switzerland, beating the heavy favorite Hungary 3-2?",
+              "options": ["West Germany", "Uruguay", "Brazil", "Austria"],
+              "explanation": "West Germany came back from 0-2 down to win the final 3-2, in Bern, in the so-called “Miracle of Bern”." }
+    },
+    {
+      "id": "sports-0086", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Qué selección ganó dos Mundiales seguidos, en 1934 y 1938?",
+              "options": ["Italia", "Hungría", "Uruguay", "Francia"],
+              "explanation": "Italia ganó en 1934, como anfitriona, y en 1938, en Francia. Fue la primera selección en ganar dos Mundiales." },
+      "en": { "question": "Which national team won two World Cups in a row, in 1934 and 1938?",
+              "options": ["Italy", "Hungary", "Uruguay", "France"],
+              "explanation": "Italy won in 1934, as the host, and in 1938, in France. It was the first national team to win two World Cups." }
+    },
+    {
+      "id": "sports-0087", "difficulty": 3, "type": "choice",
+      "es": { "question": "En el Mundial de 1962, ¿qué colombiano marcó un gol olímpico (directo de tiro de esquina) al arquero soviético Lev Yashin?",
+              "options": ["Marcos Coll", "Francisco Zuluaga", "Willington Ortiz", "Carlos Valderrama"],
+              "explanation": "Marcos Coll anotó directo de córner a Yashin en el empate 4-4 de Colombia con la Unión Soviética, en Arica, Chile." },
+      "en": { "question": "At the 1962 World Cup, which Colombian scored an “Olympic goal” (straight from a corner kick) past Soviet goalkeeper Lev Yashin?",
+              "options": ["Marcos Coll", "Francisco Zuluaga", "Willington Ortiz", "Carlos Valderrama"],
+              "explanation": "Marcos Coll scored straight from a corner past Yashin in Colombia's 4-4 draw with the Soviet Union, in Arica, Chile." }
+    },
+    {
+      "id": "sports-0088", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Qué club colombiano ganó la Copa Libertadores de 2004, al vencer a Boca Juniors en los penales?",
+              "options": ["Once Caldas", "Deportivo Cali", "Atlético Junior", "Independiente Santa Fe"],
+              "explanation": "Once Caldas, de Manizales, derrotó a Boca Juniors en una final definida por penales." },
+      "en": { "question": "Which Colombian club won the 2004 Copa Libertadores, beating Boca Juniors on penalties?",
+              "options": ["Once Caldas", "Deportivo Cali", "Atlético Junior", "Independiente Santa Fe"],
+              "explanation": "Once Caldas, from Manizales, beat Boca Juniors in a final decided on penalties." }
+    },
+    {
+      "id": "sports-0089", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Qué ciudad fue la primera en organizar tanto unos Juegos Olímpicos de verano como unos de invierno?",
+              "options": ["Pekín", "Tokio", "Innsbruck", "Oslo"],
+              "explanation": "Pekín organizó los Juegos de verano en 2008 y los de invierno en 2022." },
+      "en": { "question": "Which city was the first to host both a Summer and a Winter Olympic Games?",
+              "options": ["Beijing", "Tokyo", "Innsbruck", "Oslo"],
+              "explanation": "Beijing hosted the Summer Games in 2008 and the Winter Games in 2022." }
+    },
+    {
+      "id": "sports-0090", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Qué maratonista ganó el maratón olímpico de Roma 1960 corriendo descalzo?",
+              "options": ["Abebe Bikila", "Haile Gebrselassie", "Emil Zátopek", "Kipchoge Keino"],
+              "explanation": "El etíope Abebe Bikila ganó descalzo en Roma 1960 y repitió el oro en Tokio 1964, esta vez con zapatillas." },
+      "en": { "question": "Which runner won the Olympic marathon in Rome in 1960 running barefoot?",
+              "options": ["Abebe Bikila", "Haile Gebrselassie", "Emil Zátopek", "Kipchoge Keino"],
+              "explanation": "Ethiopia's Abebe Bikila won barefoot in Rome in 1960 and repeated the gold in Tokyo in 1964, this time wearing shoes." }
+    },
+    {
+      "id": "sports-0091", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿En qué Juegos Olímpicos se hizo por primera vez el relevo de la antorcha desde Olimpia hasta la ciudad sede?",
+              "options": ["Berlín 1936", "Atenas 1896", "París 1924", "Londres 1948"],
+              "explanation": "El relevo de la antorcha se estrenó en Berlín 1936. La llama se enciende en Olimpia, Grecia, y viaja hasta la ciudad sede." },
+      "en": { "question": "At which Olympic Games was the torch relay from Olympia to the host city held for the first time?",
+              "options": ["Berlin 1936", "Athens 1896", "Paris 1924", "London 1948"],
+              "explanation": "The torch relay debuted at Berlin 1936. The flame is lit at Olympia, in Greece, and travels to the host city." }
+    },
+    {
+      "id": "sports-0092", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Quién consiguió la primera medalla de oro olímpica de Colombia, en los Juegos de Sídney 2000?",
+              "options": ["María Isabel Urrutia", "Mariana Pajón", "Caterine Ibargüen", "Yuri Alvear"],
+              "explanation": "María Isabel Urrutia ganó el oro en levantamiento de pesas (75 kg) en Sídney 2000, el primero de Colombia en unos Juegos." },
+      "en": { "question": "Who won Colombia's first Olympic gold medal, at the 2000 Sydney Games?",
+              "options": ["María Isabel Urrutia", "Mariana Pajón", "Caterine Ibargüen", "Yuri Alvear"],
+              "explanation": "María Isabel Urrutia won gold in weightlifting (75 kg) at Sydney 2000, Colombia's first at any Games." }
+    },
+    {
+      "id": "sports-0093", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Quién ganó la prueba de ruta masculina de ciclismo en los Juegos de Tokio 2020?",
+              "options": ["Richard Carapaz", "Wout van Aert", "Tadej Pogačar", "Primož Roglič"],
+              "explanation": "El ecuatoriano Richard Carapaz ganó la prueba de ruta, que se corrió en julio de 2021. Van Aert fue segundo y Pogačar, tercero." },
+      "en": { "question": "Who won the men's road cycling race at the Tokyo 2020 Games?",
+              "options": ["Richard Carapaz", "Wout van Aert", "Tadej Pogačar", "Primož Roglič"],
+              "explanation": "Ecuador's Richard Carapaz won the road race, held in July 2021. Van Aert took silver and Pogačar bronze." }
+    },
+    {
+      "id": "sports-0094", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Quién fue el primer colombiano en ganar una gran vuelta, la Vuelta a España de 1987?",
+              "options": ["Lucho Herrera", "Fabio Parra", "Martín Ramírez", "Rigoberto Urán"],
+              "explanation": "Luis «Lucho» Herrera ganó la Vuelta a España de 1987 y fue el primer colombiano en ganar una de las tres grandes vueltas." },
+      "en": { "question": "Who was the first Colombian to win a Grand Tour, the 1987 Vuelta a España?",
+              "options": ["Lucho Herrera", "Fabio Parra", "Martín Ramírez", "Rigoberto Urán"],
+              "explanation": "Luis “Lucho” Herrera won the 1987 Vuelta a España and was the first Colombian to win one of the three Grand Tours." }
+    },
+    {
+      "id": "sports-0095", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Qué boxeador, conocido como «Kid Pambelé», fue el primer campeón mundial de Colombia, en 1972?",
+              "options": ["Antonio Cervantes", "Rodrigo Valdez", "Miguel Lora", "Fidel Bassa"],
+              "explanation": "Antonio Cervantes ganó el título superligero de la AMB en 1972, en Panamá. Valdez, Lora y Bassa fueron campeones años después." },
+      "en": { "question": "Which boxer, known as “Kid Pambelé”, became Colombia's first world champion, in 1972?",
+              "options": ["Antonio Cervantes", "Rodrigo Valdez", "Miguel Lora", "Fidel Bassa"],
+              "explanation": "Antonio Cervantes won the WBA junior welterweight title in 1972, in Panama. Valdez, Lora and Bassa became champions years later." }
+    },
+    {
+      "id": "sports-0096", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿En qué ciudad se disputó en 1974 la pelea «Rumble in the Jungle», entre Muhammad Ali y George Foreman?",
+              "options": ["Kinshasa", "Lagos", "Nairobi", "Accra"],
+              "explanation": "Se disputó en Kinshasa, entonces capital de Zaire (hoy República Democrática del Congo). Ali ganó por nocaut en el octavo asalto." },
+      "en": { "question": "In which city was the 1974 “Rumble in the Jungle” fight between Muhammad Ali and George Foreman held?",
+              "options": ["Kinshasa", "Lagos", "Nairobi", "Accra"],
+              "explanation": "It was held in Kinshasa, then the capital of Zaire (today the Democratic Republic of the Congo). Ali won by knockout in the eighth round." }
+    },
+    {
+      "id": "sports-0097", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Cuánto mide de largo una cancha de tenis, de línea de fondo a línea de fondo?",
+              "options": ["23,77 metros", "21,34 metros", "25,91 metros", "27,43 metros"],
+              "explanation": "La cancha mide 23,77 metros (78 pies) de largo, y 8,23 m de ancho en individuales y 10,97 m en dobles." },
+      "en": { "question": "How long is a tennis court, from baseline to baseline?",
+              "options": ["23.77 meters", "21.34 meters", "25.91 meters", "27.43 meters"],
+              "explanation": "The court is 23.77 meters (78 feet) long, and 8.23 m wide for singles and 10.97 m for doubles." }
+    },
+    {
+      "id": "sports-0098", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Cuáles son las medidas reglamentarias de un arco de fútbol (ancho × alto)?",
+              "options": ["7,32 × 2,44 metros", "7,50 × 2,50 metros", "7,00 × 2,40 metros", "8,00 × 2,60 metros"],
+              "explanation": "El arco mide 7,32 metros de ancho (8 yardas) por 2,44 de alto (8 pies), medidas fijadas por el reglamento." },
+      "en": { "question": "What are the official measurements of a soccer goal (width × height)?",
+              "options": ["7.32 × 2.44 meters", "7.50 × 2.50 meters", "7.00 × 2.40 meters", "8.00 × 2.60 meters"],
+              "explanation": "The goal is 7.32 meters wide (8 yards) by 2.44 high (8 feet), as set by the Laws of the Game." }
+    },
+    {
+      "id": "sports-0099", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿A qué altura se coloca la red en el voleibol de sala masculino?",
+              "options": ["2,43 metros", "2,24 metros", "2,50 metros", "2,60 metros"],
+              "explanation": "En el voleibol de sala masculino la red está a 2,43 metros, y en el femenino, a 2,24." },
+      "en": { "question": "How high is the net set in men's indoor volleyball?",
+              "options": ["2.43 meters", "2.24 meters", "2.50 meters", "2.60 meters"],
+              "explanation": "In men's indoor volleyball the net is 2.43 meters high, and in women's, 2.24." }
+    },
+    {
+      "id": "sports-0100", "difficulty": 3, "type": "choice",
+      "es": { "question": "En golf, ¿cómo se llama terminar un hoyo con tres golpes menos que el par?",
+              "options": ["Albatros", "Eagle", "Cóndor", "Birdie"],
+              "explanation": "Un albatros (o «doble eagle») es terminar un hoyo tres golpes bajo el par, algo muy raro. Un eagle son dos bajo el par." },
+      "en": { "question": "In golf, what is it called to finish a hole three strokes under par?",
+              "options": ["Albatross", "Eagle", "Condor", "Birdie"],
+              "explanation": "An albatross (called a “double eagle” in the United States) is three strokes under par, which is very rare. An eagle is two under." }
     }
   ]
 }
