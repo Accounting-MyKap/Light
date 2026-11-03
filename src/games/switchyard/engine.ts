@@ -14,13 +14,13 @@ export const FIRST_TRAIN_MS = 1000;
 /** The engine moves the trains in steps of at most this long, however far apart the frames are. */
 export const STEP_MS = 20;
 /** From the front of the locomotive to the back of its wagon, in board units. */
-export const TRAIN_LENGTH = 52;
+export const TRAIN_LENGTH = 66;
 
 export function spawnIntervalMs(level: number): number {
   return Math.round(4000 - ((clampLevel(level) - 1) * 2400) / 9);
 }
 
-/** Board units per second. */
+/** Board units per second (the board is 360 × 600). */
 export function trainSpeed(level: number): number {
   return 70 + ((clampLevel(level) - 1) * 60) / 9;
 }

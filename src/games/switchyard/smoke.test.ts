@@ -26,20 +26,20 @@ test('old puffs fade away and are dropped', () => {
   const rng = createRng(3);
   let smoke = emitPuffs(empty(), [{ trainId: 1, x: 0, y: 0 }], 0, rng);
   smoke = emitPuffs(smoke, [{ trainId: 1, x: 0, y: 0 }], 500, rng);
-  expect(PUFF_LIFE_MS).toBe(1100);
-  expect(agePuffs(smoke, 1099).puffs.some((p) => p.born === 0)).toBe(true);
-  expect(agePuffs(smoke, 1100).puffs.some((p) => p.born === 0)).toBe(false);
+  expect(PUFF_LIFE_MS).toBe(1500);
+  expect(agePuffs(smoke, 1499).puffs.some((p) => p.born === 0)).toBe(true);
+  expect(agePuffs(smoke, 1500).puffs.some((p) => p.born === 0)).toBe(false);
 });
 
-test('a puff grows from 2.5 to 10 units and fades from 0.5 to nothing', () => {
+test('a puff grows from 3 to 15 units and fades from 0.6 to nothing', () => {
   const rng = createRng(4);
   const [puff] = emitPuffs(empty(), [{ trainId: 1, x: 100, y: 200 }], 1000, rng).puffs;
-  expect(puffLook(puff, 1000)).toEqual({ x: 100, y: 200, r: 2.5, opacity: 0.5 });
+  expect(puffLook(puff, 1000)).toEqual({ x: 100, y: 200, r: 3, opacity: 0.6 });
   const end = puffLook(puff, 1000 + PUFF_LIFE_MS);
-  expect(end.r).toBeCloseTo(10);
+  expect(end.r).toBeCloseTo(15);
   expect(end.opacity).toBeCloseTo(0);
-  const mid = puffLook(puff, 1550);
-  expect(mid.r).toBeGreaterThan(2.5);
-  expect(mid.r).toBeLessThan(10);
-  expect(Math.hypot(mid.x - 100, mid.y - 200)).toBeLessThan(10);
+  const mid = puffLook(puff, 1750);
+  expect(mid.r).toBeGreaterThan(3);
+  expect(mid.r).toBeLessThan(15);
+  expect(Math.hypot(mid.x - 100, mid.y - 200)).toBeLessThan(15);
 });

@@ -6,11 +6,11 @@ import type { Rng } from '../../core/rng';
  */
 
 export const PUFF_EVERY_MS = 80;
-export const PUFF_LIFE_MS = 1100;
+export const PUFF_LIFE_MS = 1500;
 
-const START_RADIUS = 2.5;
-const END_RADIUS = 10;
-const START_OPACITY = 0.5;
+const START_RADIUS = 3;
+const END_RADIUS = 15;
+const START_OPACITY = 0.6;
 
 export interface Puff {
   id: string;
@@ -43,8 +43,8 @@ export function emitPuffs(smoke: SmokeState, sources: readonly Chimney[], now: n
       x: source.x,
       y: source.y,
       born,
-      dx: (rng() - 0.5) * 10,
-      dy: -2 - rng() * 8,
+      dx: (rng() - 0.5) * 16,
+      dy: -3 - rng() * 9,
     });
 
   for (const source of sources) {

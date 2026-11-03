@@ -110,7 +110,7 @@ describe.each(ALL_MAPS.map((m) => [m.key, m] as const))('map %s', (_key, map) =>
         const segment = map.segments[exit];
         expect(sw.exitAngles[i]).toBeCloseTo(poseAt(segment.line, Math.min(48, segment.line.length)).angle);
       });
-      expect(Math.abs(sw.exitAngles[0] - sw.exitAngles[1])).toBeGreaterThanOrEqual(40);
+      expect(Math.abs(sw.exitAngles[0] - sw.exitAngles[1])).toBeGreaterThanOrEqual(35);
     }
   });
 

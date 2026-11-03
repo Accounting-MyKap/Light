@@ -1,9 +1,10 @@
 /*
- * Switchyard in the Luz style. The board keeps the proportions of the map (360 × 500) and takes the largest size
+ * Switchyard in the Luz style. The board keeps the proportions of the map (360 × 600) and takes the largest size
  * that fits the game zone; the switch buttons sit on top of it, placed in percentages of the board.
  */
 
-/* Fills the game zone, so the board can measure the room it has. */
+/* Fills the game zone. Size containment keeps the board from stretching it: the game measures this box and gives
+   the board the largest size that fits. */
 .boardWrap {
   flex: 1;
   align-self: stretch;
@@ -18,15 +19,12 @@
   position: relative;
   width: 100%;
   max-width: 420px;
-  aspect-ratio: 360 / 500;
+  aspect-ratio: 360 / 600;
 }
 
-/* As wide as the zone allows, or as tall: whichever runs out first. */
-@supports (width: 1cqh) {
-  .board {
-    width: min(100cqw, 100cqh * 0.72);
-    max-width: none;
-  }
+/* Sized by the game from the room it measured. */
+.board[style*='width'] {
+  max-width: none;
 }
 
 .svg {
@@ -129,7 +127,7 @@
 
 /* In the instructions: a small board that is only looked at. */
 .demo {
-  width: 190px;
+  width: 176px;
   max-width: none;
 }
 

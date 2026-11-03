@@ -26,7 +26,8 @@ export async function finishRunningGame(page: Page): Promise<void> {
       await page.waitForTimeout(50);
     }
   } else {
-    await page.clock.runFor(61_000);
+    // Guardagujas lasts 90 seconds; the other games 60.
+    await page.clock.runFor(id === 'switchyard' ? 91_000 : 61_000);
   }
   await expect(result).toBeVisible();
 }

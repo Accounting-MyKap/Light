@@ -9,11 +9,15 @@ import styles from './switchyard.module.css';
 /** How long the ring and the mark of an arrival stay on the station. */
 export const ARRIVAL_SHOW_MS = 900;
 
-/** Where the chimney is, measured back from the front of the train. */
-export const CHIMNEY_BACK = 5.5;
+/** The drawings of the locomotive and the wagon are scaled up by these factors. */
+const LOCO_SCALE = 1.25;
+const WAGON_SCALE = 1.3;
+/** 28 × 1.25: the locomotive drawing is 28 long. */
+const LOCO_LENGTH = 35;
+const WAGON_GAP = 5;
 
-const LOCO_LENGTH = 28;
-const WAGON_GAP = 4;
+/** Where the chimney is, measured back from the front of the train (it sits 8.5 ahead of the locomotive's center). */
+export const CHIMNEY_BACK = LOCO_LENGTH / 2 - 8.5 * LOCO_SCALE;
 const RAIL_OFFSET = 3.6;
 
 export interface PuffView {
@@ -36,6 +40,8 @@ export interface BoardProps {
   /** Buttons over the switches. Without it the board is only looked at (the example). */
   onToggle?: (index: number) => void;
   reducedMotion?: boolean;
+  /** Width in CSS pixels; without it the board takes the width of its box (up to 420 px). */
+  width?: number;
   className?: string;
 }
 
@@ -57,13 +63,19 @@ export function Board({
   now = 0,
   onToggle,
   reducedMotion = false,
+  width,
   className = '',
 }: BoardProps) {
   const { t } = useTranslation();
   const uid = `sy${useId().replace(/[^a-zA-Z0-9]/g, '')}`;
 
   return (
-    <div className={`${styles.board} ${className}`} role="group" aria-label={t('games.switchyard.board')}>
+    <div
+      className={`${styles.board} ${className}`}
+      style={width === undefined ? undefined : { width }}
+      role="group"
+      aria-label={t('games.switchyard.board')}
+    >
       <svg className={styles.svg} viewBox={`0 0 ${BOARD.width} ${BOARD.height}`} aria-hidden="true">
         <Defs uid={uid} />
         <Ground map={map} uid={uid} />
@@ -71,11 +83,12 @@ export function Board({
         {map.switches.map((sw) => (
           <SwitchDisk key={sw.id} at={sw.at} angle={sw.exitAngles[switches[sw.id]]} />
         ))}
+        {/* The smoke trail goes under the trains, so it never hides a locomotive. */}
+        {puffs.map((p) => (
+          <circle key={p.id} cx={p.x} cy={p.y} r={p.r} fill={`url(#${uid}-puff)`} opacity={p.opacity} />
+        ))}
         {trains.map((train) => (
           <TrainView key={train.id} map={map} train={train} beam={`${uid}-beam`} />
-        ))}
-        {puffs.map((p) => (
-          <circle key={p.id} cx={p.x} cy={p.y} r={p.r} fill="#e9edff" opacity={p.opacity} />
         ))}
         {map.stations.map((st) => {
           const style = STATION_STYLES[st.style];
@@ -137,6 +150,11 @@ function Defs({ uid }: { uid: string }) {
           <stop offset="1" stopColor={style.color} stopOpacity="0" />
         </radialGradient>
       ))}
+      <radialGradient id={`${uid}-puff`}>
+        <stop offset="0" stopColor="#f1f3ff" stopOpacity="1" />
+        <stop offset="0.55" stopColor="#dfe4f7" stopOpacity="0.8" />
+        <stop offset="1" stopColor="#c9cfe6" stopOpacity="0" />
+      </radialGradient>
       <radialGradient id={`${uid}-ground`} cx="0.5" cy="0.42" r="0.7">
         <stop offset="0" stopColor="#141a36" />
         <stop offset="1" stopColor="#0b0e20" />
@@ -255,9 +273,9 @@ function TrainView({ map, train, beam }: { map: TrackMap; train: Train; beam: st
   const locoAngle = angleBetween(locoBack, front);
   const wagonAngle = angleBetween(wagonBack, wagonFront);
 
-  // Rolling in under the station: fade out as the train disappears into the building.
+  // Rolling in under the station: the headlight goes off and the train fades as it disappears into the building.
   const segmentLength = map.segments[train.route[train.route.length - 1]].line.length;
-  const inside = train.arrived ? Math.min(1, (train.distance - segmentLength) / TRAIN_LENGTH) : 0;
+  const inside = train.arrived ? Math.min(1, (2 * (train.distance - segmentLength)) / TRAIN_LENGTH) : 0;
 
   return (
     <g
@@ -275,13 +293,13 @@ function TrainView({ map, train, beam }: { map: TrackMap; train: Train; beam: st
         strokeWidth={3}
       />
       <g transform={`translate(${wagon.x.toFixed(2)} ${wagon.y.toFixed(2)})`}>
-        <g transform={`rotate(${wagonAngle.toFixed(1)})`}>
+        <g transform={`rotate(${wagonAngle.toFixed(1)}) scale(${WAGON_SCALE})`}>
           <Wagon color={style.color} />
         </g>
-        <ShapeMark shape={style.shape} size={4.8} fill={INK} />
+        <ShapeMark shape={style.shape} size={6} fill={INK} />
       </g>
-      <g transform={`rotate(${locoAngle.toFixed(1)})`}>
-        <Locomotive color={style.color} beam={beam} />
+      <g transform={`rotate(${locoAngle.toFixed(1)}) scale(${LOCO_SCALE})`}>
+        <Locomotive color={style.color} beam={train.arrived ? undefined : beam} />
       </g>
     </g>
   );
@@ -295,7 +313,8 @@ function ArrivalMark({ at, arrival, now, still }: { at: Point; arrival: Arrival;
   return (
     <g data-arrival={arrival.correct ? 'correct' : 'wrong'} transform={`translate(${at.x} ${at.y})`}>
       <circle r={ring} fill="none" stroke={color} strokeWidth={3} opacity={1 - k} />
-      <g transform={`translate(0 ${-42 + rise})`} opacity={k < 0.7 ? 1 : (1 - k) / 0.3}>
+      {/* Up and to the side, clear of the track the train comes in on. */}
+      <g transform={`translate(${at.x > BOARD.width - 60 ? -26 : 26} ${-30 + rise})`} opacity={k < 0.7 ? 1 : (1 - k) / 0.3}>
         <circle r={10} fill={color} />
         <path
           d={arrival.correct ? 'M-4.5 0.5 L-1.2 3.8 L4.8 -3.2' : 'M-3.8 -3.8 L3.8 3.8 M3.8 -3.8 L-3.8 3.8'}

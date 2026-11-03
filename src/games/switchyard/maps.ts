@@ -3,15 +3,19 @@ import { clampLevel } from '../../core/difficulty';
 import { polyline, poseAt, roundCorners, type Point, type Polyline } from './geometry';
 
 /*
- * The track maps, drawn by hand on a 360 × 500 board. Each map is a tree: the trains leave the tunnel at the top
+ * The track maps, drawn by hand on a 360 × 500 grid and stretched to the 360 × 600 board, which fits a phone held
+ * upright better. Each map is a tree: the trains leave the tunnel at the top
  * and every switch splits the track in two until it ends at a station. Every switch sits on a track that arrives
  * heading down, and both of its exits start heading down too, so a train never turns sharply at a junction.
  */
 
-export const BOARD = { width: 360, height: 500 } as const;
+export const BOARD = { width: 360, height: 600 } as const;
 
 /** The mouth of the tunnel, where every train comes out. */
-export const TUNNEL: Point = { x: 180, y: 34 };
+export const TUNNEL: Point = { x: 180, y: 40 };
+
+/** From the drawing grid (tunnel at y 34) to the board: rows 20 % farther apart. */
+const boardY = (y: number) => TUNNEL.y + (y - 34) * 1.2;
 
 /** Radius of the curves, in board units. */
 const CURVE_RADIUS = 26;
@@ -298,7 +302,7 @@ export function compileMap(blueprint: Blueprint, key: string): TrackMap {
 
   const visit = (leg: Blueprint, start: Point, from: TrackSegment['from'], route: [number, 0 | 1][]): number => {
     const id = segments.length;
-    const points = [start, ...leg.path.map(([x, y]) => ({ x, y }))];
+    const points = [start, ...leg.path.map(([x, y]) => ({ x, y: boardY(y) }))];
     const line = polyline(roundCorners(points, CURVE_RADIUS));
     const end = line.points[line.points.length - 1];
     const segment: TrackSegment = { id, line, from, end: { station: -1 } };
@@ -357,10 +361,10 @@ function plantTrees(map: TrackMap): Tree[] {
   const step = 24;
   for (let gy = step / 2; gy < BOARD.height; gy += step) {
     for (let gx = step / 2; gx < BOARD.width; gx += step) {
-      const r = 6 + rng() * 5;
+      const r = 5.5 + rng() * 4.5;
       const x = gx + (rng() - 0.5) * 14;
       const y = gy + (rng() - 0.5) * 14;
-      const keep = rng() < 0.5;
+      const keep = rng() < 0.42;
       if (!keep) continue;
       if (x - r < 4 || x + r > BOARD.width - 4 || y - r < 4 || y + r > BOARD.height - 4) continue;
       const p = { x, y };

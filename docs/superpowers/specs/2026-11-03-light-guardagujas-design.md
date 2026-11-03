@@ -45,13 +45,13 @@ Niveles 1–10, interpolación lineal entre los extremos.
 | Parámetro | Nivel 1 | Nivel 10 | Fórmula |
 |---|---|---|---|
 | Intervalo entre trenes | 4000 ms | 1600 ms | `round(4000 − (L−1)·2400/9)` |
-| Velocidad | 70 u/s | 130 u/s | `70 + (L−1)·60/9` (u = unidad del mapa, 360 × 500) |
+| Velocidad | 70 u/s | 130 u/s | `70 + (L−1)·60/9` (u = unidad del tablero, 360 × 600) |
 | Puntos por acierto | 10 | 28 | `10 + 2·(L−1)` |
 
 - **Escalera dentro de la partida** (la de siempre, `stepStaircase`): un paso por cada tren que llega; 4 aciertos
   seguidos suben, 2 fallos seguidos bajan. El nivel actual fija velocidad, intervalo y puntos.
 - La velocidad nueva se aplica **a todos los trenes a la vez**, así la distancia entre trenes se conserva. La menor
-  separación posible es 1600 ms × 70 u/s = 112 u, más del doble del largo de un tren (≈ 52 u).
+  separación posible es 1600 ms × 70 u/s = 112 u, más que el largo de un tren (66 u).
 - **Mapa según el nivel inicial** (fijo durante la partida): niveles 1–2 → 3 estaciones, 3–4 → 4, 5–6 → 5, 7–8 → 6,
   9–10 → 7. Cada mapa tiene además su versión espejo; la partida elige una al azar.
 - El primer tren sale a 1 s. Color al azar entre las estaciones del mapa, nunca 3 seguidos del mismo color.
@@ -77,14 +77,17 @@ src/games/switchyard/
 
 ### 5.1 Mapas
 
-- Plano = árbol escrito a mano: cada tramo es una lista de puntos (vías rectas, giros a 45° o 90°) que va del punto
-  anterior al siguiente nodo (cambio o estación). La raíz parte del túnel (arriba, al centro).
+- Plano = árbol escrito a mano en una rejilla de 360 × 500 y estirado un 20 % en vertical al tablero de 360 × 600 (cabe
+  mejor en un teléfono vertical): cada tramo es una lista de puntos (vías rectas y diagonales) que va del punto anterior
+  al siguiente nodo (cambio o estación). La raíz parte del túnel (arriba, al centro). Cada cambio está sobre una vía
+  que llega hacia abajo y sus dos salidas también empiezan hacia abajo, así ningún tren gira bruscamente en un cruce.
 - `compileMap` lo aplana: tramos con su polilínea ya redondeada (radio de curva 26 u, muestreada cada ≤ 3 u) y su
-  largo; cambios con su punto, sus dos salidas y la dirección en pantalla de cada salida (8 rumbos, para el nombre
-  accesible y la flecha); estaciones con color, forma y la combinación de cambios que lleva a ellas (`route`).
+  largo; cambios con su punto, sus dos salidas y la dirección en pantalla de cada salida, medida a 48 u del cruce
+  (8 rumbos, para el nombre accesible y la flecha); estaciones con color, forma y la combinación de cambios que lleva a ellas (`route`).
 - `mirrorMap` refleja x → 360 − x.
 - **Validez comprobada por pruebas** para los 10 mapas: N estaciones y N − 1 cambios; todo dentro del lienzo con
-  margen; tramos que no se tocan salvo en sus extremos compartidos; cambios a ≥ 70 u entre sí y de las estaciones;
+  margen; tramos que no se tocan salvo en sus extremos compartidos y que, a más de 70 u de un cruce compartido, quedan
+  a ≥ 28 u entre sí; las dos salidas de un cambio apuntan a rumbos separados ≥ 35°; cambios a ≥ 70 u entre sí y de las estaciones;
   estaciones a ≥ 64 u entre sí; colores y formas sin repetir; cada estación alcanzable por una sola ruta.
 - Decoración: árboles colocados por un azar con semilla fija en el espacio libre (≥ 30 u de vías, estaciones,
   túnel y cambios), así cada mapa siempre se ve igual.
@@ -120,15 +123,19 @@ llegada. Encima, un botón HTML transparente por cambio, en porcentajes del tabl
   salida elegida brillan y los de la otra se ven apagados, así se lee la ruta completa de un vistazo. Al tocar, la
   flecha gira (150 ms). El área táctil es ≥ 44 px (14 % del ancho del tablero, mínimo 44 px) y tiene anillo de foco
   visible con teclado.
-- **Trenes:** vistos desde arriba. Locomotora del color de su estación con caldera, cabina, chimenea y farol
-  delantero con haz de luz; vagón acoplado con la forma en tinta oscura (siempre derecha). Brillo suave del color.
-- **Humo:** bocanadas grises claras salen de la chimenea cada 80 ms, crecen (2,5 → 10 u), derivan un poco y se
-  desvanecen en 1,1 s, dejando una estela. Viven en el componente (no en el motor) y usan el reloj del juego, así se
-  congelan en la pausa.
+- **Trenes:** vistos desde arriba. Locomotora (35 u) del color de su estación con caldera, cabina, chimenea y farol
+  delantero con haz de luz; vagón acoplado (26 u) con la forma en tinta oscura (siempre derecha). Brillo suave del
+  color. Al entrar a la estación el farol se apaga y el tren se desvanece bajo el edificio.
+- **Humo:** bocanadas suaves (degradado radial claro) salen de la chimenea cada 80 ms, crecen (3 → 15 u), derivan un
+  poco y se desvanecen en 1,5 s, dejando una estela. Se dibujan bajo los trenes, para que nunca tapen una locomotora.
+  Viven en el componente (no en el motor) y usan el reloj del juego, así se congelan en la pausa.
 - **Estaciones:** casita del color con techo más oscuro y la forma en un círculo claro; resplandor del color.
 - **Túnel:** portal de piedra con boca oscura; los trenes salen de ella.
-- El tablero conserva su proporción (360 × 500) y ocupa el mayor tamaño que quepa en la zona de juego
-  (`container-type: size`), sin desplazamiento horizontal a 320 px.
+- El tablero conserva su proporción (360 × 600) y ocupa el mayor tamaño que quepa en la zona de juego: el juego mide
+  esa zona con `ResizeObserver` (las unidades `cqh` dan 0 ahí, porque la altura de la zona no es definida para CSS).
+  Sin desplazamiento horizontal a 320 px.
+- La marca de llegada (✓ o ✗ y «+N») se dibuja arriba y a un lado de la estación, fuera de la vía por la que entra el
+  tren.
 
 ### 5.4 Movimiento reducido
 

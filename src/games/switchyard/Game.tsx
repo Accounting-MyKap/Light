@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useRef, useState, type RefObject } from 'react';
 import { prefersReducedMotion } from '../../core/motion';
 import { createRng, randomSeed } from '../../core/rng';
 import { useCountdown, useGameClock } from '../shared/clock';
@@ -7,6 +7,7 @@ import { GameFrame } from '../shared/GameFrame';
 import { useGameKeys } from '../shared/useGameKeys';
 import type { GameProps } from '../types';
 import { ARRIVAL_SHOW_MS, Board, CHIMNEY_BACK } from './Board';
+import { BOARD } from './maps';
 import {
   SWITCHYARD_DURATION_MS,
   advanceSwitchyard,
@@ -19,6 +20,25 @@ import {
 } from './engine';
 import { agePuffs, emitPuffs, puffLook, type SmokeState } from './smoke';
 import styles from './switchyard.module.css';
+
+/**
+ * The width that lets the whole board fit in the measured box, keeping its proportions. Undefined until measured (or
+ * where ResizeObserver does not exist), and the board then takes the width of its box.
+ */
+function useFittedWidth(box: RefObject<HTMLElement | null>): number | undefined {
+  const [width, setWidth] = useState<number>();
+  useLayoutEffect(() => {
+    const el = box.current;
+    if (!el || typeof ResizeObserver === 'undefined') return;
+    const observer = new ResizeObserver(([entry]) => {
+      const { width: w, height: h } = entry.contentRect;
+      if (w > 0 && h > 0) setWidth(Math.floor(Math.min(w, (h * BOARD.width) / BOARD.height)));
+    });
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [box]);
+  return width;
+}
 
 interface World {
   game: SwitchyardState;
@@ -45,6 +65,8 @@ export function SwitchyardGame({ startLevel, paused, onFinish }: GameProps) {
   }));
   const worldRef = useRef(world);
   const [finished, setFinished] = useState(false);
+  const boxRef = useRef<HTMLDivElement>(null);
+  const boardWidth = useFittedWidth(boxRef);
 
   const feedbackRef = useRef(feedback);
   useEffect(() => {
@@ -108,7 +130,7 @@ export function SwitchyardGame({ startLevel, paused, onFinish }: GameProps) {
       time={{ remainingMs: remaining, totalMs: SWITCHYARD_DURATION_MS }}
       stageFlash={false}
     >
-      <div className={styles.boardWrap}>
+      <div ref={boxRef} className={styles.boardWrap}>
         <Board
           map={game.map}
           switches={game.switches}
@@ -118,6 +140,7 @@ export function SwitchyardGame({ startLevel, paused, onFinish }: GameProps) {
           now={game.now}
           onToggle={toggle}
           reducedMotion={reducedMotion}
+          width={boardWidth}
         />
       </div>
     </GameFrame>

@@ -20,8 +20,9 @@ select results_eq(
             ('quick-math', 'math', 8000),
             ('rule-switch', 'flexibility', 10000),
             ('same-different', 'speed', 12000),
-            ('sequence-lights', 'memory', 960) $$,
-  'games holds the 5 games with their score bounds'
+            ('sequence-lights', 'memory', 960),
+            ('switchyard', 'attention', 2000) $$,
+  'games holds the 6 games with their score bounds'
 );
 
 -- ---------------------------------------------------------------- table privileges
@@ -126,7 +127,7 @@ select set_config('request.jwt.claims', json_build_object('role', 'anon')::text,
 
 select is(
   (select count(*)::int from public.games),
-  5,
+  6,
   'anon can read games'
 );
 select throws_ok(

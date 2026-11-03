@@ -47,13 +47,14 @@ export function ShapeMark({ shape, size, fill = INK }: { shape: Shape; size: num
   }
 }
 
-/** The locomotive, 28 long and 16 wide, centered on 0,0 and heading right. */
-export const Locomotive = memo(function Locomotive({ color, beam }: { color: string; beam: string }) {
+/** The locomotive, 28 long and 16 wide, centered on 0,0 and heading right. `beam` is the id of the headlight's
+    gradient; without it the headlight is off (a train inside its station). */
+export const Locomotive = memo(function Locomotive({ color, beam }: { color: string; beam?: string }) {
   return (
     <g>
       <ellipse rx={21} ry={13} fill={color} opacity={0.16} />
       {/* Headlight beam on the track ahead. */}
-      <path d="M14 0 L38 -10 Q42 0 38 10 Z" fill={`url(#${beam})`} />
+      {beam && <path d="M14 0 L38 -10 Q42 0 38 10 Z" fill={`url(#${beam})`} />}
       <rect x={-14} y={-8} width={28} height={16} rx={5} fill={color} />
       {/* Boiler: a lighter cylinder with bands. */}
       <rect x={-5} y={-5.5} width={18} height={11} rx={5.5} fill="#ffffff" opacity={0.26} />
