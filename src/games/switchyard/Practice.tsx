@@ -23,6 +23,9 @@ const MAP = mapFor(3, false);
 /** After a train reaches the wrong station, the round starts over this much later. */
 export const RESTART_MS = 1000;
 
+/** The practice clock moves at most this much from one frame to the next. */
+export const MAX_STEP_MS = 100;
+
 /**
  * Where the waiting train of round 1 stands: out of the tunnel, with its locomotive just short of the first switch,
  * so the person sees the whole train and the arrow it has to turn. At distance 0 the train would still be inside the
@@ -150,15 +153,18 @@ export function SwitchyardPractice({ onComplete, onSkip }: PracticeProps) {
   const { round, status, answer } = usePracticeRounds(PRACTICE_ROUNDS.length, onComplete);
   const [first] = useState(() => startAttempt(0, 0, 0));
   const attemptRef = useRef(first.attempt);
-  // The practice's own clock: real time from its first frame.
-  const originRef = useRef<number | null>(null);
+  // The practice's own clock: real time from its first frame, in steps of at most MAX_STEP_MS. A hidden page or a
+  // long frame then only pauses the practice, instead of moving the trains on while the person is away.
+  const clockRef = useRef<{ last: number | null; elapsed: number }>({ last: null, elapsed: 0 });
 
   const { world, toggle, reducedMotion } = useSwitchyardWorld(() => first.state, {
     active: true,
     now: () => {
       const at = Date.now();
-      originRef.current ??= at;
-      return at - originRef.current;
+      const clock = clockRef.current;
+      if (clock.last !== null) clock.elapsed += Math.min(Math.max(0, at - clock.last), MAX_STEP_MS);
+      clock.last = at;
+      return clock.elapsed;
     },
     advance: (game, to) => {
       const attempt = attemptRef.current;

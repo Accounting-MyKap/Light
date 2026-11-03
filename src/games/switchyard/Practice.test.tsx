@@ -201,6 +201,18 @@ test('round 2: left alone, the yellow train reaches the wrong station, the hint 
   frames();
 });
 
+test('a 10 s jump between frames (the app was hidden) moves the train by one short step at most', () => {
+  setup();
+  passRound1();
+  const before = locoY(trains()[0]);
+  vi.setSystemTime(Date.now() + 10_000);
+  advance(20);
+  // At most 100 ms of practice time for the jump, plus a frame: 70 units a second.
+  expect(trains()).toHaveLength(1);
+  expect(locoY(trains()[0]) - before).toBeLessThan(10);
+  expect(says(MOVING)()).toBe(true);
+});
+
 test('round 2: switch 2 flipped in time sends the yellow train home', () => {
   setup();
   passRound1();
