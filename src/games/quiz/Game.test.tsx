@@ -226,26 +226,45 @@ test('the timer stops while paused and keeps the time that was left', async () =
 
   view.rerender(gameElement({ paused: true, onFinish }));
   advance(30_000);
-  expect(screen.getByRole('button', { name: 'No sé' })).toBeInTheDocument();
   expect(screen.queryByText('Se acabó el tiempo')).not.toBeInTheDocument();
   expect(hud('Tiempo')).toBe('15');
   // Answers are blocked while paused.
-  fireEvent.click(options()[0]);
+  fireEvent.keyDown(window, { key: '1' });
   fireEvent.keyDown(window, { key: '0' });
-  expect(screen.getByRole('button', { name: 'No sé' })).toBeInTheDocument();
 
   view.rerender(gameElement({ paused: false, onFinish }));
+  expect(screen.getByRole('button', { name: 'No sé' })).toBeInTheDocument();
+  expect(screen.queryByRole('button', { name: 'Siguiente' })).not.toBeInTheDocument();
   advance(14_000);
   expect(screen.queryByText('Se acabó el tiempo')).not.toBeInTheDocument();
   advance(1000);
   expect(screen.getByText('Se acabó el tiempo')).toBeInTheDocument();
 });
 
+test('the question is hidden while paused, so a pause gives no extra time to think', async () => {
+  const view = render(gameElement());
+  await settle();
+  const prompt = screen.getByRole('heading', { level: 2 }).textContent ?? '';
+  view.rerender(gameElement({ paused: true }));
+  expect(screen.getByText(prompt)).not.toBeVisible();
+  expect(screen.queryByRole('heading', { level: 2 })).not.toBeInTheDocument();
+  expect(screen.queryAllByRole('button', { name: /^[1-4] / })).toHaveLength(0);
+  expect(screen.queryByRole('button', { name: 'No sé' })).not.toBeInTheDocument();
+  // The HUD and the counter stay, with the clock stopped.
+  expect(hud('Tiempo')).toBe('20');
+  expect(screen.getByText('Pregunta 1 de 10')).toBeInTheDocument();
+
+  view.rerender(gameElement({ paused: false }));
+  expect(screen.getByText(prompt)).toBeVisible();
+  expect(options()).toHaveLength(4);
+});
+
 test('paused has no effect while the questions are loading', async () => {
   const view = render(gameElement({ paused: true }));
   expect(screen.getByText('Cargando preguntas…')).toBeInTheDocument();
   await settle();
-  expect(screen.getByRole('button', { name: 'No sé' })).toBeInTheDocument();
+  // Loaded, but hidden until the pause ends.
+  expect(screen.getByText('No sé')).not.toBeVisible();
   advance(30_000);
   expect(screen.queryByText('Se acabó el tiempo')).not.toBeInTheDocument();
   view.rerender(gameElement({ paused: false }));

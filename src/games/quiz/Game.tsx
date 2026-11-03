@@ -185,7 +185,8 @@ function QuizRound({ initial, clock, rng, paused, onFinish }: QuizRoundProps) {
       >
         <div className={styles.barFill} style={{ width: `${(remaining / QUIZ_QUESTION_MS) * 100}%` }} />
       </div>
-      <div key={question.id} className="appear">
+      {/* Hidden, not removed, while paused: the clock is stopped, so the question must not stay readable. */}
+      <div key={question.id} className="appear" style={paused ? { visibility: 'hidden' } : undefined}>
         <QuestionView
           question={question}
           order={order}
