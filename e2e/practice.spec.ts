@@ -143,7 +143,7 @@ test('the practice opened from the pause leaves the paused game untouched', asyn
   for (const key of ['ArrowLeft', 'ArrowLeft', 'ArrowLeft', 'ArrowRight', 'ArrowRight', 'ArrowLeft']) {
     await page.keyboard.press(key);
   }
-  await page.waitForTimeout(1500); // a game clock that kept running would show it by now
+  await page.waitForTimeout(4000); // a game clock that kept running would lose these seconds, and the countdown's
 
   await layer.getByRole('button', { name: 'Saltar práctica', exact: true }).click();
   await expect(page.getByRole('dialog', { name: 'Pausado' })).toBeVisible();
@@ -159,7 +159,7 @@ test('the practice opened from the pause leaves the paused game untouched', asyn
   );
   const secondsNow = Number(await game.getByRole('progressbar', { name: 'Tiempo' }).getAttribute('aria-valuenow'));
   expect(secondsNow, 'the game clock stayed frozen during the practice and the countdown').toBeGreaterThanOrEqual(
-    secondsBefore - 2,
+    secondsBefore - 1,
   );
   expect(secondsNow).toBeLessThanOrEqual(secondsBefore);
 });
@@ -226,6 +226,17 @@ test.describe('review screenshots', () => {
     const shot = async (name: string, wait: Locator) => {
       await expect(wait).toBeVisible();
       await page.mouse.move(0, 0);
+      // Let the fade-ins and enters finish (looping animations, like glows, never end and are left out).
+      await page
+        .waitForFunction(
+          () =>
+            document
+              .getAnimations()
+              .every((a) => a.effect?.getTiming().iterations === Infinity || a.playState !== 'running'),
+          undefined,
+          { timeout: 3000 },
+        )
+        .catch(() => undefined);
       const height = await page.evaluate(() => document.documentElement.scrollHeight);
       await page.setViewportSize({ width: 390, height: Math.max(844, height) });
       await page.screenshot({ path: `${SCREENSHOT_DIR}/${name}.png` });
