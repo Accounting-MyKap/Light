@@ -51,6 +51,21 @@ async function solveStarShower(page: Page, count: number): Promise<void> {
   }
 }
 
+/** Waits until at least one live star is fully inside the sky, so a screenshot shows one. */
+async function waitForStarInSky(page: Page): Promise<void> {
+  await expect
+    .poll(async () => {
+      const sky = await page.locator('[data-zone="stage"]').boundingBox();
+      const stars = page.getByTestId('star');
+      for (let i = 0, n = await stars.count(); i < n; i++) {
+        const box = await stars.nth(i).boundingBox();
+        if (sky && box && box.y >= sky.y && box.y + box.height <= sky.y + sky.height) return true;
+      }
+      return false;
+    })
+    .toBe(true);
+}
+
 /** Answers `count` Cambio de regla trials correctly: the card that matches the stimulus in the current rule. */
 async function solveRuleSwitch(page: Page, count: number): Promise<void> {
   for (let i = 0; i < count; i++) {
@@ -178,6 +193,7 @@ test.describe('Star Shower at 320 px', () => {
     for (let i = 0; i < count; i++) {
       const box = await stars.nth(i).boundingBox();
       const text = await stars.nth(i).textContent();
+      expect(text, `star ${i} is a level-10 sum`).toMatch(/^\d+ \+ \d+ × \d+$/);
       expect(box, `star ${i} «${text}»`).not.toBeNull();
       expect(box!.x, `«${text}» left edge`).toBeGreaterThanOrEqual(sky!.x);
       expect(box!.y, `«${text}» top edge`).toBeGreaterThanOrEqual(sky!.y);
@@ -293,6 +309,7 @@ test.describe('review screenshots', () => {
         if (id === 'arrows') await expect(page.getByTestId('arrows-row')).toHaveCount(1);
         await page.waitForTimeout(500);
       }
+      if (id === 'star-shower') await waitForStarInSky(page);
       await page.screenshot({ path: `${SCREENSHOT_DIR}/${id}-play.png` });
 
       await finishRunningGame(page);
