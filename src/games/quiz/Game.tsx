@@ -13,6 +13,7 @@ import { useGameKeys } from '../shared/useGameKeys';
 import type { GameProps, GameResult } from '../types';
 import {
   QUIZ_QUESTION_MS,
+  QUIZ_URGENT_MS,
   QUIZ_ROUND_LENGTH,
   answerQuestion,
   createQuizRound,
@@ -222,7 +223,7 @@ function QuizRound({ initial, clock, rng, paused, onFinish }: QuizRoundProps) {
       <GameFrame
         score={round.score}
         level={round.staircase.level}
-        time={{ remainingMs: remaining, totalMs: QUIZ_QUESTION_MS, stopped: !asking }}
+        time={{ remainingMs: remaining, totalMs: QUIZ_QUESTION_MS, stopped: !asking, urgentMs: QUIZ_URGENT_MS }}
         controls={answers}
       >
         <div className={styles.zone}>

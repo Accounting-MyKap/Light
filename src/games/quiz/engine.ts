@@ -8,6 +8,8 @@ import { pickQuestion } from './selection';
 
 export const QUIZ_ROUND_LENGTH = 10;
 export const QUIZ_QUESTION_MS = 20_000;
+/** The last seconds of a question, when the time bar turns urgent (half of every question would be too much). */
+export const QUIZ_URGENT_MS = 5_000;
 export const QUIZ_CORRECT_POINTS = 20;
 /** 10 questions × (20 + the maximum speed bonus of 10). */
 export const QUIZ_MAX_SCORE = 300;

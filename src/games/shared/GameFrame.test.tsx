@@ -108,6 +108,13 @@ test('the last 10 seconds mark the bar as urgent', () => {
   expect(screen.getByRole('progressbar')).toHaveAttribute('data-urgent', 'false');
 });
 
+test('a game can set a shorter urgent window', () => {
+  const { update } = renderFrame({ time: { remainingMs: 6_000, totalMs: 20_000, urgentMs: 5_000 } });
+  expect(screen.getByRole('progressbar')).toHaveAttribute('data-urgent', 'false');
+  update({ time: { remainingMs: 4_000, totalMs: 20_000, urgentMs: 5_000 } });
+  expect(screen.getByRole('progressbar')).toHaveAttribute('data-urgent', 'true');
+});
+
 test('a stopped clock is never urgent, whatever time it kept', () => {
   const { update } = renderFrame({ time: { remainingMs: 4_000, totalMs: 20_000, stopped: true } });
   const bar = screen.getByRole('progressbar');

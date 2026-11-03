@@ -591,11 +591,20 @@ describe('in the Luz frame', () => {
   test('once answered, the stopped time bar is no longer urgent', async () => {
     render(framed());
     await settle();
-    advance(12_000);
+    advance(16_000);
     expect(screen.getByRole('progressbar')).toHaveAttribute('data-urgent', 'true');
     fireEvent.click(correctOption());
     expect(screen.getByRole('progressbar')).toHaveAttribute('data-urgent', 'false');
-    expect(secondsLeft()).toBe('8');
+    expect(secondsLeft()).toBe('4');
+  });
+
+  test('the time bar is urgent only in the last 5 seconds', async () => {
+    render(framed());
+    await settle();
+    advance(12_000);
+    expect(screen.getByRole('progressbar')).toHaveAttribute('data-urgent', 'false');
+    advance(4_000);
+    expect(screen.getByRole('progressbar')).toHaveAttribute('data-urgent', 'true');
   });
 
   test('the frame tells the play screen the time left on the question, for its pause sheet', async () => {
