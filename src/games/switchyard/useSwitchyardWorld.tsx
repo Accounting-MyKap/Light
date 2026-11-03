@@ -126,18 +126,22 @@ export function useSwitchyardWorld(initial: () => SwitchyardState, options: Swit
 }
 
 /**
- * The width that lets the whole board fit in the measured box, keeping its proportions. Undefined until measured (or
- * where ResizeObserver does not exist), and the board then takes the width of its box.
+ * The width that lets the whole board fit in the measured box, keeping its proportions. Undefined until the box has
+ * a size (or where ResizeObserver does not exist), and the board then takes the width of its box.
  */
 function useFittedWidth(box: RefObject<HTMLElement | null>): number | undefined {
   const [width, setWidth] = useState<number>();
   useLayoutEffect(() => {
     const el = box.current;
     if (!el || typeof ResizeObserver === 'undefined') return;
-    const observer = new ResizeObserver(([entry]) => {
-      const { width: w, height: h } = entry.contentRect;
+    const fit = (w: number, h: number) => {
       if (w > 0 && h > 0) setWidth(Math.floor(Math.min(w, (h * BOARD.width) / BOARD.height)));
-    });
+    };
+    // Measured now, before the first paint: the observer reports only after it, and the board would show for a frame
+    // at the whole width of its box (overflowing it on a wide screen). The box's size never depends on the board's.
+    const rect = el.getBoundingClientRect();
+    fit(rect.width, rect.height);
+    const observer = new ResizeObserver(([entry]) => fit(entry.contentRect.width, entry.contentRect.height));
     observer.observe(el);
     return () => observer.disconnect();
   }, [box]);
