@@ -67,6 +67,42 @@ test('after «Siguiente» the new question starts in view on a 320 × 568 screen
   }
 });
 
+test('the five tab icons stay in one row when labels wrap: 320 px screen, 24 px root font', async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 640 });
+  await page.goto('./');
+  await page.evaluate(() => document.fonts.ready);
+  const links = page.getByRole('navigation').getByRole('link');
+  await expect(links).toHaveCount(5);
+  await page.evaluate(() => {
+    document.documentElement.style.fontSize = '24px';
+  });
+
+  const tabs = await links.evaluateAll((els) =>
+    els.map((el) => {
+      const tab = el.getBoundingClientRect();
+      const label = el.querySelector('span')!;
+      const box = label.getBoundingClientRect();
+      return {
+        label: el.textContent,
+        iconTop: el.querySelector('svg')!.getBoundingClientRect().top,
+        lines: Math.round(box.height / parseFloat(getComputedStyle(label).lineHeight)),
+        inside: box.left >= tab.left - 0.5 && box.right <= tab.right + 0.5 && el.scrollWidth <= el.clientWidth,
+      };
+    }),
+  );
+  // The case at stake: here some labels wrap to two lines («Pregun-tas») and «Hoy» does not.
+  expect(tabs.some((t) => t.lines > 1), JSON.stringify(tabs)).toBe(true);
+  expect(tabs.some((t) => t.lines === 1), JSON.stringify(tabs)).toBe(true);
+  const tops = tabs.map((t) => t.iconTop);
+  expect(Math.max(...tops) - Math.min(...tops), JSON.stringify(tabs)).toBeLessThanOrEqual(1);
+  // Still tall enough, each label inside its own column, and the bar no wider than the screen.
+  await expectTall(links);
+  for (const t of tabs) expect(t.inside, `${t.label} stays in its tab`).toBe(true);
+  const bar = await page.getByRole('navigation').evaluate((nav) => ({ scroll: nav.scrollWidth, client: nav.clientWidth }));
+  expect(bar.scroll).toBeLessThanOrEqual(bar.client);
+  expect(bar.client).toBeLessThanOrEqual(320);
+});
+
 for (const width of [320, 360, 375, 430]) {
   test(`every tab label fits its column on one line on a ${width} px screen`, async ({ page }) => {
     await page.setViewportSize({ width, height: 640 });

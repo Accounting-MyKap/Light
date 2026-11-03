@@ -38,13 +38,15 @@
   padding-bottom: env(safe-area-inset-bottom);
 }
 
+/* The icons sit in one row at a fixed 10 px from the top (where centring put them at the default size), so a label
+   that wraps to two lines grows its tab downwards instead of lifting its icon above the others. */
 .navLink {
   display: grid;
   justify-items: center;
-  align-content: center;
+  align-content: start;
   gap: 2px;
   min-height: 60px;
-  padding-block: 0.25rem;
+  padding-block: 10px 0.25rem;
   text-decoration: none;
   color: var(--text-muted);
   font-size: 0.75rem;
