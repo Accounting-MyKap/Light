@@ -176,7 +176,22 @@
     "completed": "Today’s training is complete!",
     "done": "Done",
     "comeBack": "Come back tomorrow to keep your streak going.",
-    "loadError": "We couldn’t prepare today’s training. Try reloading the page."
+    "loadError": "We couldn’t prepare today’s training. Try reloading the page.",
+    "streakDays_one": "{{count}} day",
+    "streakDays_other": "{{count}} days",
+    "weekdays": [
+      "M",
+      "T",
+      "W",
+      "T",
+      "F",
+      "S",
+      "S"
+    ],
+    "week": "{{done}} of 7 days trained this week",
+    "next": "Next",
+    "continueStep": "Continue · {{step}} of {{total}}",
+    "explore": "Explore games"
   },
   "gamesScreen": {
     "best": "Personal best: {{score}}",

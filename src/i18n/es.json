@@ -176,7 +176,22 @@
     "completed": "¡Entrenamiento de hoy completado!",
     "done": "Hecho",
     "comeBack": "Vuelve mañana para mantener tu racha.",
-    "loadError": "No pudimos preparar tu entrenamiento de hoy. Intenta recargar la página."
+    "loadError": "No pudimos preparar tu entrenamiento de hoy. Intenta recargar la página.",
+    "streakDays_one": "{{count}} día",
+    "streakDays_other": "{{count}} días",
+    "weekdays": [
+      "L",
+      "M",
+      "M",
+      "J",
+      "V",
+      "S",
+      "D"
+    ],
+    "week": "{{done}} de 7 días entrenados esta semana",
+    "next": "Sigue",
+    "continueStep": "Continuar · {{step}} de {{total}}",
+    "explore": "Explorar juegos"
   },
   "gamesScreen": {
     "best": "Mejor marca: {{score}}",
