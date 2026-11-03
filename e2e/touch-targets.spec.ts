@@ -25,7 +25,7 @@ test('game controls are at least 44 px tall', async ({ page }) => {
   for (const id of ['arrows', 'quick-math', 'star-shower']) {
     await page.goto(`./#/play/${id}`);
     await page.getByRole('button', { name: 'Comenzar' }).click();
-    // Arrows: «Izquierda» and «Derecha». Quick Math: the whole keypad and «Saltar».
+    // Arrows: «Izquierda» and «Derecha». Quick Math: the whole keypad and «Saltar». Lluvia de estrellas: its keypad.
     await expectTall(page.locator('[data-game] [data-zone="controls"] button'));
   }
 });

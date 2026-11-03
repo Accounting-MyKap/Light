@@ -26,7 +26,8 @@ export async function finishRunningGame(page: Page): Promise<void> {
       await page.waitForTimeout(50);
     }
   } else {
-    // Guardagujas lasts 90 seconds; the other games 60.
+    // Guardagujas lasts 90 seconds; the other timed games 60. Lluvia de estrellas has no clock: left alone it
+    // loses its 3 lives in about 30 seconds, so 61 seconds always reach its result.
     await page.clock.runFor(id === 'switchyard' ? 91_000 : 61_000);
   }
   await expect(result).toBeVisible();

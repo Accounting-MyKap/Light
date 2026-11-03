@@ -358,7 +358,7 @@ test.describe('review screenshots', () => {
 
   test('screenshots of the seven games for review', async ({ page }) => {
     // Seven games one after the other, Guardagujas with two trains sent home first: more than the default 90 s.
-    test.setTimeout(180_000);
+    test.setTimeout(240_000);
     mkdirSync(SCREENSHOT_DIR, { recursive: true });
     await page.clock.install({ time: CLOCK_TIME });
 
