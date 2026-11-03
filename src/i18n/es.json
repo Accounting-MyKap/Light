@@ -150,6 +150,16 @@
         "Cada acierto suma puntos y cada error resta 10 (saltar no resta). Varios aciertos seguidos suben la dificultad."
       ],
       "skip": "Saltar"
+    },
+    "star-shower": {
+      "title": "Lluvia de estrellas",
+      "skill": "Cálculo bajo presión",
+      "description": "Resuelve las operaciones de las estrellas antes de que toquen el horizonte.",
+      "instructions": [
+        "Caen estrellas con operaciones. Escribe el resultado con el teclado en pantalla o el de tu computador y pulsa OK (o Enter) para reventarlas.",
+        "El cometa dorado revienta todas las estrellas de la pantalla. Un número equivocado no resta puntos: vuelve a intentarlo.",
+        "Si una estrella toca el horizonte, pierdes una vida y se borran las demás. Al perder 3, termina la partida."
+      ]
     }
   },
   "play": {

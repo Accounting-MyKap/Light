@@ -28,8 +28,14 @@ test('concurrent creation yields a single plan', async () => {
 test('yesterday plan is avoided when possible', async () => {
   const yesterday = await getOrCreatePlan('2026-10-19');
   const today = await getOrCreatePlan('2026-10-20');
-  const fresh = GAMES.map((g) => g.id).filter((id) => !yesterday.gameIds.includes(id));
-  expect(today.gameIds).toEqual(expect.arrayContaining(fresh));
+  // The plan has one game per area, so an area with two fresh games shows only one: check every area that has
+  // something fresh is in the plan with a fresh game.
+  const fresh = GAMES.filter((g) => !yesterday.gameIds.includes(g.id));
+  for (const area of new Set(fresh.map((g) => g.area))) {
+    const picked = GAMES.filter((g) => g.area === area && today.gameIds.includes(g.id));
+    expect(picked).toHaveLength(1);
+    expect(yesterday.gameIds).not.toContain(picked[0].id);
+  }
 });
 
 test('completedDays returns only complete plans', async () => {

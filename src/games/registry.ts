@@ -3,6 +3,7 @@ import { quickMathGame } from './quick-math';
 import { ruleSwitchGame } from './rule-switch';
 import { sameDifferentGame } from './same-different';
 import { sequenceLightsGame } from './sequence-lights';
+import { starShowerGame } from './star-shower';
 import type { GameDefinition } from './types';
 
 export const GAMES: readonly GameDefinition[] = [
@@ -11,6 +12,7 @@ export const GAMES: readonly GameDefinition[] = [
   sameDifferentGame,
   ruleSwitchGame,
   quickMathGame,
+  starShowerGame,
 ];
 
 export function getGame(id: string): GameDefinition | undefined {

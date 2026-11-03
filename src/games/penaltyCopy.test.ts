@@ -17,3 +17,8 @@ test.each([
     expect(dicts[lang].games[id].instructions.join(' '), lang).toMatch(new RegExp(`\\b${penalty}\\b`));
   }
 });
+
+test('star-shower instructions say a wrong number costs nothing (es and en)', () => {
+  expect(dicts.es.games['star-shower'].instructions.join(' ')).toMatch(/no resta/);
+  expect(dicts.en.games['star-shower'].instructions.join(' ')).toMatch(/costs no points/);
+});

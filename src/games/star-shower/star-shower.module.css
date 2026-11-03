@@ -412,3 +412,142 @@
     color: var(--luz-bad);
   }
 }
+
+/*
+ * The example in the instructions: the same sky in miniature, looping every 9 s. The star 7 + 5 falls and is popped
+ * by 12 (the slot types it in), 4 + 3 keeps falling, the comet comes and bursts the sky. At rest (reduced motion)
+ * the three hang where the loop starts to show them.
+ */
+.demo {
+  --loop: 9s;
+  flex: none;
+  height: 12.5rem;
+  min-height: 0;
+  border-radius: 1.25rem;
+  background: #0b1030;
+}
+
+.demoPop {
+  top: 40%;
+}
+
+.demoLate {
+  top: 28%;
+}
+
+.demoComet {
+  top: 62%;
+}
+
+.demo[data-animated='true'] .demoPop {
+  animation: demo-pop var(--loop) linear infinite both;
+}
+
+.demo[data-animated='true'] .demoLate {
+  animation: demo-late var(--loop) linear infinite both;
+}
+
+.demo[data-animated='true'] .demoComet {
+  animation: demo-comet var(--loop) linear infinite both;
+}
+
+.demo[data-animated='true'] .demoAnswer {
+  animation: demo-answer var(--loop) linear infinite both;
+}
+
+@keyframes demo-pop {
+  0% {
+    top: 0%;
+    opacity: 1;
+    transform: translate(-50%, -100%) scale(1);
+  }
+
+  38% {
+    top: 70%;
+    opacity: 1;
+    transform: translate(-50%, -100%) scale(1);
+  }
+
+  44%,
+  100% {
+    top: 78%;
+    opacity: 0;
+    transform: translate(-50%, -100%) scale(1.35);
+  }
+}
+
+@keyframes demo-late {
+  0%,
+  8% {
+    top: 0%;
+    opacity: 0;
+  }
+
+  10% {
+    top: 2%;
+    opacity: 1;
+  }
+
+  62% {
+    top: 82%;
+    opacity: 1;
+    transform: translate(-50%, -100%) scale(1);
+  }
+
+  68%,
+  100% {
+    top: 88%;
+    opacity: 0;
+    transform: translate(-50%, -100%) scale(1.35);
+  }
+}
+
+@keyframes demo-comet {
+  0%,
+  44% {
+    top: 0%;
+    opacity: 0;
+  }
+
+  47% {
+    top: 2%;
+    opacity: 1;
+  }
+
+  62% {
+    top: 62%;
+    opacity: 1;
+    transform: translate(-50%, -100%) scale(1);
+  }
+
+  68%,
+  100% {
+    top: 68%;
+    opacity: 0;
+    transform: translate(-50%, -100%) scale(1.35);
+  }
+}
+
+/* Empty at first, 12 typed in by the time the first star is popped, then cleared again for the next round. */
+@keyframes demo-answer {
+  0%,
+  22% {
+    opacity: 0.25;
+  }
+
+  30%,
+  44% {
+    opacity: 1;
+  }
+
+  50%,
+  100% {
+    opacity: 0.25;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .demo .star::before {
+    display: none;
+  }
+}
