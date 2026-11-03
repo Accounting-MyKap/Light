@@ -183,7 +183,7 @@
               "options": ["Hat-trick", "Doblete", "Póker", "Gol olímpico"],
               "explanation": "Se llama hat-trick, o triplete. Cuando anota dos goles se habla de un doblete." },
       "en": { "question": "In soccer, what is it called when one player scores three goals in a match?",
-              "options": ["A hat-trick", "A brace", "A clean sheet", "A grand slam"],
+              "options": ["A hat-trick", "A brace", "A four-goal haul", "An Olympic goal"],
               "explanation": "It is called a hat-trick. Scoring two goals in a match is called a brace." }
     },
     {
@@ -324,12 +324,12 @@
     },
     {
       "id": "sports-0038", "difficulty": 1, "type": "choice",
-      "es": { "question": "¿Qué estilo de natación se nada boca arriba?",
+      "es": { "question": "¿En qué estilo de natación el nadador va boca arriba?",
               "options": ["Espalda", "Mariposa", "Pecho", "Libre"],
-              "explanation": "En el estilo espalda el nadador va boca arriba. Los otros tres estilos de competencia se nadan boca abajo." },
-      "en": { "question": "Which swimming stroke is swum on the back?",
+              "explanation": "En el estilo espalda el nadador va boca arriba. En mariposa y pecho va boca abajo, y en libre casi todos nadan crol, también boca abajo." },
+      "en": { "question": "In which swimming stroke does the swimmer lie face up?",
               "options": ["Backstroke", "Butterfly", "Breaststroke", "Freestyle"],
-              "explanation": "In backstroke the swimmer lies face up. The other three competitive strokes are swum face down." }
+              "explanation": "In backstroke the swimmer lies face up. In butterfly and breaststroke the swimmer is face down, and in freestyle almost everyone swims front crawl, also face down." }
     },
     {
       "id": "sports-0039", "difficulty": 1, "type": "truefalse", "answer": false,
@@ -427,10 +427,10 @@
     {
       "id": "sports-0050", "difficulty": 2, "type": "choice",
       "es": { "question": "¿Qué estadio de Río de Janeiro se construyó para el Mundial de fútbol de 1950?",
-              "options": ["Maracaná", "Morumbi", "Mineirão", "Pacaembu"],
+              "options": ["Maracaná", "São Januário", "Engenhão", "Laranjeiras"],
               "explanation": "El Maracaná se inauguró en 1950. Allí Uruguay venció 2-1 a Brasil en el partido decisivo del torneo, el «Maracanazo»." },
       "en": { "question": "Which stadium in Rio de Janeiro was built for the 1950 World Cup?",
-              "options": ["Maracanã", "Morumbi", "Mineirão", "Pacaembu"],
+              "options": ["Maracanã", "São Januário", "Engenhão", "Laranjeiras"],
               "explanation": "The Maracanã opened in 1950. There Uruguay beat Brazil 2-1 in the deciding match of the tournament, the “Maracanazo”." }
     },
     {
@@ -507,11 +507,11 @@
     },
     {
       "id": "sports-0059", "difficulty": 2, "type": "choice",
-      "es": { "question": "¿Qué selección ganó la Copa América 2001, jugada en su propio país?",
-              "options": ["Colombia", "México", "Honduras", "Uruguay"],
+      "es": { "question": "¿Qué selección ganó la Copa América 2001?",
+              "options": ["Colombia", "Uruguay", "Perú", "Brasil"],
               "explanation": "Colombia venció 1-0 a México en la final, en Bogotá, con gol de Iván Córdoba. Fue su primera Copa América." },
-      "en": { "question": "Which national team won the 2001 Copa América, played on its home soil?",
-              "options": ["Colombia", "Mexico", "Honduras", "Uruguay"],
+      "en": { "question": "Which national team won the 2001 Copa América?",
+              "options": ["Colombia", "Uruguay", "Peru", "Brazil"],
               "explanation": "Colombia beat Mexico 1-0 in the final, in Bogotá, with a goal by Iván Córdoba. It was its first Copa América." }
     },
     {
@@ -644,10 +644,10 @@
       "id": "sports-0074", "difficulty": 2, "type": "choice",
       "es": { "question": "¿Cuántos asaltos tiene como máximo una pelea profesional por un título mundial de boxeo?",
               "options": ["12", "10", "15", "8"],
-              "explanation": "Los combates por títulos mundiales se pactan a un máximo de 12 asaltos de tres minutos desde los años ochenta; antes eran de 15." },
+              "explanation": "En el boxeo masculino, los combates por títulos mundiales se pactan a un máximo de 12 asaltos de tres minutos desde los años ochenta; antes eran de 15." },
       "en": { "question": "What is the maximum number of rounds in a professional world title boxing fight?",
               "options": ["12", "10", "15", "8"],
-              "explanation": "World title fights have been capped at 12 three-minute rounds since the 1980s; before that they went up to 15." }
+              "explanation": "In men's boxing, world title fights have been capped at 12 three-minute rounds since the 1980s; before that they went up to 15." }
     },
     {
       "id": "sports-0075", "difficulty": 2, "type": "choice",
@@ -720,20 +720,20 @@
     {
       "id": "sports-0083", "difficulty": 2, "type": "choice",
       "es": { "question": "¿Qué famosa carrera ganó el piloto colombiano Juan Pablo Montoya en el año 2000, en su primera participación?",
-              "options": ["Las 500 Millas de Indianápolis", "El Gran Premio de Mónaco", "Las 24 Horas de Le Mans", "El Gran Premio de Brasil"],
+              "options": ["Las 500 Millas de Indianápolis", "Las 500 Millas de Daytona", "Las 24 Horas de Le Mans", "El Gran Premio de Canadá"],
               "explanation": "Montoya ganó las 500 Millas de Indianápolis en 2000, en su debut en esa carrera, y volvió a ganarlas en 2015." },
       "en": { "question": "Which famous race did Colombian driver Juan Pablo Montoya win in 2000, on his first attempt?",
-              "options": ["The Indianapolis 500", "The Monaco Grand Prix", "The Le Mans 24 Hours", "The Brazilian Grand Prix"],
+              "options": ["The Indianapolis 500", "The Daytona 500", "The Le Mans 24 Hours", "The Canadian Grand Prix"],
               "explanation": "Montoya won the Indianapolis 500 in 2000, on his debut in the race, and won it again in 2015." }
     },
     {
       "id": "sports-0084", "difficulty": 2, "type": "choice",
-      "es": { "question": "¿Qué deporte autóctono de origen indígena fue declarado deporte nacional de Colombia por ley?",
+      "es": { "question": "¿Qué deporte fue declarado por ley deporte nacional de Colombia?",
               "options": ["Tejo", "Fútbol", "Patinaje", "Ciclismo"],
-              "explanation": "El tejo, que consiste en lanzar un disco metálico para hacer estallar mechas con pólvora, fue declarado deporte nacional por ley en el año 2000." },
-      "en": { "question": "Which native sport of Indigenous origin was declared Colombia's national sport by law?",
+              "explanation": "El tejo, de origen indígena, consiste en lanzar un disco metálico para hacer estallar mechas con pólvora. La Ley 613 de 2000 lo declaró deporte nacional." },
+      "en": { "question": "Which sport was declared Colombia's national sport by law?",
               "options": ["Tejo", "Soccer", "Roller skating", "Cycling"],
-              "explanation": "Tejo, in which players throw a metal disc to make gunpowder packets explode, was declared the national sport by law in 2000." }
+              "explanation": "Tejo, of Indigenous origin, involves throwing a metal disc to make gunpowder packets explode. Law 613 of 2000 declared it the national sport." }
     },
     {
       "id": "sports-0085", "difficulty": 3, "type": "choice",
@@ -809,11 +809,11 @@
     },
     {
       "id": "sports-0093", "difficulty": 3, "type": "choice",
-      "es": { "question": "¿Quién ganó la prueba de ruta masculina de ciclismo en los Juegos de Tokio 2020?",
-              "options": ["Richard Carapaz", "Wout van Aert", "Tadej Pogačar", "Primož Roglič"],
-              "explanation": "El ecuatoriano Richard Carapaz ganó la prueba de ruta, que se corrió en julio de 2021. Van Aert fue segundo y Pogačar, tercero." },
-      "en": { "question": "Who won the men's road cycling race at the Tokyo 2020 Games?",
-              "options": ["Richard Carapaz", "Wout van Aert", "Tadej Pogačar", "Primož Roglič"],
+      "es": { "question": "¿Quién ganó la carrera en ruta (en línea) masculina de ciclismo en los Juegos de Tokio 2020?",
+              "options": ["Richard Carapaz", "Wout van Aert", "Tadej Pogačar", "Julian Alaphilippe"],
+              "explanation": "El ecuatoriano Richard Carapaz ganó la carrera en ruta, que se corrió en julio de 2021. Van Aert fue segundo y Pogačar, tercero." },
+      "en": { "question": "Who won the men's road race at the Tokyo 2020 Games?",
+              "options": ["Richard Carapaz", "Wout van Aert", "Tadej Pogačar", "Julian Alaphilippe"],
               "explanation": "Ecuador's Richard Carapaz won the road race, held in July 2021. Van Aert took silver and Pogačar bronze." }
     },
     {
@@ -827,10 +827,10 @@
     },
     {
       "id": "sports-0095", "difficulty": 3, "type": "choice",
-      "es": { "question": "¿Qué boxeador, conocido como «Kid Pambelé», fue el primer campeón mundial de Colombia, en 1972?",
+      "es": { "question": "¿Qué boxeador, conocido como «Kid Pambelé», fue el primer campeón mundial de boxeo de Colombia, en 1972?",
               "options": ["Antonio Cervantes", "Rodrigo Valdez", "Miguel Lora", "Fidel Bassa"],
               "explanation": "Antonio Cervantes ganó el título superligero de la AMB en 1972, en Panamá. Valdez, Lora y Bassa fueron campeones años después." },
-      "en": { "question": "Which boxer, known as “Kid Pambelé”, became Colombia's first world champion, in 1972?",
+      "en": { "question": "Which boxer, known as “Kid Pambelé”, became Colombia's first world boxing champion, in 1972?",
               "options": ["Antonio Cervantes", "Rodrigo Valdez", "Miguel Lora", "Fidel Bassa"],
               "explanation": "Antonio Cervantes won the WBA junior welterweight title in 1972, in Panama. Valdez, Lora and Bassa became champions years later." }
     },
