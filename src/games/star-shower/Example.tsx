@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { prefersReducedMotion } from '../../core/motion';
-import { Sparkle } from './Sky';
+import { StarLook } from './Sky';
 import styles from './star-shower.module.css';
 
 export function StarShowerExample() {
@@ -13,14 +13,13 @@ export function StarShowerExample() {
         <div className={styles.field}>
           <div className={styles.dots} />
           <div className={`${styles.star} ${styles.demoPop}`} data-comet="false" data-lane="0">
-            7 + 5
+            <StarLook comet={false}>7 + 5</StarLook>
           </div>
           <div className={`${styles.star} ${styles.demoLate}`} data-comet="false" data-lane="2">
-            4 + 3
+            <StarLook comet={false}>4 + 3</StarLook>
           </div>
           <div className={`${styles.star} ${styles.demoComet}`} data-comet="true" data-lane="1">
-            <Sparkle />
-            6 + 2
+            <StarLook comet>6 + 2</StarLook>
           </div>
         </div>
         <div className={styles.horizon} />

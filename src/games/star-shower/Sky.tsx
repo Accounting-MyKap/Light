@@ -1,4 +1,4 @@
-import type { ReactNode, Ref } from 'react';
+import { useId, type ReactNode, type Ref } from 'react';
 import { formatProblem } from '../shared/arithmetic';
 import { starHeight, type Star } from './engine';
 import styles from './star-shower.module.css';
@@ -57,8 +57,7 @@ export function Sky({ stars, now, bursts, flash, input, wrongKey, registerStar }
               height={starHeight(star, now)}
             >
               <div className={styles.star} data-testid="star" data-comet={star.comet} data-lane={star.lane}>
-                {star.comet && <Sparkle />}
-                {formatProblem(star.problem)}
+                <StarLook comet={star.comet}>{formatProblem(star.problem)}</StarLook>
               </div>
             </Rail>
           ))}
@@ -70,7 +69,7 @@ export function Sky({ stars, now, bursts, flash, input, wrongKey, registerStar }
                 data-comet={burst.star.comet}
                 data-lane={burst.star.lane}
               >
-                {formatProblem(burst.star.problem)}
+                <StarLook comet={burst.star.comet}>{formatProblem(burst.star.problem)}</StarLook>
               </div>
             </Rail>
           ))}
@@ -117,11 +116,41 @@ function Rail({ lane, height, ref, children }: RailProps) {
   );
 }
 
-/** The comet's ✦, drawn rather than typed, so the star's text stays exactly its operation. Also in the example. */
-export function Sparkle() {
+/** The points of a 5-point star in a 100-unit box: outer radius 50, inner 21, centered a little low (y 52). */
+const STAR_POINTS = Array.from({ length: 10 }, (_, i) => {
+  const angle = -Math.PI / 2 + (i * Math.PI) / 5;
+  const radius = i % 2 === 0 ? 50 : 21;
+  return `${(50 + radius * Math.cos(angle)).toFixed(1)},${(52 + radius * Math.sin(angle)).toFixed(1)}`;
+}).join(' ');
+
+/**
+ * What a star looks like: a 5-point star (a round ball for the comet: the shape, not only the color, tells them
+ * apart) with its operation on a label just under it. The shapes are drawn and hold no text, so the star's text is
+ * exactly its operation. Also in the example.
+ */
+export function StarLook({ comet, children }: { comet: boolean; children: ReactNode }) {
   return (
-    <svg className={styles.sparkle} viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M12 0C12.9 7.6 16.4 11.1 24 12C16.4 12.9 12.9 16.4 12 24C11.1 16.4 7.6 12.9 0 12C7.6 11.1 11.1 7.6 12 0Z" />
+    <>
+      {comet ? <span className={styles.ball} /> : <StarHead />}
+      <span className={styles.label}>{children}</span>
+    </>
+  );
+}
+
+/** The star itself, in the color of the game (CSS), with a soft white shine at the upper left. */
+function StarHead() {
+  // Each star has its own shine, so no two gradients in the page share an id.
+  const shine = useId();
+  return (
+    <svg className={styles.head} viewBox="0 0 100 100" aria-hidden="true">
+      <defs>
+        <radialGradient id={shine} cx="40%" cy="35%" r="55%">
+          <stop offset="0" stopColor="#fff" stopOpacity="0.75" />
+          <stop offset="1" stopColor="#fff" stopOpacity="0" />
+        </radialGradient>
+      </defs>
+      <polygon className={styles.headBody} points={STAR_POINTS} />
+      <polygon points={STAR_POINTS} fill={`url(#${shine})`} />
     </svg>
   );
 }

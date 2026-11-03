@@ -13,13 +13,18 @@
   display: flex;
   flex-direction: column;
   min-height: 16rem;
+  /* Clip, not only hide: the rails reach a field's height below it, and a hidden overflow could still be scrolled
+     by code. `hidden` stays first for a browser without `clip`. */
   overflow: hidden;
+  overflow: clip;
 }
 
+/* It clips too, so what the rails reach below stays inside it and the sky has nothing to scroll at all. */
 .scene {
   flex: 1;
   display: flex;
   flex-direction: column;
+  overflow: clip;
 }
 
 /* Where the stars fall: their rails are as tall as it, so a star at 1 rests on the horizon. */
@@ -43,9 +48,11 @@
   will-change: transform;
 }
 
+/* Pinned to the rail's top. A rail has no width, so what it carries takes its own width and never wraps. */
 .rail > * {
   top: 0;
   left: 0;
+  width: max-content;
 }
 
 /* Still background stars in two sets that twinkle out of step. */
@@ -93,30 +100,72 @@
 }
 
 /*
- * A shooting star: a sphere of light in the color of the game with the operation in ink, a halo and a trail that
- * fades upward. It hangs from its bottom edge. The longest operation (20 + 9 × 9) fits a lane of a 320 px screen.
+ * A shooting star: a 5-point star in the color of the game, with a soft shine and glow and a trail that fades
+ * upward, and its operation in ink on a label just under it, the label over the star's lower points. It hangs from
+ * its bottom edge. Sizes follow --head, the star's size; the label has its own size, at least 13 px. The longest
+ * operation (20 + 9 × 9) fits a lane of a 320 px screen (93 px).
  */
 .star,
 .burst {
   --star: var(--game);
+  --head: clamp(2.25rem, 11vw, 2.75rem);
+  /* The shape on top (the comet's ball is smaller) and the trail rising from its center. */
+  --mark: var(--head);
+  --trail-width: calc(var(--head) * 0.35);
+  --trail-height: calc(var(--head) * 1.75);
   position: absolute;
-  padding: 0.4em 0.75em;
-  border-radius: 99px;
-  /* Plain color first: a browser without color-mix() drops the highlight and the soft halo, not the star. */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: max-content;
+  font-size: clamp(0.8125rem, 3.9vw, 1rem);
+  transform: translate(-50%, -100%);
+  pointer-events: none;
+}
+
+/* Without color-mix() the glows drop out, not the star or its label. */
+.head {
+  display: block;
+  width: var(--head);
+  height: var(--head);
+  filter: drop-shadow(0 0 5px color-mix(in srgb, var(--star) 85%, transparent))
+    drop-shadow(0 0 14px color-mix(in srgb, var(--star) 45%, transparent));
+}
+
+/* The stroke rounds the points a little. */
+.headBody {
+  fill: var(--star);
+  stroke: var(--star);
+  stroke-width: 4;
+  stroke-linejoin: round;
+}
+
+/* The comet's head: a round ball of light with a shine at the upper left. */
+.ball {
+  width: var(--mark);
+  height: var(--mark);
+  border-radius: 50%;
   background-color: var(--star);
-  background-image: radial-gradient(circle at 35% 30%, color-mix(in srgb, var(--star) 45%, white), var(--star) 65%);
-  box-shadow: 0 0 14px var(--star);
+  background-image: radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0) 60%);
   box-shadow:
-    0 0 12px 1px color-mix(in srgb, var(--star) 75%, transparent),
-    0 0 32px 6px color-mix(in srgb, var(--star) 30%, transparent);
+    0 0 12px 1px color-mix(in srgb, var(--star) 85%, transparent),
+    0 0 30px 6px color-mix(in srgb, var(--star) 35%, transparent);
+}
+
+/* The label: over the shape (positioned, so it paints above the glowing head), on a light tint of the color. */
+.label {
+  position: relative;
+  margin-top: calc(var(--head) * -0.15);
+  padding: 0.15em 0.6em;
+  border-radius: 99px;
+  background-color: var(--star);
+  background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3));
+  box-shadow: 0 0 10px color-mix(in srgb, var(--star) 60%, transparent);
   color: var(--luz-ink);
-  font-size: clamp(0.8125rem, 3.8vw, 1rem);
   font-weight: 800;
   font-variant-numeric: tabular-nums;
   line-height: 1.2;
   white-space: nowrap;
-  transform: translate(-50%, -100%);
-  pointer-events: none;
 }
 
 /* The three lanes, centered at 1/6, 3/6 and 5/6 of the width (the example's stars have no rail). */
@@ -138,51 +187,31 @@
   left: calc(100% * 5 / 6);
 }
 
-/* The trail, behind the text, rising from the top of the star. */
+/*
+ * The trail, behind the star, rising from its center and narrowing as it fades. Only live stars have one; a burst
+ * has stopped falling.
+ */
 .star::before {
   content: '';
   position: absolute;
   z-index: -1;
   left: 50%;
-  bottom: 85%;
-  width: 40%;
-  height: 240%;
-  border-radius: 99px 99px 40% 40%;
-  background: linear-gradient(to top, color-mix(in srgb, var(--star) 60%, transparent), transparent);
+  bottom: calc(100% - var(--mark) / 2);
+  width: var(--trail-width);
+  height: var(--trail-height);
+  border-radius: 50% 50% 50% 50% / 85% 85% 15% 15%;
+  background: linear-gradient(to top, color-mix(in srgb, var(--star) 75%, transparent), transparent);
   transform: translateX(-50%);
-  filter: blur(2px);
+  filter: blur(1.5px);
 }
 
-/* The comet: gold, bigger, with a long trail and a ✦, so its color is not the only cue. */
+/* The comet: a gold ball, smaller than a star's head, with a longer and wider tail and a gold label. */
 .star[data-comet='true'],
 .burst[data-comet='true'] {
   --star: var(--luz-gold);
-  padding: 0.5em 0.95em;
-  font-size: clamp(0.875rem, 4.1vw, 1.0625rem);
-}
-
-/* Narrower than 360 px the comet's sides are trimmed, so its longest operation fits a lane (93 px at 320 px). */
-@media (max-width: 359px) {
-  .star[data-comet='true'],
-  .burst[data-comet='true'] {
-    padding-inline: 0.7em;
-  }
-}
-
-.star[data-comet='true']::before {
-  width: 55%;
-  height: 420%;
-}
-
-.sparkle {
-  position: absolute;
-  left: 50%;
-  bottom: 100%;
-  width: 1.1em;
-  height: 1.1em;
-  fill: #fff7d6;
-  filter: drop-shadow(0 0 4px var(--luz-gold));
-  transform: translate(-50%, 50%);
+  --mark: calc(var(--head) * 0.75);
+  --trail-width: calc(var(--head) * 0.45);
+  --trail-height: calc(var(--head) * 2.75);
 }
 
 /* A popped star bursts into sparks; a cleared one only fades out. */
@@ -190,11 +219,16 @@
   animation: pop 500ms ease-out both;
 }
 
+/*
+ * The sparks fly out from behind the star's center (the comet's ball): behind it and its label, so a spark never
+ * lands on the operation (one under a «+» would read as «÷»).
+ */
 .burst[data-kind='pop']::after {
   content: '';
   position: absolute;
+  z-index: -1;
   left: 50%;
-  top: 50%;
+  top: calc(var(--mark) / 2);
   width: 5px;
   height: 5px;
   margin: -2.5px 0 0 -2.5px;
@@ -387,12 +421,18 @@
 /*
  * Short screens (an iPhone SE in Safari shows 548 px under its bars): the keys come down to the 44 px touch
  * minimum, the ground gets thinner and the sky may go under 16rem, so the screen fits without scrolling. The sky
- * keeps all the height left, about 160 px above the horizon on the shortest of them. The example is left as is.
+ * keeps all the height left, about 160 px above the horizon on the shortest of them, and its stars and trails are
+ * smaller, so one star does not fill it; their labels keep their size (13 px or more). The example is left as is.
  */
 @media (max-height: 640px) {
   .sky:not(.demo) {
     --ground: 3rem;
     min-height: 10rem;
+  }
+
+  .sky:not(.demo) .star,
+  .sky:not(.demo) .burst {
+    --head: 1.75rem;
   }
 
   .keys > div {
@@ -447,7 +487,7 @@
 /*
  * The example in the instructions: the same sky in miniature, looping every 9 s. The star 7 + 5 falls and is popped
  * by 12 (the slot types it in), 4 + 3 keeps falling, the comet comes and bursts the sky. At rest (reduced motion)
- * the three hang where the loop starts to show them.
+ * the three hang whole in the sky, at heights the loop passes through: 7 + 5 and the comet just before they pop.
  */
 .demo {
   --loop: 9s;
@@ -458,12 +498,17 @@
   background: #0b1030;
 }
 
+/* A miniature: smaller stars than the game's, so all three fit whole in its little sky at rest. */
+.demo .star {
+  --head: 2rem;
+}
+
 .demoPop {
-  top: 40%;
+  top: 70%;
 }
 
 .demoLate {
-  top: 28%;
+  top: 46%;
 }
 
 .demoComet {
