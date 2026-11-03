@@ -268,7 +268,16 @@
         "Stars with sums are falling. Type the answer on the on-screen keypad or your keyboard and press OK (or Enter) to pop them.",
         "The golden comet pops every star on the screen. A wrong number costs no points: just try again.",
         "If a star reaches the horizon, you lose a life and the other stars vanish. Lose 3 and the game ends."
-      ]
+      ],
+      "practice": {
+        "pop": "Type the star's answer and press OK to pop it",
+        "falling": "The stars fall: pop both before they touch the horizon",
+        "comet": "The golden star is a comet: pop it and they all pop",
+        "hintFirst": "That number isn't in the sky: 3 + 4 = 7. Try again",
+        "hintWrong": "That number isn't on any star. Try again",
+        "hintLost": "If a star touches the horizon, you lose a life. Try again",
+        "recap": "You play until you lose 3 lives: each star that touches the horizon takes one. A wrong number costs no points. On a keyboard: type and press Enter."
+      }
     }
   },
   "play": {

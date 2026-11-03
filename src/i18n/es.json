@@ -268,7 +268,16 @@
         "Caen estrellas con operaciones. Escribe el resultado con el teclado en pantalla o el de tu computador y pulsa OK (o Enter) para reventarlas.",
         "El cometa dorado revienta todas las estrellas de la pantalla. Un número equivocado no resta puntos: vuelve a intentarlo.",
         "Si una estrella toca el horizonte, pierdes una vida y se borran las demás. Al perder 3, termina la partida."
-      ]
+      ],
+      "practice": {
+        "pop": "Escribe el resultado de la estrella y pulsa OK para reventarla",
+        "falling": "Las estrellas caen: revienta las dos antes de que toquen el horizonte",
+        "comet": "La estrella dorada es un cometa: si la revientas, revienta todas",
+        "hintFirst": "Ese número no está en el cielo: 3 + 4 = 7. Inténtalo otra vez",
+        "hintWrong": "Ese número no está en ninguna estrella. Inténtalo otra vez",
+        "hintLost": "Si una estrella toca el horizonte, pierdes una vida. Inténtalo otra vez",
+        "recap": "Juegas hasta perder 3 vidas: cada estrella que toca el horizonte quita una. Un número equivocado no resta. Con teclado: escribe y pulsa Enter."
+      }
     }
   },
   "play": {
