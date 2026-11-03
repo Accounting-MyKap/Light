@@ -1,6 +1,6 @@
 import { mkdirSync } from 'node:fs';
-import { expect, test, type Browser, type Locator, type Page } from '@playwright/test';
-import { finishCurrentGame } from './helpers';
+import { expect, test, type Browser, type Page } from '@playwright/test';
+import { expectTall, finishCurrentGame } from './helpers';
 
 const BASE_URL = 'http://localhost:4173/Light/';
 const CLOCK_TIME = new Date('2026-10-20T10:00:00');
@@ -53,17 +53,6 @@ async function expectMeterBars(page: Page) {
   for (let i = 0; i < count; i++) {
     const box = await meters.nth(i).boundingBox();
     expect(box?.width ?? 0, `meter ${i} width`).toBeGreaterThan(40);
-  }
-}
-
-async function expectTall(targets: Locator) {
-  await expect(targets.first()).toBeVisible(); // the app renders after an async bootstrap
-  const count = await targets.count();
-  expect(count).toBeGreaterThan(0);
-  for (let i = 0; i < count; i++) {
-    const target = targets.nth(i);
-    const box = await target.boundingBox();
-    expect(box?.height ?? 0, `${await target.textContent()} height`).toBeGreaterThanOrEqual(44);
   }
 }
 

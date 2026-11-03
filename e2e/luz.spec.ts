@@ -1,6 +1,6 @@
 import { mkdirSync } from 'node:fs';
 import { expect, test, type Page } from '@playwright/test';
-import { finishRunningGame } from './helpers';
+import { finishRunningGame, startGame } from './helpers';
 
 const GAMES = ['sequence-lights', 'arrows', 'same-different', 'rule-switch', 'quick-math'] as const;
 const CLOCK_TIME = new Date('2026-10-20T10:00:00');
@@ -106,12 +106,12 @@ test.describe('narrow English screen', () => {
   test('no sideways scroll at 320 px in English', async ({ page }) => {
     for (const id of GAMES) {
       await page.goto(`./#/play/${id}`);
-      // First visit: the instructions, with their example.
-      const start = page.getByRole('button', { name: 'Start' });
-      await expect(start, `${id} instructions`).toBeVisible();
-      expect(await hasNoSidewaysScroll(page), `${id} instructions scroll sideways`).toBe(true);
+      // First visit: the practice invitation.
+      const skip = page.getByRole('button', { name: 'Skip practice', exact: true });
+      await expect(skip, `${id} practice intro`).toBeVisible();
+      expect(await hasNoSidewaysScroll(page), `${id} practice intro scrolls sideways`).toBe(true);
 
-      await start.click();
+      await skip.click();
       await expect(page.locator('[data-game]'), `${id} playing`).toBeVisible();
       expect(await hasNoSidewaysScroll(page), `${id} in play scrolls sideways`).toBe(true);
     }
@@ -127,7 +127,7 @@ test.describe('reduced motion', () => {
   // Review Focus #5
   test('reduced motion shows the final score at once', async ({ page }) => {
     await page.goto('./#/play/quick-math');
-    await page.getByRole('button', { name: 'Comenzar' }).click();
+    await startGame(page);
     await expect(page.locator('[data-game]')).toBeVisible();
     // From here the page's time only moves when the test moves it, and only in small steps once the game is about to
     // end. Otherwise the seconds still left on the clock when the result appears would let a count-up finish by
@@ -156,7 +156,7 @@ test.describe('result at a large root font size', () => {
     await page.addStyleTag({ content: 'html { font-size: 24px !important }' });
     expect(await page.evaluate(() => getComputedStyle(document.documentElement).fontSize)).toBe('24px');
 
-    await page.getByRole('button', { name: 'Comenzar' }).click();
+    await startGame(page);
     await expect(page.locator('[data-game]')).toBeVisible();
     await solveQuickMath(page, 5);
     expect(await hasNoSidewaysScroll(page), 'the game scrolls sideways').toBe(true);
@@ -179,7 +179,7 @@ test.describe('arrows rows', () => {
   // count, two siblings shared a key, and every answer left one more old row in the page, pushing the buttons away.
   test('Arrows keeps a single row after many answers and its buttons stay on screen', async ({ page }) => {
     await page.goto('./#/play/arrows');
-    await page.getByRole('button', { name: 'Comenzar' }).click();
+    await startGame(page);
     await expect(page.locator('[data-game]')).toBeVisible();
     const rows = page.getByTestId('arrows-row');
     const buttons = page.locator('[data-game] [data-zone="controls"] button');
@@ -208,7 +208,7 @@ test.describe('review screenshots', () => {
 
     for (const id of GAMES) {
       await page.goto(`./#/play/${id}`);
-      await page.getByRole('button', { name: 'Comenzar' }).click();
+      await startGame(page);
       const game = page.locator('[data-game]');
       await expect(game).toBeVisible();
       if (id === 'sequence-lights') {
