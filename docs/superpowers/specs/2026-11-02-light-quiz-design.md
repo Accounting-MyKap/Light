@@ -274,6 +274,7 @@ resultado van en el ámbito oscuro de Luz, como los demás juegos; la pestaña P
 la app.
 - **Marco común (`GameFrame`) en lugar del HUD:**
   - La barra superior lleva ✕, título, «Nivel N» y la píldora de puntos.
+  - La barra de tiempo se pone urgente solo en los últimos 5 s de cada pregunta (`time.urgentMs`, opcional en el marco; por defecto 10 s).
   - La barra de tiempo de la pregunta expone los segundos en su texto accesible, y la hoja de pausa los muestra.
   - Mientras se ve la respuesta, la barra queda detenida y sin urgencia (`time.stopped`, opcional en el marco).
 - **Distribución:**
