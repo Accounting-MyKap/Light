@@ -228,6 +228,9 @@ Hay un archivo JSON por categoría: `src/quiz/banks/<categoría>.json`.
 **Partida:** reutiliza `PlayScreen`: instrucciones con ejemplo la primera vez, pausa automática al ocultar la
 pestaña y salida con ✕.
 
+- Los 14 juegos comparten las instrucciones, así que se muestran una sola vez para todos.
+- En pausa la pregunta y sus opciones se ocultan: el reloj está detenido y no debe dar tiempo extra para pensar.
+
 - **Arriba:**
   - El HUD de siempre: tiempo restante de la pregunta en segundos, puntos y nivel.
   - La línea «Pregunta N de 10».
@@ -496,9 +499,9 @@ respuestas pregunta por pregunta no se suben.
 
 | Situación | Comportamiento |
 |---|---|
-| No carga un banco (caché dañada, sin conexión antes de la primera visita) | «No pudimos cargar las preguntas» + «Reintentar» y «Salir». No se registra nada |
+| No carga un banco (caché dañada, sin conexión antes de la primera visita) | «No pudimos cargar las preguntas» + «Reintentar» y «Salir»; tras un segundo fallo seguido, también «Recargar la página». No se registra nada |
 | No se puede leer el historial local | Se juega con historial vacío (alguna pregunta puede repetirse); nunca bloquea |
-| Falla el guardado | El flujo actual de «Reintentar» con el mismo `resultId`; las respuestas no se duplican |
+| Falla el guardado | El flujo actual de «Reintentar» con el mismo `resultId`; el resultado y sus respuestas se guardan en una sola transacción, así que no queda uno sin las otras ni se duplican |
 | Ronda de menos de 5 s o más de 1 h activa | El servidor la rechaza (regla actual de `duration_ms`); queda guardada en el dispositivo |
 | Una pregunta con un dato equivocado | Se corrige su JSON y se publica una versión nueva; su id se mantiene |
 
