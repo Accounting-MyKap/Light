@@ -453,7 +453,7 @@ function ArrivalMark({ at, arrival, now, still }: { at: Point; arrival: Arrival;
           strokeLinecap="round"
           strokeLinejoin="round"
         />
-        {arrival.correct && (
+        {arrival.correct && arrival.points > 0 && (
           <text y={-16} textAnchor="middle" fill={color} fontSize={13} fontWeight={800}>
             +{arrival.points}
           </text>

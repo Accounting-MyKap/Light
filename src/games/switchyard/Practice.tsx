@@ -127,7 +127,8 @@ function advanceRound(game: SwitchyardState, to: number, attempt: Attempt) {
     const moving = { ...state, trains: state.trains.filter((train) => !held.includes(train)) };
     const result = advanceSwitchyard(moving, until, NO_SPAWN_RNG);
     state = { ...result.state, trains: [...held, ...result.state.trains] };
-    arrivals.push(...result.arrivals);
+    // No points in the practice: its marks show the check, never a «+10».
+    arrivals.push(...result.arrivals.map((arrival) => ({ ...arrival, points: 0 })));
   };
   PRACTICE_ROUNDS[attempt.round].trains.forEach((train, i) => {
     const due = attempt.startedAt + train.at;

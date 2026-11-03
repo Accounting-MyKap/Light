@@ -137,6 +137,15 @@ test('round 1: the red train waits until the switch leads it home, then arrives 
   expect(tone()).toBe('normal');
 });
 
+test('a train home in the practice shows its check mark, but no points: the practice has none', () => {
+  setup();
+  advance(100);
+  fireEvent.click(switchButton(0));
+  until(() => document.querySelector('[data-arrival="correct"]') !== null);
+  const texts = [...document.querySelectorAll('[data-arrival] text')].map((t) => t.textContent);
+  expect(texts.filter((text) => text?.startsWith('+'))).toEqual([]);
+});
+
 test('round 1: a train sent back the wrong way before the switch counts as a miss and the round starts over', () => {
   setup();
   advance(100);
