@@ -196,6 +196,9 @@ Las cifras salen de las constantes del juego (duración, rondas y penalizaciones
   - Ronda 2: «Ahora el tren avanza solo: cambia la vía antes de que llegue al cambio» / «Now the train moves on its own: switch the track before it reaches the switch».
   - Ronda 3: «Pueden venir varios a la vez: lleva cada uno a su estación» / «Several can come at once: take each one to its station».
 - **Al acertar:** la ronda acierta cuando todos sus trenes llegaron a su estación. La reacción es una por ronda, no por tren. Mientras dice «¡Bien!», el tren sigue entrando en la estación, como en el juego.
+- **Sin puntos:** la marca de llegada muestra el visto o la ✕, nunca «+10».
+- **Cambios quietos:** mientras dice «¡Bien!», y desde un fallo hasta que la ronda empieza de nuevo, los toques y las teclas no mueven los cambios.
+- **Reloj:** avanza a lo sumo 100 ms de un cuadro al siguiente, así que con la app oculta la práctica simplemente se detiene.
 - **Al fallar:**
   - Un tren en otra estación muestra la pista. Un segundo después, la ronda empieza de nuevo tal como empezó, y la pista sigue a la vista durante el nuevo intento.
   - Ronda 2: «El tren amarillo va a la estación amarilla, la del cuadrado. Inténtalo otra vez» / «The yellow train goes to the yellow station, the square one. Try again».
