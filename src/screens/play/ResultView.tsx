@@ -27,7 +27,8 @@ const SPARKS = 6;
 
 export function ResultView({ game, result, previousBest, onPlayAgain, onBack, daily }: ResultViewProps) {
   const { t } = useTranslation();
-  const isNewBest = previousBest === null || result.score > previousBest;
+  // A score of 0 is never a record, not even the first one.
+  const isNewBest = result.score > 0 && (previousBest === null || result.score > previousBest);
   const shownScore = useCountUp(result.score);
   const progress = daily?.progress;
   const { ResultDetails } = game;
@@ -64,7 +65,7 @@ export function ResultView({ game, result, previousBest, onPlayAgain, onBack, da
         {!isNewBest && (
           <div>
             <dt>{t('play.best')}</dt>
-            <dd>{previousBest}</dd>
+            <dd>{previousBest ?? '—'}</dd>
           </div>
         )}
       </dl>

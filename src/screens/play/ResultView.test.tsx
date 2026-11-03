@@ -58,6 +58,27 @@ test('the first game ever is a new best', () => {
   expect(celebration(container)).not.toBeNull();
 });
 
+test('a first game with a score of 0 is no new best, and the best card shows a dash', () => {
+  const { container } = renderResult({ previousBest: null, result: { ...RESULT, score: 0 } });
+  expect(screen.queryByText('¡Nueva mejor marca!')).not.toBeInTheDocument();
+  expect(celebration(container)).toBeNull();
+  expect(screen.getByText('Mejor marca').parentElement).toHaveTextContent('—');
+  expect(screen.getByText('Mejor marca').parentElement).not.toHaveTextContent('null');
+});
+
+test('a first game with a score of 20 is a new best', () => {
+  const { container } = renderResult({ previousBest: null, result: { ...RESULT, score: 20 } });
+  expect(screen.getByText('¡Nueva mejor marca!')).toBeInTheDocument();
+  expect(celebration(container)).not.toBeNull();
+});
+
+test('a 0 after a best of 30 is no new best and keeps the best', () => {
+  const { container } = renderResult({ previousBest: 30, result: { ...RESULT, score: 0 } });
+  expect(screen.queryByText('¡Nueva mejor marca!')).not.toBeInTheDocument();
+  expect(celebration(container)).toBeNull();
+  expect(screen.getByText('Mejor marca').parentElement).toHaveTextContent('30');
+});
+
 test('accuracy and level are shown in cards', () => {
   renderResult({ previousBest: 100 });
   expect(screen.getByText('Precisión').parentElement).toHaveTextContent('92 %');
