@@ -109,10 +109,15 @@
   transition: transform 150ms ease-out;
 }
 
-/* The tap area of a switch: transparent over the disc, at least 44 px. */
+/* The tap area of a switch: transparent over the disc, 14 % of the board and at least 44 px, but never more than 19 %
+   of it. Switches stand at least 70 of the 360 board units apart (19.4 %), so on a board too narrow for 44 px (under
+   about 230 px: a short landscape phone) the buttons shrink instead of covering each other. The app's 44 px floor
+   for every button is lifted here for that. */
 .switch {
   position: absolute;
-  width: max(44px, 14%);
+  width: max(min(44px, 19%), 14%);
+  min-width: 0;
+  min-height: 0;
   aspect-ratio: 1;
   padding: 0;
   border: none;
@@ -122,6 +127,8 @@
   cursor: pointer;
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
+  /* Its key number is sized from its width. */
+  container-type: inline-size;
 }
 
 .switch:active {
@@ -133,21 +140,22 @@
   outline-offset: 2px;
 }
 
-/* The number of the key that flips the switch, only where there is a keyboard and a mouse. */
+/* The number of the key that flips the switch, only where there is a keyboard and a mouse. It shrinks with a button
+   smaller than 44 px (cqw: hundredths of the button's width), so it never hides the disc. */
 .key {
   display: none;
   position: absolute;
   top: 0;
   right: 0;
-  min-width: 18px;
-  height: 18px;
-  padding: 0 4px;
-  border-radius: 9px;
+  min-width: min(18px, 41cqw);
+  height: min(18px, 41cqw);
+  padding: 0 min(4px, 9cqw);
+  border-radius: 999px;
   background: var(--luz-text, #eef1ff);
   color: var(--luz-ink, #0b0d1a);
-  font-size: 11px;
+  font-size: min(11px, 25cqw);
   font-weight: 800;
-  line-height: 18px;
+  line-height: min(18px, 41cqw);
 }
 
 @media (hover: hover) and (pointer: fine) {
