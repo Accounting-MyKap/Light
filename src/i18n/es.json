@@ -299,9 +299,11 @@
     "daysTrained": "Días entrenados: {{count}}",
     "chartLabel": "Últimos {{count}} puntajes: mínimo {{min}}, máximo {{max}}, último {{last}}",
     "notEnoughData": "Juega al menos dos partidas para ver tu evolución.",
+    "trainingEmpty": "Juega un juego de entrenamiento para ver tus rachas y tu puntaje por área.",
     "quizTitle": "Preguntas",
     "mastery": "Dominio (últimos 30 días)",
-    "quizLine": "Vistas: {{seen}} de {{total}} · Mejor marca: {{best}}"
+    "quizLine": "Vistas: {{seen}} de {{total}} · Mejor marca: {{best}}",
+    "quizNone": "Sin respuestas en los últimos 30 días"
   },
   "settings": {
     "language": "Idioma",

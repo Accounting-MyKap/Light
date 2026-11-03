@@ -37,60 +37,68 @@ export function ProgressScreen() {
   const trainingIds = new Set(TRAINING_GAMES.map((g) => g.id));
   const scores = areaScores(results, TRAINING_GAMES, now);
   const streak = computeStreak(days, today);
-  const daysTrained = new Set(results.filter((r) => trainingIds.has(r.gameId)).map((r) => r.day)).size;
+  const training = results.filter((r) => trainingIds.has(r.gameId));
+  const daysTrained = new Set(training.map((r) => r.day)).size;
 
   return (
     <section className={styles.screen}>
       <h1>{t('nav.progress')}</h1>
 
-      <ul className={styles.stats}>
-        <li>{t('progress.streakCurrent', { count: streak.current })}</li>
-        <li>{t('progress.streakBest', { count: streak.best })}</li>
-        <li>{t('progress.daysTrained', { count: daysTrained })}</li>
-      </ul>
+      {training.length === 0 ? (
+        // A quiz-only player: the streaks, area scores and per-game charts would all be empty.
+        <p className={styles.muted}>{t('progress.trainingEmpty')}</p>
+      ) : (
+        <>
+          <ul className={styles.stats}>
+            <li>{t('progress.streakCurrent', { count: streak.current })}</li>
+            <li>{t('progress.streakBest', { count: streak.best })}</li>
+            <li>{t('progress.daysTrained', { count: daysTrained })}</li>
+          </ul>
 
-      <section className={styles.section}>
-        <h2>{t('progress.byArea')}</h2>
-        {V1_AREAS.map((area) => {
-          const value = scores[area];
-          const id = `meter-${area}`;
-          return (
-            <div key={area} className={styles.meterRow}>
-              <span id={id}>{t(`areas.${area}`)}</span>
-              {value === undefined ? (
-                <span className={styles.muted}>—</span>
-              ) : (
-                <meter aria-labelledby={id} min={0} max={1000} value={value} />
-              )}
-              <span className={styles.value}>{value ?? ''}</span>
-            </div>
-          );
-        })}
-      </section>
+          <section className={styles.section}>
+            <h2>{t('progress.byArea')}</h2>
+            {V1_AREAS.map((area) => {
+              const value = scores[area];
+              const id = `meter-${area}`;
+              return (
+                <div key={area} className={styles.meterRow}>
+                  <span id={id}>{t(`areas.${area}`)}</span>
+                  {value === undefined ? (
+                    <span className={styles.muted}>—</span>
+                  ) : (
+                    <meter aria-labelledby={id} min={0} max={1000} value={value} />
+                  )}
+                  <span className={styles.value}>{value ?? ''}</span>
+                </div>
+              );
+            })}
+          </section>
 
-      <section className={styles.section}>
-        <h2>{t('progress.byGame')}</h2>
-        {TRAINING_GAMES.map((g) => {
-          const values = results.filter((r) => r.gameId === g.id).map((r) => r.score);
-          if (values.length === 0) return null;
-          const recent = values.slice(-CHART_POINTS);
-          return (
-            <article key={g.id} className={styles.card}>
-              <h3>{t(`games.${g.id}.title`)}</h3>
-              <p className={styles.muted}>{t('gamesScreen.best', { score: Math.max(...values) })}</p>
-              <LineChart
-                values={recent}
-                label={t('progress.chartLabel', {
-                  count: recent.length,
-                  min: Math.min(...recent),
-                  max: Math.max(...recent),
-                  last: recent[recent.length - 1],
-                })}
-              />
-            </article>
-          );
-        })}
-      </section>
+          <section className={styles.section}>
+            <h2>{t('progress.byGame')}</h2>
+            {TRAINING_GAMES.map((g) => {
+              const values = results.filter((r) => r.gameId === g.id).map((r) => r.score);
+              if (values.length === 0) return null;
+              const recent = values.slice(-CHART_POINTS);
+              return (
+                <article key={g.id} className={styles.card}>
+                  <h3>{t(`games.${g.id}.title`)}</h3>
+                  <p className={styles.muted}>{t('gamesScreen.best', { score: Math.max(...values) })}</p>
+                  <LineChart
+                    values={recent}
+                    label={t('progress.chartLabel', {
+                      count: recent.length,
+                      min: Math.min(...recent),
+                      max: Math.max(...recent),
+                      last: recent[recent.length - 1],
+                    })}
+                  />
+                </article>
+              );
+            })}
+          </section>
+        </>
+      )}
 
       <QuizProgress results={results} now={now} />
     </section>

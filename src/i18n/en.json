@@ -299,9 +299,11 @@
     "daysTrained": "Days trained: {{count}}",
     "chartLabel": "Last {{count}} scores: lowest {{min}}, highest {{max}}, latest {{last}}",
     "notEnoughData": "Play at least two games to see your trend.",
+    "trainingEmpty": "Play a training game to see your streaks and your score by area.",
     "quizTitle": "Quiz",
     "mastery": "Mastery (last 30 days)",
-    "quizLine": "Seen: {{seen}} of {{total}} · Best: {{best}}"
+    "quizLine": "Seen: {{seen}} of {{total}} · Best: {{best}}",
+    "quizNone": "No answers in the last 30 days"
   },
   "settings": {
     "language": "Language",

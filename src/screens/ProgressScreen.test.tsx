@@ -1,4 +1,5 @@
-import { screen, within } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
+import { initI18n } from '../i18n';
 import { renderApp } from '../test/renderApp';
 import { clearAllData, db } from '../data/db';
 import { addQuizAnswers } from '../data/quizAnswers';
@@ -6,6 +7,7 @@ import { addResult } from '../data/results';
 import { BANK_SIZES } from '../quiz/banks/manifest';
 import type { AnswerOutcome, QuizCategory, QuizRoundDetails } from '../quiz/types';
 import { makeChoice } from '../test/quizFixtures';
+import { ProgressScreen } from './ProgressScreen';
 
 const base = { level: 1, accuracy: 1, durationMs: 60000, isDaily: false };
 
@@ -115,4 +117,40 @@ test('hides the quiz block when there are no quiz games', async () => {
   expect(await screen.findByText('Días entrenados: 1')).toBeInTheDocument();
   expect(screen.queryByRole('heading', { name: 'Preguntas' })).not.toBeInTheDocument();
   expect(screen.queryByRole('meter', { name: 'Historia' })).not.toBeInTheDocument();
+});
+
+test('a quiz-only player sees no empty training sections', async () => {
+  await addResult({ ...base, gameId: 'trivia-history', score: 250, playedAt: new Date(2026, 9, 20, 9) });
+  await addQuizAnswers('r1', round('history', ['correct']), new Date(2026, 9, 20, 9));
+  await renderApp('/progress');
+
+  expect(await screen.findByRole('meter', { name: 'Historia' })).toBeInTheDocument();
+  expect(screen.getByText('Juega un juego de entrenamiento para ver tus rachas y tu puntaje por área.')).toBeInTheDocument();
+  expect(screen.queryByText(/Racha actual/)).not.toBeInTheDocument();
+  expect(screen.queryByText(/Días entrenados/)).not.toBeInTheDocument();
+  expect(screen.queryByRole('heading', { name: 'Puntaje por área' })).not.toBeInTheDocument();
+  expect(screen.queryByRole('heading', { name: 'Por juego' })).not.toBeInTheDocument();
+});
+
+test('says so when no question was answered in the last 30 days', async () => {
+  await addResult({ ...base, gameId: 'arrows', score: 100, playedAt: new Date(2026, 9, 20, 9) });
+  await addResult({ ...base, gameId: 'trivia-science', score: 140, playedAt: new Date(2026, 8, 1, 9) });
+  await addQuizAnswers('r1', round('science', ['correct']), new Date(2026, 8, 1, 9));
+  await renderApp('/progress');
+
+  const block = (await screen.findByRole('heading', { level: 2, name: 'Preguntas' })).closest('section')!;
+  expect(await within(block).findByText('Sin respuestas en los últimos 30 días')).toBeInTheDocument();
+  expect(within(block).queryByText('Dominio (últimos 30 días)')).not.toBeInTheDocument();
+  expect(within(block).queryByRole('meter')).not.toBeInTheDocument();
+  // The training sections are still there.
+  expect(screen.getByRole('heading', { level: 2, name: 'Puntaje por área' })).toBeInTheDocument();
+});
+
+test('the quiz-only and no-recent-answers lines are in English too', async () => {
+  await addResult({ ...base, gameId: 'trivia-science', score: 140, playedAt: new Date(2026, 8, 1, 9) });
+  await addQuizAnswers('r1', round('science', ['correct']), new Date(2026, 8, 1, 9));
+  await initI18n('en');
+  render(<ProgressScreen />);
+  expect(await screen.findByText('Play a training game to see your streaks and your score by area.')).toBeInTheDocument();
+  expect(await screen.findByText('No answers in the last 30 days')).toBeInTheDocument();
 });

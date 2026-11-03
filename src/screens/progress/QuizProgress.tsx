@@ -38,46 +38,46 @@ export function QuizProgress({ results, now }: { results: StoredResult[]; now: D
   );
 
   const quizIds = new Set(QUIZ_GAMES.map((g) => g.id));
-  if (!results.some((r) => quizIds.has(r.gameId))) return null;
+  // Nothing until the answers are read, so the heading never shows on its own.
+  if (!data || !results.some((r) => quizIds.has(r.gameId))) return null;
 
   const best = bestByCategory(results);
   const banks = BANKS.map((bank) => ({
     bank,
-    categories: CATEGORIES_BY_BANK[bank].filter((c) => (data?.mastery.get(c)?.answered ?? 0) > 0),
+    categories: CATEGORIES_BY_BANK[bank].filter((c) => (data.mastery.get(c)?.answered ?? 0) > 0),
   })).filter(({ categories }) => categories.length > 0);
 
   return (
     <section className={styles.section}>
       <h2>{t('progress.quizTitle')}</h2>
-      {data && banks.length > 0 && <p className={styles.muted}>{t('progress.mastery')}</p>}
-      {data &&
-        banks.map(({ bank, categories }) => (
-          <section key={bank} className={styles.section} aria-labelledby={`progress-bank-${bank}`}>
-            <h3 id={`progress-bank-${bank}`}>{t(`quiz.banks.${bank}`)}</h3>
-            {categories.map((category) => {
-              const { answered, correct } = data.mastery.get(category)!;
-              const percent = Math.round((100 * correct) / answered);
-              const progress = seenFor({ bank, categories: [category] }, data.seen);
-              const id = `quiz-meter-${category}`;
-              return (
-                <div key={category} className={styles.quizCategory}>
-                  <div className={styles.meterRow}>
-                    <span id={id}>{t(`quiz.categories.${category}`)}</span>
-                    <meter aria-labelledby={id} min={0} max={100} value={percent} />
-                    <span className={styles.value}>{percent} %</span>
-                  </div>
-                  <p className={styles.muted}>
-                    {t('progress.quizLine', {
-                      seen: progress.seen,
-                      total: progress.total,
-                      best: best.get(category) ?? '—',
-                    })}
-                  </p>
+      <p className={styles.muted}>{t(banks.length > 0 ? 'progress.mastery' : 'progress.quizNone')}</p>
+      {banks.map(({ bank, categories }) => (
+        <section key={bank} className={styles.section} aria-labelledby={`progress-bank-${bank}`}>
+          <h3 id={`progress-bank-${bank}`}>{t(`quiz.banks.${bank}`)}</h3>
+          {categories.map((category) => {
+            const { answered, correct } = data.mastery.get(category)!;
+            const percent = Math.round((100 * correct) / answered);
+            const progress = seenFor({ bank, categories: [category] }, data.seen);
+            const id = `quiz-meter-${category}`;
+            return (
+              <div key={category} className={styles.quizCategory}>
+                <div className={styles.meterRow}>
+                  <span id={id}>{t(`quiz.categories.${category}`)}</span>
+                  <meter aria-labelledby={id} min={0} max={100} value={percent} />
+                  <span className={styles.value}>{percent} %</span>
                 </div>
-              );
-            })}
-          </section>
-        ))}
+                <p className={styles.muted}>
+                  {t('progress.quizLine', {
+                    seen: progress.seen,
+                    total: progress.total,
+                    best: best.get(category) ?? '—',
+                  })}
+                </p>
+              </div>
+            );
+          })}
+        </section>
+      ))}
     </section>
   );
 }
