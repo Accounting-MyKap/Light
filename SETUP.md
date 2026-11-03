@@ -22,10 +22,12 @@ sin sincronización.
    *publishable key*; las dos están en la configuración de la API del proyecto. Son públicas y van en
    la app. Copia solo la *publishable key*; nunca la *secret* / *service_role*.
 
-2. **Aplicar las 3 migraciones** de `supabase/migrations/`, en este orden:
+2. **Aplicar las 4 migraciones** de `supabase/migrations/`, en este orden:
    1. `20261020000000_core_schema.sql`
    2. `20261020000100_percentile.sql`
    3. `20261020000200_cleanup.sql`
+   4. `20261103000000_star_shower.sql` (la fila de Lluvia de estrellas en la tabla `games`; sin ella, el
+      servidor rechaza todas sus partidas)
 
    Puedes pegarlas una por una en el SQL Editor de Supabase, aplicarlas con el conector de Supabase
    (por ejemplo, para que Claude lo haga) o con la CLI (`supabase link` y `supabase db push`).
@@ -40,9 +42,10 @@ sin sincronización.
    tercera migración la crea y programa la limpieza semanal de invitados abandonados). En el Supabase
    local la extensión sí está disponible (versión 1.6.4); falta confirmarlo en el proyecto real.
 
-   Si el plan gratuito no la permite: deja aplicadas solo las migraciones 1 y 2, avisa a Claude o a
-   quien mantenga el proyecto para que la limpieza semanal pase a un workflow programado de GitHub, y
-   sigue con el paso 4. La sincronización funciona igual sin esa limpieza.
+   Si el plan gratuito no la permite: deja aplicadas solo las migraciones 1, 2 y 4 (si
+   `supabase db push` se detuvo en la tercera, la cuarta no quedó aplicada: pégala en el SQL Editor),
+   avisa a Claude o a quien mantenga el proyecto para que la limpieza semanal pase a un workflow
+   programado de GitHub, y sigue con el paso 4. La sincronización funciona igual sin esa limpieza.
 
 4. **Activar los invitados.** En **Authentication → Sign In / Providers**, activa *Anonymous
    sign-ins*.
