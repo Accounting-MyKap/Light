@@ -48,6 +48,7 @@ const TEXT_PAIRS: [string, string][] = [
   ['success-strong', 'surface'],
   ['danger', 'bg'],
   ['danger', 'surface'],
+  ['danger-text', 'danger'],
   ...(['memory', 'attention', 'speed', 'flexibility', 'math'] as const).flatMap((area): [string, string][] => [
     [`area-${area}`, 'bg'],
     [`area-${area}`, 'surface'],

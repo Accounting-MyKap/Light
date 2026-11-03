@@ -113,7 +113,7 @@ export function SettingsScreen() {
           </div>
         )}
         {deleted && <p role="status" className={styles.muted}>{t(syncConfig ? 'settings.deletedSync' : 'settings.deleted')}</p>}
-        {remoteFailed && <p role="alert" className={styles.muted}>{t('settings.deleteRemoteError')}</p>}
+        {remoteFailed && <p role="alert" className={styles.error}>{t('settings.deleteRemoteError')}</p>}
       </section>
     </section>
   );
