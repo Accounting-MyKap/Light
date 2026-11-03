@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { playTone } from '../core/sound';
@@ -121,6 +121,14 @@ function PlaySession({ game, daily }: { game: GameDefinition; daily: string | nu
     document.addEventListener('visibilitychange', onVisibility);
     return () => document.removeEventListener('visibilitychange', onVisibility);
   }, [isPlaying, pauseGame]);
+
+  // A game can leave the page scrolled down (a long quiz question with its explanation, then «Ver resultado» at the
+  // bottom), so every result opens at the top, with the title and the score in view. Before paint, so the result is never
+  // drawn scrolled; and a jump, not a glide: it is a new screen, and nothing moves for whoever asked for less motion.
+  const isResult = phase.kind === 'result';
+  useLayoutEffect(() => {
+    if (isResult) window.scrollTo({ top: 0, behavior: 'instant' });
+  }, [isResult]);
 
   // The game runs again and gets the focus back: it was on the pause sheet, which is gone.
   const resumeGame = useCallback(() => {

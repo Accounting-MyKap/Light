@@ -118,3 +118,17 @@ test.describe('quiz review screenshots', () => {
     await page.screenshot({ path: `${dir}/quiz-result-full.png`, fullPage: true });
   });
 });
+
+test.describe('the quiz result on a small screen', () => {
+  test.use({ viewport: { width: 320, height: 568 } });
+
+  test('after the last «Ver resultado» the result opens at its title', async ({ page }) => {
+    await page.goto('./#/play/trivia-history');
+    await page.getByRole('button', { name: 'Comenzar' }).click();
+    // On this screen the explanation pushes «Siguiente» below the fold, so the page is scrolled down at the end.
+    await finishQuizRound(page);
+    await expect(page.getByRole('heading', { name: 'Repasa tus errores' })).toBeAttached();
+    await expect(page.getByRole('heading', { level: 1, name: 'Historia' })).toBeInViewport({ ratio: 1 });
+    expect(await page.evaluate(() => window.scrollY)).toBe(0);
+  });
+});

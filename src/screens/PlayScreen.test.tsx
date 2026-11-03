@@ -347,6 +347,26 @@ test('free play shows no daily progress', async () => {
   expect(screen.queryByText(/Entrenamiento de hoy:/)).not.toBeInTheDocument();
 });
 
+test('the result screen opens at the top of the page, every time a game ends', async () => {
+  // A game can leave the page scrolled down (a long quiz question with its explanation); the result must start at its title.
+  const scrollTo = vi.spyOn(window, 'scrollTo').mockImplementation(() => {});
+  await updateSettings({ seenInstructions: ['fake'] });
+  await open('/play/fake');
+  await userEvent.click(await screen.findByRole('button', { name: 'Comenzar' }));
+  expect(scrollTo).not.toHaveBeenCalled();
+  await userEvent.click(screen.getByRole('button', { name: 'Terminar' }));
+  expect(await screen.findByText('Puntaje: 120')).toBeInTheDocument();
+  expect(scrollTo).toHaveBeenCalledTimes(1);
+  // A jump, never a smooth scroll: it is a new screen, and nothing should glide for whoever asked for less motion.
+  expect(scrollTo).toHaveBeenCalledWith({ top: 0, behavior: 'instant' });
+
+  await userEvent.click(screen.getByRole('button', { name: 'Jugar de nuevo' }));
+  expect(scrollTo).toHaveBeenCalledTimes(1);
+  await userEvent.click(screen.getByRole('button', { name: 'Terminar' }));
+  expect(await screen.findByText('Puntaje: 120')).toBeInTheDocument();
+  expect(scrollTo).toHaveBeenCalledTimes(2);
+});
+
 test('daily mode on the last game offers the summary', async () => {
   await updateSettings({ seenInstructions: ['fake'] });
   await db.dailyPlans.put({ day: '2026-10-20', gameIds: ['other', 'fake'], completed: ['other'] });
