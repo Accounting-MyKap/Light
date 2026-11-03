@@ -67,11 +67,21 @@ const TEXT_PAIRS: [string, string][] = [
   ]),
 ];
 
+/** Small marks that carry meaning without text (the week strip's trained days and today ring): WCAG 1.4.11. */
+const MARK_PAIRS: [string, string][] = [
+  ['accent-mark', 'bg'],
+  ['accent-mark', 'surface'],
+];
+
 describe.each([`:root[data-theme='light']`, `:root[data-theme='dark']`])('%s', (selector) => {
   const t = tokens(selector);
   test.each(TEXT_PAIRS)('--%s on --%s meets WCAG AA (4.5:1)', (fg, bg) => {
     expect(t[fg], `--${fg} defined`).toBeDefined();
     expect(contrast(t[fg], t[bg])).toBeGreaterThanOrEqual(4.5);
+  });
+  test.each(MARK_PAIRS)('--%s on --%s meets non-text contrast (3:1)', (fg, bg) => {
+    expect(t[fg], `--${fg} defined`).toBeDefined();
+    expect(contrast(t[fg], t[bg])).toBeGreaterThanOrEqual(3);
   });
 });
 
