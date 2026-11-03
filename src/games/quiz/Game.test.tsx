@@ -329,6 +329,49 @@ test('moves focus to Next after answering so Enter from the keyboard continues',
   expect(screen.getByRole('button', { name: 'Siguiente' })).toHaveFocus();
 });
 
+describe('a new question on a small screen', () => {
+  const scrollIntoView = vi.fn();
+  beforeEach(() => {
+    scrollIntoView.mockReset();
+    // jsdom has neither scrollIntoView nor matchMedia.
+    Element.prototype.scrollIntoView = scrollIntoView;
+  });
+  afterEach(() => {
+    delete (Element.prototype as Partial<Element>).scrollIntoView;
+    vi.unstubAllGlobals();
+  });
+
+  test('after Next, focus moves to the new question and the game scrolls back into view', async () => {
+    await renderGame();
+    advance(1000);
+    fireEvent.click(correctOption());
+    const first = screen.getByRole('heading', { level: 2 }).textContent;
+    scrollIntoView.mockClear();
+    fireEvent.click(screen.getByRole('button', { name: 'Siguiente' }));
+    const heading = screen.getByRole('heading', { level: 2 });
+    expect(heading.textContent).not.toBe(first);
+    expect(heading).toHaveFocus();
+    expect(heading).toHaveAttribute('tabindex', '-1');
+    expect(scrollIntoView).toHaveBeenCalledTimes(1);
+    expect(scrollIntoView.mock.contexts[0]).toContainElement(screen.getByRole('progressbar'));
+    expect(scrollIntoView).toHaveBeenCalledWith({ block: 'start', behavior: 'smooth' });
+  });
+
+  test('the first question also gets the focus', async () => {
+    await renderGame();
+    expect(screen.getByRole('heading', { level: 2 })).toHaveFocus();
+  });
+
+  test('scrolls without animation when the player prefers reduced motion', async () => {
+    vi.stubGlobal('matchMedia', (query: string) => ({ matches: query.includes('reduce') }));
+    await renderGame();
+    advance(1000);
+    fireEvent.keyDown(window, { key: '1' });
+    fireEvent.keyDown(window, { key: 'Enter' });
+    expect(scrollIntoView).toHaveBeenLastCalledWith({ block: 'start', behavior: 'auto' });
+  });
+});
+
 test('true/false questions have two options in fixed order and ignore other keys', async () => {
   vi.mocked(loadQuestions).mockImplementation(async () =>
     Array.from({ length: 30 }, (_, i): Question => makeTrueFalse(`history-${String(i + 1).padStart(4, '0')}`, 'history', 1, true)),

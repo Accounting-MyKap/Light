@@ -28,6 +28,8 @@ import styles from './quiz.module.css';
 
 type Load = { kind: 'loading' } | { kind: 'error' } | { kind: 'ready'; round: QuizRoundState };
 
+const prefersReducedMotion = () => window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
+
 /** A history that cannot be read must never block the game: the round just starts with no memory. */
 async function readHistory(categories: readonly QuizCategory[]): Promise<ReadonlyMap<string, number>> {
   try {
@@ -103,11 +105,23 @@ function QuizRound({ initial, clock, rng, paused, onFinish }: QuizRoundProps) {
   const lang = i18n.language.startsWith('es') ? 'es' : 'en';
   const [round, setRound] = useState(initial);
   const finishedRef = useRef(false);
+  const gameRef = useRef<HTMLDivElement>(null);
+  const promptRef = useRef<HTMLHeadingElement>(null);
 
   const asking = round.phase === 'asking';
   const active = !paused && round.phase !== 'finished';
   const { question, order, askedAt } = round.current;
   const resolved = asking ? undefined : lastItem(round);
+
+  // On a small screen «Siguiente» sits below the explanation, so the page is scrolled down when it is pressed (and
+  // after the instructions, when «Comenzar» is). Each new question starts like the first: the play screen at the top,
+  // with the HUD and the time bar in view, and the keyboard and screen readers on the new prompt.
+  useEffect(() => {
+    if (!asking) return;
+    promptRef.current?.focus({ preventScroll: true });
+    const screen = gameRef.current?.closest('[data-game]') ?? gameRef.current;
+    screen?.scrollIntoView?.({ block: 'start', behavior: prefersReducedMotion() ? 'auto' : 'smooth' });
+  }, [asking, question.id]);
 
   const timerWindow = asking ? QUIZ_QUESTION_MS : null;
   const timerLeft = useQuestionTimer(clock, askedAt, timerWindow, paused);
@@ -158,7 +172,7 @@ function QuizRound({ initial, clock, rng, paused, onFinish }: QuizRoundProps) {
     : '';
 
   return (
-    <div className={styles.game}>
+    <div ref={gameRef} className={styles.game}>
       <GameHud remainingMs={remaining} score={round.score} level={round.staircase.level} />
       <p className={styles.counter}>{t('quiz.questionOf', { n: number, total: QUIZ_ROUND_LENGTH })}</p>
       <div
@@ -183,6 +197,7 @@ function QuizRound({ initial, clock, rng, paused, onFinish }: QuizRoundProps) {
           onDontKnow={skip}
           onNext={goNext}
           isLast={round.items.length >= QUIZ_ROUND_LENGTH}
+          promptRef={promptRef}
         />
       </div>
       <div className="visually-hidden" aria-live="polite" aria-atomic="true">

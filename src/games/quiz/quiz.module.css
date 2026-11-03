@@ -62,6 +62,11 @@
   overflow-wrap: anywhere;
 }
 
+/* The prompt takes the focus on each new question (for the keyboard and screen readers), but it is not a control. */
+.prompt:focus {
+  outline: none;
+}
+
 .options {
   display: flex;
   flex-direction: column;

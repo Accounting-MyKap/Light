@@ -39,6 +39,23 @@ test('quiz controls are at least 44 px tall on a 320 px screen', async ({ page }
   await expectTall(page.getByRole('button', { name: 'Siguiente' }));
 });
 
+test('after «Siguiente» the new question starts in view on a 320 × 568 screen', async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 568 });
+  await page.emulateMedia({ reducedMotion: 'reduce' }); // an instant scroll, so the checks need not wait for it
+  await page.goto('./#/play/trivia-history');
+  await page.getByRole('button', { name: 'Comenzar' }).click();
+
+  for (let n = 1; n <= 5; n++) {
+    await expect(page.getByText(`Pregunta ${n} de 10`)).toBeVisible();
+    await expect(page.getByRole('progressbar')).toBeInViewport({ ratio: 1 });
+    await expect(page.getByText('Puntos', { exact: true })).toBeInViewport({ ratio: 1 });
+    await expect(page.getByRole('heading', { level: 2 })).toBeFocused();
+    await page.waitForTimeout(200); // longer than MIN_RT_MS, or the app ignores the tap
+    await page.getByRole('button', { name: /^1 / }).click();
+    await page.getByRole('button', { name: 'Siguiente' }).click();
+  }
+});
+
 for (const width of [320, 360, 375, 430]) {
   test(`no tab label overflows its column on a ${width} px screen`, async ({ page }) => {
     await page.setViewportSize({ width, height: 640 });

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, type Ref } from 'react';
 import { useTranslation } from 'react-i18next';
 import { asOfLabel } from '../../quiz/asOf';
 import { correctIndex, optionTexts, type AnswerOutcome, type Question } from '../../quiz/types';
@@ -20,6 +20,8 @@ export interface QuestionViewProps {
   onDontKnow?: () => void;
   onNext?: () => void;
   isLast?: boolean;
+  /** The prompt heading, so the game can move the focus to each new question. */
+  promptRef?: Ref<HTMLHeadingElement>;
 }
 
 export function QuestionView({
@@ -33,6 +35,7 @@ export function QuestionView({
   onDontKnow,
   onNext,
   isLast = false,
+  promptRef,
 }: QuestionViewProps) {
   const { t } = useTranslation();
   const nextRef = useRef<HTMLButtonElement>(null);
@@ -50,7 +53,9 @@ export function QuestionView({
     <div className={styles.question}>
       <div className={styles.card}>
         <p className={styles.category}>{t(`quiz.categories.${question.category}`)}</p>
-        <h2 className={styles.prompt}>{question[lang].question}</h2>
+        <h2 ref={promptRef} className={styles.prompt} tabIndex={-1}>
+          {question[lang].question}
+        </h2>
       </div>
 
       <div className={styles.options}>
