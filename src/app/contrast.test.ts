@@ -46,6 +46,12 @@ const TEXT_PAIRS: [string, string][] = [
   ['accent-strong', 'surface'],
   ['success-strong', 'bg'],
   ['success-strong', 'surface'],
+  ['danger', 'bg'],
+  ['danger', 'surface'],
+  ...(['memory', 'attention', 'speed', 'flexibility', 'math'] as const).flatMap((area): [string, string][] => [
+    [`area-${area}`, 'bg'],
+    [`area-${area}`, 'surface'],
+  ]),
 ];
 
 describe.each([`:root[data-theme='light']`, `:root[data-theme='dark']`])('%s', (selector) => {
@@ -53,6 +59,15 @@ describe.each([`:root[data-theme='light']`, `:root[data-theme='dark']`])('%s', (
   test.each(TEXT_PAIRS)('--%s on --%s meets WCAG AA (4.5:1)', (fg, bg) => {
     expect(t[fg], `--${fg} defined`).toBeDefined();
     expect(contrast(t[fg], t[bg])).toBeGreaterThanOrEqual(4.5);
+  });
+});
+
+describe('theme blocks stay in sync', () => {
+  test('the default block is the light palette', () => {
+    expect(tokens(':root')).toEqual(tokens(":root[data-theme='light']"));
+  });
+  test('the system-dark block is the dark palette', () => {
+    expect(tokens(':root:not([data-theme])')).toEqual(tokens(":root[data-theme='dark']"));
   });
 });
 
