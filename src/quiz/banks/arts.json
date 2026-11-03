@@ -286,20 +286,20 @@
     {
       "id": "arts-0033", "difficulty": 1, "type": "choice",
       "es": { "question": "¿Cuántas notas distintas tiene la escala musical básica, de do a si?",
-              "options": ["7", "5", "9", "12"],
+              "options": ["7", "5", "9", "8"],
               "explanation": "Son siete: do, re, mi, fa, sol, la y si. Con sostenidos y bemoles, la música occidental usa doce sonidos distintos en cada octava." },
       "en": { "question": "How many different notes are there in the basic musical scale, from C to B?",
-              "options": ["7", "5", "9", "12"],
+              "options": ["7", "5", "9", "8"],
               "explanation": "Seven: C, D, E, F, G, A and B. With sharps and flats, Western music uses twelve different pitches in each octave." }
     },
     {
       "id": "arts-0034", "difficulty": 1, "type": "choice",
-      "es": { "question": "¿Con qué se mezclan los pigmentos en la pintura al óleo?",
-              "options": ["Aceite", "Agua", "Yema de huevo", "Cera caliente"],
-              "explanation": "Los pigmentos se mezclan con aceite, casi siempre de linaza, y la pintura seca despacio. La acuarela usa agua y el temple, yema de huevo." },
-      "en": { "question": "What are pigments mixed with in oil painting?",
-              "options": ["Oil", "Water", "Egg yolk", "Hot wax"],
-              "explanation": "Pigments are mixed with oil, usually linseed oil, and the paint dries slowly. Watercolor uses water, and tempera uses egg yolk." }
+      "es": { "question": "¿Qué técnica usa colores diluidos en agua, transparentes y casi siempre sobre papel?",
+              "options": ["Acuarela", "Óleo", "Pastel", "Encáustica"],
+              "explanation": "Es la acuarela: los pigmentos se diluyen en agua y dejan ver el papel a través del color. El óleo usa aceite; el pastel, barras secas; la encáustica, cera caliente." },
+      "en": { "question": "Which technique uses water-thinned, transparent colors, almost always on paper?",
+              "options": ["Watercolor", "Oil", "Pastel", "Encaustic"],
+              "explanation": "It is watercolor: the pigments are thinned with water and let the paper show through the color. Oil uses oil; pastel, dry sticks; encaustic, hot wax." }
     },
     {
       "id": "arts-0035", "difficulty": 1, "type": "choice",
@@ -330,7 +330,7 @@
     },
     {
       "id": "arts-0038", "difficulty": 1, "type": "choice",
-      "es": { "question": "¿Cómo se llama la pintura que se hace directamente sobre un muro o una pared?",
+      "es": { "question": "¿Cómo se llama la pintura que se hace directamente sobre una pared?",
               "options": ["Mural", "Acuarela", "Grabado", "Collage"],
               "explanation": "Se llama mural. Los muralistas mexicanos del siglo XX lo hicieron famoso al pintar grandes escenas históricas en edificios públicos." },
       "en": { "question": "What is a painting made directly on a wall called?",
@@ -742,10 +742,10 @@
     {
       "id": "arts-0085", "difficulty": 3, "type": "choice",
       "es": { "question": "Según la «Teogonía», el poema griego sobre el origen de los dioses, ¿qué existió primero?",
-              "options": ["El Caos", "Gea, la Tierra", "Urano, el Cielo", "Cronos, el titán"],
+              "options": ["El Caos, el vacío", "Gea, la Tierra", "Urano, el Cielo", "Cronos, el titán"],
               "explanation": "Según Hesíodo, primero existió el Caos, un vacío original. Después surgieron Gea (la Tierra), el Tártaro y Eros (el Amor)." },
       "en": { "question": "According to the “Theogony”, the Greek poem on the origin of the gods, what came into being first?",
-              "options": ["Chaos", "Gaia, the Earth", "Uranus, the Sky", "Cronus, the Titan"],
+              "options": ["Chaos, the Void", "Gaia, the Earth", "Uranus, the Sky", "Cronus, the Titan"],
               "explanation": "According to Hesiod, Chaos came first, a primeval void. Then came Gaia (Earth), Tartarus and Eros (Love)." }
     },
     {
@@ -787,7 +787,7 @@
     {
       "id": "arts-0090", "difficulty": 3, "type": "choice",
       "es": { "question": "¿De qué ópera de Puccini es el aria «Nessun dorma»?",
-              "options": ["Turandot", "Tosca", "La Bohème", "Madama Butterfly"],
+              "options": ["Turandot", "Tosca", "La bohème", "Madama Butterfly"],
               "explanation": "«Nessun dorma» («Que nadie duerma») la canta el príncipe Calaf en «Turandot», la última ópera de Giacomo Puccini, estrenada en 1926." },
       "en": { "question": "Which Puccini opera contains the aria “Nessun dorma”?",
               "options": ["Turandot", "Tosca", "La bohème", "Madama Butterfly"],
@@ -805,20 +805,20 @@
     {
       "id": "arts-0092", "difficulty": 3, "type": "choice",
       "es": { "question": "¿Qué escultor barroco creó «El éxtasis de Santa Teresa»?",
-              "options": ["Gian Lorenzo Bernini", "Antonio Canova", "Benvenuto Cellini", "Giambologna"],
+              "options": ["Gian Lorenzo Bernini", "Alessandro Algardi", "François Duquesnoy", "Stefano Maderno"],
               "explanation": "Gian Lorenzo Bernini la esculpió entre 1647 y 1652 para la capilla Cornaro de la iglesia de Santa Maria della Vittoria, en Roma." },
       "en": { "question": "Which Baroque sculptor created “The Ecstasy of Saint Teresa”?",
-              "options": ["Gian Lorenzo Bernini", "Antonio Canova", "Benvenuto Cellini", "Giambologna"],
+              "options": ["Gian Lorenzo Bernini", "Alessandro Algardi", "François Duquesnoy", "Stefano Maderno"],
               "explanation": "Gian Lorenzo Bernini carved it between 1647 and 1652 for the Cornaro Chapel in the church of Santa Maria della Vittoria in Rome." }
     },
     {
       "id": "arts-0093", "difficulty": 3, "type": "choice",
       "es": { "question": "¿Quién compuso la suite para piano «Cuadros de una exposición» (1874)?",
               "options": ["Modest Músorgski", "Aleksandr Borodín", "Mili Balákirev", "César Cui"],
-              "explanation": "Músorgski la compuso en 1874 en memoria del pintor y arquitecto Viktor Hartmann. Cada pieza evoca una de las obras de una exposición suya." },
+              "explanation": "Músorgski la compuso en 1874 en memoria del pintor y arquitecto Viktor Hartmann. Casi todas las piezas evocan una de las obras de una exposición suya." },
       "en": { "question": "Who composed the piano suite “Pictures at an Exhibition” (1874)?",
               "options": ["Modest Mussorgsky", "Alexander Borodin", "Mily Balakirev", "César Cui"],
-              "explanation": "Mussorgsky composed it in 1874 in memory of the painter and architect Viktor Hartmann. Each piece evokes one of the works in an exhibition of his art." }
+              "explanation": "Mussorgsky composed it in 1874 in memory of the painter and architect Viktor Hartmann. Most pieces evoke one of the works in an exhibition of his art." }
     },
     {
       "id": "arts-0094", "difficulty": 3, "type": "truefalse", "answer": false,
