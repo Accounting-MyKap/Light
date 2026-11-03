@@ -139,11 +139,40 @@ export function advance(
 ): { state: StarShowerState; events: StarShowerEvent[] } {
   const events: StarShowerEvent[] = [];
   let current = state;
-  if (current.endedAt === null) {
-    while (current.nextSpawnAt <= now) {
-      const r = spawnAt(current, current.nextSpawnAt, rng);
+  while (current.endedAt === null) {
+    const landing = current.stars.reduce((min, s) => Math.min(min, s.bornAt + s.fallMs), Infinity);
+    const breakEnd = current.breakUntil ?? Infinity;
+    const spawn = current.breakUntil === null ? current.nextSpawnAt : Infinity;
+    const t = Math.min(landing, breakEnd, spawn, MAX_GAME_MS);
+    if (t > now) break;
+
+    // Ties at `t`: landing, then end of break, then spawn, then the time cap.
+    if (landing === t) {
+      const lander = current.stars.find((s) => s.bornAt + s.fallMs === t) as Star;
+      const lives = current.lives - 1;
+      events.push({ kind: 'lost', star: lander, cleared: current.stars.filter((s) => s !== lander) });
+      current = {
+        ...current,
+        stars: [],
+        lives,
+        lost: current.lost + 1,
+        breakUntil: lives === 0 ? null : t + BREAK_MS,
+        endedAt: lives === 0 ? t : null,
+      };
+      if (lives === 0) events.push({ kind: 'over', reason: 'lives' });
+    }
+    if (current.endedAt !== null) break;
+    if (current.breakUntil === t) {
+      current = { ...current, breakMs: current.breakMs + BREAK_MS, breakUntil: null, nextSpawnAt: t };
+    }
+    if (current.breakUntil === null && current.nextSpawnAt === t) {
+      const r = spawnAt(current, t, rng);
       current = r.state;
       if (r.star) events.push({ kind: 'spawn', star: r.star });
+    }
+    if (t === MAX_GAME_MS) {
+      current = { ...current, endedAt: MAX_GAME_MS };
+      events.push({ kind: 'over', reason: 'time' });
     }
   }
   return { state: current, events };
@@ -197,12 +226,13 @@ export function submitAnswer(state: StarShowerState): { state: StarShowerState; 
   };
 }
 
-/** Only meaningful once the game has ended (`endedAt !== null`). */
+/** Requires the game to have ended (`endedAt !== null`). */
 export function starShowerResult(state: StarShowerState): GameResult {
+  if (state.endedAt === null) throw new Error('starShowerResult called before the game ended');
   return {
     score: state.score,
     accuracy: accuracyOf(state.correct, state.correct + state.wrong + state.lost),
     levelReached: state.staircase.maxLevel,
-    durationMs: state.endedAt ?? 0,
+    durationMs: state.endedAt,
   };
 }

@@ -1,6 +1,9 @@
 import { createRng } from '../../core/rng';
 import {
   advance,
+  BREAK_MS,
+  MAX_GAME_MS,
+  STAR_SHOWER_MAX_SCORE,
   createStarShower,
   deleteDigit,
   LANES,
@@ -9,6 +12,7 @@ import {
   submitAnswer,
   typeDigit,
   type Star,
+  type StarShowerEvent,
   type StarShowerState,
 } from './engine';
 
@@ -181,4 +185,110 @@ test('four right answers in a row move the level up; new stars use it', () => {
 test('result: accuracy over right + wrong + lost, duration = endedAt', () => {
   const s = { ...createStarShower(4, createRng(1)), correct: 6, wrong: 1, lost: 3, score: 90, endedAt: 42_000 };
   expect(starShowerResult(s)).toEqual({ score: 90, accuracy: 0.6, levelReached: 4, durationMs: 42_000 });
+});
+
+test('result before the game ended throws', () => {
+  expect(() => starShowerResult(createStarShower(1, createRng(1)))).toThrow();
+});
+
+/** Answers every star on screen right away. */
+function answerAll(s: StarShowerState): StarShowerState {
+  let cur = s;
+  while (cur.stars.length > 0) {
+    cur = submitAnswer(typed(cur, String(cur.stars[0].problem.answer))).state;
+  }
+  return cur;
+}
+
+test('a star reaching the horizon costs a life, clears the sky without points and opens a 1.5 s break', () => {
+  const rng = createRng(7);
+  const s0 = createStarShower(1, rng);
+  const r = advance(s0, 9000, rng);
+  const last = r.events[r.events.length - 1];
+  expect(last.kind).toBe('lost');
+  if (last.kind !== 'lost') throw new Error('unreachable');
+  expect(last.star.bornAt).toBe(0);
+  expect(last.cleared.map((c) => c.bornAt)).toEqual([3200, 6362]);
+  expect(r.state).toMatchObject({
+    lives: 2,
+    lost: 1,
+    stars: [],
+    score: 0,
+    wrong: 0,
+    correct: 0,
+    breakUntil: 9000 + BREAK_MS,
+    endedAt: null,
+  });
+  expect(r.state.staircase).toEqual(s0.staircase);
+
+  const during = advance(r.state, 10_499, rng);
+  expect(during.state.stars).toEqual([]);
+  expect(during.events).toEqual([]);
+  const after = advance(during.state, 10_500, rng);
+  expect(after.state.stars).toHaveLength(1);
+  expect(after.state.stars[0]).toMatchObject({ bornAt: 10_500, fallMs: paceAt(9000).fallMs });
+  expect(after.state.breakUntil).toBeNull();
+  expect(after.state.breakMs).toBe(BREAK_MS);
+});
+
+test('the third lost star ends the game at that moment, with no break', () => {
+  const rng = createRng(11);
+  const r = advance(createStarShower(1, rng), 60_000, rng);
+  const lost = r.events.filter((e) => e.kind === 'lost');
+  expect(lost).toHaveLength(3);
+  expect(r.events[r.events.length - 1]).toEqual({ kind: 'over', reason: 'lives' });
+  expect(r.events.filter((e) => e.kind === 'over')).toHaveLength(1);
+  expect(r.state).toMatchObject({ lives: 0, lost: 3, breakUntil: null });
+  const thirdLost = lost[2];
+  if (thirdLost.kind !== 'lost') throw new Error('unreachable');
+  expect(r.state.endedAt).toBe(thirdLost.star.bornAt + thirdLost.star.fallMs);
+  expect(lost.map((e) => e.kind === 'lost' && e.star.bornAt + e.star.fallMs).slice(0, 2)).toEqual([9000, 19_320]);
+  expect(r.state.endedAt).toBeCloseTo(29_463.6, 0);
+  const again = advance(r.state, 90_000, rng);
+  expect(again.state).toBe(r.state);
+  expect(again.events).toEqual([]);
+});
+
+test('the 5-minute cap ends the game', () => {
+  const rng = createRng(2);
+  let s = createStarShower(1, rng);
+  const events: StarShowerEvent[] = [];
+  for (let now = 0; now <= MAX_GAME_MS && s.endedAt === null; now += 100) {
+    const r = advance(s, now, rng);
+    events.push(...r.events);
+    s = answerAll(r.state);
+  }
+  expect(events.filter((e) => e.kind === 'lost')).toEqual([]);
+  expect(events[events.length - 1]).toEqual({ kind: 'over', reason: 'time' });
+  expect(s.endedAt).toBe(MAX_GAME_MS);
+});
+
+test('a perfect 5-minute game stays under the max score', () => {
+  const rng = createRng(4);
+  let s = createStarShower(10, rng);
+  let births = 0;
+  for (let now = 0; s.endedAt === null; now += 100) {
+    const r = advance(s, now, rng);
+    births += r.events.filter((e) => e.kind === 'spawn').length;
+    s = answerAll(r.state);
+  }
+  expect(births).toBeLessThanOrEqual(176);
+  expect(s.score).toBeLessThanOrEqual(STAR_SHOWER_MAX_SCORE);
+});
+
+test('one big jump equals many small steps', () => {
+  const rngA = createRng(9);
+  const rngB = createRng(9);
+  const big = advance(createStarShower(1, rngA), 40_000, rngA);
+  let s = createStarShower(1, rngB);
+  const kinds: string[] = [];
+  for (let now = 0; now < 40_000; now += 16) {
+    const r = advance(s, now, rngB);
+    s = r.state;
+    kinds.push(...r.events.map((e) => e.kind));
+  }
+  const last = advance(s, 40_000, rngB);
+  kinds.push(...last.events.map((e) => e.kind));
+  expect(last.state).toEqual(big.state);
+  expect(kinds).toEqual(big.events.map((e) => e.kind));
 });
