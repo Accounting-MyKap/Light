@@ -32,15 +32,12 @@ async function waitForInput(page: Page, id: GameId) {
 
 /** A wrong answer in round 1 of each practice, which brings up the hint. Locale-free. */
 async function answerWrong(page: Page, id: GameId) {
-  const before = await bubble(page).textContent();
   if (id === 'switchyard') {
-    // Switch 1 sends the waiting red train off, and back the wrong way while it is still before the switch. It
-    // reaches the yellow station some seven seconds later.
-    await switches(page).nth(0).click();
+    // Key 1 sends the waiting red train off, and back the wrong way while it is still before the switch (it gets
+    // there some 370 ms after it sets off). It reaches the yellow station some seven seconds later.
+    await page.keyboard.press('1');
     await page.waitForTimeout(100);
-    await switches(page).nth(0).click();
-    await expect(bubble(page)).not.toHaveText(before ?? '', { timeout: 15_000 });
-    return;
+    await page.keyboard.press('1');
   }
   if (id === 'arrows') await controls(page).nth(0).click(); // the middle arrow points right
   if (id === 'same-different') await controls(page).nth(0).click(); // the star is the same: «No» is wrong
@@ -50,7 +47,8 @@ async function answerWrong(page: Page, id: GameId) {
     await page.keyboard.press('9');
     await page.keyboard.press('Enter'); // 2 + 3 is 5
   }
-  await expect(bubble(page)).not.toHaveText(before ?? '');
+  // The guide's bubble shows the hint (its tone says so in any language), not just any other message.
+  await expect(bubble(page)).toHaveAttribute('data-tone', 'hint', { timeout: 15_000 });
 }
 
 /** Answers round 1 of the Arrows practice with the buttons. */
