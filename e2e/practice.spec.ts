@@ -111,10 +111,13 @@ test('the practice opened from the pause leaves the paused game untouched', asyn
   await expect(page.locator('[data-game="arrows"]')).toBeVisible();
 
   // Two game rounds, answered right. The row is re-keyed per trial: wait for the old one to go before the next answer.
+  // The game ignores an answer faster than MIN_RT_MS (150 ms) as a guess, and a fast runner clicks sooner than that, so
+  // each answer waits a little first; otherwise the trial would time out and score nothing.
   for (let i = 0; i < 2; i++) {
     const row = page.getByTestId('arrows-row');
     const old = await row.elementHandle();
     const direction = await row.getAttribute('data-direction');
+    await page.waitForTimeout(400);
     await controls(page)
       .nth(direction === 'left' ? 0 : 1)
       .click();
