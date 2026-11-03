@@ -90,7 +90,8 @@ export function StarShowerGame({ startLevel, paused, onFinish }: GameProps) {
       if (event.kind !== 'lost') continue;
       feedback('timeout');
       showFlash('loss', event.star.lane);
-      showBursts(event.cleared, event.star.bornAt + event.star.fallMs, 'clear');
+      // The lost star fades on the horizon (height 1), the others where they were: a cue even with no flash.
+      showBursts([event.star, ...event.cleared], event.star.bornAt + event.star.fallMs, 'clear');
     }
   };
 

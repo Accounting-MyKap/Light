@@ -135,6 +135,18 @@ test('the sky is hidden from screen readers, the answer slot is not', () => {
   expect(screen.getByTestId('answer').closest('[aria-hidden="true"]')).toBeNull();
 });
 
+test('a lost star fades out where it touched the horizon, even with reduced motion', () => {
+  renderGame(); // jsdom has no matchMedia, so this is reduced motion: no flash on the horizon
+  advance(50);
+  const lane = screen.getByTestId('star').dataset.lane;
+  advance(9000);
+  expect(screen.getByTestId('horizon').querySelector('[data-sky-flash]')).toBeNull();
+  // A burst resting on the horizon (height 1) in its lane; the cleared stars fade higher up.
+  const fading = Array.from(document.querySelectorAll<HTMLElement>('[data-kind="clear"]'));
+  expect(fading.some((burst) => burst.dataset.lane === lane && parseFloat(burst.style.top) === 100)).toBe(true);
+  expect(screen.queryAllByTestId('star')).toHaveLength(0);
+});
+
 test('with full motion, a lost star lights the horizon in its lane for a moment', () => {
   vi.stubGlobal('matchMedia', () => ({ matches: false }));
   renderGame();
