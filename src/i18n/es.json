@@ -194,7 +194,6 @@
     "explore": "Explorar juegos"
   },
   "gamesScreen": {
-    "best": "Mejor marca: {{score}}",
     "all": "Todo",
     "filters": "Categorías",
     "today": "Tus juegos de hoy",
@@ -204,9 +203,11 @@
     "empty": "Todavía no hay partidas. ¡Juega una para ver tu progreso!",
     "byArea": "Puntaje por área",
     "byGame": "Por juego",
-    "streakCurrent": "Racha actual: {{count}}",
-    "streakBest": "Mejor racha: {{count}}",
-    "daysTrained": "Días entrenados: {{count}}",
+    "statStreak": "Racha actual",
+    "statBest": "Mejor racha",
+    "statDays": "Días entrenados",
+    "best": "Mejor {{score}}",
+    "goToday": "Ir a Hoy",
     "chartLabel": "Últimos {{count}} puntajes: mínimo {{min}}, máximo {{max}}, último {{last}}",
     "notEnoughData": "Juega al menos dos partidas para ver tu evolución."
   },

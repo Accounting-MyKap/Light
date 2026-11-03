@@ -194,7 +194,6 @@
     "explore": "Explore games"
   },
   "gamesScreen": {
-    "best": "Personal best: {{score}}",
     "all": "All",
     "filters": "Categories",
     "today": "Your games today",
@@ -204,9 +203,11 @@
     "empty": "No games yet. Play one to see your progress!",
     "byArea": "Score by area",
     "byGame": "By game",
-    "streakCurrent": "Current streak: {{count}}",
-    "streakBest": "Best streak: {{count}}",
-    "daysTrained": "Days trained: {{count}}",
+    "statStreak": "Current streak",
+    "statBest": "Best streak",
+    "statDays": "Days trained",
+    "best": "Best {{score}}",
+    "goToday": "Go to Today",
     "chartLabel": "Last {{count}} scores: lowest {{min}}, highest {{max}}, latest {{last}}",
     "notEnoughData": "Play at least two games to see your trend."
   },
