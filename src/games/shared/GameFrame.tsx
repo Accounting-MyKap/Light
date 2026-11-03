@@ -14,6 +14,8 @@ export interface GameFrameProps {
   rounds?: { current: number; total: number };
   /** Bottom zone: the answer buttons. */
   controls?: ReactNode;
+  /** Flash over the whole game zone on each answer (on by default). Off for a game that draws its own reaction. */
+  stageFlash?: boolean;
   /** The game zone. */
   children: ReactNode;
 }
@@ -29,7 +31,7 @@ const SHAKE_KEYFRAMES = [0, -12, 12, -8, 8, 0].map((x) => ({ transform: `transla
  * points), time bar or round dots, the game zone and the controls. It also draws the reaction to each answer:
  * the points that float, a flash over the game zone and the shake of a wrong answer.
  */
-export function GameFrame({ score, level, time, rounds, controls, children }: GameFrameProps) {
+export function GameFrame({ score, level, time, rounds, controls, stageFlash = true, children }: GameFrameProps) {
   const { t } = useTranslation();
   const chrome = useContext(PlayChromeContext);
   const stageRef = useRef<HTMLDivElement>(null);
@@ -111,7 +113,7 @@ export function GameFrame({ score, level, time, rounds, controls, children }: Ga
             element (Arrows keys its row by trial count, which can equal a signal id) can never share a key
             with the flash, which would stop React from removing the old rows. */}
         <>{children}</>
-        <Flash signal={signal} />
+        {stageFlash && <Flash signal={signal} />}
       </div>
 
       {controls && (
