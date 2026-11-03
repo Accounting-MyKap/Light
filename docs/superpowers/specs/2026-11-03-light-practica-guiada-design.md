@@ -70,13 +70,13 @@ La primera vez es cuando el juego no está en la lista de juegos ya vistos, y ap
 - Los textos que solo usaban la pantalla y los ejemplos: `games.<id>.instructions`, `games.<id>.exampleAnswer*`, `play.example` y otros de los ejemplos.
 - Lo que siga en uso no se toca.
 
-Lo anterior vale para los cinco juegos originales y, después, para Guardagujas (§4.7). La pantalla de pasos, `GameDefinition.Example` y `play.example` se quedan para los juegos sin práctica (§3.6).
+Lo anterior vale para los cinco juegos originales y, después, para Guardagujas (§4.7) y Lluvia de estrellas (§4.8). La pantalla de pasos, `GameDefinition.Example` y `play.example` se quedan para los juegos sin práctica (§3.6).
 
 ### 3.6 Juegos sin práctica
 
-Mientras se construía esta práctica, `main` sumó Guardagujas, Lluvia de estrellas y los 14 juegos de preguntas. El dueño decidió unir los cambios y publicar sin hacerles una práctica. Después, Guardagujas recibió la suya (§4.7).
+Mientras se construía esta práctica, `main` sumó Guardagujas, Lluvia de estrellas y los 14 juegos de preguntas. El dueño decidió unir los cambios y publicar sin hacerles una práctica. Después, Guardagujas (§4.7) y Lluvia de estrellas (§4.8) recibieron la suya.
 
-- **Quiénes:** Lluvia de estrellas y los 14 juegos de preguntas. Los cinco juegos originales y Guardagujas tienen práctica.
+- **Quiénes:** solo los 14 juegos de preguntas. Los siete juegos de entrenamiento tienen práctica.
 - **Primera vez:** la pantalla de pasos con su ejemplo y «Comenzar», como antes. «Comenzar» marca el juego como visto; los de preguntas comparten la marca (`quiz.instructions`), así que la pantalla aparece una sola vez para los 14.
 - **Quien ya jugó:** «¿Cómo se juega?» abre esa misma pantalla de pasos, y su «Comenzar» empieza el juego.
 - **En la pausa:**
@@ -178,8 +178,11 @@ Una línea por juego. Debe nombrar la penalización, si la hay, con su número e
 - **Guardagujas** (sin penalización: un tren en otra estación no suma):
   - ES: «Tienes 90 segundos. Cada tren que llega a su estación suma; si llega a otra, no suma. Van más rápido mientras aciertas. Con teclado: números 1 a 9.»
   - EN: «You have 90 seconds. Each train that reaches its station scores; if it reaches another, it scores nothing. They speed up while you get them right. On a keyboard: numbers 1 to 9.»
+- **Lluvia de estrellas** (sin reloj y sin penalización en puntos: un número equivocado no resta; cada estrella que toca el horizonte quita una de las 3 vidas):
+  - ES: «Juegas hasta perder 3 vidas: cada estrella que toca el horizonte quita una. Un número equivocado no resta. Con teclado: escribe y pulsa Enter.»
+  - EN: «You play until you lose 3 lives: each star that touches the horizon takes one. A wrong number costs no points. On a keyboard: type and press Enter.»
 
-Las cifras salen de las constantes del juego (duración, rondas y penalizaciones). Una prueba fija que coincidan.
+Las cifras salen de las constantes del juego (duración, rondas, vidas y penalizaciones). Una prueba fija que coincidan.
 
 ### 4.7 Guardagujas (3 rondas, mapa de 3 estaciones)
 
@@ -205,6 +208,33 @@ Las cifras salen de las constantes del juego (duración, rondas y penalizaciones
   - Rondas 1 y 3: «Cada tren va a la estación de su color y forma. Inténtalo otra vez» / «Each train goes to the station of its color and shape. Try again».
 - **Construcción:** el juego y la práctica comparten el bucle del patio (`useSwitchyardWorld`). Los puntos y el nivel de su estado no se usan en la práctica.
 
+### 4.8 Lluvia de estrellas (3 rondas)
+
+- **Cielo y ritmo:**
+  - El cielo es el del juego: las mismas estrellas en sus tres carriles, el cometa dorado, los estallidos, el horizonte y el teclado. Las teclas y el teclado en pantalla funcionan como en el juego.
+  - Ninguna estrella nace sola: cada ronda trae las suyas, siempre las mismas, con resultados distintos entre sí.
+  - Las estrellas tardan 14 s en caer. El juego empieza en 9 s: más despacio, porque la práctica enseña.
+  - Con movimiento reducido, todo es como en el juego: las estrellas caen igual, y los destellos, las estelas y las chispas no se dibujan.
+- **Rondas:**
+  1. **«Revienta la estrella».** Una estrella, 3 + 4, flota quieta en el carril del medio, a un tercio de la altura del cielo. No cae y no se puede perder. 7 y OK (o Enter) la revientan.
+  2. **«Ahora caen».** 5 + 2 cae por la izquierda desde el principio, y 9 − 3 por la derecha 2 s después. Hay que reventar las dos.
+  3. **«El cometa».** 8 − 5 cae por la izquierda y 2 + 6 por la derecha; 1,5 s después, el cometa dorado 4 + 5 por el medio. Reventar el cometa revienta todas y la ronda acierta. Reventar antes una estrella normal también vale.
+- **Guía:**
+  - Ronda 1: «Escribe el resultado de la estrella y pulsa OK para reventarla» / «Type the star's answer and press OK to pop it».
+  - Ronda 2: «Las estrellas caen: revienta las dos antes de que toquen el horizonte» / «The stars fall: pop both before they touch the horizon».
+  - Ronda 3: «La estrella dorada es un cometa: si la revientas, revienta todas» / «The golden star is a comet: pop it and they all pop».
+- **Al acertar:** la ronda acierta cuando todas sus estrellas reventaron. La reacción es una por ronda, no por estrella, como en Guardagujas; cada estrella reventada estalla como en el juego.
+- **Sin puntos ni vidas:** nada muestra puntos ni vidas. Los puntos, las vidas y las pausas del estado del juego no se usan.
+- **Teclas quietas:** mientras dice «¡Bien!», y desde que una estrella toca el horizonte hasta que la ronda empieza de nuevo, los números, el borrado y OK no hacen nada.
+- **Reloj:** avanza a lo sumo 100 ms de un cuadro al siguiente, así que con la app oculta la práctica simplemente se detiene. En la ronda 1 no avanza.
+- **Al fallar:**
+  - Un número que no está en ninguna estrella muestra la pista, y la ronda sigue: las estrellas siguen cayendo.
+    - Ronda 1: «Ese número no está en el cielo: 3 + 4 = 7. Inténtalo otra vez» / «That number isn't in the sky: 3 + 4 = 7. Try again».
+    - Rondas 2 y 3: «Ese número no está en ninguna estrella. Inténtalo otra vez» / «That number isn't on any star. Try again».
+  - Una estrella que toca el horizonte borra el cielo, como en el juego, y muestra «Si una estrella toca el horizonte, pierdes una vida. Inténtalo otra vez» / «If a star touches the horizon, you lose a life. Try again». Un segundo después, la ronda empieza de nuevo tal como empezó, con la respuesta escrita borrada.
+  - La pista sigue a la vista hasta el próximo acierto o el cambio de ronda, también durante el nuevo intento.
+- **Construcción:** el juego y la práctica comparten el bucle del cielo (`useStarSky`).
+
 ## 5. Diseño técnico
 
 ### 5.1 Marco común (`src/games/shared/practice/`)
@@ -215,7 +245,7 @@ Las cifras salen de las constantes del juego (duración, rondas y penalizaciones
 
 ### 5.2 Por juego
 
-- `src/games/<id>/Practice.tsx` con sus rondas como datos y su pantalla. Reusa `ArrowRow`/`ArrowIcon`, `Board`, `CardView`/`RuleIcon`, `SymbolGlyph`, `Keypad`, el formato de operaciones del juego y el patio de Guardagujas.
+- `src/games/<id>/Practice.tsx` con sus rondas como datos y su pantalla. Reusa `ArrowRow`/`ArrowIcon`, `Board`, `CardView`/`RuleIcon`, `SymbolGlyph`, `Keypad`, el formato de operaciones del juego, el patio de Guardagujas y el cielo de Lluvia de estrellas.
 - `GameDefinition` gana `Practice?: ComponentType<PracticeProps>`, y `Example` pasa a ser opcional, solo para los juegos sin práctica (§3.6).
 - Textos nuevos bajo `games.<id>.practice.*` (rondas, pistas y resumen) y `practice.*` (marco: entrada, «¡Listo!», «Saltar práctica», «Práctica N de M», «¡Bien!»).
 
@@ -260,7 +290,7 @@ Las cifras salen de las constantes del juego (duración, rondas y penalizaciones
   - En modo diario funciona igual.
 - **Textos:** cada juego del registro tiene `Practice` o `Example` (§3.6) y sus textos en ES y EN. El resumen nombra la penalización exacta de cada juego (reemplaza la prueba actual sobre las instrucciones).
 - **E2E (Playwright):**
-  - Una práctica completa de principio a fin (Flechas), hasta el juego.
+  - Una práctica completa de principio a fin, hasta el juego: Flechas, Guardagujas y Lluvia de estrellas.
   - Los ayudantes actuales usan «Saltar práctica» cuando aparece.
   - Objetivos táctiles de al menos 44 px en la práctica.
   - Sin desplazamiento lateral a 320 px en cada práctica, en ES y EN.
