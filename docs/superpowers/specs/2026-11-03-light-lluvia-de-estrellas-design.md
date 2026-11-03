@@ -105,9 +105,10 @@ Dentro del marco común de los juegos (`GameFrame`), de arriba abajo:
 3. **Cielo** (zona de juego):
    - Fondo de noche Luz con el resplandor verde lima de Matemáticas arriba y puntitos de estrellas quietos como decorado.
    - **Horizonte** abajo: una línea luminosa con un suelo oscuro debajo.
-   - **Estrellas fugaces:** esfera de luz del color del área (`--game`) con la operación en `--luz-ink` (por ejemplo `7 + 5`), halo del mismo color y una estela que se desvanece hacia arriba.
-   - **Cometa:** más grande, dorado (`--luz-gold`), con estela larga y un ✦; la forma y el ✦ hacen que el color no sea la única pista.
-   - Las 3 columnas reparten el ancho del cielo; la operación más larga (`20 + 9 × 9`) cabe en un teléfono de 360 px.
+   - **Estrellas fugaces:** una estrella de 5 puntas del color del área (`--game`), con un brillo suave arriba a la izquierda, halo del mismo color y una estela que se angosta y se desvanece hacia arriba. La operación (por ejemplo `7 + 5`) va en `--luz-ink` sobre una etiqueta redondeada de un tono claro del mismo color, pegada debajo de la estrella; la etiqueta tapa un poco sus puntas de abajo. La estrella es un dibujo sin texto, así que el texto de cada estrella es exactamente su operación.
+   - **Cometa:** una bola redonda dorada (`--luz-gold`), más chica que la estrella, con brillo y halo, una cola más larga y ancha que la estela de las estrellas y su operación en una etiqueta dorada debajo. La forma (bola redonda frente a estrella de 5 puntas) es la pista que no depende del color.
+   - **Tamaños:** la estrella mide `clamp(36px, 11vw, 44px)` (unos 40 px en un teléfono de 360 px); la bola del cometa, ¾ de eso. La estela mide 0,35 × 1,75 veces la estrella, y la cola del cometa 0,45 × 2,75. La etiqueta usa letra de `clamp(13px, 3,9vw, 16px)`. En pantallas bajas (alto ≤ 640 px) la estrella baja a 28 px, y su estela y la bola del cometa en proporción, para no llenar el cielo chico; la etiqueta conserva su tamaño (nunca menos de 13 px).
+   - Las 3 columnas reparten el ancho del cielo; la operación más larga (`20 + 9 × 9`), también en el cometa, cabe en su columna en un teléfono de 320 px (una etiqueta de 79 px en una columna de 93 px).
 4. **Ranura de respuesta** sobre el horizonte, al centro, con el subrayado luminoso de Cálculo relámpago.
 5. **Teclado en pantalla** abajo (el de Cálculo relámpago: cifras, ⌫ y OK). No hay «Saltar».
 
@@ -123,14 +124,14 @@ Dentro del marco común de los juegos (`GameFrame`), de arriba abajo:
 
 ### 4.3 Movimiento reducido y accesibilidad
 
-- Con `prefers-reduced-motion: reduce`, las estrellas **siguen cayendo** (es la mecánica del juego), pero sin estelas, chispas, sacudidas ni destellos, y los puntitos del fondo no titilan; las estrellas que revientan o se pierden solo se desvanecen.
+- Con `prefers-reduced-motion: reduce`, las estrellas **siguen cayendo** (es la mecánica del juego), pero sin estelas (tampoco la cola del cometa), chispas, sacudidas ni destellos, y los puntitos del fondo no titilan; las estrellas que revientan o se pierden solo se desvanecen.
 - El teclado en pantalla son `<button>` reales de al menos 44 px; el teclado físico funciona con `useGameKeys` (las teclas del teclado numérico llegan como las mismas cifras y Enter).
 - El cielo no se anuncia a lectores de pantalla (limitación conocida de los juegos visuales contra el reloj, diseño general §7); las vidas y los puntos sí tienen texto accesible.
 
 ### 4.4 Instrucciones, ejemplo y miniatura
 
-- **Ejemplo** (instrucciones): mini escena en bucle hecha con CSS: dos estrellas caen, se escribe `12`, una estalla; luego cae el cometa, se resuelve y estalla todo. Con movimiento reducido queda fija.
-- **Miniatura** (catálogo, Hoy, Progreso): SVG fijo con una estrella verde con estela y un cometa dorado pequeño sobre el cielo de noche, como las demás miniaturas.
+- **Ejemplo** (instrucciones): mini escena en bucle hecha con CSS, con las mismas estrellas de 5 puntas con etiqueta y el mismo cometa redondo del juego, algo más chicos (estrella de 32 px): dos estrellas caen, se escribe `12`, una estalla; luego cae el cometa, se resuelve y estalla todo. Con movimiento reducido queda fija, con las tres enteras dentro del cielo.
+- **Miniatura** (catálogo, Hoy, Progreso): SVG fijo con una estrella verde de 5 puntas con su estela y, más abajo, un cometa dorado redondo y pequeño con su cola, ambos cayendo sobre el cielo de noche, como las demás miniaturas.
 
 ### 4.5 Textos
 
@@ -153,7 +154,7 @@ Dentro del marco común de los juegos (`GameFrame`), de arriba abajo:
 |---|---|
 | `engine.ts` | Lógica pura (sin React ni DOM), todo en función del tiempo del juego `now` (ms) y de un `Rng`. Estado: estrellas en pantalla, próximo nacimiento, columna anterior, vidas, fin de la pausa, tiempo de ritmo acumulado en pausas, escalera de nivel, respuesta escrita, puntos y contadores (aciertos, equivocados, perdidas). Funciones: `createStarShower(startLevel, rng)`; `advance(state, now, rng)` hace nacer las estrellas que tocan, detecta la que llega al horizonte (§3.5) y el fin (§3.6), y devuelve el estado nuevo y los **eventos** ocurridos (nacimiento, estrella perdida con su columna, estrellas despejadas, fin); `typeDigit` / `deleteDigit`; `submitAnswer(state, now)` devuelve el estado y el desenlace (`hit`, `comet`, `wrong` o `null` si no había respuesta o el cielo estaba vacío) con las estrellas reventadas; `starHeight(star, now)`; `nextEventAt(state)` (el próximo nacimiento, aterrizaje, fin de pausa o tope); `starShowerResult(state, now)`. Constantes exportadas: ritmo (§3.1), vidas, pausa, tope, `STAR_SHOWER_MAX_SCORE = 4000`, `STAR_SHOWER_REFERENCE_SCORE = 600`. |
 | `Game.tsx` | Usa `useGameClock(paused)`. Mientras no está en pausa ni terminado, corre un ciclo `requestAnimationFrame`: lee `clock.now()`, escribe la altura de cada estrella directamente en su elemento (por referencia, con `transform`) y, cuando `now` alcanza `nextEventAt`, llama a `advance` y actualiza el estado de React (solo entonces se vuelve a dibujar). Conecta `useGameKeys` (cifras, Backspace, Enter), el teclado en pantalla y `useFeedback` según §4.2. Al terminar espera 1 s de tiempo del juego (respetando la pausa) y llama a `onFinish` una sola vez. Informa vidas y nivel a `GameFrame`. |
-| `Sky.tsx` | Dibuja el cielo, el horizonte, las estrellas (registra la referencia de cada una para el ciclo de animación), las animaciones de estallido y la ranura de respuesta. |
+| `Sky.tsx` | Dibuja el cielo, el horizonte, las estrellas (registra la referencia de cada una para el ciclo de animación), las animaciones de estallido y la ranura de respuesta. `StarLook` dibuja cada estrella (la de 5 puntas o la bola del cometa, con su etiqueta); también lo usa el ejemplo. |
 | `Example.tsx`, `Thumb.tsx` | Ejemplo animado y miniatura (§4.4). |
 | `star-shower.module.css` | Estilos con los tokens Luz; bloque de movimiento reducido (§4.3). |
 | `index.ts` | Definición: `id: 'star-shower'`, `area: 'math'`, `referenceScore: 600`, `maxScore: 4000`, `Component`, `Example`, `Thumb`. |
