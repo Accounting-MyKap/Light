@@ -139,3 +139,34 @@ for (const width of [320, 360, 375, 430]) {
     expect(Math.max(...widths) - Math.min(...widths)).toBeLessThanOrEqual(1);
   });
 }
+
+const TAB_ROUTES: Array<[string, string]> = [
+  ['Hoy', './#/'],
+  ['Juegos', './#/games'],
+  ['Preguntas', './#/quiz'],
+  ['Progreso', './#/progress'],
+  ['Ajustes', './#/settings'],
+];
+
+for (const rootPx of [16, 24]) {
+  test(`no sideways scroll on any tab: 320 px screen, ${rootPx} px root font`, async ({ page }) => {
+    await page.setViewportSize({ width: 320, height: 640 });
+    for (const [name, url] of TAB_ROUTES) {
+      await page.goto(url);
+      await page.evaluate(() => document.fonts.ready);
+      await page.evaluate((px) => {
+        document.documentElement.style.fontSize = `${px}px`;
+      }, rootPx);
+      await page.waitForTimeout(100);
+      const m = await page.evaluate(() => {
+        const vw = window.innerWidth;
+        const wide = [...document.querySelectorAll<HTMLElement>('body *')]
+          .filter((el) => el.getBoundingClientRect().right > vw + 0.5)
+          .slice(0, 5)
+          .map((el) => `${el.tagName}.${el.className}`);
+        return { scroll: document.documentElement.scrollWidth, vw, wide };
+      });
+      expect(m.scroll, `${name}: ${JSON.stringify(m.wide)}`).toBeLessThanOrEqual(m.vw);
+    }
+  });
+}
