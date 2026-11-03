@@ -1,4 +1,4 @@
-import { copyFileSync, mkdirSync, readdirSync } from 'node:fs';
+import { mkdirSync } from 'node:fs';
 import { expect, test, type Locator, type Page } from '@playwright/test';
 import { expectTall } from './helpers';
 
@@ -6,7 +6,6 @@ const GAMES = ['sequence-lights', 'arrows', 'same-different', 'rule-switch', 'qu
 type GameId = (typeof GAMES)[number];
 
 const SCREENSHOT_DIR = 'test-results/practice';
-const FINAL_DIR = '/tmp/claude-0/-home-user-Light/ae7f1af7-7d9e-5ccc-a0af-2f96f2ceacbb/scratchpad/p5/final';
 
 const hasNoSidewaysScroll = (page: Page) =>
   page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth);
@@ -111,12 +110,16 @@ test('the practice opened from the pause leaves the paused game untouched', asyn
   await page.getByRole('button', { name: 'Saltar práctica', exact: true }).click();
   await expect(page.locator('[data-game="arrows"]')).toBeVisible();
 
-  // Two game rounds, answered right.
+  // Two game rounds, answered right. The row is re-keyed per trial: wait for the old one to go before the next answer.
   for (let i = 0; i < 2; i++) {
-    const direction = await page.getByTestId('arrows-row').getAttribute('data-direction');
+    const row = page.getByTestId('arrows-row');
+    const old = await row.elementHandle();
+    const direction = await row.getAttribute('data-direction');
     await controls(page)
       .nth(direction === 'left' ? 0 : 1)
       .click();
+    await page.waitForFunction((el) => !el?.isConnected, old);
+    await expect(row).toBeVisible();
   }
 
   await page.getByRole('button', { name: 'Salir del juego', exact: true }).click();
@@ -126,6 +129,9 @@ test('the practice opened from the pause leaves the paused game untouched', asyn
   const before = await readSheet();
   expect(before).toMatch(/quedan \d+ s/);
   expect(before).toMatch(/puntos \d+/);
+  const pointsBefore = Number(/puntos (\d+)/.exec(before)?.[1]);
+  const secondsBefore = Number(/quedan (\d+) s/.exec(before)?.[1]);
+  expect(pointsBefore, 'two right answers score points').toBeGreaterThan(0);
 
   await sheet.getByRole('button', { name: '¿Cómo se juega?', exact: true }).click();
   const layer = page.getByRole('dialog', { name: '¿Cómo se juega?' });
@@ -144,9 +150,18 @@ test('the practice opened from the pause leaves the paused game untouched', asyn
   await expect(layer).toHaveCount(0);
   expect(await readSheet()).toBe(before);
 
-  // And the game still resumes.
+  // The sheet is only a snapshot: resume, and read the game's own HUD once the 3-2-1 is over.
   await sheet.getByRole('button', { name: 'Continuar', exact: true }).click();
-  await expect(page.locator('[data-game="arrows"]')).toBeVisible();
+  await expect(page.locator('[data-dimmed="false"]')).toBeVisible({ timeout: 10_000 });
+  const game = page.locator('[data-game="arrows"]');
+  await expect(game.locator('dt', { hasText: 'Puntos' }).locator('xpath=following-sibling::dd')).toHaveText(
+    String(pointsBefore),
+  );
+  const secondsNow = Number(await game.getByRole('progressbar', { name: 'Tiempo' }).getAttribute('aria-valuenow'));
+  expect(secondsNow, 'the game clock stayed frozen during the practice and the countdown').toBeGreaterThanOrEqual(
+    secondsBefore - 2,
+  );
+  expect(secondsNow).toBeLessThanOrEqual(secondsBefore);
 });
 
 test.describe('touch targets in the practice', () => {
@@ -252,10 +267,5 @@ test.describe('review screenshots', () => {
     await shot('arrows-4-pause-sheet', page.getByRole('heading', { name: 'Pausado' }));
     await page.getByRole('button', { name: '¿Cómo se juega?', exact: true }).click();
     await shot('arrows-5-pause-practice', page.getByText(GUIDE.arrows));
-  });
-
-  test.afterAll(() => {
-    mkdirSync(FINAL_DIR, { recursive: true });
-    for (const file of readdirSync(SCREENSHOT_DIR)) copyFileSync(`${SCREENSHOT_DIR}/${file}`, `${FINAL_DIR}/${file}`);
   });
 });
