@@ -578,20 +578,20 @@
     {
       "id": "technology-0067", "difficulty": 2, "type": "choice",
       "es": { "question": "¿Por qué los computadores usan el sistema binario (0 y 1) para guardar y procesar datos?",
-              "options": ["Basta distinguir dos estados: encendido y apagado", "Los números salen más cortos que en el sistema decimal", "Es el único sistema numérico en el que se puede sumar", "Es el sistema que mejor entiende cualquier persona"],
+              "options": ["Basta distinguir dos estados: encendido y apagado", "Los números salen más cortos que en el sistema decimal", "Un dígito binario guarda más datos que uno decimal", "Es el sistema que mejor entiende cualquier persona"],
               "explanation": "Los circuitos electrónicos distinguen con fiabilidad dos estados, con y sin corriente, que representan 1 y 0. Con muchos bits se codifica cualquier dato." },
       "en": { "question": "Why do computers use the binary system (0 and 1) to store and process data?",
-              "options": ["It only has to tell two states apart: on and off", "Numbers come out shorter than in the decimal system", "It is the only number system in which you can add", "It is the system that anyone understands best"],
+              "options": ["It only has to tell two states apart: on and off", "Numbers come out shorter than in the decimal system", "A binary digit holds more data than a decimal one", "It is the system that anyone understands best"],
               "explanation": "Electronic circuits reliably tell two states apart, with and without current, which stand for 1 and 0. With many bits, any data can be encoded." }
     },
     {
       "id": "technology-0068", "difficulty": 2, "type": "choice",
       "es": { "question": "En unidades como el gigabyte, ¿a qué equivale el prefijo «giga»?",
-              "options": ["Mil millones", "Un millón", "Mil", "Un billón"],
-              "explanation": "Giga significa mil millones (10 elevado a 9). Mega es un millón, kilo es mil y tera es un billón (10 elevado a 12)." },
+              "options": ["Mil millones", "Un millón", "Mil", "Un trillón"],
+              "explanation": "Giga significa mil millones (10 elevado a 9). Mega es un millón y kilo es mil; tera equivale a mil veces giga." },
       "en": { "question": "In units such as the gigabyte, what does the prefix 'giga' mean?",
               "options": ["One billion", "One million", "One thousand", "One trillion"],
-              "explanation": "Giga means one billion (10 to the power of 9). Mega is a million, kilo a thousand and tera a trillion (10 to the 12th)." }
+              "explanation": "Giga means one billion (10 to the power of 9). Mega is a million and kilo a thousand; tera is a thousand times giga." }
     },
     {
       "id": "technology-0069", "difficulty": 2, "type": "choice",
