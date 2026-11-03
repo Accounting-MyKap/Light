@@ -10,7 +10,7 @@ export const BANK_SIZES: Record<QuizCategory, number> = {
   science: 100,
   geography: 100,
   math: 100,
-  arts: 12,
+  arts: 100,
   entertainment: 12,
   sports: 12,
   technology: 12,

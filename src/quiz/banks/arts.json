@@ -45,7 +45,7 @@
               "explanation": "Beethoven premiered it in 1824, when he was already deaf. Its final movement features a choir singing Schiller's “Ode to Joy”." }
     },
     {
-      "id": "arts-0006", "difficulty": 2, "type": "choice",
+      "id": "arts-0006", "difficulty": 1, "type": "choice",
       "es": { "question": "En la mitología griega, ¿quién es el dios del mar?",
               "options": ["Poseidón", "Zeus", "Hades", "Apolo"],
               "explanation": "Poseidón gobierna los mares y los terremotos. Zeus reina en el cielo, Hades en el inframundo y Apolo es dios de la luz y la música." },
@@ -65,14 +65,14 @@
     {
       "id": "arts-0008", "difficulty": 2, "type": "choice",
       "es": { "question": "¿A qué poeta griego se atribuye «La Odisea»?",
-              "options": ["Homero", "Hesíodo", "Virgilio", "Ovidio"],
-              "explanation": "Tradicionalmente se atribuye a Homero, igual que «La Ilíada». Virgilio y Ovidio fueron poetas romanos." },
+              "options": ["Homero", "Hesíodo", "Píndaro", "Safo"],
+              "explanation": "Tradicionalmente se atribuye a Homero, igual que «La Ilíada». Hesíodo, Píndaro y Safo también fueron poetas griegos, pero no la escribieron." },
       "en": { "question": "To which Greek poet is “The Odyssey” attributed?",
-              "options": ["Homer", "Hesiod", "Virgil", "Ovid"],
-              "explanation": "It is traditionally attributed to Homer, like “The Iliad”. Virgil and Ovid were Roman poets." }
+              "options": ["Homer", "Hesiod", "Pindar", "Sappho"],
+              "explanation": "It is traditionally attributed to Homer, like “The Iliad”. Hesiod, Pindar and Sappho were also Greek poets, but they did not write it." }
     },
     {
-      "id": "arts-0009", "difficulty": 3, "type": "choice",
+      "id": "arts-0009", "difficulty": 2, "type": "choice",
       "es": { "question": "¿Quién pintó «Las Meninas»?",
               "options": ["Diego Velázquez", "Francisco de Goya", "El Greco", "Bartolomé Murillo"],
               "explanation": "Diego Velázquez lo pintó en 1656. Hoy se exhibe en el Museo del Prado, en Madrid." },
@@ -101,9 +101,781 @@
     {
       "id": "arts-0012", "difficulty": 3, "type": "truefalse", "answer": true,
       "es": { "question": "El pintor conocido como El Greco nació en Grecia.",
-              "explanation": "Domenikos Theotokopoulos nació en Creta, hacia 1541. Se formó allí y en Venecia, y después se instaló en Toledo, España." },
+              "explanation": "Domenikos Theotokopoulos nació en Creta (hoy Grecia; entonces dominio veneciano), hacia 1541. Se formó allí y en Venecia, y después se instaló en Toledo, España." },
       "en": { "question": "The painter known as El Greco was born in Greece.",
-              "explanation": "Domenikos Theotokopoulos was born on Crete around 1541. He trained there and in Venice, then settled in Toledo, Spain." }
+              "explanation": "Domenikos Theotokopoulos was born on Crete (now Greece; then a Venetian possession) around 1541. He trained there and in Venice, then settled in Toledo, Spain." }
+    },
+    {
+      "id": "arts-0013", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Quién pintó «La noche estrellada», con su cielo lleno de remolinos?",
+              "options": ["Vincent van Gogh", "Paul Cézanne", "Paul Gauguin", "Henri Matisse"],
+              "explanation": "Vincent van Gogh la pintó en 1889, desde su habitación en un sanatorio de Saint-Rémy, en el sur de Francia. Hoy se exhibe en el MoMA de Nueva York." },
+      "en": { "question": "Who painted “The Starry Night”, with its sky full of swirls?",
+              "options": ["Vincent van Gogh", "Paul Cézanne", "Paul Gauguin", "Henri Matisse"],
+              "explanation": "Vincent van Gogh painted it in 1889 from his room in an asylum at Saint-Rémy, in the south of France. It is now on display at MoMA in New York." }
+    },
+    {
+      "id": "arts-0014", "difficulty": 1, "type": "choice",
+      "es": { "question": "En la mitología griega, ¿cuál era el único punto débil del héroe Aquiles?",
+              "options": ["El talón", "La rodilla", "El hombro", "El cuello"],
+              "explanation": "Su madre, Tetis, lo sumergió en el río Estigia sosteniéndolo por el talón, que quedó sin proteger. De ahí viene la expresión «talón de Aquiles»." },
+      "en": { "question": "In Greek mythology, what was the only weak spot of the hero Achilles?",
+              "options": ["His heel", "His knee", "His shoulder", "His neck"],
+              "explanation": "His mother, Thetis, dipped him in the River Styx holding him by the heel, which stayed unprotected. Hence the expression “Achilles' heel”." }
+    },
+    {
+      "id": "arts-0015", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Quién escribió la novela «Veinte mil leguas de viaje submarino»?",
+              "options": ["Julio Verne", "H. G. Wells", "Robert Louis Stevenson", "Daniel Defoe"],
+              "explanation": "Julio Verne la publicó en 1870. En la novela, el capitán Nemo recorre los océanos a bordo del submarino Nautilus." },
+      "en": { "question": "Who wrote the novel “Twenty Thousand Leagues Under the Seas”?",
+              "options": ["Jules Verne", "H. G. Wells", "Robert Louis Stevenson", "Daniel Defoe"],
+              "explanation": "Jules Verne published it in 1870. In the novel, Captain Nemo travels the oceans aboard the submarine Nautilus." }
+    },
+    {
+      "id": "arts-0016", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Quién compuso «Una pequeña serenata nocturna» (Eine kleine Nachtmusik)?",
+              "options": ["Wolfgang Amadeus Mozart", "Franz Schubert", "Frédéric Chopin", "Johannes Brahms"],
+              "explanation": "Mozart la compuso en 1787, en Viena. Es una de sus obras más populares, con un primer movimiento alegre y fácil de reconocer." },
+      "en": { "question": "Who composed “A Little Night Music” (Eine kleine Nachtmusik)?",
+              "options": ["Wolfgang Amadeus Mozart", "Franz Schubert", "Frédéric Chopin", "Johannes Brahms"],
+              "explanation": "Mozart composed it in 1787, in Vienna. It is one of his most popular works, with a lively, instantly recognizable first movement." }
+    },
+    {
+      "id": "arts-0017", "difficulty": 1, "type": "choice",
+      "es": { "question": "En «Don Quijote de la Mancha», ¿contra qué ataca el protagonista creyendo que son gigantes?",
+              "options": ["Molinos de viento", "Torres de un castillo", "Árboles del camino", "Carretas de bueyes"],
+              "explanation": "Don Quijote embiste contra unos molinos de viento creyendo que son gigantes. De ahí viene la expresión «luchar contra molinos de viento»." },
+      "en": { "question": "In “Don Quixote”, what does the hero charge at, believing they are giants?",
+              "options": ["Windmills", "Castle towers", "Roadside trees", "Ox carts"],
+              "explanation": "Don Quixote charges at windmills, believing they are giants. Hence the expression “tilting at windmills”." }
+    },
+    {
+      "id": "arts-0018", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué pintor surrealista es famoso por los relojes blandos de «La persistencia de la memoria»?",
+              "options": ["Salvador Dalí", "René Magritte", "Max Ernst", "Joan Miró"],
+              "explanation": "Salvador Dalí la pintó en 1931. Sus relojes derretidos son una de las imágenes más reconocibles del surrealismo." },
+      "en": { "question": "Which Surrealist painter is famous for the soft, melting clocks of “The Persistence of Memory”?",
+              "options": ["Salvador Dalí", "René Magritte", "Max Ernst", "Joan Miró"],
+              "explanation": "Salvador Dalí painted it in 1931. Its melting clocks are among the most recognizable images of Surrealism." }
+    },
+    {
+      "id": "arts-0019", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿En qué monte vivían los doce dioses principales de la mitología griega?",
+              "options": ["Olimpo", "Parnaso", "Etna", "Helicón"],
+              "explanation": "Vivían en el monte Olimpo, la montaña más alta de Grecia. Por eso se los llama dioses olímpicos." },
+      "en": { "question": "On which mountain did the twelve main gods of Greek mythology live?",
+              "options": ["Olympus", "Parnassus", "Etna", "Helicon"],
+              "explanation": "They lived on Mount Olympus, the highest mountain in Greece. That is why they are called the Olympian gods." }
+    },
+    {
+      "id": "arts-0020", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cómo se llama la varita con la que el director de una orquesta marca el compás?",
+              "options": ["Batuta", "Diapasón", "Metrónomo", "Atril"],
+              "explanation": "Se llama batuta. Con ella el director marca el compás y guía a los músicos. El metrónomo es un aparato que marca el pulso, y el atril sostiene la partitura." },
+      "en": { "question": "What is the thin stick an orchestra conductor uses to keep time called?",
+              "options": ["A baton", "A tuning fork", "A metronome", "A music stand"],
+              "explanation": "It is called a baton. The conductor uses it to beat time and guide the musicians. A metronome is a device that ticks the beat, and a music stand holds the score." }
+    },
+    {
+      "id": "arts-0021", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué famoso detective creó el escritor Arthur Conan Doyle?",
+              "options": ["Sherlock Holmes", "Hércules Poirot", "Philip Marlowe", "Auguste Dupin"],
+              "explanation": "Sherlock Holmes apareció por primera vez en 1887, en «Estudio en escarlata». Vive en Baker Street, en Londres, y lo acompaña el doctor Watson." },
+      "en": { "question": "Which famous detective did the writer Arthur Conan Doyle create?",
+              "options": ["Sherlock Holmes", "Hercule Poirot", "Philip Marlowe", "Auguste Dupin"],
+              "explanation": "Sherlock Holmes first appeared in 1887, in “A Study in Scarlet”. He lives on Baker Street in London, with Dr. Watson at his side." }
+    },
+    {
+      "id": "arts-0022", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué artista es famosa por sus autorretratos, como «La columna rota»?",
+              "options": ["Frida Kahlo", "Georgia O'Keeffe", "Mary Cassatt", "Artemisia Gentileschi"],
+              "explanation": "Frida Kahlo, pintora mexicana, hizo muchos autorretratos para expresar su dolor y su identidad. «La columna rota» es de 1944." },
+      "en": { "question": "Which artist is famous for self-portraits such as “The Broken Column”?",
+              "options": ["Frida Kahlo", "Georgia O'Keeffe", "Mary Cassatt", "Artemisia Gentileschi"],
+              "explanation": "Frida Kahlo, a Mexican painter, made many self-portraits to express her pain and identity. “The Broken Column” dates from 1944." }
+    },
+    {
+      "id": "arts-0023", "difficulty": 1, "type": "choice",
+      "es": { "question": "En la mitología griega, ¿qué le ocurría a quien miraba a Medusa directamente a los ojos?",
+              "options": ["Se convertía en piedra", "Quedaba ciego para siempre", "Se volvía loco de repente", "Perdía toda la memoria"],
+              "explanation": "Medusa, una de las Gorgonas, tenía serpientes en lugar de cabello. Quien la miraba a los ojos se volvía de piedra. El héroe Perseo la venció usando su escudo como espejo." },
+      "en": { "question": "In Greek mythology, what happened to anyone who looked Medusa straight in the eyes?",
+              "options": ["They turned to stone", "They went blind forever", "They suddenly went mad", "They lost all memory"],
+              "explanation": "Medusa, one of the Gorgons, had snakes instead of hair. Anyone who met her gaze turned to stone. The hero Perseus defeated her using his shield as a mirror." }
+    },
+    {
+      "id": "arts-0024", "difficulty": 1, "type": "truefalse", "answer": false,
+      "es": { "question": "Un violín tiene seis cuerdas.",
+              "explanation": "Es falso. El violín tiene cuatro cuerdas, afinadas en sol, re, la y mi. La guitarra es la que suele tener seis." },
+      "en": { "question": "A violin has six strings.",
+              "explanation": "False. A violin has four strings, tuned to G, D, A and E. It is the guitar that usually has six." }
+    },
+    {
+      "id": "arts-0025", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuántos versos tiene un soneto?",
+              "options": ["14", "12", "10", "16"],
+              "explanation": "Un soneto tiene catorce versos. En la forma clásica son dos cuartetos y dos tercetos; en la inglesa, tres cuartetos y un pareado." },
+      "en": { "question": "How many lines does a sonnet have?",
+              "options": ["14", "12", "10", "16"],
+              "explanation": "A sonnet has fourteen lines. The classic Italian form uses two quatrains and two tercets; the English form, three quatrains and a couplet." }
+    },
+    {
+      "id": "arts-0026", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Quién esculpió el «David» de mármol, terminado en 1504?",
+              "options": ["Miguel Ángel", "Donatello", "Antonio Canova", "Benvenuto Cellini"],
+              "explanation": "Miguel Ángel lo esculpió entre 1501 y 1504 a partir de un solo bloque de mármol. Hoy se conserva en la Galería de la Academia, en Florencia." },
+      "en": { "question": "Who sculpted the marble “David”, finished in 1504?",
+              "options": ["Michelangelo", "Donatello", "Antonio Canova", "Benvenuto Cellini"],
+              "explanation": "Michelangelo carved it between 1501 and 1504 from a single block of marble. It is now kept at the Galleria dell'Accademia in Florence." }
+    },
+    {
+      "id": "arts-0027", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué criatura mítica vivía en el laberinto de Creta?",
+              "options": ["El Minotauro", "Cerbero", "La Hidra", "La Quimera"],
+              "explanation": "El Minotauro, mitad hombre y mitad toro, vivía en el laberinto del rey Minos. El héroe Teseo lo mató con ayuda de Ariadna." },
+      "en": { "question": "What mythical creature lived in the labyrinth of Crete?",
+              "options": ["The Minotaur", "Cerberus", "The Hydra", "The Chimera"],
+              "explanation": "The Minotaur, half man and half bull, lived in King Minos's labyrinth. The hero Theseus killed it with Ariadne's help." }
+    },
+    {
+      "id": "arts-0028", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Quién compuso «Las cuatro estaciones», un conjunto de cuatro conciertos para violín?",
+              "options": ["Antonio Vivaldi", "Arcangelo Corelli", "Tomaso Albinoni", "Giovanni Pergolesi"],
+              "explanation": "Antonio Vivaldi, compositor veneciano del Barroco, las publicó hacia 1725. Cada concierto evoca una estación, con tormentas, pájaros y fiestas." },
+      "en": { "question": "Who composed “The Four Seasons”, a set of four violin concertos?",
+              "options": ["Antonio Vivaldi", "Arcangelo Corelli", "Tomaso Albinoni", "Giovanni Pergolesi"],
+              "explanation": "Antonio Vivaldi, a Venetian Baroque composer, published them around 1725. Each concerto evokes a season, with storms, birdsong and festivals." }
+    },
+    {
+      "id": "arts-0029", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Quién escribió la saga de novelas «Harry Potter»?",
+              "options": ["J. K. Rowling", "Suzanne Collins", "Stephenie Meyer", "Roald Dahl"],
+              "explanation": "J. K. Rowling publicó el primer libro, «Harry Potter y la piedra filosofal», en 1997. La saga tiene siete novelas." },
+      "en": { "question": "Who wrote the “Harry Potter” series of novels?",
+              "options": ["J. K. Rowling", "Suzanne Collins", "Stephenie Meyer", "Roald Dahl"],
+              "explanation": "J. K. Rowling published the first book, “Harry Potter and the Philosopher's Stone”, in 1997. The series has seven novels." }
+    },
+    {
+      "id": "arts-0030", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué artista colombiano es famoso por pintar y esculpir figuras de formas voluminosas?",
+              "options": ["Fernando Botero", "Alejandro Obregón", "Édgar Negret", "Rodrigo Arenas Betancourt"],
+              "explanation": "Fernando Botero (Medellín, 1932-2023) desarrolló un estilo propio: personas, animales y objetos de formas redondeadas y exageradas." },
+      "en": { "question": "Which Colombian artist is famous for painting and sculpting figures with voluminous forms?",
+              "options": ["Fernando Botero", "Alejandro Obregón", "Édgar Negret", "Rodrigo Arenas Betancourt"],
+              "explanation": "Fernando Botero (Medellín, 1932–2023) developed a style of his own: people, animals and objects with rounded, exaggerated forms." }
+    },
+    {
+      "id": "arts-0031", "difficulty": 1, "type": "choice",
+      "es": { "question": "En la mitología griega, ¿por qué cayó Ícaro al mar?",
+              "options": ["La cera de sus alas se derritió con el sol", "Zeus lo fulminó con un rayo desde el Olimpo", "Poseidón levantó una ola y lo arrastró", "Una tormenta rompió sus alas de plumas"],
+              "explanation": "Ícaro voló demasiado cerca del sol con las alas de plumas y cera que fabricó su padre, Dédalo. El calor derritió la cera y Ícaro cayó al mar." },
+      "en": { "question": "In Greek mythology, why did Icarus fall into the sea?",
+              "options": ["The wax of his wings melted in the sun", "Zeus struck him down with a thunderbolt", "Poseidon raised a wave and dragged him under", "A storm tore apart his feathered wings"],
+              "explanation": "Icarus flew too close to the sun on the wings of feathers and wax made by his father, Daedalus. The heat melted the wax and Icarus fell into the sea." }
+    },
+    {
+      "id": "arts-0032", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué poeta chileno escribió «Veinte poemas de amor y una canción desesperada»?",
+              "options": ["Pablo Neruda", "Gabriela Mistral", "Vicente Huidobro", "Nicanor Parra"],
+              "explanation": "Pablo Neruda publicó este libro en 1924, siendo muy joven. Sus versos de amor se cuentan entre los más leídos de la poesía en español." },
+      "en": { "question": "Which Chilean poet wrote “Twenty Love Poems and a Song of Despair”?",
+              "options": ["Pablo Neruda", "Gabriela Mistral", "Vicente Huidobro", "Nicanor Parra"],
+              "explanation": "Pablo Neruda published this book in 1924, when he was very young. Its love poems are among the most widely read in Spanish-language poetry." }
+    },
+    {
+      "id": "arts-0033", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuántas notas distintas tiene la escala musical básica, de do a si?",
+              "options": ["7", "5", "9", "12"],
+              "explanation": "Son siete: do, re, mi, fa, sol, la y si. Con sostenidos y bemoles, la música occidental usa doce sonidos distintos en cada octava." },
+      "en": { "question": "How many different notes are there in the basic musical scale, from C to B?",
+              "options": ["7", "5", "9", "12"],
+              "explanation": "Seven: C, D, E, F, G, A and B. With sharps and flats, Western music uses twelve different pitches in each octave." }
+    },
+    {
+      "id": "arts-0034", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Con qué se mezclan los pigmentos en la pintura al óleo?",
+              "options": ["Aceite", "Agua", "Yema de huevo", "Cera caliente"],
+              "explanation": "Los pigmentos se mezclan con aceite, casi siempre de linaza, y la pintura seca despacio. La acuarela usa agua y el temple, yema de huevo." },
+      "en": { "question": "What are pigments mixed with in oil painting?",
+              "options": ["Oil", "Water", "Egg yolk", "Hot wax"],
+              "explanation": "Pigments are mixed with oil, usually linseed oil, and the paint dries slowly. Watercolor uses water, and tempera uses egg yolk." }
+    },
+    {
+      "id": "arts-0035", "difficulty": 1, "type": "choice",
+      "es": { "question": "Según la leyenda, ¿qué animal amamantó a los gemelos Rómulo y Remo, protagonistas de la fundación de Roma?",
+              "options": ["Una loba", "Una osa", "Una cabra", "Una yegua"],
+              "explanation": "Una loba los crió tras ser abandonados a orillas del río Tíber. Según la tradición, Rómulo fundó Roma en el año 753 a. C." },
+      "en": { "question": "According to legend, which animal nursed the twins Romulus and Remus, central figures in the founding of Rome?",
+              "options": ["A she-wolf", "A bear", "A goat", "A mare"],
+              "explanation": "A she-wolf raised them after they were abandoned on the banks of the Tiber. By tradition, Romulus founded Rome in 753 BC." }
+    },
+    {
+      "id": "arts-0036", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cómo se llama el caballo de Don Quijote?",
+              "options": ["Rocinante", "Babieca", "Bucéfalo", "Pegaso"],
+              "explanation": "Rocinante es el flaco caballo de Don Quijote. Babieca fue el caballo del Cid, Bucéfalo el de Alejandro Magno y Pegaso, el caballo alado de la mitología griega." },
+      "en": { "question": "What is the name of Don Quixote's horse?",
+              "options": ["Rocinante", "Babieca", "Bucephalus", "Pegasus"],
+              "explanation": "Rocinante is Don Quixote's skinny old horse. Babieca was El Cid's horse, Bucephalus was Alexander the Great's, and Pegasus is the winged horse of Greek mythology." }
+    },
+    {
+      "id": "arts-0037", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuántas teclas tiene un piano estándar?",
+              "options": ["88", "76", "61", "72"],
+              "explanation": "Un piano estándar tiene 88 teclas: 52 blancas y 36 negras. Abarca más de siete octavas." },
+      "en": { "question": "How many keys does a standard piano have?",
+              "options": ["88", "76", "61", "72"],
+              "explanation": "A standard piano has 88 keys: 52 white and 36 black. It spans more than seven octaves." }
+    },
+    {
+      "id": "arts-0038", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cómo se llama la pintura que se hace directamente sobre un muro o una pared?",
+              "options": ["Mural", "Acuarela", "Grabado", "Collage"],
+              "explanation": "Se llama mural. Los muralistas mexicanos del siglo XX lo hicieron famoso al pintar grandes escenas históricas en edificios públicos." },
+      "en": { "question": "What is a painting made directly on a wall called?",
+              "options": ["A mural", "A watercolor", "An engraving", "A collage"],
+              "explanation": "It is called a mural. The Mexican muralists of the 20th century made it famous by painting large historical scenes on public buildings." }
+    },
+    {
+      "id": "arts-0039", "difficulty": 1, "type": "truefalse", "answer": true,
+      "es": { "question": "En la mitología griega, Afrodita es la diosa del amor y la belleza.",
+              "explanation": "Es cierto. Afrodita era la diosa griega del amor y la belleza, y los romanos la identificaron con Venus." },
+      "en": { "question": "In Greek mythology, Aphrodite is the goddess of love and beauty.",
+              "explanation": "True. Aphrodite was the Greek goddess of love and beauty, and the Romans identified her with Venus." }
+    },
+    {
+      "id": "arts-0040", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Quién escribió los cuentos «La sirenita» y «El patito feo»?",
+              "options": ["Hans Christian Andersen", "Charles Perrault", "Jacob y Wilhelm Grimm", "Carlo Collodi"],
+              "explanation": "El escritor danés Hans Christian Andersen publicó «La sirenita» en 1837 y «El patito feo» en 1843. Escribió más de cien cuentos." },
+      "en": { "question": "Who wrote the fairy tales “The Little Mermaid” and “The Ugly Duckling”?",
+              "options": ["Hans Christian Andersen", "Charles Perrault", "Jacob and Wilhelm Grimm", "Carlo Collodi"],
+              "explanation": "The Danish writer Hans Christian Andersen published “The Little Mermaid” in 1837 and “The Ugly Duckling” in 1843. He wrote well over a hundred tales." }
+    },
+    {
+      "id": "arts-0041", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué dos colores se mezclan para obtener el verde en pintura?",
+              "options": ["Azul y amarillo", "Rojo y amarillo", "Azul y rojo", "Rojo y blanco"],
+              "explanation": "Al mezclar azul y amarillo se obtiene verde. Rojo y amarillo dan naranja; azul y rojo, morado; rojo y blanco, rosa." },
+      "en": { "question": "Which two colors do you mix to get green in painting?",
+              "options": ["Blue and yellow", "Red and yellow", "Blue and red", "Red and white"],
+              "explanation": "Mixing blue and yellow makes green. Red and yellow make orange; blue and red make purple; red and white make pink." }
+    },
+    {
+      "id": "arts-0042", "difficulty": 1, "type": "choice",
+      "es": { "question": "En la mitología griega, ¿qué diosa representa la sabiduría y la estrategia en la guerra?",
+              "options": ["Atenea", "Hera", "Artemisa", "Deméter"],
+              "explanation": "Atenea era la diosa de la sabiduría y de la guerra estratégica. Según el mito, nació ya adulta y armada de la cabeza de Zeus. La ciudad de Atenas lleva su nombre." },
+      "en": { "question": "In Greek mythology, which goddess stands for wisdom and strategy in war?",
+              "options": ["Athena", "Hera", "Artemis", "Demeter"],
+              "explanation": "Athena was the goddess of wisdom and strategic warfare. In the myth, she was born fully grown and armed from the head of Zeus. The city of Athens is named after her." }
+    },
+    {
+      "id": "arts-0043", "difficulty": 1, "type": "choice",
+      "es": { "question": "En la mitología griega, ¿qué usaron los griegos para entrar en la ciudad de Troya?",
+              "options": ["Un enorme caballo de madera", "Una torre de asedio", "Un túnel bajo las murallas", "Una flota de barcos incendiarios"],
+              "explanation": "Dejaron ante la ciudad un enorme caballo de madera hueco, con soldados escondidos dentro. Los troyanos lo metieron en la ciudad y los griegos la tomaron por sorpresa." },
+      "en": { "question": "In Greek mythology, what did the Greeks use to get into the city of Troy?",
+              "options": ["A huge wooden horse", "A siege tower", "A tunnel under the walls", "A fleet of fire ships"],
+              "explanation": "They left a huge hollow wooden horse outside the city, with soldiers hidden inside. The Trojans dragged it in, and the Greeks took the city by surprise." }
+    },
+    {
+      "id": "arts-0044", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Quién pintó «El grito» (1893), con una figura angustiada sobre un puente?",
+              "options": ["Edvard Munch", "Wassily Kandinsky", "Oskar Kokoschka", "James Ensor"],
+              "explanation": "Edvard Munch, pintor noruego, hizo varias versiones de «El grito» a partir de 1893. Es un símbolo de la angustia y una obra clave del expresionismo." },
+      "en": { "question": "Who painted “The Scream” (1893), showing an anguished figure on a bridge?",
+              "options": ["Edvard Munch", "Wassily Kandinsky", "Oskar Kokoschka", "James Ensor"],
+              "explanation": "Edvard Munch, a Norwegian painter, made several versions of “The Scream” beginning in 1893. It is a symbol of anxiety and a key work of Expressionism." }
+    },
+    {
+      "id": "arts-0045", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cómo se llama el género de pintura que representa frutas, flores u objetos cotidianos?",
+              "options": ["Bodegón", "Retrato", "Paisaje", "Marina"],
+              "explanation": "Se llama bodegón o naturaleza muerta. El retrato muestra personas, el paisaje muestra escenas de la naturaleza y la marina, el mar." },
+      "en": { "question": "What is the painting genre that shows fruit, flowers or everyday objects called?",
+              "options": ["Still life", "Portrait", "Landscape", "Seascape"],
+              "explanation": "It is called a still life. A portrait shows a person, a landscape shows natural scenery, and a seascape shows the sea." }
+    },
+    {
+      "id": "arts-0046", "difficulty": 1, "type": "choice",
+      "es": { "question": "En el cuento de Pinocho, ¿qué le crece al muñeco cuando dice mentiras?",
+              "options": ["La nariz", "Las cejas", "Los dedos", "El cabello"],
+              "explanation": "A Pinocho le crece la nariz cada vez que miente. El personaje nació en la novela de Carlo Collodi, publicada en forma de libro en 1883." },
+      "en": { "question": "In the story of Pinocchio, what grows on the puppet when he tells lies?",
+              "options": ["His nose", "His eyebrows", "His fingers", "His hair"],
+              "explanation": "Pinocchio's nose grows every time he lies. The character was born in Carlo Collodi's novel, published as a book in 1883." }
+    },
+    {
+      "id": "arts-0047", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿En qué obra de teatro aparece la célebre frase «Ser o no ser, esa es la cuestión»?",
+              "options": ["Hamlet", "Macbeth", "Otelo", "El rey Lear"],
+              "explanation": "La frase abre un monólogo del príncipe Hamlet, protagonista de la tragedia del mismo nombre, escrita hacia 1600." },
+      "en": { "question": "In which play does the famous line “To be, or not to be, that is the question” appear?",
+              "options": ["Hamlet", "Macbeth", "Othello", "King Lear"],
+              "explanation": "The line opens a soliloquy by Prince Hamlet, the hero of the tragedy of the same name, written around 1600." }
+    },
+    {
+      "id": "arts-0048", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué artista del pop art es famoso por sus serigrafías de Marilyn Monroe y de latas de sopa?",
+              "options": ["Andy Warhol", "Roy Lichtenstein", "Jasper Johns", "Robert Rauschenberg"],
+              "explanation": "Andy Warhol fue la figura central del pop art en los años sesenta. Convirtió imágenes de consumo y de famosos en obras de arte." },
+      "en": { "question": "Which pop artist is famous for his silkscreens of Marilyn Monroe and soup cans?",
+              "options": ["Andy Warhol", "Roy Lichtenstein", "Jasper Johns", "Robert Rauschenberg"],
+              "explanation": "Andy Warhol was the central figure of 1960s pop art. He turned images of consumer goods and celebrities into works of art." }
+    },
+    {
+      "id": "arts-0049", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cómo llamaban los romanos al dios griego Zeus, rey de los dioses?",
+              "options": ["Júpiter", "Marte", "Saturno", "Vulcano"],
+              "explanation": "Los romanos identificaron a Zeus con Júpiter, el rey de sus dioses. Marte era su dios de la guerra, Saturno el de la agricultura y Vulcano el del fuego y la forja." },
+      "en": { "question": "What did the Romans call the Greek god Zeus, king of the gods?",
+              "options": ["Jupiter", "Mars", "Saturn", "Vulcan"],
+              "explanation": "The Romans identified Zeus with Jupiter, the king of their gods. Mars was their god of war, Saturn of agriculture, and Vulcan of fire and the forge." }
+    },
+    {
+      "id": "arts-0050", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Quién compuso el ballet «El lago de los cisnes»?",
+              "options": ["Piotr Ilich Chaikovski", "Nikolái Rimski-Kórsakov", "Serguéi Prokófiev", "Dmitri Shostakóvich"],
+              "explanation": "Chaikovski compuso este ballet entre 1875 y 1876, y se estrenó en Moscú en 1877. También escribió «El cascanueces» y «La bella durmiente»." },
+      "en": { "question": "Who composed the ballet “Swan Lake”?",
+              "options": ["Pyotr Ilyich Tchaikovsky", "Nikolai Rimsky-Korsakov", "Sergei Prokofiev", "Dmitri Shostakovich"],
+              "explanation": "Tchaikovsky composed this ballet in 1875–76, and it premiered in Moscow in 1877. He also wrote “The Nutcracker” and “The Sleeping Beauty”." }
+    },
+    {
+      "id": "arts-0051", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Quién escribió la novela «Los miserables», publicada en 1862?",
+              "options": ["Victor Hugo", "Alexandre Dumas", "Honoré de Balzac", "Émile Zola"],
+              "explanation": "Victor Hugo la publicó en 1862. Su protagonista, Jean Valjean, es un expresidiario que intenta rehacer su vida." },
+      "en": { "question": "Who wrote the novel “Les Misérables”, published in 1862?",
+              "options": ["Victor Hugo", "Alexandre Dumas", "Honoré de Balzac", "Émile Zola"],
+              "explanation": "Victor Hugo published it in 1862. Its hero, Jean Valjean, is an ex-convict trying to rebuild his life." }
+    },
+    {
+      "id": "arts-0052", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Quién fue la primera persona latinoamericana en ganar el Premio Nobel de Literatura, en 1945?",
+              "options": ["Gabriela Mistral", "Pablo Neruda", "Miguel Ángel Asturias", "Octavio Paz"],
+              "explanation": "Gabriela Mistral, poeta y educadora chilena, lo recibió en 1945. Su libro «Desolación» (1922) la hizo famosa en toda Hispanoamérica." },
+      "en": { "question": "Who was the first Latin American to win the Nobel Prize in Literature, in 1945?",
+              "options": ["Gabriela Mistral", "Pablo Neruda", "Miguel Ángel Asturias", "Octavio Paz"],
+              "explanation": "Gabriela Mistral, a Chilean poet and educator, received it in 1945. Her book “Desolación” (1922) made her famous across Spanish America." }
+    },
+    {
+      "id": "arts-0053", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Quién esculpió «El pensador», una de las esculturas más conocidas del mundo?",
+              "options": ["Auguste Rodin", "Camille Claudel", "Constantin Brâncuși", "Aristide Maillol"],
+              "explanation": "Auguste Rodin lo concibió hacia 1880 como parte de «La puerta del Infierno». Existen copias en bronce en museos de todo el mundo." },
+      "en": { "question": "Who sculpted “The Thinker”, one of the best-known sculptures in the world?",
+              "options": ["Auguste Rodin", "Camille Claudel", "Constantin Brâncuși", "Aristide Maillol"],
+              "explanation": "Auguste Rodin conceived it around 1880 as part of “The Gates of Hell”. Bronze casts are found in museums all over the world." }
+    },
+    {
+      "id": "arts-0054", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué titán robó el fuego de los dioses para entregárselo a los seres humanos?",
+              "options": ["Prometeo", "Atlas", "Epimeteo", "Cronos"],
+              "explanation": "Prometeo robó el fuego de los dioses y se lo dio a la humanidad. Como castigo, Zeus lo encadenó a una roca, donde un águila le devoraba el hígado." },
+      "en": { "question": "Which Titan stole fire from the gods to give it to humans?",
+              "options": ["Prometheus", "Atlas", "Epimetheus", "Cronus"],
+              "explanation": "Prometheus stole fire from the gods and gave it to humankind. As punishment, Zeus chained him to a rock, where an eagle devoured his liver." }
+    },
+    {
+      "id": "arts-0055", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Quién compuso la ópera «La traviata»?",
+              "options": ["Giuseppe Verdi", "Giacomo Puccini", "Gioachino Rossini", "Gaetano Donizetti"],
+              "explanation": "Giuseppe Verdi la compuso basándose en «La dama de las camelias», de Alejandro Dumas hijo. Se estrenó en 1853 y cuenta la historia de Violetta Valéry." },
+      "en": { "question": "Who composed the opera “La traviata”?",
+              "options": ["Giuseppe Verdi", "Giacomo Puccini", "Gioachino Rossini", "Gaetano Donizetti"],
+              "explanation": "Giuseppe Verdi based it on “The Lady of the Camellias” by Alexandre Dumas fils. It premiered in 1853 and tells the story of Violetta Valéry." }
+    },
+    {
+      "id": "arts-0056", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Quién escribió el poema «El cuervo», publicado en 1845?",
+              "options": ["Edgar Allan Poe", "Walt Whitman", "Emily Dickinson", "Henry Wadsworth Longfellow"],
+              "explanation": "Edgar Allan Poe lo publicó en 1845. Un cuervo visita al narrador y repite una y otra vez el estribillo «Nunca más» (Nevermore)." },
+      "en": { "question": "Who wrote the poem “The Raven”, published in 1845?",
+              "options": ["Edgar Allan Poe", "Walt Whitman", "Emily Dickinson", "Henry Wadsworth Longfellow"],
+              "explanation": "Edgar Allan Poe published it in 1845. A raven visits the narrator and keeps repeating the refrain “Nevermore”." }
+    },
+    {
+      "id": "arts-0057", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Quién escribió «María», la novela romántica colombiana publicada en 1867?",
+              "options": ["Jorge Isaacs", "Tomás Carrasquilla", "José Eustasio Rivera", "Rafael Pombo"],
+              "explanation": "Jorge Isaacs la publicó en 1867. Es una historia de amor ambientada en el Valle del Cauca, en Colombia." },
+      "en": { "question": "Who wrote “María”, the Colombian romantic novel published in 1867?",
+              "options": ["Jorge Isaacs", "Tomás Carrasquilla", "José Eustasio Rivera", "Rafael Pombo"],
+              "explanation": "Jorge Isaacs published it in 1867. It is a love story set in the Cauca Valley, in Colombia." }
+    },
+    {
+      "id": "arts-0058", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Quién pintó «Impresión, sol naciente» (1872), la obra que dio nombre al impresionismo?",
+              "options": ["Claude Monet", "Pierre-Auguste Renoir", "Camille Pissarro", "Alfred Sisley"],
+              "explanation": "Claude Monet pintó una vista del puerto de Le Havre al amanecer. En 1874 un crítico usó su título, con burla, para llamar «impresionistas» al grupo." },
+      "en": { "question": "Who painted “Impression, Sunrise” (1872), the work that gave Impressionism its name?",
+              "options": ["Claude Monet", "Pierre-Auguste Renoir", "Camille Pissarro", "Alfred Sisley"],
+              "explanation": "Claude Monet painted a view of the port of Le Havre at dawn. In 1874 a critic mockingly used its title to call the group “Impressionists”." }
+    },
+    {
+      "id": "arts-0059", "difficulty": 2, "type": "choice",
+      "es": { "question": "Según el mito griego, ¿qué quedó dentro de la caja de Pandora cuando escaparon todos los males?",
+              "options": ["La esperanza", "El miedo", "La verdad", "La justicia"],
+              "explanation": "Pandora abrió una gran jarra (la «caja») y escaparon los males del mundo. Solo la esperanza quedó dentro." },
+      "en": { "question": "According to the Greek myth, what stayed inside Pandora's box after all the evils escaped?",
+              "options": ["Hope", "Fear", "Truth", "Justice"],
+              "explanation": "Pandora opened a large jar (the “box”) and the world's evils flew out. Only hope remained inside." }
+    },
+    {
+      "id": "arts-0060", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Quién compuso los «Conciertos de Brandeburgo», dedicados en 1721 a un margrave alemán?",
+              "options": ["Johann Sebastian Bach", "Georg Friedrich Händel", "Georg Philipp Telemann", "Henry Purcell"],
+              "explanation": "Johann Sebastian Bach envió en 1721 estas seis piezas al margrave Cristián Luis de Brandeburgo. Hoy son clásicos de la música barroca." },
+      "en": { "question": "Who composed the “Brandenburg Concertos”, dedicated in 1721 to a German margrave?",
+              "options": ["Johann Sebastian Bach", "George Frideric Handel", "Georg Philipp Telemann", "Henry Purcell"],
+              "explanation": "Johann Sebastian Bach sent these six concertos in 1721 to Christian Ludwig, Margrave of Brandenburg. Today they are classics of Baroque music." }
+    },
+    {
+      "id": "arts-0061", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Quién escribió la novela distópica «1984», publicada en 1949?",
+              "options": ["George Orwell", "Aldous Huxley", "Ray Bradbury", "Yevgueni Zamiatin"],
+              "explanation": "George Orwell la publicó en 1949. Imagina un Estado totalitario que lo vigila todo, encabezado por el «Gran Hermano»." },
+      "en": { "question": "Who wrote the dystopian novel “1984”, published in 1949?",
+              "options": ["George Orwell", "Aldous Huxley", "Ray Bradbury", "Yevgeny Zamyatin"],
+              "explanation": "George Orwell published it in 1949. It imagines a totalitarian state that watches everything, headed by “Big Brother”." }
+    },
+    {
+      "id": "arts-0062", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué poeta colombiano escribió el «Nocturno» que empieza «Una noche, una noche toda llena de murmullos»?",
+              "options": ["José Asunción Silva", "Guillermo Valencia", "Porfirio Barba-Jacob", "Rafael Pombo"],
+              "explanation": "José Asunción Silva (Bogotá, 1865-1896) es una de las grandes voces del modernismo. Su «Nocturno» está entre los poemas más recordados en español." },
+      "en": { "question": "Which Colombian poet wrote the “Nocturne” that begins “One night, one night all filled with murmurs”?",
+              "options": ["José Asunción Silva", "Guillermo Valencia", "Porfirio Barba-Jacob", "Rafael Pombo"],
+              "explanation": "José Asunción Silva (Bogotá, 1865–1896) is one of the great voices of Modernismo. His “Nocturne” is among the most remembered poems in Spanish." }
+    },
+    {
+      "id": "arts-0063", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Quién pintó «La escuela de Atenas», el fresco del Vaticano en el que aparecen Platón y Aristóteles?",
+              "options": ["Rafael", "Tiziano", "Giorgione", "Tintoretto"],
+              "explanation": "Rafael Sanzio lo pintó entre 1509 y 1511 en las estancias del papa Julio II, en el Vaticano. Reúne a grandes filósofos y sabios de la antigüedad." },
+      "en": { "question": "Who painted “The School of Athens”, the Vatican fresco featuring Plato and Aristotle?",
+              "options": ["Raphael", "Titian", "Giorgione", "Tintoretto"],
+              "explanation": "Raphael painted it between 1509 and 1511 in the rooms of Pope Julius II, in the Vatican. It gathers great philosophers and scholars of antiquity." }
+    },
+    {
+      "id": "arts-0064", "difficulty": 2, "type": "truefalse", "answer": true,
+      "es": { "question": "En la mitología romana, el dios Jano tenía dos caras, una mirando al pasado y otra al futuro.",
+              "explanation": "Es cierto. Jano era el dios de los comienzos, las puertas y los pasos. El mes de enero (januarius, en latín) lleva su nombre." },
+      "en": { "question": "In Roman mythology, the god Janus had two faces, one looking at the past and one at the future.",
+              "explanation": "True. Janus was the god of beginnings, gates and transitions. The month of January (Ianuarius in Latin) is named after him." }
+    },
+    {
+      "id": "arts-0065", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Quién compuso el «Bolero», estrenado en París en 1928?",
+              "options": ["Maurice Ravel", "Claude Debussy", "Erik Satie", "Georges Bizet"],
+              "explanation": "Maurice Ravel lo compuso como ballet. Repite una misma melodía mientras la orquesta crece poco a poco, y se hizo célebre en todo el mundo." },
+      "en": { "question": "Who composed “Boléro”, premiered in Paris in 1928?",
+              "options": ["Maurice Ravel", "Claude Debussy", "Erik Satie", "Georges Bizet"],
+              "explanation": "Maurice Ravel composed it as a ballet. It repeats a single melody while the orchestra gradually swells, and it became famous worldwide." }
+    },
+    {
+      "id": "arts-0066", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Quién escribió «La metamorfosis», cuyo protagonista despierta convertido en un insecto?",
+              "options": ["Franz Kafka", "Thomas Mann", "Hermann Hesse", "Stefan Zweig"],
+              "explanation": "Franz Kafka la publicó en 1915. Gregor Samsa se despierta una mañana transformado en un enorme insecto y su familia lo rechaza." },
+      "en": { "question": "Who wrote “The Metamorphosis”, whose hero wakes up transformed into an insect?",
+              "options": ["Franz Kafka", "Thomas Mann", "Hermann Hesse", "Stefan Zweig"],
+              "explanation": "Franz Kafka published it in 1915. Gregor Samsa wakes one morning transformed into a huge insect, and his family turns against him." }
+    },
+    {
+      "id": "arts-0067", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Quién escribió los libros de cuentos «Ficciones» y «El Aleph»?",
+              "options": ["Jorge Luis Borges", "Adolfo Bioy Casares", "Roberto Arlt", "Leopoldo Lugones"],
+              "explanation": "Jorge Luis Borges (Buenos Aires, 1899-1986) los publicó en 1944 y 1949. Sus cuentos mezclan filosofía, laberintos y bibliotecas infinitas." },
+      "en": { "question": "Who wrote the short-story collections “Ficciones” and “The Aleph”?",
+              "options": ["Jorge Luis Borges", "Adolfo Bioy Casares", "Roberto Arlt", "Leopoldo Lugones"],
+              "explanation": "Jorge Luis Borges (Buenos Aires, 1899–1986) published them in 1944 and 1949. His stories blend philosophy, labyrinths and infinite libraries." }
+    },
+    {
+      "id": "arts-0068", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Quién pintó «El beso», con sus ornamentos de oro, hacia 1908?",
+              "options": ["Gustav Klimt", "Egon Schiele", "Alphonse Mucha", "Henri de Toulouse-Lautrec"],
+              "explanation": "Gustav Klimt lo pintó entre 1907 y 1908, en su llamado «período dorado». Hoy se exhibe en el Belvedere, en Viena." },
+      "en": { "question": "Who painted “The Kiss”, with its gold ornamentation, around 1908?",
+              "options": ["Gustav Klimt", "Egon Schiele", "Alphonse Mucha", "Henri de Toulouse-Lautrec"],
+              "explanation": "Gustav Klimt painted it in 1907–08, during his so-called “golden period”. It is now on display at the Belvedere in Vienna." }
+    },
+    {
+      "id": "arts-0069", "difficulty": 2, "type": "choice",
+      "es": { "question": "En una partitura, ¿qué indica la palabra «crescendo»?",
+              "options": ["Subir poco a poco el volumen", "Bajar poco a poco el volumen", "Acelerar poco a poco el ritmo", "Frenar poco a poco el ritmo"],
+              "explanation": "Crescendo indica subir poco a poco la intensidad del sonido. Diminuendo es lo contrario; accelerando y ritardando se refieren a la velocidad." },
+      "en": { "question": "In a musical score, what does the word “crescendo” mean?",
+              "options": ["Gradually get louder", "Gradually get softer", "Gradually speed up", "Gradually slow down"],
+              "explanation": "Crescendo means gradually getting louder. Diminuendo is the opposite; accelerando and ritardando refer to speed." }
+    },
+    {
+      "id": "arts-0070", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Quién escribió «Moby Dick», la novela sobre el capitán Ahab y una ballena blanca?",
+              "options": ["Herman Melville", "Mark Twain", "Nathaniel Hawthorne", "Jack London"],
+              "explanation": "Herman Melville la publicó en 1851. El narrador, Ismael, cuenta la obsesión del capitán Ahab por cazar a la ballena blanca." },
+      "en": { "question": "Who wrote “Moby-Dick”, the novel about Captain Ahab and a white whale?",
+              "options": ["Herman Melville", "Mark Twain", "Nathaniel Hawthorne", "Jack London"],
+              "explanation": "Herman Melville published it in 1851. The narrator, Ishmael, tells of Captain Ahab's obsession with hunting the white whale." }
+    },
+    {
+      "id": "arts-0071", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Quién escribió «Pedro Páramo», novela que transcurre en el pueblo fantasmal de Comala?",
+              "options": ["Juan Rulfo", "Carlos Fuentes", "Juan José Arreola", "Mariano Azuela"],
+              "explanation": "Juan Rulfo la publicó en 1955. En Comala, Juan Preciado busca a su padre y solo encuentra voces de muertos." },
+      "en": { "question": "Who wrote “Pedro Páramo”, a novel set in the ghostly town of Comala?",
+              "options": ["Juan Rulfo", "Carlos Fuentes", "Juan José Arreola", "Mariano Azuela"],
+              "explanation": "Juan Rulfo published it in 1955. In Comala, Juan Preciado looks for his father and finds only the voices of the dead." }
+    },
+    {
+      "id": "arts-0072", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué arquitecto diseñó la Sagrada Familia, en Barcelona?",
+              "options": ["Antoni Gaudí", "Santiago Calatrava", "Josep Puig i Cadafalch", "Rafael Moneo"],
+              "explanation": "Antoni Gaudí asumió el proyecto en 1883 y trabajó en él hasta su muerte, en 1926. Fue la figura principal del modernismo catalán." },
+      "en": { "question": "Which architect designed the Sagrada Família in Barcelona?",
+              "options": ["Antoni Gaudí", "Santiago Calatrava", "Josep Puig i Cadafalch", "Rafael Moneo"],
+              "explanation": "Antoni Gaudí took over the project in 1883 and worked on it until his death in 1926. He was the leading figure of Catalan Modernisme." }
+    },
+    {
+      "id": "arts-0073", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cómo se llama el movimiento artístico que descompone las formas en figuras geométricas y muestra varios puntos de vista a la vez?",
+              "options": ["Cubismo", "Impresionismo", "Fauvismo", "Dadaísmo"],
+              "explanation": "Es el cubismo, surgido en París hacia 1907-1908. En vez de un solo punto de vista, muestra el objeto desde varios lados a la vez." },
+      "en": { "question": "What is the art movement that breaks forms into geometric shapes and shows several viewpoints at once?",
+              "options": ["Cubism", "Impressionism", "Fauvism", "Dadaism"],
+              "explanation": "It is Cubism, which arose in Paris around 1907–08. Instead of a single viewpoint, it shows an object from several sides at once." }
+    },
+    {
+      "id": "arts-0074", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Quién escribió la obra de teatro «Edipo rey»?",
+              "options": ["Sófocles", "Eurípides", "Esquilo", "Aristófanes"],
+              "explanation": "Sófocles estrenó esta tragedia hacia el 429 a. C. Cuenta cómo Edipo descubre que ha matado a su padre y se ha casado con su madre sin saberlo." },
+      "en": { "question": "Who wrote the play “Oedipus Rex”?",
+              "options": ["Sophocles", "Euripides", "Aeschylus", "Aristophanes"],
+              "explanation": "Sophocles first staged this tragedy around 429 BC. It tells how Oedipus discovers that he has unknowingly killed his father and married his mother." }
+    },
+    {
+      "id": "arts-0075", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué escritor peruano ganó el Premio Nobel de Literatura en 2010?",
+              "options": ["Mario Vargas Llosa", "José María Arguedas", "Ciro Alegría", "César Vallejo"],
+              "explanation": "Mario Vargas Llosa recibió el Nobel de Literatura en 2010. Entre sus novelas están «La ciudad y los perros» y «La fiesta del Chivo»." },
+      "en": { "question": "Which Peruvian writer won the Nobel Prize in Literature in 2010?",
+              "options": ["Mario Vargas Llosa", "José María Arguedas", "Ciro Alegría", "César Vallejo"],
+              "explanation": "Mario Vargas Llosa received the Nobel Prize in Literature in 2010. His novels include “The Time of the Hero” and “The Feast of the Goat”." }
+    },
+    {
+      "id": "arts-0076", "difficulty": 2, "type": "truefalse", "answer": true,
+      "es": { "question": "Las esculturas de mármol de la antigua Grecia estaban originalmente pintadas de colores.",
+              "explanation": "Es cierto. En muchas piezas aún se encuentran restos de pigmento. Hoy las vemos blancas porque el color se perdió con los siglos." },
+      "en": { "question": "Ancient Greek marble sculptures were originally painted in color.",
+              "explanation": "True. Traces of pigment survive on many pieces. We see them as white today because the color wore away over the centuries." }
+    },
+    {
+      "id": "arts-0077", "difficulty": 2, "type": "truefalse", "answer": true,
+      "es": { "question": "En la novela «Frankenstein», de Mary Shelley, Frankenstein es el apellido del científico, no el nombre de la criatura.",
+              "explanation": "Es cierto. El científico se llama Victor Frankenstein. La criatura que crea no recibe nombre en la novela, publicada en 1818." },
+      "en": { "question": "In Mary Shelley's novel “Frankenstein”, Frankenstein is the scientist's surname, not the name of the creature.",
+              "explanation": "True. The scientist is Victor Frankenstein. The creature he makes is never given a name in the novel, published in 1818." }
+    },
+    {
+      "id": "arts-0078", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué monja y poeta escribió «Hombres necios que acusáis a la mujer sin razón»?",
+              "options": ["Sor Juana Inés de la Cruz", "Santa Teresa de Jesús", "Rosalía de Castro", "Gertrudis Gómez de Avellaneda"],
+              "explanation": "Sor Juana Inés de la Cruz, novohispana del siglo XVII, es la mayor figura del Barroco hispanoamericano. Defendió el derecho de las mujeres a estudiar." },
+      "en": { "question": "Which nun and poet wrote “Hombres necios que acusáis a la mujer sin razón” (“Foolish men who accuse women without reason”)?",
+              "options": ["Sor Juana Inés de la Cruz", "Saint Teresa of Ávila", "Rosalía de Castro", "Gertrudis Gómez de Avellaneda"],
+              "explanation": "Sor Juana Inés de la Cruz, a 17th-century writer of New Spain, is the greatest figure of Spanish American Baroque. She defended women's right to study." }
+    },
+    {
+      "id": "arts-0079", "difficulty": 2, "type": "truefalse", "answer": false,
+      "es": { "question": "«Crimen y castigo» es una novela de Lev Tolstói.",
+              "explanation": "Es falso. La escribió Fiódor Dostoyevski y la publicó en 1866. Tolstói es el autor de «Guerra y paz» y «Ana Karénina»." },
+      "en": { "question": "“Crime and Punishment” is a novel by Leo Tolstoy.",
+              "explanation": "False. Fyodor Dostoevsky wrote it and published it in 1866. Tolstoy is the author of “War and Peace” and “Anna Karenina”." }
+    },
+    {
+      "id": "arts-0080", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Quién escribió «La casa de los espíritus», la novela que la hizo famosa en 1982?",
+              "options": ["Isabel Allende", "Laura Esquivel", "Elena Poniatowska", "Clarice Lispector"],
+              "explanation": "Isabel Allende, escritora chilena, la publicó en 1982. Cuenta la historia de varias generaciones de la familia Trueba." },
+      "en": { "question": "Who wrote “The House of the Spirits”, the novel that made her famous in 1982?",
+              "options": ["Isabel Allende", "Laura Esquivel", "Elena Poniatowska", "Clarice Lispector"],
+              "explanation": "Isabel Allende, a Chilean writer, published it in 1982. It follows several generations of the Trueba family." }
+    },
+    {
+      "id": "arts-0081", "difficulty": 2, "type": "truefalse", "answer": false,
+      "es": { "question": "Dante Alighieri escribió «La divina comedia» en latín.",
+              "explanation": "Es falso. La escribió en italiano toscano, la lengua del pueblo, a comienzos del siglo XIV. Con ella ayudó a fijar el italiano literario." },
+      "en": { "question": "Dante Alighieri wrote “The Divine Comedy” in Latin.",
+              "explanation": "False. He wrote it in Tuscan Italian, the language of ordinary people, in the early 14th century. It helped shape literary Italian." }
+    },
+    {
+      "id": "arts-0082", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Quién escribió «La vida es sueño», el drama de Segismundo, un príncipe encerrado en una torre?",
+              "options": ["Calderón de la Barca", "Tirso de Molina", "Francisco de Quevedo", "Luis de Góngora"],
+              "explanation": "Pedro Calderón de la Barca la escribió hacia 1635. Plantea si la vida es real o apenas un sueño, y es una obra cumbre del Siglo de Oro." },
+      "en": { "question": "Who wrote “Life Is a Dream”, the drama of Segismundo, a prince locked in a tower?",
+              "options": ["Calderón de la Barca", "Tirso de Molina", "Francisco de Quevedo", "Luis de Góngora"],
+              "explanation": "Pedro Calderón de la Barca wrote it around 1635. It asks whether life is real or only a dream, and it is a masterpiece of the Spanish Golden Age." }
+    },
+    {
+      "id": "arts-0083", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué se sabe del autor de «El Lazarillo de Tormes», publicado en 1554?",
+              "options": ["Su autor es anónimo", "Lo escribió Mateo Alemán", "Lo escribió Francisco de Quevedo", "Lo escribió Miguel de Cervantes"],
+              "explanation": "Se publicó en 1554 sin firma, y su autor sigue sin identificarse con certeza. Narra la vida de un niño pobre que sirve a varios amos." },
+      "en": { "question": "What is known about the author of “Lazarillo de Tormes”, published in 1554?",
+              "options": ["The author is anonymous", "Mateo Alemán wrote it", "Francisco de Quevedo wrote it", "Miguel de Cervantes wrote it"],
+              "explanation": "It appeared in 1554 without a signature, and its author has never been identified with certainty. It tells of a poor boy who serves several masters." }
+    },
+    {
+      "id": "arts-0084", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Quién pintó «El matrimonio Arnolfini» (1434), famoso por el espejo convexo del fondo?",
+              "options": ["Jan van Eyck", "Rogier van der Weyden", "Hans Memling", "Robert Campin"],
+              "explanation": "Jan van Eyck lo pintó en 1434. El espejo del fondo refleja a la pareja y a dos figuras más. Hoy está en la National Gallery de Londres." },
+      "en": { "question": "Who painted “The Arnolfini Portrait” (1434), famous for the convex mirror in the background?",
+              "options": ["Jan van Eyck", "Rogier van der Weyden", "Hans Memling", "Robert Campin"],
+              "explanation": "Jan van Eyck painted it in 1434. The mirror at the back reflects the couple and two more figures. It is now in the National Gallery in London." }
+    },
+    {
+      "id": "arts-0085", "difficulty": 3, "type": "choice",
+      "es": { "question": "Según la «Teogonía», el poema griego sobre el origen de los dioses, ¿qué existió primero?",
+              "options": ["El Caos", "Gea, la Tierra", "Urano, el Cielo", "Cronos, el titán"],
+              "explanation": "Según Hesíodo, primero existió el Caos, un vacío original. Después surgieron Gea (la Tierra), el Tártaro y Eros (el Amor)." },
+      "en": { "question": "According to the “Theogony”, the Greek poem on the origin of the gods, what came into being first?",
+              "options": ["Chaos", "Gaia, the Earth", "Uranus, the Sky", "Cronus, the Titan"],
+              "explanation": "According to Hesiod, Chaos came first, a primeval void. Then came Gaia (Earth), Tartarus and Eros (Love)." }
+    },
+    {
+      "id": "arts-0086", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Qué ballet, estrenado en París en 1913, provocó gritos y disturbios en la sala?",
+              "options": ["La consagración de la primavera", "El pájaro de fuego", "El beso del hada", "La historia del soldado"],
+              "explanation": "Con música de Ígor Stravinski, se estrenó el 29 de mayo de 1913 en el Teatro de los Campos Elíseos. Sus ritmos y armonías chocaron al público." },
+      "en": { "question": "Which ballet, premiered in Paris in 1913, caused shouting and near-riot in the theater?",
+              "options": ["The Rite of Spring", "The Firebird", "The Fairy's Kiss", "The Soldier's Tale"],
+              "explanation": "With music by Igor Stravinsky, it premiered on 29 May 1913 at the Théâtre des Champs-Élysées. Its rhythms and harmonies shocked the audience." }
+    },
+    {
+      "id": "arts-0087", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Quién escribió «En busca del tiempo perdido», célebre por la escena de la magdalena mojada en té?",
+              "options": ["Marcel Proust", "André Gide", "Gustave Flaubert", "Stendhal"],
+              "explanation": "Marcel Proust la publicó en siete volúmenes, entre 1913 y 1927. El sabor de una magdalena mojada en té desata los recuerdos del narrador." },
+      "en": { "question": "Who wrote “In Search of Lost Time”, famous for the scene of the madeleine dipped in tea?",
+              "options": ["Marcel Proust", "André Gide", "Gustave Flaubert", "Stendhal"],
+              "explanation": "Marcel Proust published it in seven volumes between 1913 and 1927. The taste of a madeleine dipped in tea unleashes the narrator's memories." }
+    },
+    {
+      "id": "arts-0088", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Quién pintó «Un domingo por la tarde en la isla de la Grande Jatte», hecho con miles de puntos de color?",
+              "options": ["Georges Seurat", "Paul Signac", "Camille Pissarro", "Henri-Edmond Cross"],
+              "explanation": "Georges Seurat lo pintó entre 1884 y 1886 con la técnica del puntillismo. Hoy se exhibe en el Instituto de Arte de Chicago." },
+      "en": { "question": "Who painted “A Sunday Afternoon on the Island of La Grande Jatte”, made of thousands of dots of color?",
+              "options": ["Georges Seurat", "Paul Signac", "Camille Pissarro", "Henri-Edmond Cross"],
+              "explanation": "Georges Seurat painted it between 1884 and 1886 using the technique of pointillism. It is now at the Art Institute of Chicago." }
+    },
+    {
+      "id": "arts-0089", "difficulty": 3, "type": "choice",
+      "es": { "question": "En la mitología griega, ¿qué diosa del destino cortaba el hilo de la vida de cada persona?",
+              "options": ["Átropos", "Cloto", "Láquesis", "Némesis"],
+              "explanation": "Las tres Moiras regían el destino: Cloto hilaba el hilo de la vida, Láquesis lo medía y Átropos lo cortaba." },
+      "en": { "question": "In Greek mythology, which goddess of fate cut the thread of each person's life?",
+              "options": ["Atropos", "Clotho", "Lachesis", "Nemesis"],
+              "explanation": "The three Fates ruled destiny: Clotho spun the thread of life, Lachesis measured it and Atropos cut it." }
+    },
+    {
+      "id": "arts-0090", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿De qué ópera de Puccini es el aria «Nessun dorma»?",
+              "options": ["Turandot", "Tosca", "La Bohème", "Madama Butterfly"],
+              "explanation": "«Nessun dorma» («Que nadie duerma») la canta el príncipe Calaf en «Turandot», la última ópera de Giacomo Puccini, estrenada en 1926." },
+      "en": { "question": "Which Puccini opera contains the aria “Nessun dorma”?",
+              "options": ["Turandot", "Tosca", "La bohème", "Madama Butterfly"],
+              "explanation": "“Nessun dorma” (“Let no one sleep”) is sung by Prince Calaf in “Turandot”, Giacomo Puccini's last opera, premiered in 1926." }
+    },
+    {
+      "id": "arts-0091", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Quién escribió «Los cuentos de Canterbury», relatos de un grupo de peregrinos?",
+              "options": ["Geoffrey Chaucer", "John Gower", "William Langland", "Thomas Malory"],
+              "explanation": "Geoffrey Chaucer los escribió en inglés medio, entre 1387 y 1400 aproximadamente. Los peregrinos viajan a Canterbury y se turnan para contar historias." },
+      "en": { "question": "Who wrote “The Canterbury Tales”, stories told by a group of pilgrims?",
+              "options": ["Geoffrey Chaucer", "John Gower", "William Langland", "Thomas Malory"],
+              "explanation": "Geoffrey Chaucer wrote them in Middle English, roughly between 1387 and 1400. The pilgrims travel to Canterbury and take turns telling stories." }
+    },
+    {
+      "id": "arts-0092", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Qué escultor barroco creó «El éxtasis de Santa Teresa»?",
+              "options": ["Gian Lorenzo Bernini", "Antonio Canova", "Benvenuto Cellini", "Giambologna"],
+              "explanation": "Gian Lorenzo Bernini la esculpió entre 1647 y 1652 para la capilla Cornaro de la iglesia de Santa Maria della Vittoria, en Roma." },
+      "en": { "question": "Which Baroque sculptor created “The Ecstasy of Saint Teresa”?",
+              "options": ["Gian Lorenzo Bernini", "Antonio Canova", "Benvenuto Cellini", "Giambologna"],
+              "explanation": "Gian Lorenzo Bernini carved it between 1647 and 1652 for the Cornaro Chapel in the church of Santa Maria della Vittoria in Rome." }
+    },
+    {
+      "id": "arts-0093", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Quién compuso la suite para piano «Cuadros de una exposición» (1874)?",
+              "options": ["Modest Músorgski", "Aleksandr Borodín", "Mili Balákirev", "César Cui"],
+              "explanation": "Músorgski la compuso en 1874 en memoria del pintor y arquitecto Viktor Hartmann. Cada pieza evoca una de las obras de una exposición suya." },
+      "en": { "question": "Who composed the piano suite “Pictures at an Exhibition” (1874)?",
+              "options": ["Modest Mussorgsky", "Alexander Borodin", "Mily Balakirev", "César Cui"],
+              "explanation": "Mussorgsky composed it in 1874 in memory of the painter and architect Viktor Hartmann. Each piece evokes one of the works in an exhibition of his art." }
+    },
+    {
+      "id": "arts-0094", "difficulty": 3, "type": "truefalse", "answer": false,
+      "es": { "question": "El escritor Julio Cortázar nació en Argentina.",
+              "explanation": "Es falso. Nació en Bruselas, Bélgica, en 1914, de padres argentinos. Se crió en Argentina y más tarde se instaló en París." },
+      "en": { "question": "The writer Julio Cortázar was born in Argentina.",
+              "explanation": "False. He was born in Brussels, Belgium, in 1914, to Argentine parents. He grew up in Argentina and later settled in Paris." }
+    },
+    {
+      "id": "arts-0095", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Quién escribió el ensayo «El laberinto de la soledad» (1950), sobre la identidad mexicana?",
+              "options": ["Octavio Paz", "Carlos Fuentes", "Alfonso Reyes", "José Vasconcelos"],
+              "explanation": "Octavio Paz lo publicó en 1950. Reflexiona sobre la historia, los mitos y el carácter de los mexicanos, y es uno de los grandes ensayos en español." },
+      "en": { "question": "Who wrote the essay “The Labyrinth of Solitude” (1950), about Mexican identity?",
+              "options": ["Octavio Paz", "Carlos Fuentes", "Alfonso Reyes", "José Vasconcelos"],
+              "explanation": "Octavio Paz published it in 1950. It reflects on the history, myths and character of Mexicans, and is one of the great essays in Spanish." }
+    },
+    {
+      "id": "arts-0096", "difficulty": 3, "type": "truefalse", "answer": true,
+      "es": { "question": "La Venus de Milo fue hallada en 1820 en la isla griega de Milo.",
+              "explanation": "Es cierto. Un campesino la encontró en 1820 en Milo (Melos), y de allí pasó a Francia. Hoy se exhibe en el Museo del Louvre, en París." },
+      "en": { "question": "The Venus de Milo was discovered in 1820 on the Greek island of Milos.",
+              "explanation": "True. A farmer found it in 1820 on Milos, and it was taken to France. It is now on display at the Louvre Museum in Paris." }
+    },
+    {
+      "id": "arts-0097", "difficulty": 3, "type": "truefalse", "answer": true,
+      "es": { "question": "«El Mesías», de Händel, se estrenó en Dublín en 1742.",
+              "explanation": "Es cierto. Se estrenó en abril de 1742, en un concierto benéfico. Su coro «Aleluya» es una de las piezas corales más conocidas." },
+      "en": { "question": "Handel's “Messiah” premiered in Dublin in 1742.",
+              "explanation": "True. It premiered in April 1742 at a charity concert. Its “Hallelujah” chorus is one of the best-known choral pieces." }
+    },
+    {
+      "id": "arts-0098", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Quién escribió la novela «El señor presidente» (1946), sobre un dictador latinoamericano?",
+              "options": ["Miguel Ángel Asturias", "Augusto Roa Bastos", "Alejo Carpentier", "Ernesto Sabato"],
+              "explanation": "Miguel Ángel Asturias, escritor guatemalteco, la publicó en México en 1946. Retrata el miedo bajo una dictadura sin nombrar el país." },
+      "en": { "question": "Who wrote the novel “El Señor Presidente” (1946), about a Latin American dictator?",
+              "options": ["Miguel Ángel Asturias", "Augusto Roa Bastos", "Alejo Carpentier", "Ernesto Sabato"],
+              "explanation": "Miguel Ángel Asturias, a Guatemalan writer, published it in Mexico in 1946. It portrays fear under a dictatorship without naming the country." }
+    },
+    {
+      "id": "arts-0099", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Qué escritor colombiano creó al personaje de Maqroll el Gaviero?",
+              "options": ["Álvaro Mutis", "Fernando Vallejo", "Gonzalo Arango", "Eduardo Caballero Calderón"],
+              "explanation": "Álvaro Mutis creó a Maqroll, un marino aventurero y errante, en sus poemas y novelas. Ganó el Premio Cervantes en 2001." },
+      "en": { "question": "Which Colombian writer created the character Maqroll el Gaviero?",
+              "options": ["Álvaro Mutis", "Fernando Vallejo", "Gonzalo Arango", "Eduardo Caballero Calderón"],
+              "explanation": "Álvaro Mutis created Maqroll, a wandering adventurer and sailor, in his poems and novels. He won the Cervantes Prize in 2001." }
+    },
+    {
+      "id": "arts-0100", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Quién escribió «Fuenteovejuna», el drama en el que todo un pueblo se alza contra un comendador?",
+              "options": ["Lope de Vega", "Tirso de Molina", "Juan Ruiz de Alarcón", "Francisco de Rojas Zorrilla"],
+              "explanation": "Lope de Vega la escribió hacia 1614. Los vecinos matan al comendador y, al ser interrogados, todos responden: «Fuenteovejuna lo hizo»." },
+      "en": { "question": "Who wrote “Fuenteovejuna”, the play in which a whole village rises up against a commander?",
+              "options": ["Lope de Vega", "Tirso de Molina", "Juan Ruiz de Alarcón", "Francisco de Rojas Zorrilla"],
+              "explanation": "Lope de Vega wrote it around 1614. The villagers kill the commander and, when questioned, all answer: “Fuenteovejuna did it”." }
     }
   ]
 }
