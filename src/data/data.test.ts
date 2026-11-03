@@ -1,5 +1,5 @@
 import { clearAllData, db, type StoredSettings } from './db';
-import { addResult, bestScore, listResults } from './results';
+import { addResult, bestScore, highestLevelReached, listResults } from './results';
 import { getStartLevel, setStartLevel } from './levels';
 import { DEFAULT_SETTINGS, getSettings, updateSettings } from './settings';
 
@@ -31,6 +31,15 @@ test('bestScore', async () => {
   await addResult({ ...base, gameId: 'a', score: 30 });
   await addResult({ ...base, gameId: 'b', score: 99 });
   expect(await bestScore('a')).toBe(30);
+});
+
+test('highestLevelReached is the highest level reached in any game of that game, or 0', async () => {
+  expect(await highestLevelReached('a')).toBe(0);
+  await addResult({ ...base, gameId: 'a', level: 3 });
+  await addResult({ ...base, gameId: 'a', level: 6 });
+  await addResult({ ...base, gameId: 'a', level: 2 });
+  await addResult({ ...base, gameId: 'b', level: 9 });
+  expect(await highestLevelReached('a')).toBe(6);
 });
 
 test('levels default, persist and clamp', async () => {

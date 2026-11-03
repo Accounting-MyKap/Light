@@ -220,6 +220,33 @@
       "title": "Lending & loan portfolio",
       "skill": "Loan servicing",
       "description": "Interest, amortization, payoff, aging, allowances and charge-offs."
+    },
+    "switchyard": {
+      "title": "Switchyard",
+      "skill": "Divided attention",
+      "description": "Flip the track switches so every train reaches the station of its color.",
+      "instructions": [
+        "Trains come out of the tunnel and run along the tracks on their own.",
+        "Tap the switches (the circles with an arrow) to choose where each train goes next. With a keyboard, use the numbers 1 to 9.",
+        "Bring every train to the station of its own color and shape. A train that reaches another station scores nothing.",
+        "Stay sharp: several trains can run at once, and they speed up while you get them home."
+      ],
+      "board": "Track map",
+      "switch": "Switch {{n}}: {{direction}}",
+      "directions": {
+        "right": "to the right",
+        "down-right": "down and right",
+        "down": "down",
+        "down-left": "down and left",
+        "left": "to the left",
+        "up-left": "up and left",
+        "up": "up",
+        "up-right": "up and right"
+      },
+      "exampleAnswer": "Tap the switch so the red train goes to the red station, the one with the circle.",
+      "levelStations": "{{n}} stations",
+      "levelSideTunnel": "side tunnel",
+      "levelMiddleStation": "station in the middle"
     }
   },
   "play": {
@@ -238,7 +265,12 @@
     "dailyProgress": "Today’s training: {{done}} of {{total}}",
     "seeSummary": "See summary",
     "saveError": "We couldn’t save your game.",
-    "retry": "Retry"
+    "retry": "Retry",
+    "levelChoice": "Choose the level",
+    "levelOption": "Level {{n}}",
+    "levelSuggested": "Level {{n}}, suggested",
+    "levelSuggestedMark": "suggested",
+    "practiceNote": "For practice: your suggested level ({{n}}) stays as it is."
   },
   "quiz": {
     "title": "Quiz",

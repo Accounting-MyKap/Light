@@ -142,6 +142,64 @@
   font-size: 1.0625rem;
 }
 
+/* Choosing the level: a row of round buttons, the chosen one filled with the game color, the suggested one ringed. */
+.levels {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.levelOptions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.levelTitle {
+  flex-basis: 100%;
+  margin: 0;
+  color: var(--luz-soft);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.levelOption {
+  position: relative;
+  min-width: 44px;
+  height: 44px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: var(--luz-glass);
+  box-shadow: inset 0 0 0 1.5px var(--luz-glass-border);
+  color: var(--luz-text);
+  font: inherit;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+}
+
+.levelOption[data-suggested='true'] {
+  box-shadow: inset 0 0 0 2px var(--game);
+}
+
+.levelOption[aria-pressed='true'] {
+  background: var(--game);
+  color: var(--luz-ink);
+  box-shadow: 0 0 18px color-mix(in srgb, var(--game) 45%, transparent);
+}
+
+.levelOption:active {
+  transform: scale(0.94);
+}
+
+.levelNote {
+  margin: 0;
+  color: var(--luz-soft);
+  font-size: 0.875rem;
+}
+
 /* Numbered steps: a dot of the game color holds each number. */
 .steps {
   display: grid;
@@ -301,7 +359,8 @@
 
   .primary:active,
   .secondary:active,
-  .close:active {
+  .close:active,
+  .levelOption:active {
     transform: none;
   }
 }

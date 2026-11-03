@@ -31,6 +31,31 @@ test('recordGameResult stores result and next start level', async () => {
   expect(second.newStartLevel).toBe(3);
 });
 
+test('a game at a level chosen for practice keeps the suggested level', async () => {
+  const { setStartLevel } = await import('../data/levels');
+  await setStartLevel('fake', 5);
+  const practice = await recordGameResult({
+    game: fakeGame,
+    startLevel: 1,
+    suggestedLevel: 5,
+    result: { score: 120, accuracy: 0.95, levelReached: 2, durationMs: 60000 },
+    daily: null,
+  });
+  expect(practice.newStartLevel).toBe(5);
+  expect(practice.stored).toMatchObject({ level: 2, score: 120 });
+  expect(await getStartLevel('fake')).toBe(5);
+  // Played at the suggested level, the game moves it as usual.
+  const usual = await recordGameResult({
+    game: fakeGame,
+    startLevel: 5,
+    suggestedLevel: 5,
+    result: { score: 120, accuracy: 0.95, levelReached: 6, durationMs: 60000 },
+    daily: null,
+  });
+  expect(usual.newStartLevel).toBe(6);
+  expect(await getStartLevel('fake')).toBe(6);
+});
+
 test('daily results mark the plan of the given day', async () => {
   const { db } = await import('../data/db');
   await db.dailyPlans.put({ day: '2026-10-20', gameIds: ['fake', 'x', 'y'], completed: [] });

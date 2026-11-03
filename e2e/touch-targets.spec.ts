@@ -30,6 +30,18 @@ test('game controls are at least 44 px tall', async ({ page }) => {
   }
 });
 
+test('track switches are at least 44 px wide and tall, even on a small phone', async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 568 });
+  await page.goto('./#/play/switchyard');
+  await page.getByRole('button', { name: 'Comenzar' }).click();
+  const switches = page.locator('[data-game] [data-switch]');
+  await expectTall(switches);
+  for (let i = 0; i < (await switches.count()); i++) {
+    const box = await switches.nth(i).boundingBox();
+    expect(box?.width ?? 0, `switch ${i + 1} width`).toBeGreaterThanOrEqual(44);
+  }
+});
+
 test('quiz controls are at least 44 px tall on a 320 px screen', async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 640 });
 

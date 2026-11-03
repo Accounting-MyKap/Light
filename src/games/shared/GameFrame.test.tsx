@@ -205,6 +205,13 @@ test('feedback signals draw a flash of their kind and restart on each one', asyn
   expect(container.querySelectorAll('[data-flash="timeout"]')).toHaveLength(1);
 });
 
+test('a game that draws its own reactions can turn the flash off', async () => {
+  const { container } = renderFrame({ stageFlash: false }, null, true);
+  await userEvent.click(screen.getByRole('button', { name: 'emit correct' }));
+  await userEvent.click(screen.getByRole('button', { name: 'emit timeout' }));
+  expect(flash(container)).toHaveLength(0);
+});
+
 test("a game's keyed child never collides with the flash: its old copies are removed, not piled up", async () => {
   // Like Arrows: one child keyed by a counter that moves in step with the signal ids, so the child and the
   // flash would both be keyed 1, 2, 3... if they were siblings in the same list.

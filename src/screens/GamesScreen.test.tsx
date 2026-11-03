@@ -23,7 +23,10 @@ test('sections follow the catalog order, cards show name and skill, no best mark
   expect(arrows).toHaveAttribute('href', '/play/arrows');
   expect(arrows).toHaveTextContent('Atención selectiva');
   expect(screen.queryByText(/Mejor/)).toBeNull();
-  expect(screen.getAllByRole('heading', { level: 3 })).toHaveLength(5);
+  const switchyard = screen.getByRole('link', { name: /Guardagujas/ });
+  expect(switchyard).toHaveAttribute('href', '/play/switchyard');
+  expect(switchyard).toHaveTextContent('Atención dividida');
+  expect(screen.getAllByRole('heading', { level: 3 })).toHaveLength(6);
 });
 
 test('a filter shows one category and is announced as pressed', async () => {

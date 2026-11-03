@@ -1,3 +1,4 @@
+import type { TFunction } from 'i18next';
 import type { ComponentType } from 'react';
 import type { QuizConfig, QuizRoundDetails } from '../quiz/types';
 
@@ -53,4 +54,6 @@ export interface GameDefinition {
   instructionsKey?: string;
   /** Optional block the result view shows below the stats. */
   ResultDetails?: ComponentType<{ result: GameResult }>;
+  /** A few words on what a level brings (shown when choosing the level), for games where levels differ visibly. */
+  describeLevel?: (level: number, t: TFunction) => string;
 }

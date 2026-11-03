@@ -47,3 +47,9 @@ export async function bestScore(gameId: string): Promise<number | null> {
   const rows = await db.results.where('gameId').equals(gameId).toArray();
   return rows.length === 0 ? null : Math.max(...rows.map((r) => r.score));
 }
+
+/** The highest level reached in any game of this game, or 0 before the first one. */
+export async function highestLevelReached(gameId: string): Promise<number> {
+  const rows = await db.results.where('gameId').equals(gameId).toArray();
+  return rows.reduce((highest, r) => Math.max(highest, r.level), 0);
+}

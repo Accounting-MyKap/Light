@@ -432,6 +432,72 @@ test('the result screen shows the percentile once the game has been ranked', asy
   expect(fetchPercentile).toHaveBeenCalledWith(null, 'fake', expect.any(Date));
 });
 
+describe('choosing the level', () => {
+  /** A second visit to the fake game: its instructions were seen, so the intro shows. */
+  async function openIntro(route = '/play/fake') {
+    await updateSettings({ seenInstructions: ['fake'] });
+    await open(route);
+    await screen.findByRole('heading', { name: 'Juego falso' });
+  }
+
+  async function reached(level: number) {
+    await db.results.put({
+      id: crypto.randomUUID(),
+      gameId: 'fake',
+      level,
+      score: 50,
+      accuracy: 0.8,
+      durationMs: 60000,
+      isDaily: false,
+      playedAt: new Date().toISOString(),
+      day: '2026-11-01',
+      synced: 1,
+    });
+  }
+
+  test('there is nothing to choose before a level above 1 was reached', async () => {
+    await openIntro();
+    expect(screen.queryByRole('group', { name: 'Elige el nivel' })).toBeNull();
+  });
+
+  test('the levels already reached can be chosen, starting at the suggested one', async () => {
+    await levels.setStartLevel('fake', 3);
+    await reached(5);
+    await openIntro();
+    const group = await screen.findByRole('group', { name: 'Elige el nivel' });
+    const options = within(group).getAllByRole('button');
+    expect(options.map((b) => b.textContent)).toEqual(['1', '2', '3', '4', '5']);
+    expect(within(group).getByRole('button', { name: 'Nivel 3, sugerido' })).toHaveAttribute('aria-pressed', 'true');
+    await userEvent.click(within(group).getByRole('button', { name: 'Nivel 5' }));
+    expect(within(group).getByRole('button', { name: 'Nivel 5' })).toHaveAttribute('aria-pressed', 'true');
+    await userEvent.click(screen.getByRole('button', { name: 'Comenzar' }));
+    expect(await screen.findByText('startLevel:5')).toBeInTheDocument();
+  });
+
+  test('a practice game at another level keeps the suggested level, and playing again keeps the chosen one', async () => {
+    await levels.setStartLevel('fake', 3);
+    await reached(4);
+    await openIntro();
+    const group = await screen.findByRole('group', { name: 'Elige el nivel' });
+    await userEvent.click(within(group).getByRole('button', { name: 'Nivel 1' }));
+    expect(screen.getByText(/tu nivel sugerido \(3\) no cambia/)).toBeInTheDocument();
+    await userEvent.click(screen.getByRole('button', { name: 'Comenzar' }));
+    await userEvent.click(await screen.findByRole('button', { name: 'Terminar' }));
+    await userEvent.click(await screen.findByRole('button', { name: 'Jugar de nuevo' }));
+    expect(await screen.findByText('startLevel:1')).toBeInTheDocument();
+    expect(await levels.getStartLevel('fake')).toBe(3);
+  });
+
+  test('the daily training has no level choice: the game picks it', async () => {
+    await levels.setStartLevel('fake', 3);
+    await reached(5);
+    await openIntro('/play/fake?daily=2026-11-03');
+    expect(screen.queryByRole('group', { name: 'Elige el nivel' })).toBeNull();
+    await userEvent.click(screen.getByRole('button', { name: 'Comenzar' }));
+    expect(await screen.findByText('startLevel:3')).toBeInTheDocument();
+  });
+});
+
 test('Back from a quiz result goes to the Quiz tab', async () => {
   await updateSettings({ seenInstructions: ['fakeq'] });
   await openWithProbe('/play/fakeq');

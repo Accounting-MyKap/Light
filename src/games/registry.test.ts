@@ -53,8 +53,15 @@ test('registry entries are valid', () => {
   expect(getGame('nope')).toBeUndefined();
 });
 
-test('training games are exactly the 5 v1 games', () =>
-  expect(TRAINING_GAMES.map((g) => g.id)).toEqual(['sequence-lights', 'arrows', 'same-different', 'rule-switch', 'quick-math']));
+test('training games are the 5 v1 games and Guardagujas', () =>
+  expect(TRAINING_GAMES.map((g) => g.id)).toEqual([
+    'sequence-lights',
+    'arrows',
+    'same-different',
+    'rule-switch',
+    'quick-math',
+    'switchyard',
+  ]));
 
 test('only the quiz games carry a quiz config', () => {
   expect(TRAINING_GAMES.every((g) => g.quiz === undefined)).toBe(true);
