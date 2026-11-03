@@ -2,7 +2,15 @@ import { mkdirSync } from 'node:fs';
 import { expect, test, type Page } from '@playwright/test';
 import { finishRunningGame, startGame } from './helpers';
 
-const GAMES = ['sequence-lights', 'arrows', 'same-different', 'rule-switch', 'quick-math', 'switchyard'] as const;
+const GAMES = [
+  'sequence-lights',
+  'arrows',
+  'same-different',
+  'rule-switch',
+  'quick-math',
+  'switchyard',
+  'star-shower',
+] as const;
 const CLOCK_TIME = new Date('2026-10-20T10:00:00');
 const LUZ_BACKGROUND = 'rgb(9, 11, 25)'; // #090b19
 const SCREENSHOT_DIR = 'test-results/luz';
@@ -35,6 +43,35 @@ async function solveQuickMath(page: Page, count: number): Promise<void> {
     // The answer box empties in the same render that brings the next problem.
     await expect(answer).toHaveText('?');
   }
+}
+
+/** Answers `count` Star Shower stars correctly: reads the first star's sum, types its result and presses Enter. */
+async function solveStarShower(page: Page, count: number): Promise<void> {
+  const stars = page.getByTestId('star');
+  const answer = page.getByTestId('answer');
+  for (let i = 0; i < count; i++) {
+    await expect(stars.first()).toBeVisible();
+    const result = String(solve((await stars.first().textContent()) ?? ''));
+    await page.keyboard.type(result);
+    await expect(answer).toHaveText(result);
+    await page.keyboard.press('Enter');
+    await expect(answer).toHaveText('?');
+  }
+}
+
+/** Waits until at least one live star is fully inside the sky, so a screenshot shows one. */
+async function waitForStarInSky(page: Page): Promise<void> {
+  await expect
+    .poll(async () => {
+      const sky = await page.locator('[data-zone="stage"]').boundingBox();
+      const stars = page.getByTestId('star');
+      for (let i = 0, n = await stars.count(); i < n; i++) {
+        const box = await stars.nth(i).boundingBox();
+        if (sky && box && box.y >= sky.y && box.y + box.height <= sky.y + sky.height) return true;
+      }
+      return false;
+    })
+    .toBe(true);
 }
 
 /** Answers `count` Cambio de regla trials correctly: the card that matches the stimulus in the current rule. */
@@ -80,6 +117,7 @@ async function answerSome(page: Page, id: (typeof GAMES)[number]): Promise<void>
   if (id === 'switchyard') return playSwitchyard(page, 2);
   if (id === 'quick-math') return solveQuickMath(page, 4);
   if (id === 'rule-switch') return solveRuleSwitch(page, 6);
+  if (id === 'star-shower') return solveStarShower(page, 3);
   const buttons = page.locator('[data-game] [data-zone="controls"] button');
   if (id === 'arrows') {
     // «Izquierda» is the first button, «Derecha» the second: tap the one the center arrow points to.
@@ -131,10 +169,10 @@ test.describe('narrow English screen', () => {
   test('no sideways scroll at 320 px in English', async ({ page }) => {
     for (const id of GAMES) {
       await page.goto(`./#/play/${id}`);
-      // First visit: the practice invitation, or the instructions with their example for Guardagujas, which has no
-      // practice.
+      // First visit: the practice invitation, or the instructions with their example for the games without a
+      // practice (Guardagujas, Lluvia de estrellas).
       const first =
-        id === 'switchyard'
+        id === 'switchyard' || id === 'star-shower'
           ? page.getByRole('button', { name: 'Start', exact: true })
           : page.getByRole('button', { name: 'Skip practice', exact: true });
       await expect(first, `${id} first visit`).toBeVisible();
@@ -144,6 +182,62 @@ test.describe('narrow English screen', () => {
       await expect(page.locator('[data-game]'), `${id} playing`).toBeVisible();
       expect(await hasNoSidewaysScroll(page), `${id} in play scrolls sideways`).toBe(true);
     }
+  });
+});
+
+test.describe('Star Shower at 320 px', () => {
+  test.use({ locale: 'en-US', viewport: { width: 320, height: 640 } });
+
+  test('Star Shower at level 10 keeps its longest sums inside the sky at 320 px', async ({ page }) => {
+    await page.goto('./#/games');
+    await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+    await page.evaluate(
+      () =>
+        new Promise<void>((resolve, reject) => {
+          const open = indexedDB.open('light');
+          open.onerror = () => reject(open.error);
+          open.onsuccess = () => {
+            const db = open.result;
+            const tx = db.transaction('gameLevels', 'readwrite');
+            tx.objectStore('gameLevels').put({ gameId: 'star-shower', startLevel: 10 });
+            tx.oncomplete = () => {
+              db.close();
+              resolve();
+            };
+            tx.onerror = () => reject(tx.error);
+          };
+        }),
+    );
+
+    await page.goto('./#/play/star-shower');
+    await page.getByRole('button', { name: 'Start' }).click();
+    const stars = page.getByTestId('star');
+    await expect(stars).toHaveCount(3, { timeout: 15_000 });
+    // A star is born above the sky and comes down anchored by its bottom edge, so wait until the newest one has
+    // fully entered before looking at the boxes.
+    const stage = page.locator('[data-zone="stage"]');
+    await expect
+      .poll(async () => {
+        const sky = await stage.boundingBox();
+        const newest = await stars.last().boundingBox();
+        return newest !== null && sky !== null && newest.y >= sky.y;
+      })
+      .toBe(true);
+    const sky = await stage.boundingBox();
+    expect(sky).not.toBeNull();
+    const count = await stars.count();
+    expect(count).toBeGreaterThanOrEqual(2);
+    for (let i = 0; i < count; i++) {
+      const box = await stars.nth(i).boundingBox();
+      const text = await stars.nth(i).textContent();
+      expect(text, `star ${i} is a level-10 sum`).toMatch(/^\d+ \+ \d+ × \d+$/);
+      expect(box, `star ${i} «${text}»`).not.toBeNull();
+      expect(box!.x, `«${text}» left edge`).toBeGreaterThanOrEqual(sky!.x);
+      expect(box!.y, `«${text}» top edge`).toBeGreaterThanOrEqual(sky!.y);
+      expect(box!.x + box!.width, `«${text}» right edge`).toBeLessThanOrEqual(sky!.x + sky!.width);
+      expect(box!.y + box!.height, `«${text}» bottom edge`).toBeLessThanOrEqual(sky!.y + sky!.height);
+    }
+    expect(await hasNoSidewaysScroll(page)).toBe(true);
   });
 });
 
@@ -228,12 +322,47 @@ test.describe('arrows rows', () => {
   });
 });
 
+test.describe('Star Shower on short phones', () => {
+  // iPhone SE in Safari, a 360×640 Android in Chrome and a 320×568 phone: the visible height under the browser bars.
+  const SHORT_PHONES = [
+    { width: 375, height: 548 },
+    { width: 360, height: 560 },
+    { width: 320, height: 568 },
+  ];
+
+  for (const viewport of SHORT_PHONES) {
+    test(`Star Shower fits ${viewport.width}×${viewport.height} without scrolling`, async ({ page }) => {
+      await page.setViewportSize(viewport);
+      await page.goto('./#/play/star-shower');
+      await page.getByRole('button', { name: 'Comenzar' }).click();
+      await expect(page.locator('[data-game]')).toBeVisible();
+      await expect(page.getByTestId('star').first()).toBeAttached();
+
+      expect(await page.evaluate(() => document.documentElement.scrollHeight <= window.innerHeight)).toBe(true);
+      const controls = {
+        pause: page.locator('[data-game]').getByRole('button', { name: 'Salir del juego' }),
+        ok: page.locator('[data-game]').getByRole('button', { name: 'OK' }),
+      };
+      for (const [name, control] of Object.entries(controls)) {
+        const box = await control.boundingBox();
+        expect(box, name).not.toBeNull();
+        expect(box!.y, `${name} top edge`).toBeGreaterThanOrEqual(0);
+        expect(box!.y + box!.height, `${name} bottom edge`).toBeLessThanOrEqual(viewport.height);
+      }
+      // The keys are shorter here, but never under the 44 px touch minimum.
+      const keys = page.locator('[data-game] [data-zone="controls"] button');
+      await expect(keys).toHaveCount(12);
+      for (const key of await keys.all()) expect((await key.boundingBox())!.height).toBeGreaterThanOrEqual(44);
+    });
+  }
+});
+
 test.describe('review screenshots', () => {
   test.use({ viewport: { width: 390, height: 844 }, colorScheme: 'dark' });
 
-  test('screenshots of the six games for review', async ({ page }) => {
-    // Six games one after the other, Guardagujas with two trains sent home first: more than the default 90 s.
-    test.setTimeout(180_000);
+  test('screenshots of the seven games for review', async ({ page }) => {
+    // Seven games one after the other, Guardagujas with two trains sent home first: more than the default 90 s.
+    test.setTimeout(240_000);
     mkdirSync(SCREENSHOT_DIR, { recursive: true });
     await page.clock.install({ time: CLOCK_TIME });
 
@@ -258,6 +387,7 @@ test.describe('review screenshots', () => {
         if (id === 'arrows') await expect(page.getByTestId('arrows-row')).toHaveCount(1);
         await page.waitForTimeout(500);
       }
+      if (id === 'star-shower') await waitForStarInSky(page);
       await page.screenshot({ path: `${SCREENSHOT_DIR}/${id}-play.png` });
 
       await finishRunningGame(page);

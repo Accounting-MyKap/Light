@@ -1,3 +1,4 @@
+import { DAILY_GAME_COUNT } from '../core/dailyPlan';
 import { clearAllData, db } from './db';
 import { completedDays, getOrCreatePlan, getPlan, isPlanComplete, markDailyGameDone } from './dailyPlans';
 import { addDays } from '../core/dates';
@@ -27,10 +28,25 @@ test('concurrent creation yields a single plan', async () => {
 });
 
 test('yesterday plan is avoided when possible', async () => {
-  const yesterday = await getOrCreatePlan('2026-10-19');
-  const today = await getOrCreatePlan('2026-10-20');
-  const fresh = TRAINING_GAMES.map((g) => g.id).filter((id) => !yesterday.gameIds.includes(id));
-  expect(today.gameIds).toEqual(expect.arrayContaining(fresh));
+  const areaOf = (id: string) => TRAINING_GAMES.find((g) => g.id === id)!.area;
+  const allAreas = new Set(TRAINING_GAMES.map((g) => g.area));
+  const plans = [await getOrCreatePlan('2026-10-10')];
+  for (let i = 1; i < 10; i++) {
+    const yesterday = plans[i - 1];
+    const today = await getOrCreatePlan(addDays(yesterday.day, 1));
+    plans.push(today);
+    // An area with any game in yesterday's plan comes back only to fill the places the other areas cannot.
+    const yesterdayAreas = new Set(yesterday.gameIds.map(areaOf));
+    const otherAreas = [...allAreas].filter((area) => !yesterdayAreas.has(area));
+    const fresh = today.gameIds.filter((id) => !yesterdayAreas.has(areaOf(id)));
+    expect(fresh, today.day).toHaveLength(Math.min(DAILY_GAME_COUNT, otherAreas.length));
+    // A game of yesterday's plan comes back only when its area has no other game.
+    for (const id of today.gameIds.filter((g) => yesterday.gameIds.includes(g))) {
+      expect(TRAINING_GAMES.filter((g) => g.area === areaOf(id) && !yesterday.gameIds.includes(g.id)), id).toEqual([]);
+    }
+  }
+  // So no area is in every plan, not even one with two games.
+  for (const area of allAreas) expect(plans.every((p) => p.gameIds.some((id) => areaOf(id) === area)), area).toBe(false);
 });
 
 test('completedDays returns only complete plans', async () => {

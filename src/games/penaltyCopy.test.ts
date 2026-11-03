@@ -8,7 +8,10 @@ import { SAME_DIFF_WRONG_PENALTY } from './same-different/engine';
 import { ROUNDS } from './sequence-lights/engine';
 import { GAME_DURATION_MS } from './shared/constants';
 
-const dicts = { es, en } as unknown as Record<string, { games: Record<string, { practice: { recap: string } }> }>;
+const dicts = { es, en } as unknown as Record<
+  string,
+  { games: Record<string, { practice: { recap: string }; instructions: string[] }> }
+>;
 const word = (n: number) => new RegExp(`\\b${n}\\b`);
 
 test.each([
@@ -40,4 +43,9 @@ test('quiz.instructions states the choice and true/false penalties (es and en)',
     const text = (dicts[lang] as unknown as { quiz: { instructions: string[] } }).quiz.instructions.join(' ');
     for (const phrase of patterns[lang]) expect(text, lang).toContain(phrase);
   }
+});
+
+test('star-shower instructions say a wrong number costs nothing (es and en)', () => {
+  expect(dicts.es.games['star-shower'].instructions.join(' ')).toMatch(/no resta/);
+  expect(dicts.en.games['star-shower'].instructions.join(' ')).toMatch(/costs no points/);
 });

@@ -26,7 +26,10 @@ test('sections follow the catalog order, cards show name and skill, no best mark
   const switchyard = screen.getByRole('link', { name: /Guardagujas/ });
   expect(switchyard).toHaveAttribute('href', '/play/switchyard');
   expect(switchyard).toHaveTextContent('Atención dividida');
-  expect(screen.getAllByRole('heading', { level: 3 })).toHaveLength(6);
+  const starShower = screen.getByRole('link', { name: /Lluvia de estrellas/ });
+  expect(starShower).toHaveAttribute('href', '/play/star-shower');
+  expect(starShower).toHaveTextContent('Cálculo bajo presión');
+  expect(screen.getAllByRole('heading', { level: 3 })).toHaveLength(7);
 });
 
 test('a filter shows one category and is announced as pressed', async () => {

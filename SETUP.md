@@ -22,11 +22,16 @@ sin sincronización.
    *publishable key*; las dos están en la configuración de la API del proyecto. Son públicas y van en
    la app. Copia solo la *publishable key*; nunca la *secret* / *service_role*.
 
-2. **Aplicar las 4 migraciones** de `supabase/migrations/`, en este orden:
+2. **Aplicar las 6 migraciones** de `supabase/migrations/`, en este orden:
    1. `20261020000000_core_schema.sql`
    2. `20261020000100_percentile.sql`
    3. `20261020000200_cleanup.sql`
    4. `20261102000000_quiz_games.sql`
+   5. `20261103000000_switchyard.sql`
+   6. `20261103000100_star_shower.sql`
+
+   Las migraciones 4 a 6 agregan a la tabla `games` las filas de los juegos de preguntas, de Guardagujas
+   y de Lluvia de estrellas; sin ellas, el servidor rechaza todas las partidas de esos juegos.
 
    Puedes pegarlas una por una en el SQL Editor de Supabase, aplicarlas con el conector de Supabase
    (por ejemplo, para que Claude lo haga) o con la CLI (`supabase link` y `supabase db push`).
@@ -41,10 +46,11 @@ sin sincronización.
    tercera migración la crea y programa la limpieza semanal de invitados abandonados). En el Supabase
    local la extensión sí está disponible (versión 1.6.4); falta confirmarlo en el proyecto real.
 
-   Si el plan gratuito no la permite: deja sin aplicar solo la migración 3 (aplica igual la 4, que no
-   depende de `pg_cron`), avisa a Claude o a quien mantenga el proyecto para que la limpieza semanal
-   pase a un workflow programado de GitHub, y sigue con el paso 4. La sincronización funciona igual sin
-   esa limpieza.
+   Si el plan gratuito no la permite: deja sin aplicar solo la migración 3 (aplica igual las 4, 5 y 6,
+   que no dependen de `pg_cron`; si `supabase db push` se detuvo en la tercera, esas no quedaron
+   aplicadas: pégalas en orden en el SQL Editor), avisa a Claude o a quien mantenga el proyecto para que
+   la limpieza semanal pase a un workflow programado de GitHub, y sigue con el paso 4. La sincronización
+   funciona igual sin esa limpieza.
 
 4. **Activar los invitados.** En **Authentication → Sign In / Providers**, activa *Anonymous
    sign-ins*.

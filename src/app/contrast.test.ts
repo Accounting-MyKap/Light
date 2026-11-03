@@ -116,6 +116,13 @@ describe('Luz (always-dark game screens)', () => {
     expect(contrast(luz[fg], luz['luz-bg'])).toBeGreaterThanOrEqual(3);
   });
 
+  test('--luz-gold on --luz-bg meets 3:1', () => {
+    expect(contrast(luz['luz-gold'], luz['luz-bg'])).toBeGreaterThanOrEqual(3);
+  });
+  test('--luz-ink on --luz-gold meets WCAG AA (4.5:1)', () => {
+    expect(contrast(luz['luz-ink'], luz['luz-gold'])).toBeGreaterThanOrEqual(4.5);
+  });
+
   describe.each(games)('area %s', (_area, game) => {
     test('--game on --luz-bg meets 3:1', () => {
       expect(game, '--game defined').toBeDefined();

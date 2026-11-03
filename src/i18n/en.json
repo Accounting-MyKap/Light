@@ -41,7 +41,12 @@
       "level": "Level",
       "secondsLeft_one": "{{count}} second left",
       "secondsLeft_other": "{{count}} seconds left",
-      "round": "Round {{n}} of {{total}}"
+      "round": "Round {{n}} of {{total}}",
+      "lives": "Lives: {{left}} of {{total}}"
+    },
+    "keypad": {
+      "delete": "Delete",
+      "ok": "OK"
     }
   },
   "games": {
@@ -148,8 +153,6 @@
       "title": "Quick Math",
       "skill": "Mental arithmetic",
       "description": "Solve operations against the clock; it gets harder as you get them right.",
-      "delete": "Delete",
-      "ok": "OK",
       "skip": "Skip",
       "practice": {
         "round1": "Type the answer and tap OK",
@@ -255,6 +258,16 @@
       "levelStations": "{{n}} stations",
       "levelSideTunnel": "side tunnel",
       "levelMiddleStation": "station in the middle"
+    },
+    "star-shower": {
+      "title": "Star Shower",
+      "skill": "Math under pressure",
+      "description": "Solve the sums on the falling stars before they reach the horizon.",
+      "instructions": [
+        "Stars with sums are falling. Type the answer on the on-screen keypad or your keyboard and press OK (or Enter) to pop them.",
+        "The golden comet pops every star on the screen. A wrong number costs no points: just try again.",
+        "If a star reaches the horizon, you lose a life and the other stars vanish. Lose 3 and the game ends."
+      ]
     }
   },
   "play": {

@@ -4,8 +4,9 @@ import { PracticeFrame } from '../shared/practice/PracticeFrame';
 import type { PracticeProps } from '../shared/practice/types';
 import { usePracticeRounds } from '../shared/practice/usePracticeRounds';
 import { useGameKeys } from '../shared/useGameKeys';
-import { MAX_INPUT_DIGITS, formatProblem, type Problem } from './engine';
-import { Keypad } from './Keypad';
+import { formatProblem, type Problem } from '../shared/arithmetic';
+import { Keypad } from '../shared/Keypad';
+import { MAX_INPUT_DIGITS } from './engine';
 import styles from './quick-math.module.css';
 
 /** Pointer clicks on game controls should not move keyboard focus onto them (Enter must keep submitting). */

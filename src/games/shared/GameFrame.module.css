@@ -176,6 +176,29 @@
   animation: breathe 1.2s ease-in-out infinite;
 }
 
+/* Lives: small stars, lit while they last. */
+.lives {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lives li {
+  width: 12px;
+  height: 12px;
+  background: rgba(255, 255, 255, 0.25);
+  clip-path: polygon(50% 0, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}
+
+/* The halo goes on a filter: a drop-shadow follows the star's shape, while box-shadow would be clipped away. */
+.lives li[data-state='on'] {
+  background: var(--game);
+  filter: drop-shadow(0 0 4px var(--game));
+}
+
 @keyframes breathe {
   0%,
   100% {

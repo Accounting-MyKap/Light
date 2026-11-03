@@ -129,6 +129,13 @@ test('without a time there is no time bar', () => {
   expect(screen.queryByRole('progressbar')).toBeNull();
 });
 
+test('lives: one item per life, the lost ones off, with an accessible count', () => {
+  renderFrame({ lives: { left: 2, total: 3 } });
+  const list = screen.getByRole('list', { name: 'Vidas: 2 de 3' });
+  const states = Array.from(list.querySelectorAll('li')).map((li) => li.dataset.state);
+  expect(states).toEqual(['on', 'on', 'off']);
+});
+
 test('rounds render as 8 dots with an accessible label', () => {
   renderFrame({ rounds: { current: 3, total: 8 } });
   const dots = screen.getByRole('list', { name: 'Ronda 3 de 8' });

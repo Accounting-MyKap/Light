@@ -12,8 +12,9 @@ export interface DailyPlanInput {
 }
 
 /**
- * Picks up to 3 games from distinct areas. Areas whose games were all in yesterday's plan go last;
- * then the least-played areas in the last 7 days come first. Deterministic for a given day.
+ * Picks up to 3 games from distinct areas. Areas with any game in yesterday's plan go last (so an area with two
+ * games is not in every plan); then the least-played areas in the last 7 days come first. Inside an area, a game
+ * that was not in yesterday's plan comes first. Deterministic for a given day.
  */
 export function generateDailyPlan({ day, games, recentPlays, yesterdayPlan }: DailyPlanInput): string[] {
   const rng = createRng(seedFromString(day));
@@ -31,13 +32,13 @@ export function generateDailyPlan({ day, games, recentPlays, yesterdayPlan }: Da
     return {
       area,
       games: areaGames,
-      allYesterday: areaGames.every((g) => yesterday.has(g.id)) ? 1 : 0,
+      inYesterday: areaGames.some((g) => yesterday.has(g.id)) ? 1 : 0,
       plays: areaGames.reduce((sum, g) => sum + (gamePlays.get(g.id) ?? 0), 0),
       tiebreak: rng(),
     };
   });
 
-  areas.sort((x, y) => x.allYesterday - y.allYesterday || x.plays - y.plays || x.tiebreak - y.tiebreak);
+  areas.sort((x, y) => x.inYesterday - y.inYesterday || x.plays - y.plays || x.tiebreak - y.tiebreak);
 
   return areas.slice(0, DAILY_GAME_COUNT).map(({ games: areaGames }) => {
     const notYesterday = areaGames.filter((g) => !yesterday.has(g.id));
