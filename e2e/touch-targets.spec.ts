@@ -67,7 +67,7 @@ test('after «Siguiente» the new question starts in view on a 320 × 568 screen
   }
 });
 
-test('the five tab icons stay in one row when labels wrap: 320 px screen, 24 px root font', async ({ page }) => {
+test('the five tab icons stay in one row and labels stay whole on one line: 320 px screen, 24 px root font', async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 640 });
   await page.goto('./');
   await page.evaluate(() => document.fonts.ready);
@@ -90,9 +90,8 @@ test('the five tab icons stay in one row when labels wrap: 320 px screen, 24 px 
       };
     }),
   );
-  // The case at stake: here some labels wrap to two lines («Pregun-tas») and «Hoy» does not.
-  expect(tabs.some((t) => t.lines > 1), JSON.stringify(tabs)).toBe(true);
-  expect(tabs.some((t) => t.lines === 1), JSON.stringify(tabs)).toBe(true);
+  // The labels grow with the root font only as far as their column allows, so none wraps («Pregun-tas» before).
+  for (const t of tabs) expect(t.lines, `${t.label} is on one line`).toBe(1);
   const tops = tabs.map((t) => t.iconTop);
   expect(Math.max(...tops) - Math.min(...tops), JSON.stringify(tabs)).toBeLessThanOrEqual(1);
   // Still tall enough, each label inside its own column, and the bar no wider than the screen.

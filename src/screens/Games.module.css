@@ -66,8 +66,11 @@
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(0.5rem, 0.5rem + (100vw - 320px) * 0.0036, 0.75rem);
+  --gap: clamp(0.5rem, 0.5rem + (100vw - 320px) * 0.0036, 0.75rem);
+  /* Three columns, unless a card would get narrower than 5.5rem (a large root font): then fewer, wider cards, so
+     the longest game and skill names fit whole. */
+  grid-template-columns: repeat(auto-fill, minmax(max(5.5rem, calc((100% - 2 * var(--gap)) / 3)), 1fr));
+  gap: var(--gap);
 }
 .grid > li {
   min-width: 0;
@@ -100,16 +103,12 @@
   font-size: clamp(0.75rem, calc(0.75rem + (100vw - 320px) * 0.0229), 0.85rem);
   font-weight: 700;
   line-height: 1.2;
-  overflow-wrap: break-word;
-  hyphens: auto;
 }
 .skill {
   display: block;
   margin-top: 0.15rem;
   font-size: clamp(0.625rem, calc(0.625rem + (100vw - 320px) * 0.0217), 0.72rem);
   color: var(--text-muted);
-  overflow-wrap: break-word;
-  hyphens: auto;
 }
 .done {
   position: absolute;
