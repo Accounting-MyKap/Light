@@ -104,6 +104,314 @@
       "en": { "question": "Who created the C++ programming language?",
               "options": ["Bjarne Stroustrup", "Dennis Ritchie", "James Gosling", "Guido van Rossum"],
               "explanation": "Stroustrup began creating it in 1979 at Bell Labs, as an extension of C. Ritchie created C, Gosling Java and van Rossum Python." }
+    },
+    {
+      "id": "technology-0013", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Quién obtuvo en 1876 la patente estadounidense del teléfono?",
+              "options": ["Alexander Graham Bell", "Thomas Edison", "Samuel Morse", "Guglielmo Marconi"],
+              "explanation": "Alexander Graham Bell recibió la patente en 1876. Edison mejoró después el micrófono del teléfono, y Marconi trabajó en la radio." },
+      "en": { "question": "Who was granted the U.S. patent for the telephone in 1876?",
+              "options": ["Alexander Graham Bell", "Thomas Edison", "Samuel Morse", "Guglielmo Marconi"],
+              "explanation": "Alexander Graham Bell received the patent in 1876. Edison later improved the telephone's microphone, and Marconi worked on radio." }
+    },
+    {
+      "id": "technology-0014", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué inventor estadounidense perfeccionó y comercializó la bombilla incandescente a partir de 1879?",
+              "options": ["Thomas Edison", "Nikola Tesla", "Benjamin Franklin", "Alexander Graham Bell"],
+              "explanation": "Edison logró en 1879 una bombilla práctica y duradera y la llevó al mercado. Antes, otros inventores, como el británico Joseph Swan, habían hecho prototipos." },
+      "en": { "question": "Which American inventor perfected and commercialized the incandescent light bulb starting in 1879?",
+              "options": ["Thomas Edison", "Nikola Tesla", "Benjamin Franklin", "Alexander Graham Bell"],
+              "explanation": "Edison made a practical, long-lasting bulb in 1879 and brought it to market. Before him, other inventors, such as Britain's Joseph Swan, had built prototypes." }
+    },
+    {
+      "id": "technology-0015", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿En qué año hicieron los hermanos Wright el primer vuelo controlado de un avión con motor?",
+              "options": ["1903", "1893", "1911", "1927"],
+              "explanation": "El 17 de diciembre de 1903, en Kitty Hawk (Carolina del Norte), Orville Wright voló unos 12 segundos a bordo del Flyer." },
+      "en": { "question": "In what year did the Wright brothers make the first controlled, powered airplane flight?",
+              "options": ["1903", "1893", "1911", "1927"],
+              "explanation": "On 17 December 1903 at Kitty Hawk, North Carolina, Orville Wright flew the Flyer for about 12 seconds." }
+    },
+    {
+      "id": "technology-0016", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Quién desarrolló en Europa, hacia 1450, la imprenta de tipos móviles de metal?",
+              "options": ["Johannes Gutenberg", "Leonardo da Vinci", "Martín Lutero", "Nicolás Copérnico"],
+              "explanation": "Johannes Gutenberg lo hizo en Maguncia (Alemania). Su imprenta abarató los libros, y la Biblia de Gutenberg (hacia 1455) fue su obra más famosa." },
+      "en": { "question": "Who developed the movable-type metal printing press in Europe around 1450?",
+              "options": ["Johannes Gutenberg", "Leonardo da Vinci", "Martin Luther", "Nicolaus Copernicus"],
+              "explanation": "Johannes Gutenberg did, in Mainz (Germany). His press made books cheaper, and the Gutenberg Bible (c. 1455) was his most famous work." }
+    },
+    {
+      "id": "technology-0017", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cómo se llama la unidad mínima de información digital, que solo puede valer 0 o 1?",
+              "options": ["Bit", "Byte", "Baudio", "Píxel"],
+              "explanation": "Bit viene de «binary digit» (dígito binario). Es la unidad más pequeña de información en un computador." },
+      "en": { "question": "What is the smallest unit of digital information, which can only be 0 or 1?",
+              "options": ["Bit", "Byte", "Baud", "Pixel"],
+              "explanation": "Bit comes from 'binary digit'. It is the smallest unit of information in a computer." }
+    },
+    {
+      "id": "technology-0018", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cómo se llama el componente que ejecuta las instrucciones de los programas y se considera el «cerebro» del computador?",
+              "options": ["Procesador (CPU)", "Memoria RAM", "Disco duro", "Fuente de poder"],
+              "explanation": "El procesador, o CPU (unidad central de procesamiento), ejecuta las instrucciones. La RAM y el disco duro guardan datos; la fuente de poder da energía." },
+      "en": { "question": "Which component runs the instructions of programs and is considered the 'brain' of a computer?",
+              "options": ["Processor (CPU)", "RAM", "Hard drive", "Power supply"],
+              "explanation": "The processor, or CPU (central processing unit), runs the instructions. RAM and the hard drive store data; the power supply provides energy." }
+    },
+    {
+      "id": "technology-0019", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cómo se llama cada uno de los pequeños puntos de color que forman una imagen en una pantalla?",
+              "options": ["Píxel", "Vóxel", "Vector", "Fotón"],
+              "explanation": "Píxel viene de «picture element», elemento de imagen. Cuantos más píxeles tiene una pantalla, más detalle puede mostrar." },
+      "en": { "question": "What is each of the tiny colored dots that make up an image on a screen called?",
+              "options": ["Pixel", "Voxel", "Vector", "Photon"],
+              "explanation": "Pixel comes from 'picture element'. The more pixels a screen has, the more detail it can show." }
+    },
+    {
+      "id": "technology-0020", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cómo se llama el engaño en el que un mensaje falso intenta que entregues contraseñas o datos bancarios?",
+              "options": ["Phishing", "Ransomware", "Spyware", "Adware"],
+              "explanation": "El phishing suplanta a un banco o a una empresa para robar datos. El ransomware secuestra archivos, el spyware espía y el adware muestra anuncios." },
+      "en": { "question": "What is the scam called in which a fake message tries to make you hand over passwords or bank details?",
+              "options": ["Phishing", "Ransomware", "Spyware", "Adware"],
+              "explanation": "Phishing impersonates a bank or a company to steal data. Ransomware locks files, spyware spies on you and adware shows ads." }
+    },
+    {
+      "id": "technology-0021", "difficulty": 1, "type": "choice",
+      "es": { "question": "Cuando guardas tus fotos «en la nube», ¿dónde se almacenan realmente?",
+              "options": ["En servidores remotos, por internet", "En la memoria RAM de tu celular", "Dentro del router de tu casa", "En satélites que orbitan la Tierra"],
+              "explanation": "La nube son servidores de una empresa, conectados a internet, que guardan tus archivos para que puedas abrirlos desde varios dispositivos." },
+      "en": { "question": "When you save your photos 'in the cloud', where are they actually stored?",
+              "options": ["On remote servers, over the internet", "In your phone's temporary memory", "Inside the router in your home", "On satellites orbiting the Earth"],
+              "explanation": "The cloud is servers owned by a company, connected to the internet, that store your files so you can open them from several devices." }
+    },
+    {
+      "id": "technology-0022", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cómo se llama la dirección que escribes en el navegador para llegar a una página, como https://www.ejemplo.com?",
+              "options": ["URL", "HTML", "PDF", "SMS"],
+              "explanation": "URL significa «Uniform Resource Locator» (localizador uniforme de recursos): la dirección única de una página o de un archivo en la Web." },
+      "en": { "question": "What is the address you type into a browser to reach a page, such as https://www.example.com?",
+              "options": ["URL", "HTML", "PDF", "SMS"],
+              "explanation": "URL stands for 'Uniform Resource Locator': the unique address of a page or a file on the Web." }
+    },
+    {
+      "id": "technology-0023", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué aparato de casa reparte la conexión a internet entre varios dispositivos, por cable o por Wi-Fi?",
+              "options": ["Router", "Escáner", "Proyector", "Altavoz"],
+              "explanation": "El router conecta tu red doméstica con internet y reparte esa conexión entre tus dispositivos. Los otros aparatos digitalizan, proyectan o reproducen sonido." },
+      "en": { "question": "Which home device shares the internet connection among several devices, by cable or Wi-Fi?",
+              "options": ["Router", "Scanner", "Projector", "Speaker"],
+              "explanation": "A router connects your home network to the internet and shares that connection among your devices. The others scan, project or play sound." }
+    },
+    {
+      "id": "technology-0024", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuál de estas opciones es un sistema operativo?",
+              "options": ["Windows", "Excel", "Photoshop", "Spotify"],
+              "explanation": "Un sistema operativo, como Windows, administra el equipo y permite ejecutar programas. Excel, Photoshop y Spotify son programas que corren sobre él." },
+      "en": { "question": "Which of these is an operating system?",
+              "options": ["Windows", "Excel", "Photoshop", "Spotify"],
+              "explanation": "An operating system, like Windows, manages the computer and lets programs run. Excel, Photoshop and Spotify are programs that run on top of it." }
+    },
+    {
+      "id": "technology-0025", "difficulty": 1, "type": "choice",
+      "es": { "question": "En un computador con Windows, ¿qué combinación de teclas copia lo que tienes seleccionado?",
+              "options": ["Ctrl + C", "Ctrl + V", "Ctrl + X", "Ctrl + Z"],
+              "explanation": "Ctrl + C copia, Ctrl + V pega, Ctrl + X corta y Ctrl + Z deshace la última acción." },
+      "en": { "question": "On a Windows computer, which key combination copies what you have selected?",
+              "options": ["Ctrl + C", "Ctrl + V", "Ctrl + X", "Ctrl + Z"],
+              "explanation": "Ctrl + C copies, Ctrl + V pastes, Ctrl + X cuts and Ctrl + Z undoes the last action." }
+    },
+    {
+      "id": "technology-0026", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuál de estas unidades de almacenamiento es la más grande?",
+              "options": ["Terabyte", "Gigabyte", "Megabyte", "Kilobyte"],
+              "explanation": "De menor a mayor: kilobyte, megabyte, gigabyte y terabyte. Cada una equivale a unas mil veces la anterior." },
+      "en": { "question": "Which of these storage units is the largest?",
+              "options": ["Terabyte", "Gigabyte", "Megabyte", "Kilobyte"],
+              "explanation": "From smallest to largest: kilobyte, megabyte, gigabyte and terabyte. Each is about a thousand times the previous one." }
+    },
+    {
+      "id": "technology-0027", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Quiénes fundaron Google en 1998, cuando eran estudiantes de doctorado en la Universidad de Stanford?",
+              "options": ["Larry Page y Sergey Brin", "Jerry Yang y David Filo", "Steve Jobs y Steve Wozniak", "Bill Hewlett y David Packard"],
+              "explanation": "Larry Page y Sergey Brin crearon Google en Stanford. Yang y Filo fundaron Yahoo; Jobs y Wozniak, Apple; Hewlett y Packard, HP." },
+      "en": { "question": "Who founded Google in 1998 while they were PhD students at Stanford University?",
+              "options": ["Larry Page and Sergey Brin", "Jerry Yang and David Filo", "Steve Jobs and Steve Wozniak", "Bill Hewlett and David Packard"],
+              "explanation": "Larry Page and Sergey Brin created Google at Stanford. Yang and Filo founded Yahoo; Jobs and Wozniak, Apple; Hewlett and Packard, HP." }
+    },
+    {
+      "id": "technology-0028", "difficulty": 1, "type": "choice",
+      "es": { "question": "Al navegar por internet, ¿qué suele significar el mensaje «Error 404»?",
+              "options": ["No se encontró la página", "El servidor está saturado", "Se prohibió el acceso", "Tu conexión no está cifrada"],
+              "explanation": "El código 404 («Not Found») indica que el servidor no halló la página pedida: la dirección está mal escrita o la página ya no existe." },
+      "en": { "question": "When browsing the internet, what does the message 'Error 404' usually mean?",
+              "options": ["The page was not found", "The server is overloaded", "Access was forbidden", "Your connection is not encrypted"],
+              "explanation": "The 404 code ('Not Found') means the server could not find the requested page: the address is mistyped or the page no longer exists." }
+    },
+    {
+      "id": "technology-0029", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué usa un receptor GPS para calcular su posición en la Tierra?",
+              "options": ["Señales de satélites en órbita", "Torres de radio de la ciudad", "Cables enterrados bajo el suelo", "Una brújula magnética interna"],
+              "explanation": "El GPS calcula la posición midiendo el tiempo que tardan en llegar las señales de varios satélites. El receptor no necesita internet para eso." },
+      "en": { "question": "What does a GPS receiver use to work out its position on Earth?",
+              "options": ["Signals from orbiting satellites", "City radio towers", "Cables buried underground", "An internal magnetic compass"],
+              "explanation": "GPS works out the position by measuring how long the signals from several satellites take to arrive. The receiver does not need internet for that." }
+    },
+    {
+      "id": "technology-0030", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué tipo de archivo es normalmente uno con la extensión .jpg?",
+              "options": ["Una imagen", "Un audio", "Una hoja de cálculo", "Un programa"],
+              "explanation": "El formato .jpg (o .jpeg) comprime fotografías e imágenes. El audio suele ser .mp3 y las hojas de cálculo, .xlsx." },
+      "en": { "question": "What kind of file is one with the .jpg extension?",
+              "options": ["An image", "An audio file", "A spreadsheet", "A program"],
+              "explanation": "The .jpg (or .jpeg) format compresses photos and images. Audio is usually .mp3 and spreadsheets are .xlsx." }
+    },
+    {
+      "id": "technology-0031", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Para qué sirve un programa antivirus?",
+              "options": ["Detectar programas maliciosos", "Acelerar la conexión a internet", "Aumentar la memoria del equipo", "Ordenar tus archivos por fecha"],
+              "explanation": "Un antivirus busca y elimina virus y otros programas maliciosos. Mantenerlo actualizado ayuda a proteger el equipo, aunque no sustituye la prudencia." },
+      "en": { "question": "What is an antivirus program for?",
+              "options": ["Detecting malicious programs", "Speeding up the internet connection", "Increasing the computer's memory", "Sorting your files by date"],
+              "explanation": "An antivirus looks for and removes viruses and other malicious programs. Keeping it updated helps protect the computer, but it is no substitute for caution." }
+    },
+    {
+      "id": "technology-0032", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cómo se llama la pequeña tarjeta que identifica tu línea telefónica dentro de un celular?",
+              "options": ["Tarjeta SIM", "Tarjeta SD", "Tarjeta gráfica", "Tarjeta de sonido"],
+              "explanation": "La tarjeta SIM (Subscriber Identity Module) identifica tu línea y te conecta con la red del operador. Una tarjeta SD, en cambio, solo guarda archivos." },
+      "en": { "question": "What is the small card that identifies your phone line inside a mobile phone called?",
+              "options": ["SIM card", "SD card", "Graphics card", "Sound card"],
+              "explanation": "The SIM card (Subscriber Identity Module) identifies your line and connects you to the carrier's network. An SD card, by contrast, only stores files." }
+    },
+    {
+      "id": "technology-0033", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cómo se llama el aparato volador que se controla a distancia y no lleva piloto a bordo?",
+              "options": ["Dron", "Globo aerostático", "Planeador", "Dirigible"],
+              "explanation": "Un dron es una aeronave no tripulada que se maneja a distancia o con un programa. Se usa para fotografía, agricultura y vigilancia, entre otras cosas." },
+      "en": { "question": "What is a flying machine that is controlled remotely and has no pilot on board called?",
+              "options": ["Drone", "Hot-air balloon", "Glider", "Airship"],
+              "explanation": "A drone is an uncrewed aircraft flown remotely or by a program. It is used for photography, farming and surveying, among other things." }
+    },
+    {
+      "id": "technology-0034", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué significan las siglas PC en informática?",
+              "options": ["Computador personal", "Procesador central", "Puerto de conexión", "Programa compilado"],
+              "explanation": "PC viene de «personal computer»: un computador pensado para que lo use una sola persona, en casa o en la oficina." },
+      "en": { "question": "What do the letters PC stand for in computing?",
+              "options": ["Personal computer", "Central processor", "Connection port", "Compiled program"],
+              "explanation": "PC stands for 'personal computer': a computer designed to be used by one person, at home or in the office." }
+    },
+    {
+      "id": "technology-0035", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué significa hacer «streaming» de un video o de una canción?",
+              "options": ["Reproducirlo mientras llega por internet", "Descargarlo entero antes de reproducirlo", "Grabarlo en un disco para compartirlo", "Convertirlo a otro formato de archivo"],
+              "explanation": "Con el streaming el contenido se reproduce a medida que llega por internet, sin esperar a descargar el archivo completo." },
+      "en": { "question": "What does it mean to 'stream' a video or a song?",
+              "options": ["Play it as it arrives over the internet", "Download it in full before playing it", "Record it onto a disc to share it", "Convert it to a different file format"],
+              "explanation": "With streaming, content plays as it arrives over the internet, without waiting for the whole file to download." }
+    },
+    {
+      "id": "technology-0036", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Para qué sirve hacer una copia de seguridad (backup) de tus archivos?",
+              "options": ["Recuperarlos si se pierden o se dañan", "Hacer que el computador arranque más rápido", "Bloquear los anuncios de las páginas web", "Reducir el consumo de la batería"],
+              "explanation": "Un backup es una copia guardada aparte, en un disco externo o en la nube. Si el equipo falla o se pierde, puedes recuperar tus archivos." },
+      "en": { "question": "What is the purpose of making a backup of your files?",
+              "options": ["To recover them if lost or damaged", "To make the computer start up faster", "To block ads on web pages", "To reduce how much battery is used"],
+              "explanation": "A backup is a copy kept separately, on an external drive or in the cloud. If the device fails or is lost, you can recover your files." }
+    },
+    {
+      "id": "technology-0037", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿En qué país se inventó el papel, hace unos 2000 años?",
+              "options": ["China", "Egipto", "Grecia", "India"],
+              "explanation": "El papel nació en China; la tradición lo atribuye a Cai Lun, hacia el año 105. Los egipcios usaban papiro, hecho de una planta, que no es papel propiamente." },
+      "en": { "question": "In which country was paper invented, about 2,000 years ago?",
+              "options": ["China", "Egypt", "Greece", "India"],
+              "explanation": "Paper was born in China; tradition credits Cai Lun, around the year 105. The Egyptians used papyrus, made from a plant, which is not true paper." }
+    },
+    {
+      "id": "technology-0038", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cómo se llama el programa que usas para ver páginas web, como Firefox o Safari?",
+              "options": ["Navegador", "Compilador", "Editor de texto", "Hoja de cálculo"],
+              "explanation": "Un navegador (browser) pide las páginas a los servidores y las muestra. Firefox y Safari son navegadores; Chrome y Edge también." },
+      "en": { "question": "What is the program you use to view web pages, such as Firefox or Safari?",
+              "options": ["Web browser", "Compiler", "Text editor", "Spreadsheet"],
+              "explanation": "A browser requests pages from servers and displays them. Firefox and Safari are browsers, and so are Chrome and Edge." }
+    },
+    {
+      "id": "technology-0039", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cómo se llama el conjunto de las partes físicas de un computador, como la pantalla, el teclado y el procesador?",
+              "options": ["Hardware", "Software", "Firmware", "Malware"],
+              "explanation": "El hardware es todo lo que puedes tocar. El software son los programas e instrucciones que hacen funcionar ese hardware." },
+      "en": { "question": "What is the set of physical parts of a computer, such as the screen, the keyboard and the processor, called?",
+              "options": ["Hardware", "Software", "Firmware", "Malware"],
+              "explanation": "Hardware is everything you can touch. Software is the programs and instructions that make that hardware work." }
+    },
+    {
+      "id": "technology-0040", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuál de estas opciones es un lenguaje de programación?",
+              "options": ["Python", "Photoshop", "Bluetooth", "Instagram"],
+              "explanation": "Python es un lenguaje de programación. Photoshop edita imágenes, Bluetooth es una tecnología inalámbrica e Instagram es una red social." },
+      "en": { "question": "Which of these is a programming language?",
+              "options": ["Python", "Photoshop", "Bluetooth", "Instagram"],
+              "explanation": "Python is a programming language. Photoshop edits images, Bluetooth is a wireless technology and Instagram is a social network." }
+    },
+    {
+      "id": "technology-0041", "difficulty": 1, "type": "truefalse", "answer": false,
+      "es": { "question": "Usar la misma contraseña en todas tus cuentas es una buena idea para no olvidarla.",
+              "explanation": "Si alguien descubre esa contraseña, podrá entrar en todas tus cuentas. Conviene usar una distinta para cada una, con ayuda de un gestor de contraseñas." },
+      "en": { "question": "Using the same password for all your accounts is a good idea, because then you never forget it.",
+              "explanation": "If someone discovers that password, they can get into all your accounts. It is better to use a different one for each, with the help of a password manager." }
+    },
+    {
+      "id": "technology-0042", "difficulty": 1, "type": "truefalse", "answer": true,
+      "es": { "question": "La memoria RAM pierde sus datos cuando se apaga el computador.",
+              "explanation": "La RAM es memoria temporal: guarda lo que usas en ese momento y se vacía sin corriente. Tus archivos quedan en el disco duro o en una unidad SSD." },
+      "en": { "question": "RAM loses its data when the computer is turned off.",
+              "explanation": "RAM is temporary memory: it holds what you are using at the moment and empties without power. Your files stay on the hard drive or an SSD." }
+    },
+    {
+      "id": "technology-0043", "difficulty": 1, "type": "truefalse", "answer": true,
+      "es": { "question": "Comprimir archivos en formato ZIP permite reducir el espacio que ocupan.",
+              "explanation": "Un archivo ZIP agrupa uno o varios archivos y los comprime, así que suele ocupar menos espacio y es más fácil de enviar." },
+      "en": { "question": "Compressing files into a ZIP archive reduces the space they take up.",
+              "explanation": "A ZIP archive bundles one or more files and compresses them, so it usually takes less space and is easier to send." }
+    },
+    {
+      "id": "technology-0044", "difficulty": 1, "type": "truefalse", "answer": false,
+      "es": { "question": "Wi-Fi e internet son lo mismo.",
+              "explanation": "El Wi-Fi solo conecta tus dispositivos con un router por ondas de radio. Es el router el que da acceso a internet; una red Wi-Fi puede funcionar incluso sin internet." },
+      "en": { "question": "Wi-Fi and the internet are the same thing.",
+              "explanation": "Wi-Fi only connects your devices to a router by radio waves. The router provides access to the internet; a Wi-Fi network can even work without internet." }
+    },
+    {
+      "id": "technology-0045", "difficulty": 1, "type": "truefalse", "answer": false,
+      "es": { "question": "Un código QR solo puede guardar números.",
+              "explanation": "Un QR puede guardar texto, enlaces web, datos de contacto y más. Al escanearlo con la cámara del celular, se abre esa información." },
+      "en": { "question": "A QR code can only store numbers.",
+              "explanation": "A QR code can store text, web links, contact details and more. Scanning it with a phone camera opens that information." }
+    },
+    {
+      "id": "technology-0046", "difficulty": 1, "type": "truefalse", "answer": true,
+      "es": { "question": "Activar el modo avión en un celular desactiva las llamadas y los datos móviles.",
+              "explanation": "El modo avión corta la señal de la red móvil y, normalmente, también el Wi-Fi y el Bluetooth. Puedes volver a encender el Wi-Fi si lo necesitas." },
+      "en": { "question": "Turning on airplane mode on a phone switches off calls and mobile data.",
+              "explanation": "Airplane mode cuts the mobile network signal and, usually, Wi-Fi and Bluetooth too. You can switch Wi-Fi back on if you need it." }
+    },
+    {
+      "id": "technology-0047", "difficulty": 1, "type": "truefalse", "answer": false,
+      "es": { "question": "Conectarte a una red Wi-Fi pública y abierta es la forma más segura de hacer operaciones bancarias.",
+              "explanation": "En una red abierta otras personas podrían espiar tu tráfico o crear redes falsas. Para operaciones bancarias conviene usar tus datos móviles o una red de confianza." },
+      "en": { "question": "Connecting to a public, open Wi-Fi network is the safest way to do your banking.",
+              "explanation": "On an open network other people could snoop on your traffic or set up fake networks. For banking it is better to use mobile data or a network you trust." }
+    },
+    {
+      "id": "technology-0048", "difficulty": 1, "type": "truefalse", "answer": true,
+      "es": { "question": "Enviar un SMS no requiere conexión a internet.",
+              "explanation": "Los SMS viajan por la red de telefonía móvil, no por internet. Por eso un celular sin datos puede enviarlos y recibirlos si tiene señal." },
+      "en": { "question": "Sending an SMS does not require an internet connection.",
+              "explanation": "SMS messages travel over the mobile phone network, not over the internet. That is why a phone with no data can send and receive them if it has signal." }
     }
   ]
 }
