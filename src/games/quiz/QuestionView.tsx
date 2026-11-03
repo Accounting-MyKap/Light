@@ -74,7 +74,11 @@ export function QuestionView({
               onMouseDown={keepFocus}
               onClick={() => onChoose?.(shown)}
             >
-              <span className={styles.number}>{shown + 1}</span>{' '}
+              {/* Read out as «Opción 1: …»: a bare «1» before an answer like «6 000» would be ambiguous. */}
+              <span className={styles.number} aria-hidden="true">
+                {shown + 1}
+              </span>
+              <span className="visually-hidden">{t('quiz.optionLabel', { n: shown + 1 })}</span>{' '}
               <span className={styles.optionBody}>
                 <span>{keepNumbersTogether(texts[canonical])}</span>
                 {mark && (

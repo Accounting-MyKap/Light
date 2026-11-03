@@ -48,7 +48,7 @@ async function renderGame(props: { paused?: boolean } = {}) {
 
 const correctOption = () => screen.getByRole('button', { name: /Correcta history-/ });
 const wrongOption = () => screen.getByRole('button', { name: /Incorrecta A history-/ });
-const options = () => screen.getAllByRole('button', { name: /^[1-4] / });
+const options = () => screen.getAllByRole('button', { name: /^Opción [1-4]: / });
 
 test("shows question 1 of 10 with four options and I don't know", async () => {
   await renderGame();
@@ -249,7 +249,7 @@ test('the question is hidden while paused, so a pause gives no extra time to thi
   view.rerender(gameElement({ paused: true }));
   expect(screen.getByText(prompt)).not.toBeVisible();
   expect(screen.queryByRole('heading', { level: 2 })).not.toBeInTheDocument();
-  expect(screen.queryAllByRole('button', { name: /^[1-4] / })).toHaveLength(0);
+  expect(screen.queryAllByRole('button', { name: /^Opción [1-4]: / })).toHaveLength(0);
   expect(screen.queryByRole('button', { name: 'No sé' })).not.toBeInTheDocument();
   // The HUD and the counter stay, with the clock stopped.
   expect(hud('Tiempo')).toBe('20');
@@ -318,7 +318,7 @@ test('keeps numbers and percentages on one line in the question, the options and
   );
   const { container } = await renderGame();
   expect(screen.getByRole('heading', { level: 2 }).textContent).toBe('¿Cuánto es 19\u202F% de 120\u202F000?');
-  expect(options().map((o) => o.textContent?.replace(/^\d /, ''))).toEqual(
+  expect(options().map((o) => o.textContent?.replace(/^\dOpción \d: /, ''))).toEqual(
     expect.arrayContaining(['22\u202F800', '2\u202F280', '228\u202F000', '1\u202F200\u202F000']),
   );
   advance(1000);
@@ -441,14 +441,30 @@ describe('a new question on a small screen', () => {
   });
 });
 
+test('each option is announced as «Opción N:» while the number stays on screen', async () => {
+  await renderGame();
+  const [first, second] = options();
+  expect(first).toHaveAccessibleName(/^Opción 1: (Correcta|Incorrecta [ABC]) history-\d{4}$/);
+  expect(second).toHaveAccessibleName(/^Opción 2: /);
+  // The visible number is decoration for sighted players; the label reads it out once.
+  expect(within(first).getByText('1')).toHaveAttribute('aria-hidden', 'true');
+  expect(within(first).getByText('Opción 1:')).toHaveClass('visually-hidden');
+});
+
+test('options are announced as "Option N:" in English', async () => {
+  await initI18n('en');
+  await renderGame();
+  expect(screen.getAllByRole('button', { name: /^Option [1-4]: / })).toHaveLength(4);
+});
+
 test('true/false questions have two options in fixed order and ignore other keys', async () => {
   vi.mocked(loadQuestions).mockImplementation(async () =>
     Array.from({ length: 30 }, (_, i): Question => makeTrueFalse(`history-${String(i + 1).padStart(4, '0')}`, 'history', 1, true)),
   );
   await renderGame();
   const [first, second] = options();
-  expect(first).toHaveAccessibleName(/^1 Verdadero$/);
-  expect(second).toHaveAccessibleName(/^2 Falso$/);
+  expect(first).toHaveAccessibleName('Opción 1: Verdadero');
+  expect(second).toHaveAccessibleName('Opción 2: Falso');
   expect(options()).toHaveLength(2);
   advance(1000);
   fireEvent.keyDown(window, { key: '3' });
@@ -476,7 +492,7 @@ describe('QuizExample', () => {
   test('shows a solved question with the correct option marked and no controls to act on', () => {
     render(<QuizExample />);
     expect(screen.getByText('¿Cuál es el planeta más grande del sistema solar?')).toBeInTheDocument();
-    expect(screen.getAllByRole('button', { name: /^[1-4] / })).toHaveLength(4);
+    expect(screen.getAllByRole('button', { name: /^Opción [1-4]: / })).toHaveLength(4);
     expect(within(screen.getByRole('button', { name: /Júpiter/ })).getByText('✓ Correcta')).toBeInTheDocument();
     expect(screen.queryByText('✗ Tu respuesta')).not.toBeInTheDocument();
     expect(screen.getByText(/más del doble de masa/)).toBeInTheDocument();

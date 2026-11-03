@@ -222,6 +222,7 @@
     },
     "seen": "Seen: {{seen}} of {{total}}",
     "questionOf": "Question {{n}} of {{total}}",
+    "optionLabel": "Option {{n}}:",
     "dontKnow": "I don't know",
     "next": "Next",
     "finish": "See results",

@@ -36,7 +36,7 @@ export async function finishQuizRound(page: Page): Promise<void> {
   for (let n = 1; n <= QUIZ_ROUND_LENGTH; n++) {
     await expect(page.getByText(`Pregunta ${n} de ${QUIZ_ROUND_LENGTH}`)).toBeVisible();
     await page.waitForTimeout(200);
-    await page.getByRole('button', { name: /^1 / }).click();
+    await page.getByRole('button', { name: /^Opción 1: / }).click();
     await page.getByRole('button', { name: n === QUIZ_ROUND_LENGTH ? 'Ver resultado' : 'Siguiente' }).click();
   }
 }
