@@ -226,7 +226,7 @@ test('hiding the app during the pause practice does not close it', async () => {
   expect(screen.getByText('fake practice')).toBeInTheDocument();
 });
 
-describe('a game without a practice (Guardagujas, the quiz games)', () => {
+describe('a game without a practice (Lluvia de estrellas, the quiz games)', () => {
   /** A second visit to the game without a practice, started and paused with 10 points. */
   async function playAndPause() {
     await updateSettings({ seenInstructions: ['fakenp'] });

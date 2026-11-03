@@ -101,6 +101,16 @@ export function pickStation(rng: Rng, count: number, recent: readonly number[]):
   return candidates[Math.floor(rng() * candidates.length)];
 }
 
+/** The station a train on `segmentId` would reach if the switches ahead of it stayed as they are. */
+export function destinationOf(map: TrackMap, switches: readonly (0 | 1)[], segmentId: number): number {
+  let segment = map.segments[segmentId];
+  while ('switch' in segment.end) {
+    const sw = map.switches[segment.end.switch];
+    segment = map.segments[sw.exits[switches[sw.id]]];
+  }
+  return segment.end.station;
+}
+
 export function toggleSwitch(state: SwitchyardState, index: number): SwitchyardState {
   if (!Number.isInteger(index) || index < 0 || index >= state.switches.length) return state;
   const switches = [...state.switches];

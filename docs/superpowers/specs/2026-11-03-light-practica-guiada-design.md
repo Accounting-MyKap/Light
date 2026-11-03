@@ -11,7 +11,7 @@ Hoy, la primera vez que se abre un juego, aparece una pantalla de pasos con un e
 - La práctica está disponible en la entrada (para quien ya jugó) y en la pausa.
 - Nadie pierde datos.
 - Nadie que ya conoce un juego recibe la práctica a la fuerza.
-- El dueño aprueba las capturas de las cinco prácticas.
+- El dueño aprueba las capturas de cada práctica.
 
 ## 2. Decisiones tomadas
 
@@ -70,13 +70,13 @@ La primera vez es cuando el juego no está en la lista de juegos ya vistos, y ap
 - Los textos que solo usaban la pantalla y los ejemplos: `games.<id>.instructions`, `games.<id>.exampleAnswer*`, `play.example` y otros de los ejemplos.
 - Lo que siga en uso no se toca.
 
-Lo anterior vale para los cinco juegos originales. La pantalla de pasos, `GameDefinition.Example` y `play.example` se quedan para los juegos sin práctica (§3.6).
+Lo anterior vale para los cinco juegos originales y, después, para Guardagujas (§4.7). La pantalla de pasos, `GameDefinition.Example` y `play.example` se quedan para los juegos sin práctica (§3.6).
 
 ### 3.6 Juegos sin práctica
 
-Mientras se construía esta práctica, `main` sumó Guardagujas y los 14 juegos de preguntas. El dueño decidió unir los cambios y publicar sin hacerles una práctica (la de Guardagujas puede llegar después).
+Mientras se construía esta práctica, `main` sumó Guardagujas, Lluvia de estrellas y los 14 juegos de preguntas. El dueño decidió unir los cambios y publicar sin hacerles una práctica. Después, Guardagujas recibió la suya (§4.7).
 
-- **Quiénes:** Guardagujas y los 14 juegos de preguntas. Los cinco juegos originales tienen práctica.
+- **Quiénes:** Lluvia de estrellas y los 14 juegos de preguntas. Los cinco juegos originales y Guardagujas tienen práctica.
 - **Primera vez:** la pantalla de pasos con su ejemplo y «Comenzar», como antes. «Comenzar» marca el juego como visto; los de preguntas comparten la marca (`quiz.instructions`), así que la pantalla aparece una sola vez para los 14.
 - **Quien ya jugó:** «¿Cómo se juega?» abre esa misma pantalla de pasos, y su «Comenzar» empieza el juego.
 - **En la pausa:**
@@ -175,8 +175,35 @@ Una línea por juego. Debe nombrar la penalización, si la hay, con su número e
 - **Cálculo relámpago:**
   - ES: «Tienes 60 segundos. Cada acierto suma, cada error resta 10 y saltar no resta.»
   - EN: «You have 60 seconds. Each right answer scores, each mistake costs 10, and skipping costs nothing.»
+- **Guardagujas** (sin penalización: un tren en otra estación no suma):
+  - ES: «Tienes 90 segundos. Cada tren que llega a su estación suma; si llega a otra, no suma. Van más rápido mientras aciertas. Con teclado: números 1 a 9.»
+  - EN: «You have 90 seconds. Each train that reaches its station scores; if it reaches another, it scores nothing. They speed up while you get them right. On a keyboard: numbers 1 to 9.»
 
 Las cifras salen de las constantes del juego (duración, rondas y penalizaciones). Una prueba fija que coincidan.
+
+### 4.7 Guardagujas (3 rondas, mapa de 3 estaciones)
+
+- **Mapa y ritmo:**
+  - El mapa del nivel 1 sin espejo (`mapFor(3, false)`): el cambio 1 manda a la izquierda, a la estación roja (círculo), o sigue hacia el cambio 2, que manda a la amarilla (cuadrado) o a la verde (triángulo).
+  - La velocidad es la del nivel 1. Ningún tren sale solo del túnel: cada ronda trae los suyos.
+  - El patio es el del juego y corre en tiempo real: los trenes avanzan solos, el humo se apaga con movimiento reducido, y los toques y los números 1 a 9 mueven los cambios como en el juego.
+- **Rondas:**
+  1. **«Toca el cambio».** Un tren rojo espera fuera del túnel, justo antes del cambio 1, que lo mandaría a la estación amarilla. No se mueve mientras los cambios no lo lleven a la roja. En cuanto lo llevan, arranca y llega. Si el cambio vuelve atrás antes de que el tren lo cruce, el tren sigue el nuevo camino, y llegar a otra estación cuenta como un fallo.
+  2. **«Ahora en marcha».** Un tren amarillo sale enseguida y los cambios lo llevan a la estación verde. Hay que mover el cambio 2 antes de que llegue a él, unos 3 s después.
+  3. **«Dos trenes».** Un tren verde sale enseguida, rumbo a la estación amarilla: hay que mover el cambio 2. Uno rojo sale 4 s después (el intervalo del nivel 1) y necesita el cambio 1 de vuelta a la izquierda cuando el verde ya pasó.
+- **Guía:**
+  - Ronda 1: «Toca el cambio (el círculo con flecha) para que el tren rojo vaya a la estación roja, la del círculo» / «Tap the switch (the circle with an arrow) so the red train goes to the red station, the circle one».
+  - Ronda 2: «Ahora el tren avanza solo: cambia la vía antes de que llegue al cambio» / «Now the train moves on its own: switch the track before it reaches the switch».
+  - Ronda 3: «Pueden venir varios a la vez: lleva cada uno a su estación» / «Several can come at once: take each one to its station».
+- **Al acertar:** la ronda acierta cuando todos sus trenes llegaron a su estación. La reacción es una por ronda, no por tren. Mientras dice «¡Bien!», el tren sigue entrando en la estación, como en el juego.
+- **Sin puntos:** la marca de llegada muestra el visto o la ✕, nunca «+10».
+- **Cambios quietos:** mientras dice «¡Bien!», y desde un fallo hasta que la ronda empieza de nuevo, los toques y las teclas no mueven los cambios.
+- **Reloj:** avanza a lo sumo 100 ms de un cuadro al siguiente, así que con la app oculta la práctica simplemente se detiene.
+- **Al fallar:**
+  - Un tren en otra estación muestra la pista. Un segundo después, la ronda empieza de nuevo tal como empezó, y la pista sigue a la vista durante el nuevo intento.
+  - Ronda 2: «El tren amarillo va a la estación amarilla, la del cuadrado. Inténtalo otra vez» / «The yellow train goes to the yellow station, the square one. Try again».
+  - Rondas 1 y 3: «Cada tren va a la estación de su color y forma. Inténtalo otra vez» / «Each train goes to the station of its color and shape. Try again».
+- **Construcción:** el juego y la práctica comparten el bucle del patio (`useSwitchyardWorld`). Los puntos y el nivel de su estado no se usan en la práctica.
 
 ## 5. Diseño técnico
 
@@ -188,7 +215,7 @@ Las cifras salen de las constantes del juego (duración, rondas y penalizaciones
 
 ### 5.2 Por juego
 
-- `src/games/<id>/Practice.tsx` con sus rondas como datos y su pantalla. Reusa `ArrowRow`/`ArrowIcon`, `Board`, `CardView`/`RuleIcon`, `SymbolGlyph`, `Keypad` y el formato de operaciones del juego.
+- `src/games/<id>/Practice.tsx` con sus rondas como datos y su pantalla. Reusa `ArrowRow`/`ArrowIcon`, `Board`, `CardView`/`RuleIcon`, `SymbolGlyph`, `Keypad`, el formato de operaciones del juego y el patio de Guardagujas.
 - `GameDefinition` gana `Practice?: ComponentType<PracticeProps>`, y `Example` pasa a ser opcional, solo para los juegos sin práctica (§3.6).
 - Textos nuevos bajo `games.<id>.practice.*` (rondas, pistas y resumen) y `practice.*` (marco: entrada, «¡Listo!», «Saltar práctica», «Práctica N de M», «¡Bien!»).
 
@@ -236,5 +263,5 @@ Las cifras salen de las constantes del juego (duración, rondas y penalizaciones
   - Una práctica completa de principio a fin (Flechas), hasta el juego.
   - Los ayudantes actuales usan «Saltar práctica» cuando aparece.
   - Objetivos táctiles de al menos 44 px en la práctica.
-  - Sin desplazamiento lateral a 320 px en las cinco prácticas, en ES y EN.
+  - Sin desplazamiento lateral a 320 px en cada práctica, en ES y EN.
   - Capturas de cada práctica (una ronda con el guía y una con la pista) para la revisión del dueño.

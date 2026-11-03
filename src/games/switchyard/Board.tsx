@@ -31,15 +31,12 @@ export interface BoardProps {
   arrivals?: readonly Arrival[];
   /** Game time, for the arrival animations. */
   now?: number;
-  /** Buttons over the switches. Without it the board is only looked at (the example). */
-  onToggle?: (index: number) => void;
+  /** Flips a switch: each one gets a button. */
+  onToggle: (index: number) => void;
+  /** No smoke at all, and the arrival marks stand still. */
   reducedMotion?: boolean;
   /** Width in CSS pixels; without it the board takes the width of its box (up to 420 px). */
   width?: number;
-  /** Draw the puffs on a canvas, cheap enough to redraw on every frame (the game). Without it they are drawn in the
-      picture, which suits a still board (the example). */
-  smokeCanvas?: boolean;
-  className?: string;
 }
 
 const pathOf = (points: readonly Point[]) =>
@@ -61,8 +58,6 @@ export function Board({
   onToggle,
   reducedMotion = false,
   width,
-  smokeCanvas = false,
-  className = '',
 }: BoardProps) {
   const { t } = useTranslation();
   const uid = `sy${useId().replace(/[^a-zA-Z0-9]/g, '')}`;
@@ -70,7 +65,7 @@ export function Board({
 
   return (
     <div
-      className={`${styles.board} ${className}`}
+      className={styles.board}
       style={width === undefined ? undefined : { width }}
       role="group"
       aria-label={t('games.switchyard.board')}
@@ -87,21 +82,18 @@ export function Board({
         {trains.map((train) => (
           <TrainView key={train.id} map={map} train={train} uid={uid} />
         ))}
-        {/* The smoke rises from the chimneys, above the trains. */}
-        {!smokeCanvas &&
-          puffs.map((p) => (
-            <circle key={p.id} cx={p.x} cy={p.y} r={p.r} fill={`url(#${uid}-puff)`} opacity={p.opacity} />
-          ))}
         {arrivals.map((a) => (
           <ArrivalMark key={a.trainId} at={map.stations[a.station].at} arrival={a} now={now} still={reducedMotion} />
         ))}
       </svg>
-      {smokeCanvas && <SmokeCanvas puffs={puffs} width={width} />}
+      {/* The smoke rises from the chimneys, above the trains, on a canvas cheap enough to redraw on every frame. It is
+          decoration, so reduced motion has none. */}
+      {!reducedMotion && <SmokeCanvas puffs={puffs} width={width} />}
       <svg className={styles.layer} viewBox={viewBox} aria-hidden="true">
         <Front map={map} uid={uid} />
       </svg>
       <Fireflies map={map} />
-      {onToggle && <SwitchButtons map={map} switches={switches} onToggle={onToggle} />}
+      <SwitchButtons map={map} switches={switches} onToggle={onToggle} />
     </div>
   );
 }
@@ -251,11 +243,6 @@ function Defs({ uid }: { uid: string }) {
           <stop offset="1" stopColor={style.color} stopOpacity="0" />
         </radialGradient>
       ))}
-      <radialGradient id={`${uid}-puff`}>
-        <stop offset="0" stopColor="#f1f3ff" stopOpacity="1" />
-        <stop offset="0.55" stopColor="#dfe4f7" stopOpacity="0.8" />
-        <stop offset="1" stopColor="#c9cfe6" stopOpacity="0" />
-      </radialGradient>
       <radialGradient id={`${uid}-ground`} cx="0.5" cy="0.4" r="0.75">
         <stop offset="0" stopColor="#13282b" />
         <stop offset="1" stopColor="#0a151b" />
@@ -453,7 +440,7 @@ function ArrivalMark({ at, arrival, now, still }: { at: Point; arrival: Arrival;
           strokeLinecap="round"
           strokeLinejoin="round"
         />
-        {arrival.correct && (
+        {arrival.correct && arrival.points > 0 && (
           <text y={-16} textAnchor="middle" fill={color} fontSize={13} fontWeight={800}>
             +{arrival.points}
           </text>

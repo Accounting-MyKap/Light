@@ -236,12 +236,6 @@
       "title": "Guardagujas",
       "skill": "Atención dividida",
       "description": "Mueve los cambios de vía para que cada tren llegue a la estación de su color.",
-      "instructions": [
-        "Los trenes salen del túnel y avanzan solos por las vías.",
-        "Toca los cambios de vía (los círculos con flecha) para elegir por dónde sigue cada tren. Con teclado, usa los números 1 a 9.",
-        "Lleva cada tren a la estación de su mismo color y forma. Si llega a otra estación, no suma puntos.",
-        "Atento: puede haber varios trenes a la vez, y van más rápido mientras aciertas."
-      ],
       "board": "Mapa de vías",
       "switch": "Cambio {{n}}: {{direction}}",
       "directions": {
@@ -254,10 +248,17 @@
         "up": "hacia arriba",
         "up-right": "arriba a la derecha"
       },
-      "exampleAnswer": "Toca el cambio para que el tren rojo vaya a la estación roja, la del círculo.",
       "levelStations": "{{n}} estaciones",
       "levelSideTunnel": "túnel lateral",
-      "levelMiddleStation": "estación central"
+      "levelMiddleStation": "estación central",
+      "practice": {
+        "tap": "Toca el cambio (el círculo con flecha) para que el tren rojo vaya a la estación roja, la del círculo",
+        "moving": "Ahora el tren avanza solo: cambia la vía antes de que llegue al cambio",
+        "two": "Pueden venir varios a la vez: lleva cada uno a su estación",
+        "hintYellow": "El tren amarillo va a la estación amarilla, la del cuadrado. Inténtalo otra vez",
+        "hintEach": "Cada tren va a la estación de su color y forma. Inténtalo otra vez",
+        "recap": "Tienes 90 segundos. Cada tren que llega a su estación suma; si llega a otra, no suma. Van más rápido mientras aciertas. Con teclado: números 1 a 9."
+      }
     },
     "star-shower": {
       "title": "Lluvia de estrellas",

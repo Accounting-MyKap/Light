@@ -169,10 +169,10 @@ test.describe('narrow English screen', () => {
   test('no sideways scroll at 320 px in English', async ({ page }) => {
     for (const id of GAMES) {
       await page.goto(`./#/play/${id}`);
-      // First visit: the practice invitation, or the instructions with their example for the games without a
-      // practice (Guardagujas, Lluvia de estrellas).
+      // First visit: the practice invitation, or the instructions with their example for the game without a
+      // practice (Lluvia de estrellas).
       const first =
-        id === 'switchyard' || id === 'star-shower'
+        id === 'star-shower'
           ? page.getByRole('button', { name: 'Start', exact: true })
           : page.getByRole('button', { name: 'Skip practice', exact: true });
       await expect(first, `${id} first visit`).toBeVisible();
