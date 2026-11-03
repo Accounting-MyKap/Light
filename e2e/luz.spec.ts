@@ -312,6 +312,10 @@ test.describe('Star Shower on short phones', () => {
         expect(box!.y, `${name} top edge`).toBeGreaterThanOrEqual(0);
         expect(box!.y + box!.height, `${name} bottom edge`).toBeLessThanOrEqual(viewport.height);
       }
+      // The keys are shorter here, but never under the 44 px touch minimum.
+      const keys = page.locator('[data-game] [data-zone="controls"] button');
+      await expect(keys).toHaveCount(12);
+      for (const key of await keys.all()) expect((await key.boundingBox())!.height).toBeGreaterThanOrEqual(44);
     });
   }
 });
