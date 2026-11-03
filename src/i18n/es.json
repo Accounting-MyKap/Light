@@ -150,7 +150,16 @@
         "purple": "morado"
       },
       "exampleAnswer": "Regla COLOR: la respuesta es el cuadrado azul.",
-      "exampleAnswerShape": "Regla FORMA: la respuesta es el círculo naranja."
+      "exampleAnswerShape": "Regla FORMA: la respuesta es el círculo naranja.",
+      "practice": {
+        "round1": "La regla dice COLOR: busca la carta del mismo color",
+        "round2": "Sigue siendo COLOR: no te fijes en la forma",
+        "round3": "¡Cambió la regla! Ahora busca la misma FORMA",
+        "round4": "Fíjate siempre en el cartel de arriba",
+        "hintColor": "La regla es COLOR y el centro es {{color}}",
+        "hintShape": "La regla es FORMA y el centro es un {{shape}}",
+        "recap": "Tienes 60 segundos. Cada error resta 20 puntos: responde rápido, pero sin adivinar."
+      }
     },
     "quick-math": {
       "title": "Cálculo relámpago",

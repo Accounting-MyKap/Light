@@ -3,6 +3,7 @@ import { RULE_SWITCH_MAX_SCORE, RULE_SWITCH_REFERENCE_SCORE } from './engine';
 import { RuleSwitchExample } from './Example';
 import { RuleSwitchThumb } from './Thumb';
 import { RuleSwitchGame } from './Game';
+import { RuleSwitchPractice } from './Practice';
 
 export const ruleSwitchGame: GameDefinition = {
   id: 'rule-switch',
@@ -12,4 +13,5 @@ export const ruleSwitchGame: GameDefinition = {
   Component: RuleSwitchGame,
   Example: RuleSwitchExample,
   Thumb: RuleSwitchThumb,
+  Practice: RuleSwitchPractice,
 };

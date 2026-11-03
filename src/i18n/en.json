@@ -150,7 +150,16 @@
         "purple": "purple"
       },
       "exampleAnswer": "COLOR rule: the answer is the blue square.",
-      "exampleAnswerShape": "SHAPE rule: the answer is the orange circle."
+      "exampleAnswerShape": "SHAPE rule: the answer is the orange circle.",
+      "practice": {
+        "round1": "The rule says COLOR: find the card with the same color",
+        "round2": "Still COLOR: ignore the shape",
+        "round3": "The rule changed! Now find the same SHAPE",
+        "round4": "Always check the sign on top",
+        "hintColor": "The rule is COLOR and the middle card is {{color}}",
+        "hintShape": "The rule is SHAPE and the middle card is a {{shape}}",
+        "recap": "You have 60 seconds. Each mistake costs 20 points: be quick, but don't guess."
+      }
     },
     "quick-math": {
       "title": "Quick Math",
