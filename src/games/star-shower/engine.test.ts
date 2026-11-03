@@ -233,6 +233,21 @@ test('a star reaching the horizon costs a life, clears the sky without points an
   expect(after.state.breakMs).toBe(BREAK_MS);
 });
 
+test('a lost star clears a half-typed answer; what is typed during the break is kept', () => {
+  const rng = createRng(3);
+  const s = typed(withStars([star({ bornAt: 0, fallMs: 9000 })], { nextSpawnAt: 20_000 }), '12');
+  expect(s.input).toBe('12');
+  const lost = advance(s, 9000, rng);
+  expect(lost.events.map((e) => e.kind)).toEqual(['lost']);
+  expect(lost.state.input).toBe('');
+
+  const during = advance(typed(lost.state, '7'), 10_000, rng);
+  expect(during.state.input).toBe('7');
+  const after = advance(during.state, 9000 + BREAK_MS, rng);
+  expect(after.state.stars).toHaveLength(1);
+  expect(after.state.input).toBe('7');
+});
+
 test('the third lost star ends the game at that moment, with no break', () => {
   const rng = createRng(11);
   const r = advance(createStarShower(1, rng), 60_000, rng);

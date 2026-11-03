@@ -151,9 +151,11 @@ export function advance(
       const lander = current.stars.find((s) => s.bornAt + s.fallMs === t) as Star;
       const lives = current.lives - 1;
       events.push({ kind: 'lost', star: lander, cleared: current.stars.filter((s) => s !== lander) });
+      // A half-typed answer goes with the stars it was meant for; what is typed during the break is kept.
       current = {
         ...current,
         stars: [],
+        input: '',
         lives,
         lost: current.lost + 1,
         breakUntil: lives === 0 ? null : t + BREAK_MS,
