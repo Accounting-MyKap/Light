@@ -497,3 +497,11 @@ test('«Volver» on the free-play result of a deep link goes to the catalog', as
   await userEvent.click(screen.getByRole('button', { name: 'Volver' }));
   expect(await screen.findByRole('heading', { level: 1, name: 'Juegos' })).toBeInTheDocument();
 });
+
+test('«Volver» on a quiz result opened from the Quiz tab goes back to it', async () => {
+  await updateSettings({ seenInstructions: ['quiz.instructions'] });
+  await openWithHistory(['/quiz', '/play/fakeq'], 1);
+  await finishFakeGame();
+  await userEvent.click(screen.getByRole('button', { name: 'Volver' }));
+  expect(await screen.findByRole('heading', { level: 1, name: 'Preguntas' })).toBeInTheDocument();
+});
