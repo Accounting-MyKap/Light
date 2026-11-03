@@ -280,6 +280,28 @@ test('finishes once after 90 seconds', () => {
   expect(onFinish.mock.calls[0][0]).toMatchObject({ durationMs: 90_000 });
 });
 
+test('trains that arrive after the last frame drawn, before the 90 s end, count in the result', () => {
+  const onFinish = vi.fn();
+  renderGame({ onFinish });
+  advance(1100);
+  routeFirstTrain();
+  // The browser stops drawing (a phone saving power, a stalled page): after the frame already asked for, the yard is
+  // not moved again before the end.
+  vi.stubGlobal('requestAnimationFrame', () => 0);
+  advance(100);
+  expect(hud('Puntos')).toBe('0');
+  expect(document.querySelector('[data-arrival]')).toBeNull();
+
+  advance(90_000);
+  expect(onFinish).toHaveBeenCalledTimes(1);
+  // The first train got home, and at least one more reached a station, in the 89 s nobody saw.
+  const result = onFinish.mock.calls[0][0];
+  expect(result.score).toBeGreaterThanOrEqual(10);
+  expect(result.accuracy).toBeGreaterThan(0);
+  expect(result.accuracy).toBeLessThanOrEqual(1);
+  expect(result.durationMs).toBe(90_000);
+});
+
 test('each level says which map it brings', () => {
   const t = i18n.t.bind(i18n);
   expect(switchyardGame.describeLevel?.(1, t)).toBe('3 estaciones');
