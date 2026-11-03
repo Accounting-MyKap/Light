@@ -98,9 +98,9 @@ docs/         especificación, planes de implementación y guía de contenido de
    (`Game.tsx`), la manera de enseñarlo y su definición (`index.ts`). Para enseñarlo hay dos opciones,
    y cada juego tiene exactamente una:
    - **una práctica guiada** (`Practice.tsx`, que recibe `onComplete` y `onSkip`), la recomendada y la de
-     los 5 juegos originales; va en `index.ts` como `Practice`;
-   - **o la pantalla de instrucciones**, como Guardagujas y los juegos de preguntas: un ejemplo estático
-     (`Example.tsx`, en `index.ts` como `Example`) junto a los pasos.
+     los 5 juegos originales y Guardagujas; va en `index.ts` como `Practice`;
+   - **o la pantalla de instrucciones**, como Lluvia de estrellas y los juegos de preguntas: un ejemplo
+     estático (`Example.tsx`, en `index.ts` como `Example`) junto a los pasos.
 2. Agrega una línea en `src/games/registry.ts`.
 3. Agrega `games.<id>.title`, `skill` y `description` en `es.json` y `en.json`, y además:
    - con práctica, `games.<id>.practice.*`, donde `practice.recap` es el resumen de las reglas en una
