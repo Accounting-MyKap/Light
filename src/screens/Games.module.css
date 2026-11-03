@@ -130,6 +130,11 @@
   .skill {
     align-self: start;
   }
+  /* Today's games have no skill line: the name sits centred beside the thumbnail. */
+  .card:not(:has(.skill)) .name {
+    grid-row: 1 / span 2;
+    align-self: center;
+  }
 }
 .done {
   position: absolute;
