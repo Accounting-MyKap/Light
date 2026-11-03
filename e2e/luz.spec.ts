@@ -169,12 +169,8 @@ test.describe('narrow English screen', () => {
   test('no sideways scroll at 320 px in English', async ({ page }) => {
     for (const id of GAMES) {
       await page.goto(`./#/play/${id}`);
-      // First visit: the practice invitation, or the instructions with their example for the game without a
-      // practice (Lluvia de estrellas).
-      const first =
-        id === 'star-shower'
-          ? page.getByRole('button', { name: 'Start', exact: true })
-          : page.getByRole('button', { name: 'Skip practice', exact: true });
+      // First visit: every training game invites to its practice.
+      const first = page.getByRole('button', { name: 'Skip practice', exact: true });
       await expect(first, `${id} first visit`).toBeVisible();
       expect(await hasNoSidewaysScroll(page), `${id} first visit scrolls sideways`).toBe(true);
 
@@ -209,8 +205,9 @@ test.describe('Star Shower at 320 px', () => {
         }),
     );
 
+    // A first visit: skipping the practice starts the game at the seeded level.
     await page.goto('./#/play/star-shower');
-    await page.getByRole('button', { name: 'Start' }).click();
+    await page.getByRole('button', { name: 'Skip practice', exact: true }).click();
     const stars = page.getByTestId('star');
     await expect(stars).toHaveCount(3, { timeout: 15_000 });
     // A star is born above the sky and comes down anchored by its bottom edge, so wait until the newest one has
@@ -334,7 +331,7 @@ test.describe('Star Shower on short phones', () => {
     test(`Star Shower fits ${viewport.width}×${viewport.height} without scrolling`, async ({ page }) => {
       await page.setViewportSize(viewport);
       await page.goto('./#/play/star-shower');
-      await page.getByRole('button', { name: 'Comenzar' }).click();
+      await startGame(page);
       await expect(page.locator('[data-game]')).toBeVisible();
       await expect(page.getByTestId('star').first()).toBeAttached();
 
