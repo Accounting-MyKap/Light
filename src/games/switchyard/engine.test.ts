@@ -6,6 +6,7 @@ import {
   advanceSwitchyard,
   arrivalPoints,
   createSwitchyardGame,
+  destinationOf,
   pickStation,
   spawnIntervalMs,
   switchyardResult,
@@ -16,7 +17,7 @@ import {
   type SwitchyardState,
 } from './engine';
 import { poseAt } from './geometry';
-import { stationCountForLevel } from './maps';
+import { ALL_MAPS, mapFor, stationCountForLevel } from './maps';
 
 /** Sets every switch so the tracks lead to the given station. */
 function routeTo(state: SwitchyardState, stationId: number): SwitchyardState {
@@ -242,6 +243,40 @@ describe('switches', () => {
     expect(toggleSwitch(s, 9)).toBe(s);
     expect(toggleSwitch(s, -1)).toBe(s);
   });
+});
+
+describe('destinationOf', () => {
+  test('follows the switches from a segment to the station a train there would reach', () => {
+    const map = mapFor(3, false);
+    // Out of the tunnel: switch 1 sends left to red (0) or on to switch 2, which sends to yellow (1) or green (2).
+    expect(destinationOf(map, [0, 0], 0)).toBe(0);
+    expect(destinationOf(map, [0, 1], 0)).toBe(0);
+    expect(destinationOf(map, [1, 0], 0)).toBe(1);
+    expect(destinationOf(map, [1, 1], 0)).toBe(2);
+    // From a segment past the first switch, only the switches ahead count.
+    const middle = map.switches[0].exits[1];
+    expect(destinationOf(map, [0, 1], middle)).toBe(2);
+    // A segment that ends at a station leads there whatever the switches say.
+    expect(destinationOf(map, [1, 1], map.switches[0].exits[0])).toBe(0);
+  });
+
+  test('agrees with every station route, on every map', () => {
+    for (const map of ALL_MAPS) {
+      for (const station of map.stations) {
+        const switches = map.switches.map(() => 0 as 0 | 1);
+        for (const [sw, option] of station.route) switches[sw] = option;
+        expect(destinationOf(map, switches, 0), `${map.key} station ${station.id}`).toBe(station.id);
+      }
+    }
+  });
+});
+
+test('no train ever leaves the tunnel while the next one is due at Infinity', () => {
+  const rng = createRng(18);
+  const s = { ...createSwitchyardGame(1, rng, 0), nextSpawnAt: Infinity };
+  const later = run(s, 60_000, rng, 50).state;
+  expect(later.trains).toHaveLength(0);
+  expect(later.nextTrainId).toBe(0);
 });
 
 test('trains on the same track stay at least 112 units apart, whatever the switches and the level do', () => {
