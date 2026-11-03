@@ -194,3 +194,17 @@ descarrilados en las curvas. Aprobó este diseño en la conversación.
   propias, con las luciérnagas y el faro de los cambios como elementos HTML animados por el navegador; los botones y
   discos de los cambios no se vuelven a dibujar en cada cuadro. Con la CPU 4× más lenta y la compilación de
   producción, el trabajo por cuadro bajó de 31–34 ms (versión 1) a ≈ 28 ms con toda la pradera.
+
+## 9. Túneles laterales, estación central y margen para reaccionar (pedido del dueño, 2026-11-03)
+
+- **Túnel en un costado** en los niveles 3–4 (4 estaciones) y 7–8 (6 estaciones): la boca queda en x 40 (o 320 en el
+  espejo), mirando hacia el centro, y los trenes entran cruzando la parte de arriba del mapa, de perfil. El portal se
+  dibuja girado, un poco menos profundo, en un montículo de pasto. Los niveles 1–2 conservan el túnel arriba al centro.
+- **Estación en el medio del mapa** en los niveles 5–6 (5 estaciones) y 9–10 (7 estaciones), rodeada por las vías que
+  van a las demás.
+- Cada mapa guarda su túnel (`TrackMap.tunnel`: punto y rumbo); el espejo lo refleja. Pruebas nuevas: al menos dos
+  tamaños de mapa con túnel lateral (izquierdo y derecho entre los espejos) y al menos dos con estación central.
+- **Margen para reaccionar** (`SWITCH_GRACE` = 24 u): si se cambia un cambio de vía mientras un tren todavía está
+  encima de él (su frente lo pasó por 24 u o menos, entre 0,18 y 0,34 s según la velocidad), el tren toma la nueva
+  salida a la misma distancia. Esto reemplaza la regla de la §3 («toma la dirección que el cambio tenga en ese
+  instante»): ahora vale la dirección que tenga cuando el tren termina de pasar por encima.

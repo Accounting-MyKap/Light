@@ -4,7 +4,6 @@ import {
   BOARD,
   decorFootprint,
   STATION_STYLES,
-  TUNNEL,
   mapFor,
   mirrorMap,
   stationCountForLevel,
@@ -26,6 +25,12 @@ function distToLine(p: Point, points: Point[]): number {
   let best = Infinity;
   for (let i = 1; i < points.length; i++) best = Math.min(best, distToSegment(p, points[i - 1], points[i]));
   return best;
+}
+
+/** A tunnel on a side: close to the left or right edge, with the trains coming out across the board. */
+function onSide(map: TrackMap): boolean {
+  const across = Math.abs(Math.cos((map.tunnel.angle * Math.PI) / 180)) > 0.99;
+  return across && (map.tunnel.at.x <= 50 || map.tunnel.at.x >= BOARD.width - 50);
 }
 
 /** True when the point lies inside the pond's ellipse grown by `margin`. */
@@ -86,7 +91,14 @@ describe.each(ALL_MAPS.map((m) => [m.key, m] as const))('map %s', (_key, map) =>
     expect(map.switches).toHaveLength(n - 1);
     expect(map.segments).toHaveLength(2 * n - 1);
     expect(map.segments[0].from).toBe('tunnel');
-    expect(dist(map.segments[0].line.points[0], TUNNEL)).toBeLessThan(1e-6);
+    expect(dist(map.segments[0].line.points[0], map.tunnel.at)).toBeLessThan(1e-6);
+  });
+
+  test('the first track leaves the tunnel the way the tunnel faces, from the top or from a side', () => {
+    const start = poseAt(map.segments[0].line, 0);
+    expect(dist(start, map.tunnel.at)).toBeLessThan(1e-6);
+    expect(start.angle).toBeCloseTo(map.tunnel.angle);
+    expect(onSide(map) || map.tunnel.at.y <= 50).toBe(true);
   });
 
   test('uses the first N styles once each', () => {
@@ -159,7 +171,7 @@ describe.each(ALL_MAPS.map((m) => [m.key, m] as const))('map %s', (_key, map) =>
 
   test('switches stand apart from each other, the stations and the tunnel', () => {
     for (const sw of map.switches) {
-      expect(dist(sw.at, TUNNEL)).toBeGreaterThanOrEqual(70);
+      expect(dist(sw.at, map.tunnel.at)).toBeGreaterThanOrEqual(70);
       for (const other of map.switches) if (other !== sw) expect(dist(sw.at, other.at)).toBeGreaterThanOrEqual(70);
       for (const st of map.stations) expect(dist(sw.at, st.at)).toBeGreaterThanOrEqual(70);
     }
@@ -187,7 +199,7 @@ describe.each(ALL_MAPS.map((m) => [m.key, m] as const))('map %s', (_key, map) =>
       expect(f.x + f.r).toBeLessThanOrEqual(BOARD.width);
       expect(f.y - f.r).toBeGreaterThanOrEqual(0);
       expect(f.y + f.r).toBeLessThanOrEqual(BOARD.height);
-      expect(dist(f, TUNNEL), `${d.kind} near the tunnel`).toBeGreaterThanOrEqual(f.r + 30);
+      expect(dist(f, map.tunnel.at), `${d.kind} near the tunnel`).toBeGreaterThanOrEqual(f.r + 30);
       for (const segment of map.segments) {
         expect(distToLine(f, segment.line.points), `${d.kind} on a track`).toBeGreaterThanOrEqual(f.r + 8);
       }
@@ -209,7 +221,7 @@ describe.each(ALL_MAPS.map((m) => [m.key, m] as const))('map %s', (_key, map) =>
       expect(pond.x + pond.rx).toBeLessThanOrEqual(BOARD.width - 8);
       expect(pond.y + pond.ry).toBeLessThanOrEqual(BOARD.height - 8);
       for (const segment of map.segments) for (const p of samples(segment)) expect(insideEllipse(p, pond, 12)).toBe(false);
-      for (const p of [TUNNEL, ...map.stations.map((st) => st.at), ...map.switches.map((sw) => sw.at)]) {
+      for (const p of [map.tunnel.at, ...map.stations.map((st) => st.at), ...map.switches.map((sw) => sw.at)]) {
         expect(insideEllipse(p, pond, 30)).toBe(false);
       }
     }
@@ -268,7 +280,24 @@ test('mirroring flips x and keeps the routes', () => {
     expect(mirrored.stations[i].route).toEqual(st.route);
   });
   expect(mirrored.switches[0].exitAngles[0]).toBeCloseTo(180 - map.switches[0].exitAngles[0]);
+  expect(mirrored.tunnel.at.x).toBeCloseTo(BOARD.width - map.tunnel.at.x);
+  expect(mirrored.tunnel.angle).toBeCloseTo(180 - map.tunnel.angle);
   expect(mirrored.decor[0].x).toBeCloseTo(BOARD.width - map.decor[0].x);
   expect(mirrored.ponds[0].x).toBeCloseTo(BOARD.width - map.ponds[0].x);
   expect(mirrored.fireflies[0].x).toBeCloseTo(BOARD.width - map.fireflies[0].x);
+});
+
+test('on some levels the trains come out of a tunnel on a side, left or right', () => {
+  const side = ALL_MAPS.filter(onSide);
+  expect(new Set(side.map((m) => m.stations.length)).size).toBeGreaterThanOrEqual(2);
+  expect(side.some((m) => m.tunnel.at.x <= 50)).toBe(true);
+  expect(side.some((m) => m.tunnel.at.x >= BOARD.width - 50)).toBe(true);
+  // The easiest levels keep the tunnel at the top.
+  expect(mapFor(3, false).tunnel).toEqual({ at: { x: 180, y: 40 }, angle: 90 });
+});
+
+test('on some levels a station waits in the middle of the map', () => {
+  const inMiddle = (m: TrackMap) =>
+    m.stations.some((st) => st.at.x >= 110 && st.at.x <= 250 && st.at.y >= 180 && st.at.y <= 450);
+  expect(new Set(ALL_MAPS.filter(inMiddle).map((m) => m.stations.length)).size).toBeGreaterThanOrEqual(2);
 });

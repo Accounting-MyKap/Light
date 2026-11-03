@@ -3,18 +3,27 @@ import { clampLevel } from '../../core/difficulty';
 import { polyline, poseAt, roundCorners, type Point, type Polyline } from './geometry';
 
 /*
- * The track maps, drawn by hand on the 360 × 600 board. Each map is a tree: the trains leave the tunnel at the top
- * and every switch splits the track in two until it ends at a station, on a side or along the bottom. Tracks run
- * across the board as well as down, so the trains are often seen from the side. Every switch sits on a track that
- * arrives heading down, and both of its exits start heading down too, so a train never turns sharply at a junction.
+ * The track maps, drawn by hand on the 360 × 600 board. Each map is a tree: the trains leave the tunnel (at the top,
+ * or on a side on some levels) and every switch splits the track in two until it ends at a station, on a side, along
+ * the bottom or, on some levels, in the middle of the map. Tracks run
+ * across the board as well as down, so the trains are often seen from the side. Both exits of a switch start in the
+ * heading of the track that arrives, so a train never turns sharply at a junction.
  * Around the tracks grows a night meadow (trees, bushes, rocks, flowers, a pond, fireflies), placed by a generator
  * seeded with the map's key, so a map always looks the same.
  */
 
 export const BOARD = { width: 360, height: 600 } as const;
 
-/** The mouth of the tunnel, where every train comes out. */
-export const TUNNEL: Point = { x: 180, y: 40 };
+/** Where the trains come out, and the heading they come out in (degrees, 0 right, 90 down). */
+export interface Tunnel {
+  at: Point;
+  angle: number;
+}
+
+/** The usual tunnel, at the top in the middle, facing down. */
+const TOP_TUNNEL: Tunnel = { at: { x: 180, y: 40 }, angle: 90 };
+/** A tunnel on the left edge, facing right (mirrored maps have it on the right). */
+const LEFT_TUNNEL: Tunnel = { at: { x: 40, y: 100 }, angle: 0 };
 
 /** Radius of the curves, in board units. */
 const CURVE_RADIUS = 26;
@@ -91,6 +100,7 @@ export interface Patch {
 
 export interface TrackMap {
   key: string;
+  tunnel: Tunnel;
   segments: TrackSegment[];
   switches: TrackSwitch[];
   stations: TrackStation[];
@@ -154,173 +164,153 @@ const BLUEPRINTS: Record<number, Blueprint> = {
       ]),
     ),
   ),
+  // The tunnel is on a side (see TUNNELS): the trains come in across the top.
   4: fork(
-    [[180, 120]],
+    [[120, 100]],
+    fork(
+      [[230, 100]],
+      station(1, [[324, 100]]),
+      station(3, [
+        [244, 100],
+        [268, 124],
+        [268, 548],
+      ]),
+    ),
     fork(
       [
-        [180, 134],
-        [156, 158],
-        [110, 158],
-        [110, 250],
+        [134, 100],
+        [158, 124],
+        [158, 300],
       ],
       station(2, [
-        [110, 264],
-        [86, 288],
-        [36, 288],
+        [158, 314],
+        [134, 338],
+        [36, 338],
       ]),
-      station(0, [
-        [110, 410],
-        [60, 410],
-        [60, 548],
-      ]),
-    ),
-    fork(
-      [
-        [180, 134],
-        [204, 158],
-        [250, 158],
-        [250, 330],
-      ],
-      station(3, [
-        [250, 470],
-        [200, 470],
-        [200, 548],
-      ]),
-      station(1, [
-        [250, 344],
-        [274, 368],
-        [324, 368],
-      ]),
+      station(0, [[158, 548]]),
     ),
   ),
+  // A station waits in the middle of the map.
   5: fork(
     [[180, 110]],
     fork(
       [
         [180, 124],
         [156, 148],
-        [120, 148],
-        [120, 230],
+        [100, 148],
+        [100, 250],
       ],
       station(4, [
-        [120, 244],
-        [96, 268],
-        [36, 268],
+        [100, 264],
+        [76, 288],
+        [36, 288],
       ]),
-      fork(
-        [[120, 400]],
-        station(1, [
-          [120, 414],
-          [96, 438],
-          [60, 438],
-          [60, 548],
-        ]),
-        station(3, [
-          [120, 414],
-          [144, 438],
-          [170, 438],
-          [170, 548],
-        ]),
-      ),
+      station(1, [
+        [100, 450],
+        [140, 450],
+        [140, 548],
+      ]),
     ),
     fork(
       [
         [180, 124],
         [204, 148],
-        [250, 148],
-        [250, 300],
+        [260, 148],
+        [260, 240],
       ],
-      station(2, [
-        [250, 470],
-        [324, 470],
-      ]),
       station(0, [
-        [250, 314],
-        [274, 338],
-        [324, 338],
+        [260, 254],
+        [236, 278],
+        [180, 278],
+        [180, 330],
       ]),
+      fork(
+        [[260, 400]],
+        station(2, [
+          [260, 414],
+          [284, 438],
+          [324, 438],
+        ]),
+        station(3, [
+          [260, 470],
+          [220, 470],
+          [220, 548],
+        ]),
+      ),
     ),
   ),
+  // The tunnel is on a side (see TUNNELS).
   6: fork(
-    [[180, 110]],
+    [[112, 100]],
     fork(
       [
-        [180, 124],
-        [156, 148],
-        [120, 148],
-        [120, 220],
+        [126, 100],
+        [150, 124],
+        [150, 220],
       ],
       station(5, [
-        [120, 234],
-        [96, 258],
+        [150, 234],
+        [126, 258],
         [36, 258],
       ]),
       fork(
-        [[120, 360]],
+        [[150, 380]],
         station(2, [
-          [120, 374],
-          [96, 398],
-          [36, 398],
+          [150, 394],
+          [126, 418],
+          [36, 418],
         ]),
         station(0, [
-          [120, 470],
-          [170, 470],
-          [170, 548],
+          [150, 480],
+          [190, 480],
+          [190, 548],
         ]),
       ),
     ),
     fork(
-      [
-        [180, 124],
-        [204, 148],
-        [240, 148],
-        [240, 220],
-      ],
+      [[220, 100]],
+      station(4, [[324, 100]]),
       fork(
-        [[240, 360]],
-        station(1, [
-          [240, 460],
-          [290, 460],
-          [290, 548],
-        ]),
+        [
+          [234, 100],
+          [258, 124],
+          [258, 300],
+        ],
         station(3, [
-          [240, 374],
-          [264, 398],
-          [324, 398],
+          [258, 314],
+          [282, 338],
+          [324, 338],
         ]),
+        station(1, [[258, 548]]),
       ),
-      station(4, [
-        [240, 234],
-        [264, 258],
-        [324, 258],
-      ]),
     ),
   ),
+  // A station waits in the middle of the map.
   7: fork(
     [[180, 110]],
     fork(
       [
         [180, 124],
         [156, 148],
-        [110, 148],
-        [110, 210],
+        [100, 148],
+        [100, 220],
       ],
       station(6, [
-        [110, 224],
-        [86, 248],
-        [36, 248],
+        [100, 234],
+        [76, 258],
+        [36, 258],
       ]),
       fork(
-        [[110, 350]],
+        [[100, 370]],
         station(3, [
-          [110, 364],
-          [86, 388],
-          [36, 388],
+          [100, 384],
+          [76, 408],
+          [36, 408],
         ]),
         station(1, [
-          [110, 470],
-          [60, 470],
-          [60, 548],
+          [100, 470],
+          [140, 470],
+          [140, 548],
         ]),
       ),
     ),
@@ -328,41 +318,43 @@ const BLUEPRINTS: Record<number, Blueprint> = {
       [
         [180, 124],
         [204, 148],
-        [250, 148],
-        [250, 210],
+        [260, 148],
+        [260, 220],
       ],
+      station(5, [
+        [260, 234],
+        [284, 258],
+        [324, 258],
+      ]),
       fork(
-        [[250, 330]],
+        [[260, 330]],
+        station(0, [
+          [260, 344],
+          [236, 368],
+          [180, 368],
+        ]),
         fork(
-          [[250, 450]],
-          station(0, [
-            [250, 464],
-            [226, 488],
-            [180, 488],
-            [180, 548],
+          [[260, 450]],
+          station(2, [
+            [260, 464],
+            [284, 488],
+            [324, 488],
           ]),
           station(4, [
-            [250, 500],
-            [300, 500],
-            [300, 548],
+            [260, 500],
+            [220, 500],
+            [220, 548],
           ]),
         ),
-        station(2, [
-          [250, 344],
-          [274, 368],
-          [324, 368],
-        ]),
       ),
-      station(5, [
-        [250, 224],
-        [274, 248],
-        [324, 248],
-      ]),
     ),
   ),
 };
 
-export function compileMap(blueprint: Blueprint, key: string): TrackMap {
+/** Maps whose trains come out of a tunnel on a side; the others use the tunnel at the top. */
+const TUNNELS: Partial<Record<number, Tunnel>> = { 4: LEFT_TUNNEL, 6: LEFT_TUNNEL };
+
+export function compileMap(blueprint: Blueprint, key: string, tunnel: Tunnel = TOP_TUNNEL): TrackMap {
   const segments: TrackSegment[] = [];
   const switches: TrackSwitch[] = [];
   const stations: TrackStation[] = [];
@@ -401,8 +393,8 @@ export function compileMap(blueprint: Blueprint, key: string): TrackMap {
     return id;
   };
 
-  visit(blueprint, TUNNEL, 'tunnel', []);
-  const map: TrackMap = { key, segments, switches, stations, decor: [], ponds: [], fireflies: [], patches: [] };
+  visit(blueprint, tunnel.at, 'tunnel', []);
+  const map: TrackMap = { key, tunnel, segments, switches, stations, decor: [], ponds: [], fireflies: [], patches: [] };
   return { ...map, ...growNature(map) };
 }
 
@@ -458,7 +450,8 @@ function trackSamples(map: TrackMap): Point[] {
 function growNature(map: TrackMap): Pick<TrackMap, 'decor' | 'ponds' | 'fireflies' | 'patches'> {
   const rng = createRng(seedFromString(`nature:${map.key}`));
   const samples = trackSamples(map);
-  const landmarks = [TUNNEL, ...map.stations.map((st) => st.at), ...map.switches.map((sw) => sw.at)];
+  const tunnel = map.tunnel.at;
+  const landmarks = [tunnel, ...map.stations.map((st) => st.at), ...map.switches.map((sw) => sw.at)];
   const trackDistance = (p: Point) => Math.min(...map.segments.map((s) => distToPolyline(p, s.line.points)));
 
   const ponds: Pond[] = [];
@@ -486,7 +479,7 @@ function growNature(map: TrackMap): Pick<TrackMap, 'decor' | 'ponds' | 'fireflie
       const item: Decor = { kind, x, y, scale, variant };
       const f = decorFootprint(item);
       if (f.x - f.r < 2 || f.x + f.r > BOARD.width - 2 || f.y - f.r < 2 || f.y + f.r > BOARD.height - 2) continue;
-      if (Math.hypot(f.x - TUNNEL.x, f.y - TUNNEL.y) < f.r + 32) continue;
+      if (Math.hypot(f.x - tunnel.x, f.y - tunnel.y) < f.r + 32) continue;
       if (trackDistance(f) < f.r + 10) continue;
       if (map.stations.some((st) => Math.hypot(f.x - st.at.x, f.y - st.at.y) < f.r + 28)) continue;
       if (map.switches.some((sw) => Math.hypot(f.x - sw.at.x, f.y - sw.at.y) < f.r + 30)) continue;
@@ -525,6 +518,7 @@ const mirrorAngle = (angle: number): number => 180 - angle;
 export function mirrorMap(map: TrackMap): TrackMap {
   return {
     key: `${map.key}m`,
+    tunnel: { at: mirrorPoint(map.tunnel.at), angle: mirrorAngle(map.tunnel.angle) },
     segments: map.segments.map((s) => ({ ...s, line: polyline(s.line.points.map(mirrorPoint)) })),
     switches: map.switches.map((s) => ({
       ...s,
@@ -545,7 +539,7 @@ export function stationCountForLevel(level: number): number {
 }
 
 export const ALL_MAPS: readonly TrackMap[] = [3, 4, 5, 6, 7].flatMap((n) => {
-  const map = compileMap(BLUEPRINTS[n], String(n));
+  const map = compileMap(BLUEPRINTS[n], String(n), TUNNELS[n]);
   return [map, mirrorMap(map)];
 });
 

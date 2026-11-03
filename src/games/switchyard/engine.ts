@@ -15,6 +15,12 @@ export const FIRST_TRAIN_MS = 1000;
 export const STEP_MS = 20;
 /** From the front of the locomotive to the back of its wagon, in board units. */
 export const TRAIN_LENGTH = 66;
+/**
+ * A train whose front went past a switch by at most this much is still over it: flipping the switch then sends it
+ * the new way, so a tap a moment late still counts. Both exits of a switch start on the same short stretch, so the
+ * train barely moves when it changes over.
+ */
+export const SWITCH_GRACE = 24;
 
 export function spawnIntervalMs(level: number): number {
   return Math.round(4000 - ((clampLevel(level) - 1) * 2400) / 9);
@@ -99,7 +105,14 @@ export function toggleSwitch(state: SwitchyardState, index: number): SwitchyardS
   if (!Number.isInteger(index) || index < 0 || index >= state.switches.length) return state;
   const switches = [...state.switches];
   switches[index] = switches[index] === 0 ? 1 : 0;
-  return { ...state, switches };
+  const sw = state.map.switches[index];
+  const trains = state.trains.map((train) => {
+    const current = train.route[train.route.length - 1];
+    const overIt = !train.arrived && train.distance <= SWITCH_GRACE && sw.exits.includes(current);
+    if (!overIt) return train;
+    return { ...train, route: [...train.route.slice(0, -1), sw.exits[switches[index]]] };
+  });
+  return { ...state, switches, trains };
 }
 
 /**

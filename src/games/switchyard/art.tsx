@@ -186,10 +186,16 @@ export const StationHouse = memo(function StationHouse({
   );
 });
 
-/** The stone portal the trains come out of, centered on the mouth of the tunnel and facing down. */
+/**
+ * The stone portal the trains come out of, set in a grassy mound, centered on the mouth of the tunnel and facing down
+ * (the board turns it to face right or left for a tunnel on a side).
+ */
 export const TunnelPortal = memo(function TunnelPortal() {
   return (
     <g>
+      <ellipse cx={0} cy={-26} rx={54} ry={36} fill="#16302b" />
+      <ellipse cx={-10} cy={-36} rx={34} ry={20} fill="#1d3d34" opacity={0.8} />
+      <path d="M-46 -14 q4 -6 8 -1 M40 -18 q4 -6 8 -1 M-28 -50 q4 -6 8 -1" stroke="#3c8a62" strokeWidth={1.4} fill="none" />
       <ellipse cx={0} cy={6} rx={38} ry={6} fill="#000000" opacity={0.3} />
       <path d="M-32 8 V-14 A32 32 0 0 1 32 -14 V8 Z" fill="#2b3150" stroke="#4a5280" strokeWidth={1.5} />
       {/* Stones around the arch. */}

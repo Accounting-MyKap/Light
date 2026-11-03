@@ -1,6 +1,7 @@
 import { createRng, type Rng } from '../../core/rng';
 import {
   FIRST_TRAIN_MS,
+  SWITCH_GRACE,
   TRAIN_LENGTH,
   advanceSwitchyard,
   arrivalPoints,
@@ -190,14 +191,36 @@ describe('switches', () => {
     const rng = createRng(9);
     let s = run(createSwitchyardGame(1, rng, 0), FIRST_TRAIN_MS, rng).state;
     const firstSwitch = s.map.switches[0];
-    // Point the first switch at option 1, let the train reach it, flip it right after: the train keeps option 1.
+    // Point the first switch at option 1 and let the train go past it: it takes option 1 and keeps it once it has
+    // left the switch behind, whatever the switch does next.
     if (s.switches[0] !== 1) s = toggleSwitch(s, 0);
     const toSwitch = s.map.segments[0].line.length;
-    s = run(s, FIRST_TRAIN_MS + ((toSwitch + 2) / 70) * 1000, rng, 20).state;
+    s = run(s, FIRST_TRAIN_MS + ((toSwitch + SWITCH_GRACE + 4) / 70) * 1000, rng, 20).state;
     expect(s.trains[0].route).toEqual([0, firstSwitch.exits[1]]);
     s = toggleSwitch(s, 0);
     s = run(s, s.now + 1000, rng).state;
     expect(s.trains[0].route).toEqual([0, firstSwitch.exits[1]]);
+  });
+
+  test('a train still over the switch takes the new way when the switch flips (time to react)', () => {
+    const rng = createRng(9);
+    let s = run(createSwitchyardGame(1, rng, 0), FIRST_TRAIN_MS, rng).state;
+    const firstSwitch = s.map.switches[0];
+    if (s.switches[0] !== 1) s = toggleSwitch(s, 0);
+    const toSwitch = s.map.segments[0].line.length;
+    s = run(s, FIRST_TRAIN_MS + ((toSwitch + SWITCH_GRACE - 6) / 70) * 1000, rng, 20).state;
+    expect(s.trains[0].route).toEqual([0, firstSwitch.exits[1]]);
+    const distance = s.trains[0].distance;
+    s = toggleSwitch(s, 0);
+    // Same distance along the other exit: both start on the same stretch, so the train barely moves.
+    expect(s.trains[0]).toMatchObject({ route: [0, firstSwitch.exits[0]], distance });
+    s = run(s, s.now + 1000, rng).state;
+    expect(s.trains[0].route[1]).toBe(firstSwitch.exits[0]);
+  });
+
+  test('the grace over a switch is short: 24 units, under half a second even at the slowest speed', () => {
+    expect(SWITCH_GRACE).toBe(24);
+    expect((SWITCH_GRACE / trainSpeed(1)) * 1000).toBeLessThan(500);
   });
 
   test('flipping a switch before the train reaches it changes its way', () => {

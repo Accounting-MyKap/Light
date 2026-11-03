@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { DecorView, FrontLoco, FrontWagon, INK, PondView, SideLoco, SideWagon, StationHouse, TunnelPortal } from './art';
 import { TRAIN_LENGTH, type Arrival, type Train } from './engine';
 import { headingName, offsetPolyline, type Point } from './geometry';
-import { BOARD, STATION_STYLES, TUNNEL, type TrackMap } from './maps';
+import { BOARD, STATION_STYLES, type TrackMap, type Tunnel } from './maps';
 import { trainSprite, type CarSprite } from './sprite';
 import styles from './switchyard.module.css';
 
@@ -194,6 +194,18 @@ function SmokeCanvas({ puffs, width }: { puffs: readonly PuffView[]; width?: num
   return <canvas ref={ref} className={styles.layer} aria-hidden="true" />;
 }
 
+/**
+ * The portal is drawn facing down; turn it to face the way the trains come out, set a little back from the mouth. On
+ * a side it is drawn a little shallower, so it fits between the mouth and the edge of the board.
+ */
+function portalTransform({ at, angle }: Tunnel): string {
+  const rad = (angle * Math.PI) / 180;
+  const x = at.x - 4 * Math.cos(rad);
+  const y = at.y - 4 * Math.sin(rad);
+  const depth = angle === 90 ? 1 : 0.8;
+  return `translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${angle - 90}) scale(1 ${depth})`;
+}
+
 /** The stations and the tunnel, in front of the trains. */
 const Front = memo(function Front({ map, uid }: { map: TrackMap; uid: string }) {
   return (
@@ -211,7 +223,7 @@ const Front = memo(function Front({ map, uid }: { map: TrackMap; uid: string }) 
           </g>
         );
       })}
-      <g transform={`translate(${TUNNEL.x} ${TUNNEL.y - 4})`}>
+      <g transform={portalTransform(map.tunnel)}>
         <TunnelPortal />
       </g>
     </g>
