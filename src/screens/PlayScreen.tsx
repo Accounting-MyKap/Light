@@ -37,10 +37,16 @@ function GameNotFound() {
   );
 }
 
-async function markInstructionsSeen(gameId: string): Promise<void> {
+/**
+ * What «instructions seen» is stored under: the shared instructions key when several games use the same
+ * instructions (the 14 quiz games), so they show only once; otherwise the game id, as it always was.
+ */
+const instructionsSeenKey = (game: GameDefinition) => game.instructionsKey ?? game.id;
+
+async function markInstructionsSeen(key: string): Promise<void> {
   const settings = await getSettings();
-  if (!settings.seenInstructions.includes(gameId)) {
-    await updateSettings({ seenInstructions: [...settings.seenInstructions, gameId] });
+  if (!settings.seenInstructions.includes(key)) {
+    await updateSettings({ seenInstructions: [...settings.seenInstructions, key] });
   }
 }
 
@@ -69,14 +75,14 @@ function PlaySession({ game, daily }: { game: GameDefinition; daily: string | nu
       getSettings().catch(() => DEFAULT_SETTINGS),
     ]).then(([level, settings]) => {
       if (!alive) return;
-      const firstTime = !settings.seenInstructions.includes(game.id);
+      const firstTime = !settings.seenInstructions.includes(instructionsSeenKey(game));
       setStartLevel(level);
       setPhase({ kind: 'intro', showInstructions: firstTime, firstTime });
     });
     return () => {
       alive = false;
     };
-  }, [game.id]);
+  }, [game]);
 
   const isPlaying = phase.kind === 'playing';
   useEffect(() => {
@@ -96,7 +102,7 @@ function PlaySession({ game, daily }: { game: GameDefinition; daily: string | nu
   }, []);
 
   const handleStart = () => {
-    if (phase.kind === 'intro' && phase.firstTime) void markInstructionsSeen(game.id);
+    if (phase.kind === 'intro' && phase.firstTime) void markInstructionsSeen(instructionsSeenKey(game));
     startPlaying();
   };
 

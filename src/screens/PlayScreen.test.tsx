@@ -86,6 +86,27 @@ test('instructions come from instructionsKey when a game sets it', async () => {
   expect(screen.getByText('fake example')).toBeInTheDocument();
 });
 
+test('games that share instructions show them only once', async () => {
+  // fake3 and the quiz game both use `quiz.instructions`.
+  await open('/play/fake3');
+  expect(await screen.findByText('Responde 10 preguntas; tienes 20 segundos para cada una.')).toBeInTheDocument();
+  await userEvent.click(screen.getByRole('button', { name: 'Comenzar' }));
+  await vi.waitFor(async () => expect((await getSettings()).seenInstructions).toEqual(['quiz.instructions']));
+});
+
+test('instructions seen under a shared key are not shown again by another game with that key', async () => {
+  await updateSettings({ seenInstructions: ['quiz.instructions'] });
+  await open('/play/fakeq');
+  expect(await screen.findByRole('button', { name: '¿Cómo se juega?' })).toBeInTheDocument();
+  expect(screen.queryByText('Responde 10 preguntas; tienes 20 segundos para cada una.')).not.toBeInTheDocument();
+});
+
+test('a game without a shared key still uses its own id', async () => {
+  await updateSettings({ seenInstructions: ['quiz.instructions'] });
+  await open('/play/fake');
+  expect(await screen.findByText('Primera instrucción falsa')).toBeInTheDocument();
+});
+
 test('second visit skips instructions but offers how-to-play', async () => {
   await updateSettings({ seenInstructions: ['fake'] });
   await open('/play/fake');
