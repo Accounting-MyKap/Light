@@ -104,6 +104,316 @@
       "en": { "question": "In baseball, how many runs score on a home run with the bases loaded (a “grand slam”)?",
               "options": ["4", "3", "2", "5"],
               "explanation": "The three runners on base score along with the batter: four runs, the most possible on a single play." }
+    },
+    {
+      "id": "sports-0013", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿En qué ciudad se celebraron los Juegos Olímpicos de 2016, los primeros en Sudamérica?",
+              "options": ["Río de Janeiro", "Brasilia", "São Paulo", "Buenos Aires"],
+              "explanation": "Río de Janeiro fue sede de los Juegos de 2016, los primeros celebrados en Sudamérica." },
+      "en": { "question": "In which city were the 2016 Olympic Games held, the first in South America?",
+              "options": ["Rio de Janeiro", "Brasília", "São Paulo", "Buenos Aires"],
+              "explanation": "Rio de Janeiro hosted the 2016 Games, the first ever held in South America." }
+    },
+    {
+      "id": "sports-0014", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿En qué ciudad se celebraron los Juegos Olímpicos de verano de 2024?",
+              "options": ["París", "Londres", "Tokio", "Los Ángeles"],
+              "explanation": "París organizó los Juegos de 2024; ya había sido sede en 1900 y en 1924." },
+      "en": { "question": "In which city were the 2024 Summer Olympic Games held?",
+              "options": ["Paris", "London", "Tokyo", "Los Angeles"],
+              "explanation": "Paris hosted the 2024 Games; it had also been the host in 1900 and 1924." }
+    },
+    {
+      "id": "sports-0015", "difficulty": 1, "type": "choice",
+      "es": { "question": "Los Juegos Olímpicos de «Tokio 2020» se aplazaron por la pandemia. ¿En qué año se celebraron?",
+              "options": ["2021", "2022", "2020", "2023"],
+              "explanation": "Se disputaron del 23 de julio al 8 de agosto de 2021, aunque conservaron el nombre «Tokio 2020»." },
+      "en": { "question": "The “Tokyo 2020” Olympic Games were postponed because of the pandemic. In what year were they held?",
+              "options": ["2021", "2022", "2020", "2023"],
+              "explanation": "They ran from 23 July to 8 August 2021 but kept the name “Tokyo 2020”." }
+    },
+    {
+      "id": "sports-0016", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuántos aros entrelazados tiene el símbolo de los Juegos Olímpicos?",
+              "options": ["5", "4", "6", "7"],
+              "explanation": "Los cinco aros simbolizan la unión de los cinco continentes en los Juegos." },
+      "en": { "question": "How many interlocked rings are in the Olympic symbol?",
+              "options": ["5", "4", "6", "7"],
+              "explanation": "The five rings symbolize the union of the five continents at the Games." }
+    },
+    {
+      "id": "sports-0017", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué velocista ganó los 100 metros planos olímpicos en Pekín 2008, Londres 2012 y Río 2016?",
+              "options": ["Usain Bolt", "Justin Gatlin", "Yohan Blake", "Asafa Powell"],
+              "explanation": "El jamaiquino Usain Bolt ganó los 100 m planos en los tres Juegos. Justin Gatlin los había ganado en Atenas 2004." },
+      "en": { "question": "Which sprinter won the Olympic 100 m in Beijing 2008, London 2012 and Rio 2016?",
+              "options": ["Usain Bolt", "Justin Gatlin", "Yohan Blake", "Asafa Powell"],
+              "explanation": "Jamaica's Usain Bolt won the 100 m at all three Games. Justin Gatlin had won it in Athens 2004." }
+    },
+    {
+      "id": "sports-0018", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿En qué país se celebraban los Juegos Olímpicos de la Antigüedad?",
+              "options": ["Grecia", "Italia", "Egipto", "Turquía"],
+              "explanation": "Se celebraban en Olimpia, en Grecia, en honor a Zeus, desde el siglo VIII a. C. según la tradición." },
+      "en": { "question": "In which country were the ancient Olympic Games held?",
+              "options": ["Greece", "Italy", "Egypt", "Turkey"],
+              "explanation": "They were held at Olympia, in Greece, in honor of Zeus, starting in the 8th century BC according to tradition." }
+    },
+    {
+      "id": "sports-0019", "difficulty": 1, "type": "choice",
+      "es": { "question": "En el fútbol, ¿qué significa que el árbitro muestre una tarjeta roja a un jugador?",
+              "options": ["Que queda expulsado", "Que recibe una advertencia", "Que se pita un penal", "Que termina el partido"],
+              "explanation": "La roja significa expulsión: el jugador debe salir de la cancha y su equipo no puede reemplazarlo. La amarilla es una advertencia." },
+      "en": { "question": "In soccer, what does it mean when the referee shows a player a red card?",
+              "options": ["The player is sent off", "The player gets a warning", "A penalty is awarded", "The match is over"],
+              "explanation": "A red card means expulsion: the player must leave the field and his team cannot replace him. A yellow card is a warning." }
+    },
+    {
+      "id": "sports-0020", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuántos minutos dura un partido reglamentario de fútbol, sin contar descuentos ni alargue?",
+              "options": ["90", "80", "100", "60"],
+              "explanation": "Son dos tiempos de 45 minutos. El árbitro agrega minutos de descuento al final de cada tiempo cuando hace falta." },
+      "en": { "question": "How many minutes does a regulation soccer match last, not counting stoppage time or extra time?",
+              "options": ["90", "80", "100", "60"],
+              "explanation": "It is two halves of 45 minutes. The referee adds stoppage time at the end of each half when needed." }
+    },
+    {
+      "id": "sports-0021", "difficulty": 1, "type": "choice",
+      "es": { "question": "En el fútbol, ¿cómo se llama que un mismo jugador anote tres goles en un partido?",
+              "options": ["Hat-trick", "Doblete", "Póker", "Gol olímpico"],
+              "explanation": "Se llama hat-trick, o triplete. Cuando anota dos goles se habla de un doblete." },
+      "en": { "question": "In soccer, what is it called when one player scores three goals in a match?",
+              "options": ["A hat-trick", "A brace", "A clean sheet", "A grand slam"],
+              "explanation": "It is called a hat-trick. Scoring two goals in a match is called a brace." }
+    },
+    {
+      "id": "sports-0022", "difficulty": 1, "type": "truefalse", "answer": true,
+      "es": { "question": "En el fútbol, dentro de su área penal, el portero puede agarrar el balón con las manos.",
+              "explanation": "Solo el portero puede usar las manos durante el juego, y solo dentro de su área. Los demás jugadores las usan únicamente en el saque de banda." },
+      "en": { "question": "In soccer, inside his own penalty area, the goalkeeper may handle the ball with his hands.",
+              "explanation": "Only the goalkeeper may use his hands in open play, and only inside his own area. Other players use them only for the throw-in." }
+    },
+    {
+      "id": "sports-0023", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué país organizó el Mundial de fútbol de 2014?",
+              "options": ["Brasil", "Sudáfrica", "Rusia", "Argentina"],
+              "explanation": "Brasil fue sede del Mundial de 2014, por segunda vez después de 1950." },
+      "en": { "question": "Which country hosted the 2014 FIFA World Cup?",
+              "options": ["Brazil", "South Africa", "Russia", "Argentina"],
+              "explanation": "Brazil hosted the 2014 World Cup, for the second time after 1950." }
+    },
+    {
+      "id": "sports-0024", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué país organizó el Mundial de fútbol de 2022, el primero en Medio Oriente?",
+              "options": ["Catar", "Arabia Saudita", "Emiratos Árabes Unidos", "Turquía"],
+              "explanation": "Catar acogió el torneo entre noviembre y diciembre de 2022, el primer Mundial jugado en esas fechas." },
+      "en": { "question": "Which country hosted the 2022 FIFA World Cup, the first in the Middle East?",
+              "options": ["Qatar", "Saudi Arabia", "United Arab Emirates", "Turkey"],
+              "explanation": "Qatar hosted the tournament in November and December 2022, the first World Cup played at that time of year." }
+    },
+    {
+      "id": "sports-0025", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué selección ganó el Mundial de 2022, en una final decidida por penales ante Francia?",
+              "options": ["Argentina", "Croacia", "Marruecos", "Brasil"],
+              "explanation": "La final terminó 3-3 y Argentina ganó la tanda de penales 4-2, con lo que logró su tercer título mundial." },
+      "en": { "question": "Which national team won the 2022 World Cup, in a final decided on penalties against France?",
+              "options": ["Argentina", "Croatia", "Morocco", "Brazil"],
+              "explanation": "The final ended 3-3 and Argentina won the shootout 4-2, claiming its third world title." }
+    },
+    {
+      "id": "sports-0026", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Con qué selección ganó Pelé tres Copas del Mundo?",
+              "options": ["Brasil", "Argentina", "Uruguay", "Italia"],
+              "explanation": "Pelé ganó los Mundiales de 1958, 1962 y 1970 con Brasil. Fue campeón por primera vez con solo 17 años." },
+      "en": { "question": "With which national team did Pelé win three World Cups?",
+              "options": ["Brazil", "Argentina", "Uruguay", "Italy"],
+              "explanation": "Pelé won the 1958, 1962 and 1970 World Cups with Brazil. He was a champion for the first time at just 17." }
+    },
+    {
+      "id": "sports-0027", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿En qué club español jugó Lionel Messi desde su debut en 2004 hasta 2021?",
+              "options": ["FC Barcelona", "Real Madrid", "Atlético de Madrid", "Valencia"],
+              "explanation": "Messi debutó en el primer equipo del Barcelona en 2004 y dejó el club en 2021." },
+      "en": { "question": "For which Spanish club did Lionel Messi play from his debut in 2004 until 2021?",
+              "options": ["FC Barcelona", "Real Madrid", "Atlético Madrid", "Valencia"],
+              "explanation": "Messi made his debut with Barcelona's first team in 2004 and left the club in 2021." }
+    },
+    {
+      "id": "sports-0028", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿De qué color es la camiseta titular de la selección de fútbol de Colombia?",
+              "options": ["Amarillo", "Azul", "Rojo", "Blanco"],
+              "explanation": "Colombia usa camiseta amarilla como titular. Amarillo, azul y rojo son los colores de su bandera." },
+      "en": { "question": "What color is the home jersey of Colombia's national soccer team?",
+              "options": ["Yellow", "Blue", "Red", "White"],
+              "explanation": "Colombia wears a yellow jersey at home. Yellow, blue and red are the colors of its flag." }
+    },
+    {
+      "id": "sports-0029", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuántos jugadores de cada equipo están en la cancha en el voleibol de sala?",
+              "options": ["6", "5", "7", "8"],
+              "explanation": "Cada equipo juega con seis jugadores en la cancha, que rotan de posición cuando recuperan el saque." },
+      "en": { "question": "How many players per team are on the court in indoor volleyball?",
+              "options": ["6", "5", "7", "8"],
+              "explanation": "Each team plays with six players on the court, who rotate positions when they win back the serve." }
+    },
+    {
+      "id": "sports-0030", "difficulty": 1, "type": "choice",
+      "es": { "question": "En baloncesto, ¿cuántos puntos vale un tiro libre convertido?",
+              "options": ["1", "2", "3", "4"],
+              "explanation": "Cada tiro libre vale un punto. Una canasta normal vale dos y una desde detrás de la línea de tres puntos, tres." },
+      "en": { "question": "In basketball, how many points is a made free throw worth?",
+              "options": ["1", "2", "3", "4"],
+              "explanation": "Each free throw is worth one point. A regular basket is worth two and one from behind the three-point line, three." }
+    },
+    {
+      "id": "sports-0031", "difficulty": 1, "type": "truefalse", "answer": false,
+      "es": { "question": "El hockey sobre hielo se juega con una pelota.",
+              "explanation": "Se juega con un disco de caucho duro llamado puck, que los jugadores golpean con un palo." },
+      "en": { "question": "Ice hockey is played with a ball.",
+              "explanation": "It is played with a hard rubber disc called a puck, which players hit with a stick." }
+    },
+    {
+      "id": "sports-0032", "difficulty": 1, "type": "truefalse", "answer": false,
+      "es": { "question": "En el tenis, el ganador se decide cuando se agota un tiempo fijo de juego.",
+              "explanation": "El tenis no tiene límite de tiempo: se gana por puntos, juegos y sets, y un partido puede durar horas." },
+      "en": { "question": "In tennis, the winner is decided when a fixed amount of playing time runs out.",
+              "explanation": "Tennis has no time limit: matches are won by points, games and sets, and a match can last for hours." }
+    },
+    {
+      "id": "sports-0033", "difficulty": 1, "type": "choice",
+      "es": { "question": "En el golf por golpes, el formato más común, ¿quién gana?",
+              "options": ["Quien completa el recorrido con menos golpes", "Quien lanza la bola más lejos", "Quien termina primero el recorrido", "Quien hace más hoyos en uno"],
+              "explanation": "Gana quien completa el recorrido con menos golpes en total. Por eso, en el golf, el puntaje más bajo es el mejor." },
+      "en": { "question": "In stroke-play golf, the most common format, who wins?",
+              "options": ["The player with the fewest total strokes", "The player who hits the ball farthest", "The first player to finish the course", "The player with the most holes-in-one"],
+              "explanation": "The winner is the player who completes the course in the fewest strokes. That is why the lowest score is the best in golf." }
+    },
+    {
+      "id": "sports-0034", "difficulty": 1, "type": "choice",
+      "es": { "question": "En el béisbol, ¿con cuántos strikes queda ponchado un bateador?",
+              "options": ["3", "2", "4", "5"],
+              "explanation": "Con tres strikes el bateador queda ponchado y se anota un out para su equipo en ataque." },
+      "en": { "question": "In baseball, how many strikes does it take to strike a batter out?",
+              "options": ["3", "2", "4", "5"],
+              "explanation": "With three strikes the batter is struck out, which counts as an out for his team." }
+    },
+    {
+      "id": "sports-0035", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿En qué deporte se disputa el Super Bowl?",
+              "options": ["Fútbol americano", "Béisbol", "Baloncesto", "Hockey sobre hielo"],
+              "explanation": "El Super Bowl es la final de la NFL, la liga profesional de fútbol americano de Estados Unidos." },
+      "en": { "question": "In which sport is the Super Bowl played?",
+              "options": ["American football", "Baseball", "Basketball", "Ice hockey"],
+              "explanation": "The Super Bowl is the championship game of the NFL, the professional American football league." }
+    },
+    {
+      "id": "sports-0036", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuál de estos torneos de tenis es uno de los cuatro de Grand Slam?",
+              "options": ["Wimbledon", "Copa Davis", "Torneo de Miami", "Finales de la ATP"],
+              "explanation": "Los cuatro Grand Slam son el Abierto de Australia, Roland Garros, Wimbledon y el Abierto de Estados Unidos." },
+      "en": { "question": "Which of these tennis tournaments is one of the four Grand Slams?",
+              "options": ["Wimbledon", "Davis Cup", "Miami Open", "ATP Finals"],
+              "explanation": "The four Grand Slams are the Australian Open, the French Open, Wimbledon and the US Open." }
+    },
+    {
+      "id": "sports-0037", "difficulty": 1, "type": "truefalse", "answer": false,
+      "es": { "question": "En el rugby se juega con un balón perfectamente redondo, como el del fútbol.",
+              "explanation": "El balón de rugby es ovalado, lo que facilita sujetarlo y lanzarlo con las manos." },
+      "en": { "question": "In rugby, the ball is perfectly round, like a soccer ball.",
+              "explanation": "A rugby ball is oval, which makes it easier to hold and throw by hand." }
+    },
+    {
+      "id": "sports-0038", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué estilo de natación se nada boca arriba?",
+              "options": ["Espalda", "Mariposa", "Pecho", "Libre"],
+              "explanation": "En el estilo espalda el nadador va boca arriba. Los otros tres estilos de competencia se nadan boca abajo." },
+      "en": { "question": "Which swimming stroke is swum on the back?",
+              "options": ["Backstroke", "Butterfly", "Breaststroke", "Freestyle"],
+              "explanation": "In backstroke the swimmer lies face up. The other three competitive strokes are swum face down." }
+    },
+    {
+      "id": "sports-0039", "difficulty": 1, "type": "truefalse", "answer": false,
+      "es": { "question": "En baloncesto, un jugador puede caminar con el balón en las manos sin botarlo.",
+              "explanation": "Para avanzar con el balón hay que driblar (botarlo). Caminar con él en las manos es una violación llamada «pasos»." },
+      "en": { "question": "In basketball, a player may walk with the ball in his hands without dribbling it.",
+              "explanation": "To move with the ball a player must dribble it. Walking with it in the hands is a violation called traveling." }
+    },
+    {
+      "id": "sports-0040", "difficulty": 1, "type": "truefalse", "answer": false,
+      "es": { "question": "Un ring de boxeo tiene forma circular.",
+              "explanation": "Aunque se llame ring (anillo), es un cuadrilátero, con cuerdas en sus cuatro lados." },
+      "en": { "question": "A boxing ring is circular.",
+              "explanation": "Despite the name, a boxing ring is square, with ropes on all four sides." }
+    },
+    {
+      "id": "sports-0041", "difficulty": 1, "type": "truefalse", "answer": true,
+      "es": { "question": "La bandera de cuadros blancos y negros se agita para marcar el final de una carrera de automovilismo.",
+              "explanation": "Se muestra primero al ganador y luego a los demás pilotos a medida que terminan la carrera." },
+      "en": { "question": "The black-and-white checkered flag is waved to mark the end of a motor race.",
+              "explanation": "It is shown first to the winner and then to the other drivers as they finish the race." }
+    },
+    {
+      "id": "sports-0042", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué deporte se practica en un velódromo?",
+              "options": ["Ciclismo", "Atletismo", "Patinaje", "Automovilismo"],
+              "explanation": "El velódromo es una pista ovalada con curvas peraltadas, hecha para el ciclismo de pista." },
+      "en": { "question": "Which sport is practiced in a velodrome?",
+              "options": ["Cycling", "Athletics", "Skating", "Motor racing"],
+              "explanation": "A velodrome is an oval track with banked curves, built for track cycling." }
+    },
+    {
+      "id": "sports-0043", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué tres pruebas componen un triatlón?",
+              "options": ["Natación, ciclismo y carrera", "Remo, ciclismo y carrera", "Natación, remo y carrera", "Natación, ciclismo y patinaje"],
+              "explanation": "Un triatlón encadena natación, ciclismo y carrera a pie, en ese orden." },
+      "en": { "question": "Which three events make up a triathlon?",
+              "options": ["Swimming, cycling and running", "Rowing, cycling and running", "Swimming, rowing and running", "Swimming, cycling and skating"],
+              "explanation": "A triathlon links swimming, cycling and running, in that order." }
+    },
+    {
+      "id": "sports-0044", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué selección de rugby es famosa por realizar la haka antes de sus partidos?",
+              "options": ["Nueva Zelanda", "Sudáfrica", "Argentina", "Inglaterra"],
+              "explanation": "Nueva Zelanda, los All Blacks, hace la haka, una danza maorí de desafío, antes de cada partido." },
+      "en": { "question": "Which rugby team is famous for performing the haka before its matches?",
+              "options": ["New Zealand", "South Africa", "Argentina", "England"],
+              "explanation": "New Zealand's All Blacks perform the haka, a Māori challenge dance, before each match." }
+    },
+    {
+      "id": "sports-0045", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Con qué equipo ganó Michael Jordan seis títulos de la NBA?",
+              "options": ["Chicago Bulls", "Los Angeles Lakers", "Boston Celtics", "Detroit Pistons"],
+              "explanation": "Con los Chicago Bulls ganó tres títulos seguidos entre 1991 y 1993, y otros tres entre 1996 y 1998." },
+      "en": { "question": "With which team did Michael Jordan win six NBA titles?",
+              "options": ["Chicago Bulls", "Los Angeles Lakers", "Boston Celtics", "Detroit Pistons"],
+              "explanation": "With the Chicago Bulls he won three straight titles from 1991 to 1993, and three more from 1996 to 1998." }
+    },
+    {
+      "id": "sports-0046", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿De qué país es originario el sumo?",
+              "options": ["Japón", "Corea del Sur", "China", "Mongolia"],
+              "explanation": "El sumo es la lucha tradicional de Japón y conserva rituales de origen sintoísta." },
+      "en": { "question": "Which country is the origin of sumo wrestling?",
+              "options": ["Japan", "South Korea", "China", "Mongolia"],
+              "explanation": "Sumo is Japan's traditional wrestling and keeps rituals of Shinto origin." }
+    },
+    {
+      "id": "sports-0047", "difficulty": 1, "type": "choice",
+      "es": { "question": "En el Tour de Francia, ¿de qué color es el maillot del líder de la clasificación general?",
+              "options": ["Amarillo", "Rosa", "Rojo", "Verde"],
+              "explanation": "El maillot amarillo distingue al líder de la general. El rosa es el del líder del Giro de Italia." },
+      "en": { "question": "In the Tour de France, what color jersey does the overall race leader wear?",
+              "options": ["Yellow", "Pink", "Red", "Green"],
+              "explanation": "The yellow jersey marks the overall leader. Pink is the color of the leader of the Giro d'Italia." }
+    },
+    {
+      "id": "sports-0048", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿En qué deporte fue tricampeón mundial el brasileño Ayrton Senna, en 1988, 1990 y 1991?",
+              "options": ["Fórmula 1", "Rally", "Motociclismo", "Karting"],
+              "explanation": "Senna ganó el campeonato mundial de Fórmula 1 en 1988, 1990 y 1991. Murió en un accidente en Imola, en 1994." },
+      "en": { "question": "In which sport did Brazil's Ayrton Senna win three world titles, in 1988, 1990 and 1991?",
+              "options": ["Formula 1", "Rally", "Motorcycle racing", "Karting"],
+              "explanation": "Senna won the Formula 1 world championship in 1988, 1990 and 1991. He died in a crash at Imola in 1994." }
     }
   ]
 }
