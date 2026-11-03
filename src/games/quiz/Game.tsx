@@ -97,7 +97,7 @@ export function QuizGame({ startLevel, paused, onFinish, categories }: GameProps
   if (load.kind === 'error') {
     return (
       <div className={styles.game}>
-        <GameFrame score={0} level={firstLevel}>
+        <GameFrame score={0} level={firstLevel} levelUp={false}>
           <div className={styles.status}>
             <p role="alert">{t('quiz.loadError')}</p>
             <button ref={retryRef} type="button" className={styles.retry} onClick={retry}>
@@ -117,7 +117,7 @@ export function QuizGame({ startLevel, paused, onFinish, categories }: GameProps
   if (load.kind === 'loading') {
     return (
       <div className={styles.game}>
-        <GameFrame score={0} level={firstLevel}>
+        <GameFrame score={0} level={firstLevel} levelUp={false}>
           <p ref={statusRef} className={styles.status} role="status" tabIndex={-1}>
             {t('quiz.loading')}
           </p>
@@ -243,6 +243,7 @@ function QuizRound({ initial, clock, rng, paused, onFinish }: QuizRoundProps) {
         level={round.staircase.level}
         time={{ remainingMs: remaining, totalMs: QUIZ_QUESTION_MS, stopped: !asking, urgentMs: QUIZ_URGENT_MS }}
         controls={answers}
+        levelUp={false}
       >
         <div className={styles.zone}>
           <p className={styles.counter}>{t('quiz.questionOf', { n: number, total: QUIZ_ROUND_LENGTH })}</p>

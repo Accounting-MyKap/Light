@@ -47,6 +47,11 @@
     "keypad": {
       "delete": "Delete",
       "ok": "OK"
+    },
+    "levelUp": {
+      "badge": "Level {{n}}!",
+      "harder": "Harder",
+      "announce": "You reached level {{n}}"
     }
   },
   "games": {

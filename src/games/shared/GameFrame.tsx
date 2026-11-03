@@ -1,5 +1,8 @@
 import { useContext, useEffect, useRef, useState, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
+import { playTone } from '../../core/sound';
+import { VIBRATION, vibrate } from '../../core/vibrate';
+import { useSettings } from '../../data/settings';
 import { PlayChromeContext } from './playChrome';
 import { Flash, useReactionSignal } from './reaction';
 import styles from './GameFrame.module.css';
@@ -21,6 +24,8 @@ export interface GameFrameProps {
   controls?: ReactNode;
   /** Flash over the whole game zone on each answer (on by default). Off for a game that draws its own reaction. */
   stageFlash?: boolean;
+  /** Announce a level-up with a badge, a tone and a vibration (on by default). Off in the quiz. */
+  levelUp?: boolean;
   /** The game zone. */
   children: ReactNode;
 }
@@ -28,12 +33,25 @@ export interface GameFrameProps {
 /** The last seconds, when the time bar turns urgent. */
 const URGENT_MS = 10_000;
 
+/** How long the level-up badge stays. */
+export const LEVEL_UP_MS = 1_600;
+
 /**
  * The common frame of every game: top bar (title and pause button when the game screen provides them, level,
  * points), time bar or round dots, the game zone and the controls. It also draws the reaction to each answer:
  * the points that float, a flash over the game zone and the shake of a wrong answer.
  */
-export function GameFrame({ score, level, time, rounds, lives, controls, stageFlash = true, children }: GameFrameProps) {
+export function GameFrame({
+  score,
+  level,
+  time,
+  rounds,
+  lives,
+  controls,
+  stageFlash = true,
+  levelUp = true,
+  children,
+}: GameFrameProps) {
   const { t } = useTranslation();
   const chrome = useContext(PlayChromeContext);
   const stageRef = useRef<HTMLDivElement>(null);
@@ -59,6 +77,7 @@ export function GameFrame({ score, level, time, rounds, lives, controls, stageFl
   }
 
   const signal = useReactionSignal(stageRef);
+  const notice = useLevelUpNotice(level, levelUp);
 
   return (
     <div className={styles.frame}>
@@ -73,7 +92,9 @@ export function GameFrame({ score, level, time, rounds, lives, controls, stageFl
           <dl className={styles.level}>
             <div>
               <dt>{t('game.hud.level')}</dt>
-              <dd>{level}</dd>
+              <dd key={notice?.id} data-bump={notice ? 'true' : undefined}>
+                {level}
+              </dd>
             </div>
           </dl>
         </div>
@@ -115,7 +136,17 @@ export function GameFrame({ score, level, time, rounds, lives, controls, stageFl
             with the flash, which would stop React from removing the old rows. */}
         <>{children}</>
         {stageFlash && <Flash signal={signal} />}
+        {notice && (
+          <div key={notice.id} className={styles.levelUp} data-testid="level-up" aria-hidden="true">
+            <strong>{t('game.levelUp.badge', { n: notice.level })}</strong>
+            <span>{t('game.levelUp.harder')}</span>
+          </div>
+        )}
       </div>
+      {/* Mounted empty, so the announcement of a level-up is read out when it arrives. */}
+      <p className="visually-hidden" aria-live="polite">
+        {notice ? t('game.levelUp.announce', { n: notice.level }) : ''}
+      </p>
 
       {controls && (
         <div className={styles.controls} data-zone="controls">
@@ -124,6 +155,45 @@ export function GameFrame({ score, level, time, rounds, lives, controls, stageFl
       )}
     </div>
   );
+}
+
+interface LevelUpNotice {
+  level: number;
+  id: number;
+}
+
+/**
+ * The level-up being announced, or null. A rise of the level (never the first render, never a drop) starts a new
+ * notice that plays the level-up tone and vibration, each per its setting, and clears itself after LEVEL_UP_MS.
+ */
+function useLevelUpNotice(level: number, enabled: boolean): LevelUpNotice | null {
+  const { sound, vibration } = useSettings();
+  const [lastLevel, setLastLevel] = useState(level);
+  const [notice, setNotice] = useState<LevelUpNotice | null>(null);
+  const [count, setCount] = useState(0);
+  if (level !== lastLevel) {
+    setLastLevel(level);
+    if (enabled && level > lastLevel) {
+      setNotice({ level, id: count + 1 });
+      setCount(count + 1);
+    }
+  }
+
+  // The latest settings, so a change of a setting never replays the tone of the current notice.
+  const settings = useRef({ sound, vibration });
+  useEffect(() => {
+    settings.current = { sound, vibration };
+  });
+
+  useEffect(() => {
+    if (!notice) return;
+    if (settings.current.sound) playTone('levelUp');
+    if (settings.current.vibration) vibrate(VIBRATION.levelUp);
+    const id = setTimeout(() => setNotice(null), LEVEL_UP_MS);
+    return () => clearTimeout(id);
+  }, [notice]);
+
+  return notice;
 }
 
 function TimeBar({
