@@ -1,7 +1,6 @@
 {
   "app": {
-    "name": "Light",
-    "tagline": "Ilumina tu cerebro"
+    "name": "Light"
   },
   "nav": {
     "today": "Hoy",

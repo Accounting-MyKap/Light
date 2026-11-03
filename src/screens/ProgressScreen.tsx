@@ -63,11 +63,11 @@ export function ProgressScreen() {
               {value === undefined ? (
                 <span className={styles.muted}>—</span>
               ) : (
-                <div role="meter" aria-labelledby={id} aria-valuemin={0} aria-valuemax={1000} aria-valuenow={value} className={styles.track}>
+                <div role="meter" aria-labelledby={id} aria-valuemin={0} aria-valuemax={1000} aria-valuenow={value} aria-valuetext={String(value)} className={styles.track}>
                   <i style={{ width: `${value / 10}%` }} />
                 </div>
               )}
-              <span className={styles.value}>{value ?? ''}</span>
+              <span className={styles.value} aria-hidden="true">{value ?? ''}</span>
             </div>
           );
         })}

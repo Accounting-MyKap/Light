@@ -88,10 +88,15 @@
 
 .bar {
   display: grid;
-  grid-template-columns: minmax(5.5rem, 8.5rem) 1fr 3rem;
+  grid-template-columns: minmax(0, 40%) minmax(3rem, 1fr) auto;
   align-items: center;
   gap: 0.6rem;
   font-size: 0.9rem;
+}
+
+.bar > :first-child {
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .bar[data-area='memory'] { --c: var(--area-memory); }
@@ -110,14 +115,14 @@
   height: 8px;
   border-radius: 999px;
   background: var(--border);
-  color: var(--c);
+  color: var(--c, var(--accent-strong));
 }
 
 .track i {
   display: block;
   height: 100%;
   border-radius: inherit;
-  background: var(--c);
+  background: var(--c, var(--accent-strong));
 }
 
 @media (prefers-color-scheme: dark) {
@@ -166,5 +171,5 @@
 }
 
 .game .chart {
-  color: var(--c);
+  color: var(--c, var(--accent-strong));
 }

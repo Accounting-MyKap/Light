@@ -12,7 +12,7 @@ export function GamesScreen() {
   const { t } = useTranslation();
   const [params, setParams] = useSearchParams();
   const today = useLocalDay();
-  const plan = useLiveQuery(() => getPlan(today), [today]);
+  const plan = useLiveQuery(() => getPlan(today).catch(() => undefined), [today]);
   const areas = catalogAreas(GAMES);
   const raw = params.get('area') as Area | null;
   const selected = raw && areas.includes(raw) ? raw : null;
@@ -56,11 +56,13 @@ export function GamesScreen() {
                     {plan.completed.includes(g.id) && (
                       <>
                         <span className={styles.done} aria-hidden="true">✓</span>
-                        <span className="visually-hidden">{t('gamesScreen.played')}</span>
                       </>
                     )}
                   </div>
                   <span className={styles.name}>{t(`games.${g.id}.title`)}</span>
+                  {plan.completed.includes(g.id) && (
+                    <span className="visually-hidden"> {t('gamesScreen.played')}</span>
+                  )}
                 </Link>
               </li>
             ))}

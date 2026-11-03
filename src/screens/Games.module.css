@@ -54,6 +54,7 @@
   height: 10px;
   border-radius: 50%;
   flex: none;
+  background: var(--accent-strong);
 }
 .dot[data-area='memory'] { background: var(--area-memory); }
 .dot[data-area='attention'] { background: var(--area-attention); }
@@ -82,9 +83,13 @@
   text-decoration: none;
   color: var(--text);
 }
-.card:hover,
 .card:focus-visible {
   box-shadow: var(--card-shadow), 0 0 0 2px var(--accent);
+}
+@media (hover: hover) {
+  .card:hover {
+    box-shadow: var(--card-shadow), 0 0 0 2px var(--accent);
+  }
 }
 .thumb {
   position: relative;
@@ -92,7 +97,7 @@
 .name {
   display: block;
   margin: 0.4rem 0 0;
-  font-size: clamp(12px, calc(12px + (100vw - 320px) * 0.0229), 13.6px);
+  font-size: clamp(0.75rem, calc(0.75rem + (100vw - 320px) * 0.0229), 0.85rem);
   font-weight: 700;
   line-height: 1.2;
   overflow-wrap: break-word;
@@ -101,7 +106,7 @@
 .skill {
   display: block;
   margin-top: 0.15rem;
-  font-size: clamp(10px, calc(10px + (100vw - 320px) * 0.0217), 11.52px);
+  font-size: clamp(0.625rem, calc(0.625rem + (100vw - 320px) * 0.0217), 0.72rem);
   color: var(--text-muted);
   overflow-wrap: break-word;
   hyphens: auto;

@@ -65,7 +65,7 @@ test('today’s games: daily links and a played mark', async () => {
     `/play/quick-math?daily=${DAY}`,
     `/play/rule-switch?daily=${DAY}`,
   ]);
-  expect(links[0]).toHaveTextContent('Jugado');
+  expect(links[0]).toHaveTextContent(/Flechas\s*Jugado/);
   expect(links[1]).not.toHaveTextContent('Jugado');
   expect(links[2]).not.toHaveTextContent('Jugado');
 });
@@ -87,4 +87,13 @@ test('a stale plan id is skipped', async () => {
   await renderApp('/games');
   const heading = await screen.findByRole('heading', { level: 2, name: 'Tus juegos de hoy' });
   expect(within(heading.closest('section')!).getAllByRole('link')).toHaveLength(2);
+});
+
+test('a failing plan read hides only the today row', async () => {
+  const get = vi.spyOn(db.dailyPlans, 'get').mockRejectedValue(new Error('boom'));
+  await renderApp('/games');
+  await vi.waitFor(() => expect(get).toHaveBeenCalled());
+  await new Promise((resolve) => setTimeout(resolve, 100)); // a rejected live query rethrows on a later render
+  expect(h2s()).toHaveLength(5);
+  expect(screen.queryByText('Tus juegos de hoy')).toBeNull();
 });

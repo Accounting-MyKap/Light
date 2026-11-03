@@ -163,10 +163,14 @@ function PlaySession({ game, daily }: { game: GameDefinition; daily: string | nu
     [save, sound],
   );
 
+  // Free play goes back in history (the catalog keeps its filter in the address); a deep link has none.
+  const leaveFreePlay = () => {
+    if (location.key === 'default') navigate('/games');
+    else navigate(-1);
+  };
   const exit = () => {
     if (daily !== null) navigate('/');
-    else if (location.key === 'default') navigate('/games');
-    else navigate(-1);
+    else leaveFreePlay();
   };
 
   const title = t(`games.${game.id}.title`);
@@ -240,7 +244,7 @@ function PlaySession({ game, daily }: { game: GameDefinition; daily: string | nu
             result={phase.result}
             previousBest={phase.previousBest}
             onPlayAgain={startPlaying}
-            onBack={() => navigate('/games')}
+            onBack={leaveFreePlay}
             daily={
               daily === null
                 ? undefined

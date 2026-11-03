@@ -36,6 +36,7 @@
   inset: 0;
   border-radius: 999px;
   background: var(--border);
+  box-shadow: inset 0 0 0 1.5px var(--text-muted);
   transition: background-color 0.15s;
   pointer-events: none;
 }
@@ -91,7 +92,7 @@
 .segTrack {
   clear: both;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   padding: 4px;
   border-radius: 999px;
   background: var(--border);
@@ -102,11 +103,12 @@
   display: grid;
   place-items: center;
   min-height: 44px;
-  padding: 0 0.5rem;
+  padding: 0.25rem 0.25rem;
   border-radius: 999px;
   font-weight: 700;
   font-size: 0.9rem;
   text-align: center;
+  overflow-wrap: anywhere;
   cursor: pointer;
   transition: background-color 0.15s;
 }

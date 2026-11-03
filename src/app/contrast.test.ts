@@ -3,11 +3,21 @@ import css from './theme.css?raw';
 
 // Finds the block by its exact selector text followed by ` {`, so `[data-luz] {` never matches the longer
 // `[data-luz][data-area='…'] {` selectors that also contain it.
-function tokensIn(source: string, selector: string): Record<string, string> {
+function rawTokensIn(source: string, selector: string, valueRe: string): Record<string, string> {
   const start = source.indexOf(`${selector} {`);
   if (start === -1) throw new Error(`Selector not found: ${selector}`);
   const block = source.slice(source.indexOf('{', start) + 1, source.indexOf('}', start));
-  return Object.fromEntries([...block.matchAll(/--([\w-]+):\s*(#[0-9a-fA-F]{6})/g)].map((m) => [m[1], m[2]]));
+  return Object.fromEntries([...block.matchAll(new RegExp(`--([\\w-]+):\\s*(${valueRe})`, 'g'))].map((m) => [m[1], m[2]]));
+}
+
+/** The hex tokens of one block, for the contrast math. */
+function tokensIn(source: string, selector: string): Record<string, string> {
+  return rawTokensIn(source, selector, '#[0-9a-fA-F]{6}');
+}
+
+/** Every token of one block, whatever its value, for the sync checks. */
+function allTokensIn(source: string, selector: string): Record<string, string> {
+  return rawTokensIn(source, selector, '[^;]+');
 }
 
 function tokens(selector: string): Record<string, string> {
@@ -65,10 +75,10 @@ describe.each([`:root[data-theme='light']`, `:root[data-theme='dark']`])('%s', (
 
 describe('theme blocks stay in sync', () => {
   test('the default block is the light palette', () => {
-    expect(tokens(':root')).toEqual(tokens(":root[data-theme='light']"));
+    expect(allTokensIn(css, ':root')).toEqual(allTokensIn(css, ":root[data-theme='light']"));
   });
   test('the system-dark block is the dark palette', () => {
-    expect(tokens(':root:not([data-theme])')).toEqual(tokens(":root[data-theme='dark']"));
+    expect(allTokensIn(css, ':root:not([data-theme])')).toEqual(allTokensIn(css, ":root[data-theme='dark']"));
   });
 });
 

@@ -1,7 +1,8 @@
 import { mkdirSync } from 'node:fs';
-import { expect, test, type Locator, type Page } from '@playwright/test';
+import { expect, test, type Browser, type Locator, type Page } from '@playwright/test';
 import { finishCurrentGame } from './helpers';
 
+const BASE_URL = 'http://localhost:4173/Light/';
 const CLOCK_TIME = new Date('2026-10-20T10:00:00');
 const SCREENSHOT_DIR = 'test-results/menus';
 const MENUS = {
@@ -25,6 +26,35 @@ const title = (page: Page, name: string) => page.getByRole('heading', { level: 1
 /** True when nothing of the page sticks out sideways. */
 const hasNoSidewaysScroll = (page: Page) =>
   page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth);
+
+/**
+ * A page of the given locale whose storage already holds one finished game. The helpers drive the Spanish UI, so the
+ * game is played in an es-CO context and its storage (IndexedDB included) is carried over.
+ */
+async function seededPage(browser: Browser, locale: string, viewport: { width: number; height: number }) {
+  const seeding = await browser.newContext({ baseURL: BASE_URL, locale: 'es-CO', viewport });
+  const seed = await seeding.newPage();
+  await seed.clock.install({ time: CLOCK_TIME });
+  await seed.goto('./#/');
+  await seed.getByRole('link', { name: 'Comenzar' }).click();
+  await finishCurrentGame(seed);
+  const storageState = await seeding.storageState({ indexedDB: true });
+  await seeding.close();
+  const context = await browser.newContext({ baseURL: BASE_URL, locale, viewport, storageState });
+  const page = await context.newPage();
+  await page.clock.install({ time: CLOCK_TIME });
+  return { page, context };
+}
+
+/** Every meter on the page must keep a bar wide enough to read. */
+async function expectMeterBars(page: Page) {
+  const meters = page.getByRole('meter');
+  const count = await meters.count();
+  for (let i = 0; i < count; i++) {
+    const box = await meters.nth(i).boundingBox();
+    expect(box?.width ?? 0, `meter ${i} width`).toBeGreaterThan(40);
+  }
+}
 
 async function expectTall(targets: Locator) {
   await expect(targets.first()).toBeVisible(); // the app renders after an async bootstrap
@@ -55,12 +85,18 @@ for (const locale of ['es-CO', 'en-US']) {
   test.describe(`narrow ${locale} menus`, () => {
     test.use({ locale, viewport: { width: 320, height: 640 } });
 
-    test('no sideways scroll on the four menus', async ({ page }) => {
+    test('no sideways scroll on the four menus, Progress with data', async ({ browser }) => {
+      const { page, context } = await seededPage(browser, locale, { width: 320, height: 640 });
       for (const [url, name] of MENUS[locale as keyof typeof MENUS]) {
         await page.goto(url);
         await expect(title(page, name)).toBeVisible();
         expect(await hasNoSidewaysScroll(page), `${url} scrolls sideways`).toBe(true);
+        if (url.endsWith('/progress')) {
+          await expect(page.getByRole('meter').first()).toBeVisible();
+          await expectMeterBars(page);
+        }
       }
+      await context.close();
     });
   });
 }
@@ -68,15 +104,23 @@ for (const locale of ['es-CO', 'en-US']) {
 test.describe('large root font menus', () => {
   test.use({ viewport: { width: 390, height: 844 } });
 
-  test('no sideways scroll with a 24 px root font', async ({ page }) => {
-    for (const [url, name] of [MENUS['es-CO'][0], MENUS['es-CO'][1]]) {
+  test('no sideways scroll with a 24 px root font on the four menus, Progress with data', async ({ browser }) => {
+    const { page, context } = await seededPage(browser, 'es-CO', { width: 390, height: 844 });
+    for (const [url, name] of MENUS['es-CO']) {
       await page.goto(url);
       await expect(title(page, name)).toBeVisible();
       await page.evaluate(() => {
         document.documentElement.style.fontSize = '24px';
       });
       expect(await hasNoSidewaysScroll(page), `${url} scrolls sideways at 24 px`).toBe(true);
+      if (url.endsWith('/progress')) {
+        await expect(page.getByRole('meter').first()).toBeVisible();
+        await expectMeterBars(page);
+        await page.screenshot({ path: `${SCREENSHOT_DIR}/24px-progress.png`, fullPage: true });
+      }
+      if (url.endsWith('/settings')) await page.screenshot({ path: `${SCREENSHOT_DIR}/24px-settings.png`, fullPage: true });
     }
+    await context.close();
   });
 });
 
@@ -86,6 +130,17 @@ test('back from a game keeps the catalog filter', async ({ page }) => {
   await page.getByRole('link', { name: /Secuencia de luces/ }).click();
   await expect(page).toHaveURL(/#\/play\/sequence-lights/);
   await page.getByRole('button', { name: 'Salir del juego' }).click();
+  await expect(page).toHaveURL(/area=memory/);
+  await expect(page.getByRole('button', { name: 'Memoria' })).toHaveAttribute('aria-pressed', 'true');
+});
+
+test('«Volver» on a finished free game keeps the catalog filter', async ({ page }) => {
+  await page.clock.install({ time: CLOCK_TIME });
+  await page.goto('./#/games');
+  await page.getByRole('button', { name: 'Memoria' }).click();
+  await page.getByRole('link', { name: /Secuencia de luces/ }).click();
+  await finishCurrentGame(page);
+  await page.getByRole('button', { name: 'Volver' }).click();
   await expect(page).toHaveURL(/area=memory/);
   await expect(page.getByRole('button', { name: 'Memoria' })).toHaveAttribute('aria-pressed', 'true');
 });
