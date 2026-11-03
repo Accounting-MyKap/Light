@@ -381,13 +381,20 @@ src/screens/progress/QuizProgress.tsx
    1. Se consideran las categorías que aún tienen preguntas sin usar en la ronda.
    2. Se descarta la categoría de las dos últimas preguntas si ambas fueron de la misma.
    3. De las que quedan, se toman las menos usadas en la ronda y se elige una al azar.
-3. **Candidatas:** las preguntas de esa categoría y dificultad que no se han usado en la ronda.
-   - Si no hay, se prueba la dificultad más cercana: primero ±1 y luego ±2, prefiriendo la menor si empatan.
-   - Si aun así no hay, se elige otra categoría.
-4. **Elección:**
-   - Si alguna candidata **nunca se ha respondido**, se elige al azar entre ellas.
-   - Si no, se elige al azar entre las **10 respondidas hace más tiempo**. Así, una vez agotado el banco, vuelven
-     primero las más antiguas.
+3. **Nunca respondidas primero:** dentro de esa categoría, entre las preguntas no usadas en la ronda que **nunca
+   se han respondido**, se busca en este orden y se elige al azar en el primer grupo que no esté vacío:
+   1. las de la dificultad sorteada;
+   2. las de las otras dificultades que pesan en el nivel actual (peso > 0 en la tabla de §2), de la más cercana a
+      la más lejana;
+   3. las de cualquier otra dificultad (incluidas las de peso 0), de la más cercana a la más lejana.
+
+   «Más cercana» es ±1 y luego ±2, prefiriendo la menor si empatan. Así no vuelve una pregunta ya vista mientras
+   la categoría guarde alguna sin ver, aunque sea de otra dificultad.
+4. **Si la categoría ya no tiene ninguna sin ver:** las candidatas son las no usadas de la dificultad sorteada (o,
+   si no hay, de la más cercana, con el mismo orden), y se elige al azar entre las **10 respondidas hace más
+   tiempo**. Así, una vez agotado el banco, vuelven primero las más antiguas.
+
+La categoría elegida en el paso 2 siempre tiene alguna pregunta sin usar, así que nunca hace falta pasar a otra.
 
 Con el mismo `rng` sembrado, la función es determinista, así que se puede probar.
 

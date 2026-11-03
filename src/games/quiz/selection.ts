@@ -74,14 +74,18 @@ function chooseCategory(
   );
 }
 
-/** Nunca respondida → al azar entre esas; si no, al azar entre las `OLDEST_SEEN_CHOICES` más antiguas. */
-function chooseFromCandidates(
-  candidates: readonly Question[],
-  history: ReadonlyMap<string, number>,
-  rng: Rng,
-): Question {
-  const fresh = candidates.filter((q) => !history.has(q.id));
-  if (fresh.length > 0) return pick(rng, fresh);
+/**
+ * Orden en que se buscan preguntas nunca respondidas: primero la dificultad sorteada, luego las demás que
+ * pesan en este nivel y por último las de peso 0, cada grupo de la más cercana a la más lejana.
+ */
+function freshOrder(drawn: Difficulty, level: number): Difficulty[] {
+  const weights = difficultyWeights(level);
+  const near = nearestFirst(drawn);
+  return [...near.filter((d) => weights[d] > 0), ...near.filter((d) => weights[d] <= 0)];
+}
+
+/** Al azar entre las `OLDEST_SEEN_CHOICES` respondidas hace más tiempo. */
+function chooseOldestSeen(candidates: readonly Question[], history: ReadonlyMap<string, number>, rng: Rng): Question {
   const lastSeen = (q: Question) => history.get(q.id) ?? 0;
   const oldest = [...candidates].sort((a, b) => lastSeen(a) - lastSeen(b)).slice(0, OLDEST_SEEN_CHOICES);
   return pick(rng, oldest);
@@ -110,10 +114,17 @@ export function pickQuestion({
   const category = multipleCategories ? chooseCategory(unused, askedCategories, rng) : null;
   const scope = category === null ? unused : unused.filter((q) => q.category === category);
 
+  // Nunca respondidas primero, aunque sean de otra dificultad: así no vuelve una ya vista mientras la
+  // categoría guarde alguna sin ver.
+  const unseen = scope.filter((q) => !history.has(q.id));
+  const fresh = freshOrder(difficulty, level)
+    .map((d) => unseen.filter((q) => q.difficulty === d))
+    .find((group) => group.length > 0);
+  if (fresh) return pick(rng, fresh);
+
   const candidates =
     nearestFirst(difficulty)
       .map((d) => scope.filter((q) => q.difficulty === d))
       .find((group) => group.length > 0) ?? scope;
-
-  return chooseFromCandidates(candidates, history, rng);
+  return chooseOldestSeen(candidates, history, rng);
 }

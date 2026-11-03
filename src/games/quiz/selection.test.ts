@@ -80,6 +80,96 @@ test('when every question was answered, picks among the 10 oldest', () => {
   expect([...seen].sort((a, b) => a - b)).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 });
 
+describe('freshness across difficulties (40/40/20 bank)', () => {
+  const pool = makePool('history', { 1: 40, 2: 40, 3: 20 });
+  const seenAt = (questions: readonly Question[]) => new Map(questions.map((q, i) => [q.id, 1000 + i]));
+
+  test('with every easy question answered, level 1 picks an unseen medium one', () => {
+    const history = seenAt(pool.filter((q) => q.difficulty === 1));
+    for (let seed = 1; seed <= 200; seed++) {
+      const q = pickQuestion(input(pool, { history, level: 1, rng: createRng(seed) }));
+      expect(q?.difficulty).toBe(2);
+      expect(history.has(q?.id ?? '')).toBe(false);
+    }
+  });
+
+  test('with every easy and medium question answered, level 1 picks an unseen hard one', () => {
+    const history = seenAt(pool.filter((q) => q.difficulty !== 3));
+    for (let seed = 1; seed <= 200; seed++) {
+      const q = pickQuestion(input(pool, { history, level: 1, rng: createRng(seed) }));
+      expect(q?.difficulty).toBe(3);
+      expect(history.has(q?.id ?? '')).toBe(false);
+    }
+  });
+
+  test('prefers unseen questions at weighted difficulties, nearest first, before weight-0 ones', () => {
+    // Level 10 weighs 2 and 3 only. Hard all seen, drawn 3: unseen medium (weighted) wins over unseen easy.
+    const drawnAt10 = (history: ReadonlyMap<string, number>, seed: number) =>
+      pickQuestion(input(pool, { history, level: 10, rng: createRng(seed) }))?.difficulty;
+    const hardSeen = seenAt(pool.filter((q) => q.difficulty === 3));
+    for (let seed = 1; seed <= 100; seed++) expect(drawnAt10(hardSeen, seed)).toBe(2);
+    // Medium and hard all seen: only easy (weight 0 at level 10) is still unseen.
+    const mediumHardSeen = seenAt(pool.filter((q) => q.difficulty !== 1));
+    for (let seed = 1; seed <= 100; seed++) expect(drawnAt10(mediumHardSeen, seed)).toBe(1);
+  });
+
+  test('looks for unseen questions across difficulties only inside the chosen category', () => {
+    const mixed = [...pool, ...makePool('science', { 1: 2, 2: 0, 3: 0 })];
+    const history = seenAt(mixed.filter((q) => q.category === 'science'));
+    // science is the least used of the round, so it is chosen; all of it is seen → oldest-seen science.
+    const asked: QuizCategory[] = ['history'];
+    for (let seed = 1; seed <= 50; seed++) {
+      expect(pickQuestion(input(mixed, { history, askedCategories: asked, rng: createRng(seed) }))?.category).toBe(
+        'science',
+      );
+    }
+  });
+
+  test('with every question answered, picks among the 10 oldest of the drawn difficulty', () => {
+    // Times assigned out of pool order; at level 1 hard is never drawn and easy/medium are fully seen.
+    const history = new Map(pool.map((q, i) => [q.id, ((i * 37) % pool.length) + 1]));
+    const oldestOf = (d: number) =>
+      pool
+        .filter((q) => q.difficulty === d)
+        .sort((a, b) => (history.get(a.id) ?? 0) - (history.get(b.id) ?? 0))
+        .slice(0, OLDEST_SEEN_CHOICES)
+        .map((q) => q.id);
+    const seen = new Set<string>();
+    for (let seed = 1; seed <= 300; seed++) {
+      const q = pickQuestion(input(pool, { history, level: 1, rng: createRng(seed) }));
+      expect(q).not.toBeNull();
+      if (!q) return;
+      expect(q.difficulty).not.toBe(3);
+      expect(oldestOf(q.difficulty)).toContain(q.id);
+      seen.add(q.id);
+    }
+    expect(seen.size).toBeGreaterThan(OLDEST_SEEN_CHOICES);
+  });
+});
+
+test('the fresh pick is random among the unseen candidates', () => {
+  const pool = makePool('history', { 1: 4, 2: 0, 3: 0 });
+  const history = new Map([
+    [pool[0].id, 10],
+    [pool[2].id, 20],
+  ]);
+  const picked = new Set<string>();
+  for (let seed = 1; seed <= 40; seed++) {
+    picked.add(pickQuestion(input(pool, { history, rng: createRng(seed) }))?.id ?? '');
+  }
+  expect([...picked].sort()).toEqual([pool[1].id, pool[3].id]);
+});
+
+test('a two-way category tie is broken at random', () => {
+  const pool = multiPool(['history', 'science'], 3);
+  const picked = new Set<QuizCategory>();
+  for (let seed = 1; seed <= 40; seed++) {
+    const q = pickQuestion(input(pool, { rng: createRng(seed) }));
+    if (q) picked.add(q.category);
+  }
+  expect([...picked].sort()).toEqual(['history', 'science']);
+});
+
 test('with fewer than 10 candidates all answered, picks among all of them', () => {
   const pool = makePool('history', { 1: 4, 2: 0, 3: 0 });
   const history = new Map(pool.map((q, i) => [q.id, 100 - i]));
