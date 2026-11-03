@@ -205,40 +205,6 @@
   gap: 0.75rem;
 }
 
-/* The reaction to an answer, over the game zone: green flash from the center, red pulse for a miss. */
-.flash {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0;
-  animation: flash 500ms ease-out both;
-}
-
-.flash[data-flash='correct'] {
-  background: radial-gradient(closest-side, rgba(77, 255, 166, 0.38), transparent);
-}
-
-.flash[data-flash='wrong'],
-.flash[data-flash='timeout'] {
-  background: radial-gradient(closest-side, rgba(255, 93, 122, 0.45), transparent);
-}
-
-@keyframes flash {
-  0% {
-    opacity: 0;
-    transform: scale(0.6);
-  }
-
-  20% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 0;
-    transform: scale(1.1);
-  }
-}
-
 /*
  * Reduced motion: nothing moves or scales, only color and opacity change. The app-wide rule would cut every
  * animation to nothing, so the ones that carry information keep their duration here.
@@ -253,11 +219,6 @@
     animation-duration: 700ms !important;
   }
 
-  .flash {
-    animation-name: flash-still;
-    animation-duration: 500ms !important;
-  }
-
   .dots li[data-state='now'] {
     opacity: 0.6;
   }
@@ -266,20 +227,6 @@
 @keyframes float-still {
   0%,
   70% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 0;
-  }
-}
-
-@keyframes flash-still {
-  0% {
-    opacity: 0;
-  }
-
-  20% {
     opacity: 1;
   }
 

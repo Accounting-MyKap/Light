@@ -1,8 +1,7 @@
 import { useContext, useEffect, useRef, useState, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
-import { prefersReducedMotion } from '../../core/motion';
-import { useFeedbackSignal, type FeedbackSignal } from './feedback';
 import { PlayChromeContext } from './playChrome';
+import { Flash, useReactionSignal } from './reaction';
 import styles from './GameFrame.module.css';
 
 export interface GameFrameProps {
@@ -20,9 +19,6 @@ export interface GameFrameProps {
 
 /** The last seconds, when the time bar turns urgent. */
 const URGENT_MS = 10_000;
-
-const SHAKE_MS = 350;
-const SHAKE_KEYFRAMES = [0, -12, 12, -8, 8, 0].map((x) => ({ transform: `translateX(${x}px)` }));
 
 /**
  * The common frame of every game: top bar (title and pause button when the game screen provides them, level,
@@ -54,17 +50,7 @@ export function GameFrame({ score, level, time, rounds, controls, children }: Ga
     setFloat({ delta: score - lastScore, change: (float?.change ?? 0) + 1 });
   }
 
-  // The reaction to the latest answer. One that was already there when the frame mounted belongs to a
-  // previous game on the same screen, so it is not drawn again.
-  const latestSignal = useFeedbackSignal();
-  const [staleSignalId] = useState(() => latestSignal?.id ?? null);
-  const signal = latestSignal && latestSignal.id !== staleSignalId ? latestSignal : null;
-
-  useEffect(() => {
-    const stage = stageRef.current;
-    if (signal?.kind !== 'wrong' || !stage || typeof stage.animate !== 'function' || prefersReducedMotion()) return;
-    stage.animate(SHAKE_KEYFRAMES, { duration: SHAKE_MS, easing: 'ease-out' });
-  }, [signal]);
+  const signal = useReactionSignal(stageRef);
 
   return (
     <div className={styles.frame}>
@@ -121,12 +107,6 @@ export function GameFrame({ score, level, time, rounds, controls, children }: Ga
       )}
     </div>
   );
-}
-
-/** The flash over the game zone. Its element is keyed by the signal, so every answer starts the animation over. */
-function Flash({ signal }: { signal: FeedbackSignal | null }) {
-  if (!signal) return null;
-  return <span key={signal.id} className={styles.flash} data-flash={signal.kind} aria-hidden="true" />;
 }
 
 function TimeBar({ remainingMs, totalMs }: { remainingMs: number; totalMs: number }) {

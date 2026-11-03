@@ -1,4 +1,5 @@
 import type { ComponentType } from 'react';
+import type { PracticeProps } from './shared/practice/types';
 
 export type Area = 'memory' | 'attention' | 'speed' | 'flexibility' | 'math' | 'logic' | 'language';
 
@@ -28,6 +29,8 @@ export interface GameDefinition {
   /** Theoretical upper bound; the server rejects anything above it. */
   maxScore: number;
   Component: ComponentType<GameProps>;
+  /** Guided practice shown before the first play. Optional until every game has one. */
+  Practice?: ComponentType<PracticeProps>;
   /** Static visual example shown with the instructions. */
   Example: ComponentType;
   /** Decorative square thumbnail (no props) that fills the width of its container; size it with a wrapper. */

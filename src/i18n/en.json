@@ -244,5 +244,13 @@
   "update": {
     "available": "A new version is available",
     "reload": "Reload"
+  },
+  "practice": {
+    "intro": "Let's practice a little: no clock, no points.",
+    "start": "Start practice",
+    "skip": "Skip practice",
+    "progress": "Practice {{n}} of {{total}}",
+    "nice": "Nice!",
+    "doneTitle": "Done! Now for real"
   }
 }
