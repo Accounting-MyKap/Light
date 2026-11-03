@@ -113,13 +113,19 @@ siempre (no se reintentan).
 
 Las preguntas viven en `src/quiz/banks/`, un archivo JSON por categoría (12 en total).
 
-1. Edita `src/quiz/banks/<categoría>.json` y agrega la pregunta con el id siguiente: el número más alto de
-   ese archivo más uno, con cuatro dígitos (`history-0013` después de `history-0012`). Nunca reutilices un id
-   borrado. Sigue el formato de la guía, con la pregunta en español y en inglés.
+1. Edita `src/quiz/banks/<categoría>.json` y agrega la pregunta con el id siguiente: el número más alto que
+   haya existido **alguna vez** en ese banco más uno, con cuatro dígitos (`history-0101` después de
+   `history-0100`). No basta con mirar el archivo actual: si se borró la última pregunta, su id tampoco se
+   reutiliza, porque el historial local de cada jugador lo recuerda. Si dudas, revisa
+   `git log -p -- src/quiz/banks/<categoría>.json`. Sigue el formato de la guía, con la pregunta en español y en
+   inglés.
 2. Actualiza el tamaño de esa categoría en `src/quiz/banks/manifest.ts`; la pantalla Preguntas lo usa para
    mostrar «Vistas: N de M».
-3. Corre `npm run quiz:stats` para ver cuántas preguntas hay por categoría y dificultad, y `npm test`, que
-   valida el formato, los ids, los largos y que el manifiesto coincida con los archivos.
+3. Corre `npm run quiz:stats`, que imprime por categoría el total, el reparto por dificultad y la cantidad de
+   verdadero/falso, y `npm test`, que valida el formato, los ids, los largos, que el manifiesto coincida con los
+   archivos y el tamaño de lanzamiento: 100 preguntas por banco (40 / 40 / 20) y 1 200 en total. Ampliar un
+   banco más allá de 100 es una decisión explícita que también actualiza esa prueba
+   (`src/quiz/banks.test.ts`).
 
 Las reglas de calidad, los ejemplos, la asignación de dificultad y el proceso de revisión están en
 [`docs/quiz/guia-de-contenido.md`](docs/quiz/guia-de-contenido.md). Agregar preguntas no requiere migración:

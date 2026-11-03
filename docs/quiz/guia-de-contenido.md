@@ -34,8 +34,12 @@ necesita para responder.
 
 - **Por dificultad, al lanzar:** 40 fáciles, 40 medias y 20 difíciles por categoría.
 - **Verdadero/falso:** como máximo el 25 % de cada categoría.
-- **Mínimo para validar un archivo:** 10 preguntas y al menos una de cada dificultad. Esto es solo el piso de la
-  prueba automática; el objetivo al lanzar es el reparto de arriba.
+- **Mínimo para validar un archivo:** 10 preguntas y al menos una de cada dificultad. Esto es solo el piso del
+  validador (`validateBank`).
+- **Puerta de lanzamiento:** cada banco tiene exactamente 100 preguntas, repartidas 40 / 40 / 20, y el total es
+  1 200. `npm test` lo exige (`src/quiz/banks.test.ts`): quitar o agregar una pregunta, o cambiar una dificultad
+  sin compensarla con otra del mismo banco, hace fallar la prueba. Ampliar un banco es una decisión explícita
+  que también actualiza esa prueba.
 
 ### Solo datos estables y verificables
 
@@ -214,20 +218,23 @@ completo. Comprueba:
    El equipo la diligencia y Claude aplica las correcciones. **La rama no se une a `main` hasta que las 400
    preguntas contables estén aprobadas.**
 4. **Validación automática.** `npm test` comprueba formato, largos, ids únicos, reparto por dificultad, proporción
-   de verdadero/falso y tamaños del manifiesto.
+   de verdadero/falso, tamaños del manifiesto y la puerta de lanzamiento (100 por banco, 40 / 40 / 20; 1 200 en
+   total).
 
 ## 9. Cómo agregar preguntas
 
-1. Abre `src/quiz/banks/<categoría>.json` y busca el id más alto. El id siguiente es ese número más uno, con
-   cuatro dígitos (`history-0101` después de `history-0100`). No reutilices un id que se haya borrado: el
-   siguiente es siempre mayor que el más alto que haya existido.
+1. Elige el id siguiente: el número más alto que haya existido **alguna vez** en ese banco más uno, con cuatro
+   dígitos (`history-0101` después de `history-0100`). No basta con buscar el más alto del archivo actual: si se
+   borró la última pregunta, su id tampoco se reutiliza (sección 3). Si dudas, revisa el historial del banco con
+   `git log -p -- src/quiz/banks/<categoría>.json`.
 2. Escribe la pregunta con el formato de la sección 3: correcta primero en `options`, ES y EN, dificultad,
    `asOf` si depende de una norma.
 3. Actualiza el tamaño de esa categoría en `src/quiz/banks/manifest.ts`. La pantalla Preguntas lo usa para mostrar
    «Vistas: N de M» sin cargar los bancos.
-4. Ejecuta `npm run quiz:stats` para ver cuántas preguntas hay por categoría y dificultad, y cuánto falta para el
-   reparto 40 / 40 / 20.
+4. Ejecuta `npm run quiz:stats`. Imprime una línea por categoría con el total, las fáciles, medias y difíciles, y
+   cuántas son de verdadero/falso; compárala con el reparto 40 / 40 / 20.
 5. Ejecuta `npm test`. Si el validador reporta errores, corrígelos: cada mensaje empieza con el id de la pregunta
-   que falló.
+   que falló. Mientras la puerta de lanzamiento (sección 2) fije 100 preguntas por banco, agregar una hace fallar
+   esa prueba: ampliar el banco es una decisión explícita que la actualiza en el mismo cambio.
 6. Pasa el lote por la verificación independiente (sección 8) antes de integrarlo; si es de contabilidad, también
    por el equipo contable.
