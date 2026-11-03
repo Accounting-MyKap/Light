@@ -315,6 +315,54 @@ test('one long jump gives the same result as many short frames (the phone froze 
   expect(long.arrivals).toEqual(arrivals);
 });
 
+describe('the frame rate never changes the game', () => {
+  /** Plays a whole game from `level`, with frames as long as `frame()` says and the player acting after each one. */
+  function play(level: number, seed: number, frame: () => number, player: (s: SwitchyardState) => SwitchyardState) {
+    const rng = createRng(seed);
+    let s = createSwitchyardGame(level, rng, 0);
+    const arrivals: Arrival[] = [];
+    while (s.now < 90_000) {
+      s = player(s);
+      const res = advanceSwitchyard(s, Math.min(90_000, s.now + frame()), rng);
+      s = res.state;
+      arrivals.push(...res.arrivals);
+    }
+    return { state: s, arrivals };
+  }
+
+  const players = { 'nobody at the switches': (s: SwitchyardState) => s, 'a perfect player': steer };
+  const frames = {
+    '60 fps': () => () => 1000 / 60,
+    'random 5–50 ms frames': () => {
+      const jitter = createRng(77);
+      return () => 5 + jitter() * 45;
+    },
+  };
+
+  describe.each(Object.entries(players))('%s', (_name, player) => {
+    test.each(Object.entries(frames).flatMap(([name, make]) => [1, 5, 10].map((level) => [name, level, make] as const)))(
+      '%s at level %i play out like 20 ms frames',
+      (_frames, level, make) => {
+        const reference = play(level, 40 + level, () => 20, player);
+        const other = play(level, 40 + level, make(), player);
+        const sum = ({ trainId, station, correct, points }: Arrival) => ({ trainId, station, correct, points });
+        expect(other.arrivals.map(sum)).toEqual(reference.arrivals.map(sum));
+        expect(other.arrivals.length).toBeGreaterThan(15);
+        other.arrivals.forEach((a, i) => expect(Math.abs(a.at - reference.arrivals[i].at)).toBeLessThan(1e-6));
+        expect(other.state.score).toBe(reference.state.score);
+        expect(other.state.nextTrainId).toBe(reference.state.nextTrainId);
+        expect(other.state.staircase).toEqual(reference.state.staircase);
+        expect(other.state.trains.map((t) => [t.id, t.route, t.arrived])).toEqual(
+          reference.state.trains.map((t) => [t.id, t.route, t.arrived]),
+        );
+        other.state.trains.forEach((t, i) =>
+          expect(Math.abs(t.distance - reference.state.trains[i].distance)).toBeLessThan(1e-6),
+        );
+      },
+    );
+  });
+});
+
 test('going back in time changes nothing', () => {
   const rng = createRng(14);
   const s = run(createSwitchyardGame(1, rng, 0), 3000, rng).state;

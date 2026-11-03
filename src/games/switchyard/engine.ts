@@ -126,8 +126,29 @@ export function toggleSwitch(state: SwitchyardState, index: number): SwitchyardS
 }
 
 /**
- * Moves the game forward to `to` (game time), in steps of at most STEP_MS so a long gap between frames plays out
- * exactly like many short ones. A train follows the way its next switch points at the step its front reaches it.
+ * A front this close to the end of its station's track has reached it: a step that ends the moment a train arrives
+ * can leave it a rounding error short.
+ */
+const ARRIVAL_SLACK = 1e-6;
+
+/** How far the front of a train still has to run to reach a station, if the switches ahead stay as they are. */
+function distanceToStation(map: TrackMap, switches: readonly (0 | 1)[], train: Train): number {
+  let segment = map.segments[train.route[train.route.length - 1]];
+  let left = segment.line.length - train.distance;
+  while ('switch' in segment.end) {
+    const sw = map.switches[segment.end.switch];
+    segment = map.segments[sw.exits[switches[sw.id]]];
+    left += segment.line.length;
+  }
+  return left;
+}
+
+/**
+ * Moves the game forward to `to` (game time), in steps of at most STEP_MS on a fixed 20 ms grid, so a long gap
+ * between frames plays out exactly like many short ones. A step also ends the moment a train is due out of the
+ * tunnel or reaches a station: an arrival moves the staircase, and with it the speed of every train and the points of
+ * the next arrival, so it has to take effect at that moment and not at the end of whatever frame it fell in. That
+ * keeps a game the same at any frame rate. A train follows the way its next switch points when its front reaches it.
  */
 export function advanceSwitchyard(
   state: SwitchyardState,
@@ -143,23 +164,28 @@ export function advanceSwitchyard(
 
   let t = state.now;
   while (t < to) {
-    const dt = Math.min(STEP_MS, to - t);
-    t += dt;
     const level = staircase.level;
-    const move = (trainSpeed(level) * dt) / 1000;
+    const speed = trainSpeed(level);
+    let end = Math.min(to, (Math.floor(t / STEP_MS) + 1) * STEP_MS);
+    if (nextSpawnAt > t) end = Math.min(end, nextSpawnAt);
+    for (const train of trains) {
+      if (!train.arrived) end = Math.min(end, t + (distanceToStation(map, switches, train) / speed) * 1000);
+    }
+    const move = (speed * (end - t)) / 1000;
+    t = end;
 
     for (const train of trains) {
       train.distance += move;
       for (;;) {
         const segment = map.segments[train.route[train.route.length - 1]];
-        if (train.distance < segment.line.length) break;
         if ('switch' in segment.end) {
+          if (train.distance < segment.line.length) break;
           const sw = map.switches[segment.end.switch];
           train.distance -= segment.line.length;
           train.route.push(sw.exits[switches[sw.id]]);
           continue;
         }
-        if (!train.arrived) {
+        if (!train.arrived && train.distance >= segment.line.length - ARRIVAL_SLACK) {
           train.arrived = true;
           const reached = segment.end.station;
           const home = reached === train.station;
