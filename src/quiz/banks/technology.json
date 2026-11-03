@@ -825,7 +825,7 @@
       "es": { "question": "¿En qué año se publicó en la Web la que se considera la primera fotografía, una imagen del grupo musical «Les Horribles Cernettes»?",
               "options": ["1992", "1990", "1995", "1998"],
               "explanation": "La foto de Les Horribles Cernettes, un grupo vinculado al CERN, se subió a la Web en 1992 y se considera la primera fotografía publicada en ella." },
-      "en": { "question": "What is considered the first photograph published on the Web shows the band 'Les Horribles Cernettes'. In what year was it posted?",
+      "en": { "question": "The photo considered the first ever published on the Web shows the band 'Les Horribles Cernettes'. In what year was it posted?",
               "options": ["1992", "1990", "1995", "1998"],
               "explanation": "The photo of Les Horribles Cernettes, a band formed at CERN, was put on the Web in 1992 and is regarded as the first photograph published there." }
     },

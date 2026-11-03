@@ -122,10 +122,10 @@ Las preguntas viven en `src/quiz/banks/`, un archivo JSON por categoría (12 en 
 2. Actualiza el tamaño de esa categoría en `src/quiz/banks/manifest.ts`; la pantalla Preguntas lo usa para
    mostrar «Vistas: N de M».
 3. Corre `npm run quiz:stats`, que imprime por categoría el total, el reparto por dificultad y la cantidad de
-   verdadero/falso, y `npm test`, que valida el formato, los ids, los largos, que el manifiesto coincida con los
-   archivos y el tamaño de lanzamiento: 100 preguntas por banco (40 / 40 / 20) y 1 200 en total. Ampliar un
-   banco más allá de 100 es una decisión explícita que también actualiza esa prueba
-   (`src/quiz/banks.test.ts`).
+   verdadero/falso (compáralo con la forma objetivo 40 / 40 / 20), y `npm test`, que valida el formato, los ids,
+   los largos, que el manifiesto coincida con los archivos y los pisos de los bancos: al menos 100 preguntas por
+   banco, con al menos 35 fáciles, 35 medias y 15 difíciles, y al menos 1 200 en total. Son mínimos: agregar
+   preguntas no toca código.
 
 Las reglas de calidad, los ejemplos, la asignación de dificultad y el proceso de revisión están en
 [`docs/quiz/guia-de-contenido.md`](docs/quiz/guia-de-contenido.md). Agregar preguntas no requiere migración:

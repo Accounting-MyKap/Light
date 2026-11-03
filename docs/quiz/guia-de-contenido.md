@@ -32,14 +32,15 @@ necesita para responder.
 
 ### Reparto
 
-- **Por dificultad, al lanzar:** 40 fáciles, 40 medias y 20 difíciles por categoría.
+- **Por dificultad, al lanzar:** 40 fáciles, 40 medias y 20 difíciles por categoría. Es la forma objetivo de cada
+  banco nuevo; compruébala con `npm run quiz:stats`.
 - **Verdadero/falso:** como máximo el 25 % de cada categoría.
 - **Mínimo para validar un archivo:** 10 preguntas y al menos una de cada dificultad. Esto es solo el piso del
   validador (`validateBank`).
-- **Puerta de lanzamiento:** cada banco tiene exactamente 100 preguntas, repartidas 40 / 40 / 20, y el total es
-  1 200. `npm test` lo exige (`src/quiz/banks.test.ts`): quitar o agregar una pregunta, o cambiar una dificultad
-  sin compensarla con otra del mismo banco, hace fallar la prueba. Ampliar un banco es una decisión explícita
-  que también actualiza esa prueba.
+- **Pisos de los bancos:** cada banco tiene al menos 100 preguntas, con al menos 35 fáciles, 35 medias y 15
+  difíciles, y entre todos suman al menos 1 200. `npm test` lo exige (`src/quiz/banks.test.ts`): quitar preguntas
+  o cambiar dificultades hasta bajar de un piso hace fallar la prueba. Son mínimos, así que agregar preguntas no
+  toca código: basta con el JSON de la categoría y su tamaño en el manifiesto.
 
 ### Solo datos estables y verificables
 
@@ -218,8 +219,8 @@ completo. Comprueba:
    El equipo la diligencia y Claude aplica las correcciones. **La rama no se une a `main` hasta que las 400
    preguntas contables estén aprobadas.**
 4. **Validación automática.** `npm test` comprueba formato, largos, ids únicos, reparto por dificultad, proporción
-   de verdadero/falso, tamaños del manifiesto y la puerta de lanzamiento (100 por banco, 40 / 40 / 20; 1 200 en
-   total).
+   de verdadero/falso, tamaños del manifiesto y los pisos de los bancos (al menos 100 por banco, con al menos
+   35 / 35 / 15, y al menos 1 200 en total).
 
 ## 9. Cómo agregar preguntas
 
@@ -234,7 +235,8 @@ completo. Comprueba:
 4. Ejecuta `npm run quiz:stats`. Imprime una línea por categoría con el total, las fáciles, medias y difíciles, y
    cuántas son de verdadero/falso; compárala con el reparto 40 / 40 / 20.
 5. Ejecuta `npm test`. Si el validador reporta errores, corrígelos: cada mensaje empieza con el id de la pregunta
-   que falló. Mientras la puerta de lanzamiento (sección 2) fije 100 preguntas por banco, agregar una hace fallar
-   esa prueba: ampliar el banco es una decisión explícita que la actualiza en el mismo cambio.
+   que falló. La prueba también comprueba los pisos de los bancos (sección 2): al menos 100 preguntas, con al
+   menos 35 / 35 / 15. Agregar preguntas nunca la hace fallar; quitarlas o cambiar dificultades, sí, si el banco
+   baja de un piso.
 6. Pasa el lote por la verificación independiente (sección 8) antes de integrarlo; si es de contabilidad, también
    por el equipo contable.

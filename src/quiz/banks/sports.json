@@ -312,7 +312,7 @@
               "options": ["Abierto de Australia", "Copa Davis", "Torneo de Miami", "Finales de la ATP"],
               "explanation": "Los cuatro Grand Slam son el Abierto de Australia, Roland Garros, Wimbledon y el Abierto de Estados Unidos." },
       "en": { "question": "Which of these tennis tournaments is one of the four Grand Slams?",
-              "options": ["The Australian Open", "Davis Cup", "Miami Open", "ATP Finals"],
+              "options": ["Australian Open", "Davis Cup", "Miami Open", "ATP Finals"],
               "explanation": "The four Grand Slams are the Australian Open, the French Open, Wimbledon and the US Open." }
     },
     {
