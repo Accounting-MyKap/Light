@@ -58,6 +58,16 @@ export interface Arrival {
   at: number;
 }
 
+/** How the trains of a game have done beyond the score, for the summary on the result screen. */
+export interface SwitchyardTally {
+  /** Trains home in a row, up to the latest arrival. */
+  streak: number;
+  /** The longest such run so far. */
+  bestStreak: number;
+  /** Trains that reached another station, by the station (id) they should have reached. */
+  missedFor: number[];
+}
+
 export interface SwitchyardState {
   map: TrackMap;
   /** The option (0 or 1) each switch points to. */
@@ -69,11 +79,24 @@ export interface SwitchyardState {
   recentStations: number[];
   staircase: Staircase;
   score: number;
+  /** Trains that reached their own station. */
   correct: number;
+  /** Trains that reached a station, theirs or another. */
   total: number;
+  /**
+   * A new game starts it empty. A state built by hand (the practice's rounds, which have no result) can leave it out,
+   * and advancing it then starts one.
+   */
+  tally?: SwitchyardTally;
   /** Game time the state has been advanced to. */
   now: number;
 }
+
+const emptyTally = (map: TrackMap): SwitchyardTally => ({
+  streak: 0,
+  bestStreak: 0,
+  missedFor: map.stations.map(() => 0),
+});
 
 export function createSwitchyardGame(startLevel: number, rng: Rng, now: number): SwitchyardState {
   const staircase = createStaircase(startLevel);
@@ -89,6 +112,7 @@ export function createSwitchyardGame(startLevel: number, rng: Rng, now: number):
     score: 0,
     correct: 0,
     total: 0,
+    tally: emptyTally(map),
     now,
   };
 }
@@ -161,6 +185,9 @@ export function advanceSwitchyard(
   let recentStations = state.recentStations;
   let trains = state.trains.map((train) => ({ ...train, route: [...train.route] }));
   const arrivals: Arrival[] = [];
+  const tally = state.tally ?? emptyTally(map);
+  let { streak, bestStreak } = tally;
+  const missedFor = [...tally.missedFor];
 
   let t = state.now;
   while (t < to) {
@@ -194,6 +221,9 @@ export function advanceSwitchyard(
           score += points;
           total += 1;
           if (home) correct += 1;
+          else missedFor[train.station] += 1;
+          streak = home ? streak + 1 : 0;
+          bestStreak = Math.max(bestStreak, streak);
           staircase = stepStaircase(staircase, home);
         }
         break;
@@ -221,7 +251,19 @@ export function advanceSwitchyard(
   }
 
   return {
-    state: { ...state, trains, nextTrainId, nextSpawnAt, recentStations, staircase, score, correct, total, now: to },
+    state: {
+      ...state,
+      trains,
+      nextTrainId,
+      nextSpawnAt,
+      recentStations,
+      staircase,
+      score,
+      correct,
+      total,
+      tally: { streak, bestStreak, missedFor },
+      now: to,
+    },
     arrivals,
   };
 }
@@ -246,10 +288,22 @@ export function trainPose(map: TrackMap, train: Train, back: number): Pose {
 }
 
 export function switchyardResult(state: SwitchyardState, durationMs: number): GameResult {
+  const { map, correct, total } = state;
+  const tally = state.tally ?? emptyTally(map);
   return {
     score: state.score,
-    accuracy: accuracyOf(state.correct, state.total),
+    accuracy: accuracyOf(correct, total),
     levelReached: state.staircase.maxLevel,
     durationMs,
+    switchyard: {
+      home: correct,
+      arrived: total,
+      bestStreak: tally.bestStreak,
+      // By the station's look rather than its id, which means nothing once the map is gone.
+      missed: map.stations
+        .map((st) => ({ style: st.style, count: tally.missedFor[st.id] }))
+        .filter((m) => m.count > 0)
+        .sort((a, b) => b.count - a.count || a.style - b.style),
+    },
   };
 }
