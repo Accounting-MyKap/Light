@@ -4,9 +4,13 @@ import { VIBRATION } from '../../core/vibrate';
 import { DEFAULT_SETTINGS, useSettings } from '../../data/settings';
 import { initI18n } from '../../i18n';
 import { FeedbackProvider } from '../shared/feedback';
+import { FASTER_SHOW_MS } from './FasterToast';
 import { SwitchyardGame } from './Game';
 import { switchyardGame } from './index';
 import { i18n } from '../../i18n';
+
+// Some tests play tens of seconds of trains frame by frame: room to spare on a loaded runner.
+vi.setConfig({ testTimeout: 15_000 });
 
 vi.mock('../../core/sound');
 // Pinned, so a test can turn the sound or the vibration off at once (the stored ones load on their own schedule).
@@ -73,6 +77,27 @@ function routeFirstTrain() {
 function misrouteFirstTrain() {
   routeTo(Number(firstTrain()!.dataset.station) === 0 ? 1 : 0);
 }
+
+/**
+ * Routes each train to its station (or, with `wrong`, to another) as it comes out of the tunnel, until `done` holds.
+ * On the 3-station maps of levels 1–3 a train is past its last switch (230 u, plus the grace) before the next one
+ * comes out (more than 280 u behind), so setting the switches for the newest train never sends an older one astray.
+ */
+function playUntil(done: () => boolean, { wrong = false } = {}) {
+  let routed = -1;
+  for (let t = 0; t < 60_000 && !done(); t += 100) {
+    const newest = [...document.querySelectorAll<SVGElement>('[data-train]')].at(-1);
+    if (newest && Number(newest.dataset.train) > routed) {
+      routed = Number(newest.dataset.train);
+      const station = Number(newest.dataset.station);
+      routeTo(wrong ? (station === 0 ? 1 : 0) : station);
+    }
+    advance(100);
+  }
+  expect(done()).toBe(true);
+}
+
+const faster = () => screen.queryByText(/^¡Más rápido!/);
 
 /** The tones played so far, in order. */
 const tones = () => vi.mocked(playTone).mock.calls.map(([kind]) => kind);
@@ -204,6 +229,23 @@ test('with the sound off nothing sounds; with the vibration off nothing vibrates
   fireEvent.click(switchButton(0));
   expect(tones()).toEqual(['clack']);
   expect(vibrate).not.toHaveBeenCalled();
+});
+
+test('when the level goes up, «¡Más rápido! · Nivel N» shows over the board for a moment, politely', () => {
+  renderGame({ startLevel: 1 });
+  expect(faster()).toBeNull();
+  playUntil(() => hud('Nivel') === '2');
+  expect(faster()).toHaveTextContent('¡Más rápido! · Nivel 2');
+  expect(faster()!.closest('[role="status"]')).not.toBeNull();
+  advance(FASTER_SHOW_MS);
+  expect(faster()).toBeNull();
+});
+
+test('no «¡Más rápido!» at the start, nor when the level goes down', () => {
+  renderGame({ startLevel: 2 });
+  expect(faster()).toBeNull();
+  playUntil(() => hud('Nivel') === '1', { wrong: true });
+  expect(faster()).toBeNull();
 });
 
 test('finishes once after 90 seconds', () => {

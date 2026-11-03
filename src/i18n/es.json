@@ -251,6 +251,7 @@
       "levelStations": "{{n}} estaciones",
       "levelSideTunnel": "túnel lateral",
       "levelMiddleStation": "estación central",
+      "faster": "¡Más rápido! · Nivel {{level}}",
       "practice": {
         "tap": "Toca el cambio (el círculo con flecha) para que el tren rojo vaya a la estación roja, la del círculo",
         "moving": "Ahora el tren avanza solo: cambia la vía antes de que llegue al cambio",

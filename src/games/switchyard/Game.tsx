@@ -7,6 +7,7 @@ import { GameFrame } from '../shared/GameFrame';
 import { useGameKeys } from '../shared/useGameKeys';
 import type { GameProps } from '../types';
 import { SWITCHYARD_DURATION_MS, advanceSwitchyard, createSwitchyardGame, switchyardResult } from './engine';
+import { FasterToast } from './FasterToast';
 import { WorldBoard, useSwitchyardWorld } from './useSwitchyardWorld';
 
 /**
@@ -49,6 +50,7 @@ export function SwitchyardGame({ startLevel, paused, onFinish }: GameProps) {
       stageFlash={false}
     >
       <WorldBoard world={world} onToggle={toggle} reducedMotion={reducedMotion} />
+      <FasterToast level={game.staircase.level} />
     </GameFrame>
   );
 }

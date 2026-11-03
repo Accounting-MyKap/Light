@@ -251,6 +251,7 @@
       "levelStations": "{{n}} stations",
       "levelSideTunnel": "side tunnel",
       "levelMiddleStation": "station in the middle",
+      "faster": "Faster! · Level {{level}}",
       "practice": {
         "tap": "Tap the switch (the circle with an arrow) so the red train goes to the red station, the circle one",
         "moving": "Now the train moves on its own: switch the track before it reaches the switch",

@@ -156,6 +156,74 @@
   }
 }
 
+/* «¡Más rápido!»: a pill in the color of the game at the top of the game zone, for a moment when the level goes up.
+   No map has a switch or a station in the top sixth of the board (only the tunnel), so the pill never hides one; it
+   takes no taps either. Its duration comes from the game (--faster-ms). */
+.fasterSlot {
+  position: absolute;
+  top: 0.375rem;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.faster {
+  margin: 0;
+  padding: 0.3em 1em;
+  border: 1.5px solid var(--game, #3fd4ff);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--luz-bg, #090b19) 84%, transparent);
+  box-shadow: 0 0 22px color-mix(in srgb, var(--game, #3fd4ff) 45%, transparent);
+  color: var(--game, #3fd4ff);
+  font-size: 1rem;
+  font-weight: 800;
+  white-space: nowrap;
+  text-shadow: 0 0 12px color-mix(in srgb, var(--game, #3fd4ff) 60%, transparent);
+  animation: faster var(--faster-ms, 1200ms) ease-out both;
+}
+
+@keyframes faster {
+  0% {
+    opacity: 0;
+    transform: translateY(10px) scale(0.85);
+  }
+
+  18%,
+  78% {
+    opacity: 1;
+    transform: none;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
+
+/* Reduced motion: it only appears and fades. The app-wide rule would cut the animation to nothing, and with it the
+   toast, so its duration stays. */
+@media (prefers-reduced-motion: reduce) {
+  .faster {
+    animation-name: faster-still;
+    animation-duration: var(--faster-ms, 1200ms) !important;
+  }
+}
+
+@keyframes faster-still {
+  0% {
+    opacity: 0;
+  }
+
+  12%,
+  78% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
 /* Reduced motion: no beacon and the arrow jumps. The trains still move: moving them is the game. */
 @media (prefers-reduced-motion: reduce) {
   .switch::before {
