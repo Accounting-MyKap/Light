@@ -37,3 +37,10 @@ test('when the browser cannot tell about motion preferences nothing moves either
   const { container } = render(<StarShowerExample />);
   expect(scene(container)).toHaveAttribute('data-animated', 'false');
 });
+
+test('the demo answer slot is not in the wrong state (it would flash red when the instructions open)', () => {
+  const { container } = render(<StarShowerExample />);
+  const slot = screen.getByText('12');
+  expect(slot).toHaveAttribute('data-wrong', '0');
+  expect(container.querySelector(":not([data-wrong='0'])[data-empty]")).toBeNull();
+});

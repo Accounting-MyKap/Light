@@ -117,7 +117,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: max-content;
   font-size: clamp(0.8125rem, 3.9vw, 1rem);
   transform: translate(-50%, -100%);
   pointer-events: none;
@@ -234,14 +233,14 @@
   margin: -2.5px 0 0 -2.5px;
   border-radius: 50%;
   box-shadow:
-    0 -1.8em 0 var(--star),
-    2.4em -1.3em 0 var(--star),
-    3.4em 0 0 var(--star),
-    2.4em 1.3em 0 var(--star),
-    0 1.8em 0 var(--star),
-    -2.4em 1.3em 0 var(--star),
-    -3.4em 0 0 var(--star),
-    -2.4em -1.3em 0 var(--star);
+    0 calc(var(--head) * -0.7) 0 var(--star),
+    calc(var(--head) * 0.9) calc(var(--head) * -0.5) 0 var(--star),
+    calc(var(--head) * 1.3) 0 0 var(--star),
+    calc(var(--head) * 0.9) calc(var(--head) * 0.5) 0 var(--star),
+    0 calc(var(--head) * 0.7) 0 var(--star),
+    calc(var(--head) * -0.9) calc(var(--head) * 0.5) 0 var(--star),
+    calc(var(--head) * -1.3) 0 0 var(--star),
+    calc(var(--head) * -0.9) calc(var(--head) * -0.5) 0 var(--star);
   animation: sparks 500ms ease-out both;
 }
 
@@ -501,6 +500,8 @@
 /* A miniature: smaller stars than the game's, so all three fit whole in its little sky at rest. */
 .demo .star {
   --head: 2rem;
+  /* Not on a rail: it must not wrap in the narrow space left to the right of its lane. */
+  width: max-content;
 }
 
 .demoPop {
@@ -622,8 +623,3 @@
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .demo .star::before {
-    display: none;
-  }
-}

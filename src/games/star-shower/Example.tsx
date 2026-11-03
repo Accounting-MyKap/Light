@@ -25,7 +25,7 @@ export function StarShowerExample() {
         <div className={styles.horizon} />
       </div>
       <div className={styles.slot}>
-        <span className={`${styles.answer} ${styles.demoAnswer}`} data-empty="false">
+        <span className={`${styles.answer} ${styles.demoAnswer}`} data-empty="false" data-wrong="0">
           12
         </span>
       </div>
