@@ -3,6 +3,7 @@ import { SAME_DIFF_MAX_SCORE, SAME_DIFF_REFERENCE_SCORE } from './engine';
 import { SameDifferentExample } from './Example';
 import { SameDifferentThumb } from './Thumb';
 import { SameDifferentGame } from './Game';
+import { SameDifferentPractice } from './Practice';
 
 export const sameDifferentGame: GameDefinition = {
   id: 'same-different',
@@ -12,4 +13,5 @@ export const sameDifferentGame: GameDefinition = {
   Component: SameDifferentGame,
   Example: SameDifferentExample,
   Thumb: SameDifferentThumb,
+  Practice: SameDifferentPractice,
 };

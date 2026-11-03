@@ -94,6 +94,16 @@
       "no": "No",
       "streak": "Streak ×{{n}}",
       "exampleAnswer": "Correct answer: Yes",
+      "practice": {
+        "remember": "Remember it",
+        "question": "Is it the same as the one before?",
+        "andThis": "And this one?",
+        "compare": "Always compare with the one just before",
+        "hint1": "Before there was a star: it's the same",
+        "hint2": "Before there was a star, now a heart: it's different",
+        "hint3": "Before there was a heart: it's the same",
+        "recap": "You have 60 seconds. Streaks multiply your points; each mistake costs 10 and resets the streak."
+      },
       "symbols": {
         "circle": "circle",
         "square": "square",

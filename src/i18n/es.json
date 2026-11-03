@@ -94,6 +94,16 @@
       "no": "No",
       "streak": "Racha ×{{n}}",
       "exampleAnswer": "Respuesta correcta: Sí",
+      "practice": {
+        "remember": "Recuérdala",
+        "question": "¿Es igual a la anterior?",
+        "andThis": "¿Y esta?",
+        "compare": "Compara siempre con la que vino justo antes",
+        "hint1": "Antes había una estrella: es igual",
+        "hint2": "Antes había una estrella y ahora un corazón: es distinto",
+        "hint3": "Antes había un corazón: es igual",
+        "recap": "Tienes 60 segundos. Las rachas multiplican tus puntos; cada error resta 10 y reinicia la racha."
+      },
       "symbols": {
         "circle": "círculo",
         "square": "cuadrado",
