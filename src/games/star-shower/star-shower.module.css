@@ -1,0 +1,414 @@
+/*
+ * Star Shower in the Luz style: stars with an operation fall toward the horizon, over the night sky of the game
+ * screen. Colors come from the Luz tokens (--game for the stars, --luz-gold for the comet, --luz-*). The animation
+ * loop sets each star's `top`; everything here is the look around it.
+ */
+
+/* The sky fills the game zone (GameFrame centers its children, so it stretches itself). */
+.sky {
+  --ground: 4.75rem;
+  position: relative;
+  flex: 1;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  min-height: 16rem;
+  overflow: hidden;
+}
+
+.scene {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Where the stars fall: `top` is a share of its height, so a star at 1 rests on the horizon. */
+.field {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+}
+
+/* Still background stars in two sets that twinkle out of step. */
+.dots,
+.dots::after {
+  position: absolute;
+  inset: 0;
+  opacity: 0.6;
+  animation: twinkle 4.5s ease-in-out infinite alternate;
+}
+
+.dots {
+  background-image:
+    radial-gradient(1.5px 1.5px at 7% 12%, rgba(255, 255, 255, 0.9), transparent),
+    radial-gradient(1px 1px at 22% 38%, rgba(255, 255, 255, 0.8), transparent),
+    radial-gradient(1.5px 1.5px at 41% 8%, rgba(255, 255, 255, 0.9), transparent),
+    radial-gradient(1px 1px at 58% 46%, rgba(255, 255, 255, 0.7), transparent),
+    radial-gradient(1.5px 1.5px at 76% 22%, rgba(255, 255, 255, 0.9), transparent),
+    radial-gradient(1px 1px at 93% 58%, rgba(255, 255, 255, 0.8), transparent),
+    radial-gradient(1px 1px at 33% 72%, rgba(255, 255, 255, 0.7), transparent),
+    radial-gradient(1.5px 1.5px at 84% 80%, rgba(255, 255, 255, 0.8), transparent);
+}
+
+.dots::after {
+  content: '';
+  animation-delay: -2.25s;
+  background-image:
+    radial-gradient(1px 1px at 14% 55%, rgba(255, 255, 255, 0.8), transparent),
+    radial-gradient(1.5px 1.5px at 29% 18%, rgba(255, 255, 255, 0.9), transparent),
+    radial-gradient(1px 1px at 51% 28%, rgba(255, 255, 255, 0.7), transparent),
+    radial-gradient(1.5px 1.5px at 66% 66%, rgba(255, 255, 255, 0.8), transparent),
+    radial-gradient(1px 1px at 88% 9%, rgba(255, 255, 255, 0.9), transparent),
+    radial-gradient(1px 1px at 4% 84%, rgba(255, 255, 255, 0.7), transparent),
+    radial-gradient(1.5px 1.5px at 47% 88%, rgba(255, 255, 255, 0.8), transparent);
+}
+
+@keyframes twinkle {
+  from {
+    opacity: 0.3;
+  }
+
+  to {
+    opacity: 0.9;
+  }
+}
+
+/*
+ * A shooting star: a sphere of light in the color of the game with the operation in ink, a halo and a trail that
+ * fades upward. It hangs from its bottom edge. The longest operation (20 + 9 × 9) fits a lane of a 320 px screen.
+ */
+.star,
+.burst {
+  --star: var(--game);
+  position: absolute;
+  padding: 0.4em 0.75em;
+  border-radius: 99px;
+  /* Plain color first: a browser without color-mix() drops the highlight and the soft halo, not the star. */
+  background-color: var(--star);
+  background-image: radial-gradient(circle at 35% 30%, color-mix(in srgb, var(--star) 45%, white), var(--star) 65%);
+  box-shadow: 0 0 14px var(--star);
+  box-shadow:
+    0 0 12px 1px color-mix(in srgb, var(--star) 75%, transparent),
+    0 0 32px 6px color-mix(in srgb, var(--star) 30%, transparent);
+  color: var(--luz-ink);
+  font-size: clamp(0.8125rem, 3.8vw, 1rem);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+  white-space: nowrap;
+  transform: translate(-50%, -100%);
+  pointer-events: none;
+}
+
+/* The three lanes, centered at 1/6, 3/6 and 5/6 of the width. */
+.star[data-lane='0'],
+.burst[data-lane='0'],
+.lossFlash[data-lane='0'] {
+  left: calc(100% / 6);
+}
+
+.star[data-lane='1'],
+.burst[data-lane='1'],
+.lossFlash[data-lane='1'] {
+  left: 50%;
+}
+
+.star[data-lane='2'],
+.burst[data-lane='2'],
+.lossFlash[data-lane='2'] {
+  left: calc(100% * 5 / 6);
+}
+
+/* The trail, behind the text, rising from the top of the star. */
+.star::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  left: 50%;
+  bottom: 85%;
+  width: 40%;
+  height: 240%;
+  border-radius: 99px 99px 40% 40%;
+  background: linear-gradient(to top, color-mix(in srgb, var(--star) 60%, transparent), transparent);
+  transform: translateX(-50%);
+  filter: blur(2px);
+}
+
+/* The comet: gold, bigger, with a long trail and a ✦, so its color is not the only cue. */
+.star[data-comet='true'],
+.burst[data-comet='true'] {
+  --star: var(--luz-gold);
+  padding: 0.5em 0.95em;
+  font-size: clamp(0.875rem, 4.1vw, 1.0625rem);
+}
+
+.star[data-comet='true']::before {
+  width: 55%;
+  height: 420%;
+}
+
+.sparkle {
+  position: absolute;
+  left: 50%;
+  bottom: 100%;
+  width: 1.1em;
+  height: 1.1em;
+  fill: #fff7d6;
+  filter: drop-shadow(0 0 4px var(--luz-gold));
+  transform: translate(-50%, 50%);
+}
+
+/* A popped star bursts into sparks; a cleared one only fades out. */
+.burst[data-kind='pop'] {
+  animation: pop 500ms ease-out both;
+}
+
+.burst[data-kind='pop']::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 5px;
+  height: 5px;
+  margin: -2.5px 0 0 -2.5px;
+  border-radius: 50%;
+  box-shadow:
+    0 -1.8em 0 var(--star),
+    2.4em -1.3em 0 var(--star),
+    3.4em 0 0 var(--star),
+    2.4em 1.3em 0 var(--star),
+    0 1.8em 0 var(--star),
+    -2.4em 1.3em 0 var(--star),
+    -3.4em 0 0 var(--star),
+    -2.4em -1.3em 0 var(--star);
+  animation: sparks 500ms ease-out both;
+}
+
+.burst[data-kind='clear'] {
+  animation: fade 500ms ease-out both;
+}
+
+@keyframes pop {
+  from {
+    opacity: 1;
+    transform: translate(-50%, -100%) scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: translate(-50%, -100%) scale(1.35);
+  }
+}
+
+@keyframes sparks {
+  from {
+    transform: scale(0.5);
+  }
+
+  to {
+    transform: scale(1.3);
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+/* A solved comet: a gold flash over the sky. */
+.cometFlash {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 75% 60% at 50% 45%, color-mix(in srgb, var(--luz-gold) 50%, transparent), transparent);
+  pointer-events: none;
+  animation: sky-flash 500ms ease-out both;
+}
+
+@keyframes sky-flash {
+  0% {
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+/* The horizon: a glowing line in the color of the game over dark ground. */
+.horizon {
+  position: relative;
+  flex: none;
+  height: var(--ground);
+  border-radius: 0 0 1.25rem 1.25rem;
+  background: linear-gradient(to bottom, rgba(4, 5, 14, 0.95), rgba(4, 5, 14, 0.55));
+}
+
+.horizon::before {
+  content: '';
+  position: absolute;
+  inset: -1px 0 auto;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--game);
+  background: linear-gradient(to right, transparent, color-mix(in srgb, var(--game) 75%, white) 12% 88%, transparent);
+  box-shadow: 0 0 14px 1px color-mix(in srgb, var(--game) 55%, transparent);
+}
+
+/* A lost star: the horizon lights up red in its lane, with a red glow rising from it. */
+.lossFlash {
+  position: absolute;
+  top: -2px;
+  width: calc(100% / 3);
+  height: 4px;
+  border-radius: 4px;
+  background: var(--luz-bad);
+  box-shadow: 0 0 18px 4px var(--luz-bad);
+  transform: translateX(-50%);
+  pointer-events: none;
+  animation: sky-flash 600ms ease-out both;
+}
+
+.lossFlash::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0;
+  height: 3.5rem;
+  background: radial-gradient(ellipse 60% 100% at 50% 100%, color-mix(in srgb, var(--luz-bad) 45%, transparent), transparent);
+}
+
+/* The answer slot sits on the ground under the horizon, in the middle; the same slot as Quick Math's. */
+.slot {
+  position: absolute;
+  inset: auto 0 0;
+  height: var(--ground);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(1.75rem, 9vw, 2.25rem);
+  pointer-events: none;
+}
+
+.answer {
+  --slot: var(--game);
+  position: relative;
+  min-width: 4ch;
+  padding: 0 0.5rem 0.2rem;
+  color: var(--luz-text);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.15;
+  text-align: center;
+}
+
+.answer::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0;
+  height: 3px;
+  border-radius: 3px;
+  background: var(--slot);
+  box-shadow: 0 0 14px 1px var(--slot);
+}
+
+/* Nothing typed yet: the question mark waits dimmed. */
+.answer[data-empty='true'] {
+  color: var(--luz-muted);
+}
+
+/* A wrong number: the slot turns red and shakes. It is re-mounted for each one, so the shake starts over. */
+.answer:not([data-wrong='0']) {
+  animation: wrong 450ms ease-out both;
+}
+
+.answer:not([data-wrong='0'])::after {
+  animation: wrong-line 450ms ease-out both;
+}
+
+/* The red holds until 60% and then fades back to the slot's own color (no 100% color: the underlying one). */
+@keyframes wrong {
+  0% {
+    color: var(--luz-bad);
+    transform: none;
+  }
+
+  15% {
+    transform: translateX(-8px);
+  }
+
+  35% {
+    transform: translateX(8px);
+  }
+
+  55% {
+    transform: translateX(-5px);
+  }
+
+  60% {
+    color: var(--luz-bad);
+  }
+
+  75% {
+    transform: translateX(3px);
+  }
+
+  100% {
+    transform: none;
+  }
+}
+
+@keyframes wrong-line {
+  0%,
+  60% {
+    background: var(--luz-bad);
+    box-shadow: 0 0 14px 1px var(--luz-bad);
+  }
+}
+
+/*
+ * Reduced motion: the stars still fall (that is the game), but with no trails, sparks, shake or twinkle; a star
+ * that pops or is cleared only fades out, and the wrong slot only turns red. The flashes are not drawn at all
+ * (Game.tsx leaves them out). The app-wide rule would cut every animation to nothing, so the fades that carry
+ * information keep their duration here.
+ */
+@media (prefers-reduced-motion: reduce) {
+  .star::before,
+  .burst[data-kind='pop']::after {
+    display: none;
+  }
+
+  .burst[data-kind='pop'],
+  .burst[data-kind='clear'] {
+    animation-name: fade;
+    animation-duration: 500ms !important;
+  }
+
+  .dots,
+  .dots::after {
+    animation: none;
+  }
+
+  .answer:not([data-wrong='0']) {
+    animation-name: wrong-still;
+    animation-duration: 450ms !important;
+  }
+
+  .answer:not([data-wrong='0'])::after {
+    animation-duration: 450ms !important;
+  }
+}
+
+@keyframes wrong-still {
+  0%,
+  60% {
+    color: var(--luz-bad);
+  }
+}
