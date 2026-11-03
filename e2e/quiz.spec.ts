@@ -75,7 +75,7 @@ test.describe('the quiz on a narrow English screen', () => {
       expect(await noSidewaysScroll(), `${id} asking`).toBe(true);
       await page.waitForTimeout(200); // longer than MIN_RT_MS, or the app ignores the tap
       await page.getByRole('button', { name: /^Option 1: / }).click();
-      await expect(page.getByRole('button', { name: 'Next' })).toBeVisible();
+      await expect(page.getByRole('button', { name: 'Next', exact: true })).toBeVisible();
       expect(await noSidewaysScroll(), `${id} feedback`).toBe(true);
     }
   });
@@ -99,7 +99,7 @@ test.describe('quiz review screenshots', () => {
       await page.waitForTimeout(n === 1 ? 1500 : 200); // past MIN_RT_MS; for the shot, a little time off the bar
       if (n === 1) await page.screenshot({ path: `${dir}/quiz-asking.png` });
       await page.getByRole('button', { name: /^Opción 1: / }).click();
-      const next = page.getByRole('button', { name: n === 10 ? 'Ver resultado' : 'Siguiente' });
+      const next = page.getByRole('button', { name: n === 10 ? 'Ver resultado' : 'Siguiente', exact: true });
       await expect(next).toBeFocused();
       if (n === 1) {
         await page.waitForTimeout(700); // let the flash fade

@@ -41,11 +41,11 @@ test('quiz controls are at least 44 px tall on a 320 px screen', async ({ page }
   await page.getByRole('button', { name: 'Comenzar' }).click();
   await expect(page.getByText('Pregunta 1 de 10')).toBeVisible();
   await expectTall(page.getByRole('button', { name: /^Opción \d: / })); // the options
-  await expectTall(page.getByRole('button', { name: 'No sé' }));
+  await expectTall(page.getByRole('button', { name: 'No sé', exact: true }));
 
   await page.waitForTimeout(200); // longer than MIN_RT_MS, or the app ignores the tap
   await page.getByRole('button', { name: /^Opción 1: / }).click();
-  await expectTall(page.getByRole('button', { name: 'Siguiente' }));
+  await expectTall(page.getByRole('button', { name: 'Siguiente', exact: true }));
 });
 
 test('after «Siguiente» the new question starts in view on a 320 × 568 screen', async ({ page }) => {
@@ -63,7 +63,7 @@ test('after «Siguiente» the new question starts in view on a 320 × 568 screen
     await expect(page.getByRole('heading', { level: 2 })).toBeFocused();
     await page.waitForTimeout(200); // longer than MIN_RT_MS, or the app ignores the tap
     await page.getByRole('button', { name: /^Opción 1: / }).click();
-    await page.getByRole('button', { name: 'Siguiente' }).click();
+    await page.getByRole('button', { name: 'Siguiente', exact: true }).click();
   }
 });
 
