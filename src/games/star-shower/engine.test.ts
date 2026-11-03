@@ -195,7 +195,9 @@ test('result before the game ended throws', () => {
 function answerAll(s: StarShowerState): StarShowerState {
   let cur = s;
   while (cur.stars.length > 0) {
+    const before = cur.stars.length;
     cur = submitAnswer(typed(cur, String(cur.stars[0].problem.answer))).state;
+    if (cur.stars.length >= before) throw new Error('answerAll: submit did not remove a star');
   }
   return cur;
 }
@@ -267,11 +269,15 @@ test('a perfect 5-minute game stays under the max score', () => {
   const rng = createRng(4);
   let s = createStarShower(10, rng);
   let births = 0;
-  for (let now = 0; s.endedAt === null; now += 100) {
+  let lostEvents = 0;
+  for (let now = 0; now <= MAX_GAME_MS && s.endedAt === null; now += 100) {
     const r = advance(s, now, rng);
     births += r.events.filter((e) => e.kind === 'spawn').length;
+    lostEvents += r.events.filter((e) => e.kind === 'lost').length;
     s = answerAll(r.state);
   }
+  expect(s.endedAt).toBe(MAX_GAME_MS);
+  expect(lostEvents).toBe(0);
   expect(births).toBeLessThanOrEqual(176);
   expect(s.score).toBeLessThanOrEqual(STAR_SHOWER_MAX_SCORE);
 });
