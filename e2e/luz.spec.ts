@@ -2,7 +2,7 @@ import { mkdirSync } from 'node:fs';
 import { expect, test, type Page } from '@playwright/test';
 import { finishRunningGame } from './helpers';
 
-const GAMES = ['sequence-lights', 'arrows', 'same-different', 'rule-switch', 'quick-math'] as const;
+const GAMES = ['sequence-lights', 'arrows', 'same-different', 'rule-switch', 'quick-math', 'star-shower'] as const;
 const CLOCK_TIME = new Date('2026-10-20T10:00:00');
 const LUZ_BACKGROUND = 'rgb(9, 11, 25)'; // #090b19
 const SCREENSHOT_DIR = 'test-results/luz';
@@ -37,6 +37,20 @@ async function solveQuickMath(page: Page, count: number): Promise<void> {
   }
 }
 
+/** Answers `count` Star Shower stars correctly: reads the first star's sum, types its result and presses Enter. */
+async function solveStarShower(page: Page, count: number): Promise<void> {
+  const stars = page.getByTestId('star');
+  const answer = page.getByTestId('answer');
+  for (let i = 0; i < count; i++) {
+    await expect(stars.first()).toBeVisible();
+    const result = String(solve((await stars.first().textContent()) ?? ''));
+    await page.keyboard.type(result);
+    await expect(answer).toHaveText(result);
+    await page.keyboard.press('Enter');
+    await expect(answer).toHaveText('?');
+  }
+}
+
 /** Answers `count` Cambio de regla trials correctly: the card that matches the stimulus in the current rule. */
 async function solveRuleSwitch(page: Page, count: number): Promise<void> {
   for (let i = 0; i < count; i++) {
@@ -55,6 +69,7 @@ async function answerSome(page: Page, id: (typeof GAMES)[number]): Promise<void>
   if (id === 'sequence-lights') return;
   if (id === 'quick-math') return solveQuickMath(page, 4);
   if (id === 'rule-switch') return solveRuleSwitch(page, 6);
+  if (id === 'star-shower') return solveStarShower(page, 3);
   const buttons = page.locator('[data-game] [data-zone="controls"] button');
   if (id === 'arrows') {
     // «Izquierda» is the first button, «Derecha» the second: tap the one the center arrow points to.
@@ -115,6 +130,61 @@ test.describe('narrow English screen', () => {
       await expect(page.locator('[data-game]'), `${id} playing`).toBeVisible();
       expect(await hasNoSidewaysScroll(page), `${id} in play scrolls sideways`).toBe(true);
     }
+  });
+});
+
+test.describe('Star Shower at 320 px', () => {
+  test.use({ locale: 'en-US', viewport: { width: 320, height: 640 } });
+
+  test('Star Shower at level 10 keeps its longest sums inside the sky at 320 px', async ({ page }) => {
+    await page.goto('./#/games');
+    await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+    await page.evaluate(
+      () =>
+        new Promise<void>((resolve, reject) => {
+          const open = indexedDB.open('light');
+          open.onerror = () => reject(open.error);
+          open.onsuccess = () => {
+            const db = open.result;
+            const tx = db.transaction('gameLevels', 'readwrite');
+            tx.objectStore('gameLevels').put({ gameId: 'star-shower', startLevel: 10 });
+            tx.oncomplete = () => {
+              db.close();
+              resolve();
+            };
+            tx.onerror = () => reject(tx.error);
+          };
+        }),
+    );
+
+    await page.goto('./#/play/star-shower');
+    await page.getByRole('button', { name: 'Start' }).click();
+    const stars = page.getByTestId('star');
+    await expect(stars).toHaveCount(3, { timeout: 15_000 });
+    // A star is born above the sky and comes down anchored by its bottom edge, so wait until the newest one has
+    // fully entered before looking at the boxes.
+    const stage = page.locator('[data-zone="stage"]');
+    await expect
+      .poll(async () => {
+        const sky = await stage.boundingBox();
+        const newest = await stars.last().boundingBox();
+        return newest !== null && sky !== null && newest.y >= sky.y;
+      })
+      .toBe(true);
+    const sky = await stage.boundingBox();
+    expect(sky).not.toBeNull();
+    const count = await stars.count();
+    expect(count).toBeGreaterThanOrEqual(2);
+    for (let i = 0; i < count; i++) {
+      const box = await stars.nth(i).boundingBox();
+      const text = await stars.nth(i).textContent();
+      expect(box, `star ${i} «${text}»`).not.toBeNull();
+      expect(box!.x, `«${text}» left edge`).toBeGreaterThanOrEqual(sky!.x);
+      expect(box!.y, `«${text}» top edge`).toBeGreaterThanOrEqual(sky!.y);
+      expect(box!.x + box!.width, `«${text}» right edge`).toBeLessThanOrEqual(sky!.x + sky!.width);
+      expect(box!.y + box!.height, `«${text}» bottom edge`).toBeLessThanOrEqual(sky!.y + sky!.height);
+    }
+    expect(await hasNoSidewaysScroll(page)).toBe(true);
   });
 });
 
@@ -202,7 +272,7 @@ test.describe('arrows rows', () => {
 test.describe('review screenshots', () => {
   test.use({ viewport: { width: 390, height: 844 }, colorScheme: 'dark' });
 
-  test('screenshots of the five games for review', async ({ page }) => {
+  test('screenshots of the six games for review', async ({ page }) => {
     mkdirSync(SCREENSHOT_DIR, { recursive: true });
     await page.clock.install({ time: CLOCK_TIME });
 
