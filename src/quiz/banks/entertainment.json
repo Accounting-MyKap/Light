@@ -259,20 +259,20 @@
     {
       "id": "entertainment-0030", "difficulty": 1, "type": "choice",
       "es": { "question": "¿A qué cantante se la conoce como la «Reina del Pop»?",
-              "options": ["Madonna", "Cher", "Cyndi Lauper", "Janet Jackson"],
+              "options": ["Madonna", "Cher", "Cyndi Lauper", "Tina Turner"],
               "explanation": "Madonna recibió ese apodo por su larga carrera y su influencia en la música pop desde los años ochenta." },
       "en": { "question": "Which singer is known as the “Queen of Pop”?",
-              "options": ["Madonna", "Cher", "Cyndi Lauper", "Janet Jackson"],
+              "options": ["Madonna", "Cher", "Cyndi Lauper", "Tina Turner"],
               "explanation": "Madonna earned that nickname for her long career and her influence on pop music since the 1980s." }
     },
     {
       "id": "entertainment-0031", "difficulty": 1, "type": "choice",
-      "es": { "question": "¿Qué apodo, que significa «pequeño Shakespeare», tenía Roberto Gómez Bolaños, creador de «El Chavo del 8»?",
+      "es": { "question": "¿Qué apodo tenía Roberto Gómez Bolaños, creador de «El Chavo del 8»?",
               "options": ["Chespirito", "Cantinflas", "Tin Tan", "Capulina"],
-              "explanation": "Chespirito viene de «Shakespearito». Gómez Bolaños creó «El Chavo del 8» y «El Chapulín Colorado», y él mismo interpretó a ambos personajes." },
-      "en": { "question": "What nickname, meaning “little Shakespeare”, did Roberto Gómez Bolaños, creator of “El Chavo del 8”, go by?",
+              "explanation": "«Chespirito» significa «pequeño Shakespeare». Gómez Bolaños creó «El Chavo del 8» y «El Chapulín Colorado», y él mismo interpretó a ambos personajes." },
+      "en": { "question": "What nickname did Roberto Gómez Bolaños, creator of “El Chavo del 8”, go by?",
               "options": ["Chespirito", "Cantinflas", "Tin Tan", "Capulina"],
-              "explanation": "Chespirito comes from a diminutive of “Shakespeare”. Gómez Bolaños created “El Chavo del 8” and “El Chapulín Colorado”, and played both characters himself." }
+              "explanation": "“Chespirito” means “little Shakespeare”. Gómez Bolaños created “El Chavo del 8” and “El Chapulín Colorado”, and played both characters himself." }
     },
     {
       "id": "entertainment-0032", "difficulty": 1, "type": "choice",
@@ -339,10 +339,10 @@
       "id": "entertainment-0039", "difficulty": 1, "type": "choice",
       "es": { "question": "¿De qué isla del Caribe es el cantante Bad Bunny?",
               "options": ["Puerto Rico", "Cuba", "República Dominicana", "Jamaica"],
-              "explanation": "Bad Bunny nació en Vega Baja, Puerto Rico, y es una de las figuras del reguetón y el trap latino." },
+              "explanation": "Bad Bunny nació en Bayamón y creció en Vega Baja, Puerto Rico, y es una de las figuras del reguetón y el trap latino." },
       "en": { "question": "Which Caribbean island is the singer Bad Bunny from?",
               "options": ["Puerto Rico", "Cuba", "Dominican Republic", "Jamaica"],
-              "explanation": "Bad Bunny was born in Vega Baja, Puerto Rico, and is one of the leading figures of reggaeton and Latin trap." }
+              "explanation": "Bad Bunny was born in Bayamón and raised in Vega Baja, Puerto Rico, and is one of the leading figures of reggaeton and Latin trap." }
     },
     {
       "id": "entertainment-0040", "difficulty": 1, "type": "choice",
@@ -479,10 +479,10 @@
     },
     {
       "id": "entertainment-0055", "difficulty": 2, "type": "choice",
-      "es": { "question": "¿Qué película de habla no inglesa ganó por primera vez el Óscar a Mejor Película, en la ceremonia de 2020?",
+      "es": { "question": "¿Cuál fue la primera película de habla no inglesa en ganar el Óscar a Mejor Película, en la ceremonia de 2020?",
               "options": ["Parásitos", "Roma", "Amour", "Cartas desde Iwo Jima"],
               "explanation": "«Parásitos», del surcoreano Bong Joon-ho, fue la primera película de habla no inglesa en ganar Mejor Película. «Roma» y «Amour» solo fueron nominadas." },
-      "en": { "question": "Which non-English-language movie became the first to win the Oscar for Best Picture, at the 2020 ceremony?",
+      "en": { "question": "Which was the first non-English-language movie to win the Oscar for Best Picture, at the 2020 ceremony?",
               "options": ["Parasite", "Roma", "Amour", "Letters from Iwo Jima"],
               "explanation": "“Parasite”, by South Korean director Bong Joon-ho, was the first non-English-language film to win Best Picture. “Roma” and “Amour” were only nominated." }
     },
@@ -517,19 +517,19 @@
       "id": "entertainment-0059", "difficulty": 2, "type": "choice",
       "es": { "question": "¿Qué cantautor colombiano lanzó en 2002 la canción «A Dios le pido»?",
               "options": ["Juanes", "Carlos Vives", "Fonseca", "Maluma"],
-              "explanation": "Juanes, nacido en Carolina del Príncipe, Antioquia, la incluyó en su álbum «Un día normal», de 2002." },
+              "explanation": "El antioqueño Juanes la incluyó en su álbum «Un día normal», de 2002." },
       "en": { "question": "Which Colombian singer-songwriter released the song “A Dios le pido” in 2002?",
               "options": ["Juanes", "Carlos Vives", "Fonseca", "Maluma"],
-              "explanation": "Juanes, born in Carolina del Príncipe, Antioquia, included it on his album “Un día normal”, from 2002." }
+              "explanation": "Juanes, from Antioquia, included it on his album “Un día normal”, from 2002." }
     },
     {
       "id": "entertainment-0060", "difficulty": 2, "type": "choice",
-      "es": { "question": "¿De qué telenovela mexicana nació el grupo pop RBD?",
+      "es": { "question": "¿De qué telenovela nació el grupo pop RBD?",
               "options": ["Rebelde", "Floricienta", "Patito feo", "Violetta"],
-              "explanation": "RBD se formó para la telenovela «Rebelde» (2004), y sus integrantes eran también sus protagonistas." },
-      "en": { "question": "Which Mexican telenovela gave rise to the pop group RBD?",
+              "explanation": "RBD se formó para la telenovela mexicana «Rebelde» (2004), y sus integrantes eran también sus protagonistas." },
+      "en": { "question": "Which telenovela gave rise to the pop group RBD?",
               "options": ["Rebelde", "Floricienta", "Patito Feo", "Violetta"],
-              "explanation": "RBD was formed for the telenovela “Rebelde” (2004), and its members were also its stars." }
+              "explanation": "RBD was formed for the Mexican telenovela “Rebelde” (2004), and its members were also its stars." }
     },
     {
       "id": "entertainment-0061", "difficulty": 2, "type": "choice",
@@ -542,12 +542,12 @@
     },
     {
       "id": "entertainment-0062", "difficulty": 2, "type": "choice",
-      "es": { "question": "¿Qué álbum de Taylor Swift tiene como título su año de nacimiento?",
-              "options": ["1989", "Red", "Fearless", "Reputation"],
-              "explanation": "Taylor Swift nació en 1989 y le puso ese año a su álbum de 2014." },
-      "en": { "question": "Which Taylor Swift album is titled after the year she was born?",
-              "options": ["1989", "Red", "Fearless", "Reputation"],
-              "explanation": "Taylor Swift was born in 1989 and gave that year to her 2014 album." }
+      "es": { "question": "¿Qué álbum lanzó Taylor Swift en 2014?",
+              "options": ["1989", "Red", "Reputation", "Lover"],
+              "explanation": "«1989» salió en 2014 y lleva el año de nacimiento de Taylor Swift. «Red» es de 2012, «Reputation» de 2017 y «Lover» de 2019." },
+      "en": { "question": "Which album did Taylor Swift release in 2014?",
+              "options": ["1989", "Red", "Reputation", "Lover"],
+              "explanation": "“1989” came out in 2014 and is named after Taylor Swift's birth year. “Red” is from 2012, “Reputation” from 2017 and “Lover” from 2019." }
     },
     {
       "id": "entertainment-0063", "difficulty": 2, "type": "choice",
@@ -569,10 +569,10 @@
       "id": "entertainment-0065", "difficulty": 2, "type": "choice",
       "es": { "question": "¿En qué ciudad murió el cantante de tango Carlos Gardel, en 1935?",
               "options": ["Medellín", "Buenos Aires", "Montevideo", "Bogotá"],
-              "explanation": "Gardel murió el 24 de junio de 1935 en un accidente de aviación en el aeropuerto Olaya Herrera, de Medellín." },
+              "explanation": "Gardel murió el 24 de junio de 1935 en un accidente de aviación en el aeródromo Las Playas, hoy aeropuerto Olaya Herrera, de Medellín." },
       "en": { "question": "In which city did the tango singer Carlos Gardel die, in 1935?",
               "options": ["Medellín", "Buenos Aires", "Montevideo", "Bogotá"],
-              "explanation": "Gardel died on 24 June 1935 in a plane crash at Olaya Herrera airport in Medellín, Colombia." }
+              "explanation": "Gardel died on 24 June 1935 in a plane crash at the Las Playas airfield, today Olaya Herrera airport, in Medellín, Colombia." }
     },
     {
       "id": "entertainment-0066", "difficulty": 2, "type": "choice",
@@ -718,10 +718,10 @@
     },
     {
       "id": "entertainment-0082", "difficulty": 2, "type": "choice",
-      "es": { "question": "¿Quién dirigió y protagonizó «Tiempos modernos» (1936), con su personaje de Charlot?",
+      "es": { "question": "¿Quién dirigió y protagonizó «Tiempos modernos» (1936)?",
               "options": ["Charles Chaplin", "Buster Keaton", "Harold Lloyd", "Stan Laurel"],
               "explanation": "Charles Chaplin dirigió, escribió y protagonizó la película, que critica el trabajo en las fábricas. Charlot es su personaje más conocido." },
-      "en": { "question": "Who directed and starred in “Modern Times” (1936), as his character the Tramp?",
+      "en": { "question": "Who directed and starred in “Modern Times” (1936)?",
               "options": ["Charles Chaplin", "Buster Keaton", "Harold Lloyd", "Stan Laurel"],
               "explanation": "Charles Chaplin directed, wrote and starred in the film, which criticizes factory work. The Tramp is his best-known character." }
     },
@@ -754,12 +754,12 @@
     },
     {
       "id": "entertainment-0086", "difficulty": 3, "type": "choice",
-      "es": { "question": "¿Qué película de 1927 se considera el primer largometraje con diálogos y canciones sincronizados?",
-              "options": ["El cantante de jazz", "Metrópolis", "Luces de la ciudad", "El gabinete del doctor Caligari"],
-              "explanation": "«El cantante de jazz», de Warner Bros., tenía partes habladas y cantadas sincronizadas y marcó el paso del cine mudo al sonoro." },
-      "en": { "question": "Which 1927 movie is considered the first feature film with synchronized dialogue and songs?",
-              "options": ["The Jazz Singer", "Metropolis", "City Lights", "The Cabinet of Dr. Caligari"],
-              "explanation": "“The Jazz Singer”, from Warner Bros., had synchronized spoken and sung passages and marked the shift from silent films to talkies." }
+      "es": { "question": "¿Qué película de 1927 se considera el primer largometraje con escenas de diálogo y canto sincronizados?",
+              "options": ["El cantante de jazz", "Metrópolis", "Amanecer", "Alas"],
+              "explanation": "«El cantante de jazz», de Warner Bros., incluyó escenas habladas y cantadas sincronizadas y marcó el paso del cine mudo al sonoro." },
+      "en": { "question": "Which 1927 movie is considered the first feature film with synchronized dialogue and singing sequences?",
+              "options": ["The Jazz Singer", "Metropolis", "Sunrise", "Wings"],
+              "explanation": "“The Jazz Singer”, from Warner Bros., included synchronized spoken and sung scenes and marked the shift from silent films to talkies." }
     },
     {
       "id": "entertainment-0087", "difficulty": 3, "type": "choice",
@@ -772,12 +772,12 @@
     },
     {
       "id": "entertainment-0088", "difficulty": 3, "type": "choice",
-      "es": { "question": "¿Qué telenovela de 1994 tiene como protagonista a Gaviota, una joven recolectora de café?",
+      "es": { "question": "¿Qué telenovela de 1994 tiene como protagonista a Gaviota?",
               "options": ["Café con aroma de mujer", "Los ricos también lloran", "Marimar", "La usurpadora"],
-              "explanation": "«Café con aroma de mujer» es una telenovela colombiana de RCN, protagonizada por Margarita Rosa de Francisco y Guy Ecker." },
-      "en": { "question": "Which 1994 telenovela stars Gaviota, a young coffee picker?",
+              "explanation": "Gaviota es una joven recolectora de café en «Café con aroma de mujer», telenovela colombiana de RCN con Margarita Rosa de Francisco y Guy Ecker." },
+      "en": { "question": "Which 1994 telenovela features Gaviota as its heroine?",
               "options": ["Café con aroma de mujer", "Los ricos también lloran", "Marimar", "La usurpadora"],
-              "explanation": "“Café con aroma de mujer” is a Colombian telenovela from RCN, starring Margarita Rosa de Francisco and Guy Ecker." }
+              "explanation": "Gaviota is a young coffee picker in “Café con aroma de mujer”, a Colombian telenovela from RCN starring Margarita Rosa de Francisco and Guy Ecker." }
     },
     {
       "id": "entertainment-0089", "difficulty": 3, "type": "choice",
@@ -870,7 +870,7 @@
     {
       "id": "entertainment-0099", "difficulty": 3, "type": "choice",
       "es": { "question": "¿Qué película muda y en blanco y negro ganó el Óscar a Mejor Película en la ceremonia de 2012?",
-              "options": ["El artista", "La invención de Hugo", "Medianoche en París", "Caballo de guerra"],
+              "options": ["El artista", "La invención de Hugo Cabret", "Medianoche en París", "Caballo de guerra"],
               "explanation": "«El artista», del francés Michel Hazanavicius, evoca el Hollywood de fines de los años veinte, cuando el cine mudo daba paso al sonoro." },
       "en": { "question": "Which silent black-and-white movie won the Oscar for Best Picture at the 2012 ceremony?",
               "options": ["The Artist", "Hugo", "Midnight in Paris", "War Horse"],
