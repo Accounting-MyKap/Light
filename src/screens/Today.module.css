@@ -34,9 +34,11 @@
 
 .screen h1 {
   margin: 0;
-  font-size: 1.9rem;
+  font-size: min(1.9rem, 10.5vw);
   font-weight: 800;
   line-height: 1.1;
+  overflow-wrap: anywhere;
+  hyphens: auto;
 }
 
 .screen h2 {
@@ -59,6 +61,8 @@
 
 .row {
   display: flex;
+  /* With a large root font the title keeps its whole width and «Sigue» / the score drops to its own line. */
+  flex-wrap: wrap;
   align-items: center;
   gap: 0.75rem;
   padding: 0.6rem;
@@ -91,7 +95,8 @@
 .rowText {
   display: flex;
   flex-direction: column;
-  min-width: 0;
+  flex: 1 1 0;
+  min-width: min-content;
 }
 
 .itemTitle {

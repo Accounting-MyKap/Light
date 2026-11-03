@@ -5,6 +5,7 @@
   "nav": {
     "today": "Hoy",
     "games": "Juegos",
+    "quiz": "Preguntas",
     "progress": "Progreso",
     "settings": "Ajustes"
   },
@@ -15,7 +16,9 @@
     "flexibility": "Flexibilidad mental",
     "math": "Matemáticas",
     "logic": "Lógica",
-    "language": "Lenguaje"
+    "language": "Lenguaje",
+    "trivia": "Cultura general",
+    "accounting": "Contabilidad"
   },
   "common": {
     "start": "Comenzar",
@@ -151,6 +154,103 @@
       ],
       "skip": "Saltar"
     },
+    "trivia-mix": {
+      "title": "Mezcla de cultura general",
+      "skill": "Cultura general",
+      "description": "Preguntas de las 8 categorías en cada ronda."
+    },
+    "trivia-history": {
+      "title": "Historia",
+      "skill": "Conocimiento histórico",
+      "description": "Historia universal y de América Latina."
+    },
+    "trivia-science": {
+      "title": "Ciencias",
+      "skill": "Conocimiento científico",
+      "description": "Física, química, biología, astronomía y cuerpo humano."
+    },
+    "trivia-geography": {
+      "title": "Geografía",
+      "skill": "Conocimiento geográfico",
+      "description": "Países, capitales, ríos, montañas y regiones."
+    },
+    "trivia-math": {
+      "title": "Matemáticas",
+      "skill": "Razonamiento matemático",
+      "description": "Conceptos, geometría, cálculo sencillo e historia de las matemáticas."
+    },
+    "trivia-arts": {
+      "title": "Arte y literatura",
+      "skill": "Cultura artística",
+      "description": "Pintura, autores y obras, música clásica y mitología."
+    },
+    "trivia-entertainment": {
+      "title": "Entretenimiento",
+      "skill": "Cultura popular",
+      "description": "Cine, música y televisión."
+    },
+    "trivia-sports": {
+      "title": "Deportes",
+      "skill": "Cultura deportiva",
+      "description": "Mundiales, Juegos Olímpicos y reglas de cada deporte."
+    },
+    "trivia-technology": {
+      "title": "Tecnología",
+      "skill": "Cultura tecnológica",
+      "description": "Inventos, computación e historia de internet."
+    },
+    "accounting-mix": {
+      "title": "Mezcla contable",
+      "skill": "Contabilidad práctica",
+      "description": "Preguntas de las 4 subcategorías contables."
+    },
+    "accounting-concepts": {
+      "title": "Conceptos contables",
+      "skill": "Fundamentos contables",
+      "description": "Partida doble, estados financieros, causación y conciliaciones."
+    },
+    "accounting-colombia": {
+      "title": "Contabilidad en Colombia",
+      "skill": "Normativa colombiana",
+      "description": "PUC, NIIF, IVA, retención en la fuente, ICA y facturación electrónica."
+    },
+    "accounting-us": {
+      "title": "Contabilidad en EE. UU.",
+      "skill": "Normativa de EE. UU.",
+      "description": "US GAAP, temas ASC, formularios del IRS y QuickBooks."
+    },
+    "accounting-lending": {
+      "title": "Cartera y préstamos",
+      "skill": "Gestión de cartera",
+      "description": "Intereses, amortización, payoff, aging, provisiones y castigos."
+    },
+    "switchyard": {
+      "title": "Guardagujas",
+      "skill": "Atención dividida",
+      "description": "Mueve los cambios de vía para que cada tren llegue a la estación de su color.",
+      "instructions": [
+        "Los trenes salen del túnel y avanzan solos por las vías.",
+        "Toca los cambios de vía (los círculos con flecha) para elegir por dónde sigue cada tren. Con teclado, usa los números 1 a 9.",
+        "Lleva cada tren a la estación de su mismo color y forma. Si llega a otra estación, no suma puntos.",
+        "Atento: puede haber varios trenes a la vez, y van más rápido mientras aciertas."
+      ],
+      "board": "Mapa de vías",
+      "switch": "Cambio {{n}}: {{direction}}",
+      "directions": {
+        "right": "hacia la derecha",
+        "down-right": "abajo a la derecha",
+        "down": "hacia abajo",
+        "down-left": "abajo a la izquierda",
+        "left": "hacia la izquierda",
+        "up-left": "arriba a la izquierda",
+        "up": "hacia arriba",
+        "up-right": "arriba a la derecha"
+      },
+      "exampleAnswer": "Toca el cambio para que el tren rojo vaya a la estación roja, la del círculo.",
+      "levelStations": "{{n}} estaciones",
+      "levelSideTunnel": "túnel lateral",
+      "levelMiddleStation": "estación central"
+    },
     "star-shower": {
       "title": "Lluvia de estrellas",
       "skill": "Cálculo bajo presión",
@@ -178,7 +278,79 @@
     "dailyProgress": "Entrenamiento de hoy: {{done}} de {{total}}",
     "seeSummary": "Ver resumen",
     "saveError": "No pudimos guardar tu partida.",
-    "retry": "Reintentar"
+    "retry": "Reintentar",
+    "levelChoice": "Elige el nivel",
+    "levelOption": "Nivel {{n}}",
+    "levelSuggested": "Nivel {{n}}, sugerido",
+    "levelSuggestedMark": "sugerido",
+    "practiceNote": "Para practicar: tu nivel sugerido ({{n}}) no cambia."
+  },
+  "quiz": {
+    "title": "Preguntas",
+    "intro": "Rondas de 10 preguntas de cultura general y de contabilidad.",
+    "banks": {
+      "trivia": "Cultura general",
+      "accounting": "Contabilidad"
+    },
+    "seen": "Vistas: {{seen}} de {{total}}",
+    "best": "Mejor marca: {{score}}",
+    "questionOf": "Pregunta {{n}} de {{total}}",
+    "optionLabel": "Opción {{n}}:",
+    "dontKnow": "No sé",
+    "next": "Siguiente",
+    "finish": "Ver resultado",
+    "true": "Verdadero",
+    "false": "Falso",
+    "correct": "Correcta",
+    "yourAnswer": "Tu respuesta",
+    "timeUp": "Se acabó el tiempo",
+    "announce": {
+      "correct": "¡Correcto!",
+      "wrong": "Incorrecto. La respuesta era: {{answer}}",
+      "timeout": "Se acabó el tiempo. La respuesta era: {{answer}}",
+      "skipped": "La respuesta era: {{answer}}"
+    },
+    "asOf": "Vigente a {{date}}",
+    "review": {
+      "title": "Repasa tus errores",
+      "none": "¡Sin errores en esta ronda!",
+      "yourAnswer": "Tu respuesta: {{answer}}",
+      "noAnswer": "Sin respuesta",
+      "correctAnswer": "Respuesta correcta: {{answer}}"
+    },
+    "loading": "Cargando preguntas…",
+    "loadError": "No pudimos cargar las preguntas.",
+    "reload": "Recargar la página",
+    "categories": {
+      "history": "Historia",
+      "science": "Ciencias",
+      "geography": "Geografía",
+      "math": "Matemáticas",
+      "arts": "Arte y literatura",
+      "entertainment": "Entretenimiento",
+      "sports": "Deportes",
+      "technology": "Tecnología",
+      "concepts": "Conceptos contables",
+      "colombia": "Colombia",
+      "us": "EE. UU.",
+      "lending": "Cartera y préstamos"
+    },
+    "example": {
+      "question": "¿Cuál es el planeta más grande del sistema solar?",
+      "options": [
+        "Júpiter",
+        "Saturno",
+        "Neptuno",
+        "Tierra"
+      ],
+      "explanation": "Júpiter tiene más del doble de masa que todos los demás planetas juntos."
+    },
+    "instructions": [
+      "Responde 10 preguntas; tienes 20 segundos para cada una.",
+      "Toca la respuesta correcta o usa las teclas 1 a 4. Luego verás la respuesta y una breve explicación.",
+      "Cada acierto suma 20 puntos, más hasta 10 por rapidez. Cada error resta 10 puntos (30 en las de verdadero o falso).",
+      "Si no la sabes, toca «No sé» o la tecla 0: verás la respuesta sin perder puntos."
+    ]
   },
   "today": {
     "title": "Entrenamiento de hoy",
@@ -221,7 +393,13 @@
     "best": "Mejor {{score}}",
     "goToday": "Ir a Hoy",
     "chartLabel": "Últimos {{count}} puntajes: mínimo {{min}}, máximo {{max}}, último {{last}}",
-    "notEnoughData": "Juega al menos dos partidas para ver tu evolución."
+    "notEnoughData": "Juega al menos dos partidas para ver tu evolución.",
+    "trainingEmpty": "Juega un juego de entrenamiento para ver tus rachas y tu puntaje por área.",
+    "quizTitle": "Preguntas",
+    "mastery": "Dominio (últimos 30 días)",
+    "quizLine": "Vistas: {{seen}} de {{total}} · Mejor marca: {{best}}",
+    "quizNone": "Sin respuestas en los últimos 30 días",
+    "quizUnreadable": "No pudimos leer tus respuestas en este dispositivo."
   },
   "settings": {
     "appearance": "Apariencia",

@@ -1,6 +1,6 @@
 import { mkdirSync } from 'node:fs';
 import { expect, test, type Browser, type Locator, type Page } from '@playwright/test';
-import { finishCurrentGame } from './helpers';
+import { finishCurrentGame, finishQuizRound } from './helpers';
 
 const BASE_URL = 'http://localhost:4173/Light/';
 const CLOCK_TIME = new Date('2026-10-20T10:00:00');
@@ -9,12 +9,14 @@ const MENUS = {
   'es-CO': [
     ['./#/', 'Entrenamiento de hoy'],
     ['./#/games', 'Juegos'],
+    ['./#/quiz', 'Preguntas'],
     ['./#/progress', 'Progreso'],
     ['./#/settings', 'Ajustes'],
   ],
   'en-US': [
     ['./#/', 'Today’s training'],
     ['./#/games', 'Games'],
+    ['./#/quiz', 'Quiz'],
     ['./#/progress', 'Progress'],
     ['./#/settings', 'Settings'],
   ],
@@ -28,8 +30,9 @@ const hasNoSidewaysScroll = (page: Page) =>
   page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth);
 
 /**
- * A page of the given locale whose storage already holds one finished game. The helpers drive the Spanish UI, so the
- * game is played in an es-CO context and its storage (IndexedDB included) is carried over.
+ * A page of the given locale whose storage already holds one finished game and one quiz round (so Progress shows its
+ * Preguntas block). The helpers drive the Spanish UI, so both are played in an es-CO context and its storage
+ * (IndexedDB included) is carried over.
  */
 async function seededPage(browser: Browser, locale: string, viewport: { width: number; height: number }) {
   const seeding = await browser.newContext({ baseURL: BASE_URL, locale: 'es-CO', viewport });
@@ -38,12 +41,37 @@ async function seededPage(browser: Browser, locale: string, viewport: { width: n
   await seed.goto('./#/');
   await seed.getByRole('link', { name: 'Comenzar' }).click();
   await finishCurrentGame(seed);
+  await playQuizRound(seed, 'trivia-history');
   const storageState = await seeding.storageState({ indexedDB: true });
   await seeding.close();
   const context = await browser.newContext({ baseURL: BASE_URL, locale, viewport, storageState });
   const page = await context.newPage();
   await page.clock.install({ time: CLOCK_TIME });
   return { page, context };
+}
+
+/** Plays one quiz round of the given game from its intro to the result. */
+async function playQuizRound(page: Page, id: string) {
+  await page.goto(`./#/play/${id}`);
+  await page.getByRole('button', { name: 'Comenzar' }).click();
+  await finishQuizRound(page);
+  await expect(page.getByRole('button', { name: 'Volver' })).toBeVisible();
+}
+
+/** No tab label of the bottom bar may stick out of its own column. */
+async function expectTabLabelsInside(page: Page) {
+  const measures = await page
+    .getByRole('navigation')
+    .getByRole('link')
+    .evaluateAll((els) =>
+      els.map((el) => {
+        const tab = el.getBoundingClientRect();
+        const label = el.querySelector('span')!.getBoundingClientRect();
+        return { name: el.textContent, inside: label.left >= tab.left - 0.5 && label.right <= tab.right + 0.5 };
+      }),
+    );
+  expect(measures).toHaveLength(5);
+  for (const m of measures) expect(m.inside, `${m.name} stays in its tab`).toBe(true);
 }
 
 /** Every meter on the page must keep a bar wide enough to read. */
@@ -70,7 +98,7 @@ async function expectTall(targets: Locator) {
 test('menu touch targets are at least 44 px', async ({ page }) => {
   await page.goto('./#/');
   await expectTall(page.getByRole('navigation').getByRole('link'));
-  await expect(page.getByRole('navigation').getByRole('link')).toHaveCount(4);
+  await expect(page.getByRole('navigation').getByRole('link')).toHaveCount(5);
   await expectTall(page.getByRole('link', { name: 'Comenzar' }));
 
   await page.goto('./#/games');
@@ -85,14 +113,17 @@ for (const locale of ['es-CO', 'en-US']) {
   test.describe(`narrow ${locale} menus`, () => {
     test.use({ locale, viewport: { width: 320, height: 640 } });
 
-    test('no sideways scroll on the four menus, Progress with data', async ({ browser }) => {
+    test('no sideways scroll on the five menus, Progress with data', async ({ browser }) => {
       const { page, context } = await seededPage(browser, locale, { width: 320, height: 640 });
       for (const [url, name] of MENUS[locale as keyof typeof MENUS]) {
         await page.goto(url);
         await expect(title(page, name)).toBeVisible();
         expect(await hasNoSidewaysScroll(page), `${url} scrolls sideways`).toBe(true);
+        await expectTabLabelsInside(page);
         if (url.endsWith('/progress')) {
           await expect(page.getByRole('meter').first()).toBeVisible();
+          // The quiz block's mastery bars too.
+          await expect(page.getByRole('meter', { name: locale === 'es-CO' ? 'Historia' : 'History' })).toBeVisible();
           await expectMeterBars(page);
         }
       }
@@ -104,7 +135,7 @@ for (const locale of ['es-CO', 'en-US']) {
 test.describe('large root font menus', () => {
   test.use({ viewport: { width: 390, height: 844 } });
 
-  test('no sideways scroll with a 24 px root font on the four menus, Progress with data', async ({ browser }) => {
+  test('no sideways scroll with a 24 px root font on the five menus, Progress with data', async ({ browser }) => {
     const { page, context } = await seededPage(browser, 'es-CO', { width: 390, height: 844 });
     for (const [url, name] of MENUS['es-CO']) {
       await page.goto(url);
@@ -113,12 +144,14 @@ test.describe('large root font menus', () => {
         document.documentElement.style.fontSize = '24px';
       });
       expect(await hasNoSidewaysScroll(page), `${url} scrolls sideways at 24 px`).toBe(true);
+      await expectTabLabelsInside(page);
       if (url.endsWith('/progress')) {
-        await expect(page.getByRole('meter').first()).toBeVisible();
+        await expect(page.getByRole('meter', { name: 'Historia' })).toBeVisible();
         await expectMeterBars(page);
         await page.screenshot({ path: `${SCREENSHOT_DIR}/24px-progress.png`, fullPage: true });
       }
       if (url.endsWith('/settings')) await page.screenshot({ path: `${SCREENSHOT_DIR}/24px-settings.png`, fullPage: true });
+      if (url.endsWith('/quiz')) await page.screenshot({ path: `${SCREENSHOT_DIR}/24px-quiz.png`, fullPage: true });
     }
     await context.close();
   });
@@ -173,7 +206,11 @@ for (const colorScheme of ['light', 'dark'] as const) {
 
       await page.goto('./#/games');
       await shot('3-games', 'Juegos');
+      await page.goto('./#/quiz');
+      await shot('3b-quiz', 'Preguntas');
+      await playQuizRound(page, 'trivia-history');
       await page.goto('./#/progress');
+      await expect(page.getByRole('meter', { name: 'Historia' })).toBeVisible();
       await shot('4-progress', 'Progreso');
       await page.goto('./#/settings');
       await shot('5-settings', 'Ajustes');

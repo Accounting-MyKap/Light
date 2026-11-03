@@ -1,9 +1,9 @@
 import { DAILY_GAME_COUNT } from '../core/dailyPlan';
-import { addDays } from '../core/dates';
 import { clearAllData, db } from './db';
 import { completedDays, getOrCreatePlan, getPlan, isPlanComplete, markDailyGameDone } from './dailyPlans';
+import { addDays } from '../core/dates';
 import { addResult } from './results';
-import { GAMES } from '../games/registry';
+import { TRAINING_GAMES } from '../games/registry';
 
 const base = { level: 1, score: 10, accuracy: 0.5, durationMs: 60000, isDaily: false };
 
@@ -12,7 +12,7 @@ beforeEach(clearAllData);
 test('plan is stored once and marks are idempotent', async () => {
   const p1 = await getOrCreatePlan('2026-10-20');
   expect(p1.gameIds).toHaveLength(3);
-  p1.gameIds.forEach((id) => expect(GAMES.map((g) => g.id)).toContain(id));
+  p1.gameIds.forEach((id) => expect(TRAINING_GAMES.map((g) => g.id)).toContain(id));
   await addResult({ ...base, gameId: p1.gameIds[0] });
   expect(await getOrCreatePlan('2026-10-20')).toEqual(p1);
   await markDailyGameDone('2026-10-20', p1.gameIds[0]);
@@ -28,8 +28,8 @@ test('concurrent creation yields a single plan', async () => {
 });
 
 test('yesterday plan is avoided when possible', async () => {
-  const areaOf = (id: string) => GAMES.find((g) => g.id === id)!.area;
-  const allAreas = new Set(GAMES.map((g) => g.area));
+  const areaOf = (id: string) => TRAINING_GAMES.find((g) => g.id === id)!.area;
+  const allAreas = new Set(TRAINING_GAMES.map((g) => g.area));
   const plans = [await getOrCreatePlan('2026-10-10')];
   for (let i = 1; i < 10; i++) {
     const yesterday = plans[i - 1];
@@ -42,7 +42,7 @@ test('yesterday plan is avoided when possible', async () => {
     expect(fresh, today.day).toHaveLength(Math.min(DAILY_GAME_COUNT, otherAreas.length));
     // A game of yesterday's plan comes back only when its area has no other game.
     for (const id of today.gameIds.filter((g) => yesterday.gameIds.includes(g))) {
-      expect(GAMES.filter((g) => g.area === areaOf(id) && !yesterday.gameIds.includes(g.id)), id).toEqual([]);
+      expect(TRAINING_GAMES.filter((g) => g.area === areaOf(id) && !yesterday.gameIds.includes(g.id)), id).toEqual([]);
     }
   }
   // So no area is in every plan, not even one with two games.
@@ -56,4 +56,13 @@ test('completedDays returns only complete plans', async () => {
   ]);
   expect(await completedDays()).toEqual(['2026-10-18']);
   expect(isPlanComplete((await getPlan('2026-10-19'))!)).toBe(false);
+});
+
+test('the daily plan never picks a quiz game', async () => {
+  const start = '2026-11-02';
+  for (let i = 0; i < 60; i += 1) {
+    const plan = await getOrCreatePlan(addDays(start, i));
+    expect(plan.gameIds).toHaveLength(3);
+    for (const id of plan.gameIds) expect(id).not.toMatch(/^(trivia|accounting)-/);
+  }
 });

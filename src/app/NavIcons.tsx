@@ -26,6 +26,27 @@ export const GamesIcon = () => (
   </Svg>
 );
 
+/** A speech bubble with a question mark: the Preguntas (quiz) tab. */
+export const QuizIcon = () => (
+  <Svg>
+    <path
+      d="M6 4h12a2.5 2.5 0 0 1 2.5 2.5v8A2.5 2.5 0 0 1 18 17h-6.5L7 20.5V17H6a2.5 2.5 0 0 1-2.5-2.5v-8A2.5 2.5 0 0 1 6 4z"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M9.8 8.6a2.3 2.3 0 1 1 3.3 2.1c-.7.3-1.1.8-1.1 1.5v.3"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+    />
+    <circle cx="12" cy="14.6" r="1.1" fill="currentColor" />
+  </Svg>
+);
+
 export const ProgressIcon = () => (
   <Svg>
     <path d="M4 20V11M10 20V5M16 20v-7M21 20H3" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />

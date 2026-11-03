@@ -5,6 +5,7 @@
   "nav": {
     "today": "Today",
     "games": "Games",
+    "quiz": "Quiz",
     "progress": "Progress",
     "settings": "Settings"
   },
@@ -15,7 +16,9 @@
     "flexibility": "Mental flexibility",
     "math": "Math",
     "logic": "Logic",
-    "language": "Language"
+    "language": "Language",
+    "trivia": "General knowledge",
+    "accounting": "Accounting"
   },
   "common": {
     "start": "Start",
@@ -151,6 +154,103 @@
       ],
       "skip": "Skip"
     },
+    "trivia-mix": {
+      "title": "General knowledge mix",
+      "skill": "General knowledge",
+      "description": "Questions from all 8 categories in every round."
+    },
+    "trivia-history": {
+      "title": "History",
+      "skill": "Historical knowledge",
+      "description": "World and Latin American history."
+    },
+    "trivia-science": {
+      "title": "Science",
+      "skill": "Scientific knowledge",
+      "description": "Physics, chemistry, biology, astronomy and the human body."
+    },
+    "trivia-geography": {
+      "title": "Geography",
+      "skill": "Geographic knowledge",
+      "description": "Countries, capitals, rivers, mountains and regions."
+    },
+    "trivia-math": {
+      "title": "Math",
+      "skill": "Mathematical reasoning",
+      "description": "Concepts, geometry, simple arithmetic and the history of math."
+    },
+    "trivia-arts": {
+      "title": "Arts & literature",
+      "skill": "Arts and culture",
+      "description": "Painting, authors and works, classical music and mythology."
+    },
+    "trivia-entertainment": {
+      "title": "Entertainment",
+      "skill": "Pop culture",
+      "description": "Film, music and TV."
+    },
+    "trivia-sports": {
+      "title": "Sports",
+      "skill": "Sports knowledge",
+      "description": "World Cups, the Olympics and the rules of each sport."
+    },
+    "trivia-technology": {
+      "title": "Technology",
+      "skill": "Tech knowledge",
+      "description": "Inventions, computing and the history of the internet."
+    },
+    "accounting-mix": {
+      "title": "Accounting mix",
+      "skill": "Practical accounting",
+      "description": "Questions from all 4 accounting topics."
+    },
+    "accounting-concepts": {
+      "title": "Accounting concepts",
+      "skill": "Accounting fundamentals",
+      "description": "Double entry, financial statements, accruals and reconciliations."
+    },
+    "accounting-colombia": {
+      "title": "Accounting in Colombia",
+      "skill": "Colombian standards",
+      "description": "PUC, IFRS, VAT, withholding tax, ICA and e-invoicing."
+    },
+    "accounting-us": {
+      "title": "US accounting",
+      "skill": "US standards",
+      "description": "US GAAP, ASC topics, IRS forms and QuickBooks."
+    },
+    "accounting-lending": {
+      "title": "Lending & loan portfolio",
+      "skill": "Loan servicing",
+      "description": "Interest, amortization, payoff, aging, allowances and charge-offs."
+    },
+    "switchyard": {
+      "title": "Switchyard",
+      "skill": "Divided attention",
+      "description": "Flip the track switches so every train reaches the station of its color.",
+      "instructions": [
+        "Trains come out of the tunnel and run along the tracks on their own.",
+        "Tap the switches (the circles with an arrow) to choose where each train goes next. With a keyboard, use the numbers 1 to 9.",
+        "Bring every train to the station of its own color and shape. A train that reaches another station scores nothing.",
+        "Stay sharp: several trains can run at once, and they speed up while you get them home."
+      ],
+      "board": "Track map",
+      "switch": "Switch {{n}}: {{direction}}",
+      "directions": {
+        "right": "to the right",
+        "down-right": "down and right",
+        "down": "down",
+        "down-left": "down and left",
+        "left": "to the left",
+        "up-left": "up and left",
+        "up": "up",
+        "up-right": "up and right"
+      },
+      "exampleAnswer": "Tap the switch so the red train goes to the red station, the one with the circle.",
+      "levelStations": "{{n}} stations",
+      "levelSideTunnel": "side tunnel",
+      "levelMiddleStation": "station in the middle"
+    },
     "star-shower": {
       "title": "Star Shower",
       "skill": "Math under pressure",
@@ -178,7 +278,79 @@
     "dailyProgress": "Today’s training: {{done}} of {{total}}",
     "seeSummary": "See summary",
     "saveError": "We couldn’t save your game.",
-    "retry": "Retry"
+    "retry": "Retry",
+    "levelChoice": "Choose the level",
+    "levelOption": "Level {{n}}",
+    "levelSuggested": "Level {{n}}, suggested",
+    "levelSuggestedMark": "suggested",
+    "practiceNote": "For practice: your suggested level ({{n}}) stays as it is."
+  },
+  "quiz": {
+    "title": "Quiz",
+    "intro": "10-question rounds of general knowledge and accounting.",
+    "banks": {
+      "trivia": "General knowledge",
+      "accounting": "Accounting"
+    },
+    "seen": "Seen: {{seen}} of {{total}}",
+    "best": "Personal best: {{score}}",
+    "questionOf": "Question {{n}} of {{total}}",
+    "optionLabel": "Option {{n}}:",
+    "dontKnow": "I don't know",
+    "next": "Next",
+    "finish": "See results",
+    "true": "True",
+    "false": "False",
+    "correct": "Correct",
+    "yourAnswer": "Your answer",
+    "timeUp": "Time's up",
+    "announce": {
+      "correct": "Correct!",
+      "wrong": "Wrong. The answer was: {{answer}}",
+      "timeout": "Time's up. The answer was: {{answer}}",
+      "skipped": "The answer was: {{answer}}"
+    },
+    "asOf": "Current as of {{date}}",
+    "review": {
+      "title": "Review your mistakes",
+      "none": "No mistakes this round!",
+      "yourAnswer": "Your answer: {{answer}}",
+      "noAnswer": "No answer",
+      "correctAnswer": "Correct answer: {{answer}}"
+    },
+    "loading": "Loading questions…",
+    "loadError": "We couldn't load the questions.",
+    "reload": "Reload the page",
+    "categories": {
+      "history": "History",
+      "science": "Science",
+      "geography": "Geography",
+      "math": "Math",
+      "arts": "Arts & literature",
+      "entertainment": "Entertainment",
+      "sports": "Sports",
+      "technology": "Technology",
+      "concepts": "Accounting concepts",
+      "colombia": "Colombia",
+      "us": "United States",
+      "lending": "Lending & loan portfolio"
+    },
+    "example": {
+      "question": "Which is the largest planet in the Solar System?",
+      "options": [
+        "Jupiter",
+        "Saturn",
+        "Neptune",
+        "Earth"
+      ],
+      "explanation": "Jupiter has more than twice the mass of all the other planets combined."
+    },
+    "instructions": [
+      "Answer 10 questions; you have 20 seconds for each.",
+      "Tap the right answer or use keys 1 to 4. Then you'll see the answer and a short explanation.",
+      "Each correct answer earns 20 points, plus up to 10 for speed. Each mistake costs 10 points (30 on true-or-false questions).",
+      "If you don't know, tap “I don't know” or key 0: you'll see the answer without losing points."
+    ]
   },
   "today": {
     "title": "Today’s training",
@@ -221,7 +393,13 @@
     "best": "Best {{score}}",
     "goToday": "Go to Today",
     "chartLabel": "Last {{count}} scores: lowest {{min}}, highest {{max}}, latest {{last}}",
-    "notEnoughData": "Play at least two games to see your trend."
+    "notEnoughData": "Play at least two games to see your trend.",
+    "trainingEmpty": "Play a training game to see your streaks and your score by area.",
+    "quizTitle": "Quiz",
+    "mastery": "Mastery (last 30 days)",
+    "quizLine": "Seen: {{seen}} of {{total}} · Best: {{best}}",
+    "quizNone": "No answers in the last 30 days",
+    "quizUnreadable": "We couldn't read your answers on this device."
   },
   "settings": {
     "appearance": "Appearance",

@@ -26,7 +26,24 @@ export async function finishRunningGame(page: Page): Promise<void> {
       await page.waitForTimeout(50);
     }
   } else {
-    await page.clock.runFor(61_000);
+    // Guardagujas lasts 90 seconds; the other games 60.
+    await page.clock.runFor(id === 'switchyard' ? 91_000 : 61_000);
   }
   await expect(result).toBeVisible();
+}
+
+const QUIZ_ROUND_LENGTH = 10;
+
+/**
+ * Plays the open quiz round to its result screen, always picking option 1. The wait before each tap is longer than
+ * MIN_RT_MS (150 ms): the app ignores an answer given right after a question appears. «Siguiente» is matched exactly:
+ * an option («Opción N: …») stays a button after the answer and its text may contain the word.
+ */
+export async function finishQuizRound(page: Page): Promise<void> {
+  for (let n = 1; n <= QUIZ_ROUND_LENGTH; n++) {
+    await expect(page.getByText(`Pregunta ${n} de ${QUIZ_ROUND_LENGTH}`)).toBeVisible();
+    await page.waitForTimeout(200);
+    await page.getByRole('button', { name: /^Opción 1: / }).click();
+    await page.getByRole('button', { name: n === QUIZ_ROUND_LENGTH ? 'Ver resultado' : 'Siguiente', exact: true }).click();
+  }
 }

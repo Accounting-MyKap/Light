@@ -27,9 +27,11 @@ const SPARKS = 6;
 
 export function ResultView({ game, result, previousBest, onPlayAgain, onBack, daily }: ResultViewProps) {
   const { t } = useTranslation();
-  const isNewBest = previousBest === null || result.score > previousBest;
+  // A score of 0 is never a record, not even the first one.
+  const isNewBest = result.score > 0 && (previousBest === null || result.score > previousBest);
   const shownScore = useCountUp(result.score);
   const progress = daily?.progress;
+  const { ResultDetails } = game;
   return (
     <section className={`${styles.screen} ${styles.result}`}>
       <h1 className={styles.resultTitle}>{t(`games.${game.id}.title`)}</h1>
@@ -63,10 +65,12 @@ export function ResultView({ game, result, previousBest, onPlayAgain, onBack, da
         {!isNewBest && (
           <div>
             <dt>{t('play.best')}</dt>
-            <dd>{previousBest}</dd>
+            <dd>{previousBest ?? '—'}</dd>
           </div>
         )}
       </dl>
+      {/* A game's own block below the stats (the quiz review of its mistakes), before the daily progress and buttons. */}
+      {ResultDetails && <ResultDetails result={result} />}
       {progress && progress.total > 0 && (
         <p className={styles.dailyProgress}>
           <span className={styles.progressBars} aria-hidden="true">

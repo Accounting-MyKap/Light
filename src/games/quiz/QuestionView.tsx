@@ -1,0 +1,147 @@
+import { useEffect, useRef, type Ref } from 'react';
+import { useTranslation } from 'react-i18next';
+import { asOfLabel } from '../../quiz/asOf';
+import { correctIndex, optionTexts, type AnswerOutcome, type Question } from '../../quiz/types';
+import { keepNumbersTogether } from '../../quiz/typography';
+import styles from './quiz.module.css';
+
+/** Pointer clicks on game controls should not move keyboard focus onto them (the window keys keep working). */
+const keepFocus = (e: { preventDefault: () => void }) => e.preventDefault();
+
+export interface QuestionCardProps {
+  question: Question;
+  lang: 'es' | 'en';
+  /** The prompt heading, so the game can move the focus to each new question. */
+  promptRef?: Ref<HTMLHeadingElement>;
+}
+
+/** The question itself: its category and the prompt. In a round it is the game zone of the frame. */
+export function QuestionCard({ question, lang, promptRef }: QuestionCardProps) {
+  const { t } = useTranslation();
+  return (
+    <div className={styles.card}>
+      <p className={styles.category}>{t(`quiz.categories.${question.category}`)}</p>
+      <h2 ref={promptRef} className={styles.prompt} tabIndex={-1}>
+        {keepNumbersTogether(question[lang].question)}
+      </h2>
+    </div>
+  );
+}
+
+export interface QuestionAnswersProps {
+  question: Question;
+  /** Canonical option indices in the order they are shown on screen. */
+  order: readonly number[];
+  lang: 'es' | 'en';
+  phase: 'asking' | 'feedback';
+  /** True while the round is paused (inert and hidden): «Siguiente» takes the focus back when it resumes. */
+  paused?: boolean;
+  outcome?: AnswerOutcome;
+  /** Canonical index the player picked, or null if they did not answer. */
+  chosen: number | null;
+  onChoose?: (shownIndex: number) => void;
+  onDontKnow?: () => void;
+  onNext?: () => void;
+  isLast?: boolean;
+}
+
+/**
+ * What the player acts on: the options, then «No sé» while asking, or the explanation and «Siguiente» once answered.
+ * In a round these are the controls of the frame, at the bottom of the screen.
+ */
+export function QuestionAnswers({
+  question,
+  order,
+  lang,
+  phase,
+  paused = false,
+  outcome,
+  chosen,
+  onChoose,
+  onDontKnow,
+  onNext,
+  isLast = false,
+}: QuestionAnswersProps) {
+  const { t } = useTranslation();
+  const nextRef = useRef<HTMLButtonElement>(null);
+  const texts = optionTexts(question, lang, { true: t('quiz.true'), false: t('quiz.false') });
+  const right = correctIndex(question);
+  const answered = phase === 'feedback';
+  const date = question.asOf ? asOfLabel(question.asOf, lang) : null;
+
+  // After an answer the keyboard goes to «Siguiente», so Enter continues whether or not the window key listener ran;
+  // and back to it when play resumes, since the pause sheet had the focus.
+  useEffect(() => {
+    if (answered && !paused) nextRef.current?.focus();
+  }, [answered, paused]);
+
+  return (
+    <div className={styles.answers}>
+      <div className={styles.options}>
+        {order.map((canonical, shown) => {
+          const isRight = answered && canonical === right;
+          const isWrongPick = answered && canonical === chosen && canonical !== right;
+          const mark = isRight ? `✓ ${t('quiz.correct')}` : isWrongPick ? `✗ ${t('quiz.yourAnswer')}` : null;
+          return (
+            // Keyed by the canonical index, never by the text: two options can read the same in one language.
+            <button
+              key={canonical}
+              type="button"
+              className={styles.option}
+              data-state={isRight ? 'correct' : isWrongPick ? 'wrong' : undefined}
+              disabled={answered}
+              onMouseDown={keepFocus}
+              onClick={() => onChoose?.(shown)}
+            >
+              {/* Read out as «Opción 1: …»: a bare «1» before an answer like «6 000» would be ambiguous. */}
+              <span className={styles.number} aria-hidden="true">
+                {shown + 1}
+              </span>
+              <span className="visually-hidden">{t('quiz.optionLabel', { n: shown + 1 })}</span>{' '}
+              <span className={styles.optionBody}>
+                <span>{keepNumbersTogether(texts[canonical])}</span>
+                {mark && (
+                  <>
+                    {' '}
+                    <span className={styles.mark}>{mark}</span>
+                  </>
+                )}
+              </span>
+            </button>
+          );
+        })}
+      </div>
+
+      {!answered && (
+        <button type="button" className={styles.dontKnow} onMouseDown={keepFocus} onClick={() => onDontKnow?.()}>
+          {t('quiz.dontKnow')}
+        </button>
+      )}
+
+      {answered && (
+        <div className={styles.feedback}>
+          {outcome === 'timeout' && <p className={styles.timeUp}>{t('quiz.timeUp')}</p>}
+          <p className={styles.explanation}>{keepNumbersTogether(question[lang].explanation)}</p>
+          {date && <p className={styles.asOf}>{t('quiz.asOf', { date })}</p>}
+          {onNext && (
+            <button ref={nextRef} type="button" className={styles.next} onMouseDown={keepFocus} onClick={onNext}>
+              {t(isLast ? 'quiz.finish' : 'quiz.next')}
+            </button>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
+
+export type QuestionViewProps = QuestionCardProps & QuestionAnswersProps;
+
+/** A whole question, card and answers one after the other: the solved example of the instructions. */
+export function QuestionView({ promptRef, ...answers }: QuestionViewProps) {
+  return (
+    <div className={styles.question}>
+      <QuestionCard question={answers.question} lang={answers.lang} promptRef={promptRef} />
+      <QuestionAnswers {...answers} />
+    </div>
+  );
+}

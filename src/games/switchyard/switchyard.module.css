@@ -1,0 +1,180 @@
+/*
+ * Switchyard in the Luz style. The board keeps the proportions of the map (360 × 600) and takes the largest size
+ * that fits the game zone; the switch buttons sit on top of it, placed in percentages of the board.
+ */
+
+/* Fills the game zone. Size containment keeps the board from stretching it: the game measures this box and gives
+   the board the largest size that fits. */
+.boardWrap {
+  flex: 1;
+  align-self: stretch;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  container-type: size;
+}
+
+.board {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  aspect-ratio: 360 / 600;
+}
+
+/* Sized by the game from the room it measured. */
+.board[style*='width'] {
+  max-width: none;
+}
+
+/* The three drawings stacked on the board, each on its own layer so only the moving one is repainted. */
+.layer {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  will-change: transform;
+}
+
+/* The lit route under the bright rails, in the color of the game. */
+.routeGlow {
+  stroke: var(--game, #3fd4ff);
+  stroke-opacity: 0.16;
+}
+
+/* The point of a switch: a dark disc with a ring and a soft halo in the color of the game. */
+.halo {
+  fill: var(--game, #3fd4ff);
+  fill-opacity: 0.14;
+}
+
+.disk {
+  fill: #0a0d1f;
+  stroke: var(--game, #3fd4ff);
+  stroke-width: 2.8;
+}
+
+/* A ring that grows and fades from every switch, to say «tap me». It lives on the button, so the browser animates
+   it without repainting the board. */
+.switch::before {
+  content: '';
+  position: absolute;
+  inset: 20%;
+  border: 2px solid var(--game, #3fd4ff);
+  border-radius: 50%;
+  pointer-events: none;
+  will-change: transform, opacity;
+  animation: beacon 1.6s ease-out infinite;
+}
+
+@keyframes beacon {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+/* Fireflies over the meadow: each glows and dims on its own beat. */
+.firefly {
+  position: absolute;
+  width: 2.5%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fbffd0 0, rgb(233 255 122 / 60%) 35%, rgb(233 255 122 / 0%) 70%);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  will-change: opacity;
+  animation: twinkle 3s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.15;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+/* The arrow turns to the new exit when the switch flips. */
+.arrow {
+  transition: transform 150ms ease-out;
+}
+
+/* The tap area of a switch: transparent over the disc, at least 44 px. */
+.switch {
+  position: absolute;
+  width: max(44px, 14%);
+  aspect-ratio: 1;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.switch:active {
+  background: color-mix(in srgb, var(--game, #3fd4ff) 24%, transparent);
+}
+
+.switch:focus-visible {
+  outline: 3px solid var(--luz-text, #eef1ff);
+  outline-offset: 2px;
+}
+
+/* The number of the key that flips the switch, only where there is a keyboard and a mouse. */
+.key {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  border-radius: 9px;
+  background: var(--luz-text, #eef1ff);
+  color: var(--luz-ink, #0b0d1a);
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 18px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .key {
+    display: block;
+  }
+}
+
+/* In the instructions: a small board that is only looked at. */
+.demo {
+  width: 176px;
+  max-width: none;
+}
+
+/* Reduced motion: no beacon and the arrow jumps. The trains still move: moving them is the game. */
+@media (prefers-reduced-motion: reduce) {
+  .switch::before {
+    animation: none;
+    opacity: 0;
+  }
+
+  .arrow {
+    transition: none;
+  }
+
+  .firefly {
+    animation: none;
+    opacity: 0.7;
+  }
+}

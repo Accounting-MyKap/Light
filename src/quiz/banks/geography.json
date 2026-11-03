@@ -1,0 +1,873 @@
+{
+  "category": "geography",
+  "questions": [
+    {
+      "id": "geography-0001", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuál es el océano más grande del mundo?",
+              "options": ["El Pacífico", "El Atlántico", "El Índico", "El Ártico"],
+              "explanation": "El océano Pacífico cubre cerca de un tercio de la superficie del planeta, más que toda la tierra firme junta." },
+      "en": { "question": "What is the largest ocean in the world?",
+              "options": ["The Pacific", "The Atlantic", "The Indian", "The Arctic"],
+              "explanation": "The Pacific Ocean covers about a third of the planet's surface, more than all the land combined." }
+    },
+    {
+      "id": "geography-0002", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuál es la capital de Japón?",
+              "options": ["Tokio", "Kioto", "Osaka", "Nagoya"],
+              "explanation": "Tokio es la capital desde 1868. Kioto fue la capital imperial durante más de mil años, pero hoy no lo es." },
+      "en": { "question": "What is the capital of Japan?",
+              "options": ["Tokyo", "Kyoto", "Osaka", "Nagoya"],
+              "explanation": "Tokyo has been the capital since 1868. Kyoto was the imperial capital for over a thousand years, but it no longer is." }
+    },
+    {
+      "id": "geography-0003", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuál es el país más grande del mundo por superficie?",
+              "options": ["Rusia", "Canadá", "China", "Estados Unidos"],
+              "explanation": "Rusia ocupa más de 17 millones de km²; Canadá, el segundo país más grande, tiene cerca de 10 millones." },
+      "en": { "question": "Which is the largest country in the world by area?",
+              "options": ["Russia", "Canada", "China", "United States"],
+              "explanation": "Russia covers more than 17 million km²; Canada, the second-largest country, covers about 10 million." }
+    },
+    {
+      "id": "geography-0004", "difficulty": 1, "type": "truefalse", "answer": false,
+      "es": { "question": "En Brasil el idioma oficial es el español.",
+              "explanation": "El idioma oficial de Brasil es el portugués, herencia de la colonización portuguesa." },
+      "en": { "question": "The official language of Brazil is Spanish.",
+              "explanation": "Brazil's official language is Portuguese, a legacy of Portuguese colonization." }
+    },
+    {
+      "id": "geography-0005", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cuál es la capital de Australia?",
+              "options": ["Canberra", "Sídney", "Melbourne", "Perth"],
+              "explanation": "Canberra se eligió en 1908 como solución intermedia entre las rivales Sídney y Melbourne, y se construyó para ser la capital." },
+      "en": { "question": "What is the capital of Australia?",
+              "options": ["Canberra", "Sydney", "Melbourne", "Perth"],
+              "explanation": "Canberra was chosen in 1908 as a compromise between the rivals Sydney and Melbourne, and was built to be the capital." }
+    },
+    {
+      "id": "geography-0006", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cuál es la montaña más alta de América sobre el nivel del mar?",
+              "options": ["El Aconcagua", "El Denali", "El Chimborazo", "El Huascarán"],
+              "explanation": "El Aconcagua, en Argentina, mide unos 6960 m. El Denali es el más alto de Norteamérica, pero llega a unos 6190 m." },
+      "en": { "question": "What is the highest mountain in the Americas above sea level?",
+              "options": ["Aconcagua", "Denali", "Chimborazo", "Huascarán"],
+              "explanation": "Aconcagua, in Argentina, is about 6,960 m tall. Denali is the highest in North America, but reaches only about 6,190 m." }
+    },
+    {
+      "id": "geography-0007", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué estrecho separa España de Marruecos y une el Atlántico con el Mediterráneo?",
+              "options": ["Gibraltar", "El Bósforo", "Magallanes", "Ormuz"],
+              "explanation": "El estrecho de Gibraltar mide unos 14 km en su punto más angosto. El Bósforo está en Turquía y Magallanes, en el sur de América." },
+      "en": { "question": "Which strait separates Spain from Morocco and links the Atlantic with the Mediterranean?",
+              "options": ["Gibraltar", "The Bosphorus", "Magellan", "Hormuz"],
+              "explanation": "The Strait of Gibraltar is about 14 km wide at its narrowest. The Bosphorus is in Turkey and Magellan is at the tip of South America." }
+    },
+    {
+      "id": "geography-0008", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cuál es la capital de Turquía?",
+              "options": ["Ankara", "Estambul", "Esmirna", "Bursa"],
+              "explanation": "Ankara es la capital desde 1923. Estambul es la ciudad más grande del país, pero no es la capital." },
+      "en": { "question": "What is the capital of Turkey?",
+              "options": ["Ankara", "Istanbul", "Izmir", "Bursa"],
+              "explanation": "Ankara has been the capital since 1923. Istanbul is the country's largest city, but it is not the capital." }
+    },
+    {
+      "id": "geography-0009", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Cuál es el río más largo de Europa?",
+              "options": ["El Volga", "El Danubio", "El Rin", "El Dniéper"],
+              "explanation": "El Volga, en Rusia, mide unos 3500 km. El Danubio, el segundo en Europa, mide unos 2850 km." },
+      "en": { "question": "What is the longest river in Europe?",
+              "options": ["The Volga", "The Danube", "The Rhine", "The Dnieper"],
+              "explanation": "The Volga, in Russia, is about 3,500 km long. The Danube, Europe's second longest, is about 2,850 km." }
+    },
+    {
+      "id": "geography-0010", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Cuál es el país sin salida al mar más grande del mundo?",
+              "options": ["Kazajistán", "Mongolia", "Chad", "Bolivia"],
+              "explanation": "Kazajistán tiene unos 2,7 millones de km². Mongolia es el segundo país sin litoral más grande." },
+      "en": { "question": "What is the largest landlocked country in the world?",
+              "options": ["Kazakhstan", "Mongolia", "Chad", "Bolivia"],
+              "explanation": "Kazakhstan covers about 2.7 million km². Mongolia is the second-largest landlocked country." }
+    },
+    {
+      "id": "geography-0011", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Cuál es la capital de Etiopía?",
+              "options": ["Adís Abeba", "Nairobi", "Jartum", "Kampala"],
+              "explanation": "Adís Abeba es la capital de Etiopía y sede de la Unión Africana. Nairobi es de Kenia, Jartum de Sudán y Kampala de Uganda." },
+      "en": { "question": "What is the capital of Ethiopia?",
+              "options": ["Addis Ababa", "Nairobi", "Khartoum", "Kampala"],
+              "explanation": "Addis Ababa is Ethiopia's capital and the seat of the African Union. Nairobi is in Kenya, Khartoum in Sudan and Kampala in Uganda." }
+    },
+    {
+      "id": "geography-0012", "difficulty": 3, "type": "truefalse", "answer": true,
+      "es": { "question": "Sudáfrica tiene tres capitales.",
+              "explanation": "Pretoria es la sede del gobierno, Ciudad del Cabo la del Parlamento y Bloemfontein la del poder judicial." },
+      "en": { "question": "South Africa has three capital cities.",
+              "explanation": "Pretoria is the seat of government, Cape Town of the legislature and Bloemfontein of the judiciary." }
+    },
+    {
+      "id": "geography-0013", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuál es la capital de Colombia?",
+              "options": ["Bogotá", "Medellín", "Cali", "Barranquilla"],
+              "explanation": "Bogotá es la capital y está en la cordillera Oriental, a más de 2600 m sobre el nivel del mar. Medellín, Cali y Barranquilla son otras grandes ciudades." },
+      "en": { "question": "What is the capital of Colombia?",
+              "options": ["Bogotá", "Medellín", "Cali", "Barranquilla"],
+              "explanation": "Bogotá is the capital, set in the Eastern range of the Andes at over 2,600 m above sea level. Medellín, Cali and Barranquilla are other large cities." }
+    },
+    {
+      "id": "geography-0014", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuál es la capital de Argentina?",
+              "options": ["Buenos Aires", "Córdoba", "Rosario", "Mendoza"],
+              "explanation": "Buenos Aires es la capital y sede del gobierno nacional. Córdoba, Rosario y Mendoza son otras ciudades importantes del país." },
+      "en": { "question": "What is the capital of Argentina?",
+              "options": ["Buenos Aires", "Córdoba", "Rosario", "Mendoza"],
+              "explanation": "Buenos Aires is the capital and the seat of the national government. Córdoba, Rosario and Mendoza are other major cities in the country." }
+    },
+    {
+      "id": "geography-0015", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuál es la capital de Francia?",
+              "options": ["París", "Lyon", "Marsella", "Burdeos"],
+              "explanation": "París es la capital de Francia y sede de su gobierno. Lyon, Marsella y Burdeos son grandes ciudades del país, pero no la capital." },
+      "en": { "question": "What is the capital of France?",
+              "options": ["Paris", "Lyon", "Marseille", "Bordeaux"],
+              "explanation": "Paris is the capital of France and the seat of its government. Lyon, Marseille and Bordeaux are large French cities, but not the capital." }
+    },
+    {
+      "id": "geography-0016", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuál es la capital de Alemania?",
+              "options": ["Berlín", "Múnich", "Hamburgo", "Fráncfort"],
+              "explanation": "Berlín es la capital de Alemania y, a la vez, uno de sus 16 estados federados. Múnich, Hamburgo y Fráncfort son otras ciudades importantes." },
+      "en": { "question": "What is the capital of Germany?",
+              "options": ["Berlin", "Munich", "Hamburg", "Frankfurt"],
+              "explanation": "Berlin is the capital of Germany and, at the same time, one of its 16 federal states. Munich, Hamburg and Frankfurt are other major cities." }
+    },
+    {
+      "id": "geography-0017", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuál es la capital de Egipto?",
+              "options": ["El Cairo", "Alejandría", "Luxor", "Asuán"],
+              "explanation": "El Cairo es la capital de Egipto. Alejandría, Luxor y Asuán son ciudades egipcias muy conocidas, pero no la capital." },
+      "en": { "question": "What is the capital of Egypt?",
+              "options": ["Cairo", "Alexandria", "Luxor", "Aswan"],
+              "explanation": "Cairo is the capital of Egypt. Alexandria, Luxor and Aswan are well-known Egyptian cities, but not the capital." }
+    },
+    {
+      "id": "geography-0018", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuál es la capital de Estados Unidos?",
+              "options": ["Washington, D. C.", "Nueva York", "Filadelfia", "San Francisco"],
+              "explanation": "Washington, D. C. es la capital federal y no pertenece a ningún estado. Nueva York es mucho más conocida, pero no es la capital." },
+      "en": { "question": "What is the capital of the United States?",
+              "options": ["Washington, D.C.", "New York", "Philadelphia", "San Francisco"],
+              "explanation": "Washington, D.C. is the federal capital and does not belong to any state. New York is far better known, but it is not the capital." }
+    },
+    {
+      "id": "geography-0019", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuál es la capital de México?",
+              "options": ["Ciudad de México", "Guadalajara", "San Luis Potosí", "Monterrey"],
+              "explanation": "La Ciudad de México es la capital y sede del gobierno federal. Guadalajara, San Luis Potosí y Monterrey son capitales de estados, no del país." },
+      "en": { "question": "What is the capital of Mexico?",
+              "options": ["Mexico City", "Guadalajara", "San Luis Potosí", "Monterrey"],
+              "explanation": "Mexico City is the capital and the seat of the federal government. Guadalajara, San Luis Potosí and Monterrey are state capitals, not the national capital." }
+    },
+    {
+      "id": "geography-0020", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuál es la capital del Perú?",
+              "options": ["Lima", "Cusco", "Arequipa", "Trujillo"],
+              "explanation": "Lima, junto al océano Pacífico, es la capital del Perú. Cusco fue la capital del Imperio inca, pero hoy no lo es." },
+      "en": { "question": "What is the capital of Peru?",
+              "options": ["Lima", "Cusco", "Arequipa", "Trujillo"],
+              "explanation": "Lima, on the Pacific coast, is the capital of Peru. Cusco was the capital of the Inca Empire, but it no longer is." }
+    },
+    {
+      "id": "geography-0021", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuál es la capital del Reino Unido?",
+              "options": ["Londres", "Edimburgo", "Mánchester", "Liverpool"],
+              "explanation": "Londres es la capital del Reino Unido y de Inglaterra. Edimburgo es la capital de Escocia, una de las naciones que lo forman." },
+      "en": { "question": "What is the capital of the United Kingdom?",
+              "options": ["London", "Edinburgh", "Manchester", "Liverpool"],
+              "explanation": "London is the capital of the United Kingdom and of England. Edinburgh is the capital of Scotland, one of the nations that make up the UK." }
+    },
+    {
+      "id": "geography-0022", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuál es la capital de España?",
+              "options": ["Madrid", "Barcelona", "Sevilla", "Valencia"],
+              "explanation": "Madrid, en el centro de la península ibérica, es la capital de España. Barcelona, Sevilla y Valencia son grandes ciudades, pero no la capital." },
+      "en": { "question": "What is the capital of Spain?",
+              "options": ["Madrid", "Barcelona", "Seville", "Valencia"],
+              "explanation": "Madrid, in the centre of the Iberian Peninsula, is the capital of Spain. Barcelona, Seville and Valencia are large cities, but not the capital." }
+    },
+    {
+      "id": "geography-0023", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuál es el continente más grande del mundo?",
+              "options": ["Asia", "África", "América del Norte", "Europa"],
+              "explanation": "Asia abarca cerca del 30 % de las tierras emergidas del planeta. África es el segundo continente más extenso." },
+      "en": { "question": "What is the largest continent in the world?",
+              "options": ["Asia", "Africa", "North America", "Europe"],
+              "explanation": "Asia covers about 30% of the planet's land area. Africa is the second-largest continent." }
+    },
+    {
+      "id": "geography-0024", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué continente está casi por completo cubierto de hielo?",
+              "options": ["La Antártida", "Europa", "Asia", "América del Norte"],
+              "explanation": "La Antártida está bajo una capa de hielo de hasta casi 5 km de espesor y no tiene población permanente, solo científicos temporales en sus bases." },
+      "en": { "question": "Which continent is almost entirely covered by ice?",
+              "options": ["Antarctica", "Europe", "Asia", "North America"],
+              "explanation": "Antarctica lies under an ice sheet up to almost 5 km thick and has no permanent population, only scientists staying temporarily at its bases." }
+    },
+    {
+      "id": "geography-0025", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuál es el desierto cálido más grande del mundo?",
+              "options": ["El Sahara", "El Gobi", "El Kalahari", "El de Arabia"],
+              "explanation": "El Sahara, en el norte de África, ocupa unos 9 millones de km², una superficie comparable a la de Estados Unidos." },
+      "en": { "question": "Which is the largest hot desert in the world?",
+              "options": ["The Sahara", "The Gobi", "The Kalahari", "The Arabian"],
+              "explanation": "The Sahara, in northern Africa, covers about 9 million km², an area comparable to that of the United States." }
+    },
+    {
+      "id": "geography-0026", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué país europeo tiene forma de bota?",
+              "options": ["Italia", "Grecia", "España", "Portugal"],
+              "explanation": "Italia ocupa una larga península que recuerda una bota; la isla de Sicilia queda frente a su «punta»." },
+      "en": { "question": "Which European country is shaped like a boot?",
+              "options": ["Italy", "Greece", "Spain", "Portugal"],
+              "explanation": "Italy sits on a long peninsula that looks like a boot, with the island of Sicily off its 'toe'." }
+    },
+    {
+      "id": "geography-0027", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuál es el río más caudaloso del mundo?",
+              "options": ["El Amazonas", "El Nilo", "El Misisipi", "El Yangtsé"],
+              "explanation": "El Amazonas lleva más agua que cualquier otro río: aporta cerca de una quinta parte del agua dulce que los ríos vierten al mar." },
+      "en": { "question": "Which river carries the most water in the world?",
+              "options": ["The Amazon", "The Nile", "The Mississippi", "The Yangtze"],
+              "explanation": "The Amazon carries more water than any other river: it supplies about a fifth of all the fresh water that rivers pour into the sea." }
+    },
+    {
+      "id": "geography-0028", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué cordillera recorre América del Sur de norte a sur, junto a la costa del Pacífico?",
+              "options": ["Los Andes", "Los Alpes", "Las Rocosas", "El Himalaya"],
+              "explanation": "Los Andes se extienden unos 7000 km por siete países y forman la cadena montañosa continental más larga del mundo." },
+      "en": { "question": "Which mountain range runs the length of South America, along the Pacific coast?",
+              "options": ["The Andes", "The Alps", "The Rockies", "The Himalayas"],
+              "explanation": "The Andes stretch about 7,000 km through seven countries and form the longest continental mountain chain in the world." }
+    },
+    {
+      "id": "geography-0029", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿En qué país está la ciudadela inca de Machu Picchu?",
+              "options": ["Perú", "Bolivia", "Ecuador", "Colombia"],
+              "explanation": "Machu Picchu se levanta en los Andes peruanos, cerca de Cusco, y fue elegida en 2007 como una de las nuevas siete maravillas del mundo." },
+      "en": { "question": "In which country is the Inca citadel of Machu Picchu?",
+              "options": ["Peru", "Bolivia", "Ecuador", "Colombia"],
+              "explanation": "Machu Picchu stands in the Peruvian Andes, near Cusco, and was named one of the New Seven Wonders of the World in 2007." }
+    },
+    {
+      "id": "geography-0030", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuál es la montaña más alta del mundo sobre el nivel del mar?",
+              "options": ["El Everest", "El Kilimanjaro", "El Mont Blanc", "El Fuji"],
+              "explanation": "El Everest, en la cordillera del Himalaya, mide aproximadamente 8849 m sobre el nivel del mar y es la cima más alta de la Tierra." },
+      "en": { "question": "What is the highest mountain in the world above sea level?",
+              "options": ["Everest", "Kilimanjaro", "Mont Blanc", "Fuji"],
+              "explanation": "Everest, in the Himalayas, is approximately 8,849 m above sea level and is the highest summit on Earth." }
+    },
+    {
+      "id": "geography-0031", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuál es el país más grande de América Latina por superficie?",
+              "options": ["Brasil", "Argentina", "México", "Perú"],
+              "explanation": "Brasil ocupa casi la mitad de América del Sur, con unos 8,5 millones de km². Argentina, la segunda de la región, tiene unos 2,8 millones." },
+      "en": { "question": "Which is the largest country in Latin America by area?",
+              "options": ["Brazil", "Argentina", "Mexico", "Peru"],
+              "explanation": "Brazil takes up nearly half of South America, with about 8.5 million km². Argentina, the region's second largest, covers about 2.8 million." }
+    },
+    {
+      "id": "geography-0032", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuál es el océano más pequeño del mundo?",
+              "options": ["El Ártico", "El Índico", "El Atlántico", "El Pacífico"],
+              "explanation": "El Ártico es el océano más pequeño y el menos profundo; buena parte de su superficie se cubre de hielo marino." },
+      "en": { "question": "What is the smallest ocean in the world?",
+              "options": ["The Arctic", "The Indian", "The Atlantic", "The Pacific"],
+              "explanation": "The Arctic is the smallest and shallowest ocean, and much of its surface is covered by sea ice." }
+    },
+    {
+      "id": "geography-0033", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué canal une el océano Atlántico con el Pacífico a través de Centroamérica?",
+              "options": ["El de Panamá", "El de Suez", "El de Corinto", "El de Kiel"],
+              "explanation": "El canal de Panamá se inauguró en 1914 y permite a los barcos pasar de un océano a otro sin rodear el extremo sur de América." },
+      "en": { "question": "Which canal links the Atlantic and Pacific oceans across Central America?",
+              "options": ["The Panama Canal", "The Suez Canal", "The Corinth Canal", "The Kiel Canal"],
+              "explanation": "The Panama Canal opened in 1914 and lets ships pass from one ocean to the other without sailing around the southern tip of South America." }
+    },
+    {
+      "id": "geography-0034", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿A qué país pertenecen las islas Galápagos, que visitó Charles Darwin en 1835?",
+              "options": ["Ecuador", "Perú", "Chile", "Colombia"],
+              "explanation": "Las Galápagos están en el Pacífico, a unos 1000 km de la costa continental de Ecuador. Allí Darwin reunió observaciones clave para su teoría de la evolución." },
+      "en": { "question": "Which country do the Galápagos Islands, visited by Charles Darwin in 1835, belong to?",
+              "options": ["Ecuador", "Peru", "Chile", "Colombia"],
+              "explanation": "The Galápagos lie in the Pacific, about 1,000 km off the Ecuadorian mainland. There Darwin gathered key observations for his theory of evolution." }
+    },
+    {
+      "id": "geography-0035", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿En qué país está el Taj Mahal?",
+              "options": ["India", "Pakistán", "Bangladés", "Nepal"],
+              "explanation": "El Taj Mahal está en Agra, India. El emperador Shah Jahan lo mandó construir en el siglo XVII como mausoleo para su esposa." },
+      "en": { "question": "In which country is the Taj Mahal?",
+              "options": ["India", "Pakistan", "Bangladesh", "Nepal"],
+              "explanation": "The Taj Mahal is in Agra, India. Emperor Shah Jahan had it built in the 17th century as a mausoleum for his wife." }
+    },
+    {
+      "id": "geography-0036", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuál es el principal río de Colombia, que recorre el país de sur a norte?",
+              "options": ["El Magdalena", "El Amazonas", "El Orinoco", "El Putumayo"],
+              "explanation": "El Magdalena mide unos 1500 km, nace en el Macizo Colombiano y desemboca en el Caribe, cerca de Barranquilla." },
+      "en": { "question": "What is Colombia's main river, running through the country from south to north?",
+              "options": ["The Magdalena", "The Amazon", "The Orinoco", "The Putumayo"],
+              "explanation": "The Magdalena is about 1,500 km long, rises in the Colombian Massif and flows into the Caribbean near Barranquilla." }
+    },
+    {
+      "id": "geography-0037", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cómo se llama la línea imaginaria que divide la Tierra en hemisferio norte y hemisferio sur?",
+              "options": ["El ecuador", "El trópico de Cáncer", "El trópico de Capricornio", "El círculo polar ártico"],
+              "explanation": "El ecuador es el paralelo 0° y mide unos 40 000 km de circunferencia. Los trópicos y los círculos polares son otros paralelos importantes." },
+      "en": { "question": "What is the imaginary line that divides the Earth into the northern and southern hemispheres?",
+              "options": ["The equator", "The Tropic of Cancer", "The Tropic of Capricorn", "The Arctic Circle"],
+              "explanation": "The equator is the 0° parallel and measures about 40,000 km around. The tropics and the polar circles are other important parallels." }
+    },
+    {
+      "id": "geography-0038", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuál es el país más pequeño del mundo por superficie?",
+              "options": ["El Vaticano", "Mónaco", "San Marino", "Liechtenstein"],
+              "explanation": "El Vaticano, dentro de Roma, mide solo unas 44 hectáreas (0,44 km²). Mónaco, el segundo más pequeño, tiene unos 2 km²." },
+      "en": { "question": "Which is the smallest country in the world by area?",
+              "options": ["Vatican City", "Monaco", "San Marino", "Liechtenstein"],
+              "explanation": "Vatican City, inside Rome, covers only about 44 hectares (0.44 km²). Monaco, the second smallest, covers about 2 km²." }
+    },
+    {
+      "id": "geography-0039", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿En qué país está la Gran Muralla, una de las construcciones más largas del mundo?",
+              "options": ["China", "Japón", "India", "Corea del Sur"],
+              "explanation": "La Gran Muralla recorre el norte de China. Los tramos más visitados, cerca de Pekín, son en su mayoría de la dinastía Ming (siglos XIV a XVII)." },
+      "en": { "question": "In which country is the Great Wall, one of the longest structures ever built?",
+              "options": ["China", "Japan", "India", "South Korea"],
+              "explanation": "The Great Wall runs across northern China. The most visited sections, near Beijing, mostly date from the Ming dynasty (14th to 17th centuries)." }
+    },
+    {
+      "id": "geography-0040", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿En qué ciudad está la estatua del Cristo Redentor?",
+              "options": ["Río de Janeiro", "Belo Horizonte", "Porto Alegre", "São Paulo"],
+              "explanation": "El Cristo Redentor, de unos 30 m de altura sin contar el pedestal, domina el cerro del Corcovado, en Río de Janeiro. Se inauguró en 1931." },
+      "en": { "question": "In which city is the Christ the Redeemer statue?",
+              "options": ["Rio de Janeiro", "Belo Horizonte", "Porto Alegre", "São Paulo"],
+              "explanation": "Christ the Redeemer, about 30 m tall without its pedestal, stands on Corcovado mountain in Rio de Janeiro. It was inaugurated in 1931." }
+    },
+    {
+      "id": "geography-0041", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué país latinoamericano es muy largo y angosto y se extiende junto a la costa del Pacífico?",
+              "options": ["Chile", "Ecuador", "Uruguay", "Paraguay"],
+              "explanation": "Chile mide más de 4000 km de norte a sur, pero en promedio tiene menos de 200 km de ancho." },
+      "en": { "question": "Which Latin American country is extremely long and narrow, stretching along the Pacific coast?",
+              "options": ["Chile", "Ecuador", "Uruguay", "Paraguay"],
+              "explanation": "Chile is over 4,000 km long from north to south, but on average less than 200 km wide." }
+    },
+    {
+      "id": "geography-0042", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Entre qué dos países están las cataratas del Niágara?",
+              "options": ["Canadá y Estados Unidos", "México y Estados Unidos", "Canadá y México", "Argentina y Brasil"],
+              "explanation": "Las cataratas del Niágara están en la frontera entre Canadá (Ontario) y Estados Unidos (Nueva York), sobre el río Niágara." },
+      "en": { "question": "Between which two countries are Niagara Falls?",
+              "options": ["Canada and the United States", "Mexico and the United States", "Canada and Mexico", "Argentina and Brazil"],
+              "explanation": "Niagara Falls lies on the border between Canada (Ontario) and the United States (New York), on the Niagara River." }
+    },
+    {
+      "id": "geography-0043", "difficulty": 1, "type": "truefalse", "answer": false,
+      "es": { "question": "El Polo Norte se encuentra en el continente de la Antártida.",
+              "explanation": "La Antártida rodea el Polo Sur. El Polo Norte está en medio del océano Ártico, sobre hielo marino flotante, sin tierra firme debajo." },
+      "en": { "question": "The North Pole is located on the continent of Antarctica.",
+              "explanation": "Antarctica surrounds the South Pole. The North Pole lies in the middle of the Arctic Ocean, on floating sea ice, with no land beneath it." }
+    },
+    {
+      "id": "geography-0044", "difficulty": 1, "type": "truefalse", "answer": true,
+      "es": { "question": "Colombia tiene costas tanto en el océano Pacífico como en el mar Caribe.",
+              "explanation": "Colombia limita con el Pacífico al occidente y con el mar Caribe al norte, lo que le da acceso a dos grandes zonas marítimas." },
+      "en": { "question": "Colombia has coastlines on both the Pacific Ocean and the Caribbean Sea.",
+              "explanation": "Colombia borders the Pacific to the west and the Caribbean Sea to the north, which gives it access to two major maritime zones." }
+    },
+    {
+      "id": "geography-0045", "difficulty": 1, "type": "truefalse", "answer": false,
+      "es": { "question": "Todo el territorio de Rusia está en Europa.",
+              "explanation": "Rusia se extiende por dos continentes: la mayor parte de su territorio, incluida toda Siberia, está en Asia, y su parte occidental, en Europa." },
+      "en": { "question": "All of Russia's territory lies in Europe.",
+              "explanation": "Russia spans two continents: most of its territory, including all of Siberia, is in Asia, and its western part is in Europe." }
+    },
+    {
+      "id": "geography-0046", "difficulty": 1, "type": "truefalse", "answer": false,
+      "es": { "question": "Suiza tiene salida al mar.",
+              "explanation": "Suiza no tiene costa: está rodeada por Alemania, Francia, Italia, Austria y Liechtenstein." },
+      "en": { "question": "Switzerland has a coastline.",
+              "explanation": "Switzerland has no coast: it is surrounded by Germany, France, Italy, Austria and Liechtenstein." }
+    },
+    {
+      "id": "geography-0047", "difficulty": 1, "type": "truefalse", "answer": true,
+      "es": { "question": "La selva amazónica es la selva tropical más extensa del planeta.",
+              "explanation": "La Amazonía ocupa más de 5 millones de km² repartidos entre varios países de Sudamérica, y Brasil tiene la mayor parte." },
+      "en": { "question": "The Amazon is the largest tropical rainforest on the planet.",
+              "explanation": "The Amazon covers more than 5 million km² spread across several South American countries, and Brazil holds most of it." }
+    },
+    {
+      "id": "geography-0048", "difficulty": 1, "type": "truefalse", "answer": true,
+      "es": { "question": "Japón es un archipiélago formado por miles de islas.",
+              "explanation": "Tiene miles de islas, aunque cuatro (Honshu, Hokkaido, Kyushu y Shikoku) concentran casi todo el territorio." },
+      "en": { "question": "Japan is an archipelago made up of thousands of islands.",
+              "explanation": "It has thousands of islands, although four of them (Honshu, Hokkaido, Kyushu and Shikoku) make up almost all of its territory." }
+    },
+    {
+      "id": "geography-0049", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cuántos departamentos tiene Colombia, sin contar el Distrito Capital?",
+              "options": ["32", "30", "28", "36"],
+              "explanation": "Son 32 desde 1991, cuando la nueva Constitución elevó a departamentos las antiguas intendencias y comisarías." },
+      "en": { "question": "How many departments does Colombia have, not counting the Capital District?",
+              "options": ["32", "30", "28", "36"],
+              "explanation": "There have been 32 since 1991, when the new Constitution turned the former intendencias and comisarías (frontier territories) into departments." }
+    },
+    {
+      "id": "geography-0050", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué río colombiano desemboca en el golfo de Urabá, en el Caribe?",
+              "options": ["El Atrato", "El Sinú", "El San Juan", "El Patía"],
+              "explanation": "El Atrato nace en la cordillera Occidental, corre hacia el norte por el Chocó y desemboca en el golfo de Urabá. El San Juan y el Patía van al Pacífico." },
+      "en": { "question": "Which Colombian river flows into the Gulf of Urabá, on the Caribbean?",
+              "options": ["The Atrato", "The Sinú", "The San Juan", "The Patía"],
+              "explanation": "The Atrato rises in the Western range, runs north through Chocó and empties into the Gulf of Urabá. The San Juan and the Patía flow into the Pacific." }
+    },
+    {
+      "id": "geography-0051", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cuál es la capital del departamento de Santander?",
+              "options": ["Bucaramanga", "Cúcuta", "Barrancabermeja", "San Gil"],
+              "explanation": "Bucaramanga es la capital de Santander. Cúcuta lo es de Norte de Santander; Barrancabermeja y San Gil son ciudades santandereanas, pero no su capital." },
+      "en": { "question": "What is the capital of the department of Santander, in Colombia?",
+              "options": ["Bucaramanga", "Cúcuta", "Barrancabermeja", "San Gil"],
+              "explanation": "Bucaramanga is the capital of Santander. Cúcuta is the capital of Norte de Santander; Barrancabermeja and San Gil are cities in Santander, but not its capital." }
+    },
+    {
+      "id": "geography-0052", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cuál es la capital del departamento de Nariño?",
+              "options": ["Pasto", "Popayán", "Tumaco", "Ipiales"],
+              "explanation": "Pasto es la capital de Nariño, en el suroccidente. Popayán lo es del Cauca; Tumaco e Ipiales son ciudades nariñenses, pero no la capital." },
+      "en": { "question": "What is the capital of the department of Nariño, in Colombia?",
+              "options": ["Pasto", "Popayán", "Tumaco", "Ipiales"],
+              "explanation": "Pasto is the capital of Nariño, in the southwest. Popayán is the capital of Cauca; Tumaco and Ipiales are cities in Nariño, but not its capital." }
+    },
+    {
+      "id": "geography-0053", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Con qué país tiene Colombia frontera terrestre en el noroccidente?",
+              "options": ["Panamá", "Costa Rica", "Nicaragua", "Honduras"],
+              "explanation": "Colombia limita por tierra con cinco países: Panamá, Venezuela, Brasil, Perú y Ecuador. La frontera con Panamá cruza la selva del Darién." },
+      "en": { "question": "Which country does Colombia share a land border with in the northwest?",
+              "options": ["Panama", "Costa Rica", "Nicaragua", "Honduras"],
+              "explanation": "Colombia has land borders with five countries: Panama, Venezuela, Brazil, Peru and Ecuador. The border with Panama runs through the Darién jungle." }
+    },
+    {
+      "id": "geography-0054", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cerca de qué ciudad colombiana está el Parque Nacional Natural Tayrona?",
+              "options": ["Santa Marta", "Cartagena", "Riohacha", "Barranquilla"],
+              "explanation": "El Tayrona está en el Caribe colombiano, cerca de Santa Marta, y combina playas, selva y restos arqueológicos de la cultura tayrona." },
+      "en": { "question": "Near which Colombian city is Tayrona National Natural Park?",
+              "options": ["Santa Marta", "Cartagena", "Riohacha", "Barranquilla"],
+              "explanation": "Tayrona is on Colombia's Caribbean coast, near Santa Marta, and combines beaches, jungle and archaeological remains of the Tayrona culture." }
+    },
+    {
+      "id": "geography-0055", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿En cuántas cordilleras se dividen los Andes en Colombia?",
+              "options": ["Tres", "Dos", "Cuatro", "Cinco"],
+              "explanation": "En Colombia los Andes forman tres cordilleras: la Occidental, la Central y la Oriental. Entre ellas corren los valles de los ríos Cauca y Magdalena." },
+      "en": { "question": "Into how many ranges do the Andes divide in Colombia?",
+              "options": ["Three", "Two", "Four", "Five"],
+              "explanation": "In Colombia the Andes form three ranges: the Western, Central and Eastern. The valleys of the Cauca and Magdalena rivers run between them." }
+    },
+    {
+      "id": "geography-0056", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué volcán colombiano causó la tragedia de Armero en 1985?",
+              "options": ["Nevado del Ruiz", "Galeras", "Puracé", "Nevado del Huila"],
+              "explanation": "La erupción del Nevado del Ruiz, el 13 de noviembre de 1985, derritió parte de su glaciar y generó avalanchas de lodo que arrasaron Armero." },
+      "en": { "question": "Which Colombian volcano caused the Armero tragedy in 1985?",
+              "options": ["Nevado del Ruiz", "Galeras", "Puracé", "Nevado del Huila"],
+              "explanation": "The eruption of Nevado del Ruiz on 13 November 1985 melted part of its glacier and set off mudflows that wiped out the town of Armero." }
+    },
+    {
+      "id": "geography-0057", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cuál es la capital de Brasil?",
+              "options": ["Brasilia", "Río de Janeiro", "São Paulo", "Salvador"],
+              "explanation": "Brasilia es la capital desde 1960; se construyó en el interior del país para impulsar su desarrollo. Río de Janeiro fue la capital hasta ese año." },
+      "en": { "question": "What is the capital of Brazil?",
+              "options": ["Brasília", "Rio de Janeiro", "São Paulo", "Salvador"],
+              "explanation": "Brasília has been the capital since 1960; it was built inland to drive the country's development. Rio de Janeiro was the capital until that year." }
+    },
+    {
+      "id": "geography-0058", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cuál es la capital de Chile?",
+              "options": ["Santiago", "Valparaíso", "Concepción", "Viña del Mar"],
+              "explanation": "Santiago es la capital de Chile. El Congreso Nacional funciona en Valparaíso, otra ciudad importante del país." },
+      "en": { "question": "What is the capital of Chile?",
+              "options": ["Santiago", "Valparaíso", "Concepción", "Viña del Mar"],
+              "explanation": "Santiago is the capital of Chile. The National Congress meets in Valparaíso, another important city in the country." }
+    },
+    {
+      "id": "geography-0059", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cuál es la capital de Nueva Zelanda?",
+              "options": ["Wellington", "Auckland", "Christchurch", "Dunedin"],
+              "explanation": "Wellington, en el extremo sur de la isla Norte, es la capital. Auckland es más conocida en el exterior, pero no es la capital." },
+      "en": { "question": "What is the capital of New Zealand?",
+              "options": ["Wellington", "Auckland", "Christchurch", "Dunedin"],
+              "explanation": "Wellington, at the southern tip of the North Island, is the capital. Auckland is better known abroad, but it is not the capital." }
+    },
+    {
+      "id": "geography-0060", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cuál es la capital de Suiza?",
+              "options": ["Berna", "Zúrich", "Ginebra", "Basilea"],
+              "explanation": "Berna es la «ciudad federal» y sede del gobierno suizo. Zúrich y Ginebra son más conocidas en el exterior, pero no son la capital." },
+      "en": { "question": "What is the capital of Switzerland?",
+              "options": ["Bern", "Zurich", "Geneva", "Basel"],
+              "explanation": "Bern, the 'federal city', is the seat of the Swiss government. Zurich and Geneva are better known abroad, but they are not the capital." }
+    },
+    {
+      "id": "geography-0061", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cuál es la capital de Marruecos?",
+              "options": ["Rabat", "Casablanca", "Marrakech", "Fez"],
+              "explanation": "Rabat es la capital de Marruecos. Casablanca es su gran centro económico; Marrakech y Fez son ciudades históricas muy visitadas." },
+      "en": { "question": "What is the capital of Morocco?",
+              "options": ["Rabat", "Casablanca", "Marrakesh", "Fez"],
+              "explanation": "Rabat is the capital of Morocco. Casablanca is its major economic centre; Marrakesh and Fez are historic cities that many tourists visit." }
+    },
+    {
+      "id": "geography-0062", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿A qué país pertenece la isla de Pascua (Rapa Nui), famosa por sus estatuas moái?",
+              "options": ["Chile", "Perú", "Ecuador", "Nueva Zelanda"],
+              "explanation": "Chile la anexó en 1888. Está en el Pacífico, a unos 3500 km de la costa chilena, y es famosa por sus estatuas moái." },
+      "en": { "question": "Which country does Easter Island (Rapa Nui), famous for its moai statues, belong to?",
+              "options": ["Chile", "Peru", "Ecuador", "New Zealand"],
+              "explanation": "Chile annexed it in 1888. It lies in the Pacific, about 3,500 km from the Chilean coast, and is famous for its moai statues." }
+    },
+    {
+      "id": "geography-0063", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Entre qué dos países se reparte el lago Titicaca?",
+              "options": ["Perú y Bolivia", "Perú y Ecuador", "Bolivia y Chile", "Chile y Argentina"],
+              "explanation": "El Titicaca, en el altiplano andino a unos 3800 m de altitud, queda entre Perú, al oeste, y Bolivia, al este." },
+      "en": { "question": "Which two countries share Lake Titicaca?",
+              "options": ["Peru and Bolivia", "Peru and Ecuador", "Bolivia and Chile", "Chile and Argentina"],
+              "explanation": "Lake Titicaca, on the Andean plateau at about 3,800 m above sea level, lies between Peru to the west and Bolivia to the east." }
+    },
+    {
+      "id": "geography-0064", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿En qué país está el salar de Uyuni, el mayor salar del mundo?",
+              "options": ["Bolivia", "Chile", "Argentina", "Perú"],
+              "explanation": "El salar de Uyuni, en el altiplano boliviano, cubre más de 10 000 km². En la temporada de lluvias una fina capa de agua lo convierte en un enorme espejo." },
+      "en": { "question": "In which country is the Uyuni salt flat, the largest salt flat in the world?",
+              "options": ["Bolivia", "Chile", "Argentina", "Peru"],
+              "explanation": "The Uyuni salt flat, on Bolivia's high plateau, covers more than 10,000 km². In the rainy season a thin layer of water turns it into a vast mirror." }
+    },
+    {
+      "id": "geography-0065", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿En qué país está el Salto Ángel, la caída de agua ininterrumpida más alta del mundo?",
+              "options": ["Venezuela", "Guyana", "Brasil", "Colombia"],
+              "explanation": "El Salto Ángel está en el Parque Nacional Canaima y tiene una altura total de unos 979 m, con una caída ininterrumpida de unos 807 m." },
+      "en": { "question": "In which country is Angel Falls, the world's tallest uninterrupted waterfall?",
+              "options": ["Venezuela", "Guyana", "Brazil", "Colombia"],
+              "explanation": "Angel Falls is in Canaima National Park and has a total height of about 979 m, with an uninterrupted drop of about 807 m." }
+    },
+    {
+      "id": "geography-0066", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cuál es la isla más grande del mar Caribe?",
+              "options": ["Cuba", "La Española", "Jamaica", "Puerto Rico"],
+              "explanation": "Cuba, con unos 105 000 km², es la mayor isla del Caribe. La Española, que comparten Haití y la República Dominicana, es la segunda." },
+      "en": { "question": "What is the largest island in the Caribbean Sea?",
+              "options": ["Cuba", "Hispaniola", "Jamaica", "Puerto Rico"],
+              "explanation": "Cuba, with about 105,000 km², is the largest Caribbean island. Hispaniola, shared by Haiti and the Dominican Republic, is the second largest." }
+    },
+    {
+      "id": "geography-0067", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cuál de estos países sudamericanos no tiene salida al mar?",
+              "options": ["Paraguay", "Uruguay", "Ecuador", "Venezuela"],
+              "explanation": "Paraguay no tiene costa; en Sudamérica solo Bolivia comparte esa condición. Uruguay, Ecuador y Venezuela sí tienen litoral." },
+      "en": { "question": "Which of these South American countries is landlocked?",
+              "options": ["Paraguay", "Uruguay", "Ecuador", "Venezuela"],
+              "explanation": "Paraguay has no coast; in South America only Bolivia shares that condition. Uruguay, Ecuador and Venezuela all have a coastline." }
+    },
+    {
+      "id": "geography-0068", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cuál es la isla más grande del mundo?",
+              "options": ["Groenlandia", "Nueva Guinea", "Borneo", "Madagascar"],
+              "explanation": "Groenlandia tiene unos 2,2 millones de km². Australia no cuenta, porque se considera un continente." },
+      "en": { "question": "What is the largest island in the world?",
+              "options": ["Greenland", "New Guinea", "Borneo", "Madagascar"],
+              "explanation": "Greenland covers about 2.2 million km². Australia does not count, because it is considered a continent." }
+    },
+    {
+      "id": "geography-0069", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cuál es el continente más pequeño por superficie?",
+              "options": ["Oceanía", "Europa", "La Antártida", "América del Sur"],
+              "explanation": "Oceanía abarca cerca de 8,5 millones de km², menos que Europa (unos 10 millones), la Antártida o América del Sur." },
+      "en": { "question": "Which is the smallest continent by area?",
+              "options": ["Oceania", "Europe", "Antarctica", "South America"],
+              "explanation": "Oceania covers about 8.5 million km², less than Europe (about 10 million), Antarctica or South America." }
+    },
+    {
+      "id": "geography-0070", "difficulty": 2, "type": "choice",
+      "es": { "question": "Contando también los desiertos fríos, ¿cuál es el desierto más grande del mundo?",
+              "options": ["La Antártida", "El Sahara", "El Gobi", "El de Arabia"],
+              "explanation": "La Antártida, con unos 14 millones de km², es el desierto más grande: casi no recibe precipitaciones. Un desierto se define por su sequedad, no por el calor." },
+      "en": { "question": "Counting cold deserts too, which is the largest desert in the world?",
+              "options": ["Antarctica", "The Sahara", "The Gobi", "The Arabian"],
+              "explanation": "Antarctica, at about 14 million km², is the largest desert: it receives almost no precipitation. A desert is defined by dryness, not by heat." }
+    },
+    {
+      "id": "geography-0071", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Dónde está el punto más profundo conocido de los océanos?",
+              "options": ["La fosa de las Marianas", "La fosa de Tonga", "La fosa de Puerto Rico", "La fosa de las Filipinas"],
+              "explanation": "La fosa de las Marianas, en el Pacífico occidental, llega a unos 11 000 m de profundidad en el punto llamado Abismo Challenger." },
+      "en": { "question": "Where is the deepest known point in the world's oceans?",
+              "options": ["The Mariana Trench", "The Tonga Trench", "The Puerto Rico Trench", "The Philippine Trench"],
+              "explanation": "The Mariana Trench, in the western Pacific, reaches a depth of about 11,000 m at the spot called Challenger Deep." }
+    },
+    {
+      "id": "geography-0072", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué lugar del Reino Unido da nombre al meridiano 0°, la referencia mundial para medir la longitud?",
+              "options": ["Greenwich", "Westminster", "Kensington", "Camden"],
+              "explanation": "Greenwich, un distrito de Londres, da nombre al meridiano adoptado como referencia mundial en 1884; este divide la Tierra en hemisferio este y oeste." },
+      "en": { "question": "Which place in the United Kingdom gives its name to the 0° meridian, the world reference for measuring longitude?",
+              "options": ["Greenwich", "Westminster", "Kensington", "Camden"],
+              "explanation": "Greenwich, a district of London, gives its name to the meridian adopted as the world reference in 1884; it divides the Earth into eastern and western hemispheres." }
+    },
+    {
+      "id": "geography-0073", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿En qué país está el Kilimanjaro, la montaña más alta de África?",
+              "options": ["Tanzania", "Kenia", "Etiopía", "Uganda"],
+              "explanation": "El Kilimanjaro, un volcán inactivo de unos 5895 m, está en el noreste de Tanzania, cerca de la frontera con Kenia." },
+      "en": { "question": "In which country is Kilimanjaro, the highest mountain in Africa?",
+              "options": ["Tanzania", "Kenya", "Ethiopia", "Uganda"],
+              "explanation": "Kilimanjaro, a dormant volcano of about 5,895 m, is in northeastern Tanzania, close to the border with Kenya." }
+    },
+    {
+      "id": "geography-0074", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué cordillera europea tiene como cima más alta el Mont Blanc, de unos 4800 m?",
+              "options": ["Los Alpes", "Los Pirineos", "Los Cárpatos", "Los Apeninos"],
+              "explanation": "El Mont Blanc es la cumbre más alta de los Alpes, que atraviesan países como Francia, Suiza, Italia y Austria." },
+      "en": { "question": "Which European mountain range has Mont Blanc, at about 4,800 m, as its highest peak?",
+              "options": ["The Alps", "The Pyrenees", "The Carpathians", "The Apennines"],
+              "explanation": "Mont Blanc is the highest peak of the Alps, which cross countries such as France, Switzerland, Italy and Austria." }
+    },
+    {
+      "id": "geography-0075", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué río cruza la capital de Francia?",
+              "options": ["El Sena", "El Loira", "El Ródano", "El Garona"],
+              "explanation": "El Sena cruza París y desemboca en el canal de la Mancha. El Loira, el Ródano y el Garona son otros grandes ríos franceses." },
+      "en": { "question": "Which river runs through the capital of France?",
+              "options": ["The Seine", "The Loire", "The Rhône", "The Garonne"],
+              "explanation": "The Seine runs through Paris and flows into the English Channel. The Loire, the Rhône and the Garonne are other major French rivers." }
+    },
+    {
+      "id": "geography-0076", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cuál es el río más largo de Asia?",
+              "options": ["El Yangtsé", "El Amarillo", "El Mekong", "El Ganges"],
+              "explanation": "El Yangtsé, en China, mide unos 6300 km. El río Amarillo, el segundo de China, mide unos 5460 km." },
+      "en": { "question": "What is the longest river in Asia?",
+              "options": ["The Yangtze", "The Yellow River", "The Mekong", "The Ganges"],
+              "explanation": "The Yangtze, in China, is about 6,300 km long. The Yellow River, China's second longest, is about 5,460 km." }
+    },
+    {
+      "id": "geography-0077", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cuál es el lago más grande de África por superficie?",
+              "options": ["El Victoria", "El Tanganica", "El Malaui", "El Turkana"],
+              "explanation": "El Victoria, compartido por Uganda, Kenia y Tanzania, tiene casi 69 000 km² y es el mayor lago africano." },
+      "en": { "question": "What is the largest lake in Africa by area?",
+              "options": ["Lake Victoria", "Lake Tanganyika", "Lake Malawi", "Lake Turkana"],
+              "explanation": "Lake Victoria, shared by Uganda, Kenya and Tanzania, covers almost 69,000 km² and is Africa's largest lake." }
+    },
+    {
+      "id": "geography-0078", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cuál es el punto más bajo de las tierras emergidas del planeta?",
+              "options": ["La orilla del mar Muerto", "El Valle de la Muerte", "La depresión de Qattara", "El lago Assal, en Yibuti"],
+              "explanation": "La orilla del mar Muerto está a más de 400 m bajo el nivel del mar. Sigue descendiendo cada año por la evaporación y la extracción de agua." },
+      "en": { "question": "What is the lowest point on dry land on Earth?",
+              "options": ["The Dead Sea shore", "Death Valley", "The Qattara Depression", "Lake Assal, in Djibouti"],
+              "explanation": "The shore of the Dead Sea is more than 400 m below sea level. It keeps sinking every year because of evaporation and water diversion." }
+    },
+    {
+      "id": "geography-0079", "difficulty": 2, "type": "truefalse", "answer": true,
+      "es": { "question": "Chile y Ecuador son los únicos países de Sudamérica que no limitan con Brasil.",
+              "explanation": "Brasil limita con nueve países sudamericanos; solo Chile y Ecuador quedan fuera de su frontera." },
+      "en": { "question": "Chile and Ecuador are the only South American countries that do not border Brazil.",
+              "explanation": "Brazil borders nine South American countries; only Chile and Ecuador do not share a border with it." }
+    },
+    {
+      "id": "geography-0080", "difficulty": 2, "type": "truefalse", "answer": true,
+      "es": { "question": "Colombia tiene territorio a orillas del río Amazonas.",
+              "explanation": "En el extremo sur, la ciudad de Leticia está sobre el Amazonas, donde se juntan las fronteras de Colombia, Perú y Brasil." },
+      "en": { "question": "Colombia has territory on the banks of the Amazon River.",
+              "explanation": "In the far south, the city of Leticia stands on the Amazon, where the borders of Colombia, Peru and Brazil meet." }
+    },
+    {
+      "id": "geography-0081", "difficulty": 2, "type": "truefalse", "answer": true,
+      "es": { "question": "El río Nilo desemboca en el mar Mediterráneo.",
+              "explanation": "El Nilo fluye de sur a norte y forma un gran delta en la costa mediterránea de Egipto." },
+      "en": { "question": "The Nile River flows into the Mediterranean Sea.",
+              "explanation": "The Nile flows from south to north and forms a large delta on Egypt's Mediterranean coast." }
+    },
+    {
+      "id": "geography-0082", "difficulty": 2, "type": "truefalse", "answer": false,
+      "es": { "question": "El desierto de Atacama, uno de los más secos del mundo, está en Argentina.",
+              "explanation": "El Atacama está sobre todo en el norte de Chile, entre los Andes y el Pacífico; en algunas zonas casi nunca llueve." },
+      "en": { "question": "The Atacama Desert, one of the driest in the world, is in Argentina.",
+              "explanation": "The Atacama is mostly in northern Chile, between the Andes and the Pacific; in some areas it almost never rains." }
+    },
+    {
+      "id": "geography-0083", "difficulty": 2, "type": "truefalse", "answer": false,
+      "es": { "question": "La capital de Canadá es Toronto.",
+              "explanation": "La capital es Ottawa. Toronto es una gran ciudad canadiense, pero no es la capital." },
+      "en": { "question": "The capital of Canada is Toronto.",
+              "explanation": "The capital is Ottawa. Toronto is a major Canadian city, but it is not the capital." }
+    },
+    {
+      "id": "geography-0084", "difficulty": 2, "type": "truefalse", "answer": false,
+      "es": { "question": "El río Danubio desemboca en el mar Mediterráneo.",
+              "explanation": "El Danubio desemboca en el mar Negro, donde forma un gran delta entre Rumanía y Ucrania." },
+      "en": { "question": "The Danube River flows into the Mediterranean Sea.",
+              "explanation": "The Danube flows into the Black Sea, where it forms a large delta between Romania and Ukraine." }
+    },
+    {
+      "id": "geography-0085", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Cuál es la capital de Nigeria?",
+              "options": ["Abuja", "Lagos", "Kano", "Ibadán"],
+              "explanation": "Abuja es la capital desde 1991, cuando reemplazó a Lagos, que sigue siendo el principal centro comercial del país." },
+      "en": { "question": "What is the capital of Nigeria?",
+              "options": ["Abuja", "Lagos", "Kano", "Ibadan"],
+              "explanation": "Abuja has been the capital since 1991, when it replaced Lagos, which remains the country's main commercial centre." }
+    },
+    {
+      "id": "geography-0086", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Cuál es la capital constitucional de Bolivia?",
+              "options": ["Sucre", "La Paz", "Cochabamba", "Santa Cruz de la Sierra"],
+              "explanation": "Sucre es la capital constitucional y sede del poder judicial. La Paz es la sede del gobierno y del poder legislativo." },
+      "en": { "question": "What is the constitutional capital of Bolivia?",
+              "options": ["Sucre", "La Paz", "Cochabamba", "Santa Cruz de la Sierra"],
+              "explanation": "Sucre is the constitutional capital and seat of the judiciary. La Paz is the seat of the government and the legislature." }
+    },
+    {
+      "id": "geography-0087", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Cuál es la capital de Surinam?",
+              "options": ["Paramaribo", "Georgetown", "Cayena", "Puerto España"],
+              "explanation": "Paramaribo es la capital de Surinam, país de habla neerlandesa. Georgetown es la de Guyana y Cayena, la de la Guayana Francesa, territorio de Francia." },
+      "en": { "question": "What is the capital of Suriname?",
+              "options": ["Paramaribo", "Georgetown", "Cayenne", "Port of Spain"],
+              "explanation": "Paramaribo is the capital of Suriname, a Dutch-speaking country. Georgetown is Guyana's capital and Cayenne is the capital of French Guiana, a French territory." }
+    },
+    {
+      "id": "geography-0088", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Cuál es la capital del departamento de Casanare, en Colombia?",
+              "options": ["Yopal", "Arauca", "Villavicencio", "Puerto Carreño"],
+              "explanation": "Yopal es la capital de Casanare, en los Llanos Orientales. Arauca, Villavicencio y Puerto Carreño son capitales de otros departamentos." },
+      "en": { "question": "What is the capital of the department of Casanare, in Colombia?",
+              "options": ["Yopal", "Arauca", "Villavicencio", "Puerto Carreño"],
+              "explanation": "Yopal is the capital of Casanare, in the Eastern Plains. Arauca, Villavicencio and Puerto Carreño are capitals of other departments." }
+    },
+    {
+      "id": "geography-0089", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿En qué departamento está Caño Cristales, el llamado «río de los cinco colores»?",
+              "options": ["Meta", "Guaviare", "Caquetá", "Vichada"],
+              "explanation": "Caño Cristales está en la serranía de La Macarena, en el Meta. Su famoso color rojo viene de una planta acuática, la Macarenia clavigera." },
+      "en": { "question": "In which Colombian department is Caño Cristales, the so-called 'river of five colors'?",
+              "options": ["Meta", "Guaviare", "Caquetá", "Vichada"],
+              "explanation": "Caño Cristales is in the Serranía de La Macarena, in Meta. Its famous red color comes from an aquatic plant, Macarenia clavigera." }
+    },
+    {
+      "id": "geography-0090", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Cuál es el parque nacional natural más grande de Colombia?",
+              "options": ["Serranía de Chiribiquete", "Cordillera de los Picachos", "Paramillo", "Amacayacu"],
+              "explanation": "Chiribiquete, en la Amazonía, tiene más de 4 millones de hectáreas y desde 2018 es Patrimonio Mundial de la UNESCO." },
+      "en": { "question": "Which is the largest national natural park in Colombia?",
+              "options": ["Serranía de Chiribiquete", "Cordillera de los Picachos", "Paramillo", "Amacayacu"],
+              "explanation": "Chiribiquete, in the Amazon region, covers over 4 million hectares and has been a UNESCO World Heritage Site since 2018." }
+    },
+    {
+      "id": "geography-0091", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿En qué sistema montañoso están los picos Cristóbal Colón y Simón Bolívar, dos de los más altos de Colombia?",
+              "options": ["Sierra Nevada de Santa Marta", "Sierra Nevada del Cocuy", "Serranía del Perijá", "Serranía de La Macarena"],
+              "explanation": "La Sierra Nevada de Santa Marta se alza junto al mar Caribe y sus cumbres más altas superan los 5000 m, con nieves a unos 40 km de la costa." },
+      "en": { "question": "In which mountain system are the peaks Cristóbal Colón and Simón Bolívar, two of Colombia's highest?",
+              "options": ["Sierra Nevada de Santa Marta", "Sierra Nevada del Cocuy", "Serranía del Perijá", "Serranía de La Macarena"],
+              "explanation": "The Sierra Nevada de Santa Marta rises right beside the Caribbean Sea, and its highest summits top 5,000 m, with snow about 40 km from the coast." }
+    },
+    {
+      "id": "geography-0092", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Cuál es la segunda montaña más alta del mundo?",
+              "options": ["El K2", "El Kangchenjunga", "El Lhotse", "El Makalu"],
+              "explanation": "El K2, en la cordillera del Karakórum, mide unos 8610 m. El Kangchenjunga es el tercero, con unos 8586 m." },
+      "en": { "question": "What is the second-highest mountain in the world?",
+              "options": ["K2", "Kangchenjunga", "Lhotse", "Makalu"],
+              "explanation": "K2, in the Karakoram range, is about 8,610 m high. Kangchenjunga is the third highest, at about 8,586 m." }
+    },
+    {
+      "id": "geography-0093", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Qué cordillera se toma por convención como el límite oriental de Europa con Asia?",
+              "options": ["Los Urales", "El Altái", "Los Cárpatos", "El Tian Shan"],
+              "explanation": "Los Urales recorren Rusia de norte a sur a lo largo de unos 2500 km y, por convención, separan Europa de Asia." },
+      "en": { "question": "Which mountain range is conventionally taken as Europe's eastern boundary with Asia?",
+              "options": ["The Urals", "The Altai", "The Carpathians", "The Tian Shan"],
+              "explanation": "The Urals run north to south across Russia for about 2,500 km and, by convention, separate Europe from Asia." }
+    },
+    {
+      "id": "geography-0094", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Cuál es el lago más profundo del mundo?",
+              "options": ["El Baikal", "El Tanganica", "El Superior", "El Victoria"],
+              "explanation": "El Baikal, en Siberia (Rusia), supera los 1600 m de profundidad y contiene cerca de una quinta parte del agua dulce superficial no congelada del planeta." },
+      "en": { "question": "What is the deepest lake in the world?",
+              "options": ["Lake Baikal", "Lake Tanganyika", "Lake Superior", "Lake Victoria"],
+              "explanation": "Lake Baikal, in Siberia (Russia), is over 1,600 m deep and holds about a fifth of the world's unfrozen surface fresh water." }
+    },
+    {
+      "id": "geography-0095", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Entre qué dos países están las cataratas Victoria?",
+              "options": ["Zambia y Zimbabue", "Kenia y Tanzania", "Angola y Namibia", "Botsuana y Sudáfrica"],
+              "explanation": "Las cataratas Victoria, sobre el río Zambeze, están en la frontera entre Zambia y Zimbabue. Los pueblos locales las llaman «el humo que truena»." },
+      "en": { "question": "Between which two countries is Victoria Falls?",
+              "options": ["Zambia and Zimbabwe", "Kenya and Tanzania", "Angola and Namibia", "Botswana and South Africa"],
+              "explanation": "Victoria Falls, on the Zambezi River, lies on the border between Zambia and Zimbabwe. Local peoples call it 'the smoke that thunders'." }
+    },
+    {
+      "id": "geography-0096", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Cuál es el país más extenso de África?",
+              "options": ["Argelia", "República Democrática del Congo", "Sudán", "Libia"],
+              "explanation": "Argelia tiene unos 2,38 millones de km². Desde 2011, tras la independencia de Sudán del Sur, supera a Sudán, que antes era el mayor." },
+      "en": { "question": "Which is the largest country in Africa by area?",
+              "options": ["Algeria", "Democratic Republic of the Congo", "Sudan", "Libya"],
+              "explanation": "Algeria covers about 2.38 million km². Since 2011, when South Sudan became independent, it has been larger than Sudan, which used to be the largest." }
+    },
+    {
+      "id": "geography-0097", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Qué río atraviesa Bagdad?",
+              "options": ["El Tigris", "El Éufrates", "El Jordán", "El Indo"],
+              "explanation": "El Tigris cruza Bagdad. Junto al Éufrates delimita la antigua Mesopotamia, cuyo nombre significa «entre ríos»." },
+      "en": { "question": "Which river runs through Baghdad?",
+              "options": ["The Tigris", "The Euphrates", "The Jordan", "The Indus"],
+              "explanation": "The Tigris runs through Baghdad. Together with the Euphrates it framed ancient Mesopotamia, whose name means 'between rivers'." }
+    },
+    {
+      "id": "geography-0098", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Cuál es el país más extenso de Centroamérica?",
+              "options": ["Nicaragua", "Honduras", "Guatemala", "Panamá"],
+              "explanation": "Nicaragua tiene unos 130 000 km². Honduras, el segundo, tiene unos 112 000 km²." },
+      "en": { "question": "Which is the largest country in Central America by area?",
+              "options": ["Nicaragua", "Honduras", "Guatemala", "Panama"],
+              "explanation": "Nicaragua covers about 130,000 km². Honduras, the second largest, covers about 112,000 km²." }
+    },
+    {
+      "id": "geography-0099", "difficulty": 3, "type": "truefalse", "answer": true,
+      "es": { "question": "La cima del volcán Chimborazo es el punto de la superficie terrestre más alejado del centro de la Tierra.",
+              "explanation": "Aunque el Everest es más alto sobre el nivel del mar, el Chimborazo, en Ecuador (unos 6260 m), está sobre el abultamiento ecuatorial, así que su cima queda más lejos del centro." },
+      "en": { "question": "The summit of the Chimborazo volcano is the point on the Earth's surface farthest from the centre of the Earth.",
+              "explanation": "Although Everest is higher above sea level, Chimborazo, in Ecuador (about 6,260 m), sits on the equatorial bulge, so its summit is farther from the Earth's centre." }
+    },
+    {
+      "id": "geography-0100", "difficulty": 3, "type": "truefalse", "answer": true,
+      "es": { "question": "El río Orinoco forma parte de la frontera entre Colombia y Venezuela.",
+              "explanation": "En un tramo, el Orinoco sirve de límite entre ambos países; frente a Puerto Carreño, en el Vichada, se ve la orilla venezolana." },
+      "en": { "question": "The Orinoco River forms part of the border between Colombia and Venezuela.",
+              "explanation": "For a stretch the Orinoco marks the boundary between the two countries; across from Puerto Carreño, in Vichada, you can see the Venezuelan bank." }
+    }
+  ]
+}

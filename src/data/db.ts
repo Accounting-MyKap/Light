@@ -1,4 +1,5 @@
-import Dexie, { type EntityTable } from 'dexie';
+import Dexie, { type EntityTable, type Table } from 'dexie';
+import type { AnswerOutcome, QuizCategory } from '../quiz/types';
 import type { Settings } from './settings';
 
 export interface StoredResult {
@@ -36,6 +37,17 @@ export interface SyncMeta {
   remoteUserId: string | null;
 }
 
+/** One answered question of a saved quiz round. Local only: it never reaches the server. */
+export interface QuizAnswer {
+  /** Id of the saved result (round) this answer belongs to. */
+  resultId: string;
+  questionId: string;
+  category: QuizCategory;
+  outcome: AnswerOutcome;
+  /** ISO timestamp; every answer of a round shares the time the round was saved. */
+  answeredAt: string;
+}
+
 export type StoredSettings = { id: 'settings' } & Settings;
 
 export const db = new Dexie('light') as Dexie & {
@@ -44,6 +56,7 @@ export const db = new Dexie('light') as Dexie & {
   gameLevels: EntityTable<GameLevel, 'gameId'>;
   settings: EntityTable<StoredSettings, 'id'>;
   meta: EntityTable<SyncMeta, 'id'>;
+  quizAnswers: Table<QuizAnswer, [string, string]>;
 };
 
 db.version(1).stores({
@@ -55,6 +68,9 @@ db.version(1).stores({
 
 // v2 only adds the sync bookkeeping table; the new optional fields need no upgrade step.
 db.version(2).stores({ meta: 'id' });
+
+// v3 only adds the local quiz answer history (never synced); no upgrade step either.
+db.version(3).stores({ quizAnswers: '[resultId+questionId], questionId, category, answeredAt' });
 
 export async function clearAllData(): Promise<void> {
   await db.transaction('rw', db.tables, async () => {

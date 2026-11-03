@@ -120,6 +120,20 @@ describe('syncNow', () => {
     expect(await serverResults(userId)).toHaveLength(2);
   });
 
+  test('a quiz result at 300 is accepted and 301 is refused', async () => {
+    const remote = newGuestRemote();
+    const atMax = await addResult(localResult({ gameId: 'trivia-history', score: 300, accuracy: 1, playedAt: new Date(Date.now() - 2000) }));
+    const aboveMax = await addResult(localResult({ gameId: 'trivia-history', score: 301, accuracy: 1, playedAt: new Date(Date.now() - 1000) }));
+
+    expect(await syncNow(remote, noCaptcha)).toEqual({ status: 'ok', uploaded: 1, rejected: 1, pending: 0 });
+
+    const rows = await serverResults((await remote.currentUserId()) as string);
+    expect(rows.map((row) => row.id)).toEqual([atMax.id]);
+    expect(rows[0]).toMatchObject({ game_id: 'trivia-history', score: 300 });
+    expect((await db.results.get(atMax.id))?.synced).toBe(1);
+    expect((await db.results.get(aboveMax.id))?.synced).toBe(2);
+  });
+
   // The error codes the client treats as "refused for good" must be the ones the real server raises.
   const invalidRows: [string, Partial<NewResult>][] = [
     ['a played_at more than 5 minutes in the future', { playedAt: new Date(Date.now() + 60 * 60 * 1000) }],

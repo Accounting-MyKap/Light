@@ -619,7 +619,7 @@ git commit -m "feat(star-shower): register the game with its example, thumbnail 
 ### Task 7: Fila en Supabase
 
 **Files:**
-- Create: `supabase/migrations/20261103000000_star_shower.sql`
+- Create: `supabase/migrations/20261103000100_star_shower.sql`
 - Modify: `supabase/tests/01_core_schema.test.sql`
 
 **Interfaces:**

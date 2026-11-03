@@ -196,7 +196,7 @@ Sin cambios: el juego nuevo usa los almacenes existentes (`results`, `gameLevels
 
 ### 6.3 Migración
 
-Nueva migración `supabase/migrations/20261103000000_star_shower.sql`:
+Nueva migración `supabase/migrations/20261103000100_star_shower.sql`:
 
 ```sql
 -- max_score matches maxScore in the game registry (src/games).

@@ -10,6 +10,11 @@ vi.mock('virtual:pwa-register/react', () => ({
   })),
 }));
 
+// jsdom does not scroll: its window.scrollTo only reports «Not implemented». The play screen scrolls to the top when a
+// result opens, so every test that finishes a game would print that; a silent stand-in keeps the output clean (the
+// tests that check the scroll spy on it).
+window.scrollTo = () => {};
+
 // React logs «Encountered two children with the same key» when two siblings share a key, and then loses or
 // duplicates elements. That is a bug, not noise: it made the Arrows rows pile up. The message is collected while a
 // test runs and fails that test afterwards (React catches anything thrown from console.error itself). Other

@@ -1,0 +1,881 @@
+{
+  "category": "lending",
+  "questions": [
+    {
+      "id": "lending-0001", "difficulty": 1, "type": "choice",
+      "es": { "question": "En un préstamo, ¿cómo se llama el dinero prestado, sin contar los intereses?",
+              "options": ["Capital", "Cuota", "Garantía", "Comisión"],
+              "explanation": "El capital (principal) es el monto prestado. Los intereses son el costo adicional por usar ese dinero." },
+      "en": { "question": "In a loan, what is the borrowed amount, not counting interest, called?",
+              "options": ["Principal", "Installment", "Collateral", "Fee"],
+              "explanation": "The principal is the amount borrowed. Interest is the additional cost of using that money." }
+    },
+    {
+      "id": "lending-0002", "difficulty": 1, "type": "choice",
+      "es": { "question": "Si un cliente no paga su cuota en la fecha pactada, ¿en qué situación queda su préstamo?",
+              "options": ["En mora", "Prepagado", "Refinanciado", "Amortizado"],
+              "explanation": "Un préstamo con pagos vencidos está en mora. Cuantos más días de atraso, mayor es el riesgo de pérdida." },
+      "en": { "question": "If a borrower does not pay an installment on the due date, what is the loan's status?",
+              "options": ["Past due", "Prepaid", "Refinanced", "Fully amortized"],
+              "explanation": "A loan with overdue payments is past due (delinquent). The more days late, the higher the risk of loss." }
+    },
+    {
+      "id": "lending-0003", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué documento contiene la promesa firmada del deudor de pagar un préstamo?",
+              "options": ["Pagaré", "Factura", "Recibo de caja", "Extracto bancario"],
+              "explanation": "El pagaré es el título en el que el deudor promete pagar una suma determinada en una fecha o en cuotas." },
+      "en": { "question": "Which document holds the borrower's signed promise to repay a loan?",
+              "options": ["Promissory note", "Invoice", "Cash receipt", "Bank statement"],
+              "explanation": "The promissory note is the instrument in which the borrower promises to pay a set sum on a date or in installments." }
+    },
+    {
+      "id": "lending-0004", "difficulty": 1, "type": "truefalse", "answer": true,
+      "es": { "question": "Con la misma tasa y el mismo monto, un préstamo a plazo más largo genera más intereses en total.",
+              "explanation": "Con un plazo más largo el capital queda pendiente más tiempo, así que se acumulan más intereses, aunque cada cuota sea menor." },
+      "en": { "question": "With the same rate and amount, a loan with a longer term generates more total interest.",
+              "explanation": "With a longer term the principal stays outstanding for longer, so more interest builds up, even though each payment is smaller." }
+    },
+    {
+      "id": "lending-0005", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué es el payoff de un préstamo?",
+              "options": ["El monto para cancelarlo hoy: capital más intereses", "La cuota mensual pactada", "El monto inicial desembolsado", "Los intereses totales de la vida del préstamo"],
+              "explanation": "Es el monto exacto que cubre la deuda en una fecha: capital pendiente más intereses causados y, si aplica, cargos. El prestamista lo informa." },
+      "en": { "question": "What is a loan's payoff amount?",
+              "options": ["The amount to pay it off today: principal plus interest", "The agreed monthly installment", "The amount originally disbursed", "The total interest over the loan's life"],
+              "explanation": "It is the exact amount that settles the debt on a given date: outstanding principal plus accrued interest and, if applicable, fees. The lender provides it." }
+    },
+    {
+      "id": "lending-0006", "difficulty": 2, "type": "choice",
+      "es": { "question": "En un reporte de aging de cartera, ¿según qué se agrupan los saldos?",
+              "options": ["Por los días de atraso de los pagos vencidos", "Por los días transcurridos desde el desembolso", "Por los días que faltan para el vencimiento final", "Por los días desde el último avalúo de la garantía"],
+              "explanation": "El aging agrupa los saldos según cuántos días llevan vencidos. Así se ve qué parte de la cartera tiene más riesgo de pérdida y se apoya el cálculo de las provisiones." },
+      "en": { "question": "In a loan portfolio aging report, what are balances grouped by?",
+              "options": ["By how many days the overdue payments are late", "By days elapsed since the loan was funded", "By days remaining until final maturity", "By days since the collateral was last appraised"],
+              "explanation": "Aging groups balances by how many days they are overdue. This shows which part of the portfolio carries more risk of loss and supports the allowance calculation." }
+    },
+    {
+      "id": "lending-0007", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué mide el LTV (loan-to-value) de un préstamo con garantía?",
+              "options": ["El préstamo dividido entre el valor de la garantía", "La cuota dividida entre el ingreso del deudor", "Los intereses divididos entre el capital", "El valor de la garantía dividido entre los ingresos"],
+              "explanation": "LTV = monto del préstamo ÷ valor de la garantía. Un LTV más alto deja menos colchón al prestamista si el valor de la garantía baja." },
+      "en": { "question": "What does the LTV (loan-to-value) ratio of a secured loan measure?",
+              "options": ["The loan amount divided by the collateral's value", "The payment divided by the borrower's income", "Interest divided by principal", "Collateral value divided by income"],
+              "explanation": "LTV = loan amount ÷ collateral value. A higher LTV leaves the lender less cushion if the collateral's value falls." }
+    },
+    {
+      "id": "lending-0008", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cuánto interés simple genera un capital de 10 000 al 6 % anual durante 2 años?",
+              "options": ["1200", "600", "1236", "120"],
+              "explanation": "Interés simple = capital × tasa × tiempo = 10 000 × 0,06 × 2 = 1200. Con capitalización anual (interés compuesto) serían 1236." },
+      "en": { "question": "How much simple interest does a principal of 10,000 earn at 6% per year over 2 years?",
+              "options": ["1,200", "600", "1,236", "120"],
+              "explanation": "Simple interest = principal × rate × time = 10,000 × 0.06 × 2 = 1,200. With annual compounding it would be 1,236." }
+    },
+    {
+      "id": "lending-0009", "difficulty": 3, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "En EE. UU., ¿en qué se diferencia el APR de la tasa nominal de un préstamo?",
+              "options": ["Incluye, además del interés, ciertos cargos del préstamo", "Solo cuenta las comisiones, no el interés", "Siempre es menor que la tasa nominal", "Solo se usa en préstamos a más de 30 años"],
+              "explanation": "El APR expresa el costo anual del crédito: incluye el interés y ciertos cargos, como comisiones de originación (Reg. Z). Suele ser mayor que la tasa nominal." },
+      "en": { "question": "In the U.S., how does a loan's APR differ from its nominal interest rate?",
+              "options": ["It includes, besides interest, certain loan charges", "It counts only fees, not interest", "It is always lower than the nominal rate", "It applies only to loans longer than 30 years"],
+              "explanation": "APR shows the yearly cost of credit: it includes interest plus certain charges, such as origination fees (Reg. Z). It is usually higher than the nominal rate." }
+    },
+    {
+      "id": "lending-0010", "difficulty": 3, "type": "choice",
+      "es": { "question": "Con la base 30/360, ¿cuántos días de interés se cuentan entre el 15 de enero y el 15 de febrero?",
+              "options": ["30", "31", "28", "29"],
+              "explanation": "En 30/360 cada mes completo cuenta 30 días, sin importar el calendario. Con días reales (actual) serían 31." },
+      "en": { "question": "Under the 30/360 day count, how many days of interest accrue from January 15 to February 15?",
+              "options": ["30", "31", "28", "29"],
+              "explanation": "Under 30/360 every full month counts as 30 days, regardless of the calendar. Counting actual days it would be 31." }
+    },
+    {
+      "id": "lending-0011", "difficulty": 3, "type": "choice",
+      "es": { "question": "Si la cuota de un préstamo es menor que los intereses del período, ¿qué pasa con el saldo?",
+              "options": ["Aumenta (amortización negativa)", "Disminuye, pero más despacio", "Se mantiene igual", "Se cancela al final del plazo"],
+              "explanation": "Si la cuota no alcanza a cubrir los intereses, lo no pagado se suma al capital y el saldo crece. Esto se llama amortización negativa." },
+      "en": { "question": "If a loan payment is lower than the interest accrued in the period, what happens to the balance?",
+              "options": ["It grows (negative amortization)", "It shrinks, but more slowly", "It stays the same", "It is paid off at maturity"],
+              "explanation": "If the payment does not cover the interest, the unpaid part is added to the principal and the balance grows. This is called negative amortization." }
+    },
+    {
+      "id": "lending-0012", "difficulty": 3, "type": "truefalse", "answer": true,
+      "es": { "question": "Con la base actual/365, un mes de 31 días genera más interés que uno de 28 días, con el mismo saldo y tasa.",
+              "explanation": "Con actual/365 se cuentan los días reales de cada mes, así que 31 días acumulan más interés que 28. Con 30/360 ambos meses contarían 30." },
+      "en": { "question": "Under actual/365, a 31-day month accrues more interest than a 28-day month, with the same balance and rate.",
+              "explanation": "Actual/365 counts the real days of each month, so 31 days accrue more interest than 28. Under 30/360 both months would count 30." }
+    },
+    {
+      "id": "lending-0013", "difficulty": 1, "type": "choice",
+      "es": { "question": "En un préstamo hipotecario, ¿qué son los costos de cierre (closing costs)?",
+              "options": ["Los gastos de formalizar el préstamo al firmarlo", "Los intereses que se pagan con la última cuota", "La comisión anual por administrar el préstamo", "Los cargos por pagar tarde las primeras cuotas del préstamo"],
+              "explanation": "Son los gastos de cerrar la operación, como el estudio y el seguro de título, el registro, los honorarios y las comisiones. Se pagan al firmar, aunque a veces se financian con el préstamo." },
+      "en": { "question": "In a mortgage loan, what are closing costs?",
+              "options": ["The costs of finalizing the loan at signing", "The interest paid with the last installment", "The yearly fee for servicing the loan", "The fees for paying the first installments late"],
+              "explanation": "They are the costs of closing the deal, such as the title search and title insurance, recording, legal fees and lender fees. They are paid at signing, though sometimes financed into the loan." }
+    },
+    {
+      "id": "lending-0014", "difficulty": 1, "type": "choice",
+      "es": { "question": "Un préstamo tiene 50 000 de capital pendiente, 400 de intereses causados y 60 de cargos por mora. ¿Cuál es su UPB?",
+              "options": ["50 000", "50 460", "50 400", "50 060"],
+              "explanation": "El UPB (unpaid principal balance) es solo el saldo de capital pendiente: 50 000. Los intereses causados y los cargos por mora no forman parte de él." },
+      "en": { "question": "A loan has 50,000 of outstanding principal, 400 of accrued interest and 60 of late fees. What is its UPB?",
+              "options": ["50,000", "50,460", "50,400", "50,060"],
+              "explanation": "The UPB (unpaid principal balance) is only the outstanding principal: 50,000. Accrued interest and late fees are not part of it." }
+    },
+    {
+      "id": "lending-0015", "difficulty": 1, "type": "choice",
+      "es": { "question": "En la compra de un inmueble con financiación, ¿qué es la cuota inicial (down payment)?",
+              "options": ["La parte del precio que el comprador paga de su bolsillo", "La primera cuota mensual que se paga del préstamo", "La comisión que cobra el prestamista por originarlo", "El primer depósito que el deudor hace en la cuenta escrow"],
+              "explanation": "Es lo que el comprador aporta con recursos propios; el resto lo financia el préstamo. Con un 20 % de cuota inicial, el préstamo cubre el 80 % del precio." },
+      "en": { "question": "When buying a property with financing, what is the down payment?",
+              "options": ["The part of the price the buyer pays out of pocket", "The first monthly payment made on the loan", "The fee the lender charges to originate the loan", "The first deposit the borrower makes into escrow at closing"],
+              "explanation": "It is what the buyer contributes from their own funds; the loan finances the rest. With a 20% down payment, the loan covers 80% of the price." }
+    },
+    {
+      "id": "lending-0016", "difficulty": 1, "type": "choice",
+      "es": { "question": "En un préstamo de cuota fija, ¿qué pasa con el tiempo con la parte de cada cuota que va a intereses?",
+              "options": ["Disminuye", "Aumenta", "Se mantiene igual", "Primero baja y luego sube"],
+              "explanation": "El interés se calcula sobre el saldo, que baja con cada cuota. Por eso cada mes va menos a interés y más a capital, aunque la cuota no cambie." },
+      "en": { "question": "In a fixed-payment loan, what happens over time to the part of each payment that goes to interest?",
+              "options": ["It decreases", "It increases", "It stays the same", "It falls first, then rises"],
+              "explanation": "Interest is charged on the balance, which falls with each payment. So each month less goes to interest and more to principal, even though the payment stays the same." }
+    },
+    {
+      "id": "lending-0017", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué muestra la tabla de amortización de un préstamo?",
+              "options": ["Cada cuota dividida en interés y capital, y el saldo", "Solo las fechas en que vence cada una de las cuotas", "Los cargos por mora que se le han cobrado al deudor", "El valor estimado de la garantía a lo largo del tiempo"],
+              "explanation": "Para cada fecha de pago muestra la cuota, cuánto va a interés, cuánto a capital y el saldo que queda, hasta que el préstamo se paga." },
+      "en": { "question": "What does a loan's amortization schedule show?",
+              "options": ["Each payment's interest and principal, and the balance", "Only the due date of each scheduled payment", "The late fees that have been charged to the borrower", "The estimated value of the collateral over the loan's life"],
+              "explanation": "For each payment date it shows the payment, how much goes to interest, how much to principal and the remaining balance, until the loan is paid off." }
+    },
+    {
+      "id": "lending-0018", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué distingue a una línea de crédito de un préstamo a plazo?",
+              "options": ["Se puede usar, pagar y volver a usar hasta un cupo", "Siempre tiene una tasa de interés fija para todo el plazo", "Se desembolsa completa el mismo día en que se firma", "No cobra intereses sobre la parte que se utiliza"],
+              "explanation": "En una línea de crédito el deudor dispone de fondos hasta un cupo, paga y puede volver a usarlos. Un préstamo a plazo se desembolsa una vez y se paga según un calendario." },
+      "en": { "question": "What sets a line of credit apart from a term loan?",
+              "options": ["You can draw, repay and draw again up to a limit", "It always has a fixed rate for the whole term", "It is disbursed in full on the day it is signed", "It charges no interest on the amount that is drawn"],
+              "explanation": "With a line of credit the borrower draws funds up to a limit, repays and can draw again. A term loan is disbursed once and repaid on a schedule." }
+    },
+    {
+      "id": "lending-0019", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué es un pago balloon en un préstamo?",
+              "options": ["Un pago final grande que cancela el saldo pendiente", "Un primer pago grande al firmar el préstamo", "Un cargo adicional por pagar tarde una cuota", "Una cuota normal que solo cubre los intereses del mes"],
+              "explanation": "Las cuotas no alcanzan a pagar todo el capital durante el plazo, así que al vencimiento queda un saldo grande que se paga de una sola vez." },
+      "en": { "question": "What is a balloon payment on a loan?",
+              "options": ["A large final payment that pays off the remaining balance", "A large first payment made when the loan is signed", "An extra charge for paying an installment late", "A regular payment that covers only the interest"],
+              "explanation": "The regular payments do not repay all the principal during the term, so a large balance is left at maturity and paid in a single payment." }
+    },
+    {
+      "id": "lending-0020", "difficulty": 1, "type": "choice",
+      "es": { "question": "Un préstamo de 120 000 es interest-only (solo intereses) al 9 % anual, con pagos mensuales. ¿De cuánto es la cuota?",
+              "options": ["900", "1900", "10 800", "1000"],
+              "explanation": "La cuota solo cubre el interés: 120 000 × 9 % ÷ 12 = 900. Los 10 800 son el interés de todo un año." },
+      "en": { "question": "A 120,000 loan is interest-only at 9% per year, with monthly payments. What is the payment?",
+              "options": ["900", "1,900", "10,800", "1,000"],
+              "explanation": "The payment covers only interest: 120,000 × 9% ÷ 12 = 900. The 10,800 is a full year's interest." }
+    },
+    {
+      "id": "lending-0021", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué documento recibe el deudor cada mes con el valor de la cuota, la fecha límite de pago y el saldo?",
+              "options": ["El estado de cuenta (billing statement)", "El payoff statement del préstamo", "El contrato del préstamo", "La tabla de amortización"],
+              "explanation": "El estado de cuenta periódico informa la cuota, la fecha de pago, el saldo y los pagos y cargos del período." },
+      "en": { "question": "Which document does the borrower receive each month showing the payment amount, due date and balance?",
+              "options": ["The billing statement", "The payoff statement", "The loan agreement", "The amortization schedule"],
+              "explanation": "The periodic billing statement shows the payment due, the due date, the balance and the period's payments and charges." }
+    },
+    {
+      "id": "lending-0022", "difficulty": 1, "type": "choice",
+      "es": { "question": "Una cuota venció el 1 de marzo y el 31 de marzo sigue sin pagarse. ¿Cuántos días de atraso tiene?",
+              "options": ["30", "31", "29", "28"],
+              "explanation": "Los días de atraso se cuentan desde la fecha de vencimiento: del 1 al 31 de marzo hay 30 días. El 2 de marzo ya tenía 1 día de atraso." },
+      "en": { "question": "A payment was due on March 1 and is still unpaid on March 31. How many days past due is it?",
+              "options": ["30", "31", "29", "28"],
+              "explanation": "Days past due are counted from the due date: from March 1 to March 31 is 30 days. On March 2 it was already 1 day past due." }
+    },
+    {
+      "id": "lending-0023", "difficulty": 1, "type": "choice",
+      "es": { "question": "Una cartera suma 2 000 000 y los saldos con más de 30 días de mora suman 80 000. ¿Cuál es su índice de mora a más de 30 días?",
+              "options": ["4 %", "0,4 %", "25 %", "40 %"],
+              "explanation": "Índice de mora = saldos en mora ÷ cartera total = 80 000 ÷ 2 000 000 = 0,04, es decir, 4 %." },
+      "en": { "question": "A portfolio totals 2,000,000 and balances more than 30 days past due total 80,000. What is its 30+ day delinquency rate?",
+              "options": ["4%", "0.4%", "25%", "40%"],
+              "explanation": "Delinquency rate = delinquent balances ÷ total portfolio = 80,000 ÷ 2,000,000 = 0.04, that is, 4%." }
+    },
+    {
+      "id": "lending-0024", "difficulty": 1, "type": "truefalse", "answer": false,
+      "es": { "question": "Si el deudor paga su cuota dentro del período de gracia, se le cobra el cargo por mora.",
+              "explanation": "El período de gracia son los días después del vencimiento en que se puede pagar sin cargo por mora. Si paga después, el cargo se cobra según el contrato." },
+      "en": { "question": "If the borrower pays within the grace period, a late fee is charged.",
+              "explanation": "The grace period is the days after the due date during which payment can be made without a late fee. If paid later, the fee applies as the loan agreement provides." }
+    },
+    {
+      "id": "lending-0025", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuál es la función del servicer de un préstamo?",
+              "options": ["Cobrar las cuotas, llevar el saldo y atender al deudor", "Avaluar el inmueble que sirve de garantía del préstamo", "Aportar de su propio capital el dinero que se presta", "Auditar los estados financieros del deudor cada año"],
+              "explanation": "El servicer administra el préstamo después del desembolso: recibe y aplica los pagos, maneja el escrow y gestiona la cobranza." },
+      "en": { "question": "What is the role of a loan servicer?",
+              "options": ["Collect payments, track the balance, serve the borrower", "Appraise the property that serves as the loan's collateral", "Put up the money that is lent from its own capital", "Audit the borrower's financial statements each year"],
+              "explanation": "The servicer manages the loan after funding: it receives and applies payments, handles escrow and runs collections." }
+    },
+    {
+      "id": "lending-0026", "difficulty": 1, "type": "choice",
+      "es": { "question": "El impuesto predial anual de un inmueble es 3600 y el seguro anual es 1200. Sin colchón, ¿cuánto se suma a la cuota mensual para el escrow?",
+              "options": ["400", "4800", "300", "100"],
+              "explanation": "(3600 + 1200) ÷ 12 = 400. La cuenta escrow junta cada mes lo necesario para que el servicer pague el impuesto y el seguro cuando venzan." },
+      "en": { "question": "A property's annual tax is 3,600 and its annual insurance is 1,200. With no cushion, how much is added to the monthly payment for escrow?",
+              "options": ["400", "4,800", "300", "100"],
+              "explanation": "(3,600 + 1,200) ÷ 12 = 400. The escrow account collects each month what the servicer needs to pay the tax and insurance when they come due." }
+    },
+    {
+      "id": "lending-0027", "difficulty": 1, "type": "choice",
+      "es": { "question": "La cuota mensual es 1200 y el contrato fija un cargo por mora del 5 % de la cuota vencida. ¿De cuánto es el cargo?",
+              "options": ["60", "6", "120", "600"],
+              "explanation": "5 % × 1200 = 60. El monto del cargo lo fija el contrato, dentro de los límites que ponga la ley estatal aplicable." },
+      "en": { "question": "The monthly payment is 1,200 and the loan agreement sets a late fee of 5% of the overdue payment. How much is the fee?",
+              "options": ["60", "6", "120", "600"],
+              "explanation": "5% × 1,200 = 60. The loan agreement sets the fee, within whatever limits the applicable state law imposes." }
+    },
+    {
+      "id": "lending-0028", "difficulty": 1, "type": "choice",
+      "es": { "question": "Un préstamo de 250 000 cobra 2 puntos (points) de comisión de originación. ¿De cuánto es la comisión?",
+              "options": ["5000", "500", "2500", "50 000"],
+              "explanation": "Cada punto equivale al 1 % del monto del préstamo: 2 % × 250 000 = 5000." },
+      "en": { "question": "A 250,000 loan charges 2 points as an origination fee. How much is the fee?",
+              "options": ["5,000", "500", "2,500", "50,000"],
+              "explanation": "Each point equals 1% of the loan amount: 2% × 250,000 = 5,000." }
+    },
+    {
+      "id": "lending-0029", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué es la garantía (collateral) de un préstamo?",
+              "options": ["Un bien que respalda el pago de la deuda", "La tasa de interés pactada para todo el préstamo", "La póliza de seguro de vida que toma el deudor", "El registro de pagos anteriores del deudor"],
+              "explanation": "Es el bien que respalda la deuda, por ejemplo un inmueble, un vehículo o un equipo. Reduce la pérdida del prestamista si el deudor no paga." },
+      "en": { "question": "What is a loan's collateral?",
+              "options": ["An asset pledged to secure repayment of the debt", "The interest rate agreed for the life of the loan", "The life insurance policy the borrower takes out", "The borrower's record of past payments"],
+              "explanation": "It is the asset that secures the debt, such as real estate, a vehicle or equipment. It reduces the lender's loss if the borrower does not pay." }
+    },
+    {
+      "id": "lending-0030", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué es una ejecución hipotecaria (foreclosure)?",
+              "options": ["El proceso legal para vender el inmueble y cobrar la deuda", "Refinanciar la hipoteca a una tasa más baja con otro banco", "Pagar la hipoteca completa antes del plazo pactado", "Transferir el servicing de la hipoteca a otra empresa"],
+              "explanation": "Si el deudor incumple, el prestamista puede hacer vender el inmueble dado en garantía y cobrarse con lo obtenido. Según el estado, el proceso es judicial o no judicial." },
+      "en": { "question": "What is a foreclosure?",
+              "options": ["The legal process to sell the property and recover the debt", "Refinancing the mortgage at a lower rate with another bank", "Paying off the whole mortgage before the agreed term", "Transferring the mortgage's servicing to another company"],
+              "explanation": "If the borrower defaults, the lender can have the pledged property sold and recover the debt from the proceeds. Depending on the state, the process is judicial or non-judicial." }
+    },
+    {
+      "id": "lending-0031", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué hace una extensión de un préstamo?",
+              "options": ["Corre el vencimiento a una fecha posterior", "Reduce la tasa de interés pactada en el contrato", "Condona una parte del capital pendiente", "Cambia al deudor del préstamo por otra persona"],
+              "explanation": "La extensión da más tiempo para pagar el saldo; suele pactarse por escrito y a veces con una comisión. La tasa y el capital no cambian, salvo que se pacte." },
+      "en": { "question": "What does a loan extension do?",
+              "options": ["Moves the maturity date to a later date", "Lowers the interest rate set in the contract", "Forgives part of the outstanding principal", "Replaces the borrower with someone else"],
+              "explanation": "An extension gives more time to repay the balance; it is usually agreed in writing, sometimes for a fee. The rate and principal stay the same unless agreed otherwise." }
+    },
+    {
+      "id": "lending-0032", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué significa refinanciar un préstamo?",
+              "options": ["Pagarlo con un préstamo nuevo, con otras condiciones", "Cambiar el día del mes en que vence la cuota", "Ceder el préstamo a otro prestamista", "Pagar solo los intereses durante un tiempo"],
+              "explanation": "Al refinanciar, un préstamo nuevo cancela el anterior, por lo general para obtener otra tasa, otro plazo o más dinero. El préstamo original queda pagado." },
+      "en": { "question": "What does it mean to refinance a loan?",
+              "options": ["Paying it off with a new loan on different terms", "Changing the day of the month the payment is due", "Assigning the loan to another lender", "Paying only interest for a while"],
+              "explanation": "When refinancing, a new loan pays off the old one, usually to get a different rate, term or more money. The original loan is paid in full." }
+    },
+    {
+      "id": "lending-0033", "difficulty": 1, "type": "truefalse", "answer": true,
+      "es": { "question": "Cuando un préstamo hipotecario se paga por completo, el prestamista debe tramitar la liberación del gravamen sobre el inmueble.",
+              "explanation": "Pagada la deuda, el prestamista emite la liberación o pide al trustee la reconveyance, para que el registro público del inmueble deje de mostrar el gravamen." },
+      "en": { "question": "When a mortgage loan is paid in full, the lender must arrange the release of the lien on the property.",
+              "explanation": "Once the debt is paid, the lender issues the release or asks the trustee for the reconveyance, so the property's public record no longer shows the lien." }
+    },
+    {
+      "id": "lending-0034", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué significa originar un préstamo?",
+              "options": ["Tramitar, aprobar y desembolsar un préstamo nuevo", "Cobrar las cuotas de un préstamo existente", "Comprar un préstamo a otro prestamista", "Dar de baja un préstamo incobrable"],
+              "explanation": "La originación va desde la solicitud hasta la firma y la entrega del dinero. Después empieza la etapa de servicing." },
+      "en": { "question": "What does it mean to originate a loan?",
+              "options": ["Process, approve and fund a new loan", "Collect the payments on an existing loan", "Buy a loan from another lender", "Write off an uncollectible loan"],
+              "explanation": "Origination runs from the application to the signing and the funding. Servicing begins after that." }
+    },
+    {
+      "id": "lending-0035", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué es el underwriting de un préstamo?",
+              "options": ["Analizar el riesgo del solicitante para aprobar o negar", "Firmar los documentos del préstamo ante un notario", "Registrar el gravamen del préstamo en la oficina pública", "Cobrar la primera cuota del préstamo al deudor"],
+              "explanation": "En el underwriting se revisan la capacidad de pago, el historial de crédito y la garantía del solicitante para decidir si se aprueba el préstamo y en qué condiciones." },
+      "en": { "question": "What is loan underwriting?",
+              "options": ["Assessing the applicant's risk to approve or decline", "Signing the loan documents before a notary public", "Recording the loan's lien at the public records office", "Collecting the loan's first payment from the borrower"],
+              "explanation": "Underwriting reviews the applicant's ability to repay, credit history and collateral to decide whether to approve the loan and on what terms." }
+    },
+    {
+      "id": "lending-0036", "difficulty": 1, "type": "choice",
+      "es": { "question": "En un préstamo garantizado con un inmueble, ¿qué es el avalúo (appraisal)?",
+              "options": ["Una estimación profesional del valor del inmueble", "La inscripción del gravamen en el registro del inmueble", "El cálculo de la cuota mensual que pagará el deudor", "El seguro que cubre daños al inmueble en garantía"],
+              "explanation": "Un avaluador independiente estima el valor de mercado del inmueble. El prestamista usa ese valor para decidir cuánto prestar." },
+      "en": { "question": "In a loan secured by real estate, what is the appraisal?",
+              "options": ["A professional estimate of the property's value", "Recording the lien in the property's public record", "Calculating the monthly payment the borrower will owe", "The insurance covering damage to the property"],
+              "explanation": "An independent appraiser estimates the property's market value. The lender uses that value to decide how much to lend." }
+    },
+    {
+      "id": "lending-0037", "difficulty": 1, "type": "truefalse", "answer": true,
+      "es": { "question": "En un préstamo de tasa fija, la tasa de interés no cambia durante el plazo aunque cambien las tasas del mercado.",
+              "explanation": "La tasa fija se pacta para todo el plazo. En un préstamo de tasa variable, en cambio, la tasa se ajusta en las fechas que fije el contrato." },
+      "en": { "question": "In a fixed-rate loan, the interest rate does not change during the term, even if market rates change.",
+              "explanation": "A fixed rate is agreed for the whole term. In a variable-rate loan, by contrast, the rate is reset on the dates the contract sets." }
+    },
+    {
+      "id": "lending-0038", "difficulty": 1, "type": "choice",
+      "es": { "question": "Al cierre del mes, un préstamo tiene intereses ganados que el deudor aún no ha pagado. ¿Qué asiento registra el prestamista?",
+              "options": ["Débito intereses por cobrar; crédito ingreso por intereses", "Débito caja; crédito ingreso por intereses del mes", "Débito ingreso por intereses; crédito intereses por cobrar", "Ningún asiento hasta que el deudor pague"],
+              "explanation": "Por causación, el interés ganado se reconoce como ingreso del período aunque no se haya cobrado; mientras tanto queda como interés por cobrar." },
+      "en": { "question": "At month-end, a loan has earned interest the borrower has not yet paid. What entry does the lender record?",
+              "options": ["Debit interest receivable; credit interest income", "Debit cash; credit interest income for the month", "Debit interest income; credit interest receivable", "No entry until the borrower pays"],
+              "explanation": "Under accrual accounting, interest earned is recognized as income in the period even if not yet collected; meanwhile it sits in interest receivable." }
+    },
+    {
+      "id": "lending-0039", "difficulty": 1, "type": "truefalse", "answer": false,
+      "es": { "question": "Cuando el prestamista cobra una cuota, la parte que abona a capital es ingreso del período.",
+              "explanation": "El abono a capital solo devuelve parte de lo prestado y reduce el saldo del préstamo. El ingreso del prestamista es la parte de intereses." },
+      "en": { "question": "When the lender collects a payment, the portion applied to principal is income for the period.",
+              "explanation": "The principal portion only returns part of the amount lent and reduces the loan balance. The lender's income is the interest portion." }
+    },
+    {
+      "id": "lending-0040", "difficulty": 1, "type": "choice",
+      "es": { "question": "Un préstamo de 15 000 se paga en 36 cuotas de 500. ¿Cuánto interés se paga en total?",
+              "options": ["3000", "18 000", "1500", "500"],
+              "explanation": "Total pagado = 36 × 500 = 18 000. Interés total = 18 000 − 15 000 de capital = 3000." },
+      "en": { "question": "A 15,000 loan is repaid in 36 payments of 500. How much interest is paid in total?",
+              "options": ["3,000", "18,000", "1,500", "500"],
+              "explanation": "Total paid = 36 × 500 = 18,000. Total interest = 18,000 − 15,000 of principal = 3,000." }
+    },
+    {
+      "id": "lending-0041", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué es un garante (guarantor) de un préstamo?",
+              "options": ["Quien se obliga a pagar si el deudor no lo hace", "El servicer que cobra las cuotas mes a mes", "El inversionista que le compra el préstamo al originador", "El abogado que redacta el contrato del préstamo"],
+              "explanation": "El garante firma una garantía personal: si el deudor incumple, el prestamista puede cobrarle a él. Es común en préstamos a empresas, garantizados por sus dueños." },
+      "en": { "question": "What is a loan guarantor?",
+              "options": ["Someone who agrees to pay if the borrower does not", "The servicer that collects the monthly payments", "The investor that buys the loan from the originator", "The lawyer who drafts the loan agreement"],
+              "explanation": "The guarantor signs a personal guarantee: if the borrower defaults, the lender can collect from them. It is common in business loans, guaranteed by the owners." }
+    },
+    {
+      "id": "lending-0042", "difficulty": 1, "type": "choice",
+      "es": { "question": "En un préstamo, ¿qué es la usura?",
+              "options": ["Cobrar intereses por encima del máximo legal", "Cobrar una penalidad por pagar antes del plazo", "Prestar dinero sin pedir ninguna garantía", "Cobrar intereses sobre los intereses vencidos"],
+              "explanation": "Es cobrar una tasa mayor que la permitida por la ley. En EE. UU. los topes los fija cada estado y tienen muchas excepciones según el tipo de préstamo y de prestamista." },
+      "en": { "question": "In lending, what is usury?",
+              "options": ["Charging interest above the legal maximum", "Charging a penalty for paying off early", "Lending money without requiring collateral", "Charging interest on past-due interest"],
+              "explanation": "It is charging a rate above what the law allows. In the U.S., each state sets its own limits, with many exceptions by type of loan and lender." }
+    },
+    {
+      "id": "lending-0043", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué es un préstamo puente (bridge loan)?",
+              "options": ["Un préstamo corto hasta conseguir otra financiación", "Un préstamo a 30 años para comprar vivienda", "Un préstamo de un día entre dos bancos por reservas", "Un préstamo para consolidar varias tarjetas de crédito"],
+              "explanation": "Cubre una necesidad temporal, por ejemplo comprar un inmueble antes de vender otro, y se paga con la venta o con la financiación definitiva. Suele ser corto y de tasa alta." },
+      "en": { "question": "What is a bridge loan?",
+              "options": ["A short-term loan until other financing is in place", "A 30-year fixed-rate loan to buy a home", "An overnight loan between two banks for reserves", "A loan that consolidates several credit card balances"],
+              "explanation": "It covers a temporary need, such as buying a property before selling another, and is repaid from the sale or the permanent financing. It is usually short and high-rate." }
+    },
+    {
+      "id": "lending-0044", "difficulty": 1, "type": "choice",
+      "es": { "question": "Un pago ya aplicado a un préstamo es devuelto por el banco por fondos insuficientes (NSF). ¿Qué hace el servicer?",
+              "options": ["Reversa el pago y la cuota vuelve a quedar pendiente", "Lo deja aplicado y lo cobra el mes siguiente", "Castiga el valor de esa cuota", "Lo registra como un abono extra a capital"],
+              "explanation": "Un pago devuelto nunca se recibió de verdad: se reversa su aplicación, el saldo vuelve a como estaba y la cuota queda vencida. Puede haber un cargo por devolución." },
+      "en": { "question": "A payment already applied to a loan is returned by the bank for insufficient funds (NSF). What does the servicer do?",
+              "options": ["Reverses it, so the installment is unpaid again", "Leaves it applied and collects it next month", "Charges off that installment", "Records it as an extra principal payment"],
+              "explanation": "A returned payment was never really received: its application is reversed, the balance goes back to where it was and the payment is past due. A returned-item fee may apply." }
+    },
+    {
+      "id": "lending-0045", "difficulty": 1, "type": "choice",
+      "es": { "question": "Para el prestamista, ¿qué es un préstamo que otorgó a un cliente?",
+              "options": ["Un activo", "Un pasivo", "Un gasto", "Un ingreso"],
+              "explanation": "El préstamo es un derecho a recibir pagos del deudor, así que va en el activo (cartera de préstamos). Para el deudor, la misma deuda es un pasivo." },
+      "en": { "question": "For the lender, what is a loan it made to a customer?",
+              "options": ["An asset", "A liability", "An expense", "Revenue"],
+              "explanation": "The loan is a right to receive payments from the borrower, so it is an asset (loans receivable). For the borrower, the same debt is a liability." }
+    },
+    {
+      "id": "lending-0046", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué es el desembolso de un préstamo?",
+              "options": ["La entrega del dinero prestado al deudor", "El primer pago que hace el deudor", "La firma del contrato", "La aprobación del crédito"],
+              "explanation": "Es el momento en que el prestamista entrega los fondos, al deudor o a quien él indique (por ejemplo, al vendedor del inmueble que se compra)." },
+      "en": { "question": "What is a loan disbursement?",
+              "options": ["Paying out the loan funds to the borrower", "The borrower's first payment", "The signing of the loan agreement", "The approval of the loan"],
+              "explanation": "It is when the lender releases the funds, to the borrower or to whoever they direct (for example, the seller of the property being bought)." }
+    },
+    {
+      "id": "lending-0047", "difficulty": 1, "type": "choice",
+      "es": { "question": "Un solicitante tiene un ingreso bruto mensual de 6000 y pagos mensuales de deudas, incluida la nueva cuota, de 2100. ¿Cuál es su DTI?",
+              "options": ["35 %", "286 %", "65 %", "21 %"],
+              "explanation": "DTI = pagos mensuales de deuda ÷ ingreso bruto mensual = 2100 ÷ 6000 = 35 %. Mide qué parte del ingreso ya está comprometida con deudas." },
+      "en": { "question": "An applicant has gross monthly income of 6,000 and monthly debt payments, including the new loan, of 2,100. What is their DTI?",
+              "options": ["35%", "286%", "65%", "21%"],
+              "explanation": "DTI = monthly debt payments ÷ gross monthly income = 2,100 ÷ 6,000 = 35%. It shows how much of the income is already committed to debt." }
+    },
+    {
+      "id": "lending-0048", "difficulty": 1, "type": "choice",
+      "es": { "question": "En un préstamo, ¿qué es un prepago (prepayment)?",
+              "options": ["Pagar capital antes de la fecha programada", "Pagar una cuota con unos días de atraso", "Pagar solo los intereses del mes", "Pagar la cuota con tarjeta de crédito"],
+              "explanation": "Prepagar es adelantar capital, todo o una parte, antes de lo que exige el calendario de pagos. Algunos contratos cobran una penalidad por hacerlo." },
+      "en": { "question": "In a loan, what is a prepayment?",
+              "options": ["Paying principal before it is scheduled", "Paying an installment a few days late", "Paying only the month's interest", "Paying the installment by credit card"],
+              "explanation": "Prepaying means paying principal, in full or in part, ahead of the payment schedule. Some loan agreements charge a penalty for doing so." }
+    },
+    {
+      "id": "lending-0049", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué refleja el APY (annual percentage yield) que no refleja una tasa nominal anual?",
+              "options": ["El efecto de capitalizar los intereses", "Las comisiones de originación", "El riesgo de crédito del deudor", "La inflación esperada del año"],
+              "explanation": "El APY es la tasa efectiva anual: muestra lo que rinde la tasa cuando el interés se capitaliza varias veces al año. Un 6 % nominal capitalizado cada mes da un APY de 6,17 %." },
+      "en": { "question": "What does APY (annual percentage yield) reflect that a nominal annual rate does not?",
+              "options": ["The effect of compounding interest", "Origination fees", "The borrower's credit risk", "Expected inflation for the year"],
+              "explanation": "APY is the effective annual rate: it shows what the rate yields when interest compounds several times a year. A 6% nominal rate compounded monthly gives an APY of 6.17%." }
+    },
+    {
+      "id": "lending-0050", "difficulty": 2, "type": "choice",
+      "es": { "question": "Un préstamo de 60 000 a 5 años al 6 % anual tiene una cuota mensual fija de 1160. ¿Cuánto de la primera cuota abona a capital?",
+              "options": ["860", "300", "1160", "1000"],
+              "explanation": "Interés del primer mes = 60 000 × 6 % ÷ 12 = 300. Abono a capital = 1160 − 300 = 860. Los 1000 serían repartir el capital en 60 partes iguales." },
+      "en": { "question": "A 5-year, 60,000 loan at 6% per year has a fixed monthly payment of 1,160. How much of the first payment goes to principal?",
+              "options": ["860", "300", "1,160", "1,000"],
+              "explanation": "First month's interest = 60,000 × 6% ÷ 12 = 300. Principal = 1,160 − 300 = 860. The 1,000 would be splitting the principal into 60 equal parts." }
+    },
+    {
+      "id": "lending-0051", "difficulty": 2, "type": "choice",
+      "es": { "question": "En un préstamo de cuota fija, el deudor hace un abono extra a capital y la cuota sigue igual. ¿Qué efecto tiene?",
+              "options": ["Se acorta el plazo y baja el interés total", "Se alarga el plazo y baja la cuota", "El plazo y el interés total no cambian", "Sube el interés total del préstamo"],
+              "explanation": "Con menos saldo, cada cuota lleva menos interés y más capital, así que la deuda se termina antes y el total de intereses baja." },
+      "en": { "question": "In a fixed-payment loan, the borrower makes an extra principal payment and the payment stays the same. What is the effect?",
+              "options": ["The term shortens and total interest falls", "The term lengthens and the payment falls", "The term and total interest do not change", "Total interest on the loan rises"],
+              "explanation": "With a lower balance, each payment carries less interest and more principal, so the debt is paid off sooner and total interest falls." }
+    },
+    {
+      "id": "lending-0052", "difficulty": 2, "type": "choice",
+      "es": { "question": "Un préstamo tiene un saldo de 80 000. El deudor paga su cuota, que incluye 400 de capital, y además abona 5000 extra a capital. ¿Cuál es el nuevo saldo?",
+              "options": ["74 600", "75 000", "79 600", "74 200"],
+              "explanation": "El saldo baja por todo lo que se abona a capital: 80 000 − 400 − 5000 = 74 600. La parte de la cuota que va a interés no reduce el saldo." },
+      "en": { "question": "A loan has a balance of 80,000. The borrower pays the installment, which includes 400 of principal, plus an extra 5,000 of principal. What is the new balance?",
+              "options": ["74,600", "75,000", "79,600", "74,200"],
+              "explanation": "The balance falls by everything applied to principal: 80,000 − 400 − 5,000 = 74,600. The interest part of the payment does not reduce the balance." }
+    },
+    {
+      "id": "lending-0053", "difficulty": 2, "type": "choice",
+      "es": { "question": "Un préstamo tiene un saldo de 73 000 al 10 % anual con base actual/365. ¿Cuál es su interés diario (per diem)?",
+              "options": ["20,00", "20,28", "608,33", "200,00"],
+              "explanation": "Per diem = saldo × tasa anual ÷ 365 = 73 000 × 0,10 ÷ 365 = 20,00 de interés por cada día." },
+      "en": { "question": "A loan has a 73,000 balance at 10% per year on an actual/365 basis. What is its daily interest (per diem)?",
+              "options": ["20.00", "20.28", "608.33", "200.00"],
+              "explanation": "Per diem = balance × annual rate ÷ 365 = 73,000 × 0.10 ÷ 365 = 20.00 of interest for each day." }
+    },
+    {
+      "id": "lending-0054", "difficulty": 2, "type": "choice",
+      "es": { "question": "Un payoff statement es válido hasta el día 15, pero el dinero del deudor llega el día 18. ¿Qué falta, por lo general?",
+              "options": ["El interés diario (per diem) de los días adicionales", "Nada: el monto del payoff ya quedó fijo y es definitivo", "Una cuota mensual completa, por el mes ya iniciado", "Una nueva comisión de originación por la demora"],
+              "explanation": "El payoff se calcula hasta una fecha de validez (good-through). Si se paga después, el interés sigue corriendo y hay que sumar el per diem de los días extra, que el mismo documento suele indicar." },
+      "en": { "question": "A payoff statement is good through the 15th, but the borrower's funds arrive on the 18th. What is usually missing?",
+              "options": ["Daily interest (per diem) for the extra days", "Nothing: the payoff amount is fixed and final", "One more full monthly payment for the new month", "A new origination fee for the delay"],
+              "explanation": "The payoff is calculated to a good-through date. If paid later, interest keeps running and the per diem for the extra days must be added; the statement usually shows it." }
+    },
+    {
+      "id": "lending-0055", "difficulty": 2, "type": "choice",
+      "es": { "question": "Un préstamo de 100 000 al 7,3 % anual causa interés con la base actual/365. ¿Cuánto interés genera en un mes de 31 días?",
+              "options": ["620,00", "608,33", "628,61", "600,00"],
+              "explanation": "Interés = 100 000 × 7,3 % × 31/365 = 620,00: se cuentan los 31 días reales del mes. Con 30/360 serían 608,33." },
+      "en": { "question": "A 100,000 loan at 7.3% per year accrues interest on an actual/365 basis. How much interest accrues in a 31-day month?",
+              "options": ["620.00", "608.33", "628.61", "600.00"],
+              "explanation": "Interest = 100,000 × 7.3% × 31/365 = 620.00: the month's 31 actual days are counted. Under 30/360 it would be 608.33." }
+    },
+    {
+      "id": "lending-0056", "difficulty": 2, "type": "truefalse", "answer": true,
+      "es": { "question": "Con la misma tasa nominal, la base actual/360 genera más interés en un año que la base actual/365.",
+              "explanation": "Con actual/360 la tasa anual se divide entre 360 y se cobra por los 365 días reales: el año rinde 365/360 de la tasa. Un 7 % nominal equivale así a cerca de 7,10 %." },
+      "en": { "question": "At the same nominal rate, the actual/360 basis produces more interest over a year than actual/365.",
+              "explanation": "Under actual/360 the annual rate is divided by 360 and charged for all 365 actual days, so the year yields 365/360 of the rate. A 7% nominal rate works out to about 7.10%." }
+    },
+    {
+      "id": "lending-0057", "difficulty": 2, "type": "choice",
+      "es": { "question": "Un préstamo interest-only de 250 000 al 12 % anual, con pagos mensuales de interés, vence a los 12 meses. ¿Cuánto paga el deudor en la última fecha?",
+              "options": ["252 500", "250 000", "2500", "280 000"],
+              "explanation": "Cada mes paga 250 000 × 12 % ÷ 12 = 2500 de interés. Al vencimiento paga ese último interés más los 250 000 de capital: 252 500." },
+      "en": { "question": "A 250,000 interest-only loan at 12% per year, with monthly interest payments, matures in 12 months. How much does the borrower pay on the last date?",
+              "options": ["252,500", "250,000", "2,500", "280,000"],
+              "explanation": "Each month the borrower pays 250,000 × 12% ÷ 12 = 2,500 of interest. At maturity they pay that last interest plus the 250,000 of principal: 252,500." }
+    },
+    {
+      "id": "lending-0058", "difficulty": 2, "type": "choice",
+      "es": { "question": "Un inmueble vale 240 000 y tiene una primera hipoteca de 150 000 y una segunda de 30 000. ¿Cuál es su CLTV (LTV combinado)?",
+              "options": ["75 %", "62,5 %", "12,5 %", "133 %"],
+              "explanation": "CLTV = suma de los préstamos garantizados con el inmueble ÷ su valor = (150 000 + 30 000) ÷ 240 000 = 75 %. Solo la primera hipoteca daría 62,5 %." },
+      "en": { "question": "A property is worth 240,000 and has a first mortgage of 150,000 and a second of 30,000. What is its CLTV (combined LTV)?",
+              "options": ["75%", "62.5%", "12.5%", "133%"],
+              "explanation": "CLTV = all loans secured by the property ÷ its value = (150,000 + 30,000) ÷ 240,000 = 75%. The first mortgage alone would give 62.5%." }
+    },
+    {
+      "id": "lending-0059", "difficulty": 2, "type": "choice",
+      "es": { "question": "Un inmueble genera un ingreso operativo neto (NOI) anual de 150 000 y el servicio anual de su deuda es 120 000. ¿Cuál es el DSCR?",
+              "options": ["1,25", "0,80", "0,25", "0,20"],
+              "explanation": "DSCR = NOI ÷ servicio de la deuda (capital más intereses del año) = 150 000 ÷ 120 000 = 1,25. El 0,80 es la división al revés." },
+      "en": { "question": "A property produces annual net operating income (NOI) of 150,000 and its annual debt service is 120,000. What is the DSCR?",
+              "options": ["1.25", "0.80", "0.25", "0.20"],
+              "explanation": "DSCR = NOI ÷ debt service (the year's principal plus interest) = 150,000 ÷ 120,000 = 1.25. The 0.80 is the division the wrong way round." }
+    },
+    {
+      "id": "lending-0060", "difficulty": 2, "type": "choice",
+      "es": { "question": "Un deudor paga 600 de una cuota de 1000. Si el contrato no obliga a aplicar pagos parciales, ¿dónde suele dejarlos el servicer?",
+              "options": ["En fondos no aplicados (suspense)", "En el ingreso por intereses del mes", "Como un abono extra a capital", "En la provisión para pérdidas"],
+              "explanation": "El servicer guarda el pago parcial en una cuenta de fondos no aplicados (suspense) y lo aplica cuando junta una cuota completa. Mientras tanto, la cuota sigue vencida." },
+      "en": { "question": "A borrower pays 600 of a 1,000 installment. If the loan agreement does not require applying partial payments, where does the servicer usually hold them?",
+              "options": ["In unapplied funds (suspense)", "In the month's interest income", "As an extra principal payment", "In the allowance for credit losses"],
+              "explanation": "The servicer holds the partial payment in an unapplied funds (suspense) account and applies it once a full installment is there. Meanwhile, the installment stays past due." }
+    },
+    {
+      "id": "lending-0061", "difficulty": 2, "type": "choice",
+      "es": { "question": "Un préstamo tiene dos cuotas sin pagar: una vencida hace 40 días y otra hace 10. ¿Cuántos días de mora tiene el préstamo?",
+              "options": ["40", "10", "50", "25"],
+              "explanation": "La mora del préstamo se mide desde la cuota impaga más antigua: 40 días. No se suman los atrasos de cada cuota ni se promedian." },
+      "en": { "question": "A loan has two unpaid installments: one due 40 days ago and another 10 days ago. How many days past due is the loan?",
+              "options": ["40", "10", "50", "25"],
+              "explanation": "A loan's delinquency is measured from the oldest unpaid installment: 40 days. The days late on each installment are not added or averaged." }
+    },
+    {
+      "id": "lending-0062", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿En qué se diferencia la mora (delinquency) del incumplimiento (default) de un préstamo?",
+              "options": ["La mora es el atraso; el default lo define el contrato", "Son sinónimos: los dos significan un pago atrasado", "El default es cualquier atraso, aunque sea de un día", "La mora solo existe en los préstamos que no tienen garantía"],
+              "explanation": "Un préstamo está en mora desde que se atrasa un pago. El default es un evento que define el contrato, como un atraso prolongado o la quiebra del deudor, y habilita los recursos del prestamista." },
+      "en": { "question": "How does a loan's delinquency differ from default?",
+              "options": ["Delinquency is being late; the contract defines default", "They are synonyms: both mean a late payment", "Default is any late payment, even by a single day", "Delinquency only exists in loans that have no collateral"],
+              "explanation": "A loan is delinquent as soon as a payment is late. Default is an event the loan agreement defines, such as a prolonged delinquency or the borrower's bankruptcy, and it triggers the lender's remedies." }
+    },
+    {
+      "id": "lending-0063", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué permite una cláusula de aceleración en un contrato de préstamo?",
+              "options": ["Exigir todo el saldo de una vez tras un incumplimiento", "Subir la tasa de interés en cada aniversario", "Adelantar las fechas de pago de todas las cuotas", "Prepagar el saldo sin pagar ninguna penalidad"],
+              "explanation": "Con la aceleración, ante un incumplimiento el prestamista puede declarar vencida toda la deuda y exigirla completa, en vez de esperar las cuotas futuras." },
+      "en": { "question": "What does an acceleration clause in a loan agreement allow?",
+              "options": ["Demanding the full balance at once after a default", "Raising the interest rate on each anniversary", "Moving every payment's due date earlier", "Prepaying the balance without any penalty"],
+              "explanation": "With acceleration, after a default the lender can declare the whole debt due and demand it in full, instead of waiting for future installments." }
+    },
+    {
+      "id": "lending-0064", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué significa poner un préstamo en no causación (non-accrual)?",
+              "options": ["Dejar de registrar sus intereses como ingreso", "Darlo de baja del balance como incobrable", "Condonarle al deudor los intereses pendientes", "Congelar la tasa de interés pactada en el contrato"],
+              "explanation": "Cuando el cobro es dudoso, el prestamista deja de causar los intereses del préstamo en sus resultados. El deudor los sigue debiendo." },
+      "en": { "question": "What does placing a loan on non-accrual status mean?",
+              "options": ["No longer recording its interest as income", "Removing it from the balance sheet as uncollectible", "Forgiving the borrower's unpaid interest", "Freezing the interest rate set in the contract"],
+              "explanation": "When collection is doubtful, the lender stops accruing the loan's interest into income. The borrower still owes it." }
+    },
+    {
+      "id": "lending-0065", "difficulty": 2, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "En la banca de EE. UU., ¿con cuántos días de mora pasa por regla general un préstamo a no causación, salvo que esté bien garantizado y en proceso de cobro?",
+              "options": ["90 días", "30 días", "60 días", "180 días"],
+              "explanation": "Las instrucciones del Call Report (FFIEC) piden la no causación cuando el capital o los intereses llevan 90 días o más en mora, salvo que el préstamo esté bien garantizado y en proceso de cobro." },
+      "en": { "question": "In U.S. banking, after how many days past due does a loan generally go on non-accrual, unless it is well secured and in the process of collection?",
+              "options": ["90 days", "30 days", "60 days", "180 days"],
+              "explanation": "The FFIEC Call Report instructions call for non-accrual when principal or interest is 90 days or more past due, unless the loan is well secured and in the process of collection." }
+    },
+    {
+      "id": "lending-0066", "difficulty": 2, "type": "choice",
+      "es": { "question": "Con el método de provisión, ¿qué asiento registra el castigo (charge-off) de un préstamo incobrable?",
+              "options": ["Débito provisión; crédito cartera de préstamos", "Débito gasto por provisión; crédito cartera", "Débito cartera; crédito provisión", "Débito provisión; crédito ingreso por intereses"],
+              "explanation": "El castigo usa la provisión ya constituida: bajan la provisión y la cartera por el mismo valor, sin tocar resultados. El gasto se reconoció antes, al constituir la provisión." },
+      "en": { "question": "Under the allowance method, what entry records the charge-off of an uncollectible loan?",
+              "options": ["Debit the allowance; credit loans receivable", "Debit credit loss expense; credit loans", "Debit loans; credit the allowance", "Debit the allowance; credit interest income"],
+              "explanation": "The charge-off uses the allowance already built: the allowance and the loans fall by the same amount, with no effect on earnings. The expense was recognized earlier, when the allowance was built." }
+    },
+    {
+      "id": "lending-0067", "difficulty": 2, "type": "truefalse", "answer": false,
+      "es": { "question": "Castigar (charge-off) un préstamo extingue la obligación del deudor de pagarlo.",
+              "explanation": "El castigo es un registro contable del prestamista; el deudor sigue debiendo y la cobranza puede continuar. Lo que se cobre después es una recuperación." },
+      "en": { "question": "Charging off a loan extinguishes the borrower's obligation to repay it.",
+              "explanation": "A charge-off is the lender's accounting entry; the borrower still owes the debt and collection can continue. Anything collected later is a recovery." }
+    },
+    {
+      "id": "lending-0068", "difficulty": 2, "type": "choice",
+      "es": { "question": "Un préstamo de 100 000 depende de su garantía, que vale 70 000 netos de costos de venta. Si se castiga la parte que se considera incobrable, ¿cuánto se castiga?",
+              "options": ["30 000", "100 000", "70 000", "0"],
+              "explanation": "Se castiga la diferencia entre el saldo y lo que se espera recuperar con la garantía: 100 000 − 70 000 = 30 000. El préstamo queda registrado por 70 000." },
+      "en": { "question": "A 100,000 loan depends on its collateral, worth 70,000 net of selling costs. If the portion deemed uncollectible is charged off, how much is charged off?",
+              "options": ["30,000", "100,000", "70,000", "0"],
+              "explanation": "The charge-off is the difference between the balance and what is expected from the collateral: 100,000 − 70,000 = 30,000. The loan stays on the books at 70,000." }
+    },
+    {
+      "id": "lending-0069", "difficulty": 2, "type": "choice",
+      "es": { "question": "En el año hubo castigos por 60 000 y recuperaciones por 10 000, con una cartera promedio de 2 500 000. ¿Cuál es el índice de castigos netos?",
+              "options": ["2 %", "2,4 %", "2,8 %", "0,4 %"],
+              "explanation": "Castigos netos = 60 000 − 10 000 = 50 000. Índice = 50 000 ÷ 2 500 000 = 2 %. El 2,4 % ignora las recuperaciones." },
+      "en": { "question": "During the year there were 60,000 of charge-offs and 10,000 of recoveries, with an average portfolio of 2,500,000. What is the net charge-off rate?",
+              "options": ["2%", "2.4%", "2.8%", "0.4%"],
+              "explanation": "Net charge-offs = 60,000 − 10,000 = 50,000. Rate = 50,000 ÷ 2,500,000 = 2%. The 2.4% ignores the recoveries." }
+    },
+    {
+      "id": "lending-0070", "difficulty": 2, "type": "choice",
+      "es": { "question": "Cartera sin atraso: 900 000 (pérdida esperada 1 %). De 1 a 90 días: 80 000 (10 %). Más de 90 días: 20 000 (50 %). ¿Qué provisión resulta?",
+              "options": ["27 000", "10 000", "17 000", "19 000"],
+              "explanation": "900 000 × 1 % + 80 000 × 10 % + 20 000 × 50 % = 9000 + 8000 + 10 000 = 27 000. A más atraso, mayor es el porcentaje de pérdida que se aplica." },
+      "en": { "question": "Loans not past due: 900,000 (expected loss 1%). 1 to 90 days: 80,000 (10%). Over 90 days: 20,000 (50%). What allowance results?",
+              "options": ["27,000", "10,000", "17,000", "19,000"],
+              "explanation": "900,000 × 1% + 80,000 × 10% + 20,000 × 50% = 9,000 + 8,000 + 10,000 = 27,000. The longer the delinquency, the higher the loss rate applied." }
+    },
+    {
+      "id": "lending-0071", "difficulty": 2, "type": "choice",
+      "es": { "question": "Un servicer cobra una comisión de servicing del 0,25 % anual sobre el saldo. Si el saldo es 1 200 000, ¿cuánto gana en un mes?",
+              "options": ["250", "3000", "300", "25"],
+              "explanation": "Comisión anual = 1 200 000 × 0,25 % = 3000; al mes, 3000 ÷ 12 = 250. Como se calcula sobre el saldo, baja a medida que el préstamo se paga." },
+      "en": { "question": "A servicer earns a servicing fee of 0.25% per year on the balance. If the balance is 1,200,000, how much does it earn in a month?",
+              "options": ["250", "3,000", "300", "25"],
+              "explanation": "Annual fee = 1,200,000 × 0.25% = 3,000; per month, 3,000 ÷ 12 = 250. Because it is based on the balance, it shrinks as the loan is paid down." }
+    },
+    {
+      "id": "lending-0072", "difficulty": 2, "type": "choice",
+      "es": { "question": "Un prestamista vende un préstamo a un inversionista, pero sigue como su servicer. ¿Qué hace con las cuotas que cobra?",
+              "options": ["Las remite al inversionista, menos su comisión", "Las registra como ingreso propio del período", "Las aplica a su propia cartera de préstamos", "Las retiene en su caja hasta el vencimiento final"],
+              "explanation": "El servicer cobra en nombre del dueño del préstamo: le remite capital e intereses según el contrato de servicing y se queda con su comisión." },
+      "en": { "question": "A lender sells a loan to an investor but stays on as its servicer. What does it do with the payments it collects?",
+              "options": ["Remits them to the investor, less its fee", "Records them as its own income for the period", "Applies them to its own loan portfolio", "Holds them in its own account until maturity"],
+              "explanation": "The servicer collects on behalf of the loan's owner: it remits principal and interest under the servicing agreement and keeps its fee." }
+    },
+    {
+      "id": "lending-0073", "difficulty": 2, "type": "truefalse", "answer": false,
+      "es": { "question": "Si la comisión de originación se descuenta del desembolso, el capital del préstamo es el monto neto que recibió el deudor.",
+              "explanation": "El deudor queda debiendo el monto total: si pide 100 000 con un 2 % de comisión descontada, recibe 98 000 pero debe 100 000 de capital." },
+      "en": { "question": "If the origination fee is deducted from the disbursement, the loan's principal is the net amount the borrower received.",
+              "explanation": "The borrower owes the full loan amount: borrowing 100,000 with a 2% fee deducted, they receive 98,000 but owe 100,000 of principal." }
+    },
+    {
+      "id": "lending-0074", "difficulty": 2, "type": "choice",
+      "es": { "question": "En una ejecución, el inmueble se vende por 200 000, sin costos. La primera hipoteca debe 150 000 y la segunda 80 000. ¿Cuánto recibe la segunda?",
+              "options": ["50 000", "80 000", "0", "69 565"],
+              "explanation": "Se paga por orden de prelación: primero la primera hipoteca completa (150 000) y lo que sobra, 50 000, va a la segunda. Los otros 30 000 de la segunda no se cubren con la venta." },
+      "en": { "question": "At foreclosure, the property sells for 200,000, with no costs. The first mortgage is owed 150,000 and the second 80,000. How much does the second receive?",
+              "options": ["50,000", "80,000", "0", "69,565"],
+              "explanation": "Proceeds are paid in order of priority: first the first mortgage in full (150,000), and the remaining 50,000 goes to the second. The other 30,000 owed on the second is not covered by the sale." }
+    },
+    {
+      "id": "lending-0075", "difficulty": 2, "type": "choice",
+      "es": { "question": "En EE. UU., por regla general, ¿qué define la prelación entre dos hipotecas sobre el mismo inmueble?",
+              "options": ["El orden en que se registraron", "El saldo de cada préstamo", "Cuál tiene la tasa de interés más alta", "Cuál tiene el vencimiento más cercano"],
+              "explanation": "Como regla general, el gravamen que se inscribe primero en el registro público tiene prioridad («primero en el tiempo»). Por eso la hipoteca se registra apenas se firma." },
+      "en": { "question": "In the U.S., as a general rule, what sets the priority between two mortgages on the same property?",
+              "options": ["The order in which they were recorded", "The size of each loan's balance", "Which loan has the higher interest rate", "Which loan has the nearer maturity date"],
+              "explanation": "As a general rule, the lien recorded first in the public records has priority (“first in time”). That is why a mortgage is recorded as soon as it is signed." }
+    },
+    {
+      "id": "lending-0076", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué es una dación en pago (deed in lieu of foreclosure)?",
+              "options": ["El deudor entrega el inmueble para saldar la deuda", "Vender el inmueble por menos de lo que se debe", "Una orden judicial para desalojar al deudor del inmueble", "Un segundo préstamo garantizado con el mismo inmueble"],
+              "explanation": "El deudor traspasa voluntariamente el inmueble al prestamista a cambio de cancelar la deuda, total o parcialmente, y así se evita el proceso de ejecución." },
+      "en": { "question": "What is a deed in lieu of foreclosure?",
+              "options": ["The borrower gives the property to settle the debt", "Selling the property for less than the amount owed", "A court order to evict the borrower from the property", "A second loan secured by the same property"],
+              "explanation": "The borrower voluntarily transfers the property to the lender in exchange for cancelling the debt, in full or in part, which avoids the foreclosure process." }
+    },
+    {
+      "id": "lending-0077", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿En qué se diferencia una forbearance de una modificación de préstamo?",
+              "options": ["La forbearance es temporal; la modificación, permanente", "Son lo mismo con distinto nombre", "La forbearance condona capital; la modificación, no", "La forbearance la ordena un juez; la modificación, no"],
+              "explanation": "La forbearance suspende o reduce los pagos por un tiempo, sin cambiar el contrato de fondo. La modificación cambia de forma permanente términos como la tasa, el plazo o el saldo." },
+      "en": { "question": "How does forbearance differ from a loan modification?",
+              "options": ["Forbearance is temporary; a modification is permanent", "They are the same thing under different names", "Forbearance forgives principal; a modification does not", "A judge orders forbearance; a modification is voluntary"],
+              "explanation": "Forbearance suspends or reduces payments for a time, without changing the underlying contract. A modification permanently changes terms such as the rate, the term or the balance." }
+    },
+    {
+      "id": "lending-0078", "difficulty": 2, "type": "truefalse", "answer": false,
+      "es": { "question": "Al terminar una forbearance, las cuotas que se suspendieron quedan condonadas.",
+              "explanation": "Lo no pagado se sigue debiendo: se paga de una vez, con un plan de pagos, al final del préstamo o mediante una modificación, según lo que se pacte." },
+      "en": { "question": "When a forbearance ends, the suspended payments are forgiven.",
+              "explanation": "What was not paid is still owed: it is repaid in a lump sum, through a repayment plan, at the end of the loan or through a modification, as agreed." }
+    },
+    {
+      "id": "lending-0079", "difficulty": 2, "type": "choice",
+      "es": { "question": "En una modificación de préstamo, ¿qué significa capitalizar los atrasos?",
+              "options": ["Sumar al saldo los intereses vencidos y recalcular", "Condonar los intereses vencidos del préstamo", "Cobrar todo lo vencido al deudor en un solo pago", "Llevar los intereses vencidos a una cuenta de ingreso"],
+              "explanation": "Los intereses vencidos y, si aplica, los anticipos de escrow y cargos se suman al saldo (el capital vencido ya está en él) y la cuota se recalcula. Sale de mora, pero la deuda es mayor." },
+      "en": { "question": "In a loan modification, what does capitalizing the arrears mean?",
+              "options": ["Adding unpaid interest to principal and re-amortizing", "Forgiving all the past-due interest on the loan", "Collecting everything past due in a single payment", "Moving all the past-due interest into an income account"],
+              "explanation": "Past-due interest and, if applicable, escrow advances and fees are added to the balance (past-due principal is already in it) and the payment is recalculated. It is no longer past due, but the debt is larger." }
+    },
+    {
+      "id": "lending-0080", "difficulty": 2, "type": "choice",
+      "es": { "question": "En un préstamo de tasa ajustable, ¿cómo se calcula normalmente la nueva tasa en cada ajuste?",
+              "options": ["Índice de referencia más un margen fijo", "Índice de referencia menos un margen", "Tasa anterior más la inflación del año", "Promedio de las tasas de los últimos años"],
+              "explanation": "La tasa sigue un índice de mercado y le suma un margen pactado en el contrato, que no cambia. Los topes (caps) y pisos del contrato pueden limitar el ajuste." },
+      "en": { "question": "In an adjustable-rate loan, how is the new rate usually set at each reset?",
+              "options": ["A reference index plus a fixed margin", "A reference index minus a margin", "The previous rate plus the year's inflation", "An average of past years' rates"],
+              "explanation": "The rate follows a market index plus a margin set in the loan agreement, which does not change. The contract's caps and floors may limit the adjustment." }
+    },
+    {
+      "id": "lending-0081", "difficulty": 2, "type": "choice",
+      "es": { "question": "Un préstamo de 10 000 al 12 % anual se paga en 12 cuotas mensuales fijas. Redondeado, ¿cuánto interés se paga en total?",
+              "options": ["662", "1200", "1268", "100"],
+              "explanation": "El interés se cobra sobre el saldo pendiente, no sobre los 10 000 todo el año. Las 12 cuotas de 888,49 suman 10 661,88: unos 662 de interés." },
+      "en": { "question": "A 10,000 loan at 12% per year is repaid in 12 fixed monthly payments. Rounded, how much interest is paid in total?",
+              "options": ["662", "1,200", "1,268", "100"],
+              "explanation": "Interest is charged on the outstanding balance, not on the full 10,000 all year. The 12 payments of 888.49 add up to 10,661.88: about 662 of interest." }
+    },
+    {
+      "id": "lending-0082", "difficulty": 2, "type": "choice",
+      "es": { "question": "En un préstamo de interés simple diario, el deudor paga su cuota fija 10 días tarde. ¿Qué pasa con la aplicación de ese pago?",
+              "options": ["Va más a interés y menos a capital", "Va más a capital y menos a interés", "Se aplica igual que si fuera puntual", "Se aplica todo a cargos por mora"],
+              "explanation": "El interés se causa por día hasta la fecha del pago. Con 10 días más de interés, una parte mayor de la cuota se va a intereses y el saldo de capital baja menos." },
+      "en": { "question": "In a daily simple interest loan, the borrower makes the fixed payment 10 days late. What happens to how that payment is applied?",
+              "options": ["More goes to interest and less to principal", "More goes to principal and less to interest", "It is applied as if it were on time", "It all goes to late fees"],
+              "explanation": "Interest accrues daily up to the payment date. With 10 more days of interest, a larger share of the payment goes to interest and the principal balance falls less." }
+    },
+    {
+      "id": "lending-0083", "difficulty": 2, "type": "choice",
+      "es": { "question": "Un prestamista administra sus propios préstamos y cobra a los deudores dinero para el escrow. ¿Cómo registra ese dinero?",
+              "options": ["Como un pasivo: lo debe pagar por cuenta de ellos", "Como ingreso por servicios del período", "Como un abono al capital de cada préstamo", "Como menor valor de sus gastos de impuestos y seguros"],
+              "explanation": "El dinero del escrow es de los deudores y sirve para pagar sus impuestos y seguros. El prestamista lo guarda y lo registra como un pasivo (escrow por pagar), no como ingreso." },
+      "en": { "question": "A lender services its own loans and collects escrow funds from borrowers. How does it record that money?",
+              "options": ["As a liability: it must pay it out on their behalf", "As service income for the period", "As a payment toward each loan's principal", "As a reduction of its own tax and insurance expenses"],
+              "explanation": "Escrow money belongs to the borrowers and is used to pay their taxes and insurance. The lender holds it and records it as a liability (escrow payable), not as income." }
+    },
+    {
+      "id": "lending-0084", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué es la tasa de interés por incumplimiento (default rate) que pacta un contrato de préstamo?",
+              "options": ["Una tasa mayor que rige mientras dure el incumplimiento", "La tasa que se cobra si el deudor prepaga el saldo", "La tasa inicial que rige antes del primer ajuste", "La tasa mínima (piso) que se pacta en un préstamo variable"],
+              "explanation": "Muchos contratos, sobre todo de préstamos comerciales, fijan una tasa mayor que se aplica desde el incumplimiento hasta que se subsane. No es lo mismo que el cargo por mora de cada cuota." },
+      "en": { "question": "What is the default interest rate set in a loan agreement?",
+              "options": ["A higher rate that applies while the default lasts", "The rate charged if the borrower prepays the balance", "The initial rate that applies before the first reset", "The minimum rate (floor) set in a variable-rate loan"],
+              "explanation": "Many loan agreements, especially for commercial loans, set a higher rate that applies from the default until it is cured. It is not the same as the per-payment late fee." }
+    },
+    {
+      "id": "lending-0085", "difficulty": 3, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "Según la Regulación Z, ¿cómo se anualiza la tasa del período para obtener el APR de un préstamo con pagos mensuales?",
+              "options": ["Se multiplica por 12, sin capitalizar", "Se capitaliza: (1 + tasa)^12 − 1", "Se multiplica por 365 y se divide entre 360", "Se divide entre 12"],
+              "explanation": "El apéndice J de la Reg. Z define el APR como la tasa del período multiplicada por el número de períodos del año. Así, una tasa del 1,5 % mensual da un APR del 18 %." },
+      "en": { "question": "Under Regulation Z, how is the periodic rate annualized to get the APR of a loan with monthly payments?",
+              "options": ["It is multiplied by 12, without compounding", "It is compounded: (1 + rate)^12 − 1", "It is multiplied by 365 and divided by 360", "It is divided by 12"],
+              "explanation": "Appendix J of Reg. Z defines the APR as the periodic rate times the number of periods in a year. So a rate of 1.5% a month gives an APR of 18%." }
+    },
+    {
+      "id": "lending-0086", "difficulty": 3, "type": "choice",
+      "es": { "question": "En un préstamo a 12 meses con interés precalculado, ¿qué fracción del interés total asigna la regla del 78 al primer mes?",
+              "options": ["12/78", "1/12", "1/78", "6/78"],
+              "explanation": "Los dígitos de 1 a 12 suman 78. El primer mes recibe 12/78 del interés, el segundo 11/78 y así hasta 1/78: más interés al principio, lo que encarece un prepago temprano." },
+      "en": { "question": "In a 12-month loan with precomputed interest, what fraction of total interest does the Rule of 78s assign to the first month?",
+              "options": ["12/78", "1/12", "1/78", "6/78"],
+              "explanation": "The digits 1 to 12 add up to 78. The first month gets 12/78 of the interest, the second 11/78 and so on down to 1/78: more interest up front, which makes early payoff costlier." }
+    },
+    {
+      "id": "lending-0087", "difficulty": 3, "type": "choice",
+      "es": { "question": "Tras un abono grande a capital, ¿qué es hacer un recast (reamortización) del préstamo?",
+              "options": ["Recalcular la cuota con el nuevo saldo, igual tasa y plazo", "Reemplazar el préstamo por uno nuevo con otra tasa y plazo", "Pasar la fecha de vencimiento a una posterior", "Sumar al saldo las cuotas que estén vencidas"],
+              "explanation": "En un recast se mantienen la tasa y la fecha final, pero la cuota se recalcula sobre el saldo más bajo, así que baja." },
+      "en": { "question": "After a large principal payment, what does recasting (re-amortizing) the loan mean?",
+              "options": ["New payment on the lower balance, same rate and maturity", "Replacing the loan with a new one at another rate and term", "Moving the maturity date to a later date", "Adding any past-due installments to the balance"],
+              "explanation": "A recast keeps the rate and the final maturity date, but recalculates the payment on the lower balance, so the payment falls." }
+    },
+    {
+      "id": "lending-0088", "difficulty": 3, "type": "choice",
+      "es": { "question": "Con la base 30/360, ¿cuántos días de interés se cuentan del 10 de marzo al 25 de mayo?",
+              "options": ["75", "76", "74", "90"],
+              "explanation": "En 30/360: (meses de diferencia × 30) + (diferencia de días) = 2 × 30 + (25 − 10) = 75. Con días reales serían 76: 21 de marzo, 30 de abril y 25 de mayo." },
+      "en": { "question": "Under the 30/360 day count, how many days of interest are counted from March 10 to May 25?",
+              "options": ["75", "76", "74", "90"],
+              "explanation": "Under 30/360: (months apart × 30) + (difference in days) = 2 × 30 + (25 − 10) = 75. Counting actual days it would be 76: 21 in March, 30 in April and 25 in May." }
+    },
+    {
+      "id": "lending-0089", "difficulty": 3, "type": "choice",
+      "es": { "question": "Un préstamo tiene una penalidad de prepago escalonada 3-2-1 (por año). Si se cancela en el segundo año con un saldo de 200 000, ¿cuánto es la penalidad?",
+              "options": ["4000", "6000", "2000", "12 000"],
+              "explanation": "En un esquema 3-2-1 la penalidad es el 3 % de lo prepagado en el año 1, el 2 % en el año 2 y el 1 % en el año 3. Aquí: 2 % × 200 000 = 4000." },
+      "en": { "question": "A loan has a 3-2-1 step-down prepayment penalty (by year). If it is paid off in year two with a 200,000 balance, how much is the penalty?",
+              "options": ["4,000", "6,000", "2,000", "12,000"],
+              "explanation": "Under a 3-2-1 schedule the penalty is 3% of the amount prepaid in year 1, 2% in year 2 and 1% in year 3. Here: 2% × 200,000 = 4,000." }
+    },
+    {
+      "id": "lending-0090", "difficulty": 3, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "Un préstamo está en no causación y hay dudas de que se cobre todo su capital. ¿Cómo se aplican normalmente los pagos que llegan?",
+              "options": ["Todo a reducir el capital registrado", "Primero a intereses, como ingreso del período", "Primero a cargos por mora y luego a intereses", "A una cuenta de ingreso diferido"],
+              "explanation": "Es el método de recuperación del costo: mientras exista duda sobre el capital, cada pago reduce el saldo registrado del préstamo (instrucciones del Call Report de la FFIEC)." },
+      "en": { "question": "A loan is on non-accrual and there is doubt that all its principal will be collected. How are incoming payments normally applied?",
+              "options": ["Entirely to reduce the recorded principal", "First to interest, as income for the period", "First to late fees, then to interest", "To a deferred income account"],
+              "explanation": "This is the cost recovery method: while doubt about the principal remains, each payment reduces the loan's recorded balance (FFIEC Call Report instructions)." }
+    },
+    {
+      "id": "lending-0091", "difficulty": 3, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "Al pasar un préstamo a no causación, ¿qué se hace normalmente con el interés que se había causado y no se cobró?",
+              "options": ["Se reversa contra el ingreso por intereses", "Se sigue causando hasta el castigo", "Se suma al capital del préstamo", "Se reclasifica como comisión ganada"],
+              "explanation": "El interés causado que no se cobró se reversa, por lo general contra el ingreso por intereses. ASC 326 también permite, como política, darlo de baja contra el gasto por pérdidas crediticias." },
+      "en": { "question": "When a loan goes on non-accrual, what is normally done with the interest that was accrued but not collected?",
+              "options": ["It is reversed against interest income", "It keeps accruing until charge-off", "It is added to the loan's principal", "It is reclassified as fee income"],
+              "explanation": "Accrued but uncollected interest is reversed, usually against interest income. ASC 326 also allows, as a policy election, writing it off through credit loss expense." }
+    },
+    {
+      "id": "lending-0092", "difficulty": 3, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "Bajo CECL, la provisión queda en 34 000 tras castigos y luego se cobran 1000 de préstamos castigados. Si se requieren 45 000, ¿cuál es el gasto por provisión?",
+              "options": ["10 000", "11 000", "12 000", "45 000"],
+              "explanation": "Bajo CECL, las recuperaciones se acreditan a la provisión (ASC 326-20): 34 000 + 1000 = 35 000. Para llegar a los 45 000 requeridos se registra un gasto de 10 000." },
+      "en": { "question": "Under CECL, the allowance is 34,000 after charge-offs, then 1,000 is recovered on charged-off loans. If 45,000 is required, what is the provision expense?",
+              "options": ["10,000", "11,000", "12,000", "45,000"],
+              "explanation": "Under CECL, recoveries are credited to the allowance (ASC 326-20): 34,000 + 1,000 = 35,000. To reach the required 45,000, a 10,000 expense is recorded." }
+    },
+    {
+      "id": "lending-0093", "difficulty": 3, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "Bajo CECL (ASC 326-20), ¿cuándo se miden las pérdidas esperadas en conjunto (pool) y no préstamo por préstamo?",
+              "options": ["Cuando comparten características de riesgo similares", "Cuando la entidad lo elige como política contable", "Cuando ningún préstamo del grupo está en mora", "Solo si la entidad no cotiza en bolsa"],
+              "explanation": "ASC 326-20 pide medir las pérdidas esperadas en conjunto cuando los préstamos comparten riesgos similares; los que no los comparten se evalúan de forma individual." },
+      "en": { "question": "Under CECL (ASC 326-20), when are expected losses measured collectively (as a pool) rather than loan by loan?",
+              "options": ["When the loans share similar risk characteristics", "When the entity elects it as an accounting policy", "When no loan in the group is past due", "Only if the entity is not publicly traded"],
+              "explanation": "ASC 326-20 requires measuring expected losses collectively when loans share similar risk characteristics; those that do not are evaluated individually." }
+    },
+    {
+      "id": "lending-0094", "difficulty": 3, "type": "truefalse", "answer": true,
+      "es": { "question": "En EE. UU., el gravamen por impuesto predial impagado suele tener prelación sobre una primera hipoteca.",
+              "explanation": "Por ley estatal, los impuestos prediales impagos suelen pasar por delante de las hipotecas. Por eso el prestamista vigila que se paguen, por ejemplo a través del escrow." },
+      "en": { "question": "In the U.S., a lien for unpaid property taxes usually has priority over a first mortgage.",
+              "explanation": "Under state law, unpaid property taxes usually rank ahead of mortgages. That is why lenders make sure they are paid, for example through escrow." }
+    },
+    {
+      "id": "lending-0095", "difficulty": 3, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "En EE. UU., ¿qué se presenta normalmente para perfeccionar un gravamen sobre equipos o inventario que garantizan un préstamo?",
+              "options": ["Un financing statement (formulario UCC-1)", "Un deed of trust ante el condado", "Un Form 1099-A ante el IRS", "Una copia del contrato enviada al deudor"],
+              "explanation": "Según el artículo 9 del UCC, el gravamen sobre bienes muebles se perfecciona, por lo general, registrando un financing statement (UCC-1) en la oficina estatal. Así es oponible a otros acreedores." },
+      "en": { "question": "In the U.S., what is normally filed to perfect a lien on equipment or inventory securing a loan?",
+              "options": ["A UCC-1 financing statement", "A deed of trust with the county", "A Form 1099-A with the IRS", "A copy of the loan agreement sent to the borrower"],
+              "explanation": "Under UCC Article 9, a lien on personal property is generally perfected by filing a UCC-1 financing statement with the state office. This makes it effective against other creditors." }
+    },
+    {
+      "id": "lending-0096", "difficulty": 3, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "Para quienes ya aplican CECL, ¿qué hizo la ASU 2022-02 con la contabilidad de las reestructuraciones de deuda en problemas (TDR)?",
+              "options": ["La eliminó y pidió revelar ciertas modificaciones", "La volvió obligatoria para todo préstamo modificado", "Exigió medir las TDR a valor razonable", "La limitó a los préstamos sin garantía"],
+              "explanation": "La ASU 2022-02 eliminó la guía de TDR para las entidades que aplican CECL. En su lugar, revelan las modificaciones hechas a deudores con dificultades financieras." },
+      "en": { "question": "For entities already applying CECL, what did ASU 2022-02 do with troubled debt restructuring (TDR) accounting?",
+              "options": ["Removed it; some modifications are disclosed instead", "Made TDR accounting mandatory for every modified loan", "Required measuring TDRs at fair value", "Limited it to unsecured loans"],
+              "explanation": "ASU 2022-02 eliminated the TDR guidance for entities applying CECL. Instead, they disclose modifications made to borrowers experiencing financial difficulty." }
+    },
+    {
+      "id": "lending-0097", "difficulty": 3, "type": "choice",
+      "es": { "question": "Una tasa ajustable empezó en 5 % y hoy es 6 %. Topes: 2 puntos por ajuste y 5 de por vida sobre la inicial. Si la tasa indexada es 9 %, ¿cuál es la nueva tasa?",
+              "options": ["8 %", "9 %", "10 %", "7 %"],
+              "explanation": "La tasa indexada (9 %) se limita con los topes: por ajuste, 6 % + 2 = 8 %; de por vida, 5 % + 5 = 10 %. Se aplica el menor: 8 %." },
+      "en": { "question": "An ARM started at 5% and is now 6%. Caps: 2 points per reset, 5 points lifetime over the start rate. If the fully indexed rate is 9%, what is the new rate?",
+              "options": ["8%", "9%", "10%", "7%"],
+              "explanation": "The indexed rate (9%) is limited by the caps: per reset, 6% + 2 = 8%; lifetime, 5% + 5 = 10%. The lowest applies: 8%." }
+    },
+    {
+      "id": "lending-0098", "difficulty": 3, "type": "choice",
+      "es": { "question": "Una hipoteca típica de EE. UU. se desembolsa el 20 de junio y su primera cuota vence el 1 de agosto. ¿Qué interés se cobra al cierre?",
+              "options": ["El del 20 al 30 de junio", "El de todo el mes de julio", "El del 1 al 20 de junio", "Ninguno: el interés empieza en agosto"],
+              "explanation": "Las cuotas hipotecarias pagan el interés del mes anterior: la del 1 de agosto cubre julio. Los días del 20 al 30 de junio se cobran por adelantado al cierre (prepaid interest)." },
+      "en": { "question": "A typical U.S. mortgage funds on June 20 and its first payment is due August 1. What interest is collected at closing?",
+              "options": ["Interest from June 20 to June 30", "Interest for the whole of July", "Interest from June 1 to June 20", "None: interest starts in August"],
+              "explanation": "Mortgage payments cover the previous month's interest: the August 1 payment covers July. The days from June 20 to 30 are collected in advance at closing (prepaid interest)." }
+    },
+    {
+      "id": "lending-0099", "difficulty": 3, "type": "truefalse", "answer": true, "asOf": "2026-11",
+      "es": { "question": "Por regla general, la Regulación Z (Truth in Lending) no se aplica a los créditos con fines empresariales o comerciales.",
+              "explanation": "La Reg. Z (§1026.3(a)) exime el crédito otorgado sobre todo con fines empresariales, comerciales o agrícolas. Protege principalmente al consumidor que pide crédito para uso personal o familiar." },
+      "en": { "question": "As a general rule, Regulation Z (Truth in Lending) does not apply to credit extended for business or commercial purposes.",
+              "explanation": "Reg. Z (§1026.3(a)) exempts credit extended primarily for business, commercial or agricultural purposes. It mainly protects consumers borrowing for personal, family or household use." }
+    },
+    {
+      "id": "lending-0100", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Qué hace un acuerdo de subordinación (subordination agreement) entre acreedores?",
+              "options": ["Un acreedor acepta que su gravamen quede detrás de otro", "Une dos préstamos del mismo deudor en uno solo", "Transfiere el servicing del préstamo a otra empresa", "Libera la garantía en cuanto se termina de pagar la deuda"],
+              "explanation": "Con la subordinación, un acreedor acepta por escrito que su gravamen se pague después del de otro acreedor. Así cambia el orden de cobro sobre la misma garantía." },
+      "en": { "question": "What does a subordination agreement between creditors do?",
+              "options": ["One creditor agrees its lien ranks behind another", "Merges two of the borrower's loans into one", "Transfers the loan's servicing to another company", "Releases the collateral once the debt is fully paid"],
+              "explanation": "With subordination, a creditor agrees in writing that its lien will be paid after another creditor's. This changes the order of payment from the same collateral." }
+    }
+  ]
+}

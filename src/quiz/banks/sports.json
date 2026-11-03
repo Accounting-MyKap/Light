@@ -1,0 +1,883 @@
+{
+  "category": "sports",
+  "questions": [
+    {
+      "id": "sports-0001", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuántos jugadores tiene cada equipo en la cancha en un partido de fútbol, incluido el portero?",
+              "options": ["11", "9", "10", "12"],
+              "explanation": "Cada equipo juega con once jugadores, uno de ellos el portero." },
+      "en": { "question": "How many players does each team have on the field in a soccer match, including the goalkeeper?",
+              "options": ["11", "9", "10", "12"],
+              "explanation": "Each team plays with eleven players, one of them the goalkeeper." }
+    },
+    {
+      "id": "sports-0002", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cada cuántos años se celebran los Juegos Olímpicos de verano?",
+              "options": ["Cada 4 años", "Cada 2 años", "Cada 3 años", "Cada 5 años"],
+              "explanation": "Se celebran cada cuatro años, un ciclo que se llama olimpiada." },
+      "en": { "question": "How often are the Summer Olympic Games held?",
+              "options": ["Every 4 years", "Every 2 years", "Every 3 years", "Every 5 years"],
+              "explanation": "They are held every four years, a cycle called an Olympiad." }
+    },
+    {
+      "id": "sports-0003", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué deporte se juega en el torneo de Wimbledon?",
+              "options": ["Tenis", "Críquet", "Golf", "Polo"],
+              "explanation": "Wimbledon, en Londres, es el torneo de tenis más antiguo del mundo y se juega sobre césped." },
+      "en": { "question": "Which sport is played at the Wimbledon tournament?",
+              "options": ["Tennis", "Cricket", "Golf", "Polo"],
+              "explanation": "Wimbledon, in London, is the oldest tennis tournament in the world and is played on grass." }
+    },
+    {
+      "id": "sports-0004", "difficulty": 1, "type": "truefalse", "answer": true,
+      "es": { "question": "Un equipo de baloncesto tiene cinco jugadores en la cancha a la vez.",
+              "explanation": "Cada equipo juega con cinco jugadores en la cancha y puede hacer cambios con los suplentes." },
+      "en": { "question": "A basketball team has five players on the court at a time.",
+              "explanation": "Each team plays with five players on the court and can make substitutions from the bench." }
+    },
+    {
+      "id": "sports-0005", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué país ganó la primera Copa Mundial de fútbol, en 1930?",
+              "options": ["Uruguay", "Argentina", "Brasil", "Italia"],
+              "explanation": "Uruguay organizó el torneo y lo ganó, al vencer 4-2 a Argentina en la final." },
+      "en": { "question": "Which country won the first FIFA World Cup, in 1930?",
+              "options": ["Uruguay", "Argentina", "Brazil", "Italy"],
+              "explanation": "Uruguay hosted the tournament and won it, beating Argentina 4-2 in the final." }
+    },
+    {
+      "id": "sports-0006", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué selección ganó el Mundial de fútbol de 1986, jugado en México?",
+              "options": ["Argentina", "Alemania Occidental", "Francia", "Brasil"],
+              "explanation": "Argentina, liderada por Diego Maradona, venció 3-2 a Alemania Occidental en la final." },
+      "en": { "question": "Which national team won the 1986 World Cup, held in Mexico?",
+              "options": ["Argentina", "West Germany", "France", "Brazil"],
+              "explanation": "Argentina, led by Diego Maradona, beat West Germany 3-2 in the final." }
+    },
+    {
+      "id": "sports-0007", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cuántos hoyos tiene un campo de golf estándar?",
+              "options": ["18", "9", "12", "24"],
+              "explanation": "Una ronda completa se juega en 18 hoyos. Algunos campos más pequeños tienen solo 9." },
+      "en": { "question": "How many holes does a standard golf course have?",
+              "options": ["18", "9", "12", "24"],
+              "explanation": "A full round is played over 18 holes. Some smaller courses have only 9." }
+    },
+    {
+      "id": "sports-0008", "difficulty": 2, "type": "truefalse", "answer": true,
+      "es": { "question": "La distancia oficial del maratón es de 42,195 km.",
+              "explanation": "Son 42,195 km (26 millas y 385 yardas), distancia fijada oficialmente en 1921 a partir del maratón de los Juegos de Londres 1908." },
+      "en": { "question": "The official distance of the marathon is 42.195 km.",
+              "explanation": "It is 42.195 km (26 miles and 385 yards), a distance officially set in 1921 based on the marathon of the 1908 London Games." }
+    },
+    {
+      "id": "sports-0009", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Qué tenista ganó en 1988 los cuatro torneos del Grand Slam y el oro olímpico, el «Golden Slam»?",
+              "options": ["Steffi Graf", "Martina Navratilova", "Chris Evert", "Monica Seles"],
+              "explanation": "Steffi Graf ganó el Abierto de Australia, Roland Garros, Wimbledon y el Abierto de EE. UU., y el oro olímpico de Seúl, todo en 1988." },
+      "en": { "question": "Which tennis player won all four Grand Slam titles and Olympic gold in 1988, the “Golden Slam”?",
+              "options": ["Steffi Graf", "Martina Navratilova", "Chris Evert", "Monica Seles"],
+              "explanation": "Steffi Graf won the Australian Open, the French Open, Wimbledon, the US Open and the Seoul Olympic gold, all in 1988." }
+    },
+    {
+      "id": "sports-0010", "difficulty": 3, "type": "choice",
+      "es": { "question": "En el rugby unión, ¿cuántos puntos vale un try (ensayo)?",
+              "options": ["5", "4", "3", "6"],
+              "explanation": "Un try vale 5 puntos y da derecho a una conversión de 2. En el rugby league, en cambio, vale 4." },
+      "en": { "question": "In rugby union, how many points is a try worth?",
+              "options": ["5", "4", "3", "6"],
+              "explanation": "A try is worth 5 points and earns a conversion kick worth 2. In rugby league, by contrast, a try is worth 4." }
+    },
+    {
+      "id": "sports-0011", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿En qué ciudad se celebraron los primeros Juegos Olímpicos de Invierno, en 1924?",
+              "options": ["Chamonix", "Sankt Moritz", "Lake Placid", "Oslo"],
+              "explanation": "Se celebraron en Chamonix, Francia. Sankt Moritz fue sede en 1928, Lake Placid en 1932 y Oslo en 1952." },
+      "en": { "question": "In which city were the first Winter Olympic Games held, in 1924?",
+              "options": ["Chamonix", "St. Moritz", "Lake Placid", "Oslo"],
+              "explanation": "They were held in Chamonix, France. St. Moritz hosted in 1928, Lake Placid in 1932 and Oslo in 1952." }
+    },
+    {
+      "id": "sports-0012", "difficulty": 3, "type": "choice",
+      "es": { "question": "En el béisbol, ¿cuántas carreras anota un jonrón con las bases llenas (un «grand slam»)?",
+              "options": ["4", "3", "2", "5"],
+              "explanation": "Anotan los tres corredores que estaban en base más el bateador: cuatro carreras, el máximo en una sola jugada." },
+      "en": { "question": "In baseball, how many runs score on a home run with the bases loaded (a “grand slam”)?",
+              "options": ["4", "3", "2", "5"],
+              "explanation": "The three runners on base score along with the batter: four runs, the most possible on a single play." }
+    },
+    {
+      "id": "sports-0013", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿En qué ciudad se celebraron los Juegos Olímpicos de 2016, los primeros en Sudamérica?",
+              "options": ["Río de Janeiro", "Brasilia", "São Paulo", "Buenos Aires"],
+              "explanation": "Río de Janeiro fue sede de los Juegos de 2016, los primeros celebrados en Sudamérica." },
+      "en": { "question": "In which city were the 2016 Olympic Games held, the first in South America?",
+              "options": ["Rio de Janeiro", "Brasília", "São Paulo", "Buenos Aires"],
+              "explanation": "Rio de Janeiro hosted the 2016 Games, the first ever held in South America." }
+    },
+    {
+      "id": "sports-0014", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿En qué ciudad se celebraron los Juegos Olímpicos de verano de 2024?",
+              "options": ["París", "Londres", "Tokio", "Los Ángeles"],
+              "explanation": "París organizó los Juegos de 2024; ya había sido sede en 1900 y en 1924." },
+      "en": { "question": "In which city were the 2024 Summer Olympic Games held?",
+              "options": ["Paris", "London", "Tokyo", "Los Angeles"],
+              "explanation": "Paris hosted the 2024 Games; it had also been the host in 1900 and 1924." }
+    },
+    {
+      "id": "sports-0015", "difficulty": 1, "type": "choice",
+      "es": { "question": "Los Juegos Olímpicos de «Tokio 2020» se aplazaron por la pandemia. ¿En qué año se celebraron?",
+              "options": ["2021", "2022", "2020", "2023"],
+              "explanation": "Se disputaron del 23 de julio al 8 de agosto de 2021, aunque conservaron el nombre «Tokio 2020»." },
+      "en": { "question": "The “Tokyo 2020” Olympic Games were postponed because of the pandemic. In what year were they held?",
+              "options": ["2021", "2022", "2020", "2023"],
+              "explanation": "They ran from 23 July to 8 August 2021 but kept the name “Tokyo 2020”." }
+    },
+    {
+      "id": "sports-0016", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuántos aros entrelazados tiene el símbolo de los Juegos Olímpicos?",
+              "options": ["5", "4", "6", "7"],
+              "explanation": "Los cinco aros simbolizan la unión de los cinco continentes en los Juegos." },
+      "en": { "question": "How many interlocked rings are in the Olympic symbol?",
+              "options": ["5", "4", "6", "7"],
+              "explanation": "The five rings symbolize the union of the five continents at the Games." }
+    },
+    {
+      "id": "sports-0017", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué velocista ganó los 100 metros planos olímpicos en Pekín 2008, Londres 2012 y Río 2016?",
+              "options": ["Usain Bolt", "Justin Gatlin", "Yohan Blake", "Asafa Powell"],
+              "explanation": "El jamaiquino Usain Bolt ganó los 100 m planos en los tres Juegos. Justin Gatlin los había ganado en Atenas 2004." },
+      "en": { "question": "Which sprinter won the Olympic 100 m in Beijing 2008, London 2012 and Rio 2016?",
+              "options": ["Usain Bolt", "Justin Gatlin", "Yohan Blake", "Asafa Powell"],
+              "explanation": "Jamaica's Usain Bolt won the 100 m at all three Games. Justin Gatlin had won it in Athens 2004." }
+    },
+    {
+      "id": "sports-0018", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿En qué país se celebraban los Juegos Olímpicos de la Antigüedad?",
+              "options": ["Grecia", "Italia", "Egipto", "Turquía"],
+              "explanation": "Se celebraban en Olimpia, en Grecia, en honor a Zeus, desde el siglo VIII a. C. según la tradición." },
+      "en": { "question": "In which country were the ancient Olympic Games held?",
+              "options": ["Greece", "Italy", "Egypt", "Turkey"],
+              "explanation": "They were held at Olympia, in Greece, in honor of Zeus, starting in the 8th century BC according to tradition." }
+    },
+    {
+      "id": "sports-0019", "difficulty": 1, "type": "choice",
+      "es": { "question": "En el fútbol, ¿qué significa que el árbitro muestre una tarjeta roja a un jugador?",
+              "options": ["Que queda expulsado", "Que recibe una advertencia", "Que se pita un penal", "Que termina el partido"],
+              "explanation": "La roja significa expulsión: el jugador debe salir de la cancha y su equipo no puede reemplazarlo. La amarilla es una advertencia." },
+      "en": { "question": "In soccer, what does it mean when the referee shows a player a red card?",
+              "options": ["The player is sent off", "The player gets a warning", "A penalty is awarded", "The match is over"],
+              "explanation": "A red card means expulsion: the player must leave the field and his team cannot replace him. A yellow card is a warning." }
+    },
+    {
+      "id": "sports-0020", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuántos minutos dura un partido reglamentario de fútbol, sin contar descuentos ni alargue?",
+              "options": ["90", "80", "100", "60"],
+              "explanation": "Son dos tiempos de 45 minutos. El árbitro agrega minutos de descuento al final de cada tiempo cuando hace falta." },
+      "en": { "question": "How many minutes does a regulation soccer match last, not counting stoppage time or extra time?",
+              "options": ["90", "80", "100", "60"],
+              "explanation": "It is two halves of 45 minutes. The referee adds stoppage time at the end of each half when needed." }
+    },
+    {
+      "id": "sports-0021", "difficulty": 1, "type": "choice",
+      "es": { "question": "En el fútbol, ¿cómo se llama que un mismo jugador anote tres goles en un partido?",
+              "options": ["Hat-trick", "Doblete", "Póker", "Gol olímpico"],
+              "explanation": "Se llama hat-trick, o triplete. Cuando anota dos goles se habla de un doblete." },
+      "en": { "question": "In soccer, what is it called when one player scores three goals in a match?",
+              "options": ["A hat-trick", "A brace", "A four-goal haul", "An Olympic goal"],
+              "explanation": "It is called a hat-trick. Scoring two goals in a match is called a brace." }
+    },
+    {
+      "id": "sports-0022", "difficulty": 1, "type": "truefalse", "answer": true,
+      "es": { "question": "En el fútbol, dentro de su área penal, el portero puede agarrar el balón con las manos.",
+              "explanation": "Solo el portero puede usar las manos durante el juego, y solo dentro de su área. Los demás jugadores las usan únicamente en el saque de banda." },
+      "en": { "question": "In soccer, inside his own penalty area, the goalkeeper may handle the ball with his hands.",
+              "explanation": "Only the goalkeeper may use his hands in open play, and only inside his own area. Other players use them only for the throw-in." }
+    },
+    {
+      "id": "sports-0023", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué país organizó el Mundial de fútbol de 2014?",
+              "options": ["Brasil", "Sudáfrica", "Rusia", "Argentina"],
+              "explanation": "Brasil fue sede del Mundial de 2014; ya lo había organizado en 1950." },
+      "en": { "question": "Which country hosted the 2014 FIFA World Cup?",
+              "options": ["Brazil", "South Africa", "Russia", "Argentina"],
+              "explanation": "Brazil hosted the 2014 World Cup; it had also hosted it in 1950." }
+    },
+    {
+      "id": "sports-0024", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué país organizó el Mundial de fútbol de 2022, el primero en Medio Oriente?",
+              "options": ["Catar", "Arabia Saudita", "Emiratos Árabes Unidos", "Turquía"],
+              "explanation": "Catar acogió el torneo entre noviembre y diciembre de 2022, el primer Mundial jugado en esas fechas." },
+      "en": { "question": "Which country hosted the 2022 FIFA World Cup, the first in the Middle East?",
+              "options": ["Qatar", "Saudi Arabia", "United Arab Emirates", "Turkey"],
+              "explanation": "Qatar hosted the tournament in November and December 2022, the first World Cup played at that time of year." }
+    },
+    {
+      "id": "sports-0025", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué selección ganó el Mundial de 2022, en una final decidida por penales ante Francia?",
+              "options": ["Argentina", "Croacia", "Marruecos", "Brasil"],
+              "explanation": "La final terminó 3-3 tras la prórroga y Argentina ganó la tanda de penales 4-2, con lo que logró su tercer título mundial." },
+      "en": { "question": "Which national team won the 2022 World Cup, in a final decided on penalties against France?",
+              "options": ["Argentina", "Croatia", "Morocco", "Brazil"],
+              "explanation": "The final ended 3-3 after extra time and Argentina won the shootout 4-2, claiming its third world title." }
+    },
+    {
+      "id": "sports-0026", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Con qué selección ganó Pelé tres Copas del Mundo?",
+              "options": ["Brasil", "Argentina", "Uruguay", "Italia"],
+              "explanation": "Pelé ganó los Mundiales de 1958, 1962 y 1970 con Brasil. Fue campeón por primera vez con solo 17 años." },
+      "en": { "question": "With which national team did Pelé win three World Cups?",
+              "options": ["Brazil", "Argentina", "Uruguay", "Italy"],
+              "explanation": "Pelé won the 1958, 1962 and 1970 World Cups with Brazil. He was a champion for the first time at just 17." }
+    },
+    {
+      "id": "sports-0027", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿En qué club español jugó Lionel Messi desde su debut en 2004 hasta 2021?",
+              "options": ["FC Barcelona", "Real Madrid", "Atlético de Madrid", "Valencia"],
+              "explanation": "Messi debutó en el primer equipo del Barcelona en 2004 y dejó el club en 2021." },
+      "en": { "question": "For which Spanish club did Lionel Messi play from his debut in 2004 until 2021?",
+              "options": ["FC Barcelona", "Real Madrid", "Atlético Madrid", "Valencia"],
+              "explanation": "Messi made his debut with Barcelona's first team in 2004 and left the club in 2021." }
+    },
+    {
+      "id": "sports-0028", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿De qué color es la camiseta titular de la selección de fútbol de Colombia?",
+              "options": ["Amarillo", "Azul", "Rojo", "Blanco"],
+              "explanation": "Colombia usa camiseta amarilla como titular. Amarillo, azul y rojo son los colores de su bandera." },
+      "en": { "question": "What color is the home jersey of Colombia's national soccer team?",
+              "options": ["Yellow", "Blue", "Red", "White"],
+              "explanation": "Colombia wears a yellow jersey at home. Yellow, blue and red are the colors of its flag." }
+    },
+    {
+      "id": "sports-0029", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuántos jugadores de cada equipo están en la cancha en el voleibol de sala?",
+              "options": ["6", "5", "7", "8"],
+              "explanation": "Cada equipo juega con seis jugadores en la cancha, que rotan de posición cuando recuperan el saque." },
+      "en": { "question": "How many players per team are on the court in indoor volleyball?",
+              "options": ["6", "5", "7", "8"],
+              "explanation": "Each team plays with six players on the court, who rotate positions when they win back the serve." }
+    },
+    {
+      "id": "sports-0030", "difficulty": 1, "type": "choice",
+      "es": { "question": "En baloncesto, ¿cuántos puntos vale un tiro libre convertido?",
+              "options": ["1", "2", "3", "4"],
+              "explanation": "Cada tiro libre vale un punto. Una canasta normal vale dos y una desde detrás de la línea de tres puntos, tres." },
+      "en": { "question": "In basketball, how many points is a made free throw worth?",
+              "options": ["1", "2", "3", "4"],
+              "explanation": "Each free throw is worth one point. A regular basket is worth two and one from behind the three-point line, three." }
+    },
+    {
+      "id": "sports-0031", "difficulty": 1, "type": "truefalse", "answer": false,
+      "es": { "question": "El hockey sobre hielo se juega con una pelota.",
+              "explanation": "Se juega con un disco de caucho duro llamado puck, que los jugadores golpean con un palo." },
+      "en": { "question": "Ice hockey is played with a ball.",
+              "explanation": "It is played with a hard rubber disc called a puck, which players hit with a stick." }
+    },
+    {
+      "id": "sports-0032", "difficulty": 1, "type": "truefalse", "answer": false,
+      "es": { "question": "En el tenis, el ganador se decide cuando se agota un tiempo fijo de juego.",
+              "explanation": "El tenis no tiene límite de tiempo: se gana por puntos, juegos y sets, y un partido puede durar horas." },
+      "en": { "question": "In tennis, the winner is decided when a fixed amount of playing time runs out.",
+              "explanation": "Tennis has no time limit: matches are won by points, games and sets, and a match can last for hours." }
+    },
+    {
+      "id": "sports-0033", "difficulty": 1, "type": "choice",
+      "es": { "question": "En el golf por golpes, el formato más común, ¿quién gana?",
+              "options": ["Quien completa el recorrido con menos golpes", "Quien lanza la bola más lejos", "Quien termina primero el recorrido", "Quien hace más hoyos en uno"],
+              "explanation": "Gana quien completa el recorrido con menos golpes en total. Por eso, en el golf, el puntaje más bajo es el mejor." },
+      "en": { "question": "In stroke-play golf, the most common format, who wins?",
+              "options": ["The player with the fewest total strokes", "The player who hits the ball farthest", "The first player to finish the course", "The player with the most holes-in-one"],
+              "explanation": "The winner is the player who completes the course in the fewest strokes. That is why the lowest score is the best in golf." }
+    },
+    {
+      "id": "sports-0034", "difficulty": 1, "type": "choice",
+      "es": { "question": "En el béisbol, ¿con cuántos strikes queda ponchado un bateador?",
+              "options": ["3", "2", "4", "5"],
+              "explanation": "Con tres strikes el bateador queda ponchado y se anota un out para su equipo en ataque." },
+      "en": { "question": "In baseball, how many strikes does it take to strike a batter out?",
+              "options": ["3", "2", "4", "5"],
+              "explanation": "With three strikes the batter is struck out, which counts as an out for his team." }
+    },
+    {
+      "id": "sports-0035", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿En qué deporte se disputa el Super Bowl?",
+              "options": ["Fútbol americano", "Béisbol", "Baloncesto", "Hockey sobre hielo"],
+              "explanation": "El Super Bowl es la final de la NFL, la liga profesional de fútbol americano de Estados Unidos." },
+      "en": { "question": "In which sport is the Super Bowl played?",
+              "options": ["American football", "Baseball", "Basketball", "Ice hockey"],
+              "explanation": "The Super Bowl is the championship game of the NFL, the professional American football league." }
+    },
+    {
+      "id": "sports-0036", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuál de estos torneos de tenis es uno de los cuatro de Grand Slam?",
+              "options": ["Abierto de Australia", "Copa Davis", "Torneo de Miami", "Finales de la ATP"],
+              "explanation": "Los cuatro Grand Slam son el Abierto de Australia, Roland Garros, Wimbledon y el Abierto de Estados Unidos." },
+      "en": { "question": "Which of these tennis tournaments is one of the four Grand Slams?",
+              "options": ["Australian Open", "Davis Cup", "Miami Open", "ATP Finals"],
+              "explanation": "The four Grand Slams are the Australian Open, the French Open, Wimbledon and the US Open." }
+    },
+    {
+      "id": "sports-0037", "difficulty": 1, "type": "truefalse", "answer": false,
+      "es": { "question": "En el rugby se juega con un balón perfectamente redondo, como el del fútbol.",
+              "explanation": "El balón de rugby es ovalado, lo que facilita sujetarlo y lanzarlo con las manos." },
+      "en": { "question": "In rugby, the ball is perfectly round, like a soccer ball.",
+              "explanation": "A rugby ball is oval, which makes it easier to hold and throw by hand." }
+    },
+    {
+      "id": "sports-0038", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿En qué estilo de natación el nadador va boca arriba?",
+              "options": ["Espalda", "Mariposa", "Pecho", "Libre"],
+              "explanation": "En el estilo espalda el nadador va boca arriba. En mariposa y pecho va boca abajo, y en libre casi todos nadan crol, también boca abajo." },
+      "en": { "question": "In which swimming stroke does the swimmer lie face up?",
+              "options": ["Backstroke", "Butterfly", "Breaststroke", "Freestyle"],
+              "explanation": "In backstroke the swimmer lies face up. In butterfly and breaststroke the swimmer is face down, and in freestyle almost everyone swims front crawl, also face down." }
+    },
+    {
+      "id": "sports-0039", "difficulty": 1, "type": "truefalse", "answer": false,
+      "es": { "question": "En baloncesto, un jugador puede caminar con el balón en las manos sin botarlo.",
+              "explanation": "Para avanzar con el balón hay que driblar (botarlo). Caminar con él en las manos es una violación llamada «pasos»." },
+      "en": { "question": "In basketball, a player may walk with the ball in his hands without dribbling it.",
+              "explanation": "To move with the ball a player must dribble it. Walking with it in the hands is a violation called traveling." }
+    },
+    {
+      "id": "sports-0040", "difficulty": 1, "type": "truefalse", "answer": false,
+      "es": { "question": "Un ring de boxeo tiene forma circular.",
+              "explanation": "Aunque se llame ring (anillo), es un cuadrilátero, con cuerdas en sus cuatro lados." },
+      "en": { "question": "A boxing ring is circular.",
+              "explanation": "Despite the name, a boxing ring is square, with ropes on all four sides." }
+    },
+    {
+      "id": "sports-0041", "difficulty": 1, "type": "truefalse", "answer": true,
+      "es": { "question": "La bandera de cuadros blancos y negros se agita para marcar el final de una carrera de automovilismo.",
+              "explanation": "Se muestra primero al ganador y luego a los demás pilotos a medida que terminan la carrera." },
+      "en": { "question": "The black-and-white checkered flag is waved to mark the end of a motor race.",
+              "explanation": "It is shown first to the winner and then to the other drivers as they finish the race." }
+    },
+    {
+      "id": "sports-0042", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué deporte se practica en un velódromo?",
+              "options": ["Ciclismo", "Atletismo", "Patinaje", "Automovilismo"],
+              "explanation": "El velódromo es una pista ovalada con curvas peraltadas, hecha para el ciclismo de pista." },
+      "en": { "question": "Which sport is practiced in a velodrome?",
+              "options": ["Cycling", "Athletics", "Skating", "Motor racing"],
+              "explanation": "A velodrome is an oval track with banked curves, built for track cycling." }
+    },
+    {
+      "id": "sports-0043", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué tres pruebas componen un triatlón?",
+              "options": ["Natación, ciclismo y carrera", "Remo, ciclismo y carrera", "Natación, remo y carrera", "Natación, ciclismo y patinaje"],
+              "explanation": "Un triatlón encadena natación, ciclismo y carrera a pie, en ese orden." },
+      "en": { "question": "Which three events make up a triathlon?",
+              "options": ["Swimming, cycling and running", "Rowing, cycling and running", "Swimming, rowing and running", "Swimming, cycling and skating"],
+              "explanation": "A triathlon links swimming, cycling and running, in that order." }
+    },
+    {
+      "id": "sports-0044", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué selección de rugby es famosa por realizar la haka antes de sus partidos?",
+              "options": ["Nueva Zelanda", "Sudáfrica", "Argentina", "Inglaterra"],
+              "explanation": "Nueva Zelanda, los All Blacks, hace la haka, una danza maorí de desafío, antes de cada partido." },
+      "en": { "question": "Which rugby team is famous for performing the haka before its matches?",
+              "options": ["New Zealand", "South Africa", "Argentina", "England"],
+              "explanation": "New Zealand's All Blacks perform the haka, a Māori challenge dance, before each match." }
+    },
+    {
+      "id": "sports-0045", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Con qué equipo ganó Michael Jordan seis títulos de la NBA?",
+              "options": ["Chicago Bulls", "Los Angeles Lakers", "Boston Celtics", "Detroit Pistons"],
+              "explanation": "Con los Chicago Bulls ganó tres títulos seguidos entre 1991 y 1993, y otros tres entre 1996 y 1998." },
+      "en": { "question": "With which team did Michael Jordan win six NBA titles?",
+              "options": ["Chicago Bulls", "Los Angeles Lakers", "Boston Celtics", "Detroit Pistons"],
+              "explanation": "With the Chicago Bulls he won three straight titles from 1991 to 1993, and three more from 1996 to 1998." }
+    },
+    {
+      "id": "sports-0046", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿De qué país es originario el sumo?",
+              "options": ["Japón", "Corea del Sur", "China", "Mongolia"],
+              "explanation": "El sumo es la lucha tradicional de Japón y conserva rituales de origen sintoísta." },
+      "en": { "question": "Which country is the origin of sumo wrestling?",
+              "options": ["Japan", "South Korea", "China", "Mongolia"],
+              "explanation": "Sumo is Japan's traditional wrestling and keeps rituals of Shinto origin." }
+    },
+    {
+      "id": "sports-0047", "difficulty": 1, "type": "choice",
+      "es": { "question": "En el Tour de Francia, ¿de qué color es el maillot del líder de la clasificación general?",
+              "options": ["Amarillo", "Rosa", "Rojo", "Verde"],
+              "explanation": "El maillot amarillo distingue al líder de la general. El rosa es el del líder del Giro de Italia." },
+      "en": { "question": "In the Tour de France, what color jersey does the overall race leader wear?",
+              "options": ["Yellow", "Pink", "Red", "Green"],
+              "explanation": "The yellow jersey marks the overall leader. Pink is the color of the leader of the Giro d'Italia." }
+    },
+    {
+      "id": "sports-0048", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿En qué deporte fue tricampeón mundial el brasileño Ayrton Senna, en 1988, 1990 y 1991?",
+              "options": ["Fórmula 1", "Rally", "Motociclismo", "Karting"],
+              "explanation": "Senna ganó el campeonato mundial de Fórmula 1 en 1988, 1990 y 1991. Murió en un accidente en Imola, en 1994." },
+      "en": { "question": "In which sport did Brazil's Ayrton Senna win three world titles, in 1988, 1990 and 1991?",
+              "options": ["Formula 1", "Rally", "Motorcycle racing", "Karting"],
+              "explanation": "Senna won the Formula 1 world championship in 1988, 1990 and 1991. He died in a crash at Imola in 1994." }
+    },
+    {
+      "id": "sports-0049", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Contra qué selección marcó Maradona el gol de la «Mano de Dios» en el Mundial de 1986?",
+              "options": ["Inglaterra", "Alemania Occidental", "Bélgica", "Italia"],
+              "explanation": "Fue en los cuartos de final, el 22 de junio de 1986: Argentina ganó 2-1 con la «Mano de Dios» y el «gol del siglo» de Maradona." },
+      "en": { "question": "Against which team did Maradona score the “Hand of God” goal at the 1986 World Cup?",
+              "options": ["England", "West Germany", "Belgium", "Italy"],
+              "explanation": "It came in the quarterfinal on 22 June 1986: Argentina won 2-1 with the “Hand of God” and Maradona's “Goal of the Century”." }
+    },
+    {
+      "id": "sports-0050", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué estadio de Río de Janeiro se construyó para el Mundial de fútbol de 1950?",
+              "options": ["Maracaná", "São Januário", "Engenhão", "Laranjeiras"],
+              "explanation": "El Maracaná se inauguró en 1950. Allí Uruguay venció 2-1 a Brasil en el partido decisivo del torneo, el «Maracanazo»." },
+      "en": { "question": "Which stadium in Rio de Janeiro was built for the 1950 World Cup?",
+              "options": ["Maracanã", "São Januário", "Engenhão", "Laranjeiras"],
+              "explanation": "The Maracanã opened in 1950. There Uruguay beat Brazil 2-1 in the deciding match of the tournament, the “Maracanazo”." }
+    },
+    {
+      "id": "sports-0051", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué selección ganó el Mundial de 1966, jugado en su propio país?",
+              "options": ["Inglaterra", "Alemania Occidental", "Portugal", "Brasil"],
+              "explanation": "Inglaterra venció 4-2 a Alemania Occidental en la prórroga de la final, jugada en el estadio de Wembley." },
+      "en": { "question": "Which national team won the 1966 World Cup, played on its home soil?",
+              "options": ["England", "West Germany", "Portugal", "Brazil"],
+              "explanation": "England beat West Germany 4-2 after extra time in the final, played at Wembley Stadium." }
+    },
+    {
+      "id": "sports-0052", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué selección ganó el Mundial de 1994, en Estados Unidos, la primera final decidida en una tanda de penales?",
+              "options": ["Brasil", "Italia", "Alemania", "Países Bajos"],
+              "explanation": "Brasil e Italia empataron 0-0 y Brasil ganó 3-2 en los penales, en el estadio Rose Bowl de Pasadena." },
+      "en": { "question": "Which team won the 1994 World Cup in the United States, the first final decided by a penalty shootout?",
+              "options": ["Brazil", "Italy", "Germany", "Netherlands"],
+              "explanation": "Brazil and Italy drew 0-0 and Brazil won the shootout 3-2, at the Rose Bowl in Pasadena." }
+    },
+    {
+      "id": "sports-0053", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué dos países organizaron juntos el Mundial de fútbol de 2002, el primero en Asia?",
+              "options": ["Corea del Sur y Japón", "China y Corea del Sur", "Japón y Tailandia", "China y Japón"],
+              "explanation": "Fue el primer Mundial en Asia y el primero con dos países anfitriones: Corea del Sur y Japón." },
+      "en": { "question": "Which two countries co-hosted the 2002 FIFA World Cup, the first in Asia?",
+              "options": ["South Korea and Japan", "China and South Korea", "Japan and Thailand", "China and Japan"],
+              "explanation": "It was the first World Cup in Asia and the first with two host countries: South Korea and Japan." }
+    },
+    {
+      "id": "sports-0054", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿A qué jugador italiano le dio un cabezazo Zinedine Zidane en la final del Mundial de 2006?",
+              "options": ["Marco Materazzi", "Gennaro Gattuso", "Fabio Cannavaro", "Andrea Pirlo"],
+              "explanation": "Zidane golpeó a Marco Materazzi en la prórroga y fue expulsado. Italia ganó la final en los penales." },
+      "en": { "question": "Which Italian player did Zinedine Zidane headbutt in the 2006 World Cup final?",
+              "options": ["Marco Materazzi", "Gennaro Gattuso", "Fabio Cannavaro", "Andrea Pirlo"],
+              "explanation": "Zidane headbutted Marco Materazzi in extra time and was sent off. Italy won the final on penalties." }
+    },
+    {
+      "id": "sports-0055", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué selección ganó su primer Mundial en 2010, al vencer a los Países Bajos en la final?",
+              "options": ["España", "Alemania", "Uruguay", "Brasil"],
+              "explanation": "España ganó 1-0 con gol de Andrés Iniesta en la prórroga, en Johannesburgo, y fue campeona por primera vez." },
+      "en": { "question": "Which national team won its first World Cup in 2010, beating the Netherlands in the final?",
+              "options": ["Spain", "Germany", "Uruguay", "Brazil"],
+              "explanation": "Spain won 1-0 with an Andrés Iniesta goal in extra time, in Johannesburg, and became champion for the first time." }
+    },
+    {
+      "id": "sports-0056", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Con qué marcador venció Alemania a Brasil en la semifinal del Mundial de 2014?",
+              "options": ["7-1", "6-1", "5-0", "4-0"],
+              "explanation": "Alemania ganó 7-1 en el estadio Mineirão, en Belo Horizonte, con cinco goles en los primeros 29 minutos." },
+      "en": { "question": "What was the score when Germany beat Brazil in the 2014 World Cup semifinal?",
+              "options": ["7-1", "6-1", "5-0", "4-0"],
+              "explanation": "Germany won 7-1 at the Mineirão stadium in Belo Horizonte, with five goals in the first 29 minutes." }
+    },
+    {
+      "id": "sports-0057", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué colombiano fue el máximo goleador del Mundial de 2014, con seis goles?",
+              "options": ["James Rodríguez", "Radamel Falcao", "Carlos Bacca", "Teófilo Gutiérrez"],
+              "explanation": "James Rodríguez ganó la Bota de Oro de Brasil 2014 con seis goles, y Colombia llegó a los cuartos de final." },
+      "en": { "question": "Which Colombian was the top scorer of the 2014 World Cup, with six goals?",
+              "options": ["James Rodríguez", "Radamel Falcao", "Carlos Bacca", "Teófilo Gutiérrez"],
+              "explanation": "James Rodríguez won the Golden Boot at Brazil 2014 with six goals, and Colombia reached the quarterfinals." }
+    },
+    {
+      "id": "sports-0058", "difficulty": 2, "type": "choice",
+      "es": { "question": "En 1993, Colombia ganó 5-0 como visitante en las eliminatorias para el Mundial de 1994. ¿A qué selección goleó?",
+              "options": ["Argentina", "Brasil", "Paraguay", "Perú"],
+              "explanation": "Fue en el estadio Monumental, en Buenos Aires: Colombia goleó 5-0 a Argentina, en un resultado histórico para su fútbol." },
+      "en": { "question": "In 1993, Colombia won 5-0 away in qualifying for the 1994 World Cup. Which national team did it thrash?",
+              "options": ["Argentina", "Brazil", "Paraguay", "Peru"],
+              "explanation": "It was at the Monumental stadium in Buenos Aires: Colombia thrashed Argentina 5-0, a historic result for its soccer." }
+    },
+    {
+      "id": "sports-0059", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué selección ganó la Copa América 2001?",
+              "options": ["Colombia", "Uruguay", "Perú", "Brasil"],
+              "explanation": "Colombia venció 1-0 a México en la final, en Bogotá, con gol de Iván Córdoba. Fue su primera Copa América." },
+      "en": { "question": "Which national team won the 2001 Copa América?",
+              "options": ["Colombia", "Uruguay", "Peru", "Brazil"],
+              "explanation": "Colombia beat Mexico 1-0 in the final, in Bogotá, with a goal by Iván Córdoba. It was its first Copa América." }
+    },
+    {
+      "id": "sports-0060", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué club fue el primer equipo colombiano campeón de la Copa Libertadores, en 1989?",
+              "options": ["Atlético Nacional", "Millonarios", "América de Cali", "Deportivo Cali"],
+              "explanation": "Atlético Nacional, dirigido por Francisco Maturana, venció al Olimpia de Paraguay en la final, en los penales." },
+      "en": { "question": "Which club became the first Colombian team to win the Copa Libertadores, in 1989?",
+              "options": ["Atlético Nacional", "Millonarios", "América de Cali", "Deportivo Cali"],
+              "explanation": "Atlético Nacional, coached by Francisco Maturana, beat Paraguay's Olimpia in the final on penalties." }
+    },
+    {
+      "id": "sports-0061", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué portero colombiano hizo la jugada del «escorpión» en un amistoso en Wembley, en 1995?",
+              "options": ["René Higuita", "Óscar Córdoba", "Faryd Mondragón", "Miguel Calero"],
+              "explanation": "René Higuita despejó un remate con los talones en el amistoso contra Inglaterra de 1995. La jugada es famosa como «el escorpión»." },
+      "en": { "question": "Which Colombian goalkeeper made the “scorpion kick” save in a friendly at Wembley in 1995?",
+              "options": ["René Higuita", "Óscar Córdoba", "Faryd Mondragón", "Miguel Calero"],
+              "explanation": "René Higuita cleared a shot with his heels in the 1995 friendly against England. The move is famous as “the scorpion”." }
+    },
+    {
+      "id": "sports-0062", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cuántas medallas de oro ganó el atleta estadounidense Jesse Owens en los Juegos de Berlín 1936?",
+              "options": ["4", "3", "5", "2"],
+              "explanation": "Ganó los 100 m, los 200 m, el salto de longitud y el relevo 4×100 m." },
+      "en": { "question": "How many gold medals did American athlete Jesse Owens win at the 1936 Berlin Games?",
+              "options": ["4", "3", "5", "2"],
+              "explanation": "He won the 100 m, the 200 m, the long jump and the 4×100 m relay." }
+    },
+    {
+      "id": "sports-0063", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué gimnasta obtuvo la primera nota perfecta de 10 en la historia olímpica, en Montreal 1976?",
+              "options": ["Nadia Comăneci", "Olga Korbut", "Simone Biles", "Larisa Latynina"],
+              "explanation": "La rumana Nadia Comăneci, de 14 años, sacó el 10 en las barras asimétricas. El marcador mostró 1,00 porque no estaba preparado para esa nota." },
+      "en": { "question": "Which gymnast scored the first perfect 10 in Olympic history, at Montreal 1976?",
+              "options": ["Nadia Comăneci", "Olga Korbut", "Simone Biles", "Larisa Latynina"],
+              "explanation": "Romania's Nadia Comăneci, aged 14, scored the 10 on the uneven bars. The scoreboard showed 1.00 because it was not built to display that score." }
+    },
+    {
+      "id": "sports-0064", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cuántas medallas de oro ganó el nadador estadounidense Michael Phelps en los Juegos de Pekín 2008?",
+              "options": ["8", "7", "6", "9"],
+              "explanation": "Ganó ocho oros en esos Juegos, entre pruebas individuales y de relevos." },
+      "en": { "question": "How many gold medals did American swimmer Michael Phelps win at the 2008 Beijing Games?",
+              "options": ["8", "7", "6", "9"],
+              "explanation": "He won eight golds at those Games, across individual events and relays." }
+    },
+    {
+      "id": "sports-0065", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿En qué Juegos Olímpicos jugó por primera vez el «Dream Team» de Estados Unidos, con estrellas de la NBA?",
+              "options": ["Barcelona 1992", "Seúl 1988", "Atlanta 1996", "Los Ángeles 1984"],
+              "explanation": "En Barcelona 1992 se permitió por primera vez jugar a profesionales de la NBA. El Dream Team ganó el oro con Michael Jordan, Magic Johnson y Larry Bird." },
+      "en": { "question": "At which Olympic Games did the United States' “Dream Team” of NBA stars play for the first time?",
+              "options": ["Barcelona 1992", "Seoul 1988", "Atlanta 1996", "Los Angeles 1984"],
+              "explanation": "NBA professionals were first allowed to play at Barcelona 1992. The Dream Team won gold with Michael Jordan, Magic Johnson and Larry Bird." }
+    },
+    {
+      "id": "sports-0066", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué ciudad fue la primera de América Latina en organizar unos Juegos Olímpicos, en 1968?",
+              "options": ["Ciudad de México", "Río de Janeiro", "Buenos Aires", "Bogotá"],
+              "explanation": "Ciudad de México los organizó en octubre de 1968, a más de 2000 metros de altitud, algo que influyó en las pruebas de resistencia." },
+      "en": { "question": "Which city was the first in Latin America to host the Olympic Games, in 1968?",
+              "options": ["Mexico City", "Rio de Janeiro", "Buenos Aires", "Bogotá"],
+              "explanation": "Mexico City hosted them in October 1968, at an altitude above 2,000 meters, which affected the endurance events." }
+    },
+    {
+      "id": "sports-0067", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Quién fundó el Comité Olímpico Internacional en 1894 e impulsó los Juegos Olímpicos modernos?",
+              "options": ["Pierre de Coubertin", "Avery Brundage", "Juan Antonio Samaranch", "Dimitrios Vikelas"],
+              "explanation": "El francés Pierre de Coubertin fundó el COI en 1894, y los primeros Juegos modernos se celebraron en Atenas en 1896." },
+      "en": { "question": "Who founded the International Olympic Committee in 1894 and drove the creation of the modern Olympic Games?",
+              "options": ["Pierre de Coubertin", "Avery Brundage", "Juan Antonio Samaranch", "Dimitrios Vikelas"],
+              "explanation": "France's Pierre de Coubertin founded the IOC in 1894, and the first modern Games were held in Athens in 1896." }
+    },
+    {
+      "id": "sports-0068", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿En qué disciplina ganó la colombiana Mariana Pajón sus oros olímpicos de Londres 2012 y Río 2016?",
+              "options": ["BMX", "Ciclismo de ruta", "Patinaje de velocidad", "Ciclismo de montaña"],
+              "explanation": "Mariana Pajón ganó el oro en BMX en Londres 2012 y en Río 2016. En Tokio 2020 sumó una medalla de plata." },
+      "en": { "question": "In which discipline did Colombia's Mariana Pajón win her Olympic golds at London 2012 and Rio 2016?",
+              "options": ["BMX", "Road cycling", "Speed skating", "Mountain biking"],
+              "explanation": "Mariana Pajón won gold in BMX at London 2012 and Rio 2016. At Tokyo 2020 she added a silver medal." }
+    },
+    {
+      "id": "sports-0069", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿En qué prueba ganó la colombiana Caterine Ibargüen el oro olímpico en Río 2016?",
+              "options": ["Salto triple", "Salto de longitud", "Salto alto", "Lanzamiento de jabalina"],
+              "explanation": "Caterine Ibargüen ganó el oro en salto triple en Río 2016, después de la plata de Londres 2012." },
+      "en": { "question": "In which event did Colombia's Caterine Ibargüen win Olympic gold at Rio 2016?",
+              "options": ["Triple jump", "Long jump", "High jump", "Javelin throw"],
+              "explanation": "Caterine Ibargüen won gold in the triple jump at Rio 2016, after her silver at London 2012." }
+    },
+    {
+      "id": "sports-0070", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cuántos jugadores por equipo hay en la cancha en el balonmano, incluido el portero?",
+              "options": ["7", "6", "8", "9"],
+              "explanation": "Cada equipo juega con siete jugadores: seis de campo y un portero." },
+      "en": { "question": "How many players per team are on the court in handball, including the goalkeeper?",
+              "options": ["7", "6", "8", "9"],
+              "explanation": "Each team plays with seven players: six court players and a goalkeeper." }
+    },
+    {
+      "id": "sports-0071", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿A qué altura sobre el suelo está el aro en el baloncesto?",
+              "options": ["3,05 metros", "2,75 metros", "3,35 metros", "2,60 metros"],
+              "explanation": "El aro está a 3,05 metros (10 pies) del suelo, tanto en la NBA como en el baloncesto internacional." },
+      "en": { "question": "How high above the floor is the rim in basketball?",
+              "options": ["3.05 meters", "2.75 meters", "3.35 meters", "2.60 meters"],
+              "explanation": "The rim is 3.05 meters (10 feet) above the floor, in both the NBA and international basketball." }
+    },
+    {
+      "id": "sports-0072", "difficulty": 2, "type": "choice",
+      "es": { "question": "En tenis, ¿cómo se llama el empate a 40 puntos dentro de un juego?",
+              "options": ["Iguales", "Ventaja", "Tie-break", "Doble falta"],
+              "explanation": "A 40-40 se dice «iguales» (deuce, en inglés). Luego hay que ganar dos puntos seguidos para llevarse el juego." },
+      "en": { "question": "In tennis, what is a tie at 40-40 within a game called?",
+              "options": ["Deuce", "Advantage", "Tie-break", "Double fault"],
+              "explanation": "At 40-40 the score is called deuce. A player must then win two points in a row to take the game." }
+    },
+    {
+      "id": "sports-0073", "difficulty": 2, "type": "choice",
+      "es": { "question": "En el golf, ¿cómo se llama terminar un hoyo con un golpe menos que el par?",
+              "options": ["Birdie", "Bogey", "Par", "Chip"],
+              "explanation": "Un birdie es un golpe bajo el par del hoyo. Un bogey es lo contrario: un golpe sobre el par." },
+      "en": { "question": "In golf, what is it called to finish a hole one stroke under par?",
+              "options": ["Birdie", "Bogey", "Par", "Chip"],
+              "explanation": "A birdie is one stroke under the par of the hole. A bogey is the opposite: one stroke over par." }
+    },
+    {
+      "id": "sports-0074", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cuántos asaltos tiene como máximo una pelea profesional por un título mundial de boxeo?",
+              "options": ["12", "10", "15", "8"],
+              "explanation": "En el boxeo masculino, los combates por títulos mundiales se pactan a un máximo de 12 asaltos de tres minutos desde los años ochenta; antes eran de 15." },
+      "en": { "question": "What is the maximum number of rounds in a professional world title boxing fight?",
+              "options": ["12", "10", "15", "8"],
+              "explanation": "In men's boxing, world title fights have been capped at 12 three-minute rounds since the 1980s; before that they went up to 15." }
+    },
+    {
+      "id": "sports-0075", "difficulty": 2, "type": "choice",
+      "es": { "question": "En el fútbol americano, ¿cuántos puntos vale un touchdown?",
+              "options": ["6", "7", "3", "5"],
+              "explanation": "Un touchdown vale 6 puntos. Después, el equipo puede intentar un punto extra (1) o una conversión de 2 puntos." },
+      "en": { "question": "In American football, how many points is a touchdown worth?",
+              "options": ["6", "7", "3", "5"],
+              "explanation": "A touchdown is worth 6 points. The team can then try for an extra point (1) or a two-point conversion." }
+    },
+    {
+      "id": "sports-0076", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Sobre qué superficie se juega Roland Garros, uno de los cuatro torneos de Grand Slam de tenis?",
+              "options": ["Arcilla (tierra batida)", "Césped", "Cancha dura", "Alfombra sintética"],
+              "explanation": "Roland Garros, en París, se juega sobre arcilla. Es el único Grand Slam en esa superficie." },
+      "en": { "question": "On what surface is the French Open (Roland Garros), one of tennis's four Grand Slam tournaments, played?",
+              "options": ["Clay", "Grass", "Hard court", "Synthetic carpet"],
+              "explanation": "The French Open, at Roland Garros in Paris, is played on clay. It is the only Grand Slam on that surface." }
+    },
+    {
+      "id": "sports-0077", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué deporte de invierno se juega deslizando piedras de granito sobre el hielo mientras se barre su trayectoria?",
+              "options": ["Curling", "Biatlón", "Skeleton", "Luge"],
+              "explanation": "En el curling, dos equipos lanzan piedras hacia una diana y sus compañeros barren el hielo para guiarlas." },
+      "en": { "question": "Which winter sport is played by sliding granite stones across the ice while sweeping their path?",
+              "options": ["Curling", "Biathlon", "Skeleton", "Luge"],
+              "explanation": "In curling, two teams slide stones toward a target while teammates sweep the ice to guide them." }
+    },
+    {
+      "id": "sports-0078", "difficulty": 2, "type": "truefalse", "answer": true,
+      "es": { "question": "En el rugby, el balón solo se puede pasar con las manos hacia atrás o hacia los lados.",
+              "explanation": "Un pase hacia adelante con la mano es falta. Para ganar terreno, los jugadores corren con el balón o lo patean." },
+      "en": { "question": "In rugby, the ball may only be passed by hand backward or sideways.",
+              "explanation": "A forward pass by hand is a foul. To gain ground, players run with the ball or kick it." }
+    },
+    {
+      "id": "sports-0079", "difficulty": 2, "type": "truefalse", "answer": true,
+      "es": { "question": "En el voleibol de playa, cada equipo juega con dos jugadores.",
+              "explanation": "Cada equipo tiene solo dos jugadores en la arena, sin suplentes." },
+      "en": { "question": "In beach volleyball, each team plays with two players.",
+              "explanation": "Each team has just two players on the sand, with no substitutes." }
+    },
+    {
+      "id": "sports-0080", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Quién inventó el baloncesto en 1891?",
+              "options": ["James Naismith", "Walter Camp", "Abner Doubleday", "Alexander Cartwright"],
+              "explanation": "El canadiense James Naismith lo inventó en Springfield, Massachusetts, y colgó cestas de duraznos como aros." },
+      "en": { "question": "Who invented basketball in 1891?",
+              "options": ["James Naismith", "Walter Camp", "Abner Doubleday", "Alexander Cartwright"],
+              "explanation": "The Canadian James Naismith invented it in Springfield, Massachusetts, and hung peach baskets as hoops." }
+    },
+    {
+      "id": "sports-0081", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué colombiano ganó el Tour de Francia de 2019, la primera victoria de un latinoamericano?",
+              "options": ["Egan Bernal", "Nairo Quintana", "Rigoberto Urán", "Esteban Chaves"],
+              "explanation": "Egan Bernal ganó el Tour de 2019 con 22 años y fue el primer colombiano y el primer latinoamericano en lograrlo." },
+      "en": { "question": "Which Colombian won the 2019 Tour de France, the first victory by a Latin American?",
+              "options": ["Egan Bernal", "Nairo Quintana", "Rigoberto Urán", "Esteban Chaves"],
+              "explanation": "Egan Bernal won the 2019 Tour aged 22 and was the first Colombian and the first Latin American to do it." }
+    },
+    {
+      "id": "sports-0082", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿En qué año ganó el colombiano Nairo Quintana el Giro de Italia?",
+              "options": ["2014", "2016", "2013", "2015"],
+              "explanation": "Nairo Quintana ganó el Giro de Italia de 2014. En 2016 ganó la Vuelta a España." },
+      "en": { "question": "In what year did Colombia's Nairo Quintana win the Giro d'Italia?",
+              "options": ["2014", "2016", "2013", "2015"],
+              "explanation": "Nairo Quintana won the 2014 Giro d'Italia. In 2016 he won the Vuelta a España." }
+    },
+    {
+      "id": "sports-0083", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué famosa carrera ganó el piloto colombiano Juan Pablo Montoya en el año 2000, en su primera participación?",
+              "options": ["Las 500 Millas de Indianápolis", "Las 500 Millas de Daytona", "Las 24 Horas de Le Mans", "El Gran Premio de Canadá"],
+              "explanation": "Montoya ganó las 500 Millas de Indianápolis en 2000, en su debut en esa carrera, y volvió a ganarlas en 2015." },
+      "en": { "question": "Which famous race did Colombian driver Juan Pablo Montoya win in 2000, on his first attempt?",
+              "options": ["The Indianapolis 500", "The Daytona 500", "The Le Mans 24 Hours", "The Canadian Grand Prix"],
+              "explanation": "Montoya won the Indianapolis 500 in 2000, on his debut in the race, and won it again in 2015." }
+    },
+    {
+      "id": "sports-0084", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué deporte fue declarado por ley deporte nacional de Colombia?",
+              "options": ["Tejo", "Fútbol", "Patinaje", "Ciclismo"],
+              "explanation": "El tejo, de origen indígena, consiste en lanzar un disco metálico para hacer estallar mechas con pólvora. La Ley 613 de 2000 lo declaró deporte nacional." },
+      "en": { "question": "Which sport was declared Colombia's national sport by law?",
+              "options": ["Tejo", "Soccer", "Roller skating", "Cycling"],
+              "explanation": "Tejo, of Indigenous origin, involves throwing a metal disc to make gunpowder packets explode. Law 613 of 2000 declared it the national sport." }
+    },
+    {
+      "id": "sports-0085", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Qué selección ganó el Mundial de 1954, en Suiza, al vencer 3-2 a la gran favorita, Hungría?",
+              "options": ["Alemania Occidental", "Uruguay", "Brasil", "Austria"],
+              "explanation": "Alemania Occidental remontó un 0-2 inicial y ganó 3-2 la final, en Berna, en el llamado «Milagro de Berna»." },
+      "en": { "question": "Which team won the 1954 World Cup in Switzerland, beating the heavy favorite Hungary 3-2?",
+              "options": ["West Germany", "Uruguay", "Brazil", "Austria"],
+              "explanation": "West Germany came back from 0-2 down to win the final 3-2, in Bern, in the so-called “Miracle of Bern”." }
+    },
+    {
+      "id": "sports-0086", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Qué selección ganó dos Mundiales seguidos, en 1934 y 1938?",
+              "options": ["Italia", "Hungría", "Uruguay", "Francia"],
+              "explanation": "Italia ganó en 1934, como anfitriona, y en 1938, en Francia. Fue la primera selección en ganar dos Mundiales." },
+      "en": { "question": "Which national team won two World Cups in a row, in 1934 and 1938?",
+              "options": ["Italy", "Hungary", "Uruguay", "France"],
+              "explanation": "Italy won in 1934, as the host, and in 1938, in France. It was the first national team to win two World Cups." }
+    },
+    {
+      "id": "sports-0087", "difficulty": 3, "type": "choice",
+      "es": { "question": "En el Mundial de 1962, ¿qué colombiano marcó un gol olímpico (directo de tiro de esquina) al arquero soviético Lev Yashin?",
+              "options": ["Marcos Coll", "Francisco Zuluaga", "Willington Ortiz", "Carlos Valderrama"],
+              "explanation": "Marcos Coll anotó directo de córner a Yashin en el empate 4-4 de Colombia con la Unión Soviética, en Arica, Chile." },
+      "en": { "question": "At the 1962 World Cup, which Colombian scored an “Olympic goal” (straight from a corner kick) past Soviet goalkeeper Lev Yashin?",
+              "options": ["Marcos Coll", "Francisco Zuluaga", "Willington Ortiz", "Carlos Valderrama"],
+              "explanation": "Marcos Coll scored straight from a corner past Yashin in Colombia's 4-4 draw with the Soviet Union, in Arica, Chile." }
+    },
+    {
+      "id": "sports-0088", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Qué club colombiano ganó la Copa Libertadores de 2004, al vencer a Boca Juniors en los penales?",
+              "options": ["Once Caldas", "Deportivo Cali", "Atlético Junior", "Independiente Santa Fe"],
+              "explanation": "Once Caldas, de Manizales, derrotó a Boca Juniors en una final definida por penales." },
+      "en": { "question": "Which Colombian club won the 2004 Copa Libertadores, beating Boca Juniors on penalties?",
+              "options": ["Once Caldas", "Deportivo Cali", "Atlético Junior", "Independiente Santa Fe"],
+              "explanation": "Once Caldas, from Manizales, beat Boca Juniors in a final decided on penalties." }
+    },
+    {
+      "id": "sports-0089", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Qué ciudad fue la primera en organizar tanto unos Juegos Olímpicos de verano como unos de invierno?",
+              "options": ["Pekín", "Tokio", "Innsbruck", "Oslo"],
+              "explanation": "Pekín organizó los Juegos de verano en 2008 y los de invierno en 2022." },
+      "en": { "question": "Which city was the first to host both a Summer and a Winter Olympic Games?",
+              "options": ["Beijing", "Tokyo", "Innsbruck", "Oslo"],
+              "explanation": "Beijing hosted the Summer Games in 2008 and the Winter Games in 2022." }
+    },
+    {
+      "id": "sports-0090", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Qué maratonista ganó el maratón olímpico de Roma 1960 corriendo descalzo?",
+              "options": ["Abebe Bikila", "Haile Gebrselassie", "Emil Zátopek", "Kipchoge Keino"],
+              "explanation": "El etíope Abebe Bikila ganó descalzo en Roma 1960 y repitió el oro en Tokio 1964, esta vez con zapatillas." },
+      "en": { "question": "Which runner won the Olympic marathon in Rome in 1960 running barefoot?",
+              "options": ["Abebe Bikila", "Haile Gebrselassie", "Emil Zátopek", "Kipchoge Keino"],
+              "explanation": "Ethiopia's Abebe Bikila won barefoot in Rome in 1960 and repeated the gold in Tokyo in 1964, this time wearing shoes." }
+    },
+    {
+      "id": "sports-0091", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿En qué Juegos Olímpicos se hizo por primera vez el relevo de la antorcha desde Olimpia hasta la ciudad sede?",
+              "options": ["Berlín 1936", "Atenas 1896", "París 1924", "Londres 1948"],
+              "explanation": "El relevo de la antorcha se estrenó en Berlín 1936. La llama se enciende en Olimpia, Grecia, y viaja hasta la ciudad sede." },
+      "en": { "question": "At which Olympic Games was the torch relay from Olympia to the host city held for the first time?",
+              "options": ["Berlin 1936", "Athens 1896", "Paris 1924", "London 1948"],
+              "explanation": "The torch relay debuted at Berlin 1936. The flame is lit at Olympia, in Greece, and travels to the host city." }
+    },
+    {
+      "id": "sports-0092", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Quién consiguió la primera medalla de oro olímpica de Colombia, en los Juegos de Sídney 2000?",
+              "options": ["María Isabel Urrutia", "Mariana Pajón", "Caterine Ibargüen", "Yuri Alvear"],
+              "explanation": "María Isabel Urrutia ganó el oro en levantamiento de pesas (75 kg) en Sídney 2000, el primero de Colombia en unos Juegos." },
+      "en": { "question": "Who won Colombia's first Olympic gold medal, at the 2000 Sydney Games?",
+              "options": ["María Isabel Urrutia", "Mariana Pajón", "Caterine Ibargüen", "Yuri Alvear"],
+              "explanation": "María Isabel Urrutia won gold in weightlifting (75 kg) at Sydney 2000, Colombia's first at any Games." }
+    },
+    {
+      "id": "sports-0093", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Quién ganó la carrera en ruta (en línea) masculina de ciclismo en los Juegos de Tokio 2020?",
+              "options": ["Richard Carapaz", "Wout van Aert", "Tadej Pogačar", "Julian Alaphilippe"],
+              "explanation": "El ecuatoriano Richard Carapaz ganó la carrera en ruta, que se corrió en julio de 2021. Van Aert fue segundo y Pogačar, tercero." },
+      "en": { "question": "Who won the men's road race at the Tokyo 2020 Games?",
+              "options": ["Richard Carapaz", "Wout van Aert", "Tadej Pogačar", "Julian Alaphilippe"],
+              "explanation": "Ecuador's Richard Carapaz won the road race, held in July 2021. Van Aert took silver and Pogačar bronze." }
+    },
+    {
+      "id": "sports-0094", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Quién fue el primer colombiano en ganar una gran vuelta, la Vuelta a España de 1987?",
+              "options": ["Lucho Herrera", "Fabio Parra", "Martín Ramírez", "Rigoberto Urán"],
+              "explanation": "Luis «Lucho» Herrera ganó la Vuelta a España de 1987 y fue el primer colombiano en ganar una de las tres grandes vueltas." },
+      "en": { "question": "Who was the first Colombian to win a Grand Tour, the 1987 Vuelta a España?",
+              "options": ["Lucho Herrera", "Fabio Parra", "Martín Ramírez", "Rigoberto Urán"],
+              "explanation": "Luis “Lucho” Herrera won the 1987 Vuelta a España and was the first Colombian to win one of the three Grand Tours." }
+    },
+    {
+      "id": "sports-0095", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Qué boxeador, conocido como «Kid Pambelé», fue el primer campeón mundial de boxeo de Colombia, en 1972?",
+              "options": ["Antonio Cervantes", "Rodrigo Valdez", "Miguel Lora", "Fidel Bassa"],
+              "explanation": "Antonio Cervantes ganó el título superligero de la AMB en 1972, en Panamá. Valdez, Lora y Bassa fueron campeones años después." },
+      "en": { "question": "Which boxer, known as “Kid Pambelé”, became Colombia's first world boxing champion, in 1972?",
+              "options": ["Antonio Cervantes", "Rodrigo Valdez", "Miguel Lora", "Fidel Bassa"],
+              "explanation": "Antonio Cervantes won the WBA junior welterweight title in 1972, in Panama. Valdez, Lora and Bassa became champions years later." }
+    },
+    {
+      "id": "sports-0096", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿En qué ciudad se disputó en 1974 la pelea «Rumble in the Jungle», entre Muhammad Ali y George Foreman?",
+              "options": ["Kinshasa", "Lagos", "Nairobi", "Accra"],
+              "explanation": "Se disputó en Kinshasa, entonces capital de Zaire (hoy República Democrática del Congo). Ali ganó por nocaut en el octavo asalto." },
+      "en": { "question": "In which city was the 1974 “Rumble in the Jungle” fight between Muhammad Ali and George Foreman held?",
+              "options": ["Kinshasa", "Lagos", "Nairobi", "Accra"],
+              "explanation": "It was held in Kinshasa, then the capital of Zaire (today the Democratic Republic of the Congo). Ali won by knockout in the eighth round." }
+    },
+    {
+      "id": "sports-0097", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Cuánto mide de largo una cancha de tenis, de línea de fondo a línea de fondo?",
+              "options": ["23,77 metros", "21,34 metros", "25,91 metros", "27,43 metros"],
+              "explanation": "La cancha mide 23,77 metros (78 pies) de largo, y 8,23 m de ancho en individuales y 10,97 m en dobles." },
+      "en": { "question": "How long is a tennis court, from baseline to baseline?",
+              "options": ["23.77 meters", "21.34 meters", "25.91 meters", "27.43 meters"],
+              "explanation": "The court is 23.77 meters (78 feet) long, and 8.23 m wide for singles and 10.97 m for doubles." }
+    },
+    {
+      "id": "sports-0098", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Cuáles son las medidas reglamentarias de un arco de fútbol (ancho × alto)?",
+              "options": ["7,32 × 2,44 metros", "7,50 × 2,50 metros", "7,00 × 2,40 metros", "8,00 × 2,60 metros"],
+              "explanation": "El arco mide 7,32 metros de ancho (8 yardas) por 2,44 de alto (8 pies), medidas fijadas por el reglamento." },
+      "en": { "question": "What are the official measurements of a soccer goal (width × height)?",
+              "options": ["7.32 × 2.44 meters", "7.50 × 2.50 meters", "7.00 × 2.40 meters", "8.00 × 2.60 meters"],
+              "explanation": "The goal is 7.32 meters wide (8 yards) by 2.44 high (8 feet), as set by the Laws of the Game." }
+    },
+    {
+      "id": "sports-0099", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿A qué altura se coloca la red en el voleibol de sala masculino?",
+              "options": ["2,43 metros", "2,24 metros", "2,50 metros", "2,60 metros"],
+              "explanation": "En el voleibol de sala masculino la red está a 2,43 metros, y en el femenino, a 2,24." },
+      "en": { "question": "How high is the net set in men's indoor volleyball?",
+              "options": ["2.43 meters", "2.24 meters", "2.50 meters", "2.60 meters"],
+              "explanation": "In men's indoor volleyball the net is 2.43 meters high, and in women's, 2.24." }
+    },
+    {
+      "id": "sports-0100", "difficulty": 3, "type": "choice",
+      "es": { "question": "En golf, ¿cómo se llama terminar un hoyo con tres golpes menos que el par?",
+              "options": ["Albatros", "Eagle", "Cóndor", "Birdie"],
+              "explanation": "Un albatros (o «doble eagle») es terminar un hoyo tres golpes bajo el par, algo muy raro. Un eagle son dos bajo el par." },
+      "en": { "question": "In golf, what is it called to finish a hole three strokes under par?",
+              "options": ["Albatross", "Eagle", "Condor", "Birdie"],
+              "explanation": "An albatross (called a “double eagle” in the United States) is three strokes under par, which is very rare. An eagle is two under." }
+    }
+  ]
+}

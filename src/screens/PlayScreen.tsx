@@ -1,8 +1,9 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { playTone } from '../core/sound';
 import { getStartLevel } from '../data/levels';
+import { highestLevelReached } from '../data/results';
 import { DEFAULT_SETTINGS, getSettings, updateSettings, useSettings } from '../data/settings';
 import { getGame } from '../games/registry';
 import { LuzScope } from '../games/shared/luz/LuzScope';
@@ -12,6 +13,7 @@ import { recordGameResult } from '../play/recordGameResult';
 import { requestSync } from '../sync';
 import { IntroHeader } from './play/IntroHeader';
 import { Instructions } from './play/Instructions';
+import { LevelPicker } from './play/LevelPicker';
 import { PauseOverlay } from './play/PauseOverlay';
 import { ResultView } from './play/ResultView';
 import { ResumeCountdown } from './play/ResumeCountdown';
@@ -41,10 +43,16 @@ function GameNotFound() {
   );
 }
 
-async function markInstructionsSeen(gameId: string): Promise<void> {
+/**
+ * What «instructions seen» is stored under: the shared instructions key when several games use the same
+ * instructions (the 14 quiz games), so they show only once; otherwise the game id, as it always was.
+ */
+const instructionsSeenKey = (game: GameDefinition) => game.instructionsKey ?? game.id;
+
+async function markInstructionsSeen(key: string): Promise<void> {
   const settings = await getSettings();
-  if (!settings.seenInstructions.includes(gameId)) {
-    await updateSettings({ seenInstructions: [...settings.seenInstructions, gameId] });
+  if (!settings.seenInstructions.includes(key)) {
+    await updateSettings({ seenInstructions: [...settings.seenInstructions, key] });
   }
 }
 
@@ -73,7 +81,11 @@ function PlaySession({ game, daily }: { game: GameDefinition; daily: string | nu
   const location = useLocation();
   const { sound } = useSettings();
   const [phase, setPhase] = useState<Phase>({ kind: 'loading' });
+  // The level the app suggests (it adapts it after each game), the one chosen for the next game, and the highest one
+  // reached so far, up to which a level can be chosen outside the daily training.
+  const [suggestedLevel, setSuggestedLevel] = useState(1);
   const [startLevel, setStartLevel] = useState(1);
+  const [highestLevel, setHighestLevel] = useState(1);
   const [round, setRound] = useState(0);
   const [pause, setPause] = useState<Pause>('off');
   const paused = pause !== 'off';
@@ -89,16 +101,19 @@ function PlaySession({ game, daily }: { game: GameDefinition; daily: string | nu
     void Promise.all([
       getStartLevel(game.id).catch(() => 1),
       getSettings().catch(() => DEFAULT_SETTINGS),
-    ]).then(([level, settings]) => {
+      highestLevelReached(game.id).catch(() => 0),
+    ]).then(([level, settings, highest]) => {
       if (!alive) return;
-      const firstTime = !settings.seenInstructions.includes(game.id);
+      const firstTime = !settings.seenInstructions.includes(instructionsSeenKey(game));
+      setSuggestedLevel(level);
       setStartLevel(level);
+      setHighestLevel(Math.max(level, highest));
       setPhase({ kind: 'intro', showInstructions: firstTime, firstTime });
     });
     return () => {
       alive = false;
     };
-  }, [game.id]);
+  }, [game]);
 
   const pauseGame = useCallback(() => {
     setPausedHud(hudRef.current);
@@ -116,6 +131,14 @@ function PlaySession({ game, daily }: { game: GameDefinition; daily: string | nu
     return () => document.removeEventListener('visibilitychange', onVisibility);
   }, [isPlaying, pauseGame]);
 
+  // A game can leave the page scrolled down (a long quiz question with its explanation, then «Ver resultado» at the
+  // bottom), so every result opens at the top, with the title and the score in view. Before paint, so the result is never
+  // drawn scrolled; and a jump, not a glide: it is a new screen, and nothing moves for whoever asked for less motion.
+  const isResult = phase.kind === 'result';
+  useLayoutEffect(() => {
+    if (isResult) window.scrollTo({ top: 0, behavior: 'instant' });
+  }, [isResult]);
+
   // The game runs again and gets the focus back: it was on the pause sheet, which is gone.
   const resumeGame = useCallback(() => {
     setPause('off');
@@ -130,7 +153,7 @@ function PlaySession({ game, daily }: { game: GameDefinition; daily: string | nu
   }, []);
 
   const handleStart = () => {
-    if (phase.kind === 'intro' && phase.firstTime) void markInstructionsSeen(game.id);
+    if (phase.kind === 'intro' && phase.firstTime) void markInstructionsSeen(instructionsSeenKey(game));
     startPlaying();
   };
 
@@ -138,8 +161,11 @@ function PlaySession({ game, daily }: { game: GameDefinition; daily: string | nu
   const save = useCallback(
     async (result: GameResult, resultId: string) => {
       try {
-        const recorded = await recordGameResult({ game, startLevel, result, daily, resultId });
-        setStartLevel(recorded.newStartLevel);
+        const recorded = await recordGameResult({ game, startLevel, suggestedLevel, result, daily, resultId });
+        // Playing again keeps a level chosen for practice; at the suggested level, it follows the new suggestion.
+        if (startLevel === suggestedLevel) setStartLevel(recorded.newStartLevel);
+        setSuggestedLevel(recorded.newStartLevel);
+        setHighestLevel((h) => Math.max(h, result.levelReached, recorded.newStartLevel));
         const nextGameId = recorded.plan?.gameIds.find((id) => !recorded.plan?.completed.includes(id)) ?? null;
         const progress = { done: recorded.plan?.completed.length ?? 0, total: recorded.plan?.gameIds.length ?? 0 };
         setPhase({ kind: 'result', result, previousBest: recorded.previousBest, nextGameId, progress });
@@ -150,7 +176,7 @@ function PlaySession({ game, daily }: { game: GameDefinition; daily: string | nu
         setPhase({ kind: 'saveError', result, resultId });
       }
     },
-    [game, startLevel, daily],
+    [game, startLevel, suggestedLevel, daily],
   );
 
   const handleFinish = useCallback(
@@ -163,9 +189,12 @@ function PlaySession({ game, daily }: { game: GameDefinition; daily: string | nu
     [save, sound],
   );
 
+  // A quiz game belongs to the Quiz tab, so a deep link with no history lands there; the training games go to Games.
+  const home = game.quiz ? '/quiz' : '/games';
+
   // Free play goes back in history (the catalog keeps its filter in the address); a deep link has none.
   const leaveFreePlay = () => {
-    if (location.key === 'default') navigate('/games');
+    if (location.key === 'default') navigate(home);
     else navigate(-1);
   };
   const exit = () => {
@@ -189,6 +218,15 @@ function PlaySession({ game, daily }: { game: GameDefinition; daily: string | nu
             <IntroHeader area={game.area} onExit={exit} />
             <h1 className={styles.introTitle}>{title}</h1>
             <p className={styles.description}>{t(`games.${game.id}.description`)}</p>
+            {daily === null && highestLevel > 1 && (
+              <LevelPicker
+                highest={highestLevel}
+                chosen={startLevel}
+                suggested={suggestedLevel}
+                note={game.describeLevel?.(startLevel, t)}
+                onChoose={setStartLevel}
+              />
+            )}
             <div className={styles.introActions}>
               <button className={styles.primary} onClick={handleStart}>
                 {t('common.start')}

@@ -10,6 +10,7 @@
   --success-strong: #0f7a49;
   --danger: #c62f4e;
   --danger-text: #ffffff;
+  --accent-mark: #c97500;
   --border: rgba(23, 26, 46, 0.09);
   --glow: rgba(245, 160, 0, 0.4);
   --area-memory: #a35f00;
@@ -17,6 +18,8 @@
   --area-speed: #b0287f;
   --area-flexibility: #6247d1;
   --area-math: #2a7f1a;
+  --area-trivia: #b8461b;
+  --area-accounting: #0b6bcb;
   --card-bg: #ffffff;
   --card-shadow: 0 4px 16px rgba(23, 26, 46, 0.07), inset 0 0 0 1px rgba(23, 26, 46, 0.05);
   --nav-bg: #ffffff;
@@ -40,6 +43,7 @@
     --success-strong: #4dffa6;
     --danger: #ff5d7a;
     --danger-text: #0b0d1a;
+    --accent-mark: #ffb52e;
     --border: rgba(255, 255, 255, 0.1);
     --glow: rgba(255, 181, 46, 0.6);
     --area-memory: #ffb52e;
@@ -47,6 +51,8 @@
     --area-speed: #ff5fd2;
     --area-flexibility: #a98bff;
     --area-math: #8dff6a;
+    --area-trivia: #ff7b45;
+    --area-accounting: #3399ff;
     --card-bg: rgba(255, 255, 255, 0.045);
     --card-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.09);
     --nav-bg: rgba(16, 19, 40, 0.94);
@@ -70,6 +76,7 @@
   --success-strong: #0f7a49;
   --danger: #c62f4e;
   --danger-text: #ffffff;
+  --accent-mark: #c97500;
   --border: rgba(23, 26, 46, 0.09);
   --glow: rgba(245, 160, 0, 0.4);
   --area-memory: #a35f00;
@@ -77,6 +84,8 @@
   --area-speed: #b0287f;
   --area-flexibility: #6247d1;
   --area-math: #2a7f1a;
+  --area-trivia: #b8461b;
+  --area-accounting: #0b6bcb;
   --card-bg: #ffffff;
   --card-shadow: 0 4px 16px rgba(23, 26, 46, 0.07), inset 0 0 0 1px rgba(23, 26, 46, 0.05);
   --nav-bg: #ffffff;
@@ -99,6 +108,7 @@
   --success-strong: #4dffa6;
   --danger: #ff5d7a;
   --danger-text: #0b0d1a;
+  --accent-mark: #ffb52e;
   --border: rgba(255, 255, 255, 0.1);
   --glow: rgba(255, 181, 46, 0.6);
   --area-memory: #ffb52e;
@@ -106,6 +116,8 @@
   --area-speed: #ff5fd2;
   --area-flexibility: #a98bff;
   --area-math: #8dff6a;
+  --area-trivia: #ff7b45;
+  --area-accounting: #3399ff;
   --card-bg: rgba(255, 255, 255, 0.045);
   --card-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.09);
   --nav-bg: rgba(16, 19, 40, 0.94);

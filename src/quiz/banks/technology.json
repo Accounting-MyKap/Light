@@ -1,0 +1,861 @@
+{
+  "category": "technology",
+  "questions": [
+    {
+      "id": "technology-0001", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué empresa lanzó el primer iPhone, en 2007?",
+              "options": ["Apple", "Samsung", "Nokia", "Microsoft"],
+              "explanation": "Apple presentó el primer iPhone en 2007, bajo la dirección de Steve Jobs." },
+      "en": { "question": "Which company launched the first iPhone, in 2007?",
+              "options": ["Apple", "Samsung", "Nokia", "Microsoft"],
+              "explanation": "Apple introduced the first iPhone in 2007, under the leadership of Steve Jobs." }
+    },
+    {
+      "id": "technology-0002", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Quién fundó Microsoft junto con Paul Allen?",
+              "options": ["Bill Gates", "Steve Jobs", "Mark Zuckerberg", "Jeff Bezos"],
+              "explanation": "Bill Gates y Paul Allen fundaron Microsoft en 1975. Jobs cofundó Apple, Zuckerberg Facebook y Bezos Amazon." },
+      "en": { "question": "Who founded Microsoft together with Paul Allen?",
+              "options": ["Bill Gates", "Steve Jobs", "Mark Zuckerberg", "Jeff Bezos"],
+              "explanation": "Bill Gates and Paul Allen founded Microsoft in 1975. Jobs co-founded Apple, Zuckerberg Facebook and Bezos Amazon." }
+    },
+    {
+      "id": "technology-0003", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué símbolo separa el nombre de usuario del dominio en una dirección de correo electrónico?",
+              "options": ["@", "#", "&", "$"],
+              "explanation": "La arroba (@) va entre el usuario y el dominio, como en nombre@ejemplo.com." },
+      "en": { "question": "Which symbol separates the username from the domain in an email address?",
+              "options": ["@", "#", "&", "$"],
+              "explanation": "The at sign (@) goes between the username and the domain, as in name@example.com." }
+    },
+    {
+      "id": "technology-0004", "difficulty": 1, "type": "truefalse", "answer": false,
+      "es": { "question": "El teclado de un computador es un dispositivo de salida.",
+              "explanation": "Es un dispositivo de entrada, porque envía datos al computador. La pantalla y la impresora son de salida." },
+      "en": { "question": "A computer keyboard is an output device.",
+              "explanation": "It is an input device, because it sends data to the computer. The screen and the printer are output devices." }
+    },
+    {
+      "id": "technology-0005", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué significan las siglas USB?",
+              "options": ["Universal Serial Bus", "Unified System Board", "Ultra Speed Broadcast", "Universal Storage Block"],
+              "explanation": "USB significa Universal Serial Bus, un estándar para conectar dispositivos al computador y alimentarlos." },
+      "en": { "question": "What does the acronym USB stand for?",
+              "options": ["Universal Serial Bus", "Unified System Board", "Ultra Speed Broadcast", "Universal Storage Block"],
+              "explanation": "USB stands for Universal Serial Bus, a standard for connecting devices to a computer and powering them." }
+    },
+    {
+      "id": "technology-0006", "difficulty": 2, "type": "truefalse", "answer": true,
+      "es": { "question": "Un byte equivale a 8 bits.",
+              "explanation": "Un byte agrupa 8 bits, que permiten representar 256 valores distintos (2 elevado a 8)." },
+      "en": { "question": "A byte is equal to 8 bits.",
+              "explanation": "A byte groups 8 bits, which can represent 256 different values (2 to the power of 8)." }
+    },
+    {
+      "id": "technology-0007", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Quién creó la World Wide Web?",
+              "options": ["Tim Berners-Lee", "Vint Cerf", "Bill Gates", "Linus Torvalds"],
+              "explanation": "Tim Berners-Lee la propuso en 1989 mientras trabajaba en el CERN. Vint Cerf es coautor del protocolo TCP/IP, no de la Web." },
+      "en": { "question": "Who created the World Wide Web?",
+              "options": ["Tim Berners-Lee", "Vint Cerf", "Bill Gates", "Linus Torvalds"],
+              "explanation": "Tim Berners-Lee proposed it in 1989 while working at CERN. Vint Cerf is a co-designer of the TCP/IP protocol, not of the Web." }
+    },
+    {
+      "id": "technology-0008", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué lenguaje se usa para dar estructura (títulos, párrafos, enlaces) a una página web?",
+              "options": ["HTML", "CSS", "SQL", "Python"],
+              "explanation": "HTML define la estructura y el contenido de la página. CSS se encarga de su aspecto visual." },
+      "en": { "question": "Which language is used to give a web page its structure (headings, paragraphs, links)?",
+              "options": ["HTML", "CSS", "SQL", "Python"],
+              "explanation": "HTML defines the structure and content of the page. CSS takes care of its visual appearance." }
+    },
+    {
+      "id": "technology-0009", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿A quién se considera la primera programadora de la historia, por su algoritmo para la máquina analítica de Babbage?",
+              "options": ["Ada Lovelace", "Grace Hopper", "Hedy Lamarr", "Margaret Hamilton"],
+              "explanation": "Ada Lovelace publicó en 1843 un algoritmo para la máquina analítica de Charles Babbage, considerado el primer programa de computador." },
+      "en": { "question": "Who is considered the first computer programmer, for her algorithm for Babbage's Analytical Engine?",
+              "options": ["Ada Lovelace", "Grace Hopper", "Hedy Lamarr", "Margaret Hamilton"],
+              "explanation": "Ada Lovelace published an algorithm for Charles Babbage's Analytical Engine in 1843, regarded as the first computer program." }
+    },
+    {
+      "id": "technology-0010", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Cómo se llamaba la red precursora de internet, financiada por el Departamento de Defensa de EE. UU. y activa desde 1969?",
+              "options": ["ARPANET", "NSFNET", "USENET", "BITNET"],
+              "explanation": "ARPANET conectó sus primeros nodos en 1969. NSFNET, USENET y BITNET fueron redes posteriores, de los años ochenta." },
+      "en": { "question": "What was the precursor network of the internet, funded by the U.S. Department of Defense and active since 1969?",
+              "options": ["ARPANET", "NSFNET", "USENET", "BITNET"],
+              "explanation": "ARPANET connected its first nodes in 1969. NSFNET, USENET and BITNET were later networks, from the 1980s." }
+    },
+    {
+      "id": "technology-0011", "difficulty": 3, "type": "choice",
+      "es": { "question": "En el estándar IEC, ¿cuántos bytes tiene un kibibyte (KiB)?",
+              "options": ["1024", "1000", "512", "2048"],
+              "explanation": "Un kibibyte son 1024 bytes (2 elevado a 10). El kilobyte (kB) del Sistema Internacional son 1000 bytes." },
+      "en": { "question": "In the IEC standard, how many bytes are in a kibibyte (KiB)?",
+              "options": ["1024", "1000", "512", "2048"],
+              "explanation": "A kibibyte is 1,024 bytes (2 to the power of 10). The kilobyte (kB) of the International System is 1,000 bytes." }
+    },
+    {
+      "id": "technology-0012", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Quién creó el lenguaje de programación C++?",
+              "options": ["Bjarne Stroustrup", "Dennis Ritchie", "James Gosling", "Guido van Rossum"],
+              "explanation": "Stroustrup empezó a crearlo en 1979 en los Laboratorios Bell, como extensión de C. Ritchie creó C, Gosling Java y van Rossum Python." },
+      "en": { "question": "Who created the C++ programming language?",
+              "options": ["Bjarne Stroustrup", "Dennis Ritchie", "James Gosling", "Guido van Rossum"],
+              "explanation": "Stroustrup began creating it in 1979 at Bell Labs, as an extension of C. Ritchie created C, Gosling Java and van Rossum Python." }
+    },
+    {
+      "id": "technology-0013", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Quién obtuvo en 1876 la patente estadounidense del teléfono?",
+              "options": ["Alexander Graham Bell", "Thomas Edison", "Samuel Morse", "Guglielmo Marconi"],
+              "explanation": "Alexander Graham Bell recibió la patente en 1876. Edison mejoró después el micrófono del teléfono, y Morse había inventado el telégrafo décadas antes." },
+      "en": { "question": "Who was granted the U.S. patent for the telephone in 1876?",
+              "options": ["Alexander Graham Bell", "Thomas Edison", "Samuel Morse", "Guglielmo Marconi"],
+              "explanation": "Alexander Graham Bell received the patent in 1876. Edison later improved the telephone's microphone, and Morse had invented the telegraph decades earlier." }
+    },
+    {
+      "id": "technology-0014", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué inventor estadounidense perfeccionó y comercializó la bombilla incandescente a partir de 1879?",
+              "options": ["Thomas Edison", "Nikola Tesla", "Benjamin Franklin", "Alexander Graham Bell"],
+              "explanation": "Edison logró en 1879 una bombilla práctica y duradera y la llevó al mercado. Antes, otros inventores, como el británico Joseph Swan, habían hecho prototipos." },
+      "en": { "question": "Which American inventor perfected and commercialized the incandescent light bulb starting in 1879?",
+              "options": ["Thomas Edison", "Nikola Tesla", "Benjamin Franklin", "Alexander Graham Bell"],
+              "explanation": "Edison made a practical, long-lasting bulb in 1879 and brought it to market. Before him, other inventors, such as Britain's Joseph Swan, had built prototypes." }
+    },
+    {
+      "id": "technology-0015", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿En qué año hicieron los hermanos Wright el que se considera el primer vuelo controlado de un avión con motor?",
+              "options": ["1903", "1893", "1911", "1927"],
+              "explanation": "El 17 de diciembre de 1903, en Kitty Hawk (Carolina del Norte), Orville Wright voló unos 12 segundos a bordo del Flyer." },
+      "en": { "question": "In what year did the Wright brothers make what is considered the first controlled, powered airplane flight?",
+              "options": ["1903", "1893", "1911", "1927"],
+              "explanation": "On 17 December 1903 at Kitty Hawk, North Carolina, Orville Wright flew the Flyer for about 12 seconds." }
+    },
+    {
+      "id": "technology-0016", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Quién desarrolló en Europa, hacia 1450, la imprenta de tipos móviles de metal?",
+              "options": ["Johannes Gutenberg", "Leonardo da Vinci", "Martín Lutero", "Nicolás Copérnico"],
+              "explanation": "Johannes Gutenberg lo hizo en Maguncia (Alemania). Su imprenta abarató los libros, y la Biblia de Gutenberg (hacia 1455) fue su obra más famosa." },
+      "en": { "question": "Who developed the movable-type metal printing press in Europe around 1450?",
+              "options": ["Johannes Gutenberg", "Leonardo da Vinci", "Martin Luther", "Nicolaus Copernicus"],
+              "explanation": "Johannes Gutenberg did, in Mainz (Germany). His press made books cheaper, and the Gutenberg Bible (c. 1455) was his most famous work." }
+    },
+    {
+      "id": "technology-0017", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cómo se llama la unidad mínima de información digital, que solo puede valer 0 o 1?",
+              "options": ["Bit", "Byte", "Baudio", "Píxel"],
+              "explanation": "Bit viene de «binary digit» (dígito binario). Es la unidad más pequeña de información en un computador." },
+      "en": { "question": "What is the smallest unit of digital information, which can only be 0 or 1?",
+              "options": ["Bit", "Byte", "Baud", "Pixel"],
+              "explanation": "Bit comes from 'binary digit'. It is the smallest unit of information in a computer." }
+    },
+    {
+      "id": "technology-0018", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cómo se llama el componente que ejecuta las instrucciones de los programas y se considera el «cerebro» del computador?",
+              "options": ["Procesador (CPU)", "Memoria RAM", "Disco duro", "Fuente de poder"],
+              "explanation": "El procesador, o CPU (unidad central de procesamiento), ejecuta las instrucciones. La RAM y el disco duro guardan datos; la fuente de poder da energía." },
+      "en": { "question": "Which component runs the instructions of programs and is considered the 'brain' of a computer?",
+              "options": ["Processor (CPU)", "RAM", "Hard drive", "Power supply"],
+              "explanation": "The processor, or CPU (central processing unit), runs the instructions. RAM and the hard drive store data; the power supply provides energy." }
+    },
+    {
+      "id": "technology-0019", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cómo se llama cada uno de los pequeños puntos de color que forman una imagen en una pantalla?",
+              "options": ["Píxel", "Vóxel", "Vector", "Fotón"],
+              "explanation": "Píxel viene de «picture element», elemento de imagen. Cuantos más píxeles tiene una pantalla, más detalle puede mostrar." },
+      "en": { "question": "What is each of the tiny colored dots that make up an image on a screen called?",
+              "options": ["Pixel", "Voxel", "Vector", "Photon"],
+              "explanation": "Pixel comes from 'picture element'. The more pixels a screen has, the more detail it can show." }
+    },
+    {
+      "id": "technology-0020", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cómo se llama el engaño en el que un mensaje falso intenta que entregues contraseñas o datos bancarios?",
+              "options": ["Phishing", "Ransomware", "Spyware", "Adware"],
+              "explanation": "El phishing suplanta a un banco o a una empresa para robar datos. El ransomware secuestra archivos, el spyware espía y el adware muestra anuncios." },
+      "en": { "question": "What is the scam called in which a fake message tries to make you hand over passwords or bank details?",
+              "options": ["Phishing", "Ransomware", "Spyware", "Adware"],
+              "explanation": "Phishing impersonates a bank or a company to steal data. Ransomware locks files, spyware spies on you and adware shows ads." }
+    },
+    {
+      "id": "technology-0021", "difficulty": 1, "type": "choice",
+      "es": { "question": "Cuando guardas tus fotos «en la nube», ¿dónde se almacenan realmente?",
+              "options": ["En servidores remotos, por internet", "En la memoria RAM de tu celular", "En el disco duro de tu computador", "En satélites que orbitan la Tierra"],
+              "explanation": "La nube son servidores de una empresa, conectados a internet, que guardan tus archivos para que puedas abrirlos desde varios dispositivos." },
+      "en": { "question": "When you save your photos 'in the cloud', where are they actually stored?",
+              "options": ["On remote servers, over the internet", "In your phone's temporary memory", "On your computer's hard drive", "On satellites orbiting the Earth"],
+              "explanation": "The cloud is servers owned by a company, connected to the internet, that store your files so you can open them from several devices." }
+    },
+    {
+      "id": "technology-0022", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cómo se llama la dirección que escribes en el navegador para llegar a una página, como https://www.ejemplo.com?",
+              "options": ["URL", "HTML", "PDF", "SMS"],
+              "explanation": "URL significa «Uniform Resource Locator» (localizador uniforme de recursos): la dirección única de una página o de un archivo en la Web." },
+      "en": { "question": "What is the address you type into a browser to reach a page, such as https://www.example.com?",
+              "options": ["URL", "HTML", "PDF", "SMS"],
+              "explanation": "URL stands for 'Uniform Resource Locator': the unique address of a page or a file on the Web." }
+    },
+    {
+      "id": "technology-0023", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué aparato de casa reparte la conexión a internet entre varios dispositivos, por cable o por Wi-Fi?",
+              "options": ["Router", "Escáner", "Proyector", "Altavoz"],
+              "explanation": "El router conecta tu red doméstica con internet y reparte esa conexión entre tus dispositivos. Los otros aparatos digitalizan, proyectan o reproducen sonido." },
+      "en": { "question": "Which home device shares the internet connection among several devices, by cable or Wi-Fi?",
+              "options": ["Router", "Scanner", "Projector", "Speaker"],
+              "explanation": "A router connects your home network to the internet and shares that connection among your devices. The others scan, project or play sound." }
+    },
+    {
+      "id": "technology-0024", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuál de estas opciones es un sistema operativo?",
+              "options": ["Android", "Excel", "Photoshop", "Spotify"],
+              "explanation": "Un sistema operativo, como Android, administra el dispositivo y permite ejecutar aplicaciones. Excel, Photoshop y Spotify son programas que funcionan sobre uno de ellos." },
+      "en": { "question": "Which of these is an operating system?",
+              "options": ["Android", "Excel", "Photoshop", "Spotify"],
+              "explanation": "An operating system, like Android, manages the device and lets apps run. Excel, Photoshop and Spotify are programs that run on top of one." }
+    },
+    {
+      "id": "technology-0025", "difficulty": 1, "type": "choice",
+      "es": { "question": "En un computador con Windows, ¿qué combinación de teclas copia lo que tienes seleccionado?",
+              "options": ["Ctrl + C", "Ctrl + V", "Ctrl + X", "Ctrl + Z"],
+              "explanation": "Ctrl + C copia, Ctrl + V pega, Ctrl + X corta y Ctrl + Z deshace la última acción." },
+      "en": { "question": "On a Windows computer, which key combination copies what you have selected?",
+              "options": ["Ctrl + C", "Ctrl + V", "Ctrl + X", "Ctrl + Z"],
+              "explanation": "Ctrl + C copies, Ctrl + V pastes, Ctrl + X cuts and Ctrl + Z undoes the last action." }
+    },
+    {
+      "id": "technology-0026", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cuál de estas unidades de almacenamiento es la más grande?",
+              "options": ["Terabyte", "Gigabyte", "Megabyte", "Kilobyte"],
+              "explanation": "De menor a mayor: kilobyte, megabyte, gigabyte y terabyte. Cada una equivale a unas mil veces la anterior." },
+      "en": { "question": "Which of these storage units is the largest?",
+              "options": ["Terabyte", "Gigabyte", "Megabyte", "Kilobyte"],
+              "explanation": "From smallest to largest: kilobyte, megabyte, gigabyte and terabyte. Each is about a thousand times the previous one." }
+    },
+    {
+      "id": "technology-0027", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Quiénes fundaron Google en 1998, cuando eran estudiantes de doctorado en la Universidad de Stanford?",
+              "options": ["Larry Page y Sergey Brin", "Jerry Yang y David Filo", "Steve Jobs y Steve Wozniak", "Bill Hewlett y David Packard"],
+              "explanation": "Larry Page y Sergey Brin crearon Google en Stanford. Yang y Filo fundaron Yahoo; Jobs y Wozniak, Apple; Hewlett y Packard, HP." },
+      "en": { "question": "Who founded Google in 1998 while they were PhD students at Stanford University?",
+              "options": ["Larry Page and Sergey Brin", "Jerry Yang and David Filo", "Steve Jobs and Steve Wozniak", "Bill Hewlett and David Packard"],
+              "explanation": "Larry Page and Sergey Brin created Google at Stanford. Yang and Filo founded Yahoo; Jobs and Wozniak, Apple; Hewlett and Packard, HP." }
+    },
+    {
+      "id": "technology-0028", "difficulty": 1, "type": "choice",
+      "es": { "question": "Al navegar por internet, ¿qué suele significar el mensaje «Error 404»?",
+              "options": ["No se encontró la página", "El servidor está saturado", "Se prohibió el acceso", "Tu conexión no está cifrada"],
+              "explanation": "El código 404 («Not Found») indica que el servidor no halló la página pedida: la dirección está mal escrita o la página ya no existe." },
+      "en": { "question": "When browsing the internet, what does the message 'Error 404' usually mean?",
+              "options": ["The page was not found", "The server is overloaded", "Access was forbidden", "Your connection is not encrypted"],
+              "explanation": "The 404 code ('Not Found') means the server could not find the requested page: the address is mistyped or the page no longer exists." }
+    },
+    {
+      "id": "technology-0029", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué usa un receptor GPS para calcular su posición en la Tierra?",
+              "options": ["Señales de satélites en órbita", "Torres de radio de la ciudad", "Cables enterrados bajo el suelo", "Una brújula magnética interna"],
+              "explanation": "El GPS calcula la posición midiendo el tiempo que tardan en llegar las señales de varios satélites. El receptor no necesita internet para eso." },
+      "en": { "question": "What does a GPS receiver use to work out its position on Earth?",
+              "options": ["Signals from orbiting satellites", "City radio towers", "Cables buried underground", "An internal magnetic compass"],
+              "explanation": "GPS works out the position by measuring how long the signals from several satellites take to arrive. The receiver does not need internet for that." }
+    },
+    {
+      "id": "technology-0030", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué tipo de archivo es normalmente uno con la extensión .jpg?",
+              "options": ["Una imagen", "Un audio", "Una hoja de cálculo", "Un programa"],
+              "explanation": "El formato .jpg (o .jpeg) comprime fotografías e imágenes. El audio suele ser .mp3 y las hojas de cálculo, .xlsx." },
+      "en": { "question": "What kind of file is one with the .jpg extension?",
+              "options": ["An image", "An audio file", "A spreadsheet", "A program"],
+              "explanation": "The .jpg (or .jpeg) format compresses photos and images. Audio is usually .mp3 and spreadsheets are .xlsx." }
+    },
+    {
+      "id": "technology-0031", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Para qué sirve un programa antivirus?",
+              "options": ["Detectar programas maliciosos", "Acelerar la conexión a internet", "Aumentar la memoria del equipo", "Ordenar tus archivos por fecha"],
+              "explanation": "Un antivirus busca y elimina virus y otros programas maliciosos. Mantenerlo actualizado ayuda a proteger el equipo, aunque no sustituye la prudencia." },
+      "en": { "question": "What is an antivirus program for?",
+              "options": ["Detecting malicious programs", "Speeding up the internet connection", "Increasing the computer's memory", "Sorting your files by date"],
+              "explanation": "An antivirus looks for and removes viruses and other malicious programs. Keeping it updated helps protect the computer, but it is no substitute for caution." }
+    },
+    {
+      "id": "technology-0032", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cómo se llama la pequeña tarjeta que identifica tu línea telefónica dentro de un celular?",
+              "options": ["Tarjeta SIM", "Tarjeta SD", "Tarjeta gráfica", "Tarjeta de sonido"],
+              "explanation": "La tarjeta SIM (Subscriber Identity Module) identifica tu línea y te conecta con la red del operador. Una tarjeta SD, en cambio, solo guarda archivos." },
+      "en": { "question": "What is the small card that identifies your phone line inside a mobile phone called?",
+              "options": ["SIM card", "SD card", "Graphics card", "Sound card"],
+              "explanation": "The SIM card (Subscriber Identity Module) identifies your line and connects you to the carrier's network. An SD card, by contrast, only stores files." }
+    },
+    {
+      "id": "technology-0033", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cómo se llama el aparato volador que se controla a distancia y no lleva piloto a bordo?",
+              "options": ["Dron", "Globo aerostático", "Planeador", "Dirigible"],
+              "explanation": "Un dron es una aeronave no tripulada que se maneja a distancia o con un programa. Se usa para fotografía, agricultura y vigilancia, entre otras cosas." },
+      "en": { "question": "What is a flying machine that is controlled remotely and has no pilot on board called?",
+              "options": ["Drone", "Hot-air balloon", "Glider", "Airship"],
+              "explanation": "A drone is an uncrewed aircraft flown remotely or by a program. It is used for photography, farming and surveillance, among other things." }
+    },
+    {
+      "id": "technology-0034", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué significan las siglas PC en informática?",
+              "options": ["Computador personal", "Procesador central", "Puerto de conexión", "Programa compilado"],
+              "explanation": "PC viene de «personal computer»: un computador pensado para que lo use una sola persona, en casa o en la oficina." },
+      "en": { "question": "What do the letters PC stand for in computing?",
+              "options": ["Personal computer", "Central processor", "Connection port", "Compiled program"],
+              "explanation": "PC stands for 'personal computer': a computer designed to be used by one person, at home or in the office." }
+    },
+    {
+      "id": "technology-0035", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué significa hacer «streaming» de un video o de una canción?",
+              "options": ["Reproducirlo mientras llega por internet", "Descargarlo entero antes de reproducirlo", "Grabarlo en un disco para compartirlo", "Convertirlo a otro formato de archivo"],
+              "explanation": "Con el streaming el contenido se reproduce a medida que llega por internet, sin esperar a descargar el archivo completo." },
+      "en": { "question": "What does it mean to 'stream' a video or a song?",
+              "options": ["Play it as it arrives over the internet", "Download it in full before playing it", "Record it onto a disc to share it", "Convert it to a different file format"],
+              "explanation": "With streaming, content plays as it arrives over the internet, without waiting for the whole file to download." }
+    },
+    {
+      "id": "technology-0036", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Para qué sirve hacer una copia de seguridad (backup) de tus archivos?",
+              "options": ["Recuperarlos si se pierden o se dañan", "Hacer que el computador arranque más rápido", "Bloquear los anuncios de las páginas web", "Reducir el consumo de la batería"],
+              "explanation": "Un backup es una copia guardada aparte, en un disco externo o en la nube. Si el equipo falla o se pierde, puedes recuperar tus archivos." },
+      "en": { "question": "What is the purpose of making a backup of your files?",
+              "options": ["To recover them if lost or damaged", "To make the computer start up faster", "To block ads on web pages", "To reduce how much battery is used"],
+              "explanation": "A backup is a copy kept separately, on an external drive or in the cloud. If the device fails or is lost, you can recover your files." }
+    },
+    {
+      "id": "technology-0037", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿En qué país se inventó el papel, hace unos 2000 años?",
+              "options": ["China", "Egipto", "Grecia", "India"],
+              "explanation": "El papel nació en China; la tradición lo atribuye a Cai Lun, hacia el año 105. Los egipcios usaban papiro, hecho de una planta, que no es papel propiamente." },
+      "en": { "question": "In which country was paper invented, about 2,000 years ago?",
+              "options": ["China", "Egypt", "Greece", "India"],
+              "explanation": "Paper was born in China; tradition credits Cai Lun, around the year 105. The Egyptians used papyrus, made from a plant, which is not true paper." }
+    },
+    {
+      "id": "technology-0038", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cómo se llama el programa que usas para ver páginas web, como Firefox o Safari?",
+              "options": ["Navegador", "Compilador", "Editor de texto", "Hoja de cálculo"],
+              "explanation": "Un navegador (browser) pide las páginas a los servidores y las muestra. Firefox y Safari son navegadores; Chrome y Edge también." },
+      "en": { "question": "What is the program you use to view web pages, such as Firefox or Safari?",
+              "options": ["Web browser", "Compiler", "Text editor", "Spreadsheet"],
+              "explanation": "A browser requests pages from servers and displays them. Firefox and Safari are browsers, and so are Chrome and Edge." }
+    },
+    {
+      "id": "technology-0039", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cómo se llama el conjunto de las partes físicas de un computador, como la pantalla, el teclado y el procesador?",
+              "options": ["Hardware", "Software", "Firmware", "Malware"],
+              "explanation": "El hardware es todo lo que puedes tocar. El software son los programas e instrucciones que hacen funcionar ese hardware." },
+      "en": { "question": "What is the set of physical parts of a computer, such as the screen, the keyboard and the processor, called?",
+              "options": ["Hardware", "Software", "Firmware", "Malware"],
+              "explanation": "Hardware is everything you can touch. Software is the programs and instructions that make that hardware work." }
+    },
+    {
+      "id": "technology-0040", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué significa «reiniciar» un computador?",
+              "options": ["Apagarlo y volver a encenderlo", "Borrar todos sus archivos", "Cambiar la contraseña de usuario", "Instalar un antivirus nuevo"],
+              "explanation": "Reiniciar cierra los programas, apaga el sistema y lo vuelve a arrancar. Suele resolver fallos pasajeros y no borra tus archivos." },
+      "en": { "question": "What does it mean to 'restart' a computer?",
+              "options": ["Turn it off and back on again", "Erase all of its files", "Change the user password", "Install a brand-new antivirus"],
+              "explanation": "Restarting closes the programs, shuts the system down and starts it again. It often fixes temporary glitches and does not erase your files." }
+    },
+    {
+      "id": "technology-0041", "difficulty": 1, "type": "truefalse", "answer": false,
+      "es": { "question": "Usar la misma contraseña en todas tus cuentas es una buena idea para no olvidarla.",
+              "explanation": "Si alguien descubre esa contraseña, podrá entrar en todas tus cuentas. Conviene usar una distinta para cada una, con ayuda de un gestor de contraseñas." },
+      "en": { "question": "Using the same password for all your accounts is a good idea, because then you never forget it.",
+              "explanation": "If someone discovers that password, they can get into all your accounts. It is better to use a different one for each, with the help of a password manager." }
+    },
+    {
+      "id": "technology-0042", "difficulty": 1, "type": "truefalse", "answer": true,
+      "es": { "question": "La memoria RAM pierde sus datos cuando se apaga el computador.",
+              "explanation": "La RAM es memoria temporal: guarda lo que usas en ese momento y se vacía sin corriente. Tus archivos quedan guardados en el disco duro o en otra unidad de almacenamiento." },
+      "en": { "question": "RAM loses its data when the computer is turned off.",
+              "explanation": "RAM is temporary memory: it holds what you are using at the moment and empties without power. Your files stay saved on the hard drive or another storage device." }
+    },
+    {
+      "id": "technology-0043", "difficulty": 1, "type": "truefalse", "answer": true,
+      "es": { "question": "Comprimir archivos en formato ZIP permite reducir el espacio que ocupan.",
+              "explanation": "Un archivo ZIP agrupa uno o varios archivos y los comprime, así que suele ocupar menos espacio y es más fácil de enviar." },
+      "en": { "question": "Compressing files into a ZIP archive can reduce the space they take up.",
+              "explanation": "A ZIP archive bundles one or more files and compresses them, so it usually takes less space and is easier to send." }
+    },
+    {
+      "id": "technology-0044", "difficulty": 1, "type": "truefalse", "answer": false,
+      "es": { "question": "Wi-Fi e internet son lo mismo.",
+              "explanation": "El Wi-Fi solo conecta tus dispositivos a una red local por ondas de radio. El acceso a internet lo da el proveedor, y una red Wi-Fi puede funcionar incluso sin internet." },
+      "en": { "question": "Wi-Fi and the internet are the same thing.",
+              "explanation": "Wi-Fi only connects your devices to a local network by radio waves. Internet access comes from your provider, and a Wi-Fi network can even work without internet." }
+    },
+    {
+      "id": "technology-0045", "difficulty": 1, "type": "truefalse", "answer": false,
+      "es": { "question": "Un código QR solo puede guardar números.",
+              "explanation": "Un QR puede guardar texto, enlaces web, datos de contacto y más. Al escanearlo con la cámara del celular, se abre esa información." },
+      "en": { "question": "A QR code can only store numbers.",
+              "explanation": "A QR code can store text, web links, contact details and more. Scanning it with a phone camera opens that information." }
+    },
+    {
+      "id": "technology-0046", "difficulty": 1, "type": "truefalse", "answer": true,
+      "es": { "question": "Activar el modo avión en un celular desactiva las llamadas y los datos móviles.",
+              "explanation": "El modo avión corta la señal de la red móvil y, normalmente, también el Wi-Fi y el Bluetooth. Puedes volver a encender el Wi-Fi si lo necesitas." },
+      "en": { "question": "Turning on airplane mode on a phone switches off calls and mobile data.",
+              "explanation": "Airplane mode cuts the mobile network signal and, usually, Wi-Fi and Bluetooth too. You can switch Wi-Fi back on if you need it." }
+    },
+    {
+      "id": "technology-0047", "difficulty": 1, "type": "truefalse", "answer": false,
+      "es": { "question": "Conectarte a una red Wi-Fi pública y abierta es la forma más segura de hacer operaciones bancarias.",
+              "explanation": "En una red abierta otras personas podrían espiar tu tráfico o crear redes falsas. Para operaciones bancarias conviene usar tus datos móviles o una red de confianza." },
+      "en": { "question": "Connecting to a public, open Wi-Fi network is the safest way to do your banking.",
+              "explanation": "On an open network other people could snoop on your traffic or set up fake networks. For banking it is better to use mobile data or a network you trust." }
+    },
+    {
+      "id": "technology-0048", "difficulty": 1, "type": "truefalse", "answer": true,
+      "es": { "question": "Enviar un SMS no requiere conexión a internet.",
+              "explanation": "Los SMS viajan por la red de telefonía móvil, no por internet. Por eso un celular sin datos puede enviarlos y recibirlos si tiene señal." },
+      "en": { "question": "Sending an SMS does not require an internet connection.",
+              "explanation": "SMS messages travel over the mobile phone network, not over the internet. That is why a phone with no data can send and receive them if it has signal." }
+    },
+    {
+      "id": "technology-0049", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿En qué año se fundó Apple, la empresa de Steve Jobs y Steve Wozniak?",
+              "options": ["1976", "1984", "1980", "1990"],
+              "explanation": "Apple se fundó el 1 de abril de 1976, en California, por Steve Jobs, Steve Wozniak y Ronald Wayne." },
+      "en": { "question": "In what year was Apple, the company of Steve Jobs and Steve Wozniak, founded?",
+              "options": ["1976", "1984", "1980", "1990"],
+              "explanation": "Apple was founded on 1 April 1976, in California, by Steve Jobs, Steve Wozniak and Ronald Wayne." }
+    },
+    {
+      "id": "technology-0050", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿En qué año lanzó Microsoft la primera versión de Windows?",
+              "options": ["1985", "1981", "1990", "1995"],
+              "explanation": "Windows 1.0 salió en noviembre de 1985. Windows 95, que popularizó el menú Inicio, llegó diez años después." },
+      "en": { "question": "In what year did Microsoft release the first version of Windows?",
+              "options": ["1985", "1981", "1990", "1995"],
+              "explanation": "Windows 1.0 came out in November 1985. Windows 95, which popularized the Start menu, arrived ten years later." }
+    },
+    {
+      "id": "technology-0051", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿En qué año se envió el primer mensaje de texto SMS de la historia, con las palabras «Merry Christmas»?",
+              "options": ["1992", "1985", "1998", "2001"],
+              "explanation": "El ingeniero Neil Papworth envió ese SMS el 3 de diciembre de 1992, desde un computador a un celular de la red de Vodafone, en el Reino Unido." },
+      "en": { "question": "In what year was the first SMS text message in history sent, with the words 'Merry Christmas'?",
+              "options": ["1992", "1985", "1998", "2001"],
+              "explanation": "Engineer Neil Papworth sent that SMS on 3 December 1992, from a computer to a mobile phone on Vodafone's network in the United Kingdom." }
+    },
+    {
+      "id": "technology-0052", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿En qué año se presentó al público la ENIAC, uno de los primeros computadores electrónicos de propósito general?",
+              "options": ["1946", "1936", "1951", "1957"],
+              "explanation": "La ENIAC se presentó en febrero de 1946, en la Universidad de Pensilvania. Funcionaba con miles de tubos de vacío y pesaba unas 27 toneladas." },
+      "en": { "question": "In what year was the ENIAC, one of the first general-purpose electronic computers, unveiled to the public?",
+              "options": ["1946", "1936", "1951", "1957"],
+              "explanation": "The ENIAC was unveiled in February 1946 at the University of Pennsylvania. It ran on thousands of vacuum tubes and weighed about 27 tonnes." }
+    },
+    {
+      "id": "technology-0053", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿En qué año se inventó el transistor, la pieza clave de los chips modernos?",
+              "options": ["1947", "1927", "1957", "1967"],
+              "explanation": "Bardeen, Brattain y Shockley lo inventaron en 1947 en los Laboratorios Bell y recibieron el Nobel de Física en 1956." },
+      "en": { "question": "In what year was the transistor, the key building block of modern chips, invented?",
+              "options": ["1947", "1927", "1957", "1967"],
+              "explanation": "Bardeen, Brattain and Shockley invented it in 1947 at Bell Labs and won the Nobel Prize in Physics in 1956." }
+    },
+    {
+      "id": "technology-0054", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué matemático británico propuso en 1950 una prueba para decidir si una máquina puede «pensar»?",
+              "options": ["Alan Turing", "Charles Babbage", "John von Neumann", "Claude Shannon"],
+              "explanation": "Turing la planteó como el «juego de la imitación»: si en una conversación no distingues a la máquina de una persona, la máquina pasa la prueba." },
+      "en": { "question": "Which British mathematician proposed in 1950 a test to decide whether a machine can 'think'?",
+              "options": ["Alan Turing", "Charles Babbage", "John von Neumann", "Claude Shannon"],
+              "explanation": "Turing framed it as the 'imitation game': if in a conversation you cannot tell the machine from a person, the machine passes the test." }
+    },
+    {
+      "id": "technology-0055", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Quién mostró en público en 1968 el primer ratón (mouse) de computador, en una demostración famosa?",
+              "options": ["Douglas Engelbart", "Steve Jobs", "Alan Kay", "Ivan Sutherland"],
+              "explanation": "Douglas Engelbart lo mostró el 9 de diciembre de 1968, en una demo tan influyente que se la llama «la madre de todas las demos». El primer ratón tenía carcasa de madera." },
+      "en": { "question": "Who showed the first computer mouse in public in 1968, in a famous demonstration?",
+              "options": ["Douglas Engelbart", "Steve Jobs", "Alan Kay", "Ivan Sutherland"],
+              "explanation": "Douglas Engelbart showed it on 9 December 1968, in a demo so influential it is called 'the mother of all demos'. The first mouse had a wooden shell." }
+    },
+    {
+      "id": "technology-0056", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Quién inició en 1991 el desarrollo del núcleo (kernel) de Linux?",
+              "options": ["Linus Torvalds", "Richard Stallman", "Ken Thompson", "Andrew Tanenbaum"],
+              "explanation": "Linus Torvalds, entonces estudiante finlandés, publicó en 1991 la primera versión del núcleo de Linux. Stallman había iniciado el proyecto GNU en los años ochenta." },
+      "en": { "question": "Who started developing the Linux kernel in 1991?",
+              "options": ["Linus Torvalds", "Richard Stallman", "Ken Thompson", "Andrew Tanenbaum"],
+              "explanation": "Linus Torvalds, then a Finnish student, released the first version of the Linux kernel in 1991. Stallman had started the GNU project in the 1980s." }
+    },
+    {
+      "id": "technology-0057", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué vendía principalmente Amazon en sus inicios, después de que Jeff Bezos la fundara en 1994?",
+              "options": ["Libros", "Discos de música", "Ropa", "Juguetes"],
+              "explanation": "Amazon empezó como una librería en línea. Más tarde ampliaría su catálogo a música, electrónica y casi cualquier producto." },
+      "en": { "question": "What did Amazon mainly sell in its early days, after Jeff Bezos founded it in 1994?",
+              "options": ["Books", "Music CDs", "Clothing", "Toys"],
+              "explanation": "Amazon started as an online bookstore. It later expanded its catalog to music, electronics and almost any product." }
+    },
+    {
+      "id": "technology-0058", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿En qué universidad lanzó Mark Zuckerberg la red social Facebook, en 2004?",
+              "options": ["Harvard", "Stanford", "MIT", "Yale"],
+              "explanation": "Zuckerberg lanzó Facebook en febrero de 2004 desde su residencia universitaria en Harvard. Al principio solo podían usarla estudiantes de esa universidad." },
+      "en": { "question": "At which university did Mark Zuckerberg launch the social network Facebook, in 2004?",
+              "options": ["Harvard", "Stanford", "MIT", "Yale"],
+              "explanation": "Zuckerberg launched Facebook in February 2004 from his dorm at Harvard. At first only students of that university could use it." }
+    },
+    {
+      "id": "technology-0059", "difficulty": 2, "type": "choice",
+      "es": { "question": "El primer video de YouTube, subido en 2005, se titula «Me at the zoo». ¿Qué animales aparecen detrás de su protagonista?",
+              "options": ["Elefantes", "Jirafas", "Pingüinos", "Leones"],
+              "explanation": "Jawed Karim, cofundador de YouTube, subió el video el 23 de abril de 2005. Dura 19 segundos y habla de lo largas que son las trompas de los elefantes." },
+      "en": { "question": "The first video on YouTube, uploaded in 2005, is titled 'Me at the zoo'. Which animals appear behind its star?",
+              "options": ["Elephants", "Giraffes", "Penguins", "Lions"],
+              "explanation": "Jawed Karim, a YouTube co-founder, uploaded the video on 23 April 2005. It lasts 19 seconds and talks about how long elephants' trunks are." }
+    },
+    {
+      "id": "technology-0060", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿En qué año se lanzó Wikipedia, la enciclopedia en línea colaborativa?",
+              "options": ["2001", "1995", "2004", "2008"],
+              "explanation": "Wikipedia se lanzó el 15 de enero de 2001, impulsada por Jimmy Wales y Larry Sanger. Sus artículos los escriben y corrigen voluntarios." },
+      "en": { "question": "In what year was Wikipedia, the collaborative online encyclopedia, launched?",
+              "options": ["2001", "1995", "2004", "2008"],
+              "explanation": "Wikipedia was launched on 15 January 2001, driven by Jimmy Wales and Larry Sanger. Its articles are written and edited by volunteers." }
+    },
+    {
+      "id": "technology-0061", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué inventor italiano, pionero de la telegrafía sin hilos (radio), compartió el Premio Nobel de Física de 1909?",
+              "options": ["Guglielmo Marconi", "Alessandro Volta", "Enrico Fermi", "Galileo Galilei"],
+              "explanation": "Marconi compartió el Nobel de Física de 1909 con Karl Ferdinand Braun por sus aportes a la telegrafía sin hilos, base de la radio." },
+      "en": { "question": "Which Italian inventor, a pioneer of wireless telegraphy (radio), shared the 1909 Nobel Prize in Physics?",
+              "options": ["Guglielmo Marconi", "Alessandro Volta", "Enrico Fermi", "Galileo Galilei"],
+              "explanation": "Marconi shared the 1909 Nobel Prize in Physics with Karl Ferdinand Braun for their contributions to wireless telegraphy, the basis of radio." }
+    },
+    {
+      "id": "technology-0062", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué significan las siglas HTTP que aparecen al inicio de muchas direcciones web?",
+              "options": ["Protocolo de transferencia de hipertexto", "Programa de transferencia de textos web", "Protocolo de transmisión de terminales", "Procesador de textos de alta tecnología"],
+              "explanation": "HTTP (HyperText Transfer Protocol) es el protocolo con el que el navegador pide páginas a los servidores. HTTPS es su versión con cifrado." },
+      "en": { "question": "What does HTTP, at the start of many web addresses, stand for?",
+              "options": ["HyperText Transfer Protocol", "HyperText Transfer Program", "High-Tech Text Processor", "Host Terminal Transmission Protocol"],
+              "explanation": "HTTP (HyperText Transfer Protocol) is how a browser requests pages from servers. HTTPS is its encrypted version." }
+    },
+    {
+      "id": "technology-0063", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Cómo se llama el número, como 192.168.1.1, que identifica a un dispositivo dentro de una red?",
+              "options": ["Dirección IP", "Código ASCII", "Clave WPA", "Número de puerto"],
+              "explanation": "La dirección IP (Internet Protocol) identifica a cada dispositivo de una red y permite que los datos lleguen a su destino." },
+      "en": { "question": "What is the number, like 192.168.1.1, that identifies a device on a network called?",
+              "options": ["IP address", "ASCII code", "WPA key", "Port number"],
+              "explanation": "An IP (Internet Protocol) address identifies each device on a network and lets data reach its destination." }
+    },
+    {
+      "id": "technology-0064", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué unidad de almacenamiento guarda los datos en chips de memoria, sin ninguna parte móvil?",
+              "options": ["Unidad SSD", "Disco duro (HDD)", "Disquete", "Disco CD-ROM"],
+              "explanation": "Las unidades SSD usan memoria flash y no tienen partes móviles, por eso son silenciosas y rápidas. El disco duro, el disquete y el CD giran para leer los datos." },
+      "en": { "question": "Which storage device keeps data on memory chips, with no moving parts?",
+              "options": ["SSD drive", "Hard drive (HDD)", "Floppy disk", "CD-ROM disc"],
+              "explanation": "SSDs use flash memory and have no moving parts, so they are silent and fast. Hard drives, floppy disks and CDs spin to read the data." }
+    },
+    {
+      "id": "technology-0065", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué hace el cifrado (o encriptación) de la información?",
+              "options": ["La vuelve ilegible sin la clave adecuada", "La comprime para que ocupe menos espacio", "La borra de forma definitiva del equipo", "La copia en otro dispositivo de respaldo"],
+              "explanation": "Cifrar es convertir los datos en un código que solo se puede leer con la clave correcta. Así se protegen mensajes, archivos y pagos en línea." },
+      "en": { "question": "What does encrypting information do?",
+              "options": ["It makes it unreadable without the key", "It compresses it to take up less space", "It permanently deletes it from the device", "It copies it to another backup device"],
+              "explanation": "Encrypting means turning data into a code that can only be read with the right key. It protects messages, files and online payments." }
+    },
+    {
+      "id": "technology-0066", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué significa que un programa sea de código abierto (open source)?",
+              "options": ["Su código se puede ver y modificar", "Se puede usar sin conexión a internet", "Solo funciona en equipos nuevos", "Se instala sin pedir ninguna contraseña"],
+              "explanation": "El código abierto permite estudiar, modificar y compartir el código fuente de un programa. Linux es un ejemplo. No siempre significa que sea gratis." },
+      "en": { "question": "What does it mean for a program to be open source?",
+              "options": ["Its code can be viewed and modified", "It can be used without internet access", "It only works on brand-new computers", "It installs without asking for a password"],
+              "explanation": "Open source lets anyone study, modify and share a program's source code. Linux is an example. It does not always mean the program is free of charge." }
+    },
+    {
+      "id": "technology-0067", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Por qué los computadores usan el sistema binario (0 y 1) para guardar y procesar datos?",
+              "options": ["Basta distinguir dos estados: encendido y apagado", "Los números salen más cortos que en el sistema decimal", "Un dígito binario guarda más datos que uno decimal", "Es el sistema que mejor entiende cualquier persona"],
+              "explanation": "Los circuitos electrónicos distinguen con fiabilidad dos estados, con y sin corriente, que representan 1 y 0. Con muchos bits se codifica cualquier dato." },
+      "en": { "question": "Why do computers use the binary system (0 and 1) to store and process data?",
+              "options": ["It only has to tell two states apart: on and off", "Numbers come out shorter than in the decimal system", "A binary digit holds more data than a decimal one", "It is the system that anyone understands best"],
+              "explanation": "Electronic circuits reliably tell two states apart, with and without current, which stand for 1 and 0. With many bits, any data can be encoded." }
+    },
+    {
+      "id": "technology-0068", "difficulty": 2, "type": "choice",
+      "es": { "question": "En unidades como el gigabyte, ¿a qué equivale el prefijo «giga»?",
+              "options": ["Mil millones", "Un millón", "Mil", "Un trillón"],
+              "explanation": "Giga significa mil millones (10 elevado a 9). Mega es un millón y kilo es mil; tera equivale a mil veces giga." },
+      "en": { "question": "In units such as the gigabyte, what does the prefix 'giga' mean?",
+              "options": ["One billion", "One million", "One thousand", "One trillion"],
+              "explanation": "Giga means one billion (10 to the power of 9). Mega is a million and kilo a thousand; tera is a thousand times giga." }
+    },
+    {
+      "id": "technology-0069", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿A qué campeón mundial de ajedrez venció en 1997 el computador Deep Blue, de IBM, en un match de seis partidas?",
+              "options": ["Garry Kasparov", "Anatoly Karpov", "Bobby Fischer", "Magnus Carlsen"],
+              "explanation": "Deep Blue ganó el match de 1997 por 3,5 a 2,5 y fue la primera vez que un computador venció a un campeón mundial en un match con tiempos de torneo." },
+      "en": { "question": "Which world chess champion did IBM's Deep Blue computer defeat in a six-game match in 1997?",
+              "options": ["Garry Kasparov", "Anatoly Karpov", "Bobby Fischer", "Magnus Carlsen"],
+              "explanation": "Deep Blue won the 1997 match 3.5 to 2.5, the first time a computer beat a reigning world champion in a match under tournament time controls." }
+    },
+    {
+      "id": "technology-0070", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Cómo se llamó el primer satélite artificial puesto en órbita, lanzado por la Unión Soviética en 1957?",
+              "options": ["Sputnik 1", "Explorer 1", "Vostok 1", "Apolo 11"],
+              "explanation": "El Sputnik 1 orbitó la Tierra desde el 4 de octubre de 1957 y abrió la carrera espacial. Explorer 1, el primer satélite de EE. UU., llegó en 1958." },
+      "en": { "question": "What was the first artificial satellite placed in orbit, launched by the Soviet Union in 1957, called?",
+              "options": ["Sputnik 1", "Explorer 1", "Vostok 1", "Apollo 11"],
+              "explanation": "Sputnik 1 orbited the Earth from 4 October 1957 and kicked off the space race. Explorer 1, the first U.S. satellite, followed in 1958." }
+    },
+    {
+      "id": "technology-0071", "difficulty": 2, "type": "choice",
+      "es": { "question": "Según la llamada «ley de Moore», ¿cada cuánto se duplica aproximadamente la cantidad de transistores de un chip?",
+              "options": ["Cada dos años", "Cada seis meses", "Cada diez años", "Cada cinco años"],
+              "explanation": "Gordon Moore observó en 1965 un crecimiento muy rápido y en 1975 lo ajustó a una duplicación cada dos años. No es una ley física, sino una tendencia." },
+      "en": { "question": "According to the so-called 'Moore's law', roughly how often does the number of transistors on a chip double?",
+              "options": ["Every two years", "Every six months", "Every ten years", "Every five years"],
+              "explanation": "Gordon Moore noticed very fast growth in 1965 and in 1975 adjusted it to a doubling every two years. It is a trend, not a law of physics." }
+    },
+    {
+      "id": "technology-0072", "difficulty": 2, "type": "choice",
+      "es": { "question": "Antes del año 2000, ¿qué temían muchos expertos que pasara con ciertos computadores en el llamado «efecto 2000»?",
+              "options": ["Que leyeran el año 2000 como 1900", "Que se apagaran todos a la vez", "Que se llenaran sus discos duros", "Que perdieran la conexión a internet"],
+              "explanation": "Muchos sistemas guardaban el año con dos cifras, así que «00» podía leerse como 1900. Se corrigieron programas durante años y hubo muy pocas fallas graves." },
+      "en": { "question": "Before the year 2000, what did many experts fear would happen to some computers because of the so-called 'Y2K bug'?",
+              "options": ["That they would read 2000 as 1900", "That they would all shut down at once", "That their hard drives would fill up", "That they would lose internet access"],
+              "explanation": "Many systems stored the year with two digits, so '00' could be read as 1900. Programs were fixed for years and there were very few serious failures." }
+    },
+    {
+      "id": "technology-0073", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿En qué año se hizo la primera llamada desde un teléfono móvil portátil, con un prototipo de Motorola?",
+              "options": ["1973", "1963", "1983", "1993"],
+              "explanation": "El ingeniero Martin Cooper llamó en abril de 1973 desde una calle de Nueva York. Los teléfonos portátiles comerciales llegaron una década después." },
+      "en": { "question": "In what year was the first call made from a portable mobile phone, using a Motorola prototype?",
+              "options": ["1973", "1963", "1983", "1993"],
+              "explanation": "Engineer Martin Cooper made the call in April 1973 from a New York street. Commercial portable phones arrived about a decade later." }
+    },
+    {
+      "id": "technology-0074", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Por qué se llama QWERTY el diseño de teclado habitual en español y en inglés?",
+              "options": ["Por las seis primeras letras de la fila superior", "Por las siglas de la empresa que lo fabricó primero", "Por el apellido del inventor de la máquina de escribir", "Por una palabra inglesa que significa «teclado»"],
+              "explanation": "Su nombre sale de las seis primeras letras de la fila superior: Q, W, E, R, T e Y. Se popularizó con las máquinas de escribir de fines del siglo XIX." },
+      "en": { "question": "Why is the standard keyboard layout in Spanish and English called QWERTY?",
+              "options": ["For the first six letters of the top row", "For the initials of the company that first made it", "For the surname of the typewriter's inventor", "For an English word meaning 'keyboard'"],
+              "explanation": "Its name comes from the first six letters of the top row: Q, W, E, R, T and Y. It spread with typewriters in the late 19th century." }
+    },
+    {
+      "id": "technology-0075", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Para qué sirve una prueba CAPTCHA, como «selecciona todas las imágenes con semáforos»?",
+              "options": ["Comprobar que eres una persona y no un robot", "Medir la velocidad de tu conexión a internet", "Cifrar la contraseña que acabas de escribir", "Actualizar tu navegador a la última versión"],
+              "explanation": "CAPTCHA es una prueba que una persona resuelve con facilidad y los programas automáticos (bots) no. Sirve para frenar el spam y los accesos masivos." },
+      "en": { "question": "What is a CAPTCHA test, like 'select all images with traffic lights', used for?",
+              "options": ["To check that you are a person, not a robot", "To measure the speed of your internet connection", "To encrypt the password you just typed", "To update your browser to the latest version"],
+              "explanation": "A CAPTCHA is a test that a person solves easily and automated programs (bots) cannot. It helps stop spam and mass sign-ups." }
+    },
+    {
+      "id": "technology-0076", "difficulty": 2, "type": "choice",
+      "es": { "question": "En 1947, un insecto atrapado en un relé del computador Mark II popularizó el término «bug» para los errores. ¿Qué insecto era?",
+              "options": ["Una polilla", "Una cucaracha", "Una hormiga", "Una mosca"],
+              "explanation": "Los técnicos pegaron la polilla en su bitácora con la nota «first actual case of bug being found». El término ya se usaba antes para los fallos técnicos." },
+      "en": { "question": "In 1947, an insect trapped in a relay of the Mark II computer popularized the word 'bug' for errors. What insect was it?",
+              "options": ["A moth", "A cockroach", "An ant", "A fly"],
+              "explanation": "The technicians taped the moth into their logbook with the note 'first actual case of bug being found'. The term was already used for technical glitches before that." }
+    },
+    {
+      "id": "technology-0077", "difficulty": 2, "type": "truefalse", "answer": false,
+      "es": { "question": "JavaScript es solo otro nombre del lenguaje Java.",
+              "explanation": "Son lenguajes distintos, de creadores distintos. JavaScript nació en 1995 para dar interactividad a las páginas web, y su nombre fue una decisión de marketing." },
+      "en": { "question": "JavaScript is just another name for the Java language.",
+              "explanation": "They are different languages, made by different people. JavaScript was born in 1995 to make web pages interactive, and its name was a marketing decision." }
+    },
+    {
+      "id": "technology-0078", "difficulty": 2, "type": "truefalse", "answer": false,
+      "es": { "question": "Si una página usa HTTPS, eso garantiza que es un sitio honesto y legítimo.",
+              "explanation": "HTTPS solo cifra la comunicación entre tu navegador y el sitio. Una página fraudulenta también puede usarlo, así que no prueba que sea de confianza." },
+      "en": { "question": "If a page uses HTTPS, that guarantees it is an honest and legitimate site.",
+              "explanation": "HTTPS only encrypts the communication between your browser and the site. A fraudulent page can use it too, so it does not prove the site is trustworthy." }
+    },
+    {
+      "id": "technology-0079", "difficulty": 2, "type": "truefalse", "answer": false,
+      "es": { "question": "Internet y la World Wide Web son exactamente lo mismo.",
+              "explanation": "Internet es la red mundial de redes. La Web es uno de los servicios que funcionan sobre ella; el correo electrónico es otro." },
+      "en": { "question": "The internet and the World Wide Web are exactly the same thing.",
+              "explanation": "The internet is the worldwide network of networks. The Web is one of the services that run on it; email is another." }
+    },
+    {
+      "id": "technology-0080", "difficulty": 2, "type": "truefalse", "answer": true,
+      "es": { "question": "El correo electrónico ya existía antes de que se creara la World Wide Web.",
+              "explanation": "El correo electrónico se usaba ya en los años setenta, en las primeras redes de computadores. La Web se propuso en 1989, casi veinte años después." },
+      "en": { "question": "Email already existed before the World Wide Web was created.",
+              "explanation": "Email was already in use in the 1970s, on the first computer networks. The Web was proposed in 1989, almost twenty years later." }
+    },
+    {
+      "id": "technology-0081", "difficulty": 2, "type": "truefalse", "answer": true,
+      "es": { "question": "Antes de que existiera Google ya había buscadores, como AltaVista.",
+              "explanation": "Antes de Google (1998) hubo buscadores como Archie (1990) y AltaVista (1995). Google destacó por su algoritmo de clasificación, PageRank." },
+      "en": { "question": "Search engines such as AltaVista already existed before Google did.",
+              "explanation": "Before Google (1998) there were search tools such as Archie (1990) and AltaVista (1995). Google stood out for its ranking algorithm, PageRank." }
+    },
+    {
+      "id": "technology-0082", "difficulty": 2, "type": "truefalse", "answer": false,
+      "es": { "question": "El modo incógnito del navegador oculta tu actividad a tu proveedor de internet.",
+              "explanation": "El modo incógnito solo evita que el navegador guarde el historial y las cookies en tu dispositivo. Tu proveedor de internet y los sitios que visitas aún pueden ver tu conexión." },
+      "en": { "question": "A browser's incognito mode hides your activity from your internet provider.",
+              "explanation": "Incognito mode only stops the browser from saving history and cookies on your device. Your internet provider and the sites you visit can still see your connection." }
+    },
+    {
+      "id": "technology-0083", "difficulty": 2, "type": "truefalse", "answer": true,
+      "es": { "question": "La mayor parte del tráfico de internet entre continentes viaja por cables submarinos.",
+              "explanation": "Cables de fibra óptica tendidos en el fondo del mar transportan casi todos los datos entre continentes. Los satélites llevan solo una pequeña parte." },
+      "en": { "question": "Most internet traffic between continents travels through undersea cables.",
+              "explanation": "Fiber-optic cables laid on the seabed carry almost all data between continents. Satellites carry only a small share." }
+    },
+    {
+      "id": "technology-0084", "difficulty": 2, "type": "truefalse", "answer": true,
+      "es": { "question": "Los transistores reemplazaron a los tubos de vacío en los computadores.",
+              "explanation": "Eran más pequeños, baratos y fiables, y gastaban menos energía que los tubos de vacío, por lo que desde finales de los años cincuenta los sustituyeron." },
+      "en": { "question": "Transistors replaced vacuum tubes in computers.",
+              "explanation": "They were smaller, cheaper and more reliable, and used less power than vacuum tubes, so from the late 1950s they took their place." }
+    },
+    {
+      "id": "technology-0085", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Qué ingeniero de Texas Instruments presentó en 1958 el primer circuito integrado funcional?",
+              "options": ["Jack Kilby", "Gordon Moore", "William Shockley", "Andrew Grove"],
+              "explanation": "Jack Kilby construyó en 1958 el primer circuito integrado, en una pieza de germanio. Robert Noyce, de Fairchild, hizo el suyo de silicio en 1959. Kilby ganó el Nobel de Física en 2000." },
+      "en": { "question": "Which Texas Instruments engineer presented the first working integrated circuit in 1958?",
+              "options": ["Jack Kilby", "Gordon Moore", "William Shockley", "Andrew Grove"],
+              "explanation": "Jack Kilby built the first integrated circuit in 1958, on a piece of germanium. Robert Noyce, at Fairchild, made his silicon one in 1959. Kilby won the Nobel Prize in Physics in 2000." }
+    },
+    {
+      "id": "technology-0086", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Cómo se llamó el primer microprocesador comercial de la historia, lanzado por Intel en 1971?",
+              "options": ["Intel 4004", "Intel 8008", "Intel 8080", "Intel 8086"],
+              "explanation": "El Intel 4004 era de 4 bits y se diseñó para una calculadora. El 8008 salió en 1972, el 8080 en 1974 y el 8086 en 1978." },
+      "en": { "question": "What was the first commercial microprocessor in history, released by Intel in 1971, called?",
+              "options": ["Intel 4004", "Intel 8008", "Intel 8080", "Intel 8086"],
+              "explanation": "The Intel 4004 was a 4-bit chip designed for a calculator. The 8008 came out in 1972, the 8080 in 1974 and the 8086 in 1978." }
+    },
+    {
+      "id": "technology-0087", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Qué ingeniero alemán construyó en 1941 el que se considera el primer computador programable plenamente funcional?",
+              "options": ["Konrad Zuse", "Howard Aiken", "John Atanasoff", "Herman Hollerith"],
+              "explanation": "Konrad Zuse terminó el Z3 en 1941, en Berlín. Funcionaba con relés eléctricos, no con tubos de vacío, y se programaba con cinta perforada." },
+      "en": { "question": "Which German engineer built, in 1941, what is considered the first fully working programmable computer?",
+              "options": ["Konrad Zuse", "Howard Aiken", "John Atanasoff", "Herman Hollerith"],
+              "explanation": "Konrad Zuse completed the Z3 in 1941 in Berlin. It used electrical relays, not vacuum tubes, and was programmed with punched tape." }
+    },
+    {
+      "id": "technology-0088", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿En qué año adoptó oficialmente la red precursora de internet los protocolos TCP/IP, base de la internet actual?",
+              "options": ["1983", "1974", "1979", "1989"],
+              "explanation": "El 1 de enero de 1983 esa red cambió a TCP/IP, diseñado por Vint Cerf y Robert Kahn. Por eso muchos toman esa fecha como el nacimiento de internet." },
+      "en": { "question": "In what year did the network that preceded the internet officially adopt the TCP/IP protocols, the basis of today's internet?",
+              "options": ["1983", "1974", "1979", "1989"],
+              "explanation": "On 1 January 1983, that network switched to TCP/IP, designed by Vint Cerf and Robert Kahn. That is why many take that date as the birth of the internet." }
+    },
+    {
+      "id": "technology-0089", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Cuál fue el primer nombre de dominio «.com» registrado en la historia, en 1985?",
+              "options": ["symbolics.com", "apple.com", "ibm.com", "microsoft.com"],
+              "explanation": "symbolics.com, de una empresa de computadores de Massachusetts, se registró el 15 de marzo de 1985. Los dominios de IBM, Apple y Microsoft llegaron después." },
+      "en": { "question": "What was the first '.com' domain name ever registered, in 1985?",
+              "options": ["symbolics.com", "apple.com", "ibm.com", "microsoft.com"],
+              "explanation": "symbolics.com, owned by a Massachusetts computer company, was registered on 15 March 1985. The domains of IBM, Apple and Microsoft came later." }
+    },
+    {
+      "id": "technology-0090", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Cómo se llamó el navegador gráfico, lanzado en 1993, que popularizó la Web entre el público general?",
+              "options": ["Mosaic", "Netscape Navigator", "Internet Explorer", "Opera"],
+              "explanation": "NCSA Mosaic, creado en la Universidad de Illinois, mostraba imágenes junto al texto. Netscape Navigator salió en 1994 e Internet Explorer en 1995." },
+      "en": { "question": "What was the graphical browser, released in 1993, that popularized the Web among the general public called?",
+              "options": ["Mosaic", "Netscape Navigator", "Internet Explorer", "Opera"],
+              "explanation": "NCSA Mosaic, created at the University of Illinois, showed images alongside text. Netscape Navigator came out in 1994 and Internet Explorer in 1995." }
+    },
+    {
+      "id": "technology-0091", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Qué ingeniero envió en 1971 el primer correo electrónico entre dos computadores conectados en red?",
+              "options": ["Ray Tomlinson", "Vint Cerf", "Larry Roberts", "Leonard Kleinrock"],
+              "explanation": "Tomlinson lo envió entre dos computadores situados en la misma sala, conectados en red. Además, definió la forma de las direcciones de correo, con el nombre del usuario y el del equipo." },
+      "en": { "question": "Which engineer sent the first email between two networked computers, in 1971?",
+              "options": ["Ray Tomlinson", "Vint Cerf", "Larry Roberts", "Leonard Kleinrock"],
+              "explanation": "Tomlinson sent it between two computers sitting in the same room, linked by a network. He also defined the form of email addresses, with a user name and a machine name." }
+    },
+    {
+      "id": "technology-0092", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Qué pionera de la computación y oficial de la Marina de EE. UU. fue clave en la creación del lenguaje COBOL?",
+              "options": ["Grace Hopper", "Katherine Johnson", "Radia Perlman", "Frances Allen"],
+              "explanation": "Grace Hopper impulsó lenguajes con instrucciones cercanas al inglés y fue asesora clave de COBOL (1959), pensado para aplicaciones de negocios." },
+      "en": { "question": "Which computing pioneer and U.S. Navy officer was key in the creation of the COBOL language?",
+              "options": ["Grace Hopper", "Katherine Johnson", "Radia Perlman", "Frances Allen"],
+              "explanation": "Grace Hopper pushed for languages with English-like instructions and was a key adviser on COBOL (1959), designed for business applications." }
+    },
+    {
+      "id": "technology-0093", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Cómo se llamó la primera hoja de cálculo popular, lanzada en 1979 para uno de los primeros computadores personales?",
+              "options": ["VisiCalc", "Lotus 1-2-3", "Excel", "Multiplan"],
+              "explanation": "VisiCalc, de Dan Bricklin y Bob Frankston, convirtió al Apple II en herramienta de oficina. Multiplan, Lotus 1-2-3 y Excel llegaron después." },
+      "en": { "question": "What was the first popular spreadsheet program, released in 1979 for one of the first personal computers, called?",
+              "options": ["VisiCalc", "Lotus 1-2-3", "Excel", "Multiplan"],
+              "explanation": "VisiCalc, by Dan Bricklin and Bob Frankston, turned the Apple II into an office tool. Multiplan, Lotus 1-2-3 and Excel came later." }
+    },
+    {
+      "id": "technology-0094", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿De qué personaje histórico toma su nombre la tecnología inalámbrica Bluetooth?",
+              "options": ["Harald I, rey de Dinamarca", "Erik el Rojo, explorador vikingo", "Canuto el Grande, rey de Inglaterra", "Leif Eriksson, navegante vikingo"],
+              "explanation": "Harald I de Dinamarca, apodado «Diente Azul», unió a varias tribus en el siglo X. El nombre alude a unir dispositivos, y el logo combina sus iniciales en runas." },
+      "en": { "question": "Which historical figure gives the wireless technology Bluetooth its name?",
+              "options": ["Harald I, king of Denmark", "Erik the Red, Viking explorer", "Cnut the Great, king of England", "Leif Erikson, Viking navigator"],
+              "explanation": "Harald I of Denmark, nicknamed 'Bluetooth', united several tribes in the 10th century. The name hints at uniting devices, and the logo merges his initials in runes." }
+    },
+    {
+      "id": "technology-0095", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿Qué producto fue el primero en ser escaneado con un código de barras en una tienda, en 1974?",
+              "options": ["Un paquete de chicles", "Una lata de sopa", "Una botella de gaseosa", "Una caja de cereal"],
+              "explanation": "El 26 de junio de 1974, en un supermercado de Troy (Ohio), una cajera escaneó un paquete de chicles Wrigley's." },
+      "en": { "question": "Which product was the first to be scanned with a barcode in a store, in 1974?",
+              "options": ["A pack of chewing gum", "A can of soup", "A bottle of soda", "A box of cereal"],
+              "explanation": "On 26 June 1974, in a supermarket in Troy, Ohio, a cashier scanned a pack of Wrigley's chewing gum." }
+    },
+    {
+      "id": "technology-0096", "difficulty": 3, "type": "choice",
+      "es": { "question": "¿En qué año se publicó en la Web la que se considera la primera fotografía, una imagen del grupo musical «Les Horribles Cernettes»?",
+              "options": ["1992", "1990", "1995", "1998"],
+              "explanation": "La foto de Les Horribles Cernettes, un grupo vinculado al CERN, se subió a la Web en 1992 y se considera la primera fotografía publicada en ella." },
+      "en": { "question": "The photo considered the first ever published on the Web shows the band 'Les Horribles Cernettes'. In what year was it posted?",
+              "options": ["1992", "1990", "1995", "1998"],
+              "explanation": "The photo of Les Horribles Cernettes, a band formed at CERN, was put on the Web in 1992 and is regarded as the first photograph published there." }
+    },
+    {
+      "id": "technology-0097", "difficulty": 3, "type": "truefalse", "answer": false,
+      "es": { "question": "La ENIAC hacía sus cálculos en el sistema binario, igual que los computadores de hoy.",
+              "explanation": "La ENIAC trabajaba en el sistema decimal, con anillos de diez posiciones hechos con tubos de vacío. El binario se impuso en los computadores que vinieron después." },
+      "en": { "question": "The ENIAC did its calculations in binary, just like today's computers.",
+              "explanation": "The ENIAC worked in the decimal system, with ten-position rings built from vacuum tubes. Binary became the norm in the computers that came after it." }
+    },
+    {
+      "id": "technology-0098", "difficulty": 3, "type": "truefalse", "answer": true,
+      "es": { "question": "Charles Babbage no llegó a construir su máquina analítica.",
+              "explanation": "Babbage la diseñó en la década de 1830, pero no logró construirla por falta de fondos y por las limitaciones de la mecánica de su época. Su diseño anticipó el computador moderno." },
+      "en": { "question": "Charles Babbage never managed to build his Analytical Engine.",
+              "explanation": "Babbage designed it in the 1830s but could not build it, for lack of funds and because of the limits of the mechanics of his day. His design anticipated the modern computer." }
+    },
+    {
+      "id": "technology-0099", "difficulty": 3, "type": "truefalse", "answer": true,
+      "es": { "question": "El código ASCII original representa cada carácter con 7 bits.",
+              "explanation": "Con 7 bits caben 128 combinaciones: letras, dígitos, signos y caracteres de control. Las versiones ampliadas añadieron un octavo bit para tener 256 símbolos." },
+      "en": { "question": "The original ASCII code represents each character with 7 bits.",
+              "explanation": "Seven bits give 128 combinations: letters, digits, punctuation and control characters. Extended versions added an eighth bit to reach 256 symbols." }
+    },
+    {
+      "id": "technology-0100", "difficulty": 3, "type": "truefalse", "answer": false,
+      "es": { "question": "El lenguaje de programación BASIC fue creado por Microsoft.",
+              "explanation": "John Kemeny y Thomas Kurtz crearon BASIC en 1964 en el Dartmouth College para que los estudiantes aprendieran a programar. Microsoft hizo después su propia versión para el Altair." },
+      "en": { "question": "The BASIC programming language was created by Microsoft.",
+              "explanation": "John Kemeny and Thomas Kurtz created BASIC in 1964 at Dartmouth College so students could learn to program. Microsoft later made its own version for the Altair." }
+    }
+  ]
+}
