@@ -168,3 +168,29 @@ propias reacciones en la estación. Sonido y vibración siguen saliendo de `useF
 - `Game.test.tsx`: los cambios son botones con nombre; clic y teclas alternan; nada responde en pausa; termina una
   sola vez a los 90 s con `durationMs: 90000`; enrutar bien el primer tren suma puntos y muestra ✓.
 - `GameFrame.test.tsx`: `stageFlash={false}` no dibuja destello.
+
+## 8. Versión 2: trenes de perfil, mapas nuevos y pradera (revisión del dueño, 2026-11-03)
+
+El dueño revisó la primera versión y pidió: trenes que se reconozcan como trenes y se vean de lado, mapas con más
+tramos horizontales y estaciones también en los costados, más elementos naturales, y trenes que no parezcan
+descarrilados en las curvas. Aprobó este diseño en la conversación.
+
+- **Trenes de dos vagones articulados** (`sprite.ts`): locomotora (34 u) y vagón (21 u) se apoyan cada uno en la vía
+  por sus dos extremos y se dibujan en el punto medio, así doblan juntos en las curvas. Con la vía a menos de 50° de la
+  horizontal se ven **de perfil** (locomotora de vapor con cabina iluminada, caldera, cúpula, chimenea, farol con haz,
+  barredor, ruedas con biela; vagón con la forma en un disco blanco), mirando hacia donde avanzan e inclinados
+  exactamente como la vía. Más empinada, el tren viene hacia quien juega y se ve **de frente** (puerta de la caja de
+  humo con la forma de su estación, chimenea, dos faroles, haz hacia abajo).
+- **Humo**: sube desde la chimenea y se queda atrás (de frente, sube derecho); en el juego se dibuja en un `<canvas>`
+  con una bocanada ya pintada que se estampa, para no tocar los elementos de la página en cada cuadro.
+- **Mapas nuevos** (los 5, con espejo, en coordenadas del tablero 360 × 600): vías horizontales y verticales unidas
+  por diagonales y curvas; estaciones en ambos costados (x 36 / 324, a las que se llega cruzando) y abajo (y 548).
+  Prueba nueva: en cada ruta, al menos el 15 % del recorrido va de lado.
+- **Pradera de noche**: suelo verde azulado con manchas de pasto, estanques con la luna reflejada, nenúfar y juncos,
+  pinos y árboles redondos de pie, arbustos (algunos con bayas), rocas, flores y matas de pasto, y luciérnagas que
+  titilan (quietas con movimiento reducido). Todo lo coloca un generador con semilla fija por mapa, fuera de vías,
+  estaciones, cambios, túnel y estanques, y se dibuja de atrás hacia adelante.
+- **Rendimiento**: el tablero son tres dibujos apilados (pradera y vías; trenes y marcas; estaciones y túnel) en capas
+  propias, con las luciérnagas y el faro de los cambios como elementos HTML animados por el navegador; los botones y
+  discos de los cambios no se vuelven a dibujar en cada cuadro. Con la CPU 4× más lenta y la compilación de
+  producción, el trabajo por cuadro bajó de 31–34 ms (versión 1) a ≈ 28 ms con toda la pradera.

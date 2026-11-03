@@ -18,6 +18,8 @@ const hud = (label: string) => screen.getByText(label).nextElementSibling?.textC
 const switchButtons = () => screen.getAllByRole('button', { name: /^Cambio \d/ });
 const switchButton = (index: number) => document.querySelector<HTMLButtonElement>(`[data-switch="${index}"]`)!;
 const firstTrain = () => document.querySelector<SVGElement>('[data-train]');
+/** Where the first train's locomotive is drawn. */
+const locoAt = () => firstTrain()!.querySelector('[data-car="loco"]')!.getAttribute('transform');
 
 function renderGame({ paused = false, onFinish = vi.fn(), startLevel = 1 } = {}) {
   const view = render(
@@ -81,26 +83,26 @@ test('trains come out of the tunnel and move on', () => {
   advance(900);
   expect(firstTrain()).toBeNull();
   advance(300);
-  const train = firstTrain()!;
-  const at = train.getAttribute('transform');
+  expect(firstTrain()).not.toBeNull();
+  const at = locoAt();
   advance(500);
-  expect(firstTrain()!.getAttribute('transform')).not.toBe(at);
+  expect(locoAt()).not.toBe(at);
 });
 
 test('nothing moves or flips while paused, and the game goes on from the same place', () => {
   const { setPaused } = renderGame();
   advance(1500);
   setPaused(true);
-  const at = firstTrain()!.getAttribute('transform');
+  const at = locoAt();
   const option = switchButton(0).dataset.option;
   advance(2000);
   fireEvent.click(switchButton(0));
   fireEvent.keyDown(window, { key: '1' });
-  expect(firstTrain()!.getAttribute('transform')).toBe(at);
+  expect(locoAt()).toBe(at);
   expect(switchButton(0).dataset.option).toBe(option);
   setPaused(false);
   advance(50);
-  expect(firstTrain()!.getAttribute('transform')).not.toBe(at);
+  expect(locoAt()).not.toBe(at);
 });
 
 test('a train sent to its station scores and shows a check mark there, without flashing the whole board', () => {

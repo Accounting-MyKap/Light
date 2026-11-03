@@ -6,7 +6,7 @@ import { useFeedback } from '../shared/feedback';
 import { GameFrame } from '../shared/GameFrame';
 import { useGameKeys } from '../shared/useGameKeys';
 import type { GameProps } from '../types';
-import { ARRIVAL_SHOW_MS, Board, CHIMNEY_BACK } from './Board';
+import { ARRIVAL_SHOW_MS, Board } from './Board';
 import { BOARD } from './maps';
 import {
   SWITCHYARD_DURATION_MS,
@@ -14,11 +14,11 @@ import {
   createSwitchyardGame,
   switchyardResult,
   toggleSwitch,
-  trainPose,
   type Arrival,
   type SwitchyardState,
 } from './engine';
 import { agePuffs, emitPuffs, puffLook, type SmokeState } from './smoke';
+import { chimneyOf, trainSprite } from './sprite';
 import styles from './switchyard.module.css';
 
 /**
@@ -100,7 +100,11 @@ export function SwitchyardGame({ startLevel, paused, onFinish }: GameProps) {
       if (!reducedMotion) {
         const chimneys = state.trains
           .filter((train) => !train.arrived)
-          .map((train) => ({ trainId: train.id, ...trainPose(state.map, train, CHIMNEY_BACK) }));
+          .map((train) => {
+            const sprite = trainSprite(state.map, train);
+            const facing: 1 | -1 | 0 = sprite.loco.view === 'side' ? sprite.loco.facing : 0;
+            return { trainId: train.id, facing, ...chimneyOf(sprite) };
+          });
         smoke = agePuffs(emitPuffs(smoke, chimneys, now, smokeRng), now);
       }
       const shown = [...current.arrivals, ...arrivals].filter((a) => now - a.at < ARRIVAL_SHOW_MS);
@@ -112,13 +116,21 @@ export function SwitchyardGame({ startLevel, paused, onFinish }: GameProps) {
     return () => cancelAnimationFrame(frame);
   }, [active, clock, rng, smokeRng, reducedMotion, commit]);
 
-  const toggle = (index: number) => {
-    if (!active) return false;
-    const current = worldRef.current;
-    if (index < 0 || index >= current.game.switches.length) return false;
-    commit({ ...current, game: toggleSwitch(current.game, index) });
-    return true;
-  };
+  // Stable, so the switch buttons are not drawn again on every frame.
+  const activeRef = useRef(active);
+  useEffect(() => {
+    activeRef.current = active;
+  }, [active]);
+  const toggle = useCallback(
+    (index: number) => {
+      if (!activeRef.current) return false;
+      const current = worldRef.current;
+      if (index < 0 || index >= current.game.switches.length) return false;
+      commit({ ...current, game: toggleSwitch(current.game, index) });
+      return true;
+    },
+    [commit],
+  );
 
   useGameKeys((key) => (/^[1-9]$/.test(key) ? toggle(Number(key) - 1) : false));
 
@@ -141,6 +153,7 @@ export function SwitchyardGame({ startLevel, paused, onFinish }: GameProps) {
           onToggle={toggle}
           reducedMotion={reducedMotion}
           width={boardWidth}
+          smokeCanvas={!reducedMotion}
         />
       </div>
     </GameFrame>

@@ -3,19 +3,18 @@ import { clampLevel } from '../../core/difficulty';
 import { polyline, poseAt, roundCorners, type Point, type Polyline } from './geometry';
 
 /*
- * The track maps, drawn by hand on a 360 × 500 grid and stretched to the 360 × 600 board, which fits a phone held
- * upright better. Each map is a tree: the trains leave the tunnel at the top
- * and every switch splits the track in two until it ends at a station. Every switch sits on a track that arrives
- * heading down, and both of its exits start heading down too, so a train never turns sharply at a junction.
+ * The track maps, drawn by hand on the 360 × 600 board. Each map is a tree: the trains leave the tunnel at the top
+ * and every switch splits the track in two until it ends at a station, on a side or along the bottom. Tracks run
+ * across the board as well as down, so the trains are often seen from the side. Every switch sits on a track that
+ * arrives heading down, and both of its exits start heading down too, so a train never turns sharply at a junction.
+ * Around the tracks grows a night meadow (trees, bushes, rocks, flowers, a pond, fireflies), placed by a generator
+ * seeded with the map's key, so a map always looks the same.
  */
 
 export const BOARD = { width: 360, height: 600 } as const;
 
 /** The mouth of the tunnel, where every train comes out. */
 export const TUNNEL: Point = { x: 180, y: 40 };
-
-/** From the drawing grid (tunnel at y 34) to the board: rows 20 % farther apart. */
-const boardY = (y: number) => TUNNEL.y + (y - 34) * 1.2;
 
 /** Radius of the curves, in board units. */
 const CURVE_RADIUS = 26;
@@ -63,10 +62,31 @@ export interface TrackStation {
   approachAngle: number;
 }
 
-export interface Tree {
+export type DecorKind = 'pine' | 'tree' | 'bush' | 'rock' | 'flowers' | 'grass';
+
+/** A plant or a stone, standing on the point x, y (its base). */
+export interface Decor {
+  kind: DecorKind;
   x: number;
   y: number;
-  r: number;
+  scale: number;
+  /** A small variation of the drawing (0 or 1). */
+  variant: 0 | 1;
+}
+
+export interface Pond {
+  x: number;
+  y: number;
+  rx: number;
+  ry: number;
+}
+
+/** A patch of grass a little lighter than the ground. */
+export interface Patch {
+  x: number;
+  y: number;
+  rx: number;
+  ry: number;
 }
 
 export interface TrackMap {
@@ -74,7 +94,26 @@ export interface TrackMap {
   segments: TrackSegment[];
   switches: TrackSwitch[];
   stations: TrackStation[];
-  trees: Tree[];
+  decor: Decor[];
+  ponds: Pond[];
+  fireflies: Point[];
+  patches: Patch[];
+}
+
+/** How big each kind of decor is: the circle its drawing fits in, centered this far above its base. */
+const FOOTPRINT: Record<DecorKind, { lift: number; r: number }> = {
+  pine: { lift: 17, r: 18 },
+  tree: { lift: 15, r: 16 },
+  bush: { lift: 5, r: 10 },
+  rock: { lift: 4, r: 8 },
+  flowers: { lift: 0, r: 7 },
+  grass: { lift: 3, r: 6 },
+};
+
+/** The circle the drawing of a decor fits in. */
+export function decorFootprint(d: Decor): { x: number; y: number; r: number } {
+  const f = FOOTPRINT[d.kind];
+  return { x: d.x, y: d.y - f.lift * d.scale, r: f.r * d.scale };
 }
 
 /** A hand-drawn leg: the points after its start (the tunnel, or the switch it leaves) and what it ends in. */
@@ -86,210 +125,238 @@ export interface Blueprint {
 const station = (style: number, path: [number, number][]): Blueprint => ({ path, to: { station: style } });
 const fork = (path: [number, number][], left: Blueprint, right: Blueprint): Blueprint => ({ path, to: { left, right } });
 
-/* Columns and rows used below. Stations end at y 446–452 along the bottom, or at x 36 / 324 on the sides. */
+/* Side stations end at x 36 or 324, reached by a run across; bottom stations end at y 548. */
 const BLUEPRINTS: Record<number, Blueprint> = {
   3: fork(
-    [[180, 120]],
+    [[180, 130]],
     station(0, [
-      [180, 132],
-      [70, 242],
-      [70, 446],
+      [180, 144],
+      [156, 168],
+      [96, 168],
+      [96, 330],
+      [36, 330],
     ]),
     fork(
-      [[180, 240]],
-      station(1, [[180, 446]]),
+      [[180, 270]],
+      station(1, [
+        [180, 370],
+        [100, 370],
+        [100, 460],
+        [150, 460],
+        [150, 548],
+      ]),
       station(2, [
-        [180, 252],
-        [290, 362],
-        [290, 446],
+        [180, 284],
+        [204, 308],
+        [264, 308],
+        [264, 450],
+        [324, 450],
       ]),
     ),
   ),
   4: fork(
-    [[180, 110]],
+    [[180, 120]],
     fork(
       [
-        [180, 122],
-        [110, 192],
-        [110, 230],
+        [180, 134],
+        [156, 158],
+        [110, 158],
+        [110, 250],
       ],
       station(2, [
-        [110, 242],
-        [50, 302],
-        [50, 446],
+        [110, 264],
+        [86, 288],
+        [36, 288],
       ]),
       station(0, [
-        [110, 330],
-        [145, 365],
-        [145, 446],
+        [110, 410],
+        [60, 410],
+        [60, 548],
       ]),
     ),
     fork(
       [
-        [180, 122],
-        [265, 207],
-        [265, 300],
+        [180, 134],
+        [204, 158],
+        [250, 158],
+        [250, 330],
       ],
       station(3, [
-        [265, 312],
-        [225, 352],
-        [225, 446],
+        [250, 470],
+        [200, 470],
+        [200, 548],
       ]),
       station(1, [
-        [265, 312],
-        [315, 362],
-        [315, 446],
+        [250, 344],
+        [274, 368],
+        [324, 368],
       ]),
     ),
   ),
   5: fork(
-    [[180, 105]],
+    [[180, 110]],
     fork(
       [
-        [180, 117],
-        [110, 187],
-        [110, 205],
+        [180, 124],
+        [156, 148],
+        [120, 148],
+        [120, 230],
       ],
       station(4, [
-        [110, 217],
-        [74, 253],
-        [36, 253],
+        [120, 244],
+        [96, 268],
+        [36, 268],
       ]),
       fork(
-        [[110, 320]],
+        [[120, 400]],
         station(1, [
-          [110, 332],
-          [50, 392],
-          [50, 450],
+          [120, 414],
+          [96, 438],
+          [60, 438],
+          [60, 548],
         ]),
         station(3, [
-          [110, 332],
-          [150, 372],
-          [150, 450],
+          [120, 414],
+          [144, 438],
+          [170, 438],
+          [170, 548],
         ]),
       ),
     ),
     fork(
       [
-        [180, 117],
-        [260, 197],
-        [260, 300],
+        [180, 124],
+        [204, 148],
+        [250, 148],
+        [250, 300],
       ],
-      station(0, [
-        [260, 312],
-        [225, 347],
-        [225, 450],
-      ]),
       station(2, [
-        [260, 312],
-        [315, 367],
-        [315, 450],
+        [250, 470],
+        [324, 470],
+      ]),
+      station(0, [
+        [250, 314],
+        [274, 338],
+        [324, 338],
       ]),
     ),
   ),
   6: fork(
-    [[180, 105]],
+    [[180, 110]],
     fork(
       [
-        [180, 117],
-        [105, 192],
-        [105, 210],
+        [180, 124],
+        [156, 148],
+        [120, 148],
+        [120, 220],
       ],
       station(5, [
-        [105, 222],
-        [67, 260],
-        [36, 260],
+        [120, 234],
+        [96, 258],
+        [36, 258],
       ]),
       fork(
-        [[105, 320]],
+        [[120, 360]],
         station(2, [
-          [105, 332],
-          [45, 392],
-          [45, 450],
+          [120, 374],
+          [96, 398],
+          [36, 398],
         ]),
         station(0, [
-          [105, 332],
-          [135, 362],
-          [135, 450],
+          [120, 470],
+          [170, 470],
+          [170, 548],
         ]),
       ),
     ),
     fork(
       [
-        [180, 117],
-        [255, 192],
-        [255, 210],
+        [180, 124],
+        [204, 148],
+        [240, 148],
+        [240, 220],
       ],
       fork(
-        [[255, 320]],
+        [[240, 360]],
         station(1, [
-          [255, 332],
-          [225, 362],
-          [225, 450],
+          [240, 460],
+          [290, 460],
+          [290, 548],
         ]),
         station(3, [
-          [255, 332],
-          [315, 392],
-          [315, 450],
+          [240, 374],
+          [264, 398],
+          [324, 398],
         ]),
       ),
       station(4, [
-        [255, 222],
-        [293, 260],
-        [324, 260],
+        [240, 234],
+        [264, 258],
+        [324, 258],
       ]),
     ),
   ),
   7: fork(
-    [[180, 105]],
+    [[180, 110]],
     fork(
       [
-        [180, 117],
-        [105, 192],
-        [105, 205],
+        [180, 124],
+        [156, 148],
+        [110, 148],
+        [110, 210],
       ],
       station(6, [
-        [105, 217],
-        [67, 255],
-        [36, 255],
+        [110, 224],
+        [86, 248],
+        [36, 248],
       ]),
       fork(
-        [[105, 300]],
+        [[110, 350]],
         station(3, [
-          [105, 312],
-          [40, 377],
-          [40, 452],
+          [110, 364],
+          [86, 388],
+          [36, 388],
         ]),
-        station(1, [[105, 452]]),
+        station(1, [
+          [110, 470],
+          [60, 470],
+          [60, 548],
+        ]),
       ),
     ),
     fork(
       [
-        [180, 117],
-        [255, 192],
-        [255, 205],
+        [180, 124],
+        [204, 148],
+        [250, 148],
+        [250, 210],
       ],
       fork(
-        [[255, 280]],
-        station(0, [
-          [255, 292],
-          [180, 367],
-          [180, 452],
-        ]),
+        [[250, 330]],
         fork(
-          [[255, 360]],
-          station(4, [[255, 452]]),
-          station(2, [
-            [255, 372],
-            [320, 437],
-            [320, 452],
+          [[250, 450]],
+          station(0, [
+            [250, 464],
+            [226, 488],
+            [180, 488],
+            [180, 548],
+          ]),
+          station(4, [
+            [250, 500],
+            [300, 500],
+            [300, 548],
           ]),
         ),
+        station(2, [
+          [250, 344],
+          [274, 368],
+          [324, 368],
+        ]),
       ),
       station(5, [
-        [255, 217],
-        [293, 255],
-        [324, 255],
+        [250, 224],
+        [274, 248],
+        [324, 248],
       ]),
     ),
   ),
@@ -302,7 +369,7 @@ export function compileMap(blueprint: Blueprint, key: string): TrackMap {
 
   const visit = (leg: Blueprint, start: Point, from: TrackSegment['from'], route: [number, 0 | 1][]): number => {
     const id = segments.length;
-    const points = [start, ...leg.path.map(([x, y]) => ({ x, y: boardY(y) }))];
+    const points = [start, ...leg.path.map(([x, y]) => ({ x, y }))];
     const line = polyline(roundCorners(points, CURVE_RADIUS));
     const end = line.points[line.points.length - 1];
     const segment: TrackSegment = { id, line, from, end: { station: -1 } };
@@ -335,9 +402,8 @@ export function compileMap(blueprint: Blueprint, key: string): TrackMap {
   };
 
   visit(blueprint, TUNNEL, 'tunnel', []);
-  const map: TrackMap = { key, segments, switches, stations, trees: [] };
-  map.trees = plantTrees(map);
-  return map;
+  const map: TrackMap = { key, segments, switches, stations, decor: [], ponds: [], fireflies: [], patches: [] };
+  return { ...map, ...growNature(map) };
 }
 
 function distToPolyline(p: Point, points: readonly Point[]): number {
@@ -354,29 +420,102 @@ function distToPolyline(p: Point, points: readonly Point[]): number {
   return best;
 }
 
-/** Trees in the free space, from a random generator seeded with the map key so a map always looks the same. */
-function plantTrees(map: TrackMap): Tree[] {
-  const rng = createRng(seedFromString(`trees:${map.key}`));
-  const trees: Tree[] = [];
-  const step = 24;
+const DECOR_WEIGHTS: [DecorKind, number][] = [
+  ['pine', 0.3],
+  ['tree', 0.2],
+  ['bush', 0.2],
+  ['rock', 0.1],
+  ['flowers', 0.12],
+  ['grass', 0.08],
+];
+
+function pickKind(roll: number): DecorKind {
+  let sum = 0;
+  for (const [kind, weight] of DECOR_WEIGHTS) {
+    sum += weight;
+    if (roll < sum) return kind;
+  }
+  return 'grass';
+}
+
+/** How far inside a pond's ellipse grown by `margin` the point is: below 1 means inside. */
+function ellipseReach(p: Point, pond: Pond, margin: number): number {
+  return ((p.x - pond.x) / (pond.rx + margin)) ** 2 + ((p.y - pond.y) / (pond.ry + margin)) ** 2;
+}
+
+/** Points every few units along every track, to keep things off the tracks. */
+function trackSamples(map: TrackMap): Point[] {
+  const out: Point[] = [];
+  for (const s of map.segments) for (let d = 0; d <= s.line.length; d += 4) out.push(poseAt(s.line, d));
+  return out;
+}
+
+/**
+ * The night meadow around the tracks: a pond or two in the widest free spaces, then trees, bushes, rocks, flowers
+ * and grass on a loose grid, fireflies, and lighter patches of grass on the ground. Nothing stands on a track, a
+ * station, a switch or the tunnel.
+ */
+function growNature(map: TrackMap): Pick<TrackMap, 'decor' | 'ponds' | 'fireflies' | 'patches'> {
+  const rng = createRng(seedFromString(`nature:${map.key}`));
+  const samples = trackSamples(map);
+  const landmarks = [TUNNEL, ...map.stations.map((st) => st.at), ...map.switches.map((sw) => sw.at)];
+  const trackDistance = (p: Point) => Math.min(...map.segments.map((s) => distToPolyline(p, s.line.points)));
+
+  const ponds: Pond[] = [];
+  for (let attempt = 0; attempt < 600 && ponds.length < 2; attempt++) {
+    const rx = (ponds.length === 0 ? 30 : 22) + rng() * 10;
+    const pond: Pond = { x: 0, y: 0, rx, ry: rx * 0.55 };
+    pond.x = pond.rx + 10 + rng() * (BOARD.width - 2 * pond.rx - 20);
+    pond.y = 80 + pond.ry + rng() * (BOARD.height - 110 - 2 * pond.ry);
+    if (samples.some((p) => ellipseReach(p, pond, 14) < 1)) continue;
+    if (landmarks.some((p) => ellipseReach(p, pond, 34) < 1)) continue;
+    if (ponds.some((o) => Math.hypot(o.x - pond.x, o.y - pond.y) < o.rx + pond.rx + 30)) continue;
+    ponds.push(pond);
+  }
+
+  const decor: Decor[] = [];
+  const step = 20;
   for (let gy = step / 2; gy < BOARD.height; gy += step) {
     for (let gx = step / 2; gx < BOARD.width; gx += step) {
-      const r = 5.5 + rng() * 4.5;
       const x = gx + (rng() - 0.5) * 14;
       const y = gy + (rng() - 0.5) * 14;
-      const keep = rng() < 0.42;
-      if (!keep) continue;
-      if (x - r < 4 || x + r > BOARD.width - 4 || y - r < 4 || y + r > BOARD.height - 4) continue;
-      const p = { x, y };
-      if (Math.hypot(x - TUNNEL.x, y - TUNNEL.y) < 48) continue;
-      if (map.segments.some((s) => distToPolyline(p, s.line.points) < 32)) continue;
-      if (map.stations.some((s) => Math.hypot(x - s.at.x, y - s.at.y) < 42)) continue;
-      if (map.switches.some((s) => Math.hypot(x - s.at.x, y - s.at.y) < 40)) continue;
-      if (trees.some((t) => Math.hypot(x - t.x, y - t.y) < t.r + r + 3)) continue;
-      trees.push({ x, y, r });
+      const kind = pickKind(rng());
+      const scale = 0.8 + rng() * 0.35;
+      const variant: 0 | 1 = rng() < 0.5 ? 0 : 1;
+      if (rng() < 0.45) continue;
+      const item: Decor = { kind, x, y, scale, variant };
+      const f = decorFootprint(item);
+      if (f.x - f.r < 2 || f.x + f.r > BOARD.width - 2 || f.y - f.r < 2 || f.y + f.r > BOARD.height - 2) continue;
+      if (Math.hypot(f.x - TUNNEL.x, f.y - TUNNEL.y) < f.r + 32) continue;
+      if (trackDistance(f) < f.r + 10) continue;
+      if (map.stations.some((st) => Math.hypot(f.x - st.at.x, f.y - st.at.y) < f.r + 28)) continue;
+      if (map.switches.some((sw) => Math.hypot(f.x - sw.at.x, f.y - sw.at.y) < f.r + 30)) continue;
+      if (ponds.some((pond) => ellipseReach(f, pond, f.r + 2) < 1)) continue;
+      if (decor.some((o) => {
+        const g = decorFootprint(o);
+        return Math.hypot(f.x - g.x, f.y - g.y) < 0.7 * (f.r + g.r);
+      })) continue;
+      decor.push(item);
     }
   }
-  return trees;
+  decor.sort((a, b) => a.y - b.y);
+
+  const fireflies: Point[] = [];
+  for (let attempt = 0; attempt < 400 && fireflies.length < 12; attempt++) {
+    const p = { x: 12 + rng() * (BOARD.width - 24), y: 60 + rng() * (BOARD.height - 80) };
+    if (trackDistance(p) < 18) continue;
+    if (fireflies.some((o) => Math.hypot(o.x - p.x, o.y - p.y) < 40)) continue;
+    fireflies.push(p);
+  }
+
+  const patches: Patch[] = Array.from({ length: 8 }, () => ({
+    x: rng() * BOARD.width,
+    y: rng() * BOARD.height,
+    rx: 40 + rng() * 50,
+    ry: 18 + rng() * 22,
+  }));
+
+  return { decor, ponds, fireflies, patches };
 }
 
 const mirrorPoint = (p: Point): Point => ({ x: BOARD.width - p.x, y: p.y });
@@ -393,7 +532,10 @@ export function mirrorMap(map: TrackMap): TrackMap {
       exitAngles: [mirrorAngle(s.exitAngles[0]), mirrorAngle(s.exitAngles[1])],
     })),
     stations: map.stations.map((s) => ({ ...s, at: mirrorPoint(s.at), approachAngle: mirrorAngle(s.approachAngle) })),
-    trees: map.trees.map((t) => ({ ...t, x: BOARD.width - t.x })),
+    decor: map.decor.map((d) => ({ ...d, x: BOARD.width - d.x })),
+    ponds: map.ponds.map((p) => ({ ...p, x: BOARD.width - p.x })),
+    fireflies: map.fireflies.map(mirrorPoint),
+    patches: map.patches.map((p) => ({ ...p, x: BOARD.width - p.x })),
   };
 }
 

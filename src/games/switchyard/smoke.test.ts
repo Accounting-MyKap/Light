@@ -41,5 +41,30 @@ test('a puff grows from 3 to 15 units and fades from 0.6 to nothing', () => {
   const mid = puffLook(puff, 1750);
   expect(mid.r).toBeGreaterThan(3);
   expect(mid.r).toBeLessThan(15);
-  expect(Math.hypot(mid.x - 100, mid.y - 200)).toBeLessThan(15);
+  expect(Math.hypot(mid.x - 100, mid.y - 200)).toBeLessThan(25);
+});
+
+test('smoke rises and trails behind the way the train faces', () => {
+  const rng = createRng(5);
+  let right = empty();
+  let left = empty();
+  for (let t = 0; t < 1600; t += 16) {
+    right = emitPuffs(right, [{ trainId: 1, x: 0, y: 0, facing: 1 }], t, rng);
+    left = emitPuffs(left, [{ trainId: 1, x: 0, y: 0, facing: -1 }], t, rng);
+  }
+  for (const p of right.puffs) {
+    expect(p.dy).toBeLessThanOrEqual(-12);
+    expect(p.dx).toBeLessThan(0);
+  }
+  for (const p of left.puffs) expect(p.dx).toBeGreaterThan(0);
+});
+
+test('a train seen from the front puffs its smoke straight up', () => {
+  const rng = createRng(6);
+  let smoke = empty();
+  for (let t = 0; t < 1600; t += 16) smoke = emitPuffs(smoke, [{ trainId: 1, x: 0, y: 0, facing: 0 }], t, rng);
+  for (const p of smoke.puffs) {
+    expect(p.dy).toBeLessThanOrEqual(-12);
+    expect(Math.abs(p.dx)).toBeLessThanOrEqual(3);
+  }
 });

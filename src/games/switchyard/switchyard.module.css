@@ -27,10 +27,14 @@
   max-width: none;
 }
 
-.svg {
+/* The three drawings stacked on the board, each on its own layer so only the moving one is repainted. */
+.layer {
+  position: absolute;
+  inset: 0;
   display: block;
   width: 100%;
   height: 100%;
+  will-change: transform;
 }
 
 /* The lit route under the bright rails, in the color of the game. */
@@ -51,13 +55,16 @@
   stroke-width: 2.8;
 }
 
-/* A ring that grows and fades from every switch, to say «tap me». */
-.beacon {
-  fill: none;
-  stroke: var(--game, #3fd4ff);
-  stroke-width: 2;
-  transform-box: fill-box;
-  transform-origin: center;
+/* A ring that grows and fades from every switch, to say «tap me». It lives on the button, so the browser animates
+   it without repainting the board. */
+.switch::before {
+  content: '';
+  position: absolute;
+  inset: 20%;
+  border: 2px solid var(--game, #3fd4ff);
+  border-radius: 50%;
+  pointer-events: none;
+  will-change: transform, opacity;
   animation: beacon 1.6s ease-out infinite;
 }
 
@@ -70,6 +77,30 @@
   100% {
     transform: scale(2);
     opacity: 0;
+  }
+}
+
+/* Fireflies over the meadow: each glows and dims on its own beat. */
+.firefly {
+  position: absolute;
+  width: 2.5%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fbffd0 0, rgb(233 255 122 / 60%) 35%, rgb(233 255 122 / 0%) 70%);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  will-change: opacity;
+  animation: twinkle 3s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.15;
+  }
+
+  50% {
+    opacity: 1;
   }
 }
 
@@ -133,7 +164,7 @@
 
 /* Reduced motion: no beacon and the arrow jumps. The trains still move: moving them is the game. */
 @media (prefers-reduced-motion: reduce) {
-  .beacon {
+  .switch::before {
     animation: none;
     opacity: 0;
   }
@@ -142,7 +173,8 @@
     transition: none;
   }
 
-  .switch:active {
-    background: color-mix(in srgb, var(--game, #3fd4ff) 24%, transparent);
+  .firefly {
+    animation: none;
+    opacity: 0.7;
   }
 }

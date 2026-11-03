@@ -2,6 +2,7 @@ import { poseAt, segmentsIntersect, type Point } from './geometry';
 import {
   ALL_MAPS,
   BOARD,
+  decorFootprint,
   STATION_STYLES,
   TUNNEL,
   mapFor,
@@ -25,6 +26,11 @@ function distToLine(p: Point, points: Point[]): number {
   let best = Infinity;
   for (let i = 1; i < points.length; i++) best = Math.min(best, distToSegment(p, points[i - 1], points[i]));
   return best;
+}
+
+/** True when the point lies inside the pond's ellipse grown by `margin`. */
+function insideEllipse(p: Point, pond: { x: number; y: number; rx: number; ry: number }, margin: number): boolean {
+  return ((p.x - pond.x) / (pond.rx + margin)) ** 2 + ((p.y - pond.y) / (pond.ry + margin)) ** 2 < 1;
 }
 
 /** Points every ~4 units along a segment. */
@@ -172,17 +178,82 @@ describe.each(ALL_MAPS.map((m) => [m.key, m] as const))('map %s', (_key, map) =>
     }
   });
 
-  test('trees grow in the free space', () => {
-    expect(map.trees.length).toBeGreaterThanOrEqual(6);
-    for (const tree of map.trees) {
-      expect(tree.x - tree.r).toBeGreaterThanOrEqual(0);
-      expect(tree.x + tree.r).toBeLessThanOrEqual(BOARD.width);
-      expect(tree.y - tree.r).toBeGreaterThanOrEqual(0);
-      expect(tree.y + tree.r).toBeLessThanOrEqual(BOARD.height);
-      expect(dist(tree, TUNNEL)).toBeGreaterThanOrEqual(40);
-      for (const segment of map.segments) expect(distToLine(tree, segment.line.points)).toBeGreaterThanOrEqual(30);
-      for (const st of map.stations) expect(dist(tree, st.at)).toBeGreaterThanOrEqual(36);
-      for (const sw of map.switches) expect(dist(tree, sw.at)).toBeGreaterThanOrEqual(36);
+  test('nature fills the free space: trees, bushes, rocks, flowers and grass', () => {
+    expect(map.decor.length).toBeGreaterThanOrEqual(14);
+    expect(new Set(map.decor.map((d) => d.kind)).size).toBeGreaterThanOrEqual(4);
+    for (const d of map.decor) {
+      const f = decorFootprint(d);
+      expect(f.x - f.r).toBeGreaterThanOrEqual(0);
+      expect(f.x + f.r).toBeLessThanOrEqual(BOARD.width);
+      expect(f.y - f.r).toBeGreaterThanOrEqual(0);
+      expect(f.y + f.r).toBeLessThanOrEqual(BOARD.height);
+      expect(dist(f, TUNNEL), `${d.kind} near the tunnel`).toBeGreaterThanOrEqual(f.r + 30);
+      for (const segment of map.segments) {
+        expect(distToLine(f, segment.line.points), `${d.kind} on a track`).toBeGreaterThanOrEqual(f.r + 8);
+      }
+      for (const st of map.stations) expect(dist(f, st.at), `${d.kind} on a station`).toBeGreaterThanOrEqual(f.r + 26);
+      for (const sw of map.switches) expect(dist(f, sw.at), `${d.kind} on a switch`).toBeGreaterThanOrEqual(f.r + 28);
+      for (const pond of map.ponds) expect(insideEllipse(f, pond, f.r), `${d.kind} in a pond`).toBe(false);
+    }
+  });
+
+  test('decor is drawn back to front', () => {
+    const ys = map.decor.map((d) => d.y);
+    expect(ys).toEqual([...ys].sort((a, b) => a - b));
+  });
+
+  test('there is a pond, clear of the tracks, the stations and the switches', () => {
+    expect(map.ponds.length).toBeGreaterThanOrEqual(1);
+    for (const pond of map.ponds) {
+      expect(pond.x - pond.rx).toBeGreaterThanOrEqual(8);
+      expect(pond.x + pond.rx).toBeLessThanOrEqual(BOARD.width - 8);
+      expect(pond.y + pond.ry).toBeLessThanOrEqual(BOARD.height - 8);
+      for (const segment of map.segments) for (const p of samples(segment)) expect(insideEllipse(p, pond, 12)).toBe(false);
+      for (const p of [TUNNEL, ...map.stations.map((st) => st.at), ...map.switches.map((sw) => sw.at)]) {
+        expect(insideEllipse(p, pond, 30)).toBe(false);
+      }
+    }
+  });
+
+  test('fireflies hover over the free space', () => {
+    expect(map.fireflies.length).toBeGreaterThanOrEqual(8);
+    for (const f of map.fireflies) {
+      expect(f.x).toBeGreaterThanOrEqual(8);
+      expect(f.x).toBeLessThanOrEqual(BOARD.width - 8);
+      expect(f.y).toBeGreaterThanOrEqual(8);
+      expect(f.y).toBeLessThanOrEqual(BOARD.height - 8);
+      for (const segment of map.segments) expect(distToLine(f, segment.line.points)).toBeGreaterThanOrEqual(16);
+    }
+  });
+
+  test('stations wait on the sides as well as along the bottom', () => {
+    const sides = map.stations.filter((st) => st.at.x <= 40 || st.at.x >= BOARD.width - 40);
+    const bottom = map.stations.filter((st) => st.at.y >= BOARD.height - 60);
+    expect(sides.length).toBeGreaterThanOrEqual(2);
+    expect(bottom.length).toBeGreaterThanOrEqual(1);
+    for (const st of sides) expect(Math.abs(Math.cos((st.approachAngle * Math.PI) / 180))).toBeCloseTo(1);
+  });
+
+  test('trains spend a good part of every route running sideways', () => {
+    for (const segment of map.segments) {
+      if (!('station' in segment.end)) continue;
+      let sideways = 0;
+      let total = 0;
+      const route = map.stations[segment.end.station].route;
+      // Walk the whole route from the tunnel to this station.
+      const choice = new Map(route);
+      let current = map.segments[0];
+      for (;;) {
+        for (let d = 0; d < current.line.length; d += 2) {
+          const angle = (poseAt(current.line, d).angle * Math.PI) / 180;
+          total += 2;
+          if (Math.abs(Math.cos(angle)) > 0.5) sideways += 2;
+        }
+        if ('station' in current.end) break;
+        const sw = map.switches[current.end.switch];
+        current = map.segments[sw.exits[choice.get(sw.id) ?? 0]];
+      }
+      expect(sideways / total, `route to station ${segment.end.station}`).toBeGreaterThanOrEqual(0.15);
     }
   });
 });
@@ -197,5 +268,7 @@ test('mirroring flips x and keeps the routes', () => {
     expect(mirrored.stations[i].route).toEqual(st.route);
   });
   expect(mirrored.switches[0].exitAngles[0]).toBeCloseTo(180 - map.switches[0].exitAngles[0]);
-  expect(mirrored.trees[0].x).toBeCloseTo(BOARD.width - map.trees[0].x);
+  expect(mirrored.decor[0].x).toBeCloseTo(BOARD.width - map.decor[0].x);
+  expect(mirrored.ponds[0].x).toBeCloseTo(BOARD.width - map.ponds[0].x);
+  expect(mirrored.fireflies[0].x).toBeCloseTo(BOARD.width - map.fireflies[0].x);
 });
