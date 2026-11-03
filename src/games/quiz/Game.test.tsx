@@ -281,6 +281,31 @@ test('shows the as-of line when a question has asOf', async () => {
   expect(screen.getByText('Vigente a noviembre de 2026')).toBeInTheDocument();
 });
 
+test('keeps numbers and percentages on one line in the question, the options and the explanation', async () => {
+  vi.mocked(loadQuestions).mockImplementation(async () =>
+    historyPool().map((q) =>
+      q.type === 'choice'
+        ? {
+            ...q,
+            es: {
+              question: '¿Cuánto es 19 % de 120 000?',
+              options: ['22 800', '2 280', '228 000', '1 200 000'],
+              explanation: 'El 19 % de 120 000 es 22 800.',
+            },
+          }
+        : q,
+    ),
+  );
+  const { container } = await renderGame();
+  expect(screen.getByRole('heading', { level: 2 }).textContent).toBe('¿Cuánto es 19\u202F% de 120\u202F000?');
+  expect(options().map((o) => o.textContent?.replace(/^\d /, ''))).toEqual(
+    expect.arrayContaining(['22\u202F800', '2\u202F280', '228\u202F000', '1\u202F200\u202F000']),
+  );
+  advance(1000);
+  fireEvent.keyDown(window, { key: '1' });
+  expect(container.textContent).toContain('El 19\u202F% de 120\u202F000 es 22\u202F800.');
+});
+
 test('shows an error and retries when questions cannot load', async () => {
   vi.mocked(loadQuestions).mockRejectedValueOnce(new Error('offline'));
   render(gameElement());

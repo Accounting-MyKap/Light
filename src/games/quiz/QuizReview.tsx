@@ -2,6 +2,7 @@ import { useId } from 'react';
 import { useTranslation } from 'react-i18next';
 import { asOfLabel } from '../../quiz/asOf';
 import { correctIndex, optionTexts, type QuizRoundItem } from '../../quiz/types';
+import { keepNumbersTogether } from '../../quiz/typography';
 import type { GameResult } from '../types';
 import styles from './quiz.module.css';
 
@@ -19,7 +20,8 @@ export function QuizReview({ result }: { result: GameResult }) {
   const yourAnswer = ({ question, outcome, chosen }: QuizRoundItem): string => {
     if (outcome === 'skipped') return t('quiz.review.yourAnswer', { answer: t('quiz.dontKnow') });
     const picked = chosen === null ? undefined : optionTexts(question, lang, labels)[chosen];
-    return picked === undefined ? t('quiz.review.noAnswer') : t('quiz.review.yourAnswer', { answer: picked });
+    if (picked === undefined) return t('quiz.review.noAnswer');
+    return t('quiz.review.yourAnswer', { answer: keepNumbersTogether(picked) });
   };
 
   return (
@@ -34,14 +36,14 @@ export function QuizReview({ result }: { result: GameResult }) {
             const date = question.asOf ? asOfLabel(question.asOf, lang) : null;
             return (
               <article key={question.id} className={styles.reviewItem}>
-                <h3 className={styles.reviewPrompt}>{question[lang].question}</h3>
+                <h3 className={styles.reviewPrompt}>{keepNumbersTogether(question[lang].question)}</h3>
                 <p className={styles.reviewWrong}>{yourAnswer(item)}</p>
                 <p className={styles.reviewRight}>
                   {t('quiz.review.correctAnswer', {
-                    answer: optionTexts(question, lang, labels)[correctIndex(question)],
+                    answer: keepNumbersTogether(optionTexts(question, lang, labels)[correctIndex(question)]),
                   })}
                 </p>
-                <p>{question[lang].explanation}</p>
+                <p>{keepNumbersTogether(question[lang].explanation)}</p>
                 {date && <p className={styles.asOf}>{t('quiz.asOf', { date })}</p>}
               </article>
             );

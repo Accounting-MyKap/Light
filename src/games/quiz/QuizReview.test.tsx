@@ -108,3 +108,21 @@ test('no mistakes, in English', async () => {
   render(<QuizReview result={resultOf(correctItems(10))} />);
   expect(screen.getByText('No mistakes this round!')).toBeInTheDocument();
 });
+
+test('keeps numbers and percentages on one line', () => {
+  const question = makeChoice('n-1', 'us', 1, {
+    es: {
+      question: '¿Cuánto es 19 % de 120 000?',
+      options: ['22 800', '2 280', '228 000', '12 000'],
+      explanation: 'El 19 % de 120 000 es 22 800.',
+    },
+  });
+  render(<QuizReview result={resultOf([item(question, 'wrong', 3)])} />);
+  const article = screen.getByRole('article');
+  // U+202F is a narrow no-break space; the default text matcher would treat it as a plain space.
+  expect(within(article).getByRole('heading', { level: 3 }).textContent).toBe('¿Cuánto es 19 % de 120 000?');
+  expect(article.textContent).toContain('Tu respuesta: 12 000');
+  expect(article.textContent).toContain('Respuesta correcta: 22 800');
+  expect(article.textContent).toContain('El 19 % de 120 000 es 22 800.');
+  expect(article.textContent).not.toMatch(/\d [\d%]/);
+});

@@ -2,6 +2,7 @@ import { useEffect, useRef, type Ref } from 'react';
 import { useTranslation } from 'react-i18next';
 import { asOfLabel } from '../../quiz/asOf';
 import { correctIndex, optionTexts, type AnswerOutcome, type Question } from '../../quiz/types';
+import { keepNumbersTogether } from '../../quiz/typography';
 import styles from './quiz.module.css';
 
 /** Pointer clicks on game controls should not move keyboard focus onto them (the window keys keep working). */
@@ -54,7 +55,7 @@ export function QuestionView({
       <div className={styles.card}>
         <p className={styles.category}>{t(`quiz.categories.${question.category}`)}</p>
         <h2 ref={promptRef} className={styles.prompt} tabIndex={-1}>
-          {question[lang].question}
+          {keepNumbersTogether(question[lang].question)}
         </h2>
       </div>
 
@@ -75,7 +76,7 @@ export function QuestionView({
             >
               <span className={styles.number}>{shown + 1}</span>{' '}
               <span className={styles.optionBody}>
-                <span>{texts[canonical]}</span>
+                <span>{keepNumbersTogether(texts[canonical])}</span>
                 {mark && (
                   <>
                     {' '}
@@ -97,7 +98,7 @@ export function QuestionView({
       {answered && (
         <div className={styles.feedback}>
           {outcome === 'timeout' && <p className={styles.timeUp}>{t('quiz.timeUp')}</p>}
-          <p className={styles.explanation}>{question[lang].explanation}</p>
+          <p className={styles.explanation}>{keepNumbersTogether(question[lang].explanation)}</p>
           {date && <p className={styles.asOf}>{t('quiz.asOf', { date })}</p>}
           {onNext && (
             <button ref={nextRef} type="button" className={styles.next} onMouseDown={keepFocus} onClick={onNext}>
