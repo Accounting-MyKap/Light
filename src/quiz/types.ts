@@ -40,7 +40,10 @@ interface QuestionBase {
   id: string;
   category: QuizCategory;
   difficulty: Difficulty;
-  /** `YYYY-MM`: mes hasta el cual el dato es vigente. Solo para normas que pueden cambiar. */
+  /**
+   * `YYYY-MM`: mes en que se verificó la norma; la app lo muestra como «Vigente a …». Solo para normas que pueden
+   * cambiar.
+   */
   asOf?: string;
 }
 
