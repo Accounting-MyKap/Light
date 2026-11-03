@@ -95,13 +95,21 @@ docs/         especificación, planes de implementación y guía de contenido de
 ## Cómo agregar un juego
 
 1. Crea `src/games/<id>/` con el motor (`engine.ts`, lógica pura y probada), el componente
-   (`Game.tsx`), la práctica guiada (`Practice.tsx`, que recibe `onComplete` y `onSkip`) y su definición
-   (`index.ts`, con `Practice`, que es obligatoria).
+   (`Game.tsx`), la manera de enseñarlo y su definición (`index.ts`). Para enseñarlo hay dos opciones,
+   y cada juego tiene exactamente una:
+   - **una práctica guiada** (`Practice.tsx`, que recibe `onComplete` y `onSkip`), la recomendada y la de
+     los 5 juegos originales; va en `index.ts` como `Practice`;
+   - **o la pantalla de instrucciones**, como Guardagujas y los juegos de preguntas: un ejemplo estático
+     (`Example.tsx`, en `index.ts` como `Example`) junto a los pasos.
 2. Agrega una línea en `src/games/registry.ts`.
-3. Agrega `games.<id>.title`, `description` y `practice.*` en `es.json` y `en.json`; `practice.recap`
-   es el resumen de las reglas en una línea, que se ve en la pantalla «¡Listo!».
+3. Agrega `games.<id>.title`, `skill` y `description` en `es.json` y `en.json`, y además:
+   - con práctica, `games.<id>.practice.*`, donde `practice.recap` es el resumen de las reglas en una
+     línea que se ve en la pantalla «¡Listo!»;
+   - con instrucciones, `games.<id>.instructions` (al menos 2 pasos), o `instructionsKey` en la definición
+     cuando varios juegos comparten los mismos pasos, como los de preguntas con `quiz.instructions`.
 
-Las pruebas verifican que cada juego registrado tenga sus textos en ambos idiomas. Para la
+Las pruebas verifican que cada juego registrado tenga una práctica o un ejemplo, y sus textos en ambos
+idiomas. Para la
 sincronización con Supabase también hace falta una fila en la tabla `games` (en una migración nueva de
 `supabase/migrations/`, con su área y su puntaje máximo); la prueba de integración comprueba que la
 tabla coincida con el registro.

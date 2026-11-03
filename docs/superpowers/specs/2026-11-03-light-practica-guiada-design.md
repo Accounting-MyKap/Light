@@ -70,6 +70,22 @@ La primera vez es cuando el juego no está en la lista de juegos ya vistos, y ap
 - Los textos que solo usaban la pantalla y los ejemplos: `games.<id>.instructions`, `games.<id>.exampleAnswer*`, `play.example` y otros de los ejemplos.
 - Lo que siga en uso no se toca.
 
+Lo anterior vale para los cinco juegos originales. La pantalla de pasos, `GameDefinition.Example` y `play.example` se quedan para los juegos sin práctica (§3.6).
+
+### 3.6 Juegos sin práctica
+
+Mientras se construía esta práctica, `main` sumó Guardagujas y los 14 juegos de preguntas. El dueño decidió unir los cambios y publicar sin hacerles una práctica (la de Guardagujas puede llegar después).
+
+- **Quiénes:** Guardagujas y los 14 juegos de preguntas. Los cinco juegos originales tienen práctica.
+- **Primera vez:** la pantalla de pasos con su ejemplo y «Comenzar», como antes. «Comenzar» marca el juego como visto; los de preguntas comparten la marca (`quiz.instructions`), así que la pantalla aparece una sola vez para los 14.
+- **Quien ya jugó:** «¿Cómo se juega?» abre esa misma pantalla de pasos, y su «Comenzar» empieza el juego.
+- **En la pausa:**
+  - La hoja tiene los mismos tres botones: «Continuar», «¿Cómo se juega?» y «Salir».
+  - «¿Cómo se juega?» abre los pasos en la misma capa que la práctica, encima del juego congelado.
+  - Su botón principal dice «Volver» y regresa a la hoja. La ✕ también regresa a la hoja, y por eso se llama «Volver».
+  - Si la app se oculta, los pasos se quedan abiertos.
+- **Datos:** `GameDefinition` tiene `Practice` o `Example`, nunca los dos ni ninguno. Con `Practice`, el juego necesita `games.<id>.practice.recap`; con `Example`, sus pasos (`games.<id>.instructions` o su `instructionsKey`). Una prueba del registro lo verifica en ES y EN.
+
 ## 4. Las prácticas
 
 En todas las prácticas:
@@ -173,7 +189,7 @@ Las cifras salen de las constantes del juego (duración, rondas y penalizaciones
 ### 5.2 Por juego
 
 - `src/games/<id>/Practice.tsx` con sus rondas como datos y su pantalla. Reusa `ArrowRow`/`ArrowIcon`, `Board`, `CardView`/`RuleIcon`, `SymbolGlyph`, `Keypad` y el formato de operaciones del juego.
-- `GameDefinition` gana `Practice: ComponentType<PracticeProps>` y pierde `Example`.
+- `GameDefinition` gana `Practice?: ComponentType<PracticeProps>`, y `Example` pasa a ser opcional, solo para los juegos sin práctica (§3.6).
 - Textos nuevos bajo `games.<id>.practice.*` (rondas, pistas y resumen) y `practice.*` (marco: entrada, «¡Listo!», «Saltar práctica», «Práctica N de M», «¡Bien!»).
 
 ### 5.3 Pantalla de juego (`PlayScreen`)
