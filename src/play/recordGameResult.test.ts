@@ -6,6 +6,9 @@ import { makeChoice } from '../test/quizFixtures';
 import type { QuizRoundDetails } from '../quiz/types';
 
 beforeEach(clearAllData);
+afterEach(() => {
+  vi.restoreAllMocks();
+});
 
 test('recordGameResult stores result and next start level', async () => {
   const first = await recordGameResult({
@@ -87,5 +90,24 @@ test('retrying a save with the same id keeps one set of answers', async () => {
   await recordGameResult(args);
   await recordGameResult(args);
   expect(await db.results.count()).toBe(1);
+  expect(await db.quizAnswers.count()).toBe(10);
+});
+
+test('a failed save of the answers writes neither them nor the result, and the retry saves both once', async () => {
+  const bulkPut = vi.spyOn(db.quizAnswers, 'bulkPut').mockRejectedValueOnce(new Error('QuotaExceededError'));
+  const args = {
+    game: fakeGame,
+    startLevel: 1,
+    result: { score: 70, accuracy: 0.7, levelReached: 1, durationMs: 90000, quiz: quizDetails() },
+    daily: null,
+    resultId: 'tx-1',
+  };
+  await expect(recordGameResult(args)).rejects.toThrow('QuotaExceededError');
+  expect(await db.results.count()).toBe(0);
+  expect(await db.quizAnswers.count()).toBe(0);
+
+  await recordGameResult(args);
+  expect(bulkPut).toHaveBeenCalledTimes(2);
+  expect((await db.results.toArray()).map((r) => r.id)).toEqual(['tx-1']);
   expect(await db.quizAnswers.count()).toBe(10);
 });
