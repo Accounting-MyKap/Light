@@ -82,6 +82,17 @@ export function QuizGame({ startLevel, paused, onFinish, categories }: GameProps
     setAttempt((n) => n + 1);
   };
 
+  // «Reintentar» goes away when pressed, so the focus would fall to the page: it goes to the loading line instead, then
+  // to the first question (QuizRound), or back to «Reintentar» if the load fails again. Not while paused (the game is
+  // inert); on resuming, it goes where it should be.
+  const statusRef = useRef<HTMLParagraphElement>(null);
+  const retryRef = useRef<HTMLButtonElement>(null);
+  useEffect(() => {
+    if (attempt === 0 || paused) return;
+    if (load.kind === 'loading') statusRef.current?.focus();
+    if (load.kind === 'error') retryRef.current?.focus();
+  }, [attempt, paused, load.kind]);
+
   // Loading and a failed load are drawn in the frame too: its ✕ is the way out of the game screen.
   if (load.kind === 'error') {
     return (
@@ -89,7 +100,7 @@ export function QuizGame({ startLevel, paused, onFinish, categories }: GameProps
         <GameFrame score={0} level={firstLevel}>
           <div className={styles.status}>
             <p role="alert">{t('quiz.loadError')}</p>
-            <button type="button" className={styles.retry} onClick={retry}>
+            <button ref={retryRef} type="button" className={styles.retry} onClick={retry}>
               {t('play.retry')}
             </button>
             {/* Retrying cannot help when the app itself is stale (a bank chunk of an older version is gone). */}
@@ -107,7 +118,7 @@ export function QuizGame({ startLevel, paused, onFinish, categories }: GameProps
     return (
       <div className={styles.game}>
         <GameFrame score={0} level={firstLevel}>
-          <p className={styles.status} role="status">
+          <p ref={statusRef} className={styles.status} role="status" tabIndex={-1}>
             {t('quiz.loading')}
           </p>
         </GameFrame>
@@ -139,12 +150,18 @@ function QuizRound({ initial, clock, rng, paused, onFinish }: QuizRoundProps) {
   const { question, order, askedAt } = round.current;
   const resolved = asking ? undefined : lastItem(round);
 
+  // The keyboard and screen readers go to the prompt of each new question, and back to it when play resumes: the pause
+  // sheet and the 3-2-1 had the focus, and a first question that appeared while paused could not take it (the paused
+  // game is inert). After an answer, «Siguiente» takes the focus the same way (QuestionAnswers).
+  useEffect(() => {
+    if (asking && !paused) promptRef.current?.focus({ preventScroll: true });
+  }, [asking, paused, question.id]);
+
   // The frame fills the screen, but a long question with its explanation can still be taller than a small phone, so
   // the page is scrolled down when «Siguiente» is pressed. Each new question starts like the first: the play screen at
-  // the top, with the frame's top bar and time bar in view, and the keyboard and screen readers on the new prompt.
+  // the top, with the frame's top bar and time bar in view.
   useEffect(() => {
     if (!asking) return;
-    promptRef.current?.focus({ preventScroll: true });
     const screen = gameRef.current?.closest('[data-game]') ?? gameRef.current;
     screen?.scrollIntoView?.({ block: 'start', behavior: prefersReducedMotion() ? 'auto' : 'smooth' });
   }, [asking, question.id]);
@@ -208,6 +225,7 @@ function QuizRound({ initial, clock, rng, paused, onFinish }: QuizRoundProps) {
         order={order}
         lang={lang}
         phase={asking ? 'asking' : 'feedback'}
+        paused={paused}
         outcome={resolved?.outcome}
         chosen={resolved?.chosen ?? null}
         onChoose={choose}

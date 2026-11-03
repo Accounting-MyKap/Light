@@ -312,6 +312,11 @@
   margin: 0;
 }
 
+/* The loading line takes the focus after «Reintentar», like the prompt on each question, but it is not a control. */
+.status:focus {
+  outline: none;
+}
+
 /* Reduced motion: the keys do not shrink when pressed, only their color changes. */
 @media (prefers-reduced-motion: reduce) {
   .option:not(:disabled):active,

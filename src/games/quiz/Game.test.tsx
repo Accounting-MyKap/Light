@@ -403,6 +403,80 @@ test('moves focus to Next after answering so Enter from the keyboard continues',
   expect(screen.getByRole('button', { name: 'Siguiente' })).toHaveFocus();
 });
 
+describe('the focus around a pause and a failed load (keyboard and screen readers)', () => {
+  /** The pause sheet's button, outside the game: while the game is paused it holds the focus. */
+  const withSheet = (game: ReturnType<typeof gameElement>) => (
+    <>
+      <button type="button">Continuar</button>
+      {game}
+    </>
+  );
+  const sheetButton = () => screen.getByRole('button', { name: 'Continuar' });
+
+  test('after a pause while asking, the focus goes back to the question', async () => {
+    const view = render(withSheet(gameElement()));
+    await settle();
+    view.rerender(withSheet(gameElement({ paused: true })));
+    sheetButton().focus();
+    view.rerender(withSheet(gameElement({ paused: false })));
+    expect(screen.getByRole('heading', { level: 2 })).toHaveFocus();
+  });
+
+  test('after a pause on an answered question, the focus goes back to «Siguiente»', async () => {
+    const view = render(withSheet(gameElement()));
+    await settle();
+    advance(1000);
+    fireEvent.click(correctOption());
+    view.rerender(withSheet(gameElement({ paused: true })));
+    sheetButton().focus();
+    view.rerender(withSheet(gameElement({ paused: false })));
+    expect(screen.getByRole('button', { name: 'Siguiente' })).toHaveFocus();
+  });
+
+  test('a first question that loads while paused leaves the focus on the sheet, and takes it when play resumes', async () => {
+    const view = render(withSheet(gameElement({ paused: true })));
+    sheetButton().focus();
+    await settle();
+    expect(screen.getByText('Pregunta 1 de 10')).toBeInTheDocument();
+    expect(sheetButton()).toHaveFocus();
+    view.rerender(withSheet(gameElement({ paused: false })));
+    expect(screen.getByRole('heading', { level: 2 })).toHaveFocus();
+  });
+
+  test('after «Reintentar» the focus goes to the loading line, then to the first question', async () => {
+    let release: (questions: Question[]) => void = () => {};
+    vi.mocked(loadQuestions)
+      .mockRejectedValueOnce(new Error('offline'))
+      .mockImplementationOnce(
+        () =>
+          new Promise<Question[]>((resolve) => {
+            release = resolve;
+          }),
+      );
+    render(gameElement());
+    await settle();
+    const retry = screen.getByRole('button', { name: 'Reintentar' });
+    retry.focus();
+    fireEvent.click(retry);
+    expect(screen.getByRole('status')).toHaveTextContent('Cargando preguntas…');
+    expect(screen.getByRole('status')).toHaveFocus();
+    await act(async () => release(historyPool()));
+    expect(screen.getByRole('heading', { level: 2 })).toHaveFocus();
+  });
+
+  test('when «Reintentar» fails again, the focus comes back to it', async () => {
+    vi.mocked(loadQuestions).mockRejectedValueOnce(new Error('offline')).mockRejectedValueOnce(new Error('offline'));
+    render(gameElement());
+    await settle();
+    const retry = screen.getByRole('button', { name: 'Reintentar' });
+    retry.focus();
+    fireEvent.click(retry);
+    await settle();
+    expect(screen.getByText('No pudimos cargar las preguntas.')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Reintentar' })).toHaveFocus();
+  });
+});
+
 describe('a new question on a small screen', () => {
   const scrollIntoView = vi.fn();
   beforeEach(() => {

@@ -38,6 +38,30 @@ test('a quiz round works offline after the first visit', async ({ page, context 
   await expect(page.getByText('Pregunta 1 de 10')).toBeVisible();
 });
 
+test('after a pause the focus goes back to the question, or to «Siguiente» once it is answered', async ({ page }) => {
+  await page.goto('./#/play/trivia-history');
+  await page.getByRole('button', { name: 'Comenzar' }).click();
+  await expect(page.getByText('Pregunta 1 de 10')).toBeVisible();
+  const prompt = page.getByRole('heading', { level: 2 });
+  const next = page.getByRole('button', { name: 'Siguiente', exact: true });
+  // The ✕ opens the pause sheet; «Continuar» starts the 3-2-1 (three 1 s steps), and then the game runs again.
+  const pauseAndResume = async () => {
+    await page.locator('[data-game]').getByRole('button', { name: 'Salir del juego' }).click();
+    await page.getByRole('button', { name: 'Continuar' }).click();
+    await expect(page.getByText('Pausado')).toBeHidden();
+  };
+
+  await expect(prompt).toBeFocused();
+  await pauseAndResume();
+  await expect(prompt).toBeFocused({ timeout: 6000 });
+
+  await page.waitForTimeout(200); // longer than MIN_RT_MS, or the app ignores the tap
+  await page.getByRole('button', { name: /^Opción 1: / }).click();
+  await expect(next).toBeFocused();
+  await pauseAndResume();
+  await expect(next).toBeFocused({ timeout: 6000 });
+});
+
 const LUZ_BACKGROUND = 'rgb(9, 11, 25)'; // #090b19
 const CORAL = 'rgb(255, 123, 69)'; // trivia, #ff7b45
 const SKY = 'rgb(51, 153, 255)'; // accounting, #3399ff

@@ -34,6 +34,8 @@ export interface QuestionAnswersProps {
   order: readonly number[];
   lang: 'es' | 'en';
   phase: 'asking' | 'feedback';
+  /** True while the round is paused (inert and hidden): «Siguiente» takes the focus back when it resumes. */
+  paused?: boolean;
   outcome?: AnswerOutcome;
   /** Canonical index the player picked, or null if they did not answer. */
   chosen: number | null;
@@ -52,6 +54,7 @@ export function QuestionAnswers({
   order,
   lang,
   phase,
+  paused = false,
   outcome,
   chosen,
   onChoose,
@@ -66,10 +69,11 @@ export function QuestionAnswers({
   const answered = phase === 'feedback';
   const date = question.asOf ? asOfLabel(question.asOf, lang) : null;
 
-  // After an answer the keyboard goes to «Siguiente», so Enter continues whether or not the window key listener ran.
+  // After an answer the keyboard goes to «Siguiente», so Enter continues whether or not the window key listener ran;
+  // and back to it when play resumes, since the pause sheet had the focus.
   useEffect(() => {
-    if (answered) nextRef.current?.focus();
-  }, [answered]);
+    if (answered && !paused) nextRef.current?.focus();
+  }, [answered, paused]);
 
   return (
     <div className={styles.answers}>
