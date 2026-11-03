@@ -157,9 +157,11 @@ test('round 1: the star floats still a third of the way down, and 7 with Enter p
   expect(tone()).toBe('normal');
 });
 
-test('round 1: a number on no star shows the first hint, the star stays, and the keypad answers too', () => {
+test('round 1: 6 and OK on the keypad show the first hint, the star stays, and the next try counts', () => {
   setup();
-  answer('6');
+  tap('6');
+  expect(slot()).toBe('6');
+  tap('OK');
   expect(says(HINT_FIRST)()).toBe(true);
   expect(tone()).toBe('hint');
   expect(slot()).toBe('?');
@@ -169,8 +171,7 @@ test('round 1: a number on no star shows the first hint, the star stays, and the
   advance(3000);
   expect(says(HINT_FIRST)()).toBe(true);
 
-  tap('7');
-  tap('OK');
+  answer('7');
   expect(says('¡Bien!')()).toBe(true);
   expect(stars()).toHaveLength(0);
 });
