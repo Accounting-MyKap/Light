@@ -64,7 +64,8 @@ test('track switches never overlap, even at level 10 on a short landscape phone'
   const boxes = await switches.evaluateAll((els) =>
     els.map((el) => {
       const r = el.getBoundingClientRect();
-      return { n: Number(el.getAttribute('data-switch')) + 1, left: r.left, top: r.top, right: r.right, bottom: r.bottom };
+      const n = Number(el.getAttribute('data-switch')) + 1;
+      return { n, left: r.left, top: r.top, right: r.right, bottom: r.bottom };
     }),
   );
   for (const a of boxes) {

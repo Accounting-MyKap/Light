@@ -22,7 +22,8 @@ export function SwitchyardGame({ startLevel, paused, onFinish }: GameProps) {
   const [finished, setFinished] = useState(false);
   const active = !paused && !finished;
 
-  const { world, current, toggle, reducedMotion } = useSwitchyardWorld(() => createSwitchyardGame(startLevel, rng, 0), {
+  const start = () => createSwitchyardGame(startLevel, rng, 0);
+  const { world, current, toggle, reducedMotion, lite } = useSwitchyardWorld(start, {
     active,
     now: () => Math.min(clock.now(), SWITCHYARD_DURATION_MS),
     advance: (game, to) => advanceSwitchyard(game, to, rng),
@@ -49,7 +50,7 @@ export function SwitchyardGame({ startLevel, paused, onFinish }: GameProps) {
       time={{ remainingMs: remaining, totalMs: SWITCHYARD_DURATION_MS }}
       stageFlash={false}
     >
-      <WorldBoard world={world} onToggle={toggle} reducedMotion={reducedMotion} />
+      <WorldBoard world={world} onToggle={toggle} reducedMotion={reducedMotion} lite={lite} />
       <FasterToast level={game.staircase.level} />
     </GameFrame>
   );

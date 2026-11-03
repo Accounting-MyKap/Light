@@ -1,9 +1,10 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState, type RefObject } from 'react';
 import { prefersReducedMotion } from '../../core/motion';
 import { createRng, randomSeed } from '../../core/rng';
-import { ARRIVAL_SHOW_MS, Board } from './Board';
+import { ARRIVAL_SHOW_MS, Board, type PuffView } from './Board';
 import { BOARD } from './maps';
 import { toggleSwitch, type Arrival, type SwitchyardState, type Train } from './engine';
+import { createFrameMonitor, recordFrame } from './frameMonitor';
 import { agePuffs, emitPuffs, puffLook, type SmokeState } from './smoke';
 import { chimneyOf, trainSprite } from './sprite';
 import styles from './switchyard.module.css';
@@ -43,6 +44,11 @@ export interface SwitchyardWorld {
   toggle: (index: number) => boolean;
   /** Moving trains are the game, so they move anyway; the smoke is decoration and stays off with reduced motion. */
   reducedMotion: boolean;
+  /**
+   * The phone draws the yard too slowly (see frameMonitor.ts): no new smoke, and the board stops its decorative
+   * animations. Once on, it stays on.
+   */
+  lite: boolean;
 }
 
 export function useSwitchyardWorld(initial: () => SwitchyardState, options: SwitchyardWorldOptions): SwitchyardWorld {
@@ -54,6 +60,8 @@ export function useSwitchyardWorld(initial: () => SwitchyardState, options: Swit
     arrivals: [],
   }));
   const worldRef = useRef(world);
+  const monitorRef = useRef(createFrameMonitor());
+  const [lite, setLite] = useState(false);
 
   // The latest callbacks, so the loop never calls stale ones and never restarts because of them.
   const optionsRef = useRef(options);
@@ -71,7 +79,11 @@ export function useSwitchyardWorld(initial: () => SwitchyardState, options: Swit
   useEffect(() => {
     if (!active) return;
     let frame = 0;
-    const tick = () => {
+    const tick = (time: number) => {
+      const monitor = recordFrame(monitorRef.current, time);
+      if (monitor.lite && !monitorRef.current.lite) setLite(true);
+      monitorRef.current = monitor;
+
       const { now: clock, advance, onArrival, onSpawn } = optionsRef.current;
       const now = clock();
       const current = worldRef.current;
@@ -84,7 +96,10 @@ export function useSwitchyardWorld(initial: () => SwitchyardState, options: Swit
       for (const arrival of arrivals) onArrival(arrival);
 
       let smoke = current.smoke;
-      if (!reducedMotion) {
+      if (monitor.lite) {
+        // Too slow for the smoke: no new puffs, and the last ones fade out as they would.
+        if (smoke.puffs.length > 0) smoke = agePuffs(smoke, now);
+      } else if (!reducedMotion) {
         const chimneys = state.trains
           .filter((train) => !train.arrived)
           .map((train) => {
@@ -122,7 +137,7 @@ export function useSwitchyardWorld(initial: () => SwitchyardState, options: Swit
 
   const current = useCallback(() => worldRef.current, []);
 
-  return { world, current, toggle, reducedMotion };
+  return { world, current, toggle, reducedMotion, lite };
 }
 
 /**
@@ -148,30 +163,38 @@ function useFittedWidth(box: RefObject<HTMLElement | null>): number | undefined 
   return width;
 }
 
+/** One empty list for every frame without smoke, so the smoke canvas is not cleared again on each of them. */
+const NO_PUFFS: readonly PuffView[] = [];
+
 /** The yard drawn as large as its box allows, with its switches, trains, smoke and arrival marks. */
 export function WorldBoard({
   world,
   onToggle,
   reducedMotion,
+  lite = false,
 }: {
   world: World;
   onToggle: (index: number) => void;
   reducedMotion: boolean;
+  /** A phone too slow for the decoration: the board stops its decorative animations. */
+  lite?: boolean;
 }) {
   const boxRef = useRef<HTMLDivElement>(null);
   const boardWidth = useFittedWidth(boxRef);
   const { game } = world;
+  const { puffs } = world.smoke;
   return (
     <div ref={boxRef} className={styles.boardWrap}>
       <Board
         map={game.map}
         switches={game.switches}
         trains={game.trains}
-        puffs={world.smoke.puffs.map((p) => ({ id: p.id, ...puffLook(p, game.now) }))}
+        puffs={puffs.length === 0 ? NO_PUFFS : puffs.map((p) => ({ id: p.id, ...puffLook(p, game.now) }))}
         arrivals={world.arrivals}
         now={game.now}
         onToggle={onToggle}
         reducedMotion={reducedMotion}
+        lite={lite}
         width={boardWidth}
       />
     </div>

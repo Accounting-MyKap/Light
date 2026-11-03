@@ -160,7 +160,7 @@ export function SwitchyardPractice({ onComplete, onSkip }: PracticeProps) {
   // long frame then only pauses the practice, instead of moving the trains on while the person is away.
   const clockRef = useRef<{ last: number | null; elapsed: number }>({ last: null, elapsed: 0 });
 
-  const { world, toggle, reducedMotion } = useSwitchyardWorld(() => first.state, {
+  const { world, toggle, reducedMotion, lite } = useSwitchyardWorld(() => first.state, {
     active: true,
     now: () => {
       const at = Date.now();
@@ -223,7 +223,7 @@ export function SwitchyardPractice({ onComplete, onSkip }: PracticeProps) {
       tone={status === 'right' ? 'ok' : status === 'wrong' ? 'hint' : 'normal'}
       onSkip={onSkip}
     >
-      <WorldBoard world={world} onToggle={flip} reducedMotion={reducedMotion} />
+      <WorldBoard world={world} onToggle={flip} reducedMotion={reducedMotion} lite={lite} />
     </PracticeFrame>
   );
 }

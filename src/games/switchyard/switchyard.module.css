@@ -164,9 +164,9 @@
   }
 }
 
-/* «¡Más rápido!»: a pill in the color of the game at the top of the game zone, for a moment when the level goes up.
-   No map has a switch or a station in the top sixth of the board (only the tunnel), so the pill never hides one; it
-   takes no taps either. Its duration comes from the game (--faster-ms). */
+/* «¡Más rápido!»: a pill in the color of the game at the top of the game zone, for a moment when the level goes
+   up. No map has a switch or a station in the top sixth of the board (only the tunnel), so the pill never hides
+   one; it takes no taps either. Its duration comes from the game (--faster-ms). */
 .fasterSlot {
   position: absolute;
   top: 0.375rem;
@@ -230,6 +230,21 @@
   100% {
     opacity: 0;
   }
+}
+
+/* Lite: a phone too slow for the decoration (frameMonitor.ts). The beacons go out, as with reduced motion, and every
+   other animation on the board (the fireflies, and any particle the scenery adds) holds still where it is, so the
+   frames go to the trains. Paused rather than removed: a particle stays where it was instead of jumping back to its
+   first keyframe. The arrow of a switch is a transition, not an animation, so it still turns. */
+.board[data-lite] .switch::before {
+  animation: none;
+  opacity: 0;
+}
+
+.board[data-lite] *,
+.board[data-lite] *::before,
+.board[data-lite] *::after {
+  animation-play-state: paused !important;
 }
 
 /* Reduced motion: no beacon and the arrow jumps. The trains still move: moving them is the game. */

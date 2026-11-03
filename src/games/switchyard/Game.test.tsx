@@ -29,6 +29,8 @@ beforeEach(async () => {
   Object.defineProperty(navigator, 'vibrate', { value: vibrate, configurable: true });
 });
 afterEach(() => {
+  // Before the real timers come back: a stub put over a fake timer would otherwise outlive it.
+  vi.unstubAllGlobals();
   vi.useRealTimers();
   Reflect.deleteProperty(navigator, 'vibrate');
   vi.mocked(useSettings).mockReset();
@@ -246,6 +248,26 @@ test('no «¡Más rápido!» at the start, nor when the level goes down', () => 
   expect(faster()).toBeNull();
   playUntil(() => hud('Nivel') === '1', { wrong: true });
   expect(faster()).toBeNull();
+});
+
+test('on a slow phone the board turns lite after about 2 s of slow frames, and stays so', () => {
+  // A frame every 40 ms (25 a second).
+  vi.stubGlobal('requestAnimationFrame', (draw: FrameRequestCallback) => setTimeout(() => draw(Date.now()), 40));
+  vi.stubGlobal('cancelAnimationFrame', (id: number) => clearTimeout(id));
+  renderGame();
+  const board = screen.getByRole('group', { name: 'Mapa de vías' });
+  advance(1500);
+  expect(board).not.toHaveAttribute('data-lite');
+  advance(1500);
+  expect(board).toHaveAttribute('data-lite');
+  advance(3000);
+  expect(board).toHaveAttribute('data-lite');
+});
+
+test('with smooth frames the board never turns lite', () => {
+  renderGame();
+  advance(6000);
+  expect(screen.getByRole('group', { name: 'Mapa de vías' })).not.toHaveAttribute('data-lite');
 });
 
 test('finishes once after 90 seconds', () => {

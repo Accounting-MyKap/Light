@@ -94,7 +94,7 @@ test('the answer tones stay as they were', async () => {
   ]);
 });
 
-test('the train cues are softer and shorter than the answer tones: at level 10 a train leaves every 1.6 s', async () => {
+test('the train cues are softer and shorter than the answer tones: at level 10 a train leaves each 1.6 s', async () => {
   const { notes, playTone: play } = await withFakeAudio();
   for (const kind of ['whistle', 'clack', 'chime'] as const) {
     notes.length = 0;
