@@ -70,6 +70,7 @@
   /* Three columns, unless a card would get narrower than 5.5rem (a large root font): then fewer, wider cards, so
      the longest game and skill names fit whole. */
   grid-template-columns: repeat(auto-fill, minmax(max(5.5rem, calc((100% - 2 * var(--gap)) / 3)), 1fr));
+  container-type: inline-size;
   gap: var(--gap);
 }
 .grid > li {
@@ -109,6 +110,26 @@
   margin-top: 0.15rem;
   font-size: clamp(0.625rem, calc(0.625rem + (100vw - 320px) * 0.0217), 0.72rem);
   color: var(--text-muted);
+}
+/* Not even two cards fit side by side (large root font, narrow screen): one card per row, the thumbnail on the left
+   and the texts beside it, instead of a thumbnail as wide as the screen. */
+@container (max-width: 12.5rem) {
+  .card {
+    display: grid;
+    grid-template-columns: 4.5rem minmax(0, 1fr);
+    column-gap: 0.75rem;
+    align-content: center;
+    align-items: center;
+  }
+  .card > :first-child {
+    grid-row: 1 / span 2;
+  }
+  .name {
+    align-self: end;
+  }
+  .skill {
+    align-self: start;
+  }
 }
 .done {
   position: absolute;
