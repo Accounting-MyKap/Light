@@ -88,9 +88,12 @@ test('shows mastery per category including mix answers', async () => {
   const meter = await screen.findByRole('meter', { name: 'Historia' });
   expect(screen.getByText('Dominio (últimos 30 días)')).toBeInTheDocument();
   expect(screen.getByRole('heading', { level: 3, name: 'Cultura general' })).toBeInTheDocument();
-  expect(meter).toHaveAttribute('value', '50');
-  expect(meter).toHaveAttribute('min', '0');
-  expect(meter).toHaveAttribute('max', '100');
+  expect(meter).toHaveAttribute('aria-valuenow', '50');
+  expect(meter).toHaveAttribute('aria-valuemin', '0');
+  expect(meter).toHaveAttribute('aria-valuemax', '100');
+  expect(meter).toHaveAttribute('aria-valuetext', '50 %');
+  // The bar wears the colour of its bank, like the area bars above.
+  expect(meter.closest('[data-area]')).toHaveAttribute('data-area', 'trivia');
   expect(screen.getByText('50 %')).toBeInTheDocument();
   expect(screen.getByText(`Vistas: 2 de ${BANK_SIZES.history} · Mejor marca: —`)).toBeInTheDocument();
   // Categories without answers, and the bank without answers, are left out.
@@ -105,7 +108,7 @@ test('mastery counts skips and time-outs as misses and rounds to a whole percent
   await renderApp('/progress');
 
   const meter = await screen.findByRole('meter', { name: 'Cartera y préstamos' });
-  expect(meter).toHaveAttribute('value', '67');
+  expect(meter).toHaveAttribute('aria-valuenow', '67');
   expect(screen.getByText('67 %')).toBeInTheDocument();
   expect(screen.getByRole('heading', { level: 3, name: 'Contabilidad' })).toBeInTheDocument();
   expect(screen.getByText(`Vistas: 3 de ${BANK_SIZES.lending} · Mejor marca: 180`)).toBeInTheDocument();
@@ -118,7 +121,7 @@ test('mastery only counts the last 30 days but seen counts every answer', async 
   await addQuizAnswers('r2', round('history', ['correct']), new Date(2026, 9, 1, 9));
   await renderApp('/progress');
 
-  expect(await screen.findByRole('meter', { name: 'Historia' })).toHaveAttribute('value', '100');
+  expect(await screen.findByRole('meter', { name: 'Historia' })).toHaveAttribute('aria-valuenow', '100');
   expect(screen.queryByRole('meter', { name: 'Ciencias' })).not.toBeInTheDocument();
 });
 

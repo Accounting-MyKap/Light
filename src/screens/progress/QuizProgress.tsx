@@ -5,7 +5,7 @@ import { masteryByCategory, seenCounts } from '../../data/quizAnswers';
 import { QUIZ_GAMES } from '../../games/registry';
 import { CATEGORIES_BY_BANK, type QuizBank, type QuizCategory } from '../../quiz/types';
 import { seenFor } from '../QuizScreen';
-import styles from '../Screens.module.css';
+import styles from '../Progress.module.css';
 
 const BANKS: readonly QuizBank[] = ['trivia', 'accounting'];
 const WINDOW_MS = 30 * 86_400_000;
@@ -51,12 +51,20 @@ export function QuizProgress({ results, now }: { results: StoredResult[]; now: D
   })).filter(({ categories }) => categories.length > 0);
 
   return (
-    <section className={styles.section}>
-      <h2>{t('progress.quizTitle')}</h2>
+    <section className={styles.block} aria-labelledby="progress-quiz">
+      <h2 id="progress-quiz">{t('progress.quizTitle')}</h2>
       <p className={styles.muted}>{t(banks.length > 0 ? 'progress.mastery' : 'progress.quizNone')}</p>
       {banks.map(({ bank, categories }) => (
-        <section key={bank} className={styles.section} aria-labelledby={`progress-bank-${bank}`}>
-          <h3 id={`progress-bank-${bank}`}>{t(`quiz.banks.${bank}`)}</h3>
+        <section
+          key={bank}
+          className={`${styles.card} ${styles.quizBank}`}
+          data-area={bank}
+          aria-labelledby={`progress-bank-${bank}`}
+        >
+          <h3 id={`progress-bank-${bank}`}>
+            <span className={styles.dot} aria-hidden="true" />
+            {t(`quiz.banks.${bank}`)}
+          </h3>
           {categories.map((category) => {
             const { answered, correct } = data.mastery.get(category)!;
             const percent = Math.round((100 * correct) / answered);
@@ -64,12 +72,24 @@ export function QuizProgress({ results, now }: { results: StoredResult[]; now: D
             const id = `quiz-meter-${category}`;
             return (
               <div key={category} className={styles.quizCategory}>
-                <div className={styles.meterRow}>
+                <div className={styles.bar} data-area={bank}>
                   <span id={id}>{t(`quiz.categories.${category}`)}</span>
-                  <meter aria-labelledby={id} min={0} max={100} value={percent} />
-                  <span className={styles.value}>{percent} %</span>
+                  <div
+                    role="meter"
+                    aria-labelledby={id}
+                    aria-valuemin={0}
+                    aria-valuemax={100}
+                    aria-valuenow={percent}
+                    aria-valuetext={`${percent} %`}
+                    className={styles.track}
+                  >
+                    <i style={{ width: `${percent}%` }} />
+                  </div>
+                  <span className={styles.value} aria-hidden="true">
+                    {percent} %
+                  </span>
                 </div>
-                <p className={styles.muted}>
+                <p className={styles.quizLine}>
                   {t('progress.quizLine', {
                     seen: progress.seen,
                     total: progress.total,
