@@ -20,7 +20,7 @@ import {
   type StarShowerEvent,
   type StarShowerState,
 } from './engine';
-import { Sky, topOf, type Burst, type SkyFlash } from './Sky';
+import { railAt, Sky, type Burst, type SkyFlash } from './Sky';
 import styles from './star-shower.module.css';
 
 /** Game time the sky stays still after the end, before the result. */
@@ -47,10 +47,11 @@ export function StarShowerGame({ startLevel, paused, onFinish }: GameProps) {
   const effectKey = useRef(0);
   const timers = useRef(new Set<ReturnType<typeof setTimeout>>());
 
-  const starEls = useRef(new Map<number, HTMLElement>());
+  // The element that carries each live star down (its rail), by star id: what the animation loop moves.
+  const rails = useRef(new Map<number, HTMLElement>());
   const registerStar = useCallback((id: number, el: HTMLElement | null) => {
-    if (el) starEls.current.set(id, el);
-    else starEls.current.delete(id);
+    if (el) rails.current.set(id, el);
+    else rails.current.delete(id);
   }, []);
 
   useEffect(() => {
@@ -104,10 +105,11 @@ export function StarShowerGame({ startLevel, paused, onFinish }: GameProps) {
       commit(state);
       react(events);
     }
+    // Only a transform changes each frame, so the browser moves the stars without laying out the page again.
     const at = drawTime(state, now);
     for (const star of state.stars) {
-      const el = starEls.current.get(star.id);
-      if (el) el.style.top = topOf(starHeight(star, at));
+      const rail = rails.current.get(star.id);
+      if (rail) rail.style.transform = railAt(starHeight(star, at));
     }
     if (state.endedAt !== null && now >= state.endedAt + END_HOLD_MS) {
       finishedRef.current = true;

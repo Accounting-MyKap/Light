@@ -1,7 +1,7 @@
 /*
  * Star Shower in the Luz style: stars with an operation fall toward the horizon, over the night sky of the game
  * screen. Colors come from the Luz tokens (--game for the stars, --luz-gold for the comet, --luz-*). The animation
- * loop sets each star's `top`; everything here is the look around it.
+ * loop sets the `transform` of each star's rail; everything here is the look around it.
  */
 
 /* The sky fills the game zone (GameFrame centers its children, so it stretches itself). */
@@ -22,11 +22,30 @@
   flex-direction: column;
 }
 
-/* Where the stars fall: `top` is a share of its height, so a star at 1 rests on the horizon. */
+/* Where the stars fall: their rails are as tall as it, so a star at 1 rests on the horizon. */
 .field {
   position: relative;
   flex: 1;
   min-height: 0;
+}
+
+/*
+ * A star's rail (a burst's too): as tall as the field, with no width, at the center of its lane. What it carries
+ * hangs from its top, and the loop moves it down with `translateY(height × 100%)`, a share of its own height and so
+ * of the field's. A transform is moved by the compositor with no layout; with no width, the rail adds nothing to
+ * the layer but what it carries.
+ */
+.rail {
+  position: absolute;
+  top: 0;
+  width: 0;
+  height: 100%;
+  will-change: transform;
+}
+
+.rail > * {
+  top: 0;
+  left: 0;
 }
 
 /* Still background stars in two sets that twinkle out of step. */
@@ -100,22 +119,22 @@
   pointer-events: none;
 }
 
-/* The three lanes, centered at 1/6, 3/6 and 5/6 of the width. */
-.star[data-lane='0'],
-.burst[data-lane='0'],
-.lossFlash[data-lane='0'] {
+/* The three lanes, centered at 1/6, 3/6 and 5/6 of the width (the example's stars have no rail). */
+.rail[data-rail='0'],
+.lossFlash[data-lane='0'],
+.demo .star[data-lane='0'] {
   left: calc(100% / 6);
 }
 
-.star[data-lane='1'],
-.burst[data-lane='1'],
-.lossFlash[data-lane='1'] {
+.rail[data-rail='1'],
+.lossFlash[data-lane='1'],
+.demo .star[data-lane='1'] {
   left: 50%;
 }
 
-.star[data-lane='2'],
-.burst[data-lane='2'],
-.lossFlash[data-lane='2'] {
+.rail[data-rail='2'],
+.lossFlash[data-lane='2'],
+.demo .star[data-lane='2'] {
   left: calc(100% * 5 / 6);
 }
 

@@ -1,3 +1,4 @@
+import type { ReactNode, Ref } from 'react';
 import { formatProblem } from '../shared/arithmetic';
 import { starHeight, type Star } from './engine';
 import styles from './star-shower.module.css';
@@ -27,11 +28,15 @@ export interface SkyProps {
   input: string;
   /** Changes with every wrong number (restarts the shake). */
   wrongKey: number;
+  /** Gets the element the animation loop moves for each star (its rail), and null once the star is gone. */
   registerStar: (id: number, el: HTMLElement | null) => void;
 }
 
-/** Where a star hangs: its bottom edge at `height` of the sky, so at 1 it touches the horizon. */
-export const topOf = (height: number) => `${height * 100}%`;
+/**
+ * How far down its rail a star is moved: `height` of the rail, which is as tall as the sky. The star hangs from the
+ * rail's top by its bottom edge, so at 1 it touches the horizon.
+ */
+export const railAt = (height: number) => `translateY(${height * 100}%)`;
 
 /**
  * The night sky with its stars and horizon, and the answer slot over the horizon. The sky is not announced to
@@ -45,30 +50,29 @@ export function Sky({ stars, now, bursts, flash, input, wrongKey, registerStar }
           <div className={styles.dots} />
           {flash?.kind === 'comet' && <div key={flash.key} className={styles.cometFlash} data-sky-flash="comet" />}
           {stars.map((star) => (
-            <div
+            <Rail
               key={star.id}
               ref={(el) => registerStar(star.id, el)}
-              className={styles.star}
-              data-testid="star"
-              data-comet={star.comet}
-              data-lane={star.lane}
-              style={{ top: topOf(starHeight(star, now)) }}
+              lane={star.lane}
+              height={starHeight(star, now)}
             >
-              {star.comet && <Sparkle />}
-              {formatProblem(star.problem)}
-            </div>
+              <div className={styles.star} data-testid="star" data-comet={star.comet} data-lane={star.lane}>
+                {star.comet && <Sparkle />}
+                {formatProblem(star.problem)}
+              </div>
+            </Rail>
           ))}
           {bursts.map((burst) => (
-            <div
-              key={burst.key}
-              className={styles.burst}
-              data-kind={burst.kind}
-              data-comet={burst.star.comet}
-              data-lane={burst.star.lane}
-              style={{ top: topOf(burst.height) }}
-            >
-              {formatProblem(burst.star.problem)}
-            </div>
+            <Rail key={burst.key} lane={burst.star.lane} height={burst.height}>
+              <div
+                className={styles.burst}
+                data-kind={burst.kind}
+                data-comet={burst.star.comet}
+                data-lane={burst.star.lane}
+              >
+                {formatProblem(burst.star.problem)}
+              </div>
+            </Rail>
           ))}
         </div>
         <div className={styles.horizon} data-testid="horizon">
@@ -89,6 +93,26 @@ export function Sky({ stars, now, bursts, flash, input, wrongKey, registerStar }
           {input || '?'}
         </span>
       </div>
+    </div>
+  );
+}
+
+interface RailProps {
+  lane: number;
+  /** 0 at the top of the sky, 1 on the horizon. */
+  height: number;
+  ref?: Ref<HTMLDivElement>;
+  children: ReactNode;
+}
+
+/**
+ * What carries a star (or a burst) down its lane: a line as tall as the sky, with no width, at the lane's center.
+ * The animation loop moves it with a transform, which needs no layout; what it carries is only the look.
+ */
+function Rail({ lane, height, ref, children }: RailProps) {
+  return (
+    <div ref={ref} className={styles.rail} data-rail={lane} style={{ transform: railAt(height) }}>
+      {children}
     </div>
   );
 }

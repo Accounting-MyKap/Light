@@ -16,6 +16,14 @@ afterEach(() => {
 const advance = (ms: number) => act(() => vi.advanceTimersByTime(ms));
 const hud = (label: string) => screen.getByText(label).nextElementSibling?.textContent;
 
+/** How far down the sky a star or a burst is, in % (0 at the top, 100 on the horizon): what its rail is moved by. */
+function heightOf(el: HTMLElement): number {
+  const transform = el.closest<HTMLElement>('[data-rail]')?.style.transform ?? '';
+  const match = /^translateY\((.+)%\)$/.exec(transform);
+  if (!match) throw new Error(`Not on a rail moved down the sky: «${transform}»`);
+  return Number(match[1]);
+}
+
 /** The game inside the feedback provider, as the play screen mounts it, so the frame can draw the reactions. */
 function ui({ paused = false, onFinish = vi.fn() }: Partial<GameProps> = {}) {
   return (
@@ -41,9 +49,9 @@ test('a star appears and falls', () => {
   renderGame();
   advance(50);
   const star = screen.getByTestId('star');
-  const top0 = parseFloat(star.style.top);
+  const top0 = heightOf(star);
   advance(4500);
-  expect(parseFloat(star.style.top)).toBeGreaterThan(top0 + 40); // about 50 % of the sky at 4.5 s
+  expect(heightOf(star)).toBeGreaterThan(top0 + 40); // about 50 % of the sky at 4.5 s
 });
 
 test('typing the answer on the keyboard pops the star and scores 11', () => {
@@ -83,17 +91,17 @@ test('paused: stars stop and no new ones are born', () => {
   advance(1000);
   setPaused(true);
   const star = screen.getByTestId('star');
-  const top = parseFloat(star.style.top);
+  const top = heightOf(star);
   const count = screen.getAllByTestId('star').length;
 
   advance(10_000);
-  expect(parseFloat(star.style.top)).toBe(top);
+  expect(heightOf(star)).toBe(top);
   expect(screen.getAllByTestId('star')).toHaveLength(count);
 
   setPaused(false);
   advance(1000);
   expect(star).toBeInTheDocument();
-  const moved = parseFloat(star.style.top);
+  const moved = heightOf(star);
   expect(moved).toBeGreaterThan(top);
   expect(moved).toBeLessThan(top + 15); // about 11 % of the sky in a second, from where it stopped
 });
@@ -143,7 +151,7 @@ test('a lost star fades out where it touched the horizon, even with reduced moti
   expect(screen.getByTestId('horizon').querySelector('[data-sky-flash]')).toBeNull();
   // A burst resting on the horizon (height 1) in its lane; the cleared stars fade higher up.
   const fading = Array.from(document.querySelectorAll<HTMLElement>('[data-kind="clear"]'));
-  expect(fading.some((burst) => burst.dataset.lane === lane && parseFloat(burst.style.top) === 100)).toBe(true);
+  expect(fading.some((burst) => burst.dataset.lane === lane && heightOf(burst) === 100)).toBe(true);
   expect(screen.queryAllByTestId('star')).toHaveLength(0);
 });
 
