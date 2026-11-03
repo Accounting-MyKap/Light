@@ -30,19 +30,23 @@
   position: fixed;
   inset: auto 0 0 0;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  /* Five tabs; minmax(0, …) keeps the tracks equal: a long label can never widen its own column. */
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   background: var(--nav-bg);
   box-shadow: var(--nav-edge);
   backdrop-filter: blur(12px);
   padding-bottom: env(safe-area-inset-bottom);
 }
 
+/* The icons sit in one row at a fixed 10 px from the top (where centring put them at the default size), so a label
+   that wraps to two lines grows its tab downwards instead of lifting its icon above the others. */
 .navLink {
   display: grid;
   justify-items: center;
-  align-content: center;
+  align-content: start;
   gap: 2px;
   min-height: 60px;
+  padding-block: 10px 0.25rem;
   text-decoration: none;
   color: var(--text-muted);
   font-size: 0.75rem;
@@ -53,6 +57,16 @@
 .navLink svg {
   width: 24px;
   height: 24px;
+}
+
+/* Five tabs: «Preguntas» fills its 64 px column at 320 px. With a larger root font a label wraps inside its own
+   column (hyphenated where the browser can) instead of running into its neighbours. */
+.navLink span {
+  max-width: 100%;
+  text-align: center;
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+  hyphens: auto;
 }
 
 .navLink[aria-current='page'] {

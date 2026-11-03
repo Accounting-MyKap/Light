@@ -7,12 +7,18 @@ import styles from './GameFrame.module.css';
 export interface GameFrameProps {
   score: number;
   level: number;
-  /** Games with a clock. */
-  time?: { remainingMs: number; totalMs: number };
+  /**
+   * Games with a clock. `stopped` is a clock that is not counting down and keeps the time it had (the quiz, while
+   * the answer to a question is shown): with nothing to hurry for, its bar is never urgent. `urgentMs` is the
+   * window at the end when the bar turns urgent (default 10 s); the quiz, with 20 s questions, uses 5 s.
+   */
+  time?: { remainingMs: number; totalMs: number; stopped?: boolean; urgentMs?: number };
   /** Games played in rounds (Secuencia de luces). */
   rounds?: { current: number; total: number };
   /** Bottom zone: the answer buttons. */
   controls?: ReactNode;
+  /** Flash over the whole game zone on each answer (on by default). Off for a game that draws its own reaction. */
+  stageFlash?: boolean;
   /** The game zone. */
   children: ReactNode;
 }
@@ -25,7 +31,7 @@ const URGENT_MS = 10_000;
  * points), time bar or round dots, the game zone and the controls. It also draws the reaction to each answer:
  * the points that float, a flash over the game zone and the shake of a wrong answer.
  */
-export function GameFrame({ score, level, time, rounds, controls, children }: GameFrameProps) {
+export function GameFrame({ score, level, time, rounds, controls, stageFlash = true, children }: GameFrameProps) {
   const { t } = useTranslation();
   const chrome = useContext(PlayChromeContext);
   const stageRef = useRef<HTMLDivElement>(null);
@@ -89,7 +95,14 @@ export function GameFrame({ score, level, time, rounds, controls, children }: Ga
         </div>
       </div>
 
-      {time && <TimeBar remainingMs={time.remainingMs} totalMs={time.totalMs} />}
+      {time && (
+        <TimeBar
+          remainingMs={time.remainingMs}
+          totalMs={time.totalMs}
+          stopped={time.stopped ?? false}
+          urgentMs={time.urgentMs ?? URGENT_MS}
+        />
+      )}
       {rounds && <RoundDots current={rounds.current} total={rounds.total} />}
 
       <div ref={stageRef} className={styles.stage} data-zone="stage">
@@ -97,7 +110,7 @@ export function GameFrame({ score, level, time, rounds, controls, children }: Ga
             element (Arrows keys its row by trial count, which can equal a signal id) can never share a key
             with the flash, which would stop React from removing the old rows. */}
         <>{children}</>
-        <Flash signal={signal} />
+        {stageFlash && <Flash signal={signal} />}
       </div>
 
       {controls && (
@@ -109,7 +122,17 @@ export function GameFrame({ score, level, time, rounds, controls, children }: Ga
   );
 }
 
-function TimeBar({ remainingMs, totalMs }: { remainingMs: number; totalMs: number }) {
+function TimeBar({
+  remainingMs,
+  totalMs,
+  stopped,
+  urgentMs,
+}: {
+  remainingMs: number;
+  totalMs: number;
+  stopped: boolean;
+  urgentMs: number;
+}) {
   const { t } = useTranslation();
   const left = totalMs > 0 ? Math.min(1, Math.max(0, remainingMs / totalMs)) : 0;
   const secondsLeft = Math.ceil(remainingMs / 1000);
@@ -122,7 +145,7 @@ function TimeBar({ remainingMs, totalMs }: { remainingMs: number; totalMs: numbe
       aria-valuemax={Math.round(totalMs / 1000)}
       aria-valuenow={secondsLeft}
       aria-valuetext={t('game.hud.secondsLeft', { count: secondsLeft })}
-      data-urgent={remainingMs <= URGENT_MS}
+      data-urgent={!stopped && remainingMs <= urgentMs}
     >
       <div className={styles.fill} style={{ transform: `scaleX(${left})` }} />
     </div>

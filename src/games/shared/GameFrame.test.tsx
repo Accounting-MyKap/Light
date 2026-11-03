@@ -108,6 +108,22 @@ test('the last 10 seconds mark the bar as urgent', () => {
   expect(screen.getByRole('progressbar')).toHaveAttribute('data-urgent', 'false');
 });
 
+test('a game can set a shorter urgent window', () => {
+  const { update } = renderFrame({ time: { remainingMs: 6_000, totalMs: 20_000, urgentMs: 5_000 } });
+  expect(screen.getByRole('progressbar')).toHaveAttribute('data-urgent', 'false');
+  update({ time: { remainingMs: 4_000, totalMs: 20_000, urgentMs: 5_000 } });
+  expect(screen.getByRole('progressbar')).toHaveAttribute('data-urgent', 'true');
+});
+
+test('a stopped clock is never urgent, whatever time it kept', () => {
+  const { update } = renderFrame({ time: { remainingMs: 4_000, totalMs: 20_000, stopped: true } });
+  const bar = screen.getByRole('progressbar');
+  expect(bar).toHaveAttribute('data-urgent', 'false');
+  expect(bar).toHaveAttribute('aria-valuenow', '4');
+  update({ time: { remainingMs: 4_000, totalMs: 20_000 } });
+  expect(screen.getByRole('progressbar')).toHaveAttribute('data-urgent', 'true');
+});
+
 test('without a time there is no time bar', () => {
   renderFrame({ rounds: { current: 1, total: 8 } });
   expect(screen.queryByRole('progressbar')).toBeNull();
@@ -187,6 +203,13 @@ test('feedback signals draw a flash of their kind and restart on each one', asyn
   await userEvent.click(screen.getByRole('button', { name: 'emit timeout' }));
   expect(flash(container)).toHaveLength(1);
   expect(container.querySelectorAll('[data-flash="timeout"]')).toHaveLength(1);
+});
+
+test('a game that draws its own reactions can turn the flash off', async () => {
+  const { container } = renderFrame({ stageFlash: false }, null, true);
+  await userEvent.click(screen.getByRole('button', { name: 'emit correct' }));
+  await userEvent.click(screen.getByRole('button', { name: 'emit timeout' }));
+  expect(flash(container)).toHaveLength(0);
 });
 
 test("a game's keyed child never collides with the flash: its old copies are removed, not piled up", async () => {

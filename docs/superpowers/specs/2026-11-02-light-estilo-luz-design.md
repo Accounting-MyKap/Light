@@ -62,7 +62,7 @@ Contraste mínimo (lo comprueba la prueba de contraste existente, ampliada): tex
 De arriba abajo, ocupando toda la altura visible (`100dvh`) con márgenes de zona segura:
 
 1. **Barra superior:** ✕ (abre la pausa), nombre del juego con «Nivel N» debajo en texto secundario, y una píldora con los puntos.
-2. **Progreso:** en juegos con tiempo, una **barra de tiempo** del color del área que se vacía de forma continua; en los últimos 10 s se tiñe hacia `--luz-bad` y late. En Secuencia de luces, que va por rondas, son **8 puntitos**: los completados encendidos, el actual «respirando».
+2. **Progreso:** en juegos con tiempo, una **barra de tiempo** del color del área que se vacía de forma continua; en los últimos 10 s se tiñe hacia `--luz-bad` y late (un juego puede fijar una ventana más corta; el quiz usa 5 s). En Secuencia de luces, que va por rondas, son **8 puntitos**: los completados encendidos, el actual «respirando».
 3. **Zona de juego:** ocupa todo el espacio libre.
 4. **Controles:** abajo, al alcance del pulgar.
 
@@ -144,7 +144,7 @@ Comunes: zona de juego y controles según §3.2; superficies de cristal (`--luz-
 ### 5.3 Resultado
 
 - El puntaje grande cuenta desde 0 hasta el total (~1,2 s, desacelerando). El valor final está siempre disponible para lectores de pantalla.
-- Con récord nuevo: rayos de luz que giran detrás del puntaje, chispas y «¡Nueva mejor marca!» en el color del área.
+- Con récord nuevo: rayos de luz que giran detrás del puntaje, chispas y «¡Nueva mejor marca!» en el color del área. Un puntaje de 0 nunca es récord: sin celebración y la tarjeta «Mejor marca» muestra «—» si aún no hay marca.
 - La línea de percentil se mantiene (aparece cuando el servidor responde).
 - Precisión y nivel alcanzado (y la mejor marca, si no hubo récord) en tarjetas de cristal.
 - Entrenamiento diario: indicador de avance «Entrenamiento de hoy: N de 3» y «Siguiente juego» o «Ver resumen». Juego libre: «Jugar de nuevo» (relleno) y «Volver».

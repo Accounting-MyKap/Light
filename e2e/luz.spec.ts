@@ -2,7 +2,7 @@ import { mkdirSync } from 'node:fs';
 import { expect, test, type Page } from '@playwright/test';
 import { finishRunningGame, startGame } from './helpers';
 
-const GAMES = ['sequence-lights', 'arrows', 'same-different', 'rule-switch', 'quick-math'] as const;
+const GAMES = ['sequence-lights', 'arrows', 'same-different', 'rule-switch', 'quick-math', 'switchyard'] as const;
 const CLOCK_TIME = new Date('2026-10-20T10:00:00');
 const LUZ_BACKGROUND = 'rgb(9, 11, 25)'; // #090b19
 const SCREENSHOT_DIR = 'test-results/luz';
@@ -47,12 +47,37 @@ async function solveRuleSwitch(page: Page, count: number): Promise<void> {
   }
 }
 
+/** Points every switch on the way to the station of the oldest train on the board. */
+async function routeOldestTrain(page: Page): Promise<void> {
+  await page.evaluate(() => {
+    const train = document.querySelector('[data-train]');
+    if (!train) return;
+    const station = document.querySelector(`[data-station-id="${train.getAttribute('data-station')}"]`);
+    for (const step of station?.getAttribute('data-route')?.split(' ').filter(Boolean) ?? []) {
+      const [sw, option] = step.split(':');
+      const button = document.querySelector<HTMLButtonElement>(`[data-switch="${sw}"]`);
+      if (button && button.dataset.option !== option) button.click();
+    }
+  });
+}
+
+/** Sends trains home until `count` of them made it, so Guardagujas has points on the board. */
+async function playSwitchyard(page: Page, count: number): Promise<void> {
+  const score = page.locator('[data-game] dd').last();
+  for (let i = 0; i < 600 && Number(await score.textContent()) < count * 10; i++) {
+    await routeOldestTrain(page);
+    await page.waitForTimeout(50);
+  }
+  expect(Number(await score.textContent())).toBeGreaterThanOrEqual(count * 10);
+}
+
 /**
  * A few answers, so the screens have a score and an accuracy worth looking at. Same or different gets a few taps
  * instead of right answers (its previous symbol is not on the page); Sequence Lights is left to the helper.
  */
 async function answerSome(page: Page, id: (typeof GAMES)[number]): Promise<void> {
   if (id === 'sequence-lights') return;
+  if (id === 'switchyard') return playSwitchyard(page, 2);
   if (id === 'quick-math') return solveQuickMath(page, 4);
   if (id === 'rule-switch') return solveRuleSwitch(page, 6);
   const buttons = page.locator('[data-game] [data-zone="controls"] button');
@@ -106,12 +131,16 @@ test.describe('narrow English screen', () => {
   test('no sideways scroll at 320 px in English', async ({ page }) => {
     for (const id of GAMES) {
       await page.goto(`./#/play/${id}`);
-      // First visit: the practice invitation.
-      const skip = page.getByRole('button', { name: 'Skip practice', exact: true });
-      await expect(skip, `${id} practice intro`).toBeVisible();
-      expect(await hasNoSidewaysScroll(page), `${id} practice intro scrolls sideways`).toBe(true);
+      // First visit: the practice invitation, or the instructions with their example for Guardagujas, which has no
+      // practice.
+      const first =
+        id === 'switchyard'
+          ? page.getByRole('button', { name: 'Start', exact: true })
+          : page.getByRole('button', { name: 'Skip practice', exact: true });
+      await expect(first, `${id} first visit`).toBeVisible();
+      expect(await hasNoSidewaysScroll(page), `${id} first visit scrolls sideways`).toBe(true);
 
-      await skip.click();
+      await first.click();
       await expect(page.locator('[data-game]'), `${id} playing`).toBeVisible();
       expect(await hasNoSidewaysScroll(page), `${id} in play scrolls sideways`).toBe(true);
     }
@@ -202,7 +231,9 @@ test.describe('arrows rows', () => {
 test.describe('review screenshots', () => {
   test.use({ viewport: { width: 390, height: 844 }, colorScheme: 'dark' });
 
-  test('screenshots of the five games for review', async ({ page }) => {
+  test('screenshots of the six games for review', async ({ page }) => {
+    // Six games one after the other, Guardagujas with two trains sent home first: more than the default 90 s.
+    test.setTimeout(180_000);
     mkdirSync(SCREENSHOT_DIR, { recursive: true });
     await page.clock.install({ time: CLOCK_TIME });
 
@@ -214,6 +245,10 @@ test.describe('review screenshots', () => {
       if (id === 'sequence-lights') {
         // A cell is lit for 600 ms at a time, far longer than the wait polls.
         await expect(game.locator('[data-lit="true"]').first()).toBeVisible();
+      } else if (id === 'switchyard') {
+        // A game in progress: two trains home, with smoke and the next trains on the way.
+        await answerSome(page, id);
+        await page.waitForTimeout(300);
       } else {
         // Same or different shows its symbol first, with the answers off; wait for them, then let the trial settle.
         await expect(game.locator('[data-zone="controls"] button').first()).toBeEnabled();

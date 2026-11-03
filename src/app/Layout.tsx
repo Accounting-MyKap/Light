@@ -1,12 +1,13 @@
 import { useTranslation } from 'react-i18next';
 import { NavLink, Outlet, useLocation } from 'react-router-dom';
-import { GamesIcon, ProgressIcon, SettingsIcon, TodayIcon } from './NavIcons';
+import { GamesIcon, ProgressIcon, QuizIcon, SettingsIcon, TodayIcon } from './NavIcons';
 import { UpdatePrompt } from './UpdatePrompt';
 import styles from './Layout.module.css';
 
 const NAV_ITEMS = [
   { to: '/', key: 'nav.today', end: true, Icon: TodayIcon },
   { to: '/games', key: 'nav.games', end: false, Icon: GamesIcon },
+  { to: '/quiz', key: 'nav.quiz', end: false, Icon: QuizIcon },
   { to: '/progress', key: 'nav.progress', end: false, Icon: ProgressIcon },
   { to: '/settings', key: 'nav.settings', end: false, Icon: SettingsIcon },
 ] as const;

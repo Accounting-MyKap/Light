@@ -1,0 +1,881 @@
+{
+  "category": "us",
+  "questions": [
+    {
+      "id": "us-0001", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué significan las siglas GAAP en la contabilidad de EE. UU.?",
+              "options": ["Principios de contabilidad generalmente aceptados", "Asociación de auditores y contadores públicos", "Guía anual de análisis de pagos", "Normas globales de auditoría y presupuesto"],
+              "explanation": "GAAP son los Generally Accepted Accounting Principles: las reglas con las que las empresas de EE. UU. preparan sus estados financieros." },
+      "en": { "question": "What does GAAP stand for in U.S. accounting?",
+              "options": ["Generally Accepted Accounting Principles", "General Association of Auditors and Preparers", "Global Audit and Accounting Policies", "Guide to Annual Accounting Procedures"],
+              "explanation": "GAAP are the Generally Accepted Accounting Principles: the rules U.S. companies follow to prepare their financial statements." }
+    },
+    {
+      "id": "us-0002", "difficulty": 1, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿Qué formulario del IRS usan las personas naturales para su declaración anual de impuesto sobre la renta?",
+              "options": ["Formulario 1040", "Formulario 1099", "Formulario 1120", "Formulario W-2"],
+              "explanation": "El Formulario 1040 es la declaración anual de renta de las personas naturales ante el IRS (IRC §6012). Allí reportan sus ingresos, deducciones y créditos." },
+      "en": { "question": "Which IRS form do individuals use to file their annual income tax return?",
+              "options": ["Form 1040", "Form 1099", "Form 1120", "Form W-2"],
+              "explanation": "Form 1040 is the annual income tax return individuals file with the IRS (IRC §6012). It reports their income, deductions and credits." }
+    },
+    {
+      "id": "us-0003", "difficulty": 1, "type": "choice",
+      "es": { "question": "¿Qué empresa desarrolla el software de contabilidad QuickBooks?",
+              "options": ["Intuit", "Oracle", "SAP", "Sage"],
+              "explanation": "QuickBooks es un producto de Intuit, la misma empresa de TurboTax. Oracle, SAP y Sage tienen otros programas contables." },
+      "en": { "question": "Which company develops the QuickBooks accounting software?",
+              "options": ["Intuit", "Oracle", "SAP", "Sage"],
+              "explanation": "QuickBooks is a product of Intuit, the same company behind TurboTax. Oracle, SAP and Sage offer other accounting software." }
+    },
+    {
+      "id": "us-0004", "difficulty": 1, "type": "truefalse", "answer": false,
+      "es": { "question": "El FASB es la agencia que recauda los impuestos federales en Estados Unidos.",
+              "explanation": "Los impuestos federales los recauda el IRS. El FASB es un organismo privado e independiente, sin funciones tributarias." },
+      "en": { "question": "The FASB is the agency that collects federal taxes in the United States.",
+              "explanation": "Federal taxes are collected by the IRS. The FASB is a private, independent body with no tax role." }
+    },
+    {
+      "id": "us-0005", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué organismo emite los US GAAP?",
+              "options": ["FASB", "IASB", "IRS", "PCAOB"],
+              "explanation": "El FASB (Financial Accounting Standards Board) emite los US GAAP desde 1973, cuando reemplazó al Accounting Principles Board. El IASB, en cambio, emite las IFRS." },
+      "en": { "question": "Which body sets U.S. GAAP?",
+              "options": ["FASB", "IASB", "IRS", "PCAOB"],
+              "explanation": "The FASB (Financial Accounting Standards Board) has set U.S. GAAP since 1973, when it replaced the Accounting Principles Board. The IASB, by contrast, sets IFRS." }
+    },
+    {
+      "id": "us-0006", "difficulty": 2, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿Para qué sirve el formulario W-9?",
+              "options": ["Dar al pagador el nombre y el número fiscal (TIN)", "Presentar la declaración anual de renta", "Indicar la retención de impuestos del empleado", "Reportar los pagos hechos a contratistas"],
+              "explanation": "Quien va a recibir pagos, como un contratista o proveedor, entrega el W-9 al pagador con su nombre y su TIN (IRC §6109), para que este pueda reportar esos pagos al IRS." },
+      "en": { "question": "What is Form W-9 used for?",
+              "options": ["Giving a payer your name and taxpayer ID (TIN)", "Filing the annual income tax return", "Setting an employee's tax withholding", "Reporting payments made to contractors"],
+              "explanation": "A person who will receive payments, such as a contractor or vendor, gives the payer a W-9 with their name and TIN (IRC §6109), so the payer can report those payments to the IRS." }
+    },
+    {
+      "id": "us-0007", "difficulty": 2, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿Qué formulario reporta al IRS los pagos a contratistas independientes que no son empleados?",
+              "options": ["Formulario 1099-NEC", "Formulario W-2", "Formulario 1040", "Formulario W-4"],
+              "explanation": "En el 1099-NEC (nonemployee compensation), el pagador reporta al IRS lo que su negocio pagó a contratistas independientes por sus servicios (IRC §6041A)." },
+      "en": { "question": "Which form reports payments to independent contractors who are not employees to the IRS?",
+              "options": ["Form 1099-NEC", "Form W-2", "Form 1040", "Form W-4"],
+              "explanation": "On Form 1099-NEC (nonemployee compensation), the payer reports to the IRS what its business paid independent contractors for services (IRC §6041A)." }
+    },
+    {
+      "id": "us-0008", "difficulty": 2, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿Qué formulario presentan las corporaciones C para su declaración de impuesto sobre la renta?",
+              "options": ["Formulario 1120", "Formulario 1065", "Formulario 1040", "Formulario 940"],
+              "explanation": "Las corporaciones C presentan cada año el Formulario 1120 (U.S. Corporation Income Tax Return), como lo exige el IRC §6012." },
+      "en": { "question": "Which form do C corporations file for their income tax return?",
+              "options": ["Form 1120", "Form 1065", "Form 1040", "Form 940"],
+              "explanation": "C corporations file Form 1120 (U.S. Corporation Income Tax Return) each year, as required by IRC §6012." }
+    },
+    {
+      "id": "us-0009", "difficulty": 3, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿Qué norma de las NIIF se emitió en 2014 junto con el ASC 606, como norma convergente de ingresos de contratos con clientes?",
+              "options": ["NIIF 15", "NIIF 9", "NIIF 16", "NIC 18"],
+              "explanation": "La NIIF 15 y el ASC 606 (ASU 2014-09) se publicaron juntos en 2014, tras un proyecto conjunto. La NIC 18 era la norma de ingresos anterior; la NIIF 9 trata de instrumentos financieros y la 16, de arrendamientos." },
+      "en": { "question": "Which IFRS standard was issued in 2014 alongside ASC 606 as the converged standard on revenue from contracts with customers?",
+              "options": ["IFRS 15", "IFRS 9", "IFRS 16", "IAS 18"],
+              "explanation": "IFRS 15 and ASC 606 (ASU 2014-09) were issued together in 2014, after a joint project. IAS 18 was the earlier IFRS revenue standard; IFRS 9 covers financial instruments and IFRS 16 leases." }
+    },
+    {
+      "id": "us-0010", "difficulty": 3, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿Qué cambio principal introdujo el ASC 842 para los arrendatarios?",
+              "options": ["Registrar un activo por derecho de uso y un pasivo", "Llevar todos los arrendamientos solo a gastos", "Medir los arrendamientos a valor razonable cada año", "Eliminar la distinción entre operativo y financiero"],
+              "explanation": "Con el ASC 842, los arrendatarios llevan al balance casi todos los arrendamientos, como un activo por derecho de uso y un pasivo por arrendamiento." },
+      "en": { "question": "What main change did ASC 842 bring for lessees?",
+              "options": ["Record a right-of-use asset and a lease liability", "Record all leases only as an expense", "Measure leases at fair value every year", "Drop the operating vs. finance lease distinction"],
+              "explanation": "Under ASC 842, lessees put almost all leases on the balance sheet, as a right-of-use asset and a lease liability." }
+    },
+    {
+      "id": "us-0011", "difficulty": 3, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿Qué mide el modelo CECL del ASC 326 en activos como los préstamos?",
+              "options": ["Pérdidas esperadas durante toda la vida del activo", "Solo las pérdidas ya incurridas", "Solo las pérdidas esperadas en los próximos 12 meses", "El valor razonable de la garantía"],
+              "explanation": "CECL (Current Expected Credit Loss) obliga a estimar desde el inicio las pérdidas esperadas de toda la vida del activo, y no solo las ya incurridas." },
+      "en": { "question": "What does the CECL model in ASC 326 measure for assets such as loans?",
+              "options": ["Expected losses over the asset's whole life", "Only losses already incurred", "Only expected losses over the next 12 months", "The fair value of the collateral"],
+              "explanation": "CECL (Current Expected Credit Loss) requires estimating, from the start, the expected losses over the asset's whole life, not only those already incurred." }
+    },
+    {
+      "id": "us-0012", "difficulty": 3, "type": "truefalse", "answer": true,
+      "es": { "question": "El use tax se debe pagar cuando se compra un bien sin sales tax y se usa en un estado que sí lo grava.",
+              "explanation": "El use tax complementa al sales tax: si el vendedor no cobró el impuesto de ventas, el comprador debe declararlo y pagarlo al estado donde usa el bien." },
+      "en": { "question": "Use tax is owed when you buy an item without paying sales tax and use it in a state that taxes it.",
+              "explanation": "Use tax complements sales tax: if the seller did not collect sales tax, the buyer must report and pay it to the state where the item is used." }
+    },
+    {
+      "id": "us-0013", "difficulty": 1, "type": "choice",
+      "es": { "question": "En EE. UU., ¿qué significa la sigla CPA?",
+              "options": ["Contador público certificado", "Administrador certificado de nómina", "Auditor público colegiado", "Asesor corporativo de planeación"],
+              "explanation": "CPA es Certified Public Accountant: el contador público con licencia en EE. UU. La licencia la otorga la junta de contabilidad de cada estado (state board of accountancy)." },
+      "en": { "question": "In the U.S., what does CPA stand for?",
+              "options": ["Certified Public Accountant", "Certified Payroll Administrator", "Chartered Public Auditor", "Corporate Planning Advisor"],
+              "explanation": "A CPA is a Certified Public Accountant: a licensed accountant in the U.S. The license is granted by each state's board of accountancy." }
+    },
+    {
+      "id": "us-0014", "difficulty": 1, "type": "truefalse", "answer": false,
+      "es": { "question": "En EE. UU., la utilidad contable según US GAAP y la renta gravable federal siempre son iguales.",
+              "explanation": "Las leyes tributarias federales tienen reglas propias, distintas de los US GAAP, así que la utilidad contable y la renta gravable suelen diferir." },
+      "en": { "question": "In the U.S., book income under U.S. GAAP and federal taxable income are always the same.",
+              "explanation": "Federal tax law has its own rules, separate from U.S. GAAP, so book income and taxable income often differ." }
+    },
+    {
+      "id": "us-0015", "difficulty": 1, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿Qué formulario presentan ante la SEC las empresas que cotizan en bolsa en EE. UU. como su informe anual?",
+              "options": ["Formulario 10-K", "Formulario 10-Q", "Formulario 8-K", "Formulario 1120"],
+              "explanation": "El 10-K es el informe anual completo: estados financieros, descripción del negocio, factores de riesgo y análisis de la gerencia (sección 13 de la Securities Exchange Act de 1934)." },
+      "en": { "question": "Which form do U.S. public companies file with the SEC as their annual report?",
+              "options": ["Form 10-K", "Form 10-Q", "Form 8-K", "Form 1120"],
+              "explanation": "The 10-K is the full annual report: financial statements, business description, risk factors and management's analysis (Securities Exchange Act of 1934, section 13)." }
+    },
+    {
+      "id": "us-0016", "difficulty": 1, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿Qué formulario entrega el empleador a cada empleado con los salarios del año y los impuestos que le retuvo?",
+              "options": ["Formulario W-2", "Formulario W-4", "Formulario W-9", "Formulario 1099-NEC"],
+              "explanation": "El empleador entrega el W-2 a cada empleado y envía una copia a la Social Security Administration (IRC §6051). El empleado lo usa para su declaración." },
+      "en": { "question": "Which form does an employer give each employee showing the year's wages and the taxes withheld?",
+              "options": ["Form W-2", "Form W-4", "Form W-9", "Form 1099-NEC"],
+              "explanation": "The employer gives each employee a W-2 and sends a copy to the Social Security Administration (IRC §6051). The employee uses it to file their return." }
+    },
+    {
+      "id": "us-0017", "difficulty": 1, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿Qué formulario llena un empleado para que el empleador sepa cuánto impuesto federal sobre la renta debe retenerle?",
+              "options": ["Formulario W-4", "Formulario W-2", "Formulario W-9", "Formulario 1040"],
+              "explanation": "Con el W-4 (Employee's Withholding Certificate), el empleado da los datos para calcular la retención de su sueldo (IRC §3402). Por regla general, el empleador lo guarda y no lo envía al IRS." },
+      "en": { "question": "Which form does an employee fill out so the employer knows how much federal income tax to withhold?",
+              "options": ["Form W-4", "Form W-2", "Form W-9", "Form 1040"],
+              "explanation": "On the W-4 (Employee's Withholding Certificate), the employee gives the details used to figure withholding from pay (IRC §3402). As a rule, the employer keeps it and does not send it to the IRS." }
+    },
+    {
+      "id": "us-0018", "difficulty": 1, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿Qué dos programas federales financia el impuesto FICA que se retiene de los sueldos?",
+              "options": ["Social Security y Medicare", "Medicaid y el seguro de desempleo", "Seguro de desempleo y pensiones estatales", "Medicare y la compensación laboral"],
+              "explanation": "FICA (Federal Insurance Contributions Act) financia el Social Security y el Medicare. Lo paga el empleado, por retención, y también el empleador, con su propio aporte (IRC §3101 y §3111)." },
+      "en": { "question": "Which two federal programs does the FICA tax withheld from wages fund?",
+              "options": ["Social Security and Medicare", "Medicaid and unemployment insurance", "Unemployment insurance and state pensions", "Medicare and workers' compensation"],
+              "explanation": "FICA (Federal Insurance Contributions Act) funds Social Security and Medicare. The employee pays through withholding, and the employer also pays its own share (IRC §3101 and §3111)." }
+    },
+    {
+      "id": "us-0019", "difficulty": 1, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "En EE. UU., ¿qué es el EIN (Employer Identification Number)?",
+              "options": ["El número fiscal federal de un negocio", "El número de Seguro Social de una persona", "El registro mercantil de la empresa en su estado", "El número de la cuenta bancaria de la empresa"],
+              "explanation": "El IRS asigna el EIN, de nueve dígitos, a empresas y otras entidades, tengan o no empleados, para identificarlas en declaraciones y pagos (IRC §6109)." },
+      "en": { "question": "In the U.S., what is an EIN (Employer Identification Number)?",
+              "options": ["A business's federal tax ID number", "A person's Social Security number", "The company's state business registration", "The company's bank account number"],
+              "explanation": "The IRS assigns the nine-digit EIN to businesses and other entities, with or without employees, to identify them on returns and payments (IRC §6109)." }
+    },
+    {
+      "id": "us-0020", "difficulty": 1, "type": "choice",
+      "es": { "question": "En EE. UU., ¿qué significa la sigla LLC en el nombre de una empresa?",
+              "options": ["Limited Liability Company", "Licensed Legal Corporation", "Limited Lending Company", "Local Licensed Company"],
+              "explanation": "La LLC es una sociedad de responsabilidad limitada creada bajo la ley de un estado; en general protege el patrimonio personal de sus dueños, llamados members." },
+      "en": { "question": "In the U.S., what does LLC stand for in a company name?",
+              "options": ["Limited Liability Company", "Licensed Legal Corporation", "Limited Lending Company", "Local Licensed Company"],
+              "explanation": "An LLC is a limited liability company formed under a state's law; it generally shields the personal assets of its owners, called members." }
+    },
+    {
+      "id": "us-0021", "difficulty": 1, "type": "choice",
+      "es": { "question": "En EE. UU., ¿quién fija las tarifas del impuesto a las ventas (sales tax)?",
+              "options": ["Los estados y, en muchos casos, los gobiernos locales", "El IRS, con una tarifa nacional", "El Congreso, igual para todo el país", "El Departamento del Tesoro federal"],
+              "explanation": "Los estados que lo cobran fijan su tarifa, y muchos condados y ciudades suman una propia; por eso la tarifa total depende del lugar de la venta." },
+      "en": { "question": "In the U.S., who sets sales tax rates?",
+              "options": ["The states and, in many cases, local governments", "The IRS, with one national rate", "Congress, the same for the whole country", "The federal Treasury Department"],
+              "explanation": "States that levy it set their own rates, and many counties and cities add their own, so the total rate depends on where the sale takes place." }
+    },
+    {
+      "id": "us-0022", "difficulty": 1, "type": "choice",
+      "es": { "question": "En QuickBooks, ¿qué es el plan de cuentas (Chart of Accounts)?",
+              "options": ["La lista de cuentas donde se registran las transacciones", "El presupuesto anual de la empresa", "La lista de clientes y proveedores", "El reporte de pérdidas y ganancias"],
+              "explanation": "El Chart of Accounts reúne las cuentas de activo, pasivo, patrimonio, ingresos y gastos; cada transacción de QuickBooks se lleva a una o más de ellas." },
+      "en": { "question": "In QuickBooks, what is the Chart of Accounts?",
+              "options": ["The list of accounts where transactions are recorded", "The company's annual budget", "The list of customers and vendors", "The profit and loss report"],
+              "explanation": "The Chart of Accounts holds the asset, liability, equity, income and expense accounts; every QuickBooks transaction posts to one or more of them." }
+    },
+    {
+      "id": "us-0023", "difficulty": 1, "type": "choice",
+      "es": { "question": "En QuickBooks, ¿con qué transacción se registra un asiento manual con débitos y créditos, como el de la depreciación del mes?",
+              "options": ["Journal Entry", "Invoice", "Sales Receipt", "Purchase Order"],
+              "explanation": "El Journal Entry registra débitos y créditos directamente en las cuentas. Se usa para ajustes que no tienen otro formulario, como depreciaciones o causaciones." },
+      "en": { "question": "In QuickBooks, which transaction records a manual entry with debits and credits, such as the month's depreciation?",
+              "options": ["Journal Entry", "Invoice", "Sales Receipt", "Purchase Order"],
+              "explanation": "A Journal Entry posts debits and credits directly to accounts. It is used for adjustments that have no other form, such as depreciation or accruals." }
+    },
+    {
+      "id": "us-0024", "difficulty": 1, "type": "choice",
+      "es": { "question": "En QuickBooks, ¿qué transacción registra la factura de un proveedor que se pagará más adelante?",
+              "options": ["Bill", "Invoice", "Estimate", "Sales Receipt"],
+              "explanation": "El Bill registra la cuenta por pagar al proveedor (Accounts Payable), que luego se salda con un pago. El Invoice, en cambio, es la factura que la empresa emite a un cliente." },
+      "en": { "question": "In QuickBooks, which transaction records a vendor's invoice to be paid later?",
+              "options": ["Bill", "Invoice", "Estimate", "Sales Receipt"],
+              "explanation": "A Bill records the amount owed to the vendor (Accounts Payable), which is later cleared by a payment. An Invoice, by contrast, is what the company issues to a customer." }
+    },
+    {
+      "id": "us-0025", "difficulty": 1, "type": "choice",
+      "es": { "question": "En QuickBooks, ¿cuándo se usa un Sales Receipt en lugar de un Invoice?",
+              "options": ["Cuando el cliente paga en el momento de la venta", "Cuando la venta es a crédito", "Cuando se cotiza un trabajo futuro", "Cuando el cliente devuelve mercancía"],
+              "explanation": "El Sales Receipt registra la venta y el cobro a la vez, sin cuenta por cobrar. El Invoice deja la venta pendiente de cobro en Accounts Receivable." },
+      "en": { "question": "In QuickBooks, when do you use a Sales Receipt instead of an Invoice?",
+              "options": ["When the customer pays at the time of sale", "When the sale is on credit", "When quoting future work", "When the customer returns goods"],
+              "explanation": "A Sales Receipt records the sale and the payment together, with no receivable. An Invoice leaves the sale open in Accounts Receivable until it is paid." }
+    },
+    {
+      "id": "us-0026", "difficulty": 1, "type": "choice",
+      "es": { "question": "En el reporte A/R Aging de QuickBooks, ¿en qué columna aparecen las facturas que todavía no han vencido?",
+              "options": ["Current", "1 - 30", "91 and over", "Total"],
+              "explanation": "La columna Current reúne las facturas que aún no llegan a su fecha de vencimiento (due date), según los términos de pago de cada una." },
+      "en": { "question": "In QuickBooks' A/R Aging report, which column shows invoices that are not yet due?",
+              "options": ["Current", "1 - 30", "91 and over", "Total"],
+              "explanation": "The Current column holds invoices that have not reached their due date yet, based on each invoice's payment terms." }
+    },
+    {
+      "id": "us-0027", "difficulty": 1, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "En QuickBooks Online, ¿qué función permite que una factura o un asiento se repita en forma automática cada mes?",
+              "options": ["Recurring Transactions", "Bank Rules", "Batch Actions", "Custom Reports"],
+              "explanation": "Recurring Transactions guarda una plantilla que QuickBooks crea sola con la frecuencia elegida, o que deja lista como recordatorio. En Desktop se llaman Memorized Transactions." },
+      "en": { "question": "In QuickBooks Online, which feature lets an invoice or an entry repeat automatically every month?",
+              "options": ["Recurring Transactions", "Bank Rules", "Batch Actions", "Custom Reports"],
+              "explanation": "Recurring Transactions save a template that QuickBooks creates on the chosen schedule, or keeps ready as a reminder. In QuickBooks Desktop they are called Memorized Transactions." }
+    },
+    {
+      "id": "us-0028", "difficulty": 1, "type": "choice",
+      "es": { "question": "En QuickBooks, ¿qué transacción registra el cobro de una factura que ya se le emitió a un cliente?",
+              "options": ["Receive Payment", "Sales Receipt", "Deposit", "Refund Receipt"],
+              "explanation": "Receive Payment aplica el cobro a la factura abierta y reduce Accounts Receivable. Si se registra como depósito o Sales Receipt, la factura sigue pendiente." },
+      "en": { "question": "In QuickBooks, which transaction records the collection of an invoice already issued to a customer?",
+              "options": ["Receive Payment", "Sales Receipt", "Deposit", "Refund Receipt"],
+              "explanation": "Receive Payment applies the money to the open invoice and reduces Accounts Receivable. If it is recorded as a deposit or a Sales Receipt, the invoice stays open." }
+    },
+    {
+      "id": "us-0029", "difficulty": 1, "type": "choice",
+      "es": { "question": "En EE. UU., ¿cómo se escribe la cifra de mil doscientos cincuenta dólares con cincuenta centavos?",
+              "options": ["$1,250.50", "$1.250,50", "$1 250,50", "$1'250,50"],
+              "explanation": "En EE. UU., la coma separa los miles y el punto separa los decimales. En Colombia suele usarse al revés, lo que causa errores al pasar cifras de un sistema a otro." },
+      "en": { "question": "In the U.S., how is one thousand two hundred fifty dollars and fifty cents written?",
+              "options": ["$1,250.50", "$1.250,50", "$1 250,50", "$1'250,50"],
+              "explanation": "In the U.S., the comma separates thousands and the period marks decimals. Colombia usually does the opposite, which causes errors when copying figures between systems." }
+    },
+    {
+      "id": "us-0030", "difficulty": 1, "type": "choice",
+      "es": { "question": "En EE. UU., ¿cómo se escribe en el formato numérico habitual la fecha 3 de febrero de 2026?",
+              "options": ["02/03/2026", "03/02/2026", "2026/03/02", "3.2.2026"],
+              "explanation": "El formato habitual en EE. UU. es mes/día/año (MM/DD/YYYY). Por eso 02/03/2026 es 3 de febrero, y no 2 de marzo, como se leería en Colombia." },
+      "en": { "question": "In the U.S., how is the date February 3, 2026 usually written in numbers?",
+              "options": ["02/03/2026", "03/02/2026", "2026/03/02", "3.2.2026"],
+              "explanation": "The usual U.S. format is month/day/year (MM/DD/YYYY). So 02/03/2026 is February 3, not March 2, as it would be read in Colombia." }
+    },
+    {
+      "id": "us-0031", "difficulty": 1, "type": "choice",
+      "es": { "question": "En un reporte financiero en inglés, ¿qué significa YTD?",
+              "options": ["Lo acumulado desde el inicio del año hasta la fecha", "El total del año anterior", "El presupuesto del año siguiente", "Lo pendiente por pagar en el año"],
+              "explanation": "YTD es year to date: lo acumulado desde el primer día del año fiscal hasta la fecha del reporte. MTD (month to date) hace lo mismo con el mes." },
+      "en": { "question": "In a financial report, what does YTD mean?",
+              "options": ["The total from the start of the year to date", "The prior year's total", "Next year's budget", "What is still payable this year"],
+              "explanation": "YTD is year to date: the running total from the first day of the fiscal year to the report date. MTD (month to date) does the same for the month." }
+    },
+    {
+      "id": "us-0032", "difficulty": 1, "type": "choice",
+      "es": { "question": "En una factura de EE. UU., ¿qué significan los términos de pago «2/10, net 30»?",
+              "options": ["2 % de descuento si paga en 10 días; si no, el total en 30", "Dos cuotas: una a los 10 días y otra a los 30", "2 % de interés si paga entre el día 10 y el 30", "Pagar el 10 % en 2 días y el resto en 30"],
+              "explanation": "Es un descuento por pronto pago: si el cliente paga dentro de 10 días, descuenta el 2 %; si no, paga el valor completo a más tardar en 30 días." },
+      "en": { "question": "On a U.S. invoice, what do the payment terms “2/10, net 30” mean?",
+              "options": ["2% off if paid in 10 days; otherwise full amount in 30 days", "Two installments: one at 10 days and one at 30", "2% interest if paid between day 10 and day 30", "Pay 10% in 2 days and the rest in 30"],
+              "explanation": "It is an early-payment discount: a customer who pays within 10 days takes 2% off; otherwise the full amount is due within 30 days." }
+    },
+    {
+      "id": "us-0033", "difficulty": 1, "type": "choice",
+      "es": { "question": "En EE. UU., ¿qué es un pago por ACH?",
+              "options": ["Una transferencia electrónica entre bancos, por lotes", "Un cheque certificado por el banco", "Un giro internacional por la red SWIFT", "Un retiro de efectivo en un cajero"],
+              "explanation": "ACH (Automated Clearing House) es la red de pagos electrónicos por lotes entre bancos de EE. UU.; se usa para nómina, pagos a proveedores y débitos automáticos." },
+      "en": { "question": "In the U.S., what is an ACH payment?",
+              "options": ["An electronic bank-to-bank transfer, processed in batches", "A bank-certified check", "An international wire over the SWIFT network", "A cash withdrawal at an ATM"],
+              "explanation": "ACH (Automated Clearing House) is the U.S. network for batch electronic payments between banks, used for payroll, vendor payments and automatic debits." }
+    },
+    {
+      "id": "us-0034", "difficulty": 1, "type": "choice",
+      "es": { "question": "En inglés contable, ¿qué son las Accrued Liabilities?",
+              "options": ["Gastos causados que aún no se han pagado", "Anticipos recibidos de clientes", "Préstamos bancarios de largo plazo", "Impuestos pagados por anticipado"],
+              "explanation": "Son pasivos por gastos ya causados que aún no se pagan, como los salarios o los intereses del período, y se registran al cierre." },
+      "en": { "question": "In accounting English, what are Accrued Liabilities?",
+              "options": ["Expenses incurred but not yet paid", "Advance payments received from customers", "Long-term bank loans", "Taxes paid in advance"],
+              "explanation": "They are liabilities for expenses already incurred but not yet paid, such as the period's wages or interest, recorded at closing." }
+    },
+    {
+      "id": "us-0035", "difficulty": 1, "type": "choice",
+      "es": { "question": "En QuickBooks, ¿qué tipo de cuenta se crea para la tarjeta de crédito de la empresa?",
+              "options": ["Credit Card", "Bank", "Accounts Receivable", "Other Current Asset"],
+              "explanation": "La tarjeta se crea como una cuenta tipo Credit Card: es un pasivo, cuyos cargos aumentan lo que se debe y cuyos pagos lo reducen." },
+      "en": { "question": "In QuickBooks, which account type do you create for the company's credit card?",
+              "options": ["Credit Card", "Bank", "Accounts Receivable", "Other Current Asset"],
+              "explanation": "The card is set up as a Credit Card account: a liability whose charges increase the balance owed and whose payments reduce it." }
+    },
+    {
+      "id": "us-0036", "difficulty": 1, "type": "choice",
+      "es": { "question": "En inglés contable, ¿qué es la Allowance for Doubtful Accounts?",
+              "options": ["La provisión para cartera de dudoso cobro", "El límite de crédito de los clientes", "Las cuentas por pagar vencidas", "Los intereses de mora por cobrar"],
+              "explanation": "Es la estimación de la cartera que la empresa no espera cobrar. Con el modelo del ASC 326 suele llamarse allowance for credit losses." },
+      "en": { "question": "In accounting English, what is the Allowance for Doubtful Accounts?",
+              "options": ["The provision for receivables unlikely to be collected", "Customers' credit limits", "Past-due accounts payable", "Late-payment interest receivable"],
+              "explanation": "It is the estimate of receivables the company does not expect to collect. Under the ASC 326 model it is usually called the allowance for credit losses." }
+    },
+    {
+      "id": "us-0037", "difficulty": 1, "type": "truefalse", "answer": false, "asOf": "2026-11",
+      "es": { "question": "En EE. UU., toda empresa debe cerrar su año fiscal el 31 de diciembre.",
+              "explanation": "Muchas usan el año calendario, pero el IRC §441 permite un año fiscal que cierre al final de otro mes, como junio o septiembre, con algunas limitaciones." },
+      "en": { "question": "In the U.S., every company must end its fiscal year on December 31.",
+              "explanation": "Many use the calendar year, but IRC §441 allows a fiscal year ending on the last day of another month, such as June or September, with some limits." }
+    },
+    {
+      "id": "us-0038", "difficulty": 1, "type": "truefalse", "answer": true,
+      "es": { "question": "En EE. UU., además del impuesto federal sobre la renta, muchos estados cobran su propio impuesto sobre la renta.",
+              "explanation": "Por eso, quien vive o tiene negocios en un estado que grava la renta por lo general presenta allí una declaración estatal, además de la federal." },
+      "en": { "question": "In the U.S., besides the federal income tax, many states levy their own income tax.",
+              "explanation": "So anyone who lives or does business in a state with an income tax generally files a state return there, in addition to the federal one." }
+    },
+    {
+      "id": "us-0039", "difficulty": 1, "type": "truefalse", "answer": true, "asOf": "2026-11",
+      "es": { "question": "Las empresas que cotizan en bolsa en EE. UU. deben presentar a la SEC estados financieros anuales auditados.",
+              "explanation": "La SEC exige que los estados financieros anuales de las empresas registradas los audite un contador público independiente (sección 13 de la Securities Exchange Act de 1934)." },
+      "en": { "question": "U.S. public companies must file audited annual financial statements with the SEC.",
+              "explanation": "The SEC requires registrants' annual financial statements to be audited by an independent public accountant (Securities Exchange Act of 1934, section 13)." }
+    },
+    {
+      "id": "us-0040", "difficulty": 1, "type": "choice",
+      "es": { "question": "En EE. UU., ¿qué indica «Inc.» al final del nombre de una empresa?",
+              "options": ["Que es una corporación (incorporated)", "Que es una sociedad de personas (partnership)", "Que es una entidad del gobierno", "Que es la sucursal de una empresa extranjera"],
+              "explanation": "Inc. abrevia incorporated: la empresa se constituyó como corporación bajo la ley de un estado. Corp. es otra abreviatura usual." },
+      "en": { "question": "In the U.S., what does “Inc.” at the end of a company name indicate?",
+              "options": ["That it is a corporation (incorporated)", "That it is a partnership", "That it is a government entity", "That it is a branch of a foreign company"],
+              "explanation": "Inc. is short for incorporated: the company was formed as a corporation under a state's law. Corp. is another common abbreviation." }
+    },
+    {
+      "id": "us-0041", "difficulty": 1, "type": "choice",
+      "es": { "question": "En EE. UU., ¿qué es el Internal Revenue Code (IRC)?",
+              "options": ["La ley federal de impuestos", "El manual interno de los empleados del IRS", "El código de ética de los CPA", "El reglamento de la SEC para los emisores"],
+              "explanation": "El IRC es el título 26 del United States Code. Sus secciones, como la §61 (ingreso bruto) o la §162 (gastos del negocio), son las que se citan en temas tributarios." },
+      "en": { "question": "In the U.S., what is the Internal Revenue Code (IRC)?",
+              "options": ["The federal tax law", "The IRS employees' internal manual", "The CPA code of ethics", "The SEC's rules for issuers"],
+              "explanation": "The IRC is Title 26 of the United States Code. Its sections, such as §61 (gross income) or §162 (business expenses), are the ones cited on tax matters." }
+    },
+    {
+      "id": "us-0042", "difficulty": 1, "type": "choice",
+      "es": { "question": "En una nómina de EE. UU., ¿qué es el net pay?",
+              "options": ["Lo que recibe el empleado tras retenciones y deducciones", "El sueldo antes de impuestos y deducciones", "El costo total del empleado para la empresa", "El bono anual del empleado"],
+              "explanation": "El net pay es el pago neto: el sueldo bruto (gross pay) menos las retenciones de impuestos, el FICA y deducciones como el seguro médico o la jubilación." },
+      "en": { "question": "In U.S. payroll, what is net pay?",
+              "options": ["Take-home pay after withholdings and deductions", "Pay before taxes and deductions", "The employee's total cost to the company", "The employee's annual bonus"],
+              "explanation": "Net pay is gross pay minus tax withholdings, FICA and deductions such as health insurance or retirement contributions." }
+    },
+    {
+      "id": "us-0043", "difficulty": 1, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿A quién debe enviar el pagador el Formulario 1099 de un año?",
+              "options": ["Al IRS y a quien recibió el pago", "Solo a quien recibió el pago", "Solo al IRS", "A la SEC y al banco del beneficiario"],
+              "explanation": "El pagador presenta el 1099 ante el IRS y entrega una copia al beneficiario, que la usa en su declaración (IRC §6041 y secciones siguientes). Algunos estados también piden copia." },
+      "en": { "question": "To whom must the payer send a year's Form 1099?",
+              "options": ["The IRS and the person who was paid", "Only the person who was paid", "Only the IRS", "The SEC and the payee's bank"],
+              "explanation": "The payer files the 1099 with the IRS and gives a copy to the payee, who uses it on their return (IRC §6041 and following sections). Some states also require a copy." }
+    },
+    {
+      "id": "us-0044", "difficulty": 1, "type": "choice",
+      "es": { "question": "En los US GAAP, ¿qué significa la sigla ASC?",
+              "options": ["Accounting Standards Codification", "Auditing Standards Council", "American Securities Commission", "Annual Statement of Compliance"],
+              "explanation": "La Accounting Standards Codification organiza los US GAAP con autoridad en temas numerados; rige desde 2009 y reemplazó a cientos de pronunciamientos sueltos." },
+      "en": { "question": "In U.S. GAAP, what does ASC stand for?",
+              "options": ["Accounting Standards Codification", "Auditing Standards Council", "American Securities Commission", "Annual Statement of Compliance"],
+              "explanation": "The Accounting Standards Codification organizes authoritative U.S. GAAP into numbered topics; it took effect in 2009, replacing hundreds of separate pronouncements." }
+    },
+    {
+      "id": "us-0045", "difficulty": 1, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "En QuickBooks Online, ¿para qué sirven las reglas bancarias (bank rules)?",
+              "options": ["Categorizar en forma automática lo que llega del banco", "Bloquear pagos sospechosos de la cuenta", "Calcular los intereses de la cuenta", "Fijar el saldo mínimo de la cuenta"],
+              "explanation": "Una regla bancaria asigna categoría, beneficiario o clase a las transacciones del banco que cumplen ciertas condiciones, como una descripción o un monto." },
+      "en": { "question": "In QuickBooks Online, what are bank rules for?",
+              "options": ["Automatically categorizing transactions from the bank", "Blocking suspicious payments from the account", "Calculating the account's interest", "Setting the account's minimum balance"],
+              "explanation": "A bank rule assigns a category, payee or class to bank transactions that meet set conditions, such as a description or an amount." }
+    },
+    {
+      "id": "us-0046", "difficulty": 1, "type": "choice",
+      "es": { "question": "En QuickBooks, ¿qué registra un Credit Memo?",
+              "options": ["Un saldo a favor del cliente, como una nota crédito", "Un pago hecho a un proveedor", "Un préstamo recibido del banco", "Un cargo por intereses de mora"],
+              "explanation": "El Credit Memo reduce lo que el cliente debe, por ejemplo por una devolución o un descuento; luego se aplica a una factura o se reembolsa." },
+      "en": { "question": "In QuickBooks, what does a Credit Memo record?",
+              "options": ["A credit in the customer's favor, like a credit note", "A payment to a vendor", "A loan received from the bank", "A late-payment interest charge"],
+              "explanation": "A Credit Memo reduces what the customer owes, for example for a return or a discount; it is then applied to an invoice or refunded." }
+    },
+    {
+      "id": "us-0047", "difficulty": 1, "type": "choice",
+      "es": { "question": "En EE. UU., ¿qué identifica el routing number de nueve dígitos que aparece en los cheques?",
+              "options": ["El banco o la entidad financiera", "La cuenta del cliente", "El número fiscal del titular", "El número del cheque"],
+              "explanation": "El ABA routing number identifica a la entidad financiera en cheques, pagos ACH y transferencias; el número de cuenta identifica al cliente dentro de ella." },
+      "en": { "question": "In the U.S., what does the nine-digit routing number printed on checks identify?",
+              "options": ["The bank or financial institution", "The customer's account", "The account holder's tax ID", "The check number"],
+              "explanation": "The ABA routing number identifies the financial institution for checks, ACH payments and wires; the account number identifies the customer within it." }
+    },
+    {
+      "id": "us-0048", "difficulty": 1, "type": "truefalse", "answer": false,
+      "es": { "question": "En EE. UU., una LLC debe tener por lo menos dos dueños.",
+              "explanation": "Una LLC puede tener un solo dueño (single-member LLC) o varios. La ley de cada estado regula su creación y funcionamiento." },
+      "en": { "question": "In the U.S., an LLC must have at least two owners.",
+              "explanation": "An LLC can have a single owner (a single-member LLC) or several. Each state's law governs how it is formed and run." }
+    },
+    {
+      "id": "us-0049", "difficulty": 2, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿Qué organismo creó la Ley Sarbanes-Oxley de 2002 para supervisar a las firmas que auditan a las empresas que cotizan en bolsa?",
+              "options": ["PCAOB", "FASB", "AICPA", "GASB"],
+              "explanation": "La sección 101 de la ley creó el Public Company Accounting Oversight Board, que registra e inspecciona a esas firmas y fija sus normas de auditoría; a su vez, lo supervisa la SEC." },
+      "en": { "question": "Which body did the Sarbanes-Oxley Act of 2002 create to oversee the firms that audit public companies?",
+              "options": ["PCAOB", "FASB", "AICPA", "GASB"],
+              "explanation": "Section 101 of the Act created the Public Company Accounting Oversight Board, which registers and inspects those firms and sets their auditing standards; the SEC in turn oversees it." }
+    },
+    {
+      "id": "us-0050", "difficulty": 2, "type": "choice",
+      "es": { "question": "En los US GAAP, ¿qué es una ASU, como la ASU 2016-02?",
+              "options": ["Una actualización que modifica las normas contables", "Una norma de auditoría para empresas que cotizan", "Una resolución del IRS sobre un impuesto", "Un formulario anual que se presenta a la SEC"],
+              "explanation": "Las Accounting Standards Updates modifican los temas de la ASC y se numeran por año; la ASU 2016-02, por ejemplo, trata de los arrendamientos." },
+      "en": { "question": "In U.S. GAAP, what is an ASU, such as ASU 2016-02?",
+              "options": ["An update that amends the accounting standards", "An auditing standard for public companies", "An IRS ruling on a tax", "An annual form filed with the SEC"],
+              "explanation": "Accounting Standards Updates amend the ASC topics and are numbered by year; ASU 2016-02, for example, deals with leases." }
+    },
+    {
+      "id": "us-0051", "difficulty": 2, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "Según los US GAAP, ¿cómo se contabilizan, por regla general, los costos de investigación y desarrollo?",
+              "options": ["Como gasto cuando se incurren", "Como un intangible que se amortiza", "Como parte del costo del inventario", "Como un cargo directo al patrimonio"],
+              "explanation": "El ASC 730 lleva la investigación y el desarrollo a gasto al incurrirse, salvo reglas especiales, como las de ciertos costos de software. La NIC 38, en cambio, exige activar el desarrollo si cumple ciertos criterios." },
+      "en": { "question": "Under U.S. GAAP, how are research and development costs generally accounted for?",
+              "options": ["Expensed as incurred", "As an intangible asset that is amortized", "As part of inventory cost", "As a direct charge to equity"],
+              "explanation": "ASC 730 expenses research and development as incurred, apart from special rules such as those for some software costs. IAS 38, by contrast, requires development costs to be capitalized when set criteria are met." }
+    },
+    {
+      "id": "us-0052", "difficulty": 2, "type": "truefalse", "answer": false, "asOf": "2026-11",
+      "es": { "question": "Los US GAAP permiten revaluar al alza la propiedad, planta y equipo hasta su valor razonable.",
+              "explanation": "Los US GAAP (ASC 360) usan el modelo del costo y no permiten revaluaciones al alza. La NIC 16, en cambio, ofrece un modelo de revaluación." },
+      "en": { "question": "U.S. GAAP allows property, plant and equipment to be revalued upward to fair value.",
+              "explanation": "U.S. GAAP (ASC 360) uses the cost model and does not allow upward revaluations. IAS 16, by contrast, offers a revaluation model." }
+    },
+    {
+      "id": "us-0053", "difficulty": 2, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "Según el ASC 450-20, ¿qué se hace con una pérdida contingente que es razonablemente posible, pero no probable?",
+              "options": ["Se revela en las notas, sin registrarla", "Se registra por su valor estimado", "Se registra por la mitad de su valor", "No se registra ni se revela"],
+              "explanation": "Se registra la pérdida probable y razonablemente estimable; la razonablemente posible se revela en notas, y la remota, por lo general, ni siquiera se revela." },
+      "en": { "question": "Under ASC 450-20, what is done with a loss contingency that is reasonably possible but not probable?",
+              "options": ["It is disclosed in the notes, not recorded", "It is recorded at its estimated amount", "It is recorded at half its amount", "It is neither recorded nor disclosed"],
+              "explanation": "A loss that is probable and reasonably estimable is recorded; a reasonably possible one is disclosed in the notes, and a remote one is usually not even disclosed." }
+    },
+    {
+      "id": "us-0054", "difficulty": 2, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "Según los US GAAP (ASC 230), ¿en qué actividad del estado de flujos de efectivo se presentan, por regla general, los intereses pagados?",
+              "options": ["Actividades de operación", "Actividades de financiación", "Actividades de inversión", "En ninguna; solo se revelan en notas"],
+              "explanation": "Los US GAAP clasifican los intereses pagados en operación porque hacen parte de la utilidad neta; los dividendos pagados, en cambio, van en financiación." },
+      "en": { "question": "Under U.S. GAAP (ASC 230), in which cash flow statement section is interest paid generally shown?",
+              "options": ["Operating activities", "Financing activities", "Investing activities", "None; it is only disclosed in the notes"],
+              "explanation": "U.S. GAAP classifies interest paid as operating because it is part of net income; dividends paid, by contrast, are financing." }
+    },
+    {
+      "id": "us-0055", "difficulty": 2, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "En el modelo de cinco pasos para reconocer ingresos de los US GAAP, ¿cuál es el primer paso?",
+              "options": ["Identificar el contrato con el cliente", "Identificar las obligaciones de desempeño", "Determinar el precio de la transacción", "Reconocer el ingreso al cumplir"],
+              "explanation": "Los pasos son: 1) identificar el contrato, 2) identificar las obligaciones de desempeño, 3) determinar el precio, 4) asignarlo y 5) reconocer el ingreso al satisfacer cada obligación (ASC 606)." },
+      "en": { "question": "In the U.S. GAAP five-step revenue recognition model, what is the first step?",
+              "options": ["Identify the contract with the customer", "Identify the performance obligations", "Determine the transaction price", "Recognize revenue as obligations are met"],
+              "explanation": "The steps are: 1) identify the contract, 2) identify the performance obligations, 3) determine the price, 4) allocate it and 5) recognize revenue as each obligation is satisfied (ASC 606)." }
+    },
+    {
+      "id": "us-0056", "difficulty": 2, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "En la norma de ingresos de contratos con clientes, ¿qué es una obligación de desempeño?",
+              "options": ["La promesa de entregar un bien o servicio distinto", "La obligación del cliente de pagar la factura", "Una meta de ventas del equipo comercial", "Una garantía de pago dada por un tercero"],
+              "explanation": "Cada promesa de transferir al cliente un bien o servicio distinto, o una serie de ellos, es una obligación de desempeño, y su ingreso se reconoce por separado (ASC 606)." },
+      "en": { "question": "In the revenue standard for contracts with customers, what is a performance obligation?",
+              "options": ["A promise to transfer a distinct good or service", "The customer's obligation to pay the invoice", "A sales target for the sales team", "A payment guarantee from a third party"],
+              "explanation": "Each promise to transfer a distinct good or service, or a series of them, to the customer is a performance obligation, and its revenue is recognized separately (ASC 606)." }
+    },
+    {
+      "id": "us-0057", "difficulty": 2, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "Si un contrato con un cliente tiene varias obligaciones de desempeño, ¿con qué base se reparte el precio de la transacción entre ellas?",
+              "options": ["Sus precios de venta independientes relativos", "En partes iguales entre las obligaciones", "Según el orden en que se entregan", "Según las fechas de pago pactadas"],
+              "explanation": "Se asigna en proporción al precio de venta independiente (standalone selling price) de cada bien o servicio; si ese precio no se observa, se estima (ASC 606)." },
+      "en": { "question": "If a customer contract has several performance obligations, on what basis is the transaction price split among them?",
+              "options": ["Their relative standalone selling prices", "Equally among the obligations", "In the order they are delivered", "By the agreed payment dates"],
+              "explanation": "It is allocated in proportion to the standalone selling price of each good or service; if that price is not observable, it is estimated (ASC 606)." }
+    },
+    {
+      "id": "us-0058", "difficulty": 2, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "Según la norma de ingresos, si una empresa actúa como agente y no controla el bien antes de que pase al cliente, ¿cómo reconoce su ingreso?",
+              "options": ["Por el neto: su comisión o margen", "Por el valor bruto de la venta", "Solo al cierre del año fiscal", "Como un pasivo hasta cobrarlo"],
+              "explanation": "El principal controla el bien o servicio antes de transferirlo y reconoce el ingreso bruto; el agente solo organiza la venta para otro y reconoce el neto (ASC 606)." },
+      "en": { "question": "Under the revenue standard, if a company acts as an agent and does not control the good before it passes to the customer, how does it recognize revenue?",
+              "options": ["Net: its commission or margin", "At the gross amount of the sale", "Only at fiscal year-end", "As a liability until collected"],
+              "explanation": "The principal controls the good or service before transferring it and recognizes revenue gross; the agent only arranges the sale for another party and recognizes it net (ASC 606)." }
+    },
+    {
+      "id": "us-0059", "difficulty": 2, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "Según la norma de ingresos, ¿cuál de estas situaciones indica que una obligación de desempeño se satisface a lo largo del tiempo?",
+              "options": ["El cliente recibe y consume el beneficio mientras se presta", "El contrato dura más de un año", "El cliente paga en cuotas mensuales", "La factura se emite al terminar el trabajo"],
+              "explanation": "Es uno de los tres criterios para reconocer el ingreso a lo largo del tiempo, como en un servicio mensual de limpieza. Si no se cumple ninguno, se reconoce en un momento dado (ASC 606)." },
+      "en": { "question": "Under the revenue standard, which of these shows that a performance obligation is satisfied over time?",
+              "options": ["The customer gets and uses the benefit as it is provided", "The contract lasts more than a year", "The customer pays in monthly installments", "The invoice is issued when the work is done"],
+              "explanation": "This is one of the three criteria for recognizing revenue over time, as with a monthly cleaning service. If none is met, revenue is recognized at a point in time (ASC 606)." }
+    },
+    {
+      "id": "us-0060", "difficulty": 2, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "Con el modelo CECL, ¿cómo se presenta en el balance la provisión para pérdidas crediticias de los préstamos?",
+              "options": ["Restada del costo amortizado de los préstamos", "Como un pasivo", "Como una reserva del patrimonio", "Solo en las notas"],
+              "explanation": "La provisión es una cuenta valuadora: se resta del costo amortizado para mostrar el neto que se espera cobrar, y sus cambios van al gasto por pérdidas crediticias (ASC 326-20)." },
+      "en": { "question": "Under the CECL model, how is the allowance for credit losses on loans shown on the balance sheet?",
+              "options": ["Deducted from the loans' amortized cost", "As a liability", "As an equity reserve", "Only in the notes"],
+              "explanation": "The allowance is a valuation account: it is deducted from amortized cost to show the net amount expected to be collected, and its changes go to credit loss expense (ASC 326-20)." }
+    },
+    {
+      "id": "us-0061", "difficulty": 2, "type": "truefalse", "answer": false, "asOf": "2026-11",
+      "es": { "question": "El ASC 326 exige un único método para estimar las pérdidas crediticias esperadas.",
+              "explanation": "No fija un método: la entidad puede usar tasas de pérdida, análisis por cosechas (vintage), flujos descontados, probabilidad de incumplimiento o tablas de antigüedad." },
+      "en": { "question": "ASC 326 requires a single method for estimating expected credit losses.",
+              "explanation": "It does not prescribe a method: an entity may use loss rates, vintage analysis, discounted cash flows, probability of default or aging schedules." }
+    },
+    {
+      "id": "us-0062", "difficulty": 2, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "Si una empresa deprecia un activo más rápido para impuestos que en libros, ¿qué registra según el ASC 740?",
+              "options": ["Un pasivo por impuesto diferido", "Un activo por impuesto diferido", "Un ingreso diferido", "Nada: es una diferencia permanente"],
+              "explanation": "La base fiscal queda por debajo del valor en libros. Esa diferencia temporaria se revertirá con más renta gravable en el futuro, así que se registra un pasivo diferido." },
+      "en": { "question": "If a company depreciates an asset faster for tax than for books, what does it record under ASC 740?",
+              "options": ["A deferred tax liability", "A deferred tax asset", "Deferred revenue", "Nothing: it is a permanent difference"],
+              "explanation": "The tax basis falls below the book value. That temporary difference will reverse with more taxable income in the future, so a deferred tax liability is recorded." }
+    },
+    {
+      "id": "us-0063", "difficulty": 2, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿Cuántos formularios 10-Q presenta ante la SEC una empresa que cotiza en bolsa en un año fiscal completo?",
+              "options": ["Tres", "Cuatro", "Dos", "Doce"],
+              "explanation": "Se presenta un 10-Q por cada uno de los tres primeros trimestres del año fiscal; el cuarto queda cubierto por el informe anual (sección 13 de la Securities Exchange Act de 1934)." },
+      "en": { "question": "How many Form 10-Qs does a public company file with the SEC in a full fiscal year?",
+              "options": ["Three", "Four", "Two", "Twelve"],
+              "explanation": "A 10-Q is filed for each of the first three quarters of the fiscal year; the fourth is covered by the annual report (Securities Exchange Act of 1934, section 13)." }
+    },
+    {
+      "id": "us-0064", "difficulty": 2, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿Qué formulario presenta ante la SEC una empresa que cotiza para informar un hecho relevante, como un cambio de auditor o una adquisición?",
+              "options": ["Formulario 8-K", "Formulario 10-K", "Formulario 10-Q", "Formulario S-1"],
+              "explanation": "El 8-K (current report) informa hechos relevantes entre los informes periódicos, como adquisiciones o cambios de directivos o de auditor (sección 13 de la Securities Exchange Act de 1934)." },
+      "en": { "question": "Which form does a public company file with the SEC to report a major event, such as a change of auditor or an acquisition?",
+              "options": ["Form 8-K", "Form 10-K", "Form 10-Q", "Form S-1"],
+              "explanation": "The 8-K (current report) discloses major events between periodic reports, such as acquisitions or changes in officers or auditors (Securities Exchange Act of 1934, section 13)." }
+    },
+    {
+      "id": "us-0065", "difficulty": 2, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿Qué exige la sección 404 de la Ley Sarbanes-Oxley a la gerencia de una empresa que cotiza en bolsa?",
+              "options": ["Informar sobre su control interno financiero", "Publicar estados financieros cada mes", "Cambiar de auditor cada año", "Pagar dividendos cada trimestre"],
+              "explanation": "La sección 404 pide un informe de la gerencia sobre su control interno de la información financiera (ICFR); en los emisores más grandes, el auditor también opina sobre ese control." },
+      "en": { "question": "What does Section 404 of the Sarbanes-Oxley Act require of a public company's management?",
+              "options": ["Report on its internal control over financial reporting", "Publish financial statements every month", "Change auditors every year", "Pay dividends every quarter"],
+              "explanation": "Section 404 requires a management report on internal control over financial reporting (ICFR); at larger issuers, the auditor also gives an opinion on that control." }
+    },
+    {
+      "id": "us-0066", "difficulty": 2, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿Qué formulario usa un banco para reportar al IRS los intereses que le pagó durante el año a un cliente?",
+              "options": ["Formulario 1099-INT", "Formulario 1099-DIV", "Formulario 1099-MISC", "Formulario 1098"],
+              "explanation": "El 1099-INT reporta los intereses pagados, como los de cuentas de ahorro, certificados de depósito o bonos (IRC §6049)." },
+      "en": { "question": "Which form does a bank use to report to the IRS the interest it paid a customer during the year?",
+              "options": ["Form 1099-INT", "Form 1099-DIV", "Form 1099-MISC", "Form 1098"],
+              "explanation": "Form 1099-INT reports interest paid, such as on savings accounts, certificates of deposit or bonds (IRC §6049)." }
+    },
+    {
+      "id": "us-0067", "difficulty": 2, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿Cuál de estos pagos que un negocio le hace a una persona natural se reporta en el Formulario 1099-MISC?",
+              "options": ["El arriendo de una oficina", "Los honorarios de un contratista independiente", "El sueldo de un empleado", "Los intereses de un préstamo"],
+              "explanation": "El 1099-MISC reporta, entre otros, los arriendos, las regalías y los premios que se pagan en el curso del negocio (IRC §6041)." },
+      "en": { "question": "Which of these payments a business makes to an individual is reported on Form 1099-MISC?",
+              "options": ["Rent for an office", "An independent contractor's fees", "An employee's salary", "Interest on a loan"],
+              "explanation": "Form 1099-MISC reports, among other things, rents, royalties and prizes paid in the course of a business (IRC §6041)." }
+    },
+    {
+      "id": "us-0068", "difficulty": 2, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿Qué formulario presenta una sociedad de personas (partnership) como declaración informativa anual ante el IRS?",
+              "options": ["Formulario 1065", "Formulario 1120", "Formulario 1120-S", "Formulario 1041"],
+              "explanation": "La partnership declara en el 1065 (IRC §6031), pero no paga el impuesto federal sobre la renta: sus resultados pasan a los socios, que tributan por su parte (IRC §701)." },
+      "en": { "question": "Which form does a partnership file with the IRS as its annual information return?",
+              "options": ["Form 1065", "Form 1120", "Form 1120-S", "Form 1041"],
+              "explanation": "A partnership files Form 1065 (IRC §6031) but does not pay federal income tax: its results pass through to the partners, who are taxed on their shares (IRC §701)." }
+    },
+    {
+      "id": "us-0069", "difficulty": 2, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿Qué documento entrega una partnership a cada socio con su parte de los ingresos, deducciones y créditos del año?",
+              "options": ["Schedule K-1", "Formulario W-2", "Formulario 1099-DIV", "Schedule C"],
+              "explanation": "Cada socio recibe un Schedule K-1 (IRC §6031(b)) y reporta esa parte en su propia declaración, aunque no haya recibido distribuciones en efectivo." },
+      "en": { "question": "Which document does a partnership give each partner showing their share of the year's income, deductions and credits?",
+              "options": ["Schedule K-1", "Form W-2", "Form 1099-DIV", "Schedule C"],
+              "explanation": "Each partner receives a Schedule K-1 (IRC §6031(b)) and reports that share on their own return, even if no cash was distributed." }
+    },
+    {
+      "id": "us-0070", "difficulty": 2, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿Qué formulario presenta una corporación S para su declaración federal anual de renta?",
+              "options": ["Formulario 1120-S", "Formulario 1120", "Formulario 1065", "Formulario 1040"],
+              "explanation": "La corporación S declara en el 1120-S (IRC §6037). Por regla general no paga el impuesto federal sobre la renta: sus resultados pasan a los accionistas." },
+      "en": { "question": "Which form does an S corporation file for its annual federal income tax return?",
+              "options": ["Form 1120-S", "Form 1120", "Form 1065", "Form 1040"],
+              "explanation": "An S corporation files Form 1120-S (IRC §6037). As a rule it pays no federal income tax: its results pass through to the shareholders." }
+    },
+    {
+      "id": "us-0071", "difficulty": 2, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿A quién le asigna el IRS un ITIN (Individual Taxpayer Identification Number)?",
+              "options": ["A quien necesita un número fiscal y no puede obtener SSN", "A toda empresa que tenga empleados", "A quien prepara declaraciones por un pago", "A los bancos que reportan intereses"],
+              "explanation": "El ITIN se pide con el Formulario W-7 y es para personas que deben cumplir obligaciones fiscales en EE. UU. pero no pueden obtener un número de Seguro Social (IRC §6109)." },
+      "en": { "question": "Who is issued an ITIN (Individual Taxpayer Identification Number) by the IRS?",
+              "options": ["People who need a tax ID but cannot get an SSN", "Every business that has employees", "People who prepare returns for a fee", "Banks that report interest"],
+              "explanation": "An ITIN is requested on Form W-7 and is for people who must meet U.S. tax obligations but cannot get a Social Security number (IRC §6109)." }
+    },
+    {
+      "id": "us-0072", "difficulty": 2, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿Qué formulario entrega una persona natural extranjera a un pagador de EE. UU. para certificar que no es residente fiscal en EE. UU.?",
+              "options": ["Formulario W-8BEN", "Formulario W-9", "Formulario W-7", "Formulario 1042-S"],
+              "explanation": "Con el W-8BEN, la persona extranjera certifica su condición y, si aplica, pide la tarifa reducida de un tratado (IRC §1441). Las entidades extranjeras usan el W-8BEN-E." },
+      "en": { "question": "Which form does a foreign individual give a U.S. payer to certify that they are not a U.S. tax resident?",
+              "options": ["Form W-8BEN", "Form W-9", "Form W-7", "Form 1042-S"],
+              "explanation": "On Form W-8BEN, the foreign person certifies their status and, if applicable, claims a reduced treaty rate (IRC §1441). Foreign entities use Form W-8BEN-E." }
+    },
+    {
+      "id": "us-0073", "difficulty": 2, "type": "truefalse", "answer": true, "asOf": "2026-11",
+      "es": { "question": "Las utilidades de una corporación C pueden tributar dos veces: en la corporación y en los accionistas cuando reciben dividendos.",
+              "explanation": "Es la doble tributación: la corporación C paga impuesto sobre su renta (IRC §11) y el accionista, sobre los dividendos que luego recibe de esas utilidades." },
+      "en": { "question": "A C corporation's profits can be taxed twice: at the corporation and at the shareholders when they receive dividends.",
+              "explanation": "This is double taxation: the C corporation pays tax on its income (IRC §11) and the shareholder pays tax on the dividends later paid out of those profits." }
+    },
+    {
+      "id": "us-0074", "difficulty": 2, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿En cuál de estos casos debe un pagador de EE. UU. aplicar la retención de respaldo (backup withholding)?",
+              "options": ["Cuando el beneficiario no le da su TIN", "Siempre que le paga a un extranjero", "Cuando el beneficiario es una corporación", "Solo si el IRS audita al pagador"],
+              "explanation": "Si el beneficiario no entrega su TIN, o el IRS avisa que es incorrecto, el pagador debe retener a la tasa de backup withholding y declarar lo retenido (IRC §3406)." },
+      "en": { "question": "In which of these cases must a U.S. payer apply backup withholding?",
+              "options": ["When the payee does not provide a TIN", "Whenever it pays a foreign person", "When the payee is a corporation", "Only if the IRS audits the payer"],
+              "explanation": "If the payee does not provide a TIN, or the IRS says it is incorrect, the payer must withhold at the backup withholding rate and report it (IRC §3406)." }
+    },
+    {
+      "id": "us-0075", "difficulty": 2, "type": "choice",
+      "es": { "question": "En el sales tax de EE. UU., ¿qué es el nexus?",
+              "options": ["El vínculo con un estado que obliga a cobrar su impuesto", "La tarifa combinada de estado y ciudad", "El certificado de exención del comprador", "La declaración anual del impuesto"],
+              "explanation": "Si un vendedor tiene nexus en un estado, debe registrarse allí, cobrar el impuesto en sus ventas y pagarlo. Tener allí oficina, empleados o inventario crea nexus." },
+      "en": { "question": "In U.S. sales tax, what is nexus?",
+              "options": ["The link to a state that requires collecting its tax", "The combined state and city rate", "The buyer's exemption certificate", "The annual sales tax return"],
+              "explanation": "A seller with nexus in a state must register there, collect the tax on its sales and remit it. Having an office, employees or inventory there creates nexus." }
+    },
+    {
+      "id": "us-0076", "difficulty": 2, "type": "choice",
+      "es": { "question": "¿Qué decidió en 2018 la Corte Suprema de EE. UU. en el caso South Dakota v. Wayfair?",
+              "options": ["Que un estado puede exigir el impuesto sin presencia física", "Que las ventas por internet quedan exentas", "Que el sales tax pasa a ser federal", "Que solo cobra el impuesto el estado del vendedor"],
+              "explanation": "Wayfair anuló la regla de presencia física del caso Quill (1992): un estado puede exigir el sales tax a vendedores remotos que superen cierto volumen de ventas allí." },
+      "en": { "question": "What did the U.S. Supreme Court decide in 2018 in South Dakota v. Wayfair?",
+              "options": ["A state can require the tax without physical presence", "Online sales are exempt from sales tax", "Sales tax becomes a federal tax", "Only the seller's home state collects the tax"],
+              "explanation": "Wayfair overturned the physical-presence rule of Quill (1992): a state can require remote sellers with enough sales there to collect its sales tax." }
+    },
+    {
+      "id": "us-0077", "difficulty": 2, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "En QuickBooks, ¿para qué se dejan los cobros en Undeposited Funds antes de registrar el depósito?",
+              "options": ["Para que cada depósito cuadre con el del extracto", "Para no registrar el ingreso hasta el depósito", "Para que la factura siga abierta hasta el depósito", "Para que el banco no cobre comisión por cheque"],
+              "explanation": "Los cobros se agrupan en un solo depósito, igual al que muestra el extracto bancario, y así es fácil conciliar. En algunas cuentas de QuickBooks Online aparece como Payments to deposit." },
+      "en": { "question": "In QuickBooks, why are payments held in Undeposited Funds before the deposit is recorded?",
+              "options": ["So each deposit matches the one on the bank statement", "So income is not recorded until the deposit", "So the invoice stays open until the deposit", "So the bank charges no fee per check"],
+              "explanation": "Payments are grouped into one deposit that matches the bank statement, which makes reconciling easy. Some QuickBooks Online accounts show it as Payments to deposit." }
+    },
+    {
+      "id": "us-0078", "difficulty": 2, "type": "choice",
+      "es": { "question": "En QuickBooks, ¿para qué sirven las clases (classes)?",
+              "options": ["Ver resultados por departamento o línea de negocio", "Asignar permisos a cada usuario", "Definir las tarifas de sales tax", "Programar facturas que se repiten"],
+              "explanation": "Las clases etiquetan cada transacción o línea para sacar reportes, como el P&L, por departamento, programa o línea de negocio, sin crear cuentas adicionales." },
+      "en": { "question": "In QuickBooks, what are classes for?",
+              "options": ["Seeing results by department or line of business", "Assigning permissions to each user", "Setting sales tax rates", "Scheduling invoices that repeat"],
+              "explanation": "Classes tag each transaction or line so reports such as the P&L can be run by department, program or line of business, without adding accounts." }
+    },
+    {
+      "id": "us-0079", "difficulty": 2, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "En QuickBooks Online, ¿para qué se usan las ubicaciones (locations)?",
+              "options": ["Ver resultados por sucursal, tienda o región", "Guardar las direcciones de envío de los clientes", "Fijar la zona horaria de la empresa", "Asignar la tarifa de sales tax de cada estado"],
+              "explanation": "Las ubicaciones etiquetan cada transacción con una sucursal, tienda o región, y permiten sacar reportes, como el P&L, para cada una." },
+      "en": { "question": "In QuickBooks Online, what are locations used for?",
+              "options": ["Seeing results by branch, store or region", "Storing customers' shipping addresses", "Setting the company's time zone", "Assigning each state's sales tax rate"],
+              "explanation": "Locations tag each transaction with a branch, store or region, so reports such as the P&L can be run for each one." }
+    },
+    {
+      "id": "us-0080", "difficulty": 2, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "Al conciliar una cuenta en QuickBooks, ¿qué valor debe quedar en cero para que la conciliación cuadre?",
+              "options": ["Difference (la diferencia)", "Beginning balance (saldo inicial)", "Ending balance (saldo final)", "Cleared balance (saldo marcado)"],
+              "explanation": "Con Difference en cero, la conciliación cuadra. Si se intenta terminar con diferencia, QuickBooks ofrece registrar un ajuste, que luego habría que investigar." },
+      "en": { "question": "When reconciling an account in QuickBooks, which amount must be zero for the reconciliation to balance?",
+              "options": ["Difference", "Beginning balance", "Ending balance", "Cleared balance"],
+              "explanation": "With the Difference at zero, the reconciliation balances. If you try to finish with a difference, QuickBooks offers to post an adjustment, which you would then need to investigate." }
+    },
+    {
+      "id": "us-0081", "difficulty": 2, "type": "choice",
+      "es": { "question": "En QuickBooks, ¿para qué sirve la fecha de cierre (closing date)?",
+              "options": ["Bloquear cambios en períodos ya cerrados", "Programar el envío de las facturas", "Fijar la fecha límite de pago al IRS", "Borrar las transacciones antiguas"],
+              "explanation": "Con la fecha de cierre, y si se quiere una contraseña, QuickBooks advierte o impide cambios en transacciones anteriores, para proteger los reportes ya entregados." },
+      "en": { "question": "In QuickBooks, what is the closing date for?",
+              "options": ["Locking changes to periods already closed", "Scheduling invoices to be sent", "Setting the IRS payment deadline", "Deleting old transactions"],
+              "explanation": "With a closing date, and optionally a password, QuickBooks warns about or blocks changes to earlier transactions, protecting reports already delivered." }
+    },
+    {
+      "id": "us-0082", "difficulty": 2, "type": "truefalse", "answer": false,
+      "es": { "question": "En QuickBooks, una orden de compra (purchase order) cambia los saldos de las cuentas contables.",
+              "explanation": "La orden de compra no tiene efecto contable (non-posting): registra el pedido, y las cuentas solo se mueven cuando se registra la compra." },
+      "en": { "question": "In QuickBooks, a purchase order changes the balances of the accounts.",
+              "explanation": "A purchase order is non-posting: it records the order, and the accounts change only when the purchase itself is recorded." }
+    },
+    {
+      "id": "us-0083", "difficulty": 2, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "En QuickBooks Online, ¿qué se activa en el perfil de un proveedor para que sus pagos se tengan en cuenta en los formularios 1099?",
+              "options": ["La casilla Track payments for 1099", "Los términos de pago (Terms)", "El límite de crédito del proveedor", "La moneda del proveedor"],
+              "explanation": "Con esa casilla, QuickBooks suma los pagos del proveedor en las cuentas asignadas a cada recuadro del 1099 y luego ayuda a preparar los formularios." },
+      "en": { "question": "In QuickBooks Online, what do you turn on in a vendor's profile so their payments count toward Form 1099?",
+              "options": ["The Track payments for 1099 box", "The payment terms (Terms)", "The vendor's credit limit", "The vendor's currency"],
+              "explanation": "With that box checked, QuickBooks totals the vendor's payments in the accounts mapped to each 1099 box and then helps prepare the forms." }
+    },
+    {
+      "id": "us-0084", "difficulty": 2, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "En QuickBooks Online, ¿qué diferencia hay entre anular (void) y eliminar (delete) una transacción?",
+              "options": ["Anular la deja en cero; eliminar la borra", "Anular la borra; eliminar la deja en cero", "Solo se pueden anular las ya conciliadas", "Eliminar crea un asiento de reversión"],
+              "explanation": "Al anularla, la transacción sigue visible con valor cero y la nota Voided; al eliminarla, desaparece de los registros, aunque queda rastro en el Audit Log." },
+      "en": { "question": "In QuickBooks Online, what is the difference between voiding and deleting a transaction?",
+              "options": ["Voiding zeroes it out; deleting removes it", "Voiding removes it; deleting zeroes it out", "Only reconciled ones can be voided", "Deleting creates a reversing entry"],
+              "explanation": "A voided transaction stays visible at zero with a Voided note; a deleted one disappears from the records, though the Audit Log keeps a trace." }
+    },
+    {
+      "id": "us-0085", "difficulty": 3, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "Según los US GAAP (ASC 205-40), ¿qué período mira la gerencia al evaluar si hay duda sustancial sobre la capacidad de la entidad de seguir operando?",
+              "options": ["Un año desde la emisión de los estados financieros", "Un año desde la fecha del balance", "Tres años desde la fecha del balance", "Solo el trimestre siguiente al cierre"],
+              "explanation": "Mira el año siguiente a la fecha en que los estados financieros se emiten (o están disponibles para emitirse). Las NIIF, en cambio, miran al menos 12 meses desde la fecha del balance." },
+      "en": { "question": "Under U.S. GAAP (ASC 205-40), what period does management look at when assessing substantial doubt about the entity's ability to keep operating?",
+              "options": ["One year after the financial statements are issued", "One year after the balance sheet date", "Three years after the balance sheet date", "Only the quarter after year-end"],
+              "explanation": "It looks at the year after the date the financial statements are issued (or available to be issued). IFRS, by contrast, looks at least 12 months from the balance sheet date." }
+    },
+    {
+      "id": "us-0086", "difficulty": 3, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "Según el ASC 360, en la prueba de recuperabilidad de un activo de larga vida que se mantiene en uso, ¿con qué se compara su valor en libros?",
+              "options": ["Con sus flujos de efectivo futuros sin descontar", "Con sus flujos futuros descontados a valor presente", "Con su costo histórico de compra", "Con su valor en libros del año anterior"],
+              "explanation": "Si el valor en libros supera esos flujos sin descontar, el activo no es recuperable y la pérdida es el exceso sobre su valor razonable. La NIC 36 compara con el importe recuperable." },
+      "en": { "question": "Under ASC 360, in the recoverability test for a long-lived asset held and used, what is its carrying amount compared with?",
+              "options": ["Its undiscounted future cash flows", "Its future cash flows discounted to present value", "Its historical purchase cost", "Its carrying amount the year before"],
+              "explanation": "If the carrying amount exceeds those undiscounted cash flows, the asset is not recoverable and the loss is the excess over fair value. IAS 36 compares with the recoverable amount." }
+    },
+    {
+      "id": "us-0087", "difficulty": 3, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "Según la norma de ingresos de los US GAAP, ¿cuánta contraprestación variable, como un bono por desempeño, se incluye en el precio de la transacción?",
+              "options": ["La que probablemente no tenga una reversión significativa", "Siempre el monto máximo posible", "Solo la que ya se cobró", "La mitad del monto estimado"],
+              "explanation": "Se estima, por valor esperado o monto más probable, y se incluye solo en la medida en que sea probable que no haya una reversión significativa del ingreso reconocido (ASC 606)." },
+      "en": { "question": "Under the U.S. GAAP revenue standard, how much variable consideration, such as a performance bonus, is included in the transaction price?",
+              "options": ["Only the amount unlikely to face a significant reversal", "Always the maximum possible amount", "Only what has already been collected", "Half of the estimated amount"],
+              "explanation": "It is estimated, using the expected value or the most likely amount, and included only to the extent it is probable that a significant reversal of recognized revenue will not occur (ASC 606)." }
+    },
+    {
+      "id": "us-0088", "difficulty": 3, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "Según la norma de ingresos, ¿qué distingue a una cuenta por cobrar de un activo del contrato?",
+              "options": ["Su cobro solo depende del paso del tiempo", "Siempre genera intereses", "Tiene una garantía real", "Vence en menos de 90 días"],
+              "explanation": "La cuenta por cobrar es un derecho incondicional a la contraprestación; el activo del contrato depende de algo más que el paso del tiempo, como cumplir otra obligación (ASC 606)." },
+      "en": { "question": "Under the revenue standard, what distinguishes a receivable from a contract asset?",
+              "options": ["Collection depends only on the passage of time", "It always bears interest", "It is backed by collateral", "It is due in less than 90 days"],
+              "explanation": "A receivable is an unconditional right to consideration; a contract asset depends on something other than the passage of time, such as meeting another obligation (ASC 606)." }
+    },
+    {
+      "id": "us-0089", "difficulty": 3, "type": "truefalse", "answer": false, "asOf": "2026-11",
+      "es": { "question": "Los intereses que gana un prestamista con sus préstamos se rigen por la norma de ingresos de contratos con clientes de los US GAAP.",
+              "explanation": "La norma de ingresos (ASC 606) excluye los instrumentos financieros, como los préstamos; sus intereses siguen otras normas de los US GAAP, como el ASC 310." },
+      "en": { "question": "The interest a lender earns on its loans is governed by the U.S. GAAP revenue standard for contracts with customers.",
+              "explanation": "The revenue standard (ASC 606) excludes financial instruments such as loans; their interest follows other U.S. GAAP guidance, such as ASC 310." }
+    },
+    {
+      "id": "us-0090", "difficulty": 3, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "Para un arrendatario, según el ASC 842, ¿cuál de estas condiciones basta para que un arrendamiento sea financiero?",
+              "options": ["Que transfiera la propiedad al final del plazo", "Que el canon se pague cada mes", "Que el plazo sea mayor de un año", "Que el arrendador sea un banco"],
+              "explanation": "Basta uno de cinco criterios, como transferir la propiedad, una opción de compra que con razonable certeza se ejercerá o un plazo por la mayor parte de la vida económica (ASC 842-10-25-2)." },
+      "en": { "question": "For a lessee under ASC 842, which of these conditions is enough to make a lease a finance lease?",
+              "options": ["It transfers ownership by the end of the term", "Rent is paid monthly", "The term is longer than one year", "The lessor is a bank"],
+              "explanation": "Any one of five criteria is enough, such as transfer of ownership, a purchase option reasonably certain to be exercised or a term for the major part of the economic life (ASC 842-10-25-2)." }
+    },
+    {
+      "id": "us-0091", "difficulty": 3, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "En un arrendamiento operativo según el ASC 842, ¿cómo reconoce el arrendatario el gasto en el estado de resultados?",
+              "options": ["Un único costo, en línea recta durante el plazo", "Interés y amortización por separado", "Todo el gasto al firmar el contrato", "Solo cuando paga cada canon"],
+              "explanation": "Reconoce un único costo de arrendamiento, por lo general en línea recta durante el plazo; en uno financiero, en cambio, reconoce interés y amortización por separado (ASC 842-20)." },
+      "en": { "question": "In an operating lease under ASC 842, how does the lessee recognize the expense in the income statement?",
+              "options": ["A single cost, straight-line over the term", "Interest and amortization separately", "All of it when the contract is signed", "Only when each rent payment is made"],
+              "explanation": "It recognizes a single lease cost, generally straight-line over the term; in a finance lease, by contrast, it recognizes interest and amortization separately (ASC 842-20)." }
+    },
+    {
+      "id": "us-0092", "difficulty": 3, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿A qué activos aplica el modelo CECL del ASC 326-20?",
+              "options": ["A los activos financieros medidos al costo amortizado", "A las acciones medidas a valor razonable", "Solo a los préstamos que ya están en mora", "A los inventarios y activos fijos"],
+              "explanation": "Incluye préstamos, cuentas por cobrar comerciales e inversiones netas en arrendamientos, además de exposiciones fuera de balance, como los compromisos de crédito (ASC 326-20)." },
+      "en": { "question": "Which assets does the CECL model in ASC 326-20 apply to?",
+              "options": ["Financial assets measured at amortized cost", "Equity securities measured at fair value", "Only loans that are already past due", "Inventory and fixed assets"],
+              "explanation": "It covers loans, trade receivables and net investments in leases, plus off-balance-sheet exposures such as loan commitments (ASC 326-20)." }
+    },
+    {
+      "id": "us-0093", "difficulty": 3, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "Con CECL, al comprar un préstamo con un deterioro crediticio más que insignificante desde su origen (PCD), ¿qué se hace con la provisión inicial?",
+              "options": ["Se suma al costo amortizado, sin pasar por resultados", "Se lleva al gasto por pérdidas del período", "Se registra en otro resultado integral (ORI)", "Se lleva a una reserva del patrimonio"],
+              "explanation": "En los activos PCD, la provisión inicial se suma al precio de compra para formar el costo amortizado (gross-up), así que no hay gasto por pérdidas al comprar (ASC 326-20)." },
+      "en": { "question": "Under CECL, when buying a loan with more-than-insignificant credit deterioration since origination (PCD), what happens to the initial allowance?",
+              "options": ["It is added to amortized cost, not run through earnings", "It goes to credit loss expense for the period", "It is recorded in other comprehensive income", "It goes to an equity reserve"],
+              "explanation": "For PCD assets, the initial allowance is added to the purchase price to set the amortized cost (gross-up), so there is no credit loss expense at purchase (ASC 326-20)." }
+    },
+    {
+      "id": "us-0094", "difficulty": 3, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "Según el ASC 326, ¿dónde se presenta la provisión para pérdidas de los compromisos de crédito aún no desembolsados?",
+              "options": ["Como un pasivo", "Como un activo diferido", "En otro resultado integral (ORI)", "Solo en las notas"],
+              "explanation": "Para los compromisos que la entidad no puede cancelar a su sola voluntad, la pérdida esperada se registra como un pasivo separado, con su gasto en resultados (ASC 326-20)." },
+      "en": { "question": "Under ASC 326, where is the allowance for credit losses on undrawn loan commitments presented?",
+              "options": ["As a liability", "As a deferred asset", "In other comprehensive income", "Only in the notes"],
+              "explanation": "For commitments the entity cannot cancel unconditionally, the expected loss is recorded as a separate liability, with the expense in earnings (ASC 326-20)." }
+    },
+    {
+      "id": "us-0095", "difficulty": 3, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "Según el ASC 310-20, ¿cómo trata un prestamista las comisiones de originación de un préstamo, netas de sus costos directos?",
+              "options": ["Las difiere y las reconoce como ajuste del rendimiento", "Las reconoce como ingreso al desembolsar", "Las lleva a otro resultado integral (ORI)", "Las reconoce al recibir la última cuota"],
+              "explanation": "Las comisiones netas se difieren y se amortizan durante la vida del préstamo, en general con el método del interés, como un ajuste de su rendimiento (ASC 310-20)." },
+      "en": { "question": "Under ASC 310-20, how does a lender treat loan origination fees, net of direct origination costs?",
+              "options": ["Defers them and recognizes them as a yield adjustment", "Recognizes them as income when the loan is funded", "Records them in other comprehensive income", "Recognizes them when the last payment arrives"],
+              "explanation": "Net fees are deferred and amortized over the life of the loan, generally using the interest method, as an adjustment of its yield (ASC 310-20)." }
+    },
+    {
+      "id": "us-0096", "difficulty": 3, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "Si una empresa usa UEPS (LIFO) en su declaración federal de renta, ¿qué le exige el IRC §472(c)?",
+              "options": ["Usar UEPS también en sus estados financieros", "Pedir cada año la aprobación del IRS", "Revaluar el inventario a valor de mercado", "Volver a PEPS después de cinco años"],
+              "explanation": "Es la regla de conformidad LIFO: quien usa UEPS para impuestos debe usarlo también en los informes de resultados que entrega a sus dueños y acreedores." },
+      "en": { "question": "If a company uses LIFO on its federal income tax return, what does IRC §472(c) require?",
+              "options": ["Using LIFO in its financial statements too", "Getting IRS approval every year", "Revaluing inventory to market value", "Switching back to FIFO after five years"],
+              "explanation": "This is the LIFO conformity rule: a company using LIFO for tax must also use it in the income reports it gives its owners and creditors." }
+    },
+    {
+      "id": "us-0097", "difficulty": 3, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿Cuál de estos puede ser accionista de una corporación S?",
+              "options": ["Una persona natural residente en EE. UU.", "Una corporación C", "Una partnership", "Una persona extranjera no residente"],
+              "explanation": "Según el IRC §1361, sus accionistas deben ser, en general, personas naturales ciudadanas o residentes de EE. UU., sucesiones o ciertos fideicomisos; nunca extranjeros no residentes." },
+      "en": { "question": "Which of these can be a shareholder of an S corporation?",
+              "options": ["An individual who is a U.S. resident", "A C corporation", "A partnership", "A nonresident alien"],
+              "explanation": "Under IRC §1361, shareholders must generally be individuals who are U.S. citizens or residents, estates or certain trusts; never nonresident aliens." }
+    },
+    {
+      "id": "us-0098", "difficulty": 3, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿Qué formulario presenta un prestamista ante el IRS cuando cancela o condona una deuda?",
+              "options": ["Formulario 1099-C", "Formulario 1099-A", "Formulario 1098", "Formulario 1099-MISC"],
+              "explanation": "El 1099-C (Cancellation of Debt) reporta la deuda cancelada, que por regla general es ingreso gravable para el deudor (IRC §6050P)." },
+      "en": { "question": "Which form does a lender file with the IRS when it cancels or forgives a debt?",
+              "options": ["Form 1099-C", "Form 1099-A", "Form 1098", "Form 1099-MISC"],
+              "explanation": "Form 1099-C (Cancellation of Debt) reports the canceled debt, which as a rule is taxable income to the borrower (IRC §6050P)." }
+    },
+    {
+      "id": "us-0099", "difficulty": 3, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "¿Qué reglamento de la SEC fija la forma y el contenido de los estados financieros que se le presentan?",
+              "options": ["Regulation S-X", "Regulation S-K", "Regulation FD", "Regulation D"],
+              "explanation": "La Regulation S-X (17 CFR 210) rige los estados financieros; la S-K, las revelaciones fuera de los estados financieros, como la descripción del negocio y los factores de riesgo." },
+      "en": { "question": "Which SEC regulation sets the form and content of the financial statements filed with it?",
+              "options": ["Regulation S-X", "Regulation S-K", "Regulation FD", "Regulation D"],
+              "explanation": "Regulation S-X (17 CFR 210) governs the financial statements; Regulation S-K covers disclosures outside the financial statements, such as the business description and risk factors." }
+    },
+    {
+      "id": "us-0100", "difficulty": 3, "type": "choice", "asOf": "2026-11",
+      "es": { "question": "En QuickBooks, el cobro de una factura quedó en Undeposited Funds, pero luego el depósito se registró contra una cuenta de ingresos. ¿Qué pasa?",
+              "options": ["El ingreso queda duplicado y Undeposited Funds con saldo", "El cobro se anula de forma automática", "La factura vuelve a quedar pendiente", "Nada: el saldo del banco cuadra y todo queda bien"],
+              "explanation": "El ingreso ya se registró con la factura y el depósito lo registra otra vez, mientras el cobro sigue en Undeposited Funds. Se corrige eligiendo ese cobro en el depósito." },
+      "en": { "question": "In QuickBooks, an invoice payment was left in Undeposited Funds, but the deposit was then recorded against an income account. What happens?",
+              "options": ["Income is doubled and Undeposited Funds keeps a balance", "The payment is voided automatically", "The invoice goes back to open", "Nothing: the bank balance matches and all is fine"],
+              "explanation": "The income was already recorded with the invoice and the deposit records it again, while the payment stays in Undeposited Funds. The fix is to select that payment in the deposit." }
+    }
+  ]
+}

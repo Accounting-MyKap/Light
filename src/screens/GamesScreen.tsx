@@ -4,7 +4,7 @@ import { Link, useSearchParams } from 'react-router-dom';
 import { useLocalDay } from '../app/useLocalDay';
 import { getPlan } from '../data/dailyPlans';
 import { catalogAreas } from '../games/catalog';
-import { GAMES, getGame } from '../games/registry';
+import { TRAINING_GAMES, getGame } from '../games/registry';
 import type { Area } from '../games/types';
 import styles from './Games.module.css';
 
@@ -13,7 +13,8 @@ export function GamesScreen() {
   const [params, setParams] = useSearchParams();
   const today = useLocalDay();
   const plan = useLiveQuery(() => getPlan(today).catch(() => undefined), [today]);
-  const areas = catalogAreas(GAMES);
+  // The catalog holds the training games only: the quiz games live in the Preguntas tab.
+  const areas = catalogAreas(TRAINING_GAMES);
   const raw = params.get('area') as Area | null;
   const selected = raw && areas.includes(raw) ? raw : null;
   const visible = selected ? [selected] : areas;
@@ -77,7 +78,7 @@ export function GamesScreen() {
             {t(`areas.${area}`)}
           </h2>
           <ul className={styles.grid}>
-            {GAMES.filter((g) => g.area === area).map((g) => (
+            {TRAINING_GAMES.filter((g) => g.area === area).map((g) => (
               <li key={g.id}>
                 <Link className={styles.card} to={`/play/${g.id}`}>
                   <g.Thumb />

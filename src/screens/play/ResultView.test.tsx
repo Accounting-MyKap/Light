@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { initI18n } from '../../i18n';
 import { fakeGame, registerFakeGameTranslations } from '../../test/fakeGame';
 import { fetchPercentile, getRemote, requestSync } from '../../sync';
-import type { GameResult } from '../../games/types';
+import type { GameDefinition, GameResult } from '../../games/types';
 import { ResultView, type ResultViewProps } from './ResultView';
 
 // The percentile line asks the server through this module; one mock keeps these tests off the network.
@@ -56,6 +56,27 @@ test('the first game ever is a new best', () => {
   const { container } = renderResult({ previousBest: null });
   expect(screen.getByText('¡Nueva mejor marca!')).toBeInTheDocument();
   expect(celebration(container)).not.toBeNull();
+});
+
+test('a first game with a score of 0 is no new best, and the best card shows a dash', () => {
+  const { container } = renderResult({ previousBest: null, result: { ...RESULT, score: 0 } });
+  expect(screen.queryByText('¡Nueva mejor marca!')).not.toBeInTheDocument();
+  expect(celebration(container)).toBeNull();
+  expect(screen.getByText('Mejor marca').parentElement).toHaveTextContent('—');
+  expect(screen.getByText('Mejor marca').parentElement).not.toHaveTextContent('null');
+});
+
+test('a first game with a score of 20 is a new best', () => {
+  const { container } = renderResult({ previousBest: null, result: { ...RESULT, score: 20 } });
+  expect(screen.getByText('¡Nueva mejor marca!')).toBeInTheDocument();
+  expect(celebration(container)).not.toBeNull();
+});
+
+test('a 0 after a best of 30 is no new best and keeps the best', () => {
+  const { container } = renderResult({ previousBest: 30, result: { ...RESULT, score: 0 } });
+  expect(screen.queryByText('¡Nueva mejor marca!')).not.toBeInTheDocument();
+  expect(celebration(container)).toBeNull();
+  expect(screen.getByText('Mejor marca').parentElement).toHaveTextContent('30');
 });
 
 test('accuracy and level are shown in cards', () => {
@@ -136,4 +157,32 @@ test('daily mode has no free-play buttons: the next game, or the summary on the 
 test('a daily game without a plan to count has no progress line', () => {
   renderResult({ daily: dailyProps({ progress: { done: 0, total: 0 } }) });
   expect(screen.queryByText(/Entrenamiento de hoy:/)).not.toBeInTheDocument();
+});
+
+test('a game ResultDetails block sits below the stats and above the buttons', () => {
+  const game: GameDefinition = {
+    ...fakeGame,
+    ResultDetails: ({ result: shown }) => <p>detalles de {shown.score} puntos</p>,
+  };
+  renderResult({ game, previousBest: 400 });
+  const details = screen.getByText('detalles de 340 puntos');
+  const stats = screen.getByText('Precisión').closest('dl')!;
+  const again = screen.getByRole('button', { name: 'Jugar de nuevo' });
+  expect(stats.compareDocumentPosition(details) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+  expect(details.compareDocumentPosition(again) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+});
+
+test('in daily mode the ResultDetails block comes before today’s progress and the next game', () => {
+  const game: GameDefinition = { ...fakeGame, ResultDetails: () => <p>detalles</p> };
+  renderResult({ game, daily: dailyProps() });
+  const details = screen.getByText('detalles');
+  const progress = screen.getByText('Entrenamiento de hoy: 2 de 3');
+  expect(details.compareDocumentPosition(progress) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+});
+
+test('a game without ResultDetails shows just the usual result', () => {
+  renderResult({ previousBest: 400 });
+  expect(screen.getByTestId('result-score')).toHaveTextContent('340');
+  expect(screen.queryByText(/detalles/)).not.toBeInTheDocument();
+  expect(screen.getByRole('button', { name: 'Volver' })).toBeInTheDocument();
 });

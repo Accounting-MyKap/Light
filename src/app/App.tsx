@@ -6,6 +6,7 @@ import { SettingsEffects } from './SettingsEffects';
 import { SyncManager } from './SyncManager';
 import { TodayScreen } from '../screens/TodayScreen';
 import { GamesScreen } from '../screens/GamesScreen';
+import { QuizScreen } from '../screens/QuizScreen';
 import { ProgressScreen } from '../screens/ProgressScreen';
 import { SettingsScreen } from '../screens/SettingsScreen';
 import { PlayScreen } from '../screens/PlayScreen';
@@ -28,6 +29,7 @@ export function AppRoutes() {
         <Route element={<Layout />}>
           <Route index element={guard(<TodayScreen />)} />
           <Route path="games" element={guard(<GamesScreen />)} />
+          <Route path="quiz" element={guard(<QuizScreen />)} />
           <Route path="progress" element={guard(<ProgressScreen />)} />
           <Route path="settings" element={guard(<SettingsScreen />)} />
           <Route path="play/:gameId" element={guard(<PlayScreen />)} />
