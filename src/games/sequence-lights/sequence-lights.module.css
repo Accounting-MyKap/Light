@@ -57,17 +57,6 @@
   color: var(--luz-ink);
 }
 
-/* In the instructions: a small board that is only looked at. */
-.small {
-  width: 168px;
-  gap: 8px;
-}
-
-.small .cell {
-  border-radius: 12px;
-  font-size: 1rem;
-}
-
 /* Reduced motion: the tiles do not sink; they only brighten. */
 @media (prefers-reduced-motion: reduce) {
   .cell:active {

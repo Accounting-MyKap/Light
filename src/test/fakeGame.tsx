@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { GameFrame } from '../games/shared/GameFrame';
+import type { PracticeProps } from '../games/shared/practice/types';
 import type { GameDefinition, GameProps } from '../games/types';
 import { i18n } from '../i18n';
 
@@ -17,8 +18,14 @@ function FakeGameComponent({ paused, onFinish }: GameProps) {
   );
 }
 
-function FakeExample() {
-  return <p>fake example</p>;
+function FakePractice({ onComplete, onSkip }: PracticeProps) {
+  return (
+    <div>
+      <p>fake practice</p>
+      <button onClick={onComplete}>Terminar práctica</button>
+      <button onClick={onSkip}>Saltar práctica</button>
+    </div>
+  );
 }
 
 function FakeThumb() {
@@ -31,7 +38,7 @@ export const fakeGame: GameDefinition = {
   referenceScore: 100,
   maxScore: 1000,
   Component: FakeGameComponent,
-  Example: FakeExample,
+  Practice: FakePractice,
   Thumb: FakeThumb,
 };
 
@@ -43,12 +50,12 @@ export function registerFakeGameTranslations(): void {
       fake: {
         title: 'Juego falso',
         description: 'Un juego para pruebas',
-        instructions: ['Primera instrucción falsa', 'Segunda instrucción falsa'],
+        practice: { recap: 'Resumen falso' },
       },
       fake2: {
         title: 'Segundo juego falso',
         description: 'Otro juego para pruebas',
-        instructions: ['Instrucción A', 'Instrucción B'],
+        practice: { recap: 'Resumen falso 2' },
       },
     },
   };

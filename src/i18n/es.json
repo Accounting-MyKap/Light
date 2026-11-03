@@ -46,11 +46,6 @@
       "title": "Secuencia de luces",
       "skill": "Memoria espacial",
       "description": "Recuerda en qué orden se encienden las casillas.",
-      "instructions": [
-        "Observa cómo se encienden las casillas, una tras otra.",
-        "Cuando aparezca «Tu turno», tócalas en el mismo orden.",
-        "Si aciertas, la secuencia se alarga; si fallas, se acorta."
-      ],
       "cell": "Casilla {{n}}",
       "watch": "Observa…",
       "yourTurn": "Tu turno",
@@ -68,15 +63,8 @@
       "title": "Flechas",
       "skill": "Atención selectiva",
       "description": "Fíjate solo en la flecha del centro, aunque las demás intenten confundirte.",
-      "instructions": [
-        "Verás una fila de cinco flechas.",
-        "Indica hacia dónde apunta la flecha del centro, con los botones o con las flechas del teclado.",
-        "Ignora las flechas de los lados: a veces apuntan al revés.",
-        "Cada error resta 20 puntos: responde rápido, pero sin adivinar."
-      ],
       "left": "Izquierda",
       "right": "Derecha",
-      "exampleAnswer": "Respuesta correcta: Izquierda",
       "practice": {
         "center": "Toca hacia dónde apunta la flecha del centro",
         "trick": "Ojo: las de los lados quieren engañarte. Solo cuenta la del centro",
@@ -89,18 +77,11 @@
       "title": "¿Igual o distinto?",
       "skill": "Velocidad de procesamiento",
       "description": "Decide lo más rápido que puedas si cada símbolo es igual al anterior.",
-      "instructions": [
-        "Primero verás un símbolo: recuérdalo.",
-        "Luego aparecerá otro: responde «Sí» si es igual al anterior o «No» si es distinto.",
-        "Cada símbolo se compara con el que vino justo antes. Las rachas de aciertos multiplican tus puntos.",
-        "Cada error resta 10 puntos y reinicia tu racha."
-      ],
       "remember": "Recuerda este símbolo",
       "question": "¿Es igual al anterior?",
       "yes": "Sí",
       "no": "No",
       "streak": "Racha ×{{n}}",
-      "exampleAnswer": "Respuesta correcta: Sí",
       "practice": {
         "remember": "Recuérdala",
         "question": "¿Es igual a la anterior?",
@@ -135,12 +116,6 @@
       "title": "Cambio de regla",
       "skill": "Cambio de tareas",
       "description": "Empareja cartas por color o por forma, y adáptate cuando la regla cambie.",
-      "instructions": [
-        "Arriba verás la regla actual: COLOR o FORMA.",
-        "Toca la carta de abajo que coincide con la carta central según esa regla (o usa las flechas del teclado).",
-        "La regla cambia sin aviso: fíjate siempre en el cartel.",
-        "Cada error resta 20 puntos: responde rápido, pero sin adivinar."
-      ],
       "rule": {
         "color": "COLOR",
         "shape": "FORMA"
@@ -156,8 +131,6 @@
         "orange": "naranja",
         "purple": "morado"
       },
-      "exampleAnswer": "Regla COLOR: la respuesta es el cuadrado azul.",
-      "exampleAnswerShape": "Regla FORMA: la respuesta es el círculo naranja.",
       "practice": {
         "round1": "La regla dice COLOR: busca la carta del mismo color",
         "round2": "Sigue siendo COLOR: no te fijes en la forma",
@@ -172,11 +145,6 @@
       "title": "Cálculo relámpago",
       "skill": "Aritmética mental",
       "description": "Resuelve operaciones contra el reloj; la dificultad sube mientras aciertas.",
-      "instructions": [
-        "Aparece una operación: escribe el resultado con el teclado en pantalla o el de tu computador.",
-        "Pulsa OK (o Enter) para responder. Si una se te complica, puedes saltarla.",
-        "Cada acierto suma puntos y cada error resta 10 (saltar no resta). Varios aciertos seguidos suben la dificultad."
-      ],
       "delete": "Borrar",
       "ok": "OK",
       "skip": "Saltar",
@@ -200,7 +168,6 @@
     "best": "Mejor marca",
     "accuracy": "Precisión",
     "levelReached": "Nivel alcanzado",
-    "example": "Ejemplo",
     "nextGame": "Siguiente juego",
     "dailyProgress": "Entrenamiento de hoy: {{done}} de {{total}}",
     "seeSummary": "Ver resumen",

@@ -96,7 +96,7 @@
   justify-content: center;
 }
 
-/* Intro, instructions and result: the buttons sit at the bottom of the screen, where the thumb is. */
+/* Intro, practice intro and result: the buttons sit at the bottom of the screen, where the thumb is. */
 .introActions,
 .resultActions {
   display: grid;
@@ -140,57 +140,6 @@
   margin: 0;
   color: var(--luz-soft);
   font-size: 1.0625rem;
-}
-
-/* Numbered steps: a dot of the game color holds each number. */
-.steps {
-  display: grid;
-  gap: 0.65rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  counter-reset: step;
-  color: color-mix(in srgb, var(--luz-text) 85%, var(--luz-bg));
-  font-size: 0.9375rem;
-  line-height: 1.4;
-}
-
-.steps li {
-  display: grid;
-  grid-template-columns: 1.5rem 1fr;
-  gap: 0.6rem;
-  counter-increment: step;
-}
-
-.steps li::before {
-  content: counter(step);
-  /* The list already tells screen readers the position; the empty alternative keeps the number from being read twice. */
-  content: counter(step) / '';
-  display: grid;
-  place-items: center;
-  width: 1.5rem;
-  height: 1.5rem;
-  border-radius: 50%;
-  background: var(--game);
-  color: var(--luz-ink);
-  font-size: 0.8125rem;
-  font-weight: 800;
-}
-
-/* The example: the game's own mini scene and its caption, straight on the background. The games draw their own
-   glass surfaces, so the card around them stays clear instead of putting glass inside glass. */
-.example {
-  margin: 0;
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.example figcaption {
-  color: var(--luz-muted);
-  font-size: 0.8125rem;
 }
 
 /* Pause: the sheet floats over the dimmed game, which already darkens it, so the layer itself is clear. */
@@ -251,6 +200,27 @@
 .sheetActions {
   display: grid;
   gap: 0.75rem;
+}
+
+/* The practice opened from the pause: opaque Luz, above the dimmed game and the sheet area, with its own padding
+   as in luz.css so it reads like any other game screen. */
+.practiceLayer {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  overflow-y: auto;
+  padding: var(--luz-pad-top) max(1.25rem, env(safe-area-inset-right), calc((100% - 680px) / 2))
+    var(--luz-pad-bottom) max(1.25rem, env(safe-area-inset-left), calc((100% - 680px) / 2));
+  background-color: var(--luz-bg);
+  background-image: radial-gradient(
+    ellipse 100% 60% at 50% 0,
+    color-mix(in srgb, var(--game) 28%, transparent),
+    transparent
+  );
+}
+
+.practiceLayer:focus {
+  outline: none;
 }
 
 /* The 3, 2, 1 over the paused game. It covers the screen and takes the taps, so a browser without `inert` still

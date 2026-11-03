@@ -134,30 +134,6 @@
   color: var(--luz-text);
 }
 
-/* In the instructions the answer is typed into the slot and flashes once it is right. (In the game, the flash is the frame's.) */
-.demo {
-  padding-bottom: 0.5rem;
-}
-
-.demo .answer[data-confirmed='true'] {
-  --slot: var(--luz-ok);
-  color: var(--luz-ok);
-  text-shadow: 0 0 10px var(--luz-ok);
-  animation: confirm 600ms ease-out both;
-}
-
-@keyframes confirm {
-  from {
-    transform: scale(1.18);
-    filter: brightness(1.4);
-  }
-
-  to {
-    transform: none;
-    filter: none;
-  }
-}
-
 /*
  * Reduced motion: nothing slides, scales or moves; the new operation fades in and the keys only brighten. The
  * app-wide rule would cut every animation to nothing, so the fade that marks the new problem keeps its duration.

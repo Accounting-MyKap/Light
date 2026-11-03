@@ -95,29 +95,6 @@
   filter: brightness(1.2);
 }
 
-/* In the instructions: the middle card, then the two options, with the right one lit. */
-.exampleRow {
-  display: flex;
-  gap: 0.75rem;
-  align-items: center;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.exampleRow > span {
-  color: var(--luz-muted);
-}
-
-.exampleRow .card {
-  width: 84px;
-}
-
-.chosen {
-  box-shadow:
-    inset 0 0 0 3px var(--game),
-    0 0 24px color-mix(in srgb, var(--game) 45%, transparent);
-}
-
 /*
  * Reduced motion: the pill does not turn over; it only flashes. The app-wide rule would cut every animation to
  * nothing, so the flash that marks the new rule keeps its duration here.

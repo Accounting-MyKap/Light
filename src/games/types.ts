@@ -19,7 +19,7 @@ export interface GameProps {
 }
 
 /**
- * A pluggable game. Texts live in i18n under `games.<id>.title|description|instructions`.
+ * A pluggable game. Texts live in i18n under `games.<id>.title|description|practice.recap`.
  */
 export interface GameDefinition {
   id: string;
@@ -29,10 +29,8 @@ export interface GameDefinition {
   /** Theoretical upper bound; the server rejects anything above it. */
   maxScore: number;
   Component: ComponentType<GameProps>;
-  /** Guided practice shown before the first play. Optional until every game has one. */
-  Practice?: ComponentType<PracticeProps>;
-  /** Static visual example shown with the instructions. */
-  Example: ComponentType;
+  /** Guided practice shown before the first play and from «¿Cómo se juega?». */
+  Practice: ComponentType<PracticeProps>;
   /** Decorative square thumbnail (no props) that fills the width of its container; size it with a wrapper. */
   Thumb: ComponentType;
 }

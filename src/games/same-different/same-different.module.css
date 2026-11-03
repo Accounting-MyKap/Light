@@ -143,44 +143,6 @@
   cursor: default;
 }
 
-/* In the instructions: the previous symbol, and the new one that keeps sliding in. */
-.exampleRow {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-  justify-content: center;
-}
-
-.exampleRow > span {
-  color: var(--luz-muted);
-}
-
-.exampleRow .card {
-  width: 96px;
-}
-
-.demoIn {
-  animation: demo-in 3.2s ease-out infinite;
-}
-
-@keyframes demo-in {
-  0% {
-    opacity: 0;
-    transform: translateX(40px);
-  }
-
-  20%,
-  85% {
-    opacity: 1;
-    transform: none;
-  }
-
-  100% {
-    opacity: 0;
-    transform: none;
-  }
-}
-
 /*
  * Reduced motion: nothing slides, jumps or shrinks; the symbol and the pill only fade in. The app-wide rule would
  * cut every animation to nothing, so the ones that mark a new symbol keep their duration here, as .appear does.
@@ -194,10 +156,6 @@
   .streak {
     animation-name: jump-still;
     animation-duration: 160ms !important;
-  }
-
-  .demoIn {
-    animation: none;
   }
 
   .answer:not(:disabled):active {

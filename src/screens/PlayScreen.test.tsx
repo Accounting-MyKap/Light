@@ -58,17 +58,119 @@ async function open(route: string) {
   registerFakeGameTranslations();
 }
 
-test('first visit shows instructions, then plays and shows result with new best', async () => {
+// A first visit starts on the practice intro; skipping the practice goes straight to the game.
+async function startFirstVisit() {
+  await userEvent.click(await screen.findByRole('button', { name: 'Saltar práctica' }));
+}
+
+test('first visit offers the practice, then the «¡Listo!» screen, then the game with its result', async () => {
   await open('/play/fake');
   expect(await screen.findByRole('heading', { name: 'Juego falso' })).toBeInTheDocument();
-  expect(screen.getByText('Primera instrucción falsa')).toBeInTheDocument();
-  expect(screen.getByText('fake example')).toBeInTheDocument();
+  expect(screen.getByText(/Vamos a practicar/)).toBeInTheDocument();
+  await userEvent.click(screen.getByRole('button', { name: 'Empezar práctica' }));
+  expect(screen.getByText('fake practice')).toBeInTheDocument();
+  await userEvent.click(screen.getByRole('button', { name: 'Terminar práctica' }));
+  expect(screen.getByRole('heading', { name: '¡Listo! Ahora va en serio' })).toBeInTheDocument();
+  expect(screen.getByText('Resumen falso')).toBeInTheDocument();
+  expect((await getSettings()).seenInstructions).toContain('fake');
   await userEvent.click(screen.getByRole('button', { name: 'Comenzar' }));
-  await vi.waitFor(async () => expect((await getSettings()).seenInstructions).toContain('fake'));
   await userEvent.click(screen.getByRole('button', { name: 'Terminar' }));
   expect(await screen.findByText('120')).toBeInTheDocument();
   expect(screen.getByText('¡Nueva mejor marca!')).toBeInTheDocument();
   expect(await db.results.count()).toBe(1);
+});
+
+test('skipping from the first-visit intro starts the game and marks it seen', async () => {
+  await open('/play/fake');
+  await startFirstVisit();
+  expect(screen.getByText('paused:false')).toBeInTheDocument();
+  await vi.waitFor(async () => expect((await getSettings()).seenInstructions).toContain('fake'));
+});
+
+test('skipping the first-visit practice halfway starts the game and marks it seen', async () => {
+  await open('/play/fake');
+  await userEvent.click(await screen.findByRole('button', { name: 'Empezar práctica' }));
+  await userEvent.click(screen.getByRole('button', { name: 'Saltar práctica' }));
+  expect(screen.getByText('paused:false')).toBeInTheDocument();
+  await vi.waitFor(async () => expect((await getSettings()).seenInstructions).toContain('fake'));
+});
+
+test('the ✕ of the first-visit intro does not mark the game as seen', async () => {
+  await open('/play/fake');
+  await userEvent.click(await screen.findByRole('button', { name: 'Salir del juego' }));
+  expect(await screen.findByRole('heading', { level: 1, name: 'Juegos' })).toBeInTheDocument();
+  expect((await getSettings()).seenInstructions).not.toContain('fake');
+});
+
+test('a returning player opens the practice from «¿Cómo se juega?»; skipping goes back to the intro', async () => {
+  await updateSettings({ seenInstructions: ['fake'] });
+  await open('/play/fake');
+  await userEvent.click(await screen.findByRole('button', { name: '¿Cómo se juega?' }));
+  expect(screen.getByText('fake practice')).toBeInTheDocument();
+  await userEvent.click(screen.getByRole('button', { name: 'Saltar práctica' }));
+  expect(screen.getByRole('button', { name: 'Comenzar' })).toBeInTheDocument();
+  expect(screen.getByText('Un juego para pruebas')).toBeInTheDocument();
+  expect(screen.queryByText('fake practice')).not.toBeInTheDocument();
+});
+
+test('a returning player who finishes the practice gets «¡Listo!» and then starts the game', async () => {
+  await updateSettings({ seenInstructions: ['fake'] });
+  await open('/play/fake');
+  await userEvent.click(await screen.findByRole('button', { name: '¿Cómo se juega?' }));
+  await userEvent.click(screen.getByRole('button', { name: 'Terminar práctica' }));
+  expect(screen.getByText('Resumen falso')).toBeInTheDocument();
+  await userEvent.click(screen.getByRole('button', { name: 'Comenzar' }));
+  expect(screen.getByText('paused:false')).toBeInTheDocument();
+});
+
+test('«¿Cómo se juega?» in the pause shows the practice over the game and comes back to the same sheet', async () => {
+  await updateSettings({ seenInstructions: ['fake'] });
+  await open('/play/fake');
+  await userEvent.click(await screen.findByRole('button', { name: 'Comenzar' }));
+  await userEvent.click(screen.getByRole('button', { name: 'Acertar' }));
+  await userEvent.click(screen.getByRole('button', { name: 'Salir del juego' }));
+  const sheet = screen.getByRole('dialog', { name: 'Pausado' });
+  const buttons = within(sheet).getAllByRole('button').map((b) => b.textContent);
+  expect(buttons).toEqual(['Continuar', '¿Cómo se juega?', 'Salir']);
+
+  await userEvent.click(within(sheet).getByRole('button', { name: '¿Cómo se juega?' }));
+  expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+  expect(screen.getByText('fake practice')).toBeInTheDocument();
+  // The game is still there, paused and out of reach.
+  expect(screen.getByText('paused:true').closest('[inert]')).not.toBeNull();
+
+  await userEvent.click(screen.getByRole('button', { name: 'Terminar práctica' }));
+  expect(screen.queryByText('fake practice')).not.toBeInTheDocument();
+  const again = screen.getByRole('dialog', { name: 'Pausado' });
+  expect(within(again).getByText('puntos').parentElement).toHaveTextContent('10');
+  expect(within(again).getByText('quedan').parentElement).toHaveTextContent('35 s');
+  expect(screen.getByRole('button', { name: 'Continuar' })).toHaveFocus();
+});
+
+test('skipping the practice from the pause also comes back to the sheet', async () => {
+  await updateSettings({ seenInstructions: ['fake'] });
+  await open('/play/fake');
+  await userEvent.click(await screen.findByRole('button', { name: 'Comenzar' }));
+  await userEvent.click(screen.getByRole('button', { name: 'Salir del juego' }));
+  await userEvent.click(screen.getByRole('button', { name: '¿Cómo se juega?' }));
+  await userEvent.click(screen.getByRole('button', { name: 'Saltar práctica' }));
+  expect(screen.getByRole('dialog', { name: 'Pausado' })).toBeInTheDocument();
+  // A second opening mounts a fresh practice.
+  await userEvent.click(screen.getByRole('button', { name: '¿Cómo se juega?' }));
+  expect(screen.getByText('fake practice')).toBeInTheDocument();
+});
+
+test('hiding the app during the pause practice does not close it', async () => {
+  await updateSettings({ seenInstructions: ['fake'] });
+  await open('/play/fake');
+  await userEvent.click(await screen.findByRole('button', { name: 'Comenzar' }));
+  await userEvent.click(screen.getByRole('button', { name: 'Salir del juego' }));
+  await userEvent.click(screen.getByRole('button', { name: '¿Cómo se juega?' }));
+  setHidden(true);
+  expect(screen.getByText('fake practice')).toBeInTheDocument();
+  expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+  setHidden(false);
+  expect(screen.getByText('fake practice')).toBeInTheDocument();
 });
 
 test('every phase of the game screen sits inside the dark Luz scope of the game area', async () => {
@@ -84,15 +186,6 @@ test('the dark Luz scope is already there while the game is still loading', asyn
   expect(screen.queryByRole('heading')).not.toBeInTheDocument();
 });
 
-test('second visit skips instructions but offers how-to-play', async () => {
-  await updateSettings({ seenInstructions: ['fake'] });
-  await open('/play/fake');
-  expect(await screen.findByRole('button', { name: '¿Cómo se juega?' })).toBeInTheDocument();
-  expect(screen.queryByText('Primera instrucción falsa')).not.toBeInTheDocument();
-  await userEvent.click(screen.getByRole('button', { name: '¿Cómo se juega?' }));
-  expect(screen.getByText('Primera instrucción falsa')).toBeInTheDocument();
-});
-
 test('the intro shows the area label', async () => {
   await open('/play/fake');
   expect(await screen.findByText('Memoria')).toBeInTheDocument();
@@ -103,14 +196,6 @@ test('the intro for a returning player shows the area label too', async () => {
   await open('/play/fake');
   expect(await screen.findByRole('button', { name: 'Comenzar' })).toBeInTheDocument();
   expect(screen.getByText('Memoria')).toBeInTheDocument();
-});
-
-test('the instructions have a ✕ that leaves without playing or saving', async () => {
-  await open('/play/fake');
-  expect(await screen.findByText('Primera instrucción falsa')).toBeInTheDocument();
-  await userEvent.click(screen.getByRole('button', { name: 'Salir del juego' }));
-  expect(await screen.findByRole('heading', { level: 1, name: 'Juegos' })).toBeInTheDocument();
-  expect(await db.results.count()).toBe(0);
 });
 
 test('the intro for a returning player has the ✕ too', async () => {
@@ -251,6 +336,16 @@ test('unknown game id', async () => {
   await open('/play/nope');
   expect(await screen.findByText('No encontramos ese juego')).toBeInTheDocument();
   expect(screen.getByRole('link', { name: 'Volver al inicio' })).toHaveAttribute('href', '/');
+});
+
+test('daily mode: first visit, practice, game, and the result offers the next game', async () => {
+  await db.dailyPlans.put({ day: '2026-10-20', gameIds: ['fake', 'fake2'], completed: [] });
+  await open('/play/fake?daily=2026-10-20');
+  await userEvent.click(await screen.findByRole('button', { name: 'Empezar práctica' }));
+  await userEvent.click(screen.getByRole('button', { name: 'Terminar práctica' }));
+  await userEvent.click(screen.getByRole('button', { name: 'Comenzar' }));
+  await userEvent.click(screen.getByRole('button', { name: 'Terminar' }));
+  expect(await screen.findByRole('button', { name: 'Siguiente juego' })).toBeInTheDocument();
 });
 
 test('daily mode offers the next game of the plan', async () => {

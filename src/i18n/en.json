@@ -46,11 +46,6 @@
       "title": "Light Sequence",
       "skill": "Spatial memory",
       "description": "Remember the order in which the cells light up.",
-      "instructions": [
-        "Watch the cells light up, one after another.",
-        "When you see “Your turn”, tap them in the same order.",
-        "Get it right and the sequence grows; miss and it shrinks."
-      ],
       "cell": "Cell {{n}}",
       "watch": "Watch…",
       "yourTurn": "Your turn",
@@ -68,15 +63,8 @@
       "title": "Arrows",
       "skill": "Selective attention",
       "description": "Focus only on the middle arrow, even when the others try to distract you.",
-      "instructions": [
-        "You will see a row of five arrows.",
-        "Tell which way the middle arrow points, using the buttons or your arrow keys.",
-        "Ignore the side arrows: sometimes they point the other way.",
-        "Each mistake costs 20 points: be quick, but don’t guess."
-      ],
       "left": "Left",
       "right": "Right",
-      "exampleAnswer": "Correct answer: Left",
       "practice": {
         "center": "Tap the way the middle arrow points",
         "trick": "Careful: the side arrows try to trick you. Only the middle one counts",
@@ -89,18 +77,11 @@
       "title": "Same or Different?",
       "skill": "Processing speed",
       "description": "Decide as fast as you can whether each symbol matches the previous one.",
-      "instructions": [
-        "First you will see a symbol: remember it.",
-        "Then another appears: answer “Yes” if it matches the previous one or “No” if it is different.",
-        "Each symbol is compared with the one right before it. Streaks of correct answers multiply your points.",
-        "Each mistake costs 10 points and resets your streak."
-      ],
       "remember": "Remember this symbol",
       "question": "Does it match the previous one?",
       "yes": "Yes",
       "no": "No",
       "streak": "Streak ×{{n}}",
-      "exampleAnswer": "Correct answer: Yes",
       "practice": {
         "remember": "Remember it",
         "question": "Is it the same as the one before?",
@@ -135,12 +116,6 @@
       "title": "Rule Switch",
       "skill": "Task switching",
       "description": "Match cards by color or by shape, and adapt when the rule changes.",
-      "instructions": [
-        "At the top you will see the current rule: COLOR or SHAPE.",
-        "Tap the bottom card that matches the middle card under that rule (or use your arrow keys).",
-        "The rule changes without warning: always check the banner.",
-        "Each mistake costs 20 points: be quick, but don’t guess."
-      ],
       "rule": {
         "color": "COLOR",
         "shape": "SHAPE"
@@ -156,8 +131,6 @@
         "orange": "orange",
         "purple": "purple"
       },
-      "exampleAnswer": "COLOR rule: the answer is the blue square.",
-      "exampleAnswerShape": "SHAPE rule: the answer is the orange circle.",
       "practice": {
         "round1": "The rule says COLOR: find the card with the same color",
         "round2": "Still COLOR: ignore the shape",
@@ -172,11 +145,6 @@
       "title": "Quick Math",
       "skill": "Mental arithmetic",
       "description": "Solve operations against the clock; it gets harder as you get them right.",
-      "instructions": [
-        "An operation appears: type the result with the on-screen keypad or your keyboard.",
-        "Press OK (or Enter) to answer. If one is tricky, you can skip it.",
-        "Correct answers earn points and each wrong answer costs 10 (skipping costs nothing). Several correct answers in a row raise the difficulty."
-      ],
       "delete": "Delete",
       "ok": "OK",
       "skip": "Skip",
@@ -200,7 +168,6 @@
     "best": "Personal best",
     "accuracy": "Accuracy",
     "levelReached": "Level reached",
-    "example": "Example",
     "nextGame": "Next game",
     "dailyProgress": "Today’s training: {{done}} of {{total}}",
     "seeSummary": "See summary",

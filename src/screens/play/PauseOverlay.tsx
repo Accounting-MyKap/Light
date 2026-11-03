@@ -8,10 +8,12 @@ import styles from './Play.module.css';
  */
 export function PauseOverlay({
   onContinue,
+  onHowToPlay,
   onExit,
   hud,
 }: {
   onContinue: () => void;
+  onHowToPlay: () => void;
   onExit: () => void;
   hud: PlayHud;
 }) {
@@ -36,6 +38,9 @@ export function PauseOverlay({
         <div className={styles.sheetActions}>
           <button className={styles.primary} onClick={onContinue} autoFocus>
             {t('common.continue')}
+          </button>
+          <button className={styles.secondary} onClick={onHowToPlay}>
+            {t('common.howToPlay')}
           </button>
           <button className={styles.secondary} onClick={onExit}>
             {t('common.exit')}

@@ -10,8 +10,9 @@ beforeEach(async () => {
 function renderSheet(hud = { score: 120, remainingMs: 34_200 as number | null }) {
   const onContinue = vi.fn();
   const onExit = vi.fn();
-  render(<PauseOverlay hud={hud} onContinue={onContinue} onExit={onExit} />);
-  return { onContinue, onExit, sheet: screen.getByRole('dialog', { name: 'Pausado' }) };
+  const onHowToPlay = vi.fn();
+  render(<PauseOverlay hud={hud} onContinue={onContinue} onHowToPlay={onHowToPlay} onExit={onExit} />);
+  return { onContinue, onExit, onHowToPlay, sheet: screen.getByRole('dialog', { name: 'Pausado' }) };
 }
 
 test('shows the seconds left, rounded up like the time bar, and the points', () => {
@@ -34,4 +35,15 @@ test('is a modal dialog that starts on «Continuar»', async () => {
   expect(onContinue).toHaveBeenCalledTimes(1);
   await userEvent.click(screen.getByRole('button', { name: 'Salir' }));
   expect(onExit).toHaveBeenCalledTimes(1);
+});
+
+test('has three buttons in order: Continuar, ¿Cómo se juega?, Salir', async () => {
+  const { onHowToPlay, sheet } = renderSheet();
+  expect(within(sheet).getAllByRole('button').map((b) => b.textContent)).toEqual([
+    'Continuar',
+    '¿Cómo se juega?',
+    'Salir',
+  ]);
+  await userEvent.click(within(sheet).getByRole('button', { name: '¿Cómo se juega?' }));
+  expect(onHowToPlay).toHaveBeenCalledTimes(1);
 });

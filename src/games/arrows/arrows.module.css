@@ -32,24 +32,6 @@
   filter: drop-shadow(0 0 8px var(--game));
 }
 
-/* In the instructions the center arrow beats in a loop, to show which one to look at. */
-.demo .arrow[data-target='true'] {
-  animation: beat 1.6s ease-in-out infinite;
-}
-
-@keyframes beat {
-  0%,
-  100% {
-    transform: scale(1);
-    filter: drop-shadow(0 0 4px var(--game));
-  }
-
-  50% {
-    transform: scale(1.15);
-    filter: drop-shadow(0 0 14px var(--game));
-  }
-}
-
 .controls {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -88,12 +70,8 @@
   height: 28px;
 }
 
-/* Reduced motion: nothing beats or shrinks; the center arrow keeps its glow and the press only brightens. */
+/* Reduced motion: nothing shrinks; the center arrow keeps its glow and the press only brightens. */
 @media (prefers-reduced-motion: reduce) {
-  .demo .arrow[data-target='true'] {
-    animation: none;
-  }
-
   .answer:active {
     transform: none;
   }

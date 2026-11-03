@@ -6,14 +6,13 @@ export interface BoardProps {
   lit: ReadonlySet<number>;
   marks?: Readonly<Record<number, string>>;
   onPress?: (cell: number) => void;
-  small?: boolean;
 }
 
-export function Board({ size, lit, marks = {}, onPress, small = false }: BoardProps) {
+export function Board({ size, lit, marks = {}, onPress }: BoardProps) {
   const { t } = useTranslation();
   return (
     <div
-      className={`${styles.board} ${small ? styles.small : ''}`}
+      className={styles.board}
       style={{ gridTemplateColumns: `repeat(${size}, minmax(0, 1fr))` }}
     >
       {Array.from({ length: size * size }, (_, cell) => (

@@ -1,18 +1,20 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { playTone } from '../core/sound';
 import { getStartLevel } from '../data/levels';
 import { DEFAULT_SETTINGS, getSettings, updateSettings, useSettings } from '../data/settings';
 import { getGame } from '../games/registry';
+import { FeedbackProvider } from '../games/shared/feedback';
 import { LuzScope } from '../games/shared/luz/LuzScope';
 import { PlayChromeContext, type PlayChrome, type PlayHud } from '../games/shared/playChrome';
 import type { GameDefinition, GameResult } from '../games/types';
 import { recordGameResult } from '../play/recordGameResult';
 import { requestSync } from '../sync';
 import { IntroHeader } from './play/IntroHeader';
-import { Instructions } from './play/Instructions';
 import { PauseOverlay } from './play/PauseOverlay';
+import { PracticeDone } from './play/PracticeDone';
+import { PracticeIntro } from './play/PracticeIntro';
 import { ResultView } from './play/ResultView';
 import { ResumeCountdown } from './play/ResumeCountdown';
 import styles from './play/Play.module.css';
@@ -50,7 +52,9 @@ async function markInstructionsSeen(gameId: string): Promise<void> {
 
 type Phase =
   | { kind: 'loading' }
-  | { kind: 'intro'; showInstructions: boolean; firstTime: boolean }
+  | { kind: 'intro'; firstTime: boolean }
+  | { kind: 'practice'; origin: 'first' | 'howTo' }
+  | { kind: 'practiceDone' }
   | { kind: 'playing' }
   | {
       kind: 'result';
@@ -62,8 +66,22 @@ type Phase =
     }
   | { kind: 'saveError'; result: GameResult; resultId: string };
 
-/** The pause of a running game: the sheet, then the 3-2-1 after «Continuar». The game stays paused through both. */
-type Pause = 'off' | 'sheet' | 'resuming';
+/**
+ * The pause of a running game: the sheet, the practice opened from it, then the 3-2-1 after «Continuar».
+ * The game stays paused through all of them.
+ */
+type Pause = 'off' | 'sheet' | 'practice' | 'resuming';
+
+/** The practice opened from the pause: an opaque Luz layer over the dimmed game, with the focus inside. */
+function PracticeLayer({ children }: { children: ReactNode }) {
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => ref.current?.focus({ preventScroll: true }), []);
+  return (
+    <div ref={ref} tabIndex={-1} className={styles.practiceLayer}>
+      {children}
+    </div>
+  );
+}
 
 const NO_HUD: PlayHud = { score: 0, remainingMs: null };
 
@@ -93,7 +111,7 @@ function PlaySession({ game, daily }: { game: GameDefinition; daily: string | nu
       if (!alive) return;
       const firstTime = !settings.seenInstructions.includes(game.id);
       setStartLevel(level);
-      setPhase({ kind: 'intro', showInstructions: firstTime, firstTime });
+      setPhase({ kind: 'intro', firstTime });
     });
     return () => {
       alive = false;
@@ -105,16 +123,18 @@ function PlaySession({ game, daily }: { game: GameDefinition; daily: string | nu
     setPause('sheet');
   }, []);
 
-  // Hiding the app pauses the game, and also sends a countdown back to the sheet.
+  // Hiding the app pauses the game, and also sends a countdown back to the sheet. The practice opened from the
+  // pause is already paused: hiding the app leaves it as it is.
   const isPlaying = phase.kind === 'playing';
+  const practicing = pause === 'practice';
   useEffect(() => {
-    if (!isPlaying) return;
+    if (!isPlaying || practicing) return;
     const onVisibility = () => {
       if (document.hidden) pauseGame();
     };
     document.addEventListener('visibilitychange', onVisibility);
     return () => document.removeEventListener('visibilitychange', onVisibility);
-  }, [isPlaying, pauseGame]);
+  }, [isPlaying, practicing, pauseGame]);
 
   // The game runs again and gets the focus back: it was on the pause sheet, which is gone.
   const resumeGame = useCallback(() => {
@@ -129,8 +149,9 @@ function PlaySession({ game, daily }: { game: GameDefinition; daily: string | nu
     setPhase({ kind: 'playing' });
   }, []);
 
-  const handleStart = () => {
-    if (phase.kind === 'intro' && phase.firstTime) void markInstructionsSeen(game.id);
+  // Skipping the practice of a first visit counts as seen, like finishing it.
+  const skipFirstPractice = () => {
+    void markInstructionsSeen(game.id);
     startPlaying();
   };
 
@@ -183,22 +204,53 @@ function PlaySession({ game, daily }: { game: GameDefinition; daily: string | nu
   const renderPhase = (phase: Exclude<Phase, { kind: 'loading' }>) => {
     switch (phase.kind) {
       case 'intro':
-        if (phase.showInstructions) return <Instructions game={game} onStart={handleStart} onExit={exit} />;
+        if (phase.firstTime) {
+          return (
+            <PracticeIntro
+              game={game}
+              onStart={() => setPhase({ kind: 'practice', origin: 'first' })}
+              onSkip={skipFirstPractice}
+              onExit={exit}
+            />
+          );
+        }
         return (
           <section className={styles.screen}>
             <IntroHeader area={game.area} onExit={exit} />
             <h1 className={styles.introTitle}>{title}</h1>
             <p className={styles.description}>{t(`games.${game.id}.description`)}</p>
             <div className={styles.introActions}>
-              <button className={styles.primary} onClick={handleStart}>
+              <button className={styles.primary} onClick={startPlaying}>
                 {t('common.start')}
               </button>
-              <button className={styles.secondary} onClick={() => setPhase({ ...phase, showInstructions: true })}>
+              <button className={styles.secondary} onClick={() => setPhase({ kind: 'practice', origin: 'howTo' })}>
                 {t('common.howToPlay')}
               </button>
             </div>
           </section>
         );
+      case 'practice': {
+        const { Practice } = game;
+        const first = phase.origin === 'first';
+        return (
+          <section className={styles.screen}>
+            <FeedbackProvider>
+              <Practice
+                onComplete={() => {
+                  if (first) void markInstructionsSeen(game.id);
+                  setPhase({ kind: 'practiceDone' });
+                }}
+                onSkip={() => {
+                  if (first) skipFirstPractice();
+                  else setPhase({ kind: 'intro', firstTime: false });
+                }}
+              />
+            </FeedbackProvider>
+          </section>
+        );
+      }
+      case 'practiceDone':
+        return <PracticeDone game={game} onStart={startPlaying} onExit={exit} />;
       case 'playing': {
         const { Component } = game;
         return (
@@ -216,7 +268,19 @@ function PlaySession({ game, daily }: { game: GameDefinition; daily: string | nu
               </PlayChromeContext.Provider>
             </div>
             {pause === 'sheet' && (
-              <PauseOverlay hud={pausedHud} onContinue={() => setPause('resuming')} onExit={exit} />
+              <PauseOverlay
+                hud={pausedHud}
+                onContinue={() => setPause('resuming')}
+                onHowToPlay={() => setPause('practice')}
+                onExit={exit}
+              />
+            )}
+            {pause === 'practice' && (
+              <PracticeLayer>
+                <FeedbackProvider>
+                  <game.Practice onComplete={() => setPause('sheet')} onSkip={() => setPause('sheet')} />
+                </FeedbackProvider>
+              </PracticeLayer>
             )}
             {pause === 'resuming' && <ResumeCountdown onDone={resumeGame} />}
           </section>
