@@ -2,6 +2,7 @@ import type { GameDefinition } from '../types';
 import { SWITCHYARD_MAX_SCORE, SWITCHYARD_REFERENCE_SCORE } from './engine';
 import { SwitchyardExample } from './Example';
 import { SwitchyardGame } from './Game';
+import { mapFeatures, mapFor, stationCountForLevel } from './maps';
 
 export const switchyardGame: GameDefinition = {
   id: 'switchyard',
@@ -10,4 +11,13 @@ export const switchyardGame: GameDefinition = {
   maxScore: SWITCHYARD_MAX_SCORE,
   Component: SwitchyardGame,
   Example: SwitchyardExample,
+  describeLevel(level, t) {
+    const stations = stationCountForLevel(level);
+    const { sideTunnel, middleStation } = mapFeatures(mapFor(stations, false));
+    return [
+      t('games.switchyard.levelStations', { n: stations }),
+      ...(sideTunnel ? [t('games.switchyard.levelSideTunnel')] : []),
+      ...(middleStation ? [t('games.switchyard.levelMiddleStation')] : []),
+    ].join(' · ');
+  },
 };

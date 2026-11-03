@@ -549,3 +549,11 @@ export function mapFor(stationCount: number, mirrored: boolean): TrackMap {
   if (!map) throw new Error(`No map with ${stationCount} stations`);
   return map;
 }
+
+/** What makes a map stand out: a tunnel on a side, a station in the middle of the board. */
+export function mapFeatures(map: TrackMap): { sideTunnel: boolean; middleStation: boolean } {
+  return {
+    sideTunnel: Math.abs(Math.cos((map.tunnel.angle * Math.PI) / 180)) > 0.99,
+    middleStation: map.stations.some((st) => st.at.x >= 110 && st.at.x <= 250 && st.at.y >= 180 && st.at.y <= 450),
+  };
+}

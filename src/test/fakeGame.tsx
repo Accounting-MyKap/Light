@@ -6,11 +6,12 @@ import { i18n } from '../i18n';
 /** The seconds the fake game reports as left, so the pause sheet has a clock to show. */
 export const FAKE_REMAINING_MS = 34_200;
 
-function FakeGameComponent({ paused, onFinish }: GameProps) {
+function FakeGameComponent({ startLevel, paused, onFinish }: GameProps) {
   const [score, setScore] = useState(0);
   return (
     <GameFrame score={score} level={1} time={{ remainingMs: FAKE_REMAINING_MS, totalMs: 60_000 }}>
       <p>paused:{String(paused)}</p>
+      <p>startLevel:{startLevel}</p>
       <button onClick={() => setScore((s) => s + 10)}>Acertar</button>
       <button onClick={() => onFinish({ score: 120, accuracy: 0.9, levelReached: 2, durationMs: 60000 })}>Terminar</button>
     </GameFrame>

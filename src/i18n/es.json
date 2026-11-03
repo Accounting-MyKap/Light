@@ -165,7 +165,10 @@
         "up": "hacia arriba",
         "up-right": "arriba a la derecha"
       },
-      "exampleAnswer": "Toca el cambio para que el tren rojo vaya a la estación roja, la del círculo."
+      "exampleAnswer": "Toca el cambio para que el tren rojo vaya a la estación roja, la del círculo.",
+      "levelStations": "{{n}} estaciones",
+      "levelSideTunnel": "túnel lateral",
+      "levelMiddleStation": "estación central"
     }
   },
   "play": {
@@ -184,7 +187,12 @@
     "dailyProgress": "Entrenamiento de hoy: {{done}} de {{total}}",
     "seeSummary": "Ver resumen",
     "saveError": "No pudimos guardar tu partida.",
-    "retry": "Reintentar"
+    "retry": "Reintentar",
+    "levelChoice": "Elige el nivel",
+    "levelOption": "Nivel {{n}}",
+    "levelSuggested": "Nivel {{n}}, sugerido",
+    "levelSuggestedMark": "sugerido",
+    "practiceNote": "Para practicar: tu nivel sugerido ({{n}}) no cambia."
   },
   "today": {
     "title": "Entrenamiento de hoy",

@@ -165,7 +165,10 @@
         "up": "up",
         "up-right": "up and right"
       },
-      "exampleAnswer": "Tap the switch so the red train goes to the red station, the one with the circle."
+      "exampleAnswer": "Tap the switch so the red train goes to the red station, the one with the circle.",
+      "levelStations": "{{n}} stations",
+      "levelSideTunnel": "side tunnel",
+      "levelMiddleStation": "station in the middle"
     }
   },
   "play": {
@@ -184,7 +187,12 @@
     "dailyProgress": "Today’s training: {{done}} of {{total}}",
     "seeSummary": "See summary",
     "saveError": "We couldn’t save your game.",
-    "retry": "Retry"
+    "retry": "Retry",
+    "levelChoice": "Choose the level",
+    "levelOption": "Level {{n}}",
+    "levelSuggested": "Level {{n}}, suggested",
+    "levelSuggestedMark": "suggested",
+    "practiceNote": "For practice: your suggested level ({{n}}) stays as it is."
   },
   "today": {
     "title": "Today’s training",

@@ -2,6 +2,8 @@ import { act, fireEvent, render, screen } from '@testing-library/react';
 import { initI18n } from '../../i18n';
 import { FeedbackProvider } from '../shared/feedback';
 import { SwitchyardGame } from './Game';
+import { switchyardGame } from './index';
+import { i18n } from '../../i18n';
 
 vi.mock('../../core/sound');
 
@@ -123,4 +125,11 @@ test('finishes once after 90 seconds', () => {
   advance(2_000);
   expect(onFinish).toHaveBeenCalledTimes(1);
   expect(onFinish.mock.calls[0][0]).toMatchObject({ durationMs: 90_000 });
+});
+
+test('each level says which map it brings', () => {
+  const t = i18n.t.bind(i18n);
+  expect(switchyardGame.describeLevel?.(1, t)).toBe('3 estaciones');
+  expect(switchyardGame.describeLevel?.(3, t)).toBe('4 estaciones · túnel lateral');
+  expect(switchyardGame.describeLevel?.(5, t)).toBe('5 estaciones · estación central');
 });

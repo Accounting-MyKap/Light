@@ -1,3 +1,4 @@
+import type { TFunction } from 'i18next';
 import type { ComponentType } from 'react';
 
 export type Area = 'memory' | 'attention' | 'speed' | 'flexibility' | 'math' | 'logic' | 'language';
@@ -30,4 +31,6 @@ export interface GameDefinition {
   Component: ComponentType<GameProps>;
   /** Static visual example shown with the instructions. */
   Example: ComponentType;
+  /** A few words on what a level brings (shown when choosing the level), for games where levels differ visibly. */
+  describeLevel?: (level: number, t: TFunction) => string;
 }

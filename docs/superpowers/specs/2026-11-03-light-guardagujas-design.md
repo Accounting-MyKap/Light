@@ -208,3 +208,15 @@ descarrilados en las curvas. Aprobó este diseño en la conversación.
   encima de él (su frente lo pasó por 24 u o menos, entre 0,18 y 0,34 s según la velocidad), el tren toma la nueva
   salida a la misma distancia. Esto reemplaza la regla de la §3 («toma la dirección que el cambio tenga en ese
   instante»): ahora vale la dirección que tenga cuando el tren termina de pasar por encima.
+
+## 10. Elegir el nivel (pedido del dueño, 2026-11-03; vale para todos los juegos)
+
+- En la presentación de cualquier juego (fuera del entrenamiento diario) aparece «Elige el nivel» con los niveles del
+  1 al más alto ya alcanzado en ese juego (`highestLevelReached`, el máximo `level` de sus resultados, o el nivel
+  sugerido si es mayor). Sin un nivel mayor que 1 alcanzado, no aparece.
+- El nivel sugerido (el que la app adapta tras cada partida) viene elegido y lleva un anillo. Elegir otro es práctica:
+  el resultado se guarda como siempre, pero el nivel sugerido no cambia (`recordGameResult` con `suggestedLevel`).
+  «Jugar de nuevo» repite el nivel elegido.
+- Un juego puede describir qué trae cada nivel (`GameDefinition.describeLevel`); Guardagujas dice el mapa:
+  «5 estaciones · estación central», «4 estaciones · túnel lateral».
+- El entrenamiento diario no muestra el selector: el nivel lo elige la app.
