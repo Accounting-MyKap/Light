@@ -259,10 +259,13 @@ describe('a game without a practice (Guardagujas, the quiz games)', () => {
     expect(await db.results.count()).toBe(0);
   });
 
-  test('the ✕ of the instructions in the pause also comes back to the sheet, without leaving the game', async () => {
+  test('the ✕ of the instructions in the pause is «Volver» too and comes back to the sheet, without leaving', async () => {
     await playAndPause();
     await userEvent.click(screen.getByRole('button', { name: '¿Cómo se juega?' }));
     const layer = screen.getByRole('dialog', { name: '¿Cómo se juega?' });
+    expect(within(layer).getByText('✕', { selector: 'button' })).toHaveAccessibleName('Volver');
+    // It does not leave the game, so it is not named «Salir del juego».
+    expect(within(layer).queryByRole('button', { name: 'Salir del juego' })).not.toBeInTheDocument();
     await userEvent.click(within(layer).getByText('✕', { selector: 'button' }));
     expect(screen.getByRole('dialog', { name: 'Pausado' })).toBeInTheDocument();
     expect(screen.getByText('paused:true')).toBeInTheDocument();

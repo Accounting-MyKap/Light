@@ -5,7 +5,8 @@ import styles from './Play.module.css';
 
 /**
  * The steps and the Example of a game without a practice. `fromPause` is this screen opened from the pause, over the
- * frozen game: its main button reads «Volver» instead of «Comenzar» (both it and the ✕ go back to the sheet).
+ * frozen game: its main button reads «Volver» instead of «Comenzar», and both it and the ✕ go back to the sheet, so
+ * the ✕ is named «Volver» too, not «Salir del juego».
  */
 export function Instructions({
   game,
@@ -23,7 +24,7 @@ export function Instructions({
   const { Example } = game;
   return (
     <section className={styles.screen}>
-      <IntroHeader area={game.area} onExit={onExit} />
+      <IntroHeader area={game.area} onExit={onExit} exitLabel={fromPause ? t('common.back') : undefined} />
       <h1 className={styles.introTitle}>{t(`games.${game.id}.title`)}</h1>
       {/* Explicit role: Safari drops the list semantics once the markers are hidden. */}
       <ol className={styles.steps} role="list">
