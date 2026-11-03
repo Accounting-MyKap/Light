@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { createRng, randomSeed } from '../../core/rng';
+import { VIBRATION } from '../../core/vibrate';
 import { useCountdown, useGameClock } from '../shared/clock';
-import { useFeedback } from '../shared/feedback';
+import { useCue, useFeedback } from '../shared/feedback';
 import { GameFrame } from '../shared/GameFrame';
 import { useGameKeys } from '../shared/useGameKeys';
 import type { GameProps } from '../types';
@@ -14,6 +15,7 @@ import { WorldBoard, useSwitchyardWorld } from './useSwitchyardWorld';
  */
 export function SwitchyardGame({ startLevel, paused, onFinish }: GameProps) {
   const feedback = useFeedback();
+  const cue = useCue();
   const clock = useGameClock(paused);
   const [rng] = useState(() => createRng(randomSeed()));
   const [finished, setFinished] = useState(false);
@@ -23,7 +25,10 @@ export function SwitchyardGame({ startLevel, paused, onFinish }: GameProps) {
     active,
     now: () => Math.min(clock.now(), SWITCHYARD_DURATION_MS),
     advance: (game, to) => advanceSwitchyard(game, to, rng),
-    onArrival: (arrival) => feedback(arrival.correct ? 'correct' : 'timeout'),
+    // A train home rings a small chime instead of the usual hit tone; one at the wrong station keeps the miss.
+    onArrival: (arrival) => (arrival.correct ? feedback('correct', 'chime') : feedback('timeout')),
+    onSpawn: () => cue('whistle'),
+    onFlip: () => cue('clack', VIBRATION.tick),
   });
 
   const remaining = useCountdown(clock, SWITCHYARD_DURATION_MS, paused, () => {

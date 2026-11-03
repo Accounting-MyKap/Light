@@ -1,4 +1,6 @@
 import { act, fireEvent, render, screen } from '@testing-library/react';
+import { playTone } from '../../core/sound';
+import { DEFAULT_SETTINGS, useSettings } from '../../data/settings';
 import { initI18n } from '../../i18n';
 import { FeedbackProvider } from '../shared/feedback';
 import { PRACTICE_NEXT_MS } from '../shared/practice/usePracticeRounds';
@@ -12,7 +14,7 @@ vi.setConfig({ testTimeout: 15_000 });
 vi.mock('../../core/sound');
 vi.mock('../../data/settings', async (importOriginal) => {
   const actual = await importOriginal<typeof import('../../data/settings')>();
-  return { ...actual, useSettings: () => ({ ...actual.DEFAULT_SETTINGS, sound: false, haptics: false }) };
+  return { ...actual, useSettings: vi.fn(() => ({ ...actual.DEFAULT_SETTINGS, sound: false, haptics: false })) };
 });
 
 const TAP = 'Toca el cambio (el círculo con flecha) para que el tren rojo vaya a la estación roja, la del círculo';
@@ -79,8 +81,12 @@ function passRound2() {
 beforeEach(async () => {
   await initI18n('es');
   vi.useFakeTimers();
+  vi.mocked(playTone).mockClear();
 });
-afterEach(() => vi.useRealTimers());
+afterEach(() => {
+  vi.useRealTimers();
+  vi.mocked(useSettings).mockReset();
+});
 
 test('the rounds start wrong, and one tap on the right switch sends each train home', () => {
   const map = mapFor(3, false);
@@ -288,6 +294,25 @@ test('the switches hold still while «¡Bien!» shows and in the second before t
   frames();
   key('2');
   expect(options()).toEqual([PRACTICE_ROUNDS[1].switches[0], 1 - PRACTICE_ROUNDS[1].switches[1]]);
+});
+
+test('a switch clacks when it flips, but not while it holds still', () => {
+  vi.mocked(useSettings).mockReturnValue(DEFAULT_SETTINGS);
+  setup();
+  advance(100);
+  fireEvent.click(switchButton(1));
+  key('2');
+  const clacks = () => vi.mocked(playTone).mock.calls.filter(([kind]) => kind === 'clack').length;
+  expect(clacks()).toBe(2);
+  fireEvent.click(switchButton(0));
+  until(says('¡Bien!'));
+  expect(clacks()).toBe(3);
+  // Decided: the switches hold still, and so they make no sound.
+  fireEvent.click(switchButton(1));
+  key('2');
+  expect(clacks()).toBe(3);
+  // The practice has no whistle.
+  expect(playTone).not.toHaveBeenCalledWith('whistle');
 });
 
 test('the keys 1 and 2 flip the switches; a number without a switch does nothing', () => {

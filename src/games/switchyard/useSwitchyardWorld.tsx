@@ -3,7 +3,7 @@ import { prefersReducedMotion } from '../../core/motion';
 import { createRng, randomSeed } from '../../core/rng';
 import { ARRIVAL_SHOW_MS, Board } from './Board';
 import { BOARD } from './maps';
-import { toggleSwitch, type Arrival, type SwitchyardState } from './engine';
+import { toggleSwitch, type Arrival, type SwitchyardState, type Train } from './engine';
 import { agePuffs, emitPuffs, puffLook, type SmokeState } from './smoke';
 import { chimneyOf, trainSprite } from './sprite';
 import styles from './switchyard.module.css';
@@ -29,6 +29,10 @@ export interface SwitchyardWorldOptions {
   advance: (game: SwitchyardState, to: number) => { state: SwitchyardState; arrivals: Arrival[] };
   /** Called once for every train that reaches a station, before the frame is drawn. */
   onArrival: (arrival: Arrival) => void;
+  /** Called once for every train that comes out of the tunnel while the yard runs. */
+  onSpawn?: (train: Train) => void;
+  /** Called after a switch flipped, by a tap or a key. */
+  onFlip?: (index: number) => void;
 }
 
 export interface SwitchyardWorld {
@@ -68,10 +72,15 @@ export function useSwitchyardWorld(initial: () => SwitchyardState, options: Swit
     if (!active) return;
     let frame = 0;
     const tick = () => {
-      const { now: clock, advance, onArrival } = optionsRef.current;
+      const { now: clock, advance, onArrival, onSpawn } = optionsRef.current;
       const now = clock();
       const current = worldRef.current;
       const { state, arrivals } = advance(current.game, now);
+      if (onSpawn && state.trains !== current.game.trains) {
+        // Train ids are never reused, so a train is new when the last frame did not have its id.
+        const before = new Set(current.game.trains.map((train) => train.id));
+        for (const train of state.trains) if (!before.has(train.id)) onSpawn(train);
+      }
       for (const arrival of arrivals) onArrival(arrival);
 
       let smoke = current.smoke;
@@ -105,6 +114,7 @@ export function useSwitchyardWorld(initial: () => SwitchyardState, options: Swit
       const current = worldRef.current;
       if (index < 0 || index >= current.game.switches.length) return false;
       commit({ ...current, game: toggleSwitch(current.game, index) });
+      optionsRef.current.onFlip?.(index);
       return true;
     },
     [commit],

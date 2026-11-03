@@ -2,6 +2,8 @@ import { useCallback, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { createStaircase } from '../../core/difficulty';
 import { createRng } from '../../core/rng';
+import { VIBRATION } from '../../core/vibrate';
+import { useCue } from '../shared/feedback';
 import { PracticeFrame } from '../shared/practice/PracticeFrame';
 import type { PracticeProps } from '../shared/practice/types';
 import { usePracticeRounds } from '../shared/practice/usePracticeRounds';
@@ -151,6 +153,7 @@ function advanceRound(game: SwitchyardState, to: number, attempt: Attempt) {
 export function SwitchyardPractice({ onComplete, onSkip }: PracticeProps) {
   const { t } = useTranslation();
   const { round, status, answer } = usePracticeRounds(PRACTICE_ROUNDS.length, onComplete);
+  const cue = useCue();
   const [first] = useState(() => startAttempt(0, 0, 0));
   const attemptRef = useRef(first.attempt);
   // The practice's own clock: real time from its first frame, in steps of at most MAX_STEP_MS. A hidden page or a
@@ -188,6 +191,8 @@ export function SwitchyardPractice({ onComplete, onSkip }: PracticeProps) {
       attemptRef.current = { ...attempt, home };
       if (home === PRACTICE_ROUNDS[attempt.round].trains.length) answer(true);
     },
+    // The switch sounds like the game's; the trains need no whistle here.
+    onFlip: () => cue('clack', VIBRATION.tick),
   });
 
   // The switches hold still once the try is decided: while «¡Bien!» shows (all its trains are home) and from a miss
