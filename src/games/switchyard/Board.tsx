@@ -217,7 +217,7 @@ const Front = memo(function Front({ map, uid }: { map: TrackMap; uid: string }) 
         );
       })}
       <g transform={portalTransform(map.tunnel)}>
-        <TunnelPortal />
+        <TunnelPortal theme={themeFor(map)} />
       </g>
     </g>
   );
