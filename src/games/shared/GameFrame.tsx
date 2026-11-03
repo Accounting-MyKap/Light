@@ -8,8 +8,11 @@ import styles from './GameFrame.module.css';
 export interface GameFrameProps {
   score: number;
   level: number;
-  /** Games with a clock. */
-  time?: { remainingMs: number; totalMs: number };
+  /**
+   * Games with a clock. `stopped` is a clock that is not counting down and keeps the time it had (the quiz, while
+   * the answer to a question is shown): with nothing to hurry for, its bar is never urgent.
+   */
+  time?: { remainingMs: number; totalMs: number; stopped?: boolean };
   /** Games played in rounds (Secuencia de luces). */
   rounds?: { current: number; total: number };
   /** Bottom zone: the answer buttons. */
@@ -103,7 +106,7 @@ export function GameFrame({ score, level, time, rounds, controls, children }: Ga
         </div>
       </div>
 
-      {time && <TimeBar remainingMs={time.remainingMs} totalMs={time.totalMs} />}
+      {time && <TimeBar remainingMs={time.remainingMs} totalMs={time.totalMs} stopped={time.stopped ?? false} />}
       {rounds && <RoundDots current={rounds.current} total={rounds.total} />}
 
       <div ref={stageRef} className={styles.stage} data-zone="stage">
@@ -129,7 +132,7 @@ function Flash({ signal }: { signal: FeedbackSignal | null }) {
   return <span key={signal.id} className={styles.flash} data-flash={signal.kind} aria-hidden="true" />;
 }
 
-function TimeBar({ remainingMs, totalMs }: { remainingMs: number; totalMs: number }) {
+function TimeBar({ remainingMs, totalMs, stopped }: { remainingMs: number; totalMs: number; stopped: boolean }) {
   const { t } = useTranslation();
   const left = totalMs > 0 ? Math.min(1, Math.max(0, remainingMs / totalMs)) : 0;
   const secondsLeft = Math.ceil(remainingMs / 1000);
@@ -142,7 +145,7 @@ function TimeBar({ remainingMs, totalMs }: { remainingMs: number; totalMs: numbe
       aria-valuemax={Math.round(totalMs / 1000)}
       aria-valuenow={secondsLeft}
       aria-valuetext={t('game.hud.secondsLeft', { count: secondsLeft })}
-      data-urgent={remainingMs <= URGENT_MS}
+      data-urgent={!stopped && remainingMs <= URGENT_MS}
     >
       <div className={styles.fill} style={{ transform: `scaleX(${left})` }} />
     </div>

@@ -1,12 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { prefersReducedMotion } from '../../core/motion';
 import { createRng, randomSeed, type Rng } from '../../core/rng';
 import { answerHistory } from '../../data/quizAnswers';
 import { loadQuestions } from '../../quiz/banks/load';
-import { correctIndex, optionTexts, type QuizCategory } from '../../quiz/types';
+import { correctIndex, optionTexts, type AnswerOutcome, type QuizCategory } from '../../quiz/types';
 import { useGameClock, useTrialTimeout, type GameClock } from '../shared/clock';
 import { MIN_RT_MS } from '../shared/constants';
-import { useFeedback } from '../shared/feedback';
+import { useFeedback, type FeedbackKind } from '../shared/feedback';
 import { GameFrame } from '../shared/GameFrame';
 import { useGameKeys } from '../shared/useGameKeys';
 import type { GameProps, GameResult } from '../types';
@@ -22,13 +23,19 @@ import {
   timeOutQuestion,
   type QuizRoundState,
 } from './engine';
-import { QuestionView } from './QuestionView';
+import { QuestionAnswers, QuestionCard } from './QuestionView';
 import { useQuestionTimer } from './useQuestionTimer';
 import styles from './quiz.module.css';
 
 type Load = { kind: 'loading' } | { kind: 'error' } | { kind: 'ready'; round: QuizRoundState };
 
-const prefersReducedMotion = () => window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
+/** The reaction to each outcome. A time-out and «No sé» cost nothing, so, like Quick Math's skip, they are no mistake. */
+const FEEDBACK: Record<AnswerOutcome, FeedbackKind> = {
+  correct: 'correct',
+  wrong: 'wrong',
+  timeout: 'timeout',
+  skipped: 'timeout',
+};
 
 /** A history that cannot be read must never block the game: the round just starts with no memory. */
 async function readHistory(categories: readonly QuizCategory[]): Promise<ReadonlyMap<string, number>> {
@@ -74,27 +81,36 @@ export function QuizGame({ startLevel, paused, onFinish, categories }: GameProps
     setAttempt((n) => n + 1);
   };
 
+  // Loading and a failed load are drawn in the frame too: its ✕ is the way out of the game screen.
   if (load.kind === 'error') {
     return (
-      <div className={styles.status}>
-        <p role="alert">{t('quiz.loadError')}</p>
-        <button type="button" className={styles.retry} onClick={retry}>
-          {t('play.retry')}
-        </button>
-        {/* Retrying cannot help when the app itself is stale (a bank chunk of an older version is gone). */}
-        {failures >= 2 && (
-          <button type="button" className={styles.reload} onClick={() => window.location.reload()}>
-            {t('quiz.reload')}
-          </button>
-        )}
+      <div className={styles.game}>
+        <GameFrame score={0} level={firstLevel}>
+          <div className={styles.status}>
+            <p role="alert">{t('quiz.loadError')}</p>
+            <button type="button" className={styles.retry} onClick={retry}>
+              {t('play.retry')}
+            </button>
+            {/* Retrying cannot help when the app itself is stale (a bank chunk of an older version is gone). */}
+            {failures >= 2 && (
+              <button type="button" className={styles.reload} onClick={() => window.location.reload()}>
+                {t('quiz.reload')}
+              </button>
+            )}
+          </div>
+        </GameFrame>
       </div>
     );
   }
   if (load.kind === 'loading') {
     return (
-      <p className={styles.status} role="status">
-        {t('quiz.loading')}
-      </p>
+      <div className={styles.game}>
+        <GameFrame score={0} level={firstLevel}>
+          <p className={styles.status} role="status">
+            {t('quiz.loading')}
+          </p>
+        </GameFrame>
+      </div>
     );
   }
   return <QuizRound initial={load.round} clock={clock} rng={rng} paused={paused} onFinish={onFinish} />;
@@ -122,9 +138,9 @@ function QuizRound({ initial, clock, rng, paused, onFinish }: QuizRoundProps) {
   const { question, order, askedAt } = round.current;
   const resolved = asking ? undefined : lastItem(round);
 
-  // On a small screen «Siguiente» sits below the explanation, so the page is scrolled down when it is pressed (and
-  // after the instructions, when «Comenzar» is). Each new question starts like the first: the play screen at the top,
-  // with the HUD and the time bar in view, and the keyboard and screen readers on the new prompt.
+  // The frame fills the screen, but a long question with its explanation can still be taller than a small phone, so
+  // the page is scrolled down when «Siguiente» is pressed. Each new question starts like the first: the play screen at
+  // the top, with the frame's top bar and time bar in view, and the keyboard and screen readers on the new prompt.
   useEffect(() => {
     if (!asking) return;
     promptRef.current?.focus({ preventScroll: true });
@@ -140,14 +156,15 @@ function QuizRound({ initial, clock, rng, paused, onFinish }: QuizRoundProps) {
   useTrialTimeout(clock, askedAt, timerWindow, paused, () => {
     const next = timeOutQuestion(round);
     if (next === round) return;
-    feedback('wrong');
+    feedback(FEEDBACK.timeout);
     setRound(next);
   });
 
   // The engine returns the same state when it ignores an action (wrong phase, or a tap before MIN_RT_MS).
   const resolveWith = (next: QuizRoundState): boolean => {
-    if (next === round) return false;
-    feedback(lastItem(next)?.outcome === 'correct' ? 'correct' : 'wrong');
+    const outcome = lastItem(next)?.outcome;
+    if (next === round || !outcome) return false;
+    feedback(FEEDBACK[outcome]);
     setRound(next);
     return true;
   };
@@ -180,32 +197,42 @@ function QuizRound({ initial, clock, rng, paused, onFinish }: QuizRoundProps) {
       })
     : '';
 
+  // Hidden, not removed, while paused: the clock is stopped, so neither the question nor its options may stay readable.
+  // Both parts are keyed by the question, so each new one appears afresh.
+  const hidden = paused ? ({ visibility: 'hidden' } as const) : undefined;
+  const answers = (
+    <div key={question.id} className={`${styles.zone} appear`} style={hidden}>
+      <QuestionAnswers
+        question={question}
+        order={order}
+        lang={lang}
+        phase={asking ? 'asking' : 'feedback'}
+        outcome={resolved?.outcome}
+        chosen={resolved?.chosen ?? null}
+        onChoose={choose}
+        onDontKnow={skip}
+        onNext={goNext}
+        isLast={round.items.length >= QUIZ_ROUND_LENGTH}
+      />
+    </div>
+  );
+
   return (
     <div ref={gameRef} className={styles.game}>
       <GameFrame
         score={round.score}
         level={round.staircase.level}
-        time={{ remainingMs: remaining, totalMs: QUIZ_QUESTION_MS }}
+        time={{ remainingMs: remaining, totalMs: QUIZ_QUESTION_MS, stopped: !asking }}
+        controls={answers}
       >
-        <p className={styles.counter}>{t('quiz.questionOf', { n: number, total: QUIZ_ROUND_LENGTH })}</p>
-        {/* Hidden, not removed, while paused: the clock is stopped, so the question must not stay readable. */}
-        <div key={question.id} className="appear" style={paused ? { visibility: 'hidden' } : undefined}>
-          <QuestionView
-            question={question}
-            order={order}
-            lang={lang}
-            phase={asking ? 'asking' : 'feedback'}
-            outcome={resolved?.outcome}
-            chosen={resolved?.chosen ?? null}
-            onChoose={choose}
-            onDontKnow={skip}
-            onNext={goNext}
-            isLast={round.items.length >= QUIZ_ROUND_LENGTH}
-            promptRef={promptRef}
-          />
-        </div>
-        <div className="visually-hidden" aria-live="polite" aria-atomic="true">
-          {announcement}
+        <div className={styles.zone}>
+          <p className={styles.counter}>{t('quiz.questionOf', { n: number, total: QUIZ_ROUND_LENGTH })}</p>
+          <div key={question.id} className="appear" style={hidden}>
+            <QuestionCard question={question} lang={lang} promptRef={promptRef} />
+          </div>
+          <div className="visually-hidden" aria-live="polite" aria-atomic="true">
+            {announcement}
+          </div>
         </div>
       </GameFrame>
     </div>

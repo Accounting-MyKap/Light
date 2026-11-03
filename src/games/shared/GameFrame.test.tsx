@@ -108,6 +108,15 @@ test('the last 10 seconds mark the bar as urgent', () => {
   expect(screen.getByRole('progressbar')).toHaveAttribute('data-urgent', 'false');
 });
 
+test('a stopped clock is never urgent, whatever time it kept', () => {
+  const { update } = renderFrame({ time: { remainingMs: 4_000, totalMs: 20_000, stopped: true } });
+  const bar = screen.getByRole('progressbar');
+  expect(bar).toHaveAttribute('data-urgent', 'false');
+  expect(bar).toHaveAttribute('aria-valuenow', '4');
+  update({ time: { remainingMs: 4_000, totalMs: 20_000 } });
+  expect(screen.getByRole('progressbar')).toHaveAttribute('data-urgent', 'true');
+});
+
 test('without a time there is no time bar', () => {
   renderFrame({ rounds: { current: 1, total: 8 } });
   expect(screen.queryByRole('progressbar')).toBeNull();

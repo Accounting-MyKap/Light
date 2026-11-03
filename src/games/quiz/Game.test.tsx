@@ -4,6 +4,8 @@ import { initI18n } from '../../i18n';
 import { loadQuestions } from '../../quiz/banks/load';
 import type { Question } from '../../quiz/types';
 import { makePool, makeTrueFalse } from '../../test/quizFixtures';
+import { FeedbackProvider } from '../shared/feedback';
+import { PlayChromeContext, type PlayChrome } from '../shared/playChrome';
 import { speedBonus } from '../shared/scoring';
 import { QUIZ_QUESTION_MS } from './engine';
 import { QuizGame } from './Game';
@@ -413,6 +415,7 @@ describe('a new question on a small screen', () => {
   });
 
   test('after Next, focus moves to the new question and the game scrolls back into view', async () => {
+    vi.stubGlobal('matchMedia', () => ({ matches: false }));
     await renderGame();
     advance(1000);
     fireEvent.click(correctOption());
@@ -431,6 +434,15 @@ describe('a new question on a small screen', () => {
   test('the first question also gets the focus', async () => {
     await renderGame();
     expect(screen.getByRole('heading', { level: 2 })).toHaveFocus();
+  });
+
+  test('scrolls without animation when the browser cannot tell the motion preference', async () => {
+    // Like every Luz animation: without matchMedia (jsdom) nothing should move.
+    await renderGame();
+    advance(1000);
+    fireEvent.keyDown(window, { key: '1' });
+    fireEvent.keyDown(window, { key: 'Enter' });
+    expect(scrollIntoView).toHaveBeenLastCalledWith({ block: 'start', behavior: 'auto' });
   });
 
   test('scrolls without animation when the player prefers reduced motion', async () => {
@@ -507,5 +519,119 @@ describe('QuizExample', () => {
     render(<QuizExample />);
     expect(screen.getByText('Which is the largest planet in the Solar System?')).toBeInTheDocument();
     expect(within(screen.getByRole('button', { name: /Jupiter/ })).getByText('✓ Correct')).toBeInTheDocument();
+  });
+});
+
+describe('in the Luz frame', () => {
+  const flashes = () => Array.from(document.querySelectorAll<HTMLElement>('[data-flash]')).map((el) => el.dataset.flash);
+  const zone = (name: 'stage' | 'controls') => document.querySelector<HTMLElement>(`[data-zone="${name}"]`);
+  const chrome = (): PlayChrome => ({ title: 'Historia', onPause: vi.fn(), reportHud: vi.fn() });
+
+  /** The game as the play screen mounts it: inside the feedback provider and, when given, the play chrome. */
+  function framed(playChrome: PlayChrome | null = null) {
+    return (
+      <FeedbackProvider>
+        <PlayChromeContext.Provider value={playChrome}>{gameElement()}</PlayChromeContext.Provider>
+      </FeedbackProvider>
+    );
+  }
+
+  test('a right answer flashes as correct and a wrong one as wrong', async () => {
+    render(framed());
+    await settle();
+    expect(flashes()).toEqual([]);
+    advance(1000);
+    fireEvent.click(correctOption());
+    expect(flashes()).toEqual(['correct']);
+    fireEvent.keyDown(window, { key: 'Enter' });
+    advance(1000);
+    fireEvent.click(wrongOption());
+    expect(flashes()).toEqual(['wrong']);
+  });
+
+  test('a time-out and «No sé» cost nothing, so they flash as a timeout', async () => {
+    render(framed());
+    await settle();
+    advance(QUIZ_QUESTION_MS);
+    expect(screen.getByText('Se acabó el tiempo')).toBeInTheDocument();
+    expect(flashes()).toEqual(['timeout']);
+    fireEvent.keyDown(window, { key: 'Enter' });
+    advance(1000);
+    fireEvent.click(screen.getByRole('button', { name: 'No sé' }));
+    expect(flashes()).toEqual(['timeout']);
+    // Going on to the next question is not an answer: no new reaction.
+    const flash = document.querySelector('[data-flash]');
+    fireEvent.keyDown(window, { key: 'Enter' });
+    expect(document.querySelector('[data-flash]')).toBe(flash);
+  });
+
+  test('the question is the game zone; the options, «No sé» and «Siguiente» are the controls below it', async () => {
+    render(framed());
+    await settle();
+    const stage = zone('stage');
+    const controls = zone('controls');
+    expect(stage).toContainElement(screen.getByText('Pregunta 1 de 10'));
+    expect(stage).toContainElement(screen.getByText('Historia'));
+    expect(stage).toContainElement(screen.getByRole('heading', { level: 2 }));
+    for (const option of options()) {
+      expect(controls).toContainElement(option);
+      expect(stage).not.toContainElement(option);
+    }
+    expect(controls).toContainElement(screen.getByRole('button', { name: 'No sé' }));
+
+    advance(1000);
+    fireEvent.click(correctOption());
+    expect(controls).toContainElement(screen.getByText(/^Explicación history-\d{4}$/));
+    expect(controls).toContainElement(screen.getByRole('button', { name: 'Siguiente' }));
+    // Read in the same order as before: the options, then the explanation, then «Siguiente».
+    const explanation = screen.getByText(/^Explicación history-\d{4}$/);
+    expect(options()[3].compareDocumentPosition(explanation) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+  });
+
+  test('once answered, the stopped time bar is no longer urgent', async () => {
+    render(framed());
+    await settle();
+    advance(12_000);
+    expect(screen.getByRole('progressbar')).toHaveAttribute('data-urgent', 'true');
+    fireEvent.click(correctOption());
+    expect(screen.getByRole('progressbar')).toHaveAttribute('data-urgent', 'false');
+    expect(secondsLeft()).toBe('8');
+  });
+
+  test('the frame tells the play screen the time left on the question, for its pause sheet', async () => {
+    const playChrome = chrome();
+    render(framed(playChrome));
+    await settle();
+    expect(playChrome.reportHud).toHaveBeenLastCalledWith({ score: 0, remainingMs: QUIZ_QUESTION_MS });
+    advance(5000);
+    expect(playChrome.reportHud).toHaveBeenLastCalledWith({ score: 0, remainingMs: 15_000 });
+  });
+
+  test('while the questions load, and after they fail to, the frame keeps its title and ✕', async () => {
+    vi.mocked(loadQuestions).mockRejectedValueOnce(new Error('offline'));
+    const playChrome = chrome();
+    render(framed(playChrome));
+    expect(screen.getByText('Cargando preguntas…')).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 1, name: 'Historia' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Salir del juego' })).toBeInTheDocument();
+    await settle();
+    expect(screen.getByText('No pudimos cargar las preguntas.')).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: 'Salir del juego' }));
+    expect(playChrome.onPause).toHaveBeenCalledTimes(1);
+    expect(screen.getByRole('button', { name: 'Reintentar' })).toBeInTheDocument();
+  });
+
+  test('options with the same text in both languages still get keys of their own', async () => {
+    // A question whose options read the same in Spanish and in English, and two that read the same in one language.
+    vi.mocked(loadQuestions).mockImplementation(async () =>
+      historyPool().map((q) =>
+        q.type === 'choice' ? { ...q, en: { ...q.en, options: ['42', '42', '7', '7'] }, es: { ...q.es, options: ['42', '24', '7', '70'] } } : q,
+      ),
+    );
+    await initI18n('en');
+    render(framed());
+    await settle();
+    expect(screen.getAllByRole('button', { name: /^Option [1-4]: / })).toHaveLength(4);
+    // setupTests fails the test if React saw two siblings with the same key.
   });
 });

@@ -1,36 +1,23 @@
+/* A round fills the play screen the way the frame of every game does. */
 .game {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+/* The frame centers what is in its zones; the question and its answers take the whole width. */
+.zone,
+.answers {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
   width: 100%;
-  max-width: 40rem;
-  margin-inline: auto;
 }
 
 .counter {
   margin: 0;
   text-align: center;
   color: var(--text-muted);
-}
-
-.bar {
-  height: 10px;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  background: var(--surface);
-}
-
-.barFill {
-  height: 100%;
-  background: var(--accent-strong);
-  transition: width 100ms linear;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .barFill {
-    transition: none;
-  }
 }
 
 .question {

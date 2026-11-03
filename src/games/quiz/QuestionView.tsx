@@ -8,7 +8,27 @@ import styles from './quiz.module.css';
 /** Pointer clicks on game controls should not move keyboard focus onto them (the window keys keep working). */
 const keepFocus = (e: { preventDefault: () => void }) => e.preventDefault();
 
-export interface QuestionViewProps {
+export interface QuestionCardProps {
+  question: Question;
+  lang: 'es' | 'en';
+  /** The prompt heading, so the game can move the focus to each new question. */
+  promptRef?: Ref<HTMLHeadingElement>;
+}
+
+/** The question itself: its category and the prompt. In a round it is the game zone of the frame. */
+export function QuestionCard({ question, lang, promptRef }: QuestionCardProps) {
+  const { t } = useTranslation();
+  return (
+    <div className={styles.card}>
+      <p className={styles.category}>{t(`quiz.categories.${question.category}`)}</p>
+      <h2 ref={promptRef} className={styles.prompt} tabIndex={-1}>
+        {keepNumbersTogether(question[lang].question)}
+      </h2>
+    </div>
+  );
+}
+
+export interface QuestionAnswersProps {
   question: Question;
   /** Canonical option indices in the order they are shown on screen. */
   order: readonly number[];
@@ -21,11 +41,13 @@ export interface QuestionViewProps {
   onDontKnow?: () => void;
   onNext?: () => void;
   isLast?: boolean;
-  /** The prompt heading, so the game can move the focus to each new question. */
-  promptRef?: Ref<HTMLHeadingElement>;
 }
 
-export function QuestionView({
+/**
+ * What the player acts on: the options, then «No sé» while asking, or the explanation and «Siguiente» once answered.
+ * In a round these are the controls of the frame, at the bottom of the screen.
+ */
+export function QuestionAnswers({
   question,
   order,
   lang,
@@ -36,8 +58,7 @@ export function QuestionView({
   onDontKnow,
   onNext,
   isLast = false,
-  promptRef,
-}: QuestionViewProps) {
+}: QuestionAnswersProps) {
   const { t } = useTranslation();
   const nextRef = useRef<HTMLButtonElement>(null);
   const texts = optionTexts(question, lang, { true: t('quiz.true'), false: t('quiz.false') });
@@ -51,20 +72,14 @@ export function QuestionView({
   }, [answered]);
 
   return (
-    <div className={styles.question}>
-      <div className={styles.card}>
-        <p className={styles.category}>{t(`quiz.categories.${question.category}`)}</p>
-        <h2 ref={promptRef} className={styles.prompt} tabIndex={-1}>
-          {keepNumbersTogether(question[lang].question)}
-        </h2>
-      </div>
-
+    <div className={styles.answers}>
       <div className={styles.options}>
         {order.map((canonical, shown) => {
           const isRight = answered && canonical === right;
           const isWrongPick = answered && canonical === chosen && canonical !== right;
           const mark = isRight ? `✓ ${t('quiz.correct')}` : isWrongPick ? `✗ ${t('quiz.yourAnswer')}` : null;
           return (
+            // Keyed by the canonical index, never by the text: two options can read the same in one language.
             <button
               key={canonical}
               type="button"
@@ -111,6 +126,18 @@ export function QuestionView({
           )}
         </div>
       )}
+    </div>
+  );
+}
+
+export type QuestionViewProps = QuestionCardProps & QuestionAnswersProps;
+
+/** A whole question, card and answers one after the other: the solved example of the instructions. */
+export function QuestionView({ promptRef, ...answers }: QuestionViewProps) {
+  return (
+    <div className={styles.question}>
+      <QuestionCard question={answers.question} lang={answers.lang} promptRef={promptRef} />
+      <QuestionAnswers {...answers} />
     </div>
   );
 }
