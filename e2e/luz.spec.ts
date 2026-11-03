@@ -285,6 +285,37 @@ test.describe('arrows rows', () => {
   });
 });
 
+test.describe('Star Shower on short phones', () => {
+  // iPhone SE in Safari, a 360×640 Android in Chrome and a 320×568 phone: the visible height under the browser bars.
+  const SHORT_PHONES = [
+    { width: 375, height: 548 },
+    { width: 360, height: 560 },
+    { width: 320, height: 568 },
+  ];
+
+  for (const viewport of SHORT_PHONES) {
+    test(`Star Shower fits ${viewport.width}×${viewport.height} without scrolling`, async ({ page }) => {
+      await page.setViewportSize(viewport);
+      await page.goto('./#/play/star-shower');
+      await page.getByRole('button', { name: 'Comenzar' }).click();
+      await expect(page.locator('[data-game]')).toBeVisible();
+      await expect(page.getByTestId('star').first()).toBeAttached();
+
+      expect(await page.evaluate(() => document.documentElement.scrollHeight <= window.innerHeight)).toBe(true);
+      const controls = {
+        pause: page.locator('[data-game]').getByRole('button', { name: 'Salir del juego' }),
+        ok: page.locator('[data-game]').getByRole('button', { name: 'OK' }),
+      };
+      for (const [name, control] of Object.entries(controls)) {
+        const box = await control.boundingBox();
+        expect(box, name).not.toBeNull();
+        expect(box!.y, `${name} top edge`).toBeGreaterThanOrEqual(0);
+        expect(box!.y + box!.height, `${name} bottom edge`).toBeLessThanOrEqual(viewport.height);
+      }
+    });
+  }
+});
+
 test.describe('review screenshots', () => {
   test.use({ viewport: { width: 390, height: 844 }, colorScheme: 'dark' });
 

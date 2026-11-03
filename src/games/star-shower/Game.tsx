@@ -21,6 +21,7 @@ import {
   type StarShowerState,
 } from './engine';
 import { Sky, topOf, type Burst, type SkyFlash } from './Sky';
+import styles from './star-shower.module.css';
 
 /** Game time the sky stays still after the end, before the result. */
 export const END_HOLD_MS = 1000;
@@ -172,7 +173,12 @@ export function StarShowerGame({ startLevel, paused, onFinish }: GameProps) {
       score={game.score}
       level={game.staircase.level}
       lives={{ left: game.lives, total: LIVES }}
-      controls={<Keypad onDigit={actions.digit} onDelete={actions.remove} onSubmit={actions.submit} />}
+      controls={
+        // Its own wrapper, so the keys can be made shorter on short screens without touching Quick Math's.
+        <div className={styles.keys}>
+          <Keypad onDigit={actions.digit} onDelete={actions.remove} onSubmit={actions.submit} />
+        </div>
+      }
     >
       {/* The sky is drawn at the current game time, not at the time of the change that caused this render (it
           may come a frame later), so a render never puts a star back above where the loop already moved it. */}

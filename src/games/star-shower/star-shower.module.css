@@ -373,6 +373,31 @@
   }
 }
 
+/* The keypad's wrapper: only a hook for the short-screen rules below, it draws no box of its own. */
+.keys {
+  display: contents;
+}
+
+/*
+ * Short screens (an iPhone SE in Safari shows 548 px under its bars): the keys come down to the 44 px touch
+ * minimum, the ground gets thinner and the sky may go under 16rem, so the screen fits without scrolling. The sky
+ * keeps all the height left, about 160 px above the horizon on the shortest of them. The example is left as is.
+ */
+@media (max-height: 640px) {
+  .sky:not(.demo) {
+    --ground: 3rem;
+    min-height: 10rem;
+  }
+
+  .keys > div {
+    gap: 0.375rem;
+  }
+
+  .keys button {
+    min-height: 44px;
+  }
+}
+
 /*
  * Reduced motion: the stars still fall (that is the game), but with no trails, sparks, shake or twinkle; a star
  * that pops or is cleared only fades out, and the wrong slot only turns red. The flashes are not drawn at all
