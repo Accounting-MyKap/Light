@@ -10,6 +10,7 @@
   --success-strong: #0f7a49;
   --danger: #c62f4e;
   --danger-text: #ffffff;
+  --accent-mark: #c97500;
   --border: rgba(23, 26, 46, 0.09);
   --glow: rgba(245, 160, 0, 0.4);
   --area-memory: #a35f00;
@@ -40,6 +41,7 @@
     --success-strong: #4dffa6;
     --danger: #ff5d7a;
     --danger-text: #0b0d1a;
+    --accent-mark: #ffb52e;
     --border: rgba(255, 255, 255, 0.1);
     --glow: rgba(255, 181, 46, 0.6);
     --area-memory: #ffb52e;
@@ -70,6 +72,7 @@
   --success-strong: #0f7a49;
   --danger: #c62f4e;
   --danger-text: #ffffff;
+  --accent-mark: #c97500;
   --border: rgba(23, 26, 46, 0.09);
   --glow: rgba(245, 160, 0, 0.4);
   --area-memory: #a35f00;
@@ -99,6 +102,7 @@
   --success-strong: #4dffa6;
   --danger: #ff5d7a;
   --danger-text: #0b0d1a;
+  --accent-mark: #ffb52e;
   --border: rgba(255, 255, 255, 0.1);
   --glow: rgba(255, 181, 46, 0.6);
   --area-memory: #ffb52e;
