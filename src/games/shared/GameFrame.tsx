@@ -12,6 +12,8 @@ export interface GameFrameProps {
   time?: { remainingMs: number; totalMs: number };
   /** Games played in rounds (Secuencia de luces). */
   rounds?: { current: number; total: number };
+  /** Games with lives (Lluvia de estrellas). */
+  lives?: { left: number; total: number };
   /** Bottom zone: the answer buttons. */
   controls?: ReactNode;
   /** The game zone. */
@@ -29,7 +31,7 @@ const SHAKE_KEYFRAMES = [0, -12, 12, -8, 8, 0].map((x) => ({ transform: `transla
  * points), time bar or round dots, the game zone and the controls. It also draws the reaction to each answer:
  * the points that float, a flash over the game zone and the shake of a wrong answer.
  */
-export function GameFrame({ score, level, time, rounds, controls, children }: GameFrameProps) {
+export function GameFrame({ score, level, time, rounds, lives, controls, children }: GameFrameProps) {
   const { t } = useTranslation();
   const chrome = useContext(PlayChromeContext);
   const stageRef = useRef<HTMLDivElement>(null);
@@ -106,6 +108,8 @@ export function GameFrame({ score, level, time, rounds, controls, children }: Ga
       {time && <TimeBar remainingMs={time.remainingMs} totalMs={time.totalMs} />}
       {rounds && <RoundDots current={rounds.current} total={rounds.total} />}
 
+      {lives && <Lives left={lives.left} total={lives.total} />}
+
       <div ref={stageRef} className={styles.stage} data-zone="stage">
         {/* The game's children and the flash are siblings, so each gets its own scope: a game that keys its
             element (Arrows keys its row by trial count, which can equal a signal id) can never share a key
@@ -158,6 +162,18 @@ function RoundDots({ current, total }: { current: number; total: number }) {
         const round = index + 1;
         return <li key={round} data-state={round < current ? 'done' : round === current ? 'now' : 'pending'} />;
       })}
+    </ol>
+  );
+}
+
+function Lives({ left, total }: { left: number; total: number }) {
+  const { t } = useTranslation();
+  return (
+    // Explicit role, like the round dots.
+    <ol className={styles.lives} role="list" aria-label={t('game.hud.lives', { left, total })}>
+      {Array.from({ length: total }, (_, index) => (
+        <li key={index} data-state={index < left ? 'on' : 'off'} />
+      ))}
     </ol>
   );
 }

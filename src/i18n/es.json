@@ -38,7 +38,8 @@
       "level": "Nivel",
       "secondsLeft_one": "Queda {{count}} segundo",
       "secondsLeft_other": "Quedan {{count}} segundos",
-      "round": "Ronda {{n}} de {{total}}"
+      "round": "Ronda {{n}} de {{total}}",
+      "lives": "Vidas: {{left}} de {{total}}"
     },
     "keypad": {
       "delete": "Borrar",

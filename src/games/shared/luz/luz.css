@@ -14,6 +14,7 @@
   --luz-ok: #4dffa6;
   --luz-bad: #ff5d7a;
   --luz-ink: #0b0d1a;
+  --luz-gold: #ffd34d;
   /* Fallback for an area without its own color below; any area block outranks this one. */
   --game: var(--luz-muted);
 
