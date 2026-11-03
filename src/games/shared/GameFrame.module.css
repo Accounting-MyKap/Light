@@ -9,6 +9,12 @@
   min-height: calc(100dvh - var(--screen-inset, 2.5rem));
 }
 
+/* The top bar with the time bar, round dots or lives under it. The wrapper draws no box: they are laid out as parts of
+   the frame. It is only a handle for a game that needs one (the quiz keeps them in view while its page scrolls). */
+.head {
+  display: contents;
+}
+
 /* Top bar: pause button, title with the level under it, and the points chip. */
 .top {
   display: flex;

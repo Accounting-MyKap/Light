@@ -12,6 +12,59 @@
   flex-direction: column;
 }
 
+/*
+ * A long question with its explanation can be taller than a small phone, and «Siguiente» takes the focus at the
+ * bottom: the frame's top bar and time bar stay at the top of the screen meanwhile. As soon as the page scrolls they
+ * take dark Luz glass, so the text passes under them cleanly; at the top of the page they look as they always did.
+ * The bar reaches up under the status bar and down past the glow of the time bar (padding gives the room back, so
+ * nothing moves), and its glass out to the sides of the screen: a shadow that wide, cut to the bar's own height.
+ */
+.game [data-zone='top'] {
+  --bar-glass: color-mix(in srgb, var(--luz-bg) 92%, transparent);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: calc(-1 * var(--luz-pad-top)) 0 -1rem;
+  padding: var(--luz-pad-top) 0 1rem;
+  clip-path: inset(0 -100vmax);
+}
+
+/* The glass fades in over the first 2rem of scroll past the top padding: scrolled only that far (each new question
+   brings the play screen to the top of the page), the bar sits where it always does with nothing under it yet. */
+@supports (animation-timeline: scroll()) {
+  .game [data-zone='top'] {
+    animation: bar-glass linear both;
+    animation-timeline: scroll();
+    animation-range: var(--luz-pad-top) calc(var(--luz-pad-top) + 2rem);
+  }
+}
+
+@keyframes bar-glass {
+  to {
+    background-color: var(--bar-glass);
+    box-shadow: 0 0 0 100vmax var(--bar-glass);
+    backdrop-filter: blur(16px);
+  }
+}
+
+/* A browser without scroll-driven animations keeps the glass on all the time: the text still never runs under bare
+   letters. */
+@supports not (animation-timeline: scroll()) {
+  .game [data-zone='top'] {
+    background-color: var(--bar-glass);
+    box-shadow: 0 0 0 100vmax var(--bar-glass);
+    backdrop-filter: blur(16px);
+  }
+}
+
+/* A control that takes the focus while the bar is stuck is scrolled clear of it, never left under it. */
+.game [data-zone='controls'] button {
+  scroll-margin-top: calc(var(--luz-pad-top) + 8rem);
+}
+
 /* The frame centers what is in its zones; the question and its answers take the whole width. */
 .zone,
 .answers {

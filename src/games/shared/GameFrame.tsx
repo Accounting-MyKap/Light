@@ -62,52 +62,54 @@ export function GameFrame({ score, level, time, rounds, lives, controls, stageFl
 
   return (
     <div className={styles.frame}>
-      <div className={styles.top}>
-        {chrome && (
-          <button type="button" className={styles.exit} aria-label={t('play.exit')} onClick={chrome.onPause}>
-            <span aria-hidden="true">✕</span>
-          </button>
-        )}
-        <div className={styles.heading}>
-          {chrome && <h1>{chrome.title}</h1>}
-          <dl className={styles.level}>
-            <div>
-              <dt>{t('game.hud.level')}</dt>
-              <dd>{level}</dd>
-            </div>
-          </dl>
-        </div>
-        <div className={styles.score}>
-          <dl className={styles.chip}>
-            <div>
-              <dt className="visually-hidden">{t('game.hud.score')}</dt>
-              <dd>{score}</dd>
-            </div>
-          </dl>
-          {float && (
-            <span
-              key={float.change}
-              className={styles.float}
-              data-sign={float.delta > 0 ? 'gain' : 'loss'}
-              aria-hidden="true"
-            >
-              {`${float.delta > 0 ? '+' : '−'}${Math.abs(float.delta)}`}
-            </span>
+      <div className={styles.head} data-zone="top">
+        <div className={styles.top}>
+          {chrome && (
+            <button type="button" className={styles.exit} aria-label={t('play.exit')} onClick={chrome.onPause}>
+              <span aria-hidden="true">✕</span>
+            </button>
           )}
+          <div className={styles.heading}>
+            {chrome && <h1>{chrome.title}</h1>}
+            <dl className={styles.level}>
+              <div>
+                <dt>{t('game.hud.level')}</dt>
+                <dd>{level}</dd>
+              </div>
+            </dl>
+          </div>
+          <div className={styles.score}>
+            <dl className={styles.chip}>
+              <div>
+                <dt className="visually-hidden">{t('game.hud.score')}</dt>
+                <dd>{score}</dd>
+              </div>
+            </dl>
+            {float && (
+              <span
+                key={float.change}
+                className={styles.float}
+                data-sign={float.delta > 0 ? 'gain' : 'loss'}
+                aria-hidden="true"
+              >
+                {`${float.delta > 0 ? '+' : '−'}${Math.abs(float.delta)}`}
+              </span>
+            )}
+          </div>
         </div>
+
+        {time && (
+          <TimeBar
+            remainingMs={time.remainingMs}
+            totalMs={time.totalMs}
+            stopped={time.stopped ?? false}
+            urgentMs={time.urgentMs ?? URGENT_MS}
+          />
+        )}
+        {rounds && <RoundDots current={rounds.current} total={rounds.total} />}
+
+        {lives && <Lives left={lives.left} total={lives.total} />}
       </div>
-
-      {time && (
-        <TimeBar
-          remainingMs={time.remainingMs}
-          totalMs={time.totalMs}
-          stopped={time.stopped ?? false}
-          urgentMs={time.urgentMs ?? URGENT_MS}
-        />
-      )}
-      {rounds && <RoundDots current={rounds.current} total={rounds.total} />}
-
-      {lives && <Lives left={lives.left} total={lives.total} />}
 
       <div ref={stageRef} className={styles.stage} data-zone="stage">
         {/* The game's children and the flash are siblings, so each gets its own scope: a game that keys its
