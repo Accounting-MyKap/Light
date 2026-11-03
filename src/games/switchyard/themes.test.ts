@@ -1,5 +1,19 @@
-import { ALL_MAPS, STATION_STYLES, mapFor, mirrorMap, stationCountForLevel } from './maps';
+import { createElement } from 'react';
+import { render } from '@testing-library/react';
+import { initI18n } from '../../i18n';
+import { Board } from './Board';
+import { ALL_MAPS, STATION_STYLES, mapFor, mirrorMap, stationCountForLevel, type TrackMap } from './maps';
 import { SCENES, themeFor, type SceneTheme } from './themes';
+
+beforeEach(async () => {
+  await initI18n('es');
+  // jsdom has no 2D canvas; the board copes with a missing context.
+  vi.spyOn(HTMLCanvasElement.prototype, 'getContext').mockImplementation(() => null);
+});
+afterEach(() => vi.restoreAllMocks());
+
+const boardOf = (map: TrackMap) =>
+  createElement(Board, { map, switches: map.switches.map(() => 0 as const), trains: [], onToggle: () => undefined });
 
 test.each<[number, SceneTheme]>([
   [3, 'meadow'],
@@ -19,6 +33,18 @@ test('the scene changes with the level band: 1–4 meadow, 5–8 autumn, 9–10 
 test('a mirrored map keeps the scene of its map', () => {
   for (const map of ALL_MAPS) expect(themeFor(mirrorMap(map))).toBe(themeFor(map));
   for (const n of [3, 4, 5, 6, 7]) expect(themeFor(mapFor(n, true))).toBe(themeFor(mapFor(n, false)));
+});
+
+test('the board says its scene on its ground', () => {
+  for (const [stations, theme] of [
+    [3, 'meadow'],
+    [5, 'autumn'],
+    [7, 'snow'],
+  ] as const) {
+    const { container, unmount } = render(boardOf(mapFor(stations, false)));
+    expect(container.querySelector('svg g[data-theme]')?.getAttribute('data-theme')).toBe(theme);
+    unmount();
+  }
 });
 
 /* ------------------------------------------------------------------------------------------------- readability */

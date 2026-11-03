@@ -6,6 +6,7 @@ import { headingName, offsetPolyline, type Point } from './geometry';
 import { BOARD, STATION_STYLES, type TrackMap, type Tunnel } from './maps';
 import { trainSprite, type CarSprite } from './sprite';
 import styles from './switchyard.module.css';
+import { SCENES, themeFor } from './themes';
 
 /** How long the ring and the mark of an arrival stay on the station. */
 export const ARRIVAL_SHOW_MS = 900;
@@ -243,14 +244,6 @@ function Defs({ uid }: { uid: string }) {
           <stop offset="1" stopColor={style.color} stopOpacity="0" />
         </radialGradient>
       ))}
-      <radialGradient id={`${uid}-ground`} cx="0.5" cy="0.4" r="0.75">
-        <stop offset="0" stopColor="#13282b" />
-        <stop offset="1" stopColor="#0a151b" />
-      </radialGradient>
-      <radialGradient id={`${uid}-water`} cx="0.4" cy="0.35" r="0.8">
-        <stop offset="0" stopColor="#1b4a63" />
-        <stop offset="1" stopColor="#0c263a" />
-      </radialGradient>
       <pattern id={`${uid}-dots`} width="20" height="20" patternUnits="userSpaceOnUse">
         <circle cx="10" cy="10" r="0.9" fill="#ffffff" opacity="0.06" />
       </pattern>
@@ -258,9 +251,25 @@ function Defs({ uid }: { uid: string }) {
   );
 }
 
+/**
+ * The scene around the tracks, in the colors of the map's band of levels (see themes.ts): the ground with its
+ * patches, the ponds, and the plants and stones from the back to the front.
+ */
 const Ground = memo(function Ground({ map, uid }: { map: TrackMap; uid: string }) {
+  const theme = themeFor(map);
+  const scene = SCENES[theme];
   return (
-    <g>
+    <g data-theme={theme}>
+      <defs>
+        <radialGradient id={`${uid}-ground`} cx="0.5" cy="0.4" r="0.75">
+          <stop offset="0" stopColor={scene.ground[0]} />
+          <stop offset="1" stopColor={scene.ground[1]} />
+        </radialGradient>
+        <radialGradient id={`${uid}-water`} cx="0.4" cy="0.35" r="0.8">
+          <stop offset="0" stopColor={scene.pond.water[0]} />
+          <stop offset="1" stopColor={scene.pond.water[1]} />
+        </radialGradient>
+      </defs>
       <rect width={BOARD.width} height={BOARD.height} rx={24} fill={`url(#${uid}-ground)`} />
       <rect width={BOARD.width} height={BOARD.height} rx={24} fill={`url(#${uid}-dots)`} />
       <rect
@@ -275,13 +284,21 @@ const Ground = memo(function Ground({ map, uid }: { map: TrackMap; uid: string }
         strokeWidth={1.5}
       />
       {map.patches.map((p, i) => (
-        <ellipse key={`patch${i}`} cx={p.x} cy={p.y} rx={p.rx} ry={p.ry} fill="#1a3a33" opacity={0.45} />
+        <ellipse
+          key={`patch${i}`}
+          cx={p.x}
+          cy={p.y}
+          rx={p.rx}
+          ry={p.ry}
+          fill={scene.patch}
+          opacity={scene.patchOpacity}
+        />
       ))}
       {map.ponds.map((pond, i) => (
-        <PondView key={`pond${i}`} pond={pond} water={`${uid}-water`} />
+        <PondView key={`pond${i}`} pond={pond} water={`${uid}-water`} theme={theme} />
       ))}
       {map.decor.map((d, i) => (
-        <DecorView key={i} {...d} />
+        <DecorView key={i} {...d} theme={theme} />
       ))}
     </g>
   );
