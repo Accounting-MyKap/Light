@@ -269,6 +269,25 @@ pestaña y salida con ✕.
 
 **Sin cambios:** Hoy y Ajustes. El aviso de privacidad sigue siendo cierto tal como está.
 
+**Estilo Luz** (al integrar `main`, ver `2026-11-02-light-estilo-luz-design.md`). La partida, sus instrucciones y su
+resultado van en el ámbito oscuro de Luz, como los demás juegos; la pestaña Preguntas y Progreso siguen en el tema de
+la app.
+- **Marco común (`GameFrame`) en lugar del HUD:**
+  - La barra superior lleva ✕, título, «Nivel N» y la píldora de puntos.
+  - La barra de tiempo de la pregunta expone los segundos en su texto accesible, y la hoja de pausa los muestra.
+  - Mientras se ve la respuesta, la barra queda detenida y sin urgencia (`time.stopped`, opcional en el marco).
+- **Distribución:**
+  - «Pregunta N de 10» y la tarjeta de la pregunta van en la zona de juego. La categoría va en mayúsculas, con un punto
+    del color del área.
+  - Las opciones, «No sé», y luego la explicación y «Siguiente» van en la zona de controles, abajo, al alcance del
+    pulgar.
+- **Colores por área:** cultura general (`trivia`) coral `#ff7b45`; contabilidad (`accounting`) azul cielo `#3399ff`.
+  La prueba de contraste de Luz los cubre, junto con los textos del quiz sobre vidrio.
+- **Reacción:** acierto → `correct`; error → `wrong`. El tiempo agotado y «No sé» → `timeout`, porque no restan
+  puntos (como «Saltar» en Cálculo relámpago).
+- **Resultado:** el resultado de Luz siempre se abre arriba. «Repasa tus errores» va debajo de las tarjetas de
+  precisión y nivel, en tarjetas de vidrio, sobre el fondo oscuro.
+
 ## 5. Datos y código
 
 ### 5.1 Cambios en el contrato de juego (`src/games/types.ts`)
