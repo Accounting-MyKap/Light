@@ -12,8 +12,8 @@
   gap: 0.5rem;
   overflow-x: auto;
   scrollbar-width: none;
-  margin-inline: -1.25rem;
-  padding-inline: 1.25rem;
+  margin: -6px -1.25rem;
+  padding: 6px 1.25rem;
 }
 .filters::-webkit-scrollbar {
   display: none;
@@ -66,7 +66,7 @@
   padding: 0;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.75rem;
+  gap: clamp(0.5rem, 0.5rem + (100vw - 320px) * 0.0036, 0.75rem);
 }
 .grid > li {
   min-width: 0;
@@ -78,7 +78,7 @@
   background: var(--card-bg);
   box-shadow: var(--card-shadow);
   border-radius: var(--radius);
-  padding: 0.5rem 0.5rem 0.75rem;
+  padding: 0.3rem 0.3rem 0.7rem;
   text-decoration: none;
   color: var(--text);
 }
@@ -92,18 +92,18 @@
 .name {
   display: block;
   margin: 0.4rem 0 0;
-  font-size: 0.85rem;
+  font-size: clamp(12px, calc(12px + (100vw - 320px) * 0.0229), 13.6px);
   font-weight: 700;
   line-height: 1.2;
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
   hyphens: auto;
 }
 .skill {
   display: block;
   margin-top: 0.15rem;
-  font-size: 0.72rem;
+  font-size: clamp(10px, calc(10px + (100vw - 320px) * 0.0217), 11.52px);
   color: var(--text-muted);
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
   hyphens: auto;
 }
 .done {
