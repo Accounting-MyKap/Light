@@ -212,6 +212,8 @@
     "notEnoughData": "Juega al menos dos partidas para ver tu evolución."
   },
   "settings": {
+    "appearance": "Apariencia",
+    "duringGame": "Durante el juego",
     "language": "Idioma",
     "theme": "Tema",
     "themes": {

@@ -1,0 +1,132 @@
+.switchRow {
+  display: flex;
+  flex-direction: column;
+}
+
+.switchLabel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 44px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.trackWrap {
+  position: relative;
+  flex: none;
+  display: block;
+  width: 48px;
+  height: 28px;
+}
+
+.switchInput {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.track {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: var(--border);
+  transition: background-color 0.15s;
+  pointer-events: none;
+}
+
+.track::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.3);
+  transition: translate 0.15s;
+}
+
+.switchInput:checked + .track {
+  background: var(--accent);
+  box-shadow: 0 0 12px var(--glow);
+}
+
+.switchInput:checked + .track::after {
+  translate: 20px 0;
+}
+
+.switchInput:focus-visible + .track {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.hint {
+  margin: -0.25rem 0 0.5rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.segmented {
+  margin: 0;
+  padding: 0;
+  border: none;
+  min-width: 0;
+}
+
+.legend {
+  float: left;
+  width: 100%;
+  padding: 0;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.segTrack {
+  clear: both;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 4px;
+  border-radius: 999px;
+  background: var(--border);
+}
+
+.segOption {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 44px;
+  padding: 0 0.5rem;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.segInput {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  opacity: 0;
+}
+
+.segOption:has(.segInput:checked) {
+  background: var(--surface);
+  box-shadow: var(--card-shadow);
+}
+
+.segOption:has(.segInput:focus-visible) {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}

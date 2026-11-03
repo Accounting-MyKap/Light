@@ -212,6 +212,8 @@
     "notEnoughData": "Play at least two games to see your trend."
   },
   "settings": {
+    "appearance": "Appearance",
+    "duringGame": "While playing",
     "language": "Language",
     "theme": "Theme",
     "themes": {
