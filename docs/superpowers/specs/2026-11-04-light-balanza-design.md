@@ -34,7 +34,7 @@ una balanza nueva. Pidió que quede **bien acabado**: sonidos, un aviso cuando s
 | Duración | **90 s**, sin reloj por reto (como Guardagujas); bonus de rapidez y un error resta |
 | Generación | **Pesos secretos + resolvedor**: retos infinitos, cada uno comprobado como único antes de mostrarse |
 | Aviso de nivel | En el marco común (`GameFrame`): lo tienen los 8 juegos de entrenamiento; no las prácticas ni Preguntas |
-| Color de Lógica | Azul lavanda: `#8a9cff` en Luz y en los menús de noche, `#2f5bd3` en los menús de día. El coral se descartó porque choca con el naranja de Cultura general (`#ff7b45`) |
+| Color de Lógica | Verde azulado: `#00b9a0` en Luz y en los menús de noche, `#00776a` en los menús de día. El coral chocaba con el naranja de Cultura general (`#ff7b45`) y el azul lavanda con el violeta de Flexibilidad (ΔE 9,5); el verde azulado queda a ≥ 20,5 (CIEDE2000) de todos los colores de área y de acierto/error |
 | Sonidos | Sintetizados con Web Audio como los actuales; nuevos: `tilt` y `levelUp` |
 | Enfoque técnico | Motor puro + SVG + CSS, sin canvas ni librerías nuevas |
 
@@ -127,11 +127,11 @@ lo sumo 20⁵ combinaciones y en la práctica se poda por pista) y se queda con 
 
 ### 5.1 Colores
 
-- Tokens nuevos `--area-logic`: `#2f5bd3` (claro) y `#8a9cff` (oscuro) en los cuatro bloques de `theme.css`;
-  `[data-luz][data-area='logic'] { --game: #8a9cff }` en `luz.css`; miniatura `--g: #8a9cff`; punto y barra de Lógica
-  en Juegos y Progreso.
-- Contraste (medido): `#8a9cff` sobre `#090b19` 7,7:1, `#0b0d1a` sobre `#8a9cff` 7,6:1, `#2f5bd3` sobre `#f6f7fc`
-  5,5:1. La prueba de contraste pasa a recorrer todas las áreas de entrenamiento (incluida Lógica).
+- Tokens nuevos `--area-logic`: `#00776a` (claro) y `#00b9a0` (oscuro) en los cuatro bloques de `theme.css`;
+  `[data-luz][data-area='logic'] { --game: #00b9a0 }` en `luz.css`; miniatura `--g: #00b9a0`; punto, barra y «Sigue»
+  de Lógica en Juegos, Progreso y Hoy.
+- Contraste (medido): `#00b9a0` sobre `#090b19` 7,9:1, `#0b0d1a` sobre `#00b9a0` 7,8:1, `#00776a` sobre `#f6f7fc`
+  5,1:1. Distancia (CIEDE2000) ≥ 20,5 a todo color de área, a `--luz-ok` y a `--luz-bad`; de día, ≥ 20,8. La prueba de contraste pasa a recorrer todas las áreas de entrenamiento (incluida Lógica).
 
 ### 5.2 Dibujo de la balanza (SVG)
 

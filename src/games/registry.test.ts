@@ -1,6 +1,6 @@
 import { GAMES, QUIZ_GAMES, TRAINING_GAMES, getGame } from './registry';
 import { QuizReview } from './quiz/QuizReview';
-import { QUIZ_AREAS, V1_AREAS, type GameDefinition } from './types';
+import { QUIZ_AREAS, TRAINING_AREAS, type GameDefinition } from './types';
 import { ACCOUNTING_CATEGORIES, CATEGORIES_BY_BANK, TRIVIA_CATEGORIES } from '../quiz/types';
 import es from '../i18n/es.json';
 import en from '../i18n/en.json';
@@ -36,7 +36,7 @@ test('registry entries are valid', () => {
   const ids = GAMES.map((g) => g.id);
   expect(new Set(ids).size).toBe(ids.length);
   expect(GAMES.map((g) => g.id)).toEqual([...TRAINING_GAMES, ...QUIZ_GAMES].map((g) => g.id));
-  for (const g of TRAINING_GAMES) expect(V1_AREAS).toContain(g.area);
+  for (const g of TRAINING_GAMES) expect(TRAINING_AREAS).toContain(g.area);
   for (const g of QUIZ_GAMES) expect(QUIZ_AREAS).toContain(g.area);
   for (const g of GAMES) {
     expect(g.maxScore).toBeGreaterThan(g.referenceScore);

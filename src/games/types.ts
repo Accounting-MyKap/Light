@@ -14,7 +14,8 @@ export type Area =
   | 'trivia'
   | 'accounting';
 
-export const V1_AREAS: readonly Area[] = ['memory', 'attention', 'speed', 'flexibility', 'math'];
+/** The areas of the training games (the catalog, the daily plan and the area scores). */
+export const TRAINING_AREAS: readonly Area[] = ['memory', 'attention', 'speed', 'flexibility', 'math', 'logic'];
 /** The two areas of the quiz section; a quiz game's area is its question bank. */
 export const QUIZ_AREAS: readonly Area[] = ['trivia', 'accounting'];
 

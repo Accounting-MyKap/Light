@@ -23,7 +23,7 @@ whole-branch review.
 - Answer pause: 600 ms after a correct answer, 1 200 ms after a wrong one; no answers accepted during it.
 - Figures: 0 circle `#ffb52e`, 1 square `#3fd4ff`, 2 triangle `#ff5fd2`, 3 diamond `#8dff6a`, 4 star `#ff8f5e`, 5 hexagon `#eef1ff`.
 - ≤ 6 figures per pan; secret weights 1–10; solver domain 1–20.
-- Logic color: `#8a9cff` (Luz and dark menus), `#2f5bd3` (light menus).
+- Logic color: `#00b9a0` (Luz and dark menus), `#00776a` (light menus).
 - Level-up: badge «¡Nivel N!» / «Más difícil», 1.6 s, `pointer-events: none`, tone `levelUp`, `VIBRATION.levelUp = [16, 40, 16, 40, 32]`; never on first render or on a level drop; `levelUp={false}` in the quiz.
 - Every user-visible text in `es.json` and `en.json`; no new dependencies.
 - Commit messages end with the session attribution lines.

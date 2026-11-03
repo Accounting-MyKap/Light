@@ -110,6 +110,7 @@
 .bar[data-area='speed'] { --c: var(--area-speed); }
 .bar[data-area='flexibility'] { --c: var(--area-flexibility); }
 .bar[data-area='math'] { --c: var(--area-math); }
+.bar[data-area='logic'] { --c: var(--area-logic); }
 .bar[data-area='trivia'] { --c: var(--area-trivia); }
 .bar[data-area='accounting'] { --c: var(--area-accounting); }
 
@@ -148,6 +149,7 @@
 .game[data-area='speed'] { --c: var(--area-speed); }
 .game[data-area='flexibility'] { --c: var(--area-flexibility); }
 .game[data-area='math'] { --c: var(--area-math); }
+.game[data-area='logic'] { --c: var(--area-logic); }
 
 .gameHead {
   display: flex;
