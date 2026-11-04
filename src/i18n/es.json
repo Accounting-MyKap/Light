@@ -47,6 +47,11 @@
     "keypad": {
       "delete": "Borrar",
       "ok": "OK"
+    },
+    "levelUp": {
+      "badge": "¡Nivel {{n}}!",
+      "harder": "Más difícil",
+      "announce": "Subiste al nivel {{n}}"
     }
   },
   "games": {
@@ -272,6 +277,60 @@
         "hintWrong": "Ese número no está en ninguna estrella. Inténtalo otra vez",
         "hintLost": "Si una estrella toca el horizonte, pierdes una vida. Inténtalo otra vez",
         "recap": "Juegas hasta perder 3 vidas: cada estrella que toca el horizonte quita una. Un número equivocado no resta. Con teclado: escribe y pulsa Enter."
+      }
+    },
+    "balance": {
+      "title": "Balanza",
+      "skill": "Razonamiento lógico",
+      "description": "Deduce qué figura pesa más y hacia dónde se inclinará una balanza nueva.",
+      "heaviest": "¿Cuál pesa más?",
+      "tilt": "¿Hacia dónde se inclina?",
+      "left": "Izquierda",
+      "equal": "Igual",
+      "right": "Derecha",
+      "clues": "Pistas",
+      "names": {
+        "circle": "círculo ámbar",
+        "square": "cuadrado cian",
+        "triangle": "triángulo magenta",
+        "diamond": "rombo lima",
+        "star": "estrella naranja",
+        "hexagon": "hexágono blanco"
+      },
+      "count": {
+        "circle_one": "{{count}} círculo ámbar",
+        "circle_other": "{{count}} círculos ámbar",
+        "square_one": "{{count}} cuadrado cian",
+        "square_other": "{{count}} cuadrados cian",
+        "triangle_one": "{{count}} triángulo magenta",
+        "triangle_other": "{{count}} triángulos magenta",
+        "diamond_one": "{{count}} rombo lima",
+        "diamond_other": "{{count}} rombos lima",
+        "star_one": "{{count}} estrella naranja",
+        "star_other": "{{count}} estrellas naranjas",
+        "hexagon_one": "{{count}} hexágono blanco",
+        "hexagon_other": "{{count}} hexágonos blancos"
+      },
+      "balance": "{{left}} frente a {{right}}: {{outcome}}",
+      "and": " y ",
+      "outcome": {
+        "left": "baja la izquierda",
+        "right": "baja la derecha",
+        "level": "quedan iguales",
+        "unknown": "?"
+      },
+      "levelHeaviest": "{{n}} figuras · ¿Cuál pesa más?",
+      "levelTilt": "{{n}} figuras · ¿Hacia dónde se inclina?",
+      "practice": {
+        "round1": "El lado que baja pesa más. ¿Cuál pesa más?",
+        "round2": "Junta las dos balanzas: ¿cuál pesa más de todas?",
+        "round3": "Una balanza recta pesa igual a los dos lados. ¿Hacia dónde se inclina la nueva?",
+        "round4": "¿Y esta?",
+        "hint1": "El platillo del círculo está más abajo: el círculo pesa más",
+        "hint2": "El círculo pesa más que el cuadrado, y el cuadrado más que el triángulo",
+        "hint3": "Un círculo pesa como dos cuadrados; tres cuadrados pesan más: baja la derecha",
+        "hint4": "Dos círculos pesan como cuatro cuadrados: queda recta",
+        "recap": "Tienes 90 segundos. Cada error resta 15 puntos: piensa, pero sin adivinar. Con teclado: 1–5 para la figura; ←, = y → para la balanza nueva."
       }
     }
   },

@@ -18,7 +18,7 @@ const h2s = () => screen.getAllByRole('heading', { level: 2 }).map((h) => h.text
 
 test('sections follow the catalog order, cards show name and skill, no best mark', async () => {
   await renderApp('/games');
-  expect(h2s()).toEqual(['Velocidad', 'Memoria', 'Atención', 'Flexibilidad mental', 'Matemáticas']);
+  expect(h2s()).toEqual(['Velocidad', 'Memoria', 'Atención', 'Flexibilidad mental', 'Lógica', 'Matemáticas']);
   const arrows = screen.getByRole('link', { name: /Flechas/ });
   expect(arrows).toHaveAttribute('href', '/play/arrows');
   expect(arrows).toHaveTextContent('Atención selectiva');
@@ -29,7 +29,10 @@ test('sections follow the catalog order, cards show name and skill, no best mark
   const starShower = screen.getByRole('link', { name: /Lluvia de estrellas/ });
   expect(starShower).toHaveAttribute('href', '/play/star-shower');
   expect(starShower).toHaveTextContent('Cálculo bajo presión');
-  expect(screen.getAllByRole('heading', { level: 3 })).toHaveLength(7);
+  const balance = screen.getByRole('link', { name: /Balanza/ });
+  expect(balance).toHaveAttribute('href', '/play/balance');
+  expect(balance).toHaveTextContent('Razonamiento lógico');
+  expect(screen.getAllByRole('heading', { level: 3 })).toHaveLength(8);
 });
 
 test('a filter shows one category and is announced as pressed', async () => {
@@ -43,7 +46,7 @@ test('a filter shows one category and is announced as pressed', async () => {
     screen.getAllByRole('link').filter((l) => l.getAttribute('href')?.startsWith('/play/')),
   ).toHaveLength(1);
   fireEvent.click(screen.getByRole('button', { name: 'Todo' }));
-  expect(h2s()).toHaveLength(5);
+  expect(h2s()).toHaveLength(6);
 });
 
 test('the filter comes from the address', async () => {
@@ -52,11 +55,18 @@ test('the filter comes from the address', async () => {
   expect(screen.getByRole('button', { name: 'Memoria' })).toHaveAttribute('aria-pressed', 'true');
 });
 
-test.each(['/games?area=logic', '/games?area=', '/games?area=MEMORY', '/games?area=bogus'])(
+test('the Logic filter shows Balanza', async () => {
+  await renderApp('/games?area=logic');
+  expect(h2s()).toEqual(['Lógica']);
+  expect(screen.getByRole('link', { name: /Balanza/ })).toHaveAttribute('href', '/play/balance');
+});
+
+// Lenguaje has no game yet, so its filter falls back to everything, like an unknown one.
+test.each(['/games?area=language', '/games?area=', '/games?area=MEMORY', '/games?area=bogus'])(
   '%s shows everything',
   async (route) => {
     await renderApp(route);
-    expect(h2s()).toHaveLength(5);
+    expect(h2s()).toHaveLength(6);
     expect(screen.getByRole('button', { name: 'Todo' })).toHaveAttribute('aria-pressed', 'true');
   },
 );
@@ -101,7 +111,7 @@ test('a failing plan read hides only the today row', async () => {
   await renderApp('/games');
   await vi.waitFor(() => expect(get).toHaveBeenCalled());
   await new Promise((resolve) => setTimeout(resolve, 100)); // a rejected live query rethrows on a later render
-  expect(h2s()).toHaveLength(5);
+  expect(h2s()).toHaveLength(6);
   expect(screen.queryByText('Tus juegos de hoy')).toBeNull();
 });
 
@@ -115,5 +125,13 @@ test('the catalog holds only the training games: the quiz games live in the Preg
   expect(hrefs.some((href) => /^\/play\/(trivia|accounting)-/.test(href))).toBe(false);
   // No filter pill for the two quiz banks either.
   const pills = within(screen.getByRole('group', { name: 'Categorías' })).getAllByRole('button');
-  expect(pills.map((b) => b.textContent)).toEqual(['Todo', 'Velocidad', 'Memoria', 'Atención', 'Flexibilidad mental', 'Matemáticas']);
+  expect(pills.map((b) => b.textContent)).toEqual([
+    'Todo',
+    'Velocidad',
+    'Memoria',
+    'Atención',
+    'Flexibilidad mental',
+    'Lógica',
+    'Matemáticas',
+  ]);
 });

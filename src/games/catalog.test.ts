@@ -2,7 +2,7 @@ import { CATALOG_AREAS, catalogAreas } from './catalog';
 import { GAMES } from './registry';
 
 test('catalog areas with games, in catalog order', () => {
-  expect(catalogAreas(GAMES)).toEqual(['speed', 'memory', 'attention', 'flexibility', 'math']);
+  expect(catalogAreas(GAMES)).toEqual(['speed', 'memory', 'attention', 'flexibility', 'logic', 'math']);
   expect(CATALOG_AREAS).toHaveLength(7);
 });
 

@@ -24,3 +24,8 @@ test('vibrate never throws even if the browser refuses', () => {
   });
   expect(() => vibrate(12)).not.toThrow();
 });
+
+test('a level-up has its own pattern', async () => {
+  const { VIBRATION } = await import('./vibrate');
+  expect(VIBRATION.levelUp).toEqual([16, 40, 16, 40, 32]);
+});

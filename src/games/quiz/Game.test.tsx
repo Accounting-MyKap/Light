@@ -731,3 +731,14 @@ describe('in the Luz frame', () => {
     // setupTests fails the test if React saw two siblings with the same key.
   });
 });
+
+test('a quiz round never shows the level-up badge, even after four right answers in a row', async () => {
+  await renderGame();
+  for (let i = 0; i < 4; i++) {
+    advance(1000);
+    fireEvent.click(correctOption());
+    fireEvent.click(screen.getByRole('button', { name: 'Siguiente' }));
+  }
+  expect(hud('Nivel')).toBe('2');
+  expect(screen.queryByTestId('level-up')).not.toBeInTheDocument();
+});

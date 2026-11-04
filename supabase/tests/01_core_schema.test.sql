@@ -17,13 +17,14 @@ select has_table('public', 'daily_completions', 'public.daily_completions exists
 select results_eq(
   $$ select id, area, max_score from public.games where area not in ('trivia', 'accounting') order by id collate "C" $$,
   $$ values ('arrows', 'attention', 8000),
+            ('balance', 'logic', 4000),
             ('quick-math', 'math', 8000),
             ('rule-switch', 'flexibility', 10000),
             ('same-different', 'speed', 12000),
             ('sequence-lights', 'memory', 960),
             ('star-shower', 'math', 4000),
             ('switchyard', 'attention', 2000) $$,
-  'games holds the 7 training games with their score bounds'
+  'games holds the 8 training games with their score bounds'
 );
 
 -- ---------------------------------------------------------------- table privileges

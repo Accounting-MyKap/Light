@@ -61,6 +61,7 @@
 .dot[data-area='speed'] { background: var(--area-speed); }
 .dot[data-area='flexibility'] { background: var(--area-flexibility); }
 .dot[data-area='math'] { background: var(--area-math); }
+.dot[data-area='logic'] { background: var(--area-logic); }
 .grid {
   list-style: none;
   margin: 0;

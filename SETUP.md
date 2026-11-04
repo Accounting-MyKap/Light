@@ -22,16 +22,17 @@ sin sincronización.
    *publishable key*; las dos están en la configuración de la API del proyecto. Son públicas y van en
    la app. Copia solo la *publishable key*; nunca la *secret* / *service_role*.
 
-2. **Aplicar las 6 migraciones** de `supabase/migrations/`, en este orden:
+2. **Aplicar las 7 migraciones** de `supabase/migrations/`, en este orden:
    1. `20261020000000_core_schema.sql`
    2. `20261020000100_percentile.sql`
    3. `20261020000200_cleanup.sql`
    4. `20261102000000_quiz_games.sql`
    5. `20261103000000_switchyard.sql`
    6. `20261103000100_star_shower.sql`
+   7. `20261104000000_balance.sql`
 
-   Las migraciones 4 a 6 agregan a la tabla `games` las filas de los juegos de preguntas, de Guardagujas
-   y de Lluvia de estrellas; sin ellas, el servidor rechaza todas las partidas de esos juegos.
+   Las migraciones 4 a 7 agregan a la tabla `games` las filas de los juegos de preguntas, de Guardagujas,
+   de Lluvia de estrellas y de Balanza; sin ellas, el servidor rechaza todas las partidas de esos juegos.
 
    Puedes pegarlas una por una en el SQL Editor de Supabase, aplicarlas con el conector de Supabase
    (por ejemplo, para que Claude lo haga) o con la CLI (`supabase link` y `supabase db push`).
