@@ -263,9 +263,10 @@
       "result": {
         "title": "Your trains",
         "home": "Trains to their station: {{home}} of {{arrived}}",
-        "bestStreak_one": "Best streak: {{count}} in a row",
-        "bestStreak_other": "Best streak: {{count}} in a row",
-        "worstStation": "Missed most: {{station}} ({{n}})",
+        "bestStreak_one": "Best streak: {{count}} train in a row",
+        "bestStreak_other": "Best streak: {{count}} trains in a row",
+        "worstStation_one": "Missed most: {{station}} ({{count}} train)",
+        "worstStation_other": "Missed most: {{station}} ({{count}} trains)",
         "stations": {
           "circle": "the red circle station",
           "square": "the yellow square station",

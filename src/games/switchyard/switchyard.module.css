@@ -247,6 +247,11 @@
   animation-play-state: paused !important;
 }
 
+/* The fireflies, leaves and snowflakes go away rather than hang still in mid-air, half faded. */
+.board[data-lite] .air {
+  display: none;
+}
+
 /* Reduced motion: no beacon and the arrow jumps. The trains still move: moving them is the game. */
 @media (prefers-reduced-motion: reduce) {
   .switch::before {

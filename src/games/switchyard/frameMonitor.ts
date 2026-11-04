@@ -8,8 +8,11 @@
  * hidden page, a stall) is not a frame at all: the watch starts over after it.
  */
 
-/** Frames slower than this on average (under about 35 a second) are too slow for the decoration. */
-export const SLOW_FRAME_MS = 28;
+/**
+ * Frames slower than this on average (under about 26 a second) are too slow for the decoration. Above 33 ms, so a
+ * phone held at 30 a second on purpose (an iPhone in Low Power Mode) keeps its scenery.
+ */
+export const SLOW_FRAME_MS = 38;
 export const WINDOW_MS = 500;
 export const SLOW_WINDOWS = 4;
 export const GAP_MS = 250;

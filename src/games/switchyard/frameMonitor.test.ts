@@ -24,8 +24,8 @@ test('a smooth yard, at 60 or 40 frames a second, never turns lite', () => {
   expect(liteAfter(1000 / 120)).toBeNull();
 });
 
-test('a slow one (under about 35 frames a second) turns lite after about 2 s of it', () => {
-  for (const every of [30, 1000 / 30, 50, 100]) {
+test('a slow one (under about 26 frames a second) turns lite after about 2 s of it', () => {
+  for (const every of [40, 50, 100]) {
     const at = liteAfter(every);
     expect(at, `${every} ms frames`).not.toBeNull();
     expect(at!, `${every} ms frames`).toBeGreaterThanOrEqual(1900);
@@ -62,4 +62,10 @@ test('once lite, it stays lite for the rest of the game, however smooth the fram
   expect(m.lite).toBe(true);
   // Nothing more to measure: the same monitor comes back.
   expect(recordFrame(lite, lite.last! + 16)).toBe(lite);
+});
+
+test('a phone held at 30 frames a second (an iPhone in Low Power Mode) never turns lite', () => {
+  let m = createFrameMonitor();
+  for (let t = 0; t <= 10_000; t += 1000 / 30) m = recordFrame(m, t);
+  expect(m.lite).toBe(false);
 });

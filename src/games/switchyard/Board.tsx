@@ -83,6 +83,8 @@ export function Board({
         <Tracks map={map} switches={switches} />
         <SwitchDisks map={map} switches={switches} />
       </svg>
+      {/* What drifts in the air passes over the ground and behind the trains, the stations and the tunnel. */}
+      <Fireflies map={map} />
       <svg className={styles.layer} viewBox={viewBox} aria-hidden="true">
         {trains.map((train) => (
           <TrainView key={train.id} map={map} train={train} uid={uid} />
@@ -97,7 +99,6 @@ export function Board({
       <svg className={styles.layer} viewBox={viewBox} aria-hidden="true">
         <Front map={map} uid={uid} />
       </svg>
-      <Fireflies map={map} />
       <SwitchButtons map={map} switches={switches} onToggle={onToggle} />
     </div>
   );

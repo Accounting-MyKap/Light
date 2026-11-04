@@ -55,8 +55,12 @@ export function playTone(kind: ToneKind): void {
     const ctx = getContext();
     if (!ctx) return;
     // A context made outside a tap (a train leaving the tunnel) starts suspended on some phones (iPhone); asking on
-    // every tone lets the next one played from a tap wake it.
-    if (ctx.state !== 'running') void ctx.resume().catch(() => undefined);
+    // every tone lets the next one played from a tap wake it. Its clock stands still meanwhile, so tones scheduled now
+    // would all burst out together once it wakes: until then, play nothing.
+    if (ctx.state !== 'running') {
+      void ctx.resume().catch(() => undefined);
+      return;
+    }
     for (const note of TONES[kind]) {
       const osc = ctx.createOscillator();
       const gain = ctx.createGain();

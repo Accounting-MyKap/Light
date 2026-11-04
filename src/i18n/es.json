@@ -263,9 +263,10 @@
       "result": {
         "title": "Tus trenes",
         "home": "Trenes a su estación: {{home}} de {{arrived}}",
-        "bestStreak_one": "Mejor racha: {{count}} seguido",
-        "bestStreak_other": "Mejor racha: {{count}} seguidos",
-        "worstStation": "Donde más fallaste: {{station}} ({{n}})",
+        "bestStreak_one": "Mejor racha: {{count}} tren seguido",
+        "bestStreak_other": "Mejor racha: {{count}} trenes seguidos",
+        "worstStation_one": "Donde más fallaste: {{station}} ({{count}} tren)",
+        "worstStation_other": "Donde más fallaste: {{station}} ({{count}} trenes)",
         "stations": {
           "circle": "la estación roja del círculo",
           "square": "la estación amarilla del cuadrado",

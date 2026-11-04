@@ -131,6 +131,14 @@ test('a context the browser left suspended is resumed, so a later tap can wake t
   expect(resume).toHaveBeenCalled();
 });
 
+test('a suspended context plays nothing yet: its clock is stopped, and queued tones would all burst out on the first tap', async () => {
+  const { notes, playTone: play } = await withFakeAudio('suspended');
+  play('whistle');
+  play('chime');
+  play('wrong');
+  expect(notes).toHaveLength(0);
+});
+
 test('a context that fails never breaks the game', async () => {
   const { playTone: play } = await withFakeAudio();
   vi.stubGlobal(

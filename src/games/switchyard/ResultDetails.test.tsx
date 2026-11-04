@@ -35,8 +35,8 @@ test('sums up the trains: home of arrived, the best run, and the station missed 
     .map((li) => li.textContent);
   expect(lines).toEqual([
     'Trenes a su estación: 18 de 21',
-    'Mejor racha: 7 seguidos',
-    'Donde más fallaste: la estación azul de la cruz (3)',
+    'Mejor racha: 7 trenes seguidos',
+    'Donde más fallaste: la estación azul de la cruz (3 trenes)',
   ]);
 });
 
@@ -55,7 +55,7 @@ test('without misses there is no station line, and one train home in a row reads
   render(<SwitchyardResultDetails result={resultOf({ home: 1, arrived: 1, bestStreak: 1, missed: [] })} />);
   expect(screen.getAllByRole('listitem').map((li) => li.textContent)).toEqual([
     'Trenes a su estación: 1 de 1',
-    'Mejor racha: 1 seguido',
+    'Mejor racha: 1 tren seguido',
   ]);
   expect(screen.queryByText(/Donde más fallaste/)).not.toBeInTheDocument();
 });
@@ -64,7 +64,7 @@ test('a game with no train home has no best run to tell', () => {
   render(<SwitchyardResultDetails result={resultOf({ home: 0, arrived: 2, bestStreak: 0, missed: [{ style: 1, count: 2 }] })} />);
   expect(screen.getAllByRole('listitem').map((li) => li.textContent)).toEqual([
     'Trenes a su estación: 0 de 2',
-    'Donde más fallaste: la estación amarilla del cuadrado (2)',
+    'Donde más fallaste: la estación amarilla del cuadrado (2 trenes)',
   ]);
 });
 
@@ -83,29 +83,29 @@ test('every station has its spoken name, in both languages', async () => {
       const view = render(
         <SwitchyardResultDetails result={resultOf({ home: 0, arrived: 1, bestStreak: 0, missed: [{ style, count: 1 }] })} />,
       );
-      out.push(screen.getByText(/\(1\)$/).textContent!);
+      out.push(screen.getByText(/\(1 (tren|train)\)$/).textContent!);
       view.unmount();
     }
     return out;
   };
   expect(await names()).toEqual([
-    'Donde más fallaste: la estación roja del círculo (1)',
-    'Donde más fallaste: la estación amarilla del cuadrado (1)',
-    'Donde más fallaste: la estación verde del triángulo (1)',
-    'Donde más fallaste: la estación morada del rombo (1)',
-    'Donde más fallaste: la estación naranja de la estrella (1)',
-    'Donde más fallaste: la estación rosada del corazón (1)',
-    'Donde más fallaste: la estación azul de la cruz (1)',
+    'Donde más fallaste: la estación roja del círculo (1 tren)',
+    'Donde más fallaste: la estación amarilla del cuadrado (1 tren)',
+    'Donde más fallaste: la estación verde del triángulo (1 tren)',
+    'Donde más fallaste: la estación morada del rombo (1 tren)',
+    'Donde más fallaste: la estación naranja de la estrella (1 tren)',
+    'Donde más fallaste: la estación rosada del corazón (1 tren)',
+    'Donde más fallaste: la estación azul de la cruz (1 tren)',
   ]);
   await initI18n('en');
   expect(await names()).toEqual([
-    'Missed most: the red circle station (1)',
-    'Missed most: the yellow square station (1)',
-    'Missed most: the green triangle station (1)',
-    'Missed most: the purple diamond station (1)',
-    'Missed most: the orange star station (1)',
-    'Missed most: the pink heart station (1)',
-    'Missed most: the blue cross station (1)',
+    'Missed most: the red circle station (1 train)',
+    'Missed most: the yellow square station (1 train)',
+    'Missed most: the green triangle station (1 train)',
+    'Missed most: the purple diamond station (1 train)',
+    'Missed most: the orange star station (1 train)',
+    'Missed most: the pink heart station (1 train)',
+    'Missed most: the blue cross station (1 train)',
   ]);
 });
 
@@ -115,7 +115,7 @@ test('in English', async () => {
   expect(screen.getByRole('region', { name: 'Your trains' })).toBeInTheDocument();
   expect(screen.getAllByRole('listitem').map((li) => li.textContent)).toEqual([
     'Trains to their station: 18 of 21',
-    'Best streak: 7 in a row',
-    'Missed most: the blue cross station (3)',
+    'Best streak: 7 trains in a row',
+    'Missed most: the blue cross station (3 trains)',
   ]);
 });

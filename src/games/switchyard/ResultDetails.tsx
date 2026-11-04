@@ -34,7 +34,7 @@ export function SwitchyardResultDetails({ result }: { result: GameResult }) {
             <span>
               {t('games.switchyard.result.worstStation', {
                 station: t(`games.switchyard.result.stations.${look.shape}`),
-                n: worst.count,
+                count: worst.count,
               })}
             </span>
           </li>
