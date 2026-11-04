@@ -36,6 +36,8 @@ export interface BoardProps {
   onToggle: (index: number) => void;
   /** No smoke at all, and the arrival marks stand still. */
   reducedMotion?: boolean;
+  /** A phone too slow for the decoration: `data-lite` on the board, where the CSS stops its decorative animations. */
+  lite?: boolean;
   /** Width in CSS pixels; without it the board takes the width of its box (up to 420 px). */
   width?: number;
 }
@@ -58,6 +60,7 @@ export function Board({
   now = 0,
   onToggle,
   reducedMotion = false,
+  lite = false,
   width,
 }: BoardProps) {
   const { t } = useTranslation();
@@ -70,6 +73,7 @@ export function Board({
       style={width === undefined ? undefined : { width }}
       role="group"
       aria-label={t('games.switchyard.board')}
+      data-lite={lite ? '' : undefined}
     >
       <svg className={styles.layer} viewBox={viewBox} aria-hidden="true">
         <Defs uid={uid} />

@@ -109,10 +109,15 @@
   transition: transform 150ms ease-out;
 }
 
-/* The tap area of a switch: transparent over the disc, at least 44 px. */
+/* The tap area of a switch: transparent over the disc, 14 % of the board and at least 44 px, but never more than 19 %
+   of it. Switches stand at least 70 of the 360 board units apart (19.4 %), so on a board too narrow for 44 px (under
+   about 230 px: a short landscape phone) the buttons shrink instead of covering each other. The app's 44 px floor
+   for every button is lifted here for that. */
 .switch {
   position: absolute;
-  width: max(44px, 14%);
+  width: max(min(44px, 19%), 14%);
+  min-width: 0;
+  min-height: 0;
   aspect-ratio: 1;
   padding: 0;
   border: none;
@@ -122,6 +127,8 @@
   cursor: pointer;
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
+  /* Its key number is sized from its width. */
+  container-type: inline-size;
 }
 
 .switch:active {
@@ -133,27 +140,111 @@
   outline-offset: 2px;
 }
 
-/* The number of the key that flips the switch, only where there is a keyboard and a mouse. */
+/* The number of the key that flips the switch, only where there is a keyboard and a mouse. It shrinks with a button
+   smaller than 44 px (cqw: hundredths of the button's width), so it never hides the disc. */
 .key {
   display: none;
   position: absolute;
   top: 0;
   right: 0;
-  min-width: 18px;
-  height: 18px;
-  padding: 0 4px;
-  border-radius: 9px;
+  min-width: min(18px, 41cqw);
+  height: min(18px, 41cqw);
+  padding: 0 min(4px, 9cqw);
+  border-radius: 999px;
   background: var(--luz-text, #eef1ff);
   color: var(--luz-ink, #0b0d1a);
-  font-size: 11px;
+  font-size: min(11px, 25cqw);
   font-weight: 800;
-  line-height: 18px;
+  line-height: min(18px, 41cqw);
 }
 
 @media (hover: hover) and (pointer: fine) {
   .key {
     display: block;
   }
+}
+
+/* «¡Más rápido!»: a pill in the color of the game at the top of the game zone, for a moment when the level goes
+   up. No map has a switch or a station in the top sixth of the board (only the tunnel), so the pill never hides
+   one; it takes no taps either. Its duration comes from the game (--faster-ms). */
+.fasterSlot {
+  position: absolute;
+  top: 0.375rem;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.faster {
+  margin: 0;
+  padding: 0.3em 1em;
+  border: 1.5px solid var(--game, #3fd4ff);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--luz-bg, #090b19) 84%, transparent);
+  box-shadow: 0 0 22px color-mix(in srgb, var(--game, #3fd4ff) 45%, transparent);
+  color: var(--game, #3fd4ff);
+  font-size: 1rem;
+  font-weight: 800;
+  white-space: nowrap;
+  text-shadow: 0 0 12px color-mix(in srgb, var(--game, #3fd4ff) 60%, transparent);
+  animation: faster var(--faster-ms, 1200ms) ease-out both;
+}
+
+@keyframes faster {
+  0% {
+    opacity: 0;
+    transform: translateY(10px) scale(0.85);
+  }
+
+  18%,
+  78% {
+    opacity: 1;
+    transform: none;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
+
+/* Reduced motion: it only appears and fades. The app-wide rule would cut the animation to nothing, and with it the
+   toast, so its duration stays. */
+@media (prefers-reduced-motion: reduce) {
+  .faster {
+    animation-name: faster-still;
+    animation-duration: var(--faster-ms, 1200ms) !important;
+  }
+}
+
+@keyframes faster-still {
+  0% {
+    opacity: 0;
+  }
+
+  12%,
+  78% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Lite: a phone too slow for the decoration (frameMonitor.ts). The beacons go out, as with reduced motion, and every
+   other animation on the board (the fireflies, and any particle the scenery adds) holds still where it is, so the
+   frames go to the trains. Paused rather than removed: a particle stays where it was instead of jumping back to its
+   first keyframe. The arrow of a switch is a transition, not an animation, so it still turns. */
+.board[data-lite] .switch::before {
+  animation: none;
+  opacity: 0;
+}
+
+.board[data-lite] *,
+.board[data-lite] *::before,
+.board[data-lite] *::after {
+  animation-play-state: paused !important;
 }
 
 /* Reduced motion: no beacon and the arrow jumps. The trains still move: moving them is the game. */

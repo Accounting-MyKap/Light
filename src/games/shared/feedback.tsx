@@ -1,6 +1,6 @@
 import { createContext, useCallback, useContext, useState, type ReactNode } from 'react';
-import { playTone } from '../../core/sound';
-import { VIBRATION, vibrate } from '../../core/vibrate';
+import { playTone, type ToneKind } from '../../core/sound';
+import { VIBRATION, vibrate, type VibrationPattern } from '../../core/vibrate';
 import { useSettings } from '../../data/settings';
 
 export type FeedbackKind = 'correct' | 'wrong' | 'timeout';
@@ -34,17 +34,33 @@ export function useFeedbackSignal(): FeedbackSignal | null {
 
 /**
  * Reacts to an answer: sound and vibration each follow their own setting, and the signal is published
- * when there is a provider (the games work without one).
+ * when there is a provider (the games work without one). `tone` plays instead of the usual sound of the answer
+ * (Guardagujas rings a small chime when a train is home).
  */
-export function useFeedback(): (kind: FeedbackKind) => void {
+export function useFeedback(): (kind: FeedbackKind, tone?: ToneKind) => void {
   const { sound, vibration } = useSettings();
   const emit = useContext(EmitContext);
   return useCallback(
-    (kind) => {
-      if (sound) playTone(kind === 'correct' ? 'correct' : 'wrong');
+    (kind, tone) => {
+      if (sound) playTone(tone ?? (kind === 'correct' ? 'correct' : 'wrong'));
       if (vibration) vibrate(VIBRATION[kind]);
       emit?.(kind);
     },
     [sound, vibration, emit],
+  );
+}
+
+/**
+ * A cue that is not an answer (a train leaving, a switch flipping): its sound and its vibration follow the same
+ * settings as the answers, and it publishes no signal, so the frame draws nothing for it.
+ */
+export function useCue(): (tone: ToneKind, pattern?: VibrationPattern) => void {
+  const { sound, vibration } = useSettings();
+  return useCallback(
+    (tone, pattern) => {
+      if (sound) playTone(tone);
+      if (vibration && pattern !== undefined) vibrate(pattern);
+    },
+    [sound, vibration],
   );
 }
