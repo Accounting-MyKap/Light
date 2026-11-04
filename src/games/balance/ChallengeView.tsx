@@ -72,7 +72,8 @@ function useBoxSize(box: RefObject<HTMLElement | null>): { width: number; height
 }
 
 /**
- * The clues and, for «which way will it tip?», the new balance, as one picture as large as the game zone allows.
+ * The clues and, for «which way will it tip?», the new balance, as one picture as large as the game zone allows (the
+ * SVG fits its box and keeps its proportions; the measured box only picks one column or two).
  * `revealed` tips the new balance to its outcome. Carries the kind and the answer for the end-to-end tests.
  */
 export function ChallengeView({ challenge, revealed }: { challenge: Challenge; revealed: boolean }) {
@@ -81,8 +82,6 @@ export function ChallengeView({ challenge, revealed }: { challenge: Challenge; r
   const box = useBoxSize(boxRef);
   const layout = layoutChallenge(challenge, chooseColumns(challenge, box));
   const { clues, question, width: sceneWidth, height } = layout;
-  // As large as the box allows, keeping the proportions; the width of the box until it is measured.
-  const width = box ? Math.floor(fittedScale(layout, box) * sceneWidth) : undefined;
   const lineY = question ? question.y - QUESTION_GAP / 2 : 0;
   return (
     <div
@@ -95,7 +94,6 @@ export function ChallengeView({ challenge, revealed }: { challenge: Challenge; r
       <svg
         className={styles.scene}
         viewBox={`0 0 ${sceneWidth} ${height}`}
-        style={width ? { width } : undefined}
         role="group"
         aria-label={t('games.balance.clues')}
         overflow="visible"

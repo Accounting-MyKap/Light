@@ -2,7 +2,7 @@ import { mkdirSync } from 'node:fs';
 import { expect, test, type Locator, type Page } from '@playwright/test';
 import { expectTall } from './helpers';
 
-const GAMES = ['sequence-lights', 'arrows', 'same-different', 'rule-switch', 'quick-math', 'switchyard'] as const;
+const GAMES = ['sequence-lights', 'arrows', 'same-different', 'rule-switch', 'quick-math', 'switchyard', 'balance'] as const;
 type GameId = (typeof GAMES)[number];
 
 const SCREENSHOT_DIR = 'test-results/practice';
@@ -40,6 +40,7 @@ async function answerWrong(page: Page, id: GameId) {
     await page.keyboard.press('1');
   }
   if (id === 'arrows') await controls(page).nth(0).click(); // the middle arrow points right
+  if (id === 'balance') await controls(page).nth(1).click(); // the circle is heavier: the square is wrong
   if (id === 'same-different') await controls(page).nth(0).click(); // the star is the same: «No» is wrong
   if (id === 'rule-switch') await page.getByTestId('target-right').click(); // the left card matches
   if (id === 'sequence-lights') await controls(page).nth(0).click(); // the sequence starts at cell 2
@@ -461,5 +462,39 @@ test.describe('review screenshots', () => {
     await shot(page, 'switchyard-4-done', page.getByText(/^Tienes 90 segundos/));
     await page.getByRole('button', { name: 'Comenzar', exact: true }).click();
     await expect(page.locator('[data-game="switchyard"]')).toBeVisible();
+  });
+});
+
+test.describe('Balanza practice, start to finish', () => {
+  test.use({ viewport: { width: 390, height: 844 }, colorScheme: 'dark' });
+
+  test('four rounds with a hint, «¡Listo!», then the real game; screenshots for the owner', async ({ page }) => {
+    mkdirSync(SCREENSHOT_DIR, { recursive: true });
+    await page.goto('./#/play/balance');
+    await page.getByRole('button', { name: 'Empezar práctica', exact: true }).click();
+    await shot(page, 'balance-1-guide', page.getByText('El lado que baja pesa más. ¿Cuál pesa más?'));
+
+    await page.getByRole('button', { name: 'cuadrado cian' }).click();
+    await shot(page, 'balance-2-hint', page.getByText('El platillo del círculo está más abajo: el círculo pesa más'));
+    await page.getByRole('button', { name: 'círculo ámbar' }).click();
+    await expect(bubble(page)).toHaveText('¡Bien!');
+
+    await expect(page.getByText('Práctica 2 de 4')).toBeVisible();
+    await page.getByRole('button', { name: 'círculo ámbar' }).click();
+    await expect(bubble(page)).toHaveText('¡Bien!');
+
+    await expect(page.getByText('Práctica 3 de 4')).toBeVisible();
+    await shot(page, 'balance-3-tilt', page.getByText(/^Una balanza recta pesa igual/));
+    await page.getByRole('button', { name: /Derecha/ }).click();
+    await expect(page.locator('[data-question="true"]')).toHaveAttribute('data-outcome', 'right');
+    await page.waitForTimeout(500); // the new balance has tipped
+    await shot(page, 'balance-4-tipped', bubble(page));
+
+    await expect(page.getByText('Práctica 4 de 4')).toBeVisible();
+    await page.getByRole('button', { name: /Igual/ }).click();
+    await expect(page.getByRole('heading', { level: 1, name: '¡Listo! Ahora va en serio' })).toBeVisible();
+    await shot(page, 'balance-5-done', page.getByText(/^Tienes 90 segundos/));
+    await page.getByRole('button', { name: 'Comenzar', exact: true }).click();
+    await expect(page.locator('[data-game="balance"]')).toBeVisible();
   });
 });

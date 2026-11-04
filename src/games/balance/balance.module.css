@@ -3,21 +3,23 @@
  * GameFrame's bottom zone. Colors come from the Luz tokens (--game, --luz-*) and from each figure's own color.
  */
 
-/* Takes the free height of the game zone, so the scene can be fitted to it. */
+/*
+ * Takes the free height of the game zone. The scene is laid over it and fits inside (the SVG keeps its proportions),
+ * so it never adds height of its own: a scene in the flow would push the frame taller than the screen.
+ */
 .box {
+  position: relative;
   flex: 1;
   min-height: 0;
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .scene {
+  position: absolute;
+  inset: 0;
   display: block;
   width: 100%;
-  max-width: 34rem;
-  height: auto;
+  height: 100%;
   animation: drop-in 250ms ease-out both;
 }
 
