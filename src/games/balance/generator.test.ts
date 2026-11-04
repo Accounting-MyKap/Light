@@ -6,6 +6,7 @@ import {
   clueCountForLevel,
   figureCountForLevel,
   makeChallenge,
+  settledForAnyWeight,
   type Challenge,
 } from './generator';
 import { consistentWeights, determinedOutcome, outcomeOf, uniqueHeaviest, type Balance, type Outcome } from './solver';
@@ -197,4 +198,50 @@ test('the new balance always needs the clues: neither pan holds everything the o
       expect(contains(c.question.left, c.question.right) || contains(c.question.right, c.question.left)).toBe(false);
     }
   }
+});
+
+test('with a tipped clue the answer holds for any weights, not only up to 20: a figure only known to be heavier is unbounded', () => {
+  // A new balance can hold up to 54 times the lightest figure, so weights up to 200 show any reliance on a cap of 20.
+  for (const level of [8, 10]) {
+    for (const c of challenges(level)) {
+      if (c.kind !== 'tilt' || c.clues.every((clue) => clue.outcome === 'level')) continue;
+      expect(determinedOutcome(c.figures, c.clues, c.question, 200), `level ${level}: ${JSON.stringify(c)}`).toBe(c.answer);
+    }
+  }
+}, 300_000);
+
+describe('settledForAnyWeight', () => {
+  // Circle = 2 squares (square 1, circle 2); the star is heavier than the circle, so it weighs more than 2.
+  const clues: Balance[] = [
+    { left: [0], right: [1, 1], outcome: 'level' },
+    { left: [4], right: [0], outcome: 'left' },
+  ];
+  const weights = { 0: 2, 1: 1, 4: 5 };
+
+  test('a star against 2 squares: heavier than a circle, so heavier than 2 squares, whatever its weight', () => {
+    expect(settledForAnyWeight({ left: [4], right: [1, 1] }, clues, weights, 'left')).toBe(true);
+  });
+
+  test('a star against 3 squares is open: it weighs more than 2, but maybe less than 3', () => {
+    expect(settledForAnyWeight({ left: [4], right: [1, 1, 1] }, clues, weights, 'left')).toBe(false);
+  });
+
+  test('the reviewer’s case: a heavy figure against many light ones is open however far the cap of 20 seemed to settle it', () => {
+    // Square lighter than star; circle = 3 squares... (square 1, star free above 1).
+    const open: Balance[] = [
+      { left: [1], right: [4], outcome: 'right' },
+      { left: [1], right: [0, 0, 0], outcome: 'level' },
+      { left: [2], right: [1, 1], outcome: 'level' },
+    ];
+    const w = { 0: 1, 1: 3, 2: 6, 4: 7 };
+    expect(settledForAnyWeight({ left: [0, 2, 2], right: [4, 4, 4, 4] }, open, w, 'right')).toBe(false);
+  });
+
+  test('the same figure on both pans cancels out, so a level answer can stand', () => {
+    expect(settledForAnyWeight({ left: [4, 0], right: [4, 1, 1] }, clues, weights, 'level')).toBe(true);
+  });
+
+  test('without a tipped clue there is nothing more to check', () => {
+    expect(settledForAnyWeight({ left: [0], right: [1] }, [clues[0]], weights, 'left')).toBe(true);
+  });
 });

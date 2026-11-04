@@ -74,6 +74,45 @@ function contains(big: readonly FigureId[], small: readonly FigureId[]): boolean
   });
 }
 
+/**
+ * Whether the new balance tips the same way for every positive weight the clues allow, not only for the weights up to
+ * 20 the solver tries. It matters with a tipped clue (levels 8 and 10): the figure in it that no other clue mentions
+ * is only known to be heavier (or lighter) than the other one, so its weight `t` is unbounded above (or only bounded
+ * by it). Every other weight is fixed by the equivalences, so the difference between the pans is `c·t + d`, linear
+ * in `t` over an open interval, and the outcome is settled when that line keeps one sign over the whole interval.
+ */
+export function settledForAnyWeight(
+  question: { left: readonly FigureId[]; right: readonly FigureId[] },
+  clues: readonly Balance[],
+  weights: Weights,
+  target: Outcome,
+): boolean {
+  const tipped = clues.find((clue) => clue.outcome !== 'level');
+  if (!tipped) return true;
+  const inLevelClues = new Set(clues.filter((clue) => clue.outcome === 'level').flatMap((clue) => [...clue.left, ...clue.right]));
+  const pair = [...tipped.left, ...tipped.right];
+  const free = pair.find((f) => !inLevelClues.has(f));
+  if (free === undefined || pair.length !== 2) return false;
+  const other = pair.find((f) => f !== free)!;
+  // The free figure is heavier than the other one when its pan goes down.
+  const freeOnLeft = tipped.left[0] === free;
+  const heavier = (tipped.outcome === 'left') === freeOnLeft;
+  const bound = weights[other];
+
+  const count = (pan: readonly FigureId[], f: FigureId) => pan.filter((x) => x === f).length;
+  const c = count(question.left, free) - count(question.right, free);
+  const rest = (pan: readonly FigureId[]) => pan.filter((f) => f !== free).reduce<number>((sum, f) => sum + weights[f], 0);
+  const d = rest(question.left) - rest(question.right);
+  const want = target === 'left' ? 1 : target === 'right' ? -1 : 0;
+
+  if (c === 0) return Math.sign(d) === want;
+  if (want === 0) return false; // a line that is not flat crosses 0 at one weight at most: never level throughout
+  // The two ends of the open interval of `t`: (bound, ∞) when heavier, (0, bound) when lighter.
+  const atBound = c * bound + d;
+  if (heavier) return Math.sign(c) === want && atBound * want >= 0;
+  return d * want >= 0 && atBound * want >= 0;
+}
+
 // «Which is heaviest?» (levels 1–4).
 
 function heaviest(level: number, rng: Rng): Challenge | null {
@@ -202,6 +241,7 @@ function tilt(level: number, target: Outcome, rng: Rng): Challenge | null {
     const question = { left, right, outcome: target };
     if (clues.some((clue) => sameBalance(clue, question))) continue;
     if (determinedOutcome(figures, clues, question) !== target) continue;
+    if (!settledForAnyWeight(question, clues, weights, target)) continue;
     return { kind: 'tilt', figures, clues, question, answer: target };
   }
   return null;
