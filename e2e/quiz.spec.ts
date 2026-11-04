@@ -1,5 +1,5 @@
 import { mkdirSync } from 'node:fs';
-import { expect, test, type Locator } from '@playwright/test';
+import { expect, test, type Page } from '@playwright/test';
 import { finishQuizRound, startGame } from './helpers';
 
 test('plays a quiz round from the Quiz tab to the review', async ({ page }) => {
@@ -185,81 +185,98 @@ test.describe('the quiz result on a small screen', () => {
   });
 });
 
-test.describe('the top bar of a quiz on a small phone', () => {
+test.describe('the time bar of a quiz on a small phone', () => {
   // Reduced motion, so the page jumps back up for each new question instead of gliding: every scroll is over at once.
   test.use({ viewport: { width: 320, height: 568 }, reducedMotion: 'reduce' });
 
-  /** How many of the corners and the middle of a control show something else: the top bar drawn over it, say. */
-  const coveredPoints = (control: Locator) =>
-    control.evaluate((element) => {
-      const r = element.getBoundingClientRect();
-      const points = [
-        [r.left + r.width / 2, r.top + r.height / 2],
-        [r.left + 24, r.top + 2],
-        [r.right - 24, r.top + 2],
-        [r.left + 24, r.bottom - 2],
-        [r.right - 24, r.bottom - 2],
-      ];
-      return points.filter(([x, y]) => !element.contains(document.elementFromPoint(x, y))).length;
+  /** The box of what stays stuck to the top of the screen inside the game, or null while nothing is. */
+  const stuckAtTop = (page: Page) =>
+    page.evaluate(() => {
+      for (const element of document.querySelectorAll('[data-game] *')) {
+        if (getComputedStyle(element).position !== 'sticky') continue;
+        const { top, bottom, height } = element.getBoundingClientRect();
+        if (top <= 0.5) return { top, bottom, height };
+      }
+      return null;
     });
 
-  test('after the answer to a long question it stays in view, and «Siguiente» is whole below it', async ({ page }) => {
-    await page.goto('./#/play/accounting-lending');
-    await page.getByRole('button', { name: 'Comenzar' }).click();
-    const game = page.locator('[data-game]');
-    const exit = game.getByRole('button', { name: 'Salir del juego' });
-    const time = game.getByRole('progressbar', { name: 'Tiempo' });
-    const next = page.getByRole('button', { name: 'Siguiente', exact: true });
-
-    // A long question: its explanation pushes «Siguiente» below the fold, so focusing it scrolls the page down. On
-    // this screen that is most of the lending bank; the first one that does it is the one looked at.
-    let scrolled = false;
-    for (let n = 1; n <= 9 && !scrolled; n++) {
-      await expect(page.getByText(`Pregunta ${n} de 10`)).toBeVisible();
-      await expect(exit).toBeInViewport({ ratio: 1 }); // each question starts with the top bar in view
-      await page.waitForTimeout(200); // longer than MIN_RT_MS, or the app ignores the tap
-      const asking = await page.evaluate(() => window.scrollY);
-      await page.getByRole('button', { name: /^Opción 1: / }).click();
-      await expect(next).toBeFocused();
-      scrolled = await page.evaluate((asking) => window.scrollY > asking, asking);
-      if (!scrolled) await next.click();
-    }
-    expect(scrolled, 'a question long enough to scroll the page').toBe(true);
-
-    // The ✕, the level, the points and the time bar are all on screen, and «Siguiente» is whole, under none of them.
-    await expect(exit).toBeInViewport({ ratio: 1 });
-    await expect(game.getByText('Nivel', { exact: true })).toBeInViewport({ ratio: 1 });
-    await expect(game.locator('dt', { hasText: 'Puntos' }).locator('xpath=following-sibling::dd')).toBeInViewport({
-      ratio: 1,
-    });
-    await expect(time).toBeInViewport({ ratio: 1 });
-    await expect(next).toBeInViewport({ ratio: 1 });
-    const timeBox = (await time.boundingBox())!;
-    const nextBox = (await next.boundingBox())!;
-    expect(nextBox.y).toBeGreaterThan(timeBox.y + timeBox.height);
-    // Nothing is drawn over it either: what the page has at its corners and its middle is «Siguiente» itself.
-    expect(await coveredPoints(next), 'points of «Siguiente» covered by something else').toBe(0);
-  });
-
-  test('an option that takes the focus while the bar stays up is scrolled clear of it, never left under it', async ({
+  test('a long question keeps only its time bar up, as a slim strip over neither the options nor «Siguiente»', async ({
     page,
   }) => {
-    // Shorter still, so that while a question is asked its first options can be scrolled up under the bar.
-    await page.setViewportSize({ width: 320, height: 400 });
+    await page.goto('./#/play/accounting-lending');
+    await page.getByRole('button', { name: 'Comenzar' }).click();
+    const time = page.locator('[data-game]').getByRole('progressbar', { name: 'Tiempo' });
+    const options = page.getByRole('button', { name: /^Opción \d: / });
+    const dontKnow = page.getByRole('button', { name: 'No sé', exact: true });
+    const next = page.getByRole('button', { name: 'Siguiente', exact: true });
+
+    // A long question: scrolling down to «No sé» takes the page past the time bar's own place, so only a bar that
+    // stays up is still on screen. Most of the lending bank does it on this screen; the first one that does is used.
+    let long = false;
+    for (let n = 1; n <= 9 && !long; n++) {
+      await expect(page.getByText(`Pregunta ${n} de 10`)).toBeVisible();
+      const barBottom = await time.evaluate((bar) => bar.getBoundingClientRect().bottom + window.scrollY);
+      await dontKnow.evaluate((button) => button.scrollIntoView({ block: 'end' }));
+      long = await page.evaluate((barBottom) => window.scrollY > barBottom, barBottom);
+      if (long) break;
+      await page.waitForTimeout(200); // longer than MIN_RT_MS, or the app ignores the tap
+      await options.first().click();
+      await next.click();
+    }
+    expect(long, 'a question long enough to scroll past the time bar').toBe(true);
+
+    // Asking, with the last option and «No sé» in view: the running time bar is on screen, over none of them, and
+    // what stays up is a strip of at most 40 px.
+    await expect(time).toBeInViewport({ ratio: 1 });
+    const bar = (await time.boundingBox())!;
+    for (const control of [...(await options.all()), dontKnow]) {
+      const box = (await control.boundingBox())!;
+      const name = await control.textContent();
+      expect(box.y >= bar.y + bar.height || box.y + box.height <= bar.y, `the time bar over ${name}`).toBe(true);
+    }
+    await expect(dontKnow).toBeInViewport({ ratio: 0.99 }); // scrolled to its bottom edge, give or take a subpixel
+    const asking = await stuckAtTop(page);
+    expect(asking, 'something stays up while the question is asked').not.toBeNull();
+    expect(asking!.height, 'height of what stays up while asking').toBeLessThanOrEqual(40);
+
+    // Answered: «Siguiente» is whole, below the strip, and the strip still takes no more than its 40 px.
+    await page.waitForTimeout(200); // longer than MIN_RT_MS, or the app ignores the tap
+    await options.first().click();
+    await expect(next).toBeFocused();
+    await expect(next).toBeInViewport({ ratio: 1 });
+    await expect(time).toBeInViewport({ ratio: 1 });
+    const answered = await stuckAtTop(page);
+    expect(answered, 'something stays up after the answer').not.toBeNull();
+    expect(answered!.height, 'height of what stays up after the answer').toBeLessThanOrEqual(40);
+    expect((await next.boundingBox())!.y).toBeGreaterThanOrEqual(answered!.bottom);
+  });
+
+  test('an option that takes the focus while the strip is up is scrolled just clear of it, never left under it', async ({
+    page,
+  }) => {
+    // Shorter still, so that from the bottom of any question its first option has gone up past the strip.
+    await page.setViewportSize({ width: 320, height: 300 });
     await page.goto('./#/play/accounting-lending');
     await page.getByRole('button', { name: 'Comenzar' }).click();
     await expect(page.getByText('Pregunta 1 de 10')).toBeVisible();
     const options = page.getByRole('button', { name: /^Opción \d: / });
     const count = await options.count();
 
-    // From the bottom of the page, the keyboard walks back up through the options, the first ones under the bar.
+    // From the bottom of the page, the keyboard walks back up through the options.
     await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
     await page.getByRole('button', { name: 'No sé', exact: true }).focus();
     for (let n = count; n >= 1; n--) {
       await page.keyboard.press('Shift+Tab');
       const option = page.getByRole('button', { name: new RegExp(`^Opción ${n}: `) });
       await expect(option).toBeFocused();
-      expect(await coveredPoints(option), `points of option ${n} covered by something else`).toBe(0);
+      await expect(option).toBeInViewport({ ratio: 1 });
+      const stuck = await stuckAtTop(page);
+      expect(stuck, 'the strip is up').not.toBeNull();
+      const top = (await option.boundingBox())!.y;
+      expect(top, `option ${n} below the strip`).toBeGreaterThanOrEqual(stuck!.bottom - 0.5);
+      // The first option came from above the screen: it lands right under the strip, which pushes no more of the page
+      // away than its own height.
+      if (n === 1) expect(top - stuck!.bottom, 'room between the strip and option 1').toBeLessThanOrEqual(1);
     }
   });
 });
