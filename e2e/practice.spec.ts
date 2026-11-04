@@ -30,6 +30,21 @@ async function waitForInput(page: Page, id: GameId) {
   if (id === 'sequence-lights') await page.waitForTimeout(2 * 850 + 300); // the two-cell sequence plays once
 }
 
+/**
+ * Moves the stopped page clock on `ms`, in 100 ms jumps that each draw one frame of the Guardagujas practice: the
+ * largest step its clock takes in a frame, as on a slow device. runFor would draw a frame every 16 ms, six times the
+ * work, which on a busy machine took longer than the tests allow.
+ */
+async function play(page: Page, ms: number) {
+  for (let t = 0; t < ms; t += 100) await page.clock.fastForward(100);
+}
+
+/** Moves the stopped clock on as `play` does until `done`, for at most `seconds`, looking every `every` ms. */
+async function playUntil(page: Page, what: string, done: () => Promise<boolean>, every: number, seconds = 15) {
+  for (let t = 0; t < seconds * 1000 && !(await done()); t += every) await play(page, every);
+  expect(await done(), `${what} within ${seconds} s`).toBe(true);
+}
+
 /** A wrong answer in round 1 of each practice, which brings up the hint. Locale-free. Guardagujas needs page.clock. */
 async function answerWrong(page: Page, id: GameId) {
   if (id === 'switchyard') {
@@ -434,12 +449,12 @@ test.describe('review screenshots', () => {
   });
 
   test('the Guardagujas practice from start to finish, with screenshots for the owner', async ({ page }) => {
-    // Three rounds of trains in real time, with a miss in round 2: about half a minute.
+    // Three rounds of trains, with a miss in round 2: about half a minute.
     test.setTimeout(120_000);
     mkdirSync(SCREENSHOT_DIR, { recursive: true });
     await page.clock.install({ time: new Date('2026-10-20T10:00:00') });
-    /** The first train's locomotive is near the tunnel, at the top of the board: for about a second after it sets
-        off, so the polls that wait for it look every 50 ms. */
+    /** The first train's locomotive is near the tunnel, at the top of the board: for 1.1 s after it sets off, so the
+        waits for it look every half second. */
     const trainAtTunnel = () =>
       page.evaluate(() => {
         const loco = document.querySelector('[data-train] [data-car="loco"]')?.getAttribute('transform') ?? '';
@@ -458,29 +473,41 @@ test.describe('review screenshots', () => {
     await expect(page.getByText('Práctica 2 de 3')).toBeVisible({ timeout: 15_000 });
     await expect(bubble(page)).toHaveText(/^Ahora el tren avanza solo/);
 
-    // Round 2, left alone: the yellow train reaches the green station. The clock stops here and moves on in short
-    // steps until the miss, so the shot has the hint and the mark of the miss on the station. The minute the stop
-    // jumps is one frame to the practice, whose clock moves at most 100 ms a frame.
+    // Round 2, left alone: the yellow train reaches the green station. From here to the last key of round 3 the clock
+    // stands still and the test moves it on (see play), so the shots catch their moments and the keys go in where the
+    // trains are, however slow the machine: in real time a busy test saw a train at the tunnel only after it had left.
+    // The minute the stop jumps is one frame to the practice. The miss is seen at most 500 ms after the train arrives;
+    // 300 ms more and it has rolled into the station, with its mark (up for 900 ms) still whole.
     await freezeClock(page);
-    for (let i = 0; i < 150 && !(await wrongMark.isVisible()); i++) await page.clock.runFor(100);
-    // 400 ms more: the train has rolled into the station, and the mark (up for 900 ms) is still whole.
-    await page.clock.runFor(400);
+    await playUntil(page, 'the miss', () => wrongMark.isVisible(), 500);
+    await play(page, 300);
     await expect(wrongMark).toBeVisible();
     await expect(bubble(page)).toHaveText(/^El tren amarillo va a la estación amarilla/);
     await shot(page, 'switchyard-2-hint', wrongMark);
-    await page.clock.resume();
 
     // The round starts over with the yellow train back at the tunnel; switch 2 sends it home this time.
-    await expect.poll(trainAtTunnel, { intervals: [50], timeout: 5_000 }).toBe(true);
+    await playUntil(page, 'the yellow train back at the tunnel', trainAtTunnel, 500);
     await page.keyboard.press('2');
 
-    // Round 3: green goes on to green (switch 2). Once it is well past switch 1 (it gets there after 1.3 s), switch
-    // 1 turns back to the left for red, which comes out 4 s into the round and reaches switch 1 at 5.3 s.
-    await expect(page.getByText('Práctica 3 de 3')).toBeVisible({ timeout: 15_000 });
-    await expect.poll(trainAtTunnel, { intervals: [50], timeout: 5_000 }).toBe(true);
+    // Round 3 starts 700 ms after the yellow train is home («¡Bien!»). Looking once a second, the test sees «¡Bien!» or,
+    // if a look jumped over it, round 3 at most 300 ms old: either way before the green train leaves the tunnel.
+    const homeOrRound3 = () =>
+      page.evaluate(
+        () =>
+          document.querySelector('[data-tone]')?.getAttribute('data-tone') === 'ok' ||
+          document.body.innerText.includes('Práctica 3 de 3'),
+      );
+    await playUntil(page, 'the yellow train home', homeOrRound3, 1000);
+    // Green goes on to green (switch 2). Once it is well past switch 1 (it gets there after 1.3 s), switch 1 turns
+    // back to the left for red, which comes out 4 s into the round and reaches switch 1 at 5.3 s. After that nothing
+    // depends on timing, and the rest runs in real time again.
+    const round3 = page.getByText('Práctica 3 de 3');
+    const round3AtTunnel = async () => (await round3.isVisible()) && (await trainAtTunnel());
+    await playUntil(page, 'round 3 with the green train at the tunnel', round3AtTunnel, 500);
     await page.keyboard.press('2');
-    await page.waitForTimeout(2500);
+    await play(page, 2500);
     await page.keyboard.press('1');
+    await page.clock.resume();
     await expect(page.locator('[data-train]')).toHaveCount(2, { timeout: 10_000 });
     await page.waitForTimeout(700); // the red locomotive out of the tunnel
     await shot(page, 'switchyard-3-two', page.getByText(/^Pueden venir varios a la vez/));
