@@ -25,7 +25,7 @@ Light toma la **mecánica** (operaciones que caen, una especial que despeja la p
 | Lugar en la app | Juego **nuevo** del área Matemáticas (`math`); Cálculo relámpago se mantiene. |
 | Tema | **Lluvia de estrellas** (EN «Star Shower»): estrellas fugaces con la operación caen hacia el horizonte; la especial es un **cometa dorado**. |
 | Cometa | Puede salir en cualquier momento de la partida, solo o con otras estrellas en pantalla; al resolverlo revienta todo lo que haya en pantalla. |
-| Número equivocado | **No resta puntos**: no revienta nada, se borra y se vuelve a intentar. Es la primera excepción a la regla «los errores restan» (diseño general, §4); las instrucciones lo dicen. |
+| Número equivocado | **No resta puntos**: no revienta nada, se borra y se vuelve a intentar. Es la primera excepción a la regla «los errores restan» (diseño general, §4); las instrucciones lo dicen (hoy, el resumen de la práctica guiada (§4.8 de `2026-11-03-light-practica-guiada-design.md`)). |
 | Estrella perdida | Al tocar el horizonte: se pierde una vida, **explotan todas las demás**, pausa corta y se sigue con el **mismo ritmo y nivel**. |
 | Fin | Al perder la tercera estrella; tope de seguridad de 5 minutos. |
 | Enfoque técnico | Motor puro basado en el tiempo del juego + un ciclo `requestAnimationFrame` que mueve las estrellas sin redibujar con React en cada cuadro. Sin canvas ni librerías de animación (como en Luz). |
@@ -130,6 +130,7 @@ Dentro del marco común de los juegos (`GameFrame`), de arriba abajo:
 ### 4.4 Instrucciones, ejemplo y miniatura
 
 - **Ejemplo** (instrucciones): mini escena en bucle hecha con CSS: dos estrellas caen, se escribe `12`, una estalla; luego cae el cometa, se resuelve y estalla todo. Con movimiento reducido queda fija.
+  - **Reemplazado:** la práctica guiada (§4.8 de `2026-11-03-light-practica-guiada-design.md`) reemplazó las instrucciones y este ejemplo.
 - **Miniatura** (catálogo, Hoy, Progreso): SVG fijo con una estrella verde con estela y un cometa dorado pequeño sobre el cielo de noche, como las demás miniaturas.
 
 ### 4.5 Textos
@@ -139,7 +140,7 @@ Dentro del marco común de los juegos (`GameFrame`), de arriba abajo:
 | `games.star-shower.title` | Lluvia de estrellas | Star Shower |
 | `games.star-shower.skill` | Cálculo bajo presión | Math under pressure |
 | `games.star-shower.description` | Resuelve las operaciones de las estrellas antes de que toquen el horizonte. | Solve the sums on the falling stars before they reach the horizon. |
-| `games.star-shower.instructions` | 1. Caen estrellas con operaciones. Escribe el resultado con el teclado en pantalla o el de tu computador y pulsa OK (o Enter) para reventarlas. 2. El cometa dorado revienta todas las estrellas de la pantalla. Un número equivocado no resta puntos: vuelve a intentarlo. 3. Si una estrella toca el horizonte, pierdes una vida y se borran las demás. Al perder 3, termina la partida. | 1. Stars with sums are falling. Type the answer on the on-screen keypad or your keyboard and press OK (or Enter) to pop them. 2. The golden comet pops every star on the screen. A wrong number costs no points: just try again. 3. If a star reaches the horizon, you lose a life and the other stars vanish. Lose 3 and the game ends. |
+| `games.star-shower.instructions` | 1. Caen estrellas con operaciones. Escribe el resultado con el teclado en pantalla o el de tu computador y pulsa OK (o Enter) para reventarlas. 2. El cometa dorado revienta todas las estrellas de la pantalla. Un número equivocado no resta puntos: vuelve a intentarlo. 3. Si una estrella toca el horizonte, pierdes una vida y se borran las demás. Al perder 3, termina la partida. (Reemplazado: hoy son `games.star-shower.practice.*`, de la práctica guiada, §4.8 de `2026-11-03-light-practica-guiada-design.md`.) | 1. Stars with sums are falling. Type the answer on the on-screen keypad or your keyboard and press OK (or Enter) to pop them. 2. The golden comet pops every star on the screen. A wrong number costs no points: just try again. 3. If a star reaches the horizon, you lose a life and the other stars vanish. Lose 3 and the game ends. |
 | `game.hud.lives` | Vidas: {{left}} de {{total}} | Lives: {{left}} of {{total}} |
 | `game.keypad.delete` / `game.keypad.ok` | Borrar / OK | Delete / OK |
 
@@ -154,9 +155,9 @@ Dentro del marco común de los juegos (`GameFrame`), de arriba abajo:
 | `engine.ts` | Lógica pura (sin React ni DOM), todo en función del tiempo del juego `now` (ms) y de un `Rng`. Estado: estrellas en pantalla, próximo nacimiento, columna anterior, vidas, fin de la pausa, tiempo de ritmo acumulado en pausas, escalera de nivel, respuesta escrita, puntos y contadores (aciertos, equivocados, perdidas). Funciones: `createStarShower(startLevel, rng)`; `advance(state, now, rng)` hace nacer las estrellas que tocan, detecta la que llega al horizonte (§3.5) y el fin (§3.6), y devuelve el estado nuevo y los **eventos** ocurridos (nacimiento, estrella perdida con su columna, estrellas despejadas, fin); `typeDigit` / `deleteDigit`; `submitAnswer(state, now)` devuelve el estado y el desenlace (`hit`, `comet`, `wrong` o `null` si no había respuesta o el cielo estaba vacío) con las estrellas reventadas; `starHeight(star, now)`; `nextEventAt(state)` (el próximo nacimiento, aterrizaje, fin de pausa o tope); `starShowerResult(state, now)`. Constantes exportadas: ritmo (§3.1), vidas, pausa, tope, `STAR_SHOWER_MAX_SCORE = 4000`, `STAR_SHOWER_REFERENCE_SCORE = 600`. |
 | `Game.tsx` | Usa `useGameClock(paused)`. Mientras no está en pausa ni terminado, corre un ciclo `requestAnimationFrame`: lee `clock.now()`, escribe la altura de cada estrella directamente en su elemento (por referencia, con `transform`) y, cuando `now` alcanza `nextEventAt`, llama a `advance` y actualiza el estado de React (solo entonces se vuelve a dibujar). Conecta `useGameKeys` (cifras, Backspace, Enter), el teclado en pantalla y `useFeedback` según §4.2. Al terminar espera 1 s de tiempo del juego (respetando la pausa) y llama a `onFinish` una sola vez. Informa vidas y nivel a `GameFrame`. |
 | `Sky.tsx` | Dibuja el cielo, el horizonte, las estrellas (registra la referencia de cada una para el ciclo de animación), las animaciones de estallido y la ranura de respuesta. |
-| `Example.tsx`, `Thumb.tsx` | Ejemplo animado y miniatura (§4.4). |
+| `Example.tsx`, `Thumb.tsx` | Ejemplo animado y miniatura (§4.4). El ejemplo ya no existe: lo reemplazó la práctica guiada (§4.8 de `2026-11-03-light-practica-guiada-design.md`), en `Practice.tsx`, que comparte con `Game.tsx` el ciclo del cielo (`useStarSky.tsx`). |
 | `star-shower.module.css` | Estilos con los tokens Luz; bloque de movimiento reducido (§4.3). |
-| `index.ts` | Definición: `id: 'star-shower'`, `area: 'math'`, `referenceScore: 600`, `maxScore: 4000`, `Component`, `Example`, `Thumb`. |
+| `index.ts` | Definición: `id: 'star-shower'`, `area: 'math'`, `referenceScore: 600`, `maxScore: 4000`, `Component`, `Example`, `Thumb`. Hoy `Practice` en lugar de `Example` (práctica guiada, §4.8 de `2026-11-03-light-practica-guiada-design.md`). |
 
 ### 5.2 Cambios en lo existente
 
@@ -224,7 +225,7 @@ La prueba pgTAP `supabase/tests/01_core_schema.test.sql` pasa a esperar 6 juegos
 - **Pantalla (`Game.test.tsx`):** escribir el resultado de una estrella visible (con el teclado físico y con el de pantalla) la revienta; en pausa las estrellas no se mueven y no nacen nuevas; al perder 3 estrellas `onFinish` se llama una sola vez con el resultado.
 - **Marco:** `GameFrame` con `lives` muestra las vidas y su texto accesible.
 - **Contraste:** `--luz-gold` según §5.2.
-- **Textos:** el registro exige los textos en ambos idiomas (prueba existente); una prueba nueva comprueba que las instrucciones dicen que un número equivocado no resta («no resta» / «costs no points»).
+- **Textos:** el registro exige los textos en ambos idiomas (prueba existente); una prueba nueva comprueba que las instrucciones dicen que un número equivocado no resta («no resta» / «costs no points»). Con la práctica guiada (§4.8 de `2026-11-03-light-practica-guiada-design.md`), la prueba lee su resumen (`practice.recap`) y que nombre las 3 vidas.
 - **Pantallas:** las pruebas que cuentan los juegos del catálogo (`GamesScreen.test.tsx`) pasan de 5 a 6.
 - **E2E:** `e2e/luz.spec.ts` agrega el juego a sus capturas (en juego y en resultado); `e2e/touch-targets.spec.ts` revisa que su teclado mida al menos 44 px.
 - **Base de datos:** pgTAP según §6.3.

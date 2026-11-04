@@ -226,7 +226,7 @@ Las cifras salen de las constantes del juego (duración, rondas, vidas y penaliz
 - **Al acertar:** la ronda acierta cuando todas sus estrellas reventaron. La reacción es una por ronda, no por estrella, como en Guardagujas; cada estrella reventada estalla como en el juego.
 - **Sin puntos ni vidas:** nada muestra puntos ni vidas. Los puntos, las vidas y las pausas del estado del juego no se usan.
 - **Teclas quietas:** mientras dice «¡Bien!», y desde que una estrella toca el horizonte hasta que la ronda empieza de nuevo, los números, el borrado y OK no hacen nada.
-- **Reloj:** avanza a lo sumo 100 ms de un cuadro al siguiente, así que con la app oculta la práctica simplemente se detiene. En la ronda 1 no avanza.
+- **Reloj:** avanza a lo sumo 100 ms de un cuadro al siguiente, así que con la app oculta la práctica simplemente se detiene. En la ronda 1 no avanza. Cada intento cuenta su tiempo desde 0: el motor termina cualquier partida a los 5 minutos, y la práctica no tiene límite.
 - **Al fallar:**
   - Un número que no está en ninguna estrella muestra la pista, y la ronda sigue: las estrellas siguen cayendo.
     - Ronda 1: «Ese número no está en el cielo: 3 + 4 = 7. Inténtalo otra vez» / «That number isn't in the sky: 3 + 4 = 7. Try again».
