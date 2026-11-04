@@ -231,7 +231,8 @@ Hecho en paralelo por tres agentes (motor y datos; paisajes; sensación de juego
   una vibración de 8 ms; campanita cuando un tren llega a su estación, en lugar del tono genérico de acierto (otra
   estación conserva el de fallo). Más suaves y cortos que los tonos de respuesta: en el nivel 10 sale un tren cada
   1,6 s. La práctica tiene el «clac», sin silbato. `useFeedback` acepta un tono propio y `useCue` da un sonido y una
-  vibración que no son una respuesta.
+  vibración que no son una respuesta. Mientras el contexto de audio esté suspendido (iPhone, antes del primer toque) no
+  suena nada: su reloj está detenido y los tonos acumulados sonarían todos juntos al despertar.
 - **«¡Más rápido! · Nivel N»**: cuando el nivel de la partida sube (no al empezar ni al bajar), una píldora del color del
   juego aparece 1,2 s arriba de la zona de juego; se anuncia con cortesía al lector de pantalla y deja pasar los
   toques. Con movimiento reducido solo aparece y se desvanece.
@@ -240,9 +241,11 @@ Hecho en paralelo por tres agentes (motor y datos; paisajes; sensación de juego
   se achican en vez de taparse, y el número de tecla se achica con ellos.
 - **Sin destello inicial**: el tablero se mide antes de pintarse por primera vez; luego `ResizeObserver` sigue los
   cambios.
-- **Calidad automática** (`frameMonitor.ts`): si el promedio entre cuadros supera 28 ms en cuatro ventanas seguidas de
-  500 ms (~2 s), el patio pasa a modo liviano por el resto de la partida: no sale más humo y el tablero lleva
-  `data-lite`, que apaga el faro de los cambios y pausa las demás animaciones decorativas. Un cuadro largo aislado o un
+- **Calidad automática** (`frameMonitor.ts`): si el promedio entre cuadros supera 38 ms (menos de ~26 cuadros/s; un
+  iPhone en modo de bajo consumo, fijo en 30, conserva su paisaje) en cuatro ventanas seguidas de 500 ms (~2 s), el
+  patio pasa a modo liviano por el resto de la partida: no sale más humo y el tablero lleva `data-lite`, que apaga el
+  faro de los cambios, quita las luciérnagas, hojas y copos (en vez de dejarlos quietos en el aire) y pausa las demás
+  animaciones decorativas. Un cuadro largo aislado o un
   hueco de más de 250 ms (pausa, pestaña oculta) no cuentan.
 
 **Resultado y motor**
@@ -273,6 +276,7 @@ Hecho en paralelo por tres agentes (motor y datos; paisajes; sensación de juego
   llegada no cambian. Una prueba exige contraste ≥ 3:1 de cada color de estación, del aro de los cambios y de las
   marcas sobre cada suelo, incluso bajo dos manchas superpuestas.
 - En lugar de luciérnagas: en otoño caen hojas lentamente, girando y meciéndose; en la nieve caen copos suaves. Son
-  elementos de la página en una capa propia que nunca recibe toques; solo se animan `transform`, `translate` y
+  elementos de la página en una capa propia, sobre el suelo y detrás de trenes, estaciones y túnel, que nunca recibe
+  toques; solo se animan `transform`, `translate` y
   `opacity`, sin trabajo de React por cuadro. Con movimiento reducido quedan quietos. El suelo y esa capa llevan
   `data-theme` (`meadow`, `autumn`, `snow`).
