@@ -274,6 +274,49 @@
         "The golden comet pops every star on the screen. A wrong number costs no points: just try again.",
         "If a star reaches the horizon, you lose a life and the other stars vanish. Lose 3 and the game ends."
       ]
+    },
+    "balance": {
+      "title": "Balance",
+      "skill": "Logical reasoning",
+      "description": "Work out which shape is heaviest and which way a new balance will tip.",
+      "heaviest": "Which is heaviest?",
+      "tilt": "Which way will it tip?",
+      "left": "Left",
+      "equal": "Equal",
+      "right": "Right",
+      "clues": "Clues",
+      "names": {
+        "circle": "amber circle",
+        "square": "cyan square",
+        "triangle": "magenta triangle",
+        "diamond": "lime diamond",
+        "star": "orange star",
+        "hexagon": "white hexagon"
+      },
+      "count": {
+        "circle_one": "{{count}} amber circle",
+        "circle_other": "{{count}} amber circles",
+        "square_one": "{{count}} cyan square",
+        "square_other": "{{count}} cyan squares",
+        "triangle_one": "{{count}} magenta triangle",
+        "triangle_other": "{{count}} magenta triangles",
+        "diamond_one": "{{count}} lime diamond",
+        "diamond_other": "{{count}} lime diamonds",
+        "star_one": "{{count}} orange star",
+        "star_other": "{{count}} orange stars",
+        "hexagon_one": "{{count}} white hexagon",
+        "hexagon_other": "{{count}} white hexagons"
+      },
+      "balance": "{{left}} against {{right}}: {{outcome}}",
+      "and": " and ",
+      "outcome": {
+        "left": "the left side goes down",
+        "right": "the right side goes down",
+        "level": "they balance",
+        "unknown": "?"
+      },
+      "levelHeaviest": "{{n}} shapes · Which is heaviest?",
+      "levelTilt": "{{n}} shapes · Which way will it tip?"
     }
   },
   "play": {

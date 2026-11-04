@@ -274,6 +274,49 @@
         "El cometa dorado revienta todas las estrellas de la pantalla. Un número equivocado no resta puntos: vuelve a intentarlo.",
         "Si una estrella toca el horizonte, pierdes una vida y se borran las demás. Al perder 3, termina la partida."
       ]
+    },
+    "balance": {
+      "title": "Balanza",
+      "skill": "Razonamiento lógico",
+      "description": "Deduce qué figura pesa más y hacia dónde se inclinará una balanza nueva.",
+      "heaviest": "¿Cuál pesa más?",
+      "tilt": "¿Hacia dónde se inclina?",
+      "left": "Izquierda",
+      "equal": "Igual",
+      "right": "Derecha",
+      "clues": "Pistas",
+      "names": {
+        "circle": "círculo ámbar",
+        "square": "cuadrado cian",
+        "triangle": "triángulo magenta",
+        "diamond": "rombo lima",
+        "star": "estrella naranja",
+        "hexagon": "hexágono blanco"
+      },
+      "count": {
+        "circle_one": "{{count}} círculo ámbar",
+        "circle_other": "{{count}} círculos ámbar",
+        "square_one": "{{count}} cuadrado cian",
+        "square_other": "{{count}} cuadrados cian",
+        "triangle_one": "{{count}} triángulo magenta",
+        "triangle_other": "{{count}} triángulos magenta",
+        "diamond_one": "{{count}} rombo lima",
+        "diamond_other": "{{count}} rombos lima",
+        "star_one": "{{count}} estrella naranja",
+        "star_other": "{{count}} estrellas naranjas",
+        "hexagon_one": "{{count}} hexágono blanco",
+        "hexagon_other": "{{count}} hexágonos blancos"
+      },
+      "balance": "{{left}} frente a {{right}}: {{outcome}}",
+      "and": " y ",
+      "outcome": {
+        "left": "baja la izquierda",
+        "right": "baja la derecha",
+        "level": "quedan iguales",
+        "unknown": "?"
+      },
+      "levelHeaviest": "{{n}} figuras · ¿Cuál pesa más?",
+      "levelTilt": "{{n}} figuras · ¿Hacia dónde se inclina?"
     }
   },
   "play": {
