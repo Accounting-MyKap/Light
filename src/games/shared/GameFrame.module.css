@@ -115,6 +115,12 @@
   }
 }
 
+/* The time bar's wrapper draws no box: the bar is laid out as a part of the frame. It is only a handle for a game that
+   needs one (the quiz keeps the bar in view while a long question scrolls). */
+.time {
+  display: contents;
+}
+
 /* Time bar. The fill is scaled by the game, not resized, so the change is a cheap transform. */
 .track {
   height: 8px;

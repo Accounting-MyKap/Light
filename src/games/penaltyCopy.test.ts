@@ -7,11 +7,12 @@ import { RULE_SWITCH_WRONG_PENALTY } from './rule-switch/engine';
 import { SAME_DIFF_WRONG_PENALTY } from './same-different/engine';
 import { ROUNDS } from './sequence-lights/engine';
 import { GAME_DURATION_MS } from './shared/constants';
+import { LIVES } from './star-shower/engine';
 import { SWITCHYARD_DURATION_MS } from './switchyard/engine';
 
 const dicts = { es, en } as unknown as Record<
   string,
-  { games: Record<string, { practice: { recap: string }; instructions: string[] }> }
+  { games: Record<string, { practice: { recap: string } }> }
 >;
 const word = (n: number) => new RegExp(`\\b${n}\\b`);
 
@@ -56,7 +57,12 @@ test('quiz.instructions states the choice and true/false penalties (es and en)',
   }
 });
 
-test('star-shower instructions say a wrong number costs nothing (es and en)', () => {
-  expect(dicts.es.games['star-shower'].instructions.join(' ')).toMatch(/no resta/);
-  expect(dicts.en.games['star-shower'].instructions.join(' ')).toMatch(/costs no points/);
+test('star-shower recap states its lives and that a wrong number costs nothing (es and en)', () => {
+  expect(LIVES).toBe(3);
+  const nothing = { es: /no resta/, en: /costs no points/ };
+  for (const lang of ['es', 'en'] as const) {
+    const recap = dicts[lang].games['star-shower'].practice.recap;
+    expect(recap, lang).toMatch(word(LIVES));
+    expect(recap, lang).toMatch(nothing[lang]);
+  }
 });

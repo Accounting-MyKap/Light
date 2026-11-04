@@ -26,9 +26,11 @@ vi.mock('./play/resumeTiming', () => ({
 }));
 
 vi.mock('../games/registry', async () => {
-  const { fakeGame, fakeGame2, fakeGame3, fakeGameNoPractice, fakeQuizGame } = await import('../test/fakeGame');
+  const { fakeGame, fakeGame2, fakeGame3, fakeGameNoPractice, fakeFocusGame, fakeQuizGame } = await import(
+    '../test/fakeGame'
+  );
   const training = [fakeGame, fakeGame2, fakeGame3, fakeGameNoPractice];
-  const games = [...training, fakeQuizGame];
+  const games = [...training, fakeFocusGame, fakeQuizGame];
   return {
     GAMES: games,
     TRAINING_GAMES: training,
@@ -46,6 +48,11 @@ function setHidden(hidden: boolean) {
 
 // Finishing a game asks for a sync twice: once to upload the result, once from the percentile line on the result screen.
 const FINISH_SYNCS = 2;
+// The percentile line asks from an effect, which React runs in a later task than the one that puts the score on screen,
+// so a busy runner can resume a test that found the score before that second sync. The line's sentence only shows once
+// its sync was asked for: the tests that count the syncs give the game a rank and wait for the sentence first.
+const RANK = 73;
+const RANKED = `Estás por encima del ${RANK} % de los jugadores`;
 
 beforeEach(async () => {
   resumeTiming.stepMs = 5;
@@ -221,7 +228,7 @@ test('hiding the app during the pause practice does not close it', async () => {
   expect(screen.getByText('fake practice')).toBeInTheDocument();
 });
 
-describe('a game without a practice (Lluvia de estrellas, the quiz games)', () => {
+describe('a game without a practice (the quiz games)', () => {
   /** A second visit to the game without a practice, started and paused with 10 points. */
   async function playAndPause() {
     await updateSettings({ seenInstructions: ['fakenp'] });
@@ -484,6 +491,48 @@ test('the playing region has the name of the game, so the focus after the countd
   expect(screen.getByRole('region', { name: 'Juego falso' })).toHaveFocus();
 });
 
+describe('where the focus goes when the countdown ends (screen readers announce every move)', () => {
+  /** Every element that receives the focus from now on, in order. */
+  function recordFocus() {
+    const targets: EventTarget[] = [];
+    const record = (event: FocusEvent) => targets.push(event.target!);
+    document.addEventListener('focusin', record);
+    onTestFinished(() => document.removeEventListener('focusin', record));
+    return targets;
+  }
+
+  test('a game that does not take the focus itself gets it on its play region, once', async () => {
+    await updateSettings({ seenInstructions: ['fake'] });
+    await open('/play/fake');
+    await userEvent.click(await screen.findByRole('button', { name: 'Comenzar' }));
+    const region = screen.getByRole('region', { name: 'Juego falso' });
+    await userEvent.click(screen.getByRole('button', { name: 'Salir del juego' }));
+    const continueButton = screen.getByRole('button', { name: 'Continuar' });
+    const focused = recordFocus();
+    await userEvent.click(continueButton);
+    expect(await screen.findByText('paused:false')).toBeInTheDocument();
+    await vi.waitFor(() => expect(region).toHaveFocus());
+    expect(focused.filter((target) => target !== continueButton)).toEqual([region]);
+  });
+
+  test('a game that puts the focus on its own element when it resumes keeps it there: the region never takes it', async () => {
+    await updateSettings({ seenInstructions: ['fakefocus'] });
+    await open('/play/fakefocus');
+    await userEvent.click(await screen.findByRole('button', { name: 'Comenzar' }));
+    const region = screen.getByRole('region', { name: 'Juego falso con foco propio' });
+    const question = screen.getByRole('heading', { level: 2, name: 'Pregunta falsa' });
+    expect(question).toHaveFocus();
+    await userEvent.click(screen.getByRole('button', { name: 'Salir del juego' }));
+    const continueButton = screen.getByRole('button', { name: 'Continuar' });
+    const focused = recordFocus();
+    await userEvent.click(continueButton);
+    expect(await screen.findByText('paused:false')).toBeInTheDocument();
+    await vi.waitFor(() => expect(question).toHaveFocus());
+    expect(focused).not.toContain(region);
+    expect(focused.filter((target) => target !== continueButton)).toEqual([question]);
+  });
+});
+
 test('exit from pause does not save', async () => {
   await updateSettings({ seenInstructions: ['fake'] });
   await open('/play/fake');
@@ -585,12 +634,14 @@ test('exiting a later daily game returns to Today, not to the previous game', as
 });
 
 test('finishing a game requests a sync', async () => {
+  vi.mocked(fetchPercentile).mockResolvedValue(RANK);
   await updateSettings({ seenInstructions: ['fake'] });
   await open('/play/fake');
   await userEvent.click(await screen.findByRole('button', { name: 'Comenzar' }));
   expect(requestSync).not.toHaveBeenCalled();
   await userEvent.click(screen.getByRole('button', { name: 'Terminar' }));
   expect(await screen.findByText('120')).toBeInTheDocument();
+  expect(await screen.findByText(RANKED)).toBeInTheDocument();
   expect(requestSync).toHaveBeenCalledTimes(FINISH_SYNCS);
   // The sync starts after the result is in storage, so it has something to upload.
   expect(await db.results.where('synced').equals(0).count()).toBe(1);
@@ -601,6 +652,7 @@ test('finishing a game requests a sync', async () => {
 });
 
 test('a failed save does not request a sync; the successful retry does, once', async () => {
+  vi.mocked(fetchPercentile).mockResolvedValue(RANK);
   await updateSettings({ seenInstructions: ['fake'] });
   vi.spyOn(console, 'error').mockImplementation(() => {});
   vi.spyOn(db.results, 'put').mockRejectedValueOnce(new Error('QuotaExceededError'));
@@ -611,6 +663,7 @@ test('a failed save does not request a sync; the successful retry does, once', a
   expect(requestSync).not.toHaveBeenCalled();
   await userEvent.click(screen.getByRole('button', { name: 'Reintentar' }));
   expect(await screen.findByText('120')).toBeInTheDocument();
+  expect(await screen.findByText(RANKED)).toBeInTheDocument();
   expect(requestSync).toHaveBeenCalledTimes(FINISH_SYNCS);
 });
 

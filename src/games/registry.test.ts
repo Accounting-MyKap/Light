@@ -68,16 +68,10 @@ test('training games are the 5 v1 games, Guardagujas and Lluvia de estrellas', (
     'star-shower',
   ]));
 
-test('the 5 v1 games and Guardagujas have a guided practice; Lluvia de estrellas and the quiz games keep the instructions', () => {
-  expect(GAMES.filter((g) => g.Practice).map((g) => g.id)).toEqual([
-    'sequence-lights',
-    'arrows',
-    'same-different',
-    'rule-switch',
-    'quick-math',
-    'switchyard',
-  ]);
-  expect(GAMES.filter((g) => g.Example).map((g) => g.id)).toEqual(['star-shower', ...QUIZ_IDS]);
+test('every training game has a guided practice; only the quiz games keep the instructions', () => {
+  expect(GAMES.filter((g) => g.Practice).map((g) => g.id)).toEqual(TRAINING_GAMES.map((g) => g.id));
+  expect(TRAINING_GAMES).toHaveLength(7);
+  expect(GAMES.filter((g) => g.Example).map((g) => g.id)).toEqual(QUIZ_IDS);
 });
 
 test('only the quiz games carry a quiz config', () => {

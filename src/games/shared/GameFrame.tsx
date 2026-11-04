@@ -98,12 +98,14 @@ export function GameFrame({ score, level, time, rounds, lives, controls, stageFl
       </div>
 
       {time && (
-        <TimeBar
-          remainingMs={time.remainingMs}
-          totalMs={time.totalMs}
-          stopped={time.stopped ?? false}
-          urgentMs={time.urgentMs ?? URGENT_MS}
-        />
+        <div className={styles.time} data-zone="time">
+          <TimeBar
+            remainingMs={time.remainingMs}
+            totalMs={time.totalMs}
+            stopped={time.stopped ?? false}
+            urgentMs={time.urgentMs ?? URGENT_MS}
+          />
+        </div>
       )}
       {rounds && <RoundDots current={rounds.current} total={rounds.total} />}
 

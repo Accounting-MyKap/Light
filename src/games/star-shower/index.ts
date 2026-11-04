@@ -1,8 +1,8 @@
 import type { GameDefinition } from '../types';
 import { STAR_SHOWER_MAX_SCORE, STAR_SHOWER_REFERENCE_SCORE } from './engine';
-import { StarShowerExample } from './Example';
 import { StarShowerThumb } from './Thumb';
 import { StarShowerGame } from './Game';
+import { StarShowerPractice } from './Practice';
 
 export const starShowerGame: GameDefinition = {
   id: 'star-shower',
@@ -10,6 +10,6 @@ export const starShowerGame: GameDefinition = {
   referenceScore: STAR_SHOWER_REFERENCE_SCORE,
   maxScore: STAR_SHOWER_MAX_SCORE,
   Component: StarShowerGame,
-  Example: StarShowerExample,
+  Practice: StarShowerPractice,
   Thumb: StarShowerThumb,
 };
