@@ -3,6 +3,7 @@ import { initI18n } from '../../i18n';
 import { formatProblem } from '../shared/arithmetic';
 import { FeedbackProvider } from '../shared/feedback';
 import { PRACTICE_NEXT_MS } from '../shared/practice/usePracticeRounds';
+import { MAX_GAME_MS } from './engine';
 import { MAX_STEP_MS, PRACTICE_FALL_MS, PRACTICE_ROUNDS, RESTART_MS, StarShowerPractice } from './Practice';
 
 // Each test plays seconds of falling stars frame by frame: room to spare on a loaded runner.
@@ -279,6 +280,26 @@ test('round 2: a star on the horizon shows its hint, and the round starts over w
   advance(PRACTICE_NEXT_MS);
   expect(screen.getByText('Práctica 3 de 3')).toBeInTheDocument();
   expect(onComplete).not.toHaveBeenCalled();
+});
+
+test('round 2 still plays after 22 lost tries in a row, more practice time than the engine allows a game', () => {
+  setup();
+  passRound1();
+  const started = Date.now();
+  for (let tries = 0; tries < 22; tries++) {
+    until(() => stars().length === 0); // a star touched the horizon and cleared the sky
+    until(() => stars().length > 0); // the round started over
+  }
+  // Each try lasts some 15 s: together they are past the engine's cap, which ends a game for good.
+  expect(Date.now() - started).toBeGreaterThan(MAX_GAME_MS);
+  expect(says(HINT_LOST)()).toBe(true);
+  expect(screen.getByText('Práctica 2 de 3')).toBeInTheDocument();
+
+  until(() => stars().length === 2);
+  answer('7');
+  answer('6');
+  expect(stars()).toHaveLength(0);
+  expect(says('¡Bien!')()).toBe(true);
 });
 
 test('as in the game, a lost star lights the horizon only with full motion', () => {

@@ -85,69 +85,80 @@ export const PRACTICE_ROUNDS: readonly PracticeRound[] = [
   },
 ];
 
-/** One try at a round. A star on the horizon ends it; RESTART_MS later another try of the same round begins. */
+/**
+ * One try at a round. A star on the horizon ends it; RESTART_MS later another try of the same round begins. Each try
+ * has its own time, from 0 when it begins: the engine only ever sees one try's few seconds, never the whole practice,
+ * which could run past MAX_GAME_MS, where the engine ends a game for good.
+ */
 interface Attempt {
   round: number;
-  /** Practice time it began at. */
+  /** The practice clock's time when it began, which its own time counts from. */
   startedAt: number;
   /** Id of the round's first star; the others follow in order. */
   firstId: number;
   /** Stars of the round popped so far. */
   popped: number;
-  /** When a star touched the horizon. */
+  /** Its own time when a star touched the horizon. */
   failedAt: number | null;
 }
+
+const newAttempt = (round: number, startedAt: number, firstId: number): Attempt => ({
+  round,
+  startedAt,
+  firstId,
+  popped: 0,
+  failedAt: null,
+});
 
 const starOf = (attempt: Attempt, index: number): Star => {
   const setup = PRACTICE_ROUNDS[attempt.round];
   const { problem, lane, at, comet = false } = setup.stars[index];
-  // A still star is born a third of a fall before the round, which is the time it is always drawn at.
-  const bornAt = attempt.startedAt + at - (setup.still ? STILL_HEIGHT * PRACTICE_FALL_MS : 0);
+  // On the try's own time. A still star is born a third of a fall before the try, whose time stays at 0.
+  const bornAt = at - (setup.still ? STILL_HEIGHT * PRACTICE_FALL_MS : 0);
   return { id: attempt.firstId + index, problem, level: 1, lane, bornAt, fallMs: PRACTICE_FALL_MS, comet };
 };
 
 /**
- * A round as it begins: the game's starting state at level 1 with the round's first stars, and none born on its own.
- * Its score, lives and breaks are not used.
+ * The sky as a try begins, at its time 0: the game's starting state at level 1 with the round's first stars, and none
+ * born on its own. Its score, lives and breaks are not used.
  */
-function startAttempt(round: number, now: number, firstId: number): { attempt: Attempt; state: StarShowerState } {
-  const attempt: Attempt = { round, startedAt: now, firstId, popped: 0, failedAt: null };
-  const first = PRACTICE_ROUNDS[round].stars.flatMap((star, i) => (star.at === 0 ? [starOf(attempt, i)] : []));
-  const state: StarShowerState = {
+function startState(attempt: Attempt): StarShowerState {
+  const first = PRACTICE_ROUNDS[attempt.round].stars.flatMap((star, i) => (star.at === 0 ? [starOf(attempt, i)] : []));
+  return {
     ...createStarShower(1, NO_SPAWN_RNG),
     stars: first,
-    nextId: firstId + first.length,
+    nextId: attempt.firstId + first.length,
     nextSpawnAt: Infinity,
   };
-  return { attempt, state };
 }
 
+/** The sky still holds an earlier try's state: this try's stars have not come in yet. */
+const before = (state: StarShowerState, attempt: Attempt) => state.nextId <= attempt.firstId;
+
 /**
- * Moves the sky to `to`, bringing in the round's later stars when they are due. The engine's `nextId` tells which of
- * them are already in. It stops at a lost star: that try is over.
+ * Moves the sky to `to` (the try's own time), bringing in the round's later stars when they are due. The engine's
+ * `nextId` tells which of them are already in. It stops at a lost star: that try is over.
  */
 function advanceRound(game: StarShowerState, to: number, attempt: Attempt) {
   const { stars } = PRACTICE_ROUNDS[attempt.round];
   let state = game;
   const events: StarShowerEvent[] = [];
+  const lost = () => events.some((event) => event.kind === 'lost');
   const moveTo = (until: number) => {
     const result = advance(state, until, NO_SPAWN_RNG);
     state = result.state;
     events.push(...result.events);
-    return events.some((event) => event.kind === 'lost');
   };
-  for (let i = state.nextId - attempt.firstId; i < stars.length; i++) {
-    const due = attempt.startedAt + stars[i].at;
-    if (due > to) break;
-    if (moveTo(due)) return { state, events };
-    state = { ...state, stars: [...state.stars, starOf(attempt, i)], nextId: attempt.firstId + i + 1 };
+  for (let i = state.nextId - attempt.firstId; i < stars.length && stars[i].at <= to && !lost(); i++) {
+    moveTo(stars[i].at);
+    if (!lost()) state = { ...state, stars: [...state.stars, starOf(attempt, i)], nextId: attempt.firstId + i + 1 };
   }
-  moveTo(to);
+  if (!lost()) moveTo(to);
   return { state, events };
 }
 
-/** The first try of the practice: round 1 at practice time 0. */
-const FIRST = startAttempt(0, 0, 1);
+/** The first try of the practice: round 1, from practice time 0. */
+const FIRST_ATTEMPT = newAttempt(0, 0, 1);
 
 /**
  * The guided practice of Lluvia de estrellas: three fixed rounds in the game's own sky. A still star to pop, two that
@@ -158,30 +169,35 @@ export function StarShowerPractice({ onComplete, onSkip }: PracticeProps) {
   const { t } = useTranslation();
   const { round, status, answer } = usePracticeRounds(PRACTICE_ROUNDS.length, onComplete);
   const [hint, setHint] = useState<Hint>('hintWrong');
-  const attemptRef = useRef(FIRST.attempt);
+  const attemptRef = useRef(FIRST_ATTEMPT);
   // The practice's own clock: real time from its first read, in steps of at most MAX_STEP_MS. A hidden page or a long
   // frame then only pauses the practice, instead of letting the stars fall while the person is away. It stands still
-  // in a still round.
+  // in a still round. The sky is told the time of the current try, counted from its start.
   const clockRef = useRef<{ last: number | null; elapsed: number }>({ last: null, elapsed: 0 });
 
-  const { current, commit, submit, sky } = useStarSky(() => FIRST.state, {
+  const { current, commit, submit, sky } = useStarSky(() => startState(FIRST_ATTEMPT), {
     active: true,
     now: () => {
       const at = Date.now();
       const clock = clockRef.current;
-      const still = PRACTICE_ROUNDS[attemptRef.current.round].still;
-      if (clock.last !== null && !still) clock.elapsed += Math.min(Math.max(0, at - clock.last), MAX_STEP_MS);
+      const attempt = attemptRef.current;
+      if (clock.last !== null && !PRACTICE_ROUNDS[attempt.round].still) {
+        clock.elapsed += Math.min(Math.max(0, at - clock.last), MAX_STEP_MS);
+      }
       clock.last = at;
-      return clock.elapsed;
+      return clock.elapsed - attempt.startedAt;
     },
     advance: (game, to) => {
       const attempt = attemptRef.current;
       const over = attempt.failedAt !== null && to - attempt.failedAt >= RESTART_MS;
       if (attempt.round !== round || over) {
-        const next = startAttempt(round, to, attempt.firstId + PRACTICE_ROUNDS[attempt.round].stars.length);
-        attemptRef.current = next.attempt;
-        return { state: next.state, events: [] };
+        // A new try, on its own time from here. Its stars come in on the next frame, which reads the time on that
+        // base; until then the sky keeps the last try's state, already empty (its stars popped or cleared).
+        const firstId = attempt.firstId + PRACTICE_ROUNDS[attempt.round].stars.length;
+        attemptRef.current = newAttempt(round, clockRef.current.elapsed, firstId);
+        return { state: game, events: [] };
       }
+      if (before(game, attempt)) return advanceRound(startState(attempt), to, attempt);
       // A lost star cleared the sky: nothing moves until the round starts over.
       if (attempt.failedAt !== null) return { state: game, events: [] };
       return advanceRound(game, to, attempt);
@@ -196,10 +212,14 @@ export function StarShowerPractice({ onComplete, onSkip }: PracticeProps) {
   });
 
   // The keys hold still once the try is decided: while «¡Bien!» shows (all its stars are popped) and from a lost star
-  // until the round starts over.
+  // until the round starts over, which takes until its stars are in the sky.
   const decided = () => {
     const attempt = attemptRef.current;
-    return attempt.failedAt !== null || attempt.popped === PRACTICE_ROUNDS[attempt.round].stars.length;
+    return (
+      attempt.failedAt !== null ||
+      attempt.popped === PRACTICE_ROUNDS[attempt.round].stars.length ||
+      before(current(), attempt)
+    );
   };
 
   // Each action returns whether it was used, so unused keys keep their browser behavior.
