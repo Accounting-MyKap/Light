@@ -1,6 +1,6 @@
 import { mkdirSync } from 'node:fs';
 import { expect, test, type Locator, type Page } from '@playwright/test';
-import { expectTall } from './helpers';
+import { expectTall, freezeClock } from './helpers';
 
 const GAMES = ['sequence-lights', 'arrows', 'same-different', 'rule-switch', 'quick-math', 'switchyard'] as const;
 type GameId = (typeof GAMES)[number];
@@ -378,10 +378,10 @@ test.describe('review screenshots', () => {
       await shot(page, `${id}-1-guide`, page.getByText(GUIDE[id]));
 
       await waitForInput(page, id);
+      // Sequence lights takes its hint down after 800 ms. Keep it up: stop the clock before the wrong answer, while
+      // the board waits for a press and no timer runs.
+      if (id === 'sequence-lights') await freezeClock(page);
       await answerWrong(page, id);
-      if (id === 'sequence-lights') {
-        await page.clock.pauseAt(new Date((await page.evaluate(() => Date.now())) + 50)); // keep the hint up
-      }
       await shot(page, `${id}-2-hint`, page.getByText(HINT[id]));
     }
     await page.clock.resume();
@@ -439,8 +439,9 @@ test.describe('review screenshots', () => {
     await expect(bubble(page)).toHaveText(/^Ahora el tren avanza solo/);
 
     // Round 2, left alone: the yellow train reaches the green station. The clock stops here and moves on in short
-    // steps until the miss, so the shot has the hint and the mark of the miss on the station.
-    await page.clock.pauseAt(new Date((await page.evaluate(() => Date.now())) + 50));
+    // steps until the miss, so the shot has the hint and the mark of the miss on the station. The minute the stop
+    // jumps is one frame to the practice, whose clock moves at most 100 ms a frame.
+    await freezeClock(page);
     for (let i = 0; i < 150 && !(await wrongMark.isVisible()); i++) await page.clock.runFor(100);
     // 400 ms more: the train has rolled into the station, and the mark (up for 900 ms) is still whole.
     await page.clock.runFor(400);

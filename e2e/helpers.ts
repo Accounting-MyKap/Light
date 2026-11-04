@@ -20,6 +20,18 @@ export async function startGame(page: Page): Promise<void> {
   else await start.click();
 }
 
+/**
+ * Stops the installed page clock, which runs on in real time until then. pauseAt needs a time still ahead of the
+ * page's own clock when the call lands, and the page reads its time, hands it to the test and gets the pause back
+ * while that clock keeps going: on a busy machine that took 130 to 490 ms, past the 50 or 100 ms the tests used to
+ * aim ahead («Cannot fast-forward to the past»). So the pause aims a minute ahead, and each timer due in that minute
+ * fires once, at the end of it. Call it only at a moment when no such timer changes what the test checks next.
+ */
+export async function freezeClock(page: Page): Promise<void> {
+  const now = await page.evaluate(() => Date.now());
+  await page.clock.pauseAt(new Date(now + 60_000));
+}
+
 /** Every control of the list must be at least 44 px tall. */
 export async function expectTall(targets: Locator): Promise<void> {
   await expect(targets.first()).toBeVisible(); // the app renders after an async bootstrap

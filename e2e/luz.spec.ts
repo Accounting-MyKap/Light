@@ -1,6 +1,6 @@
 import { mkdirSync } from 'node:fs';
 import { expect, test, type Page } from '@playwright/test';
-import { finishRunningGame, startGame } from './helpers';
+import { finishRunningGame, freezeClock, startGame } from './helpers';
 
 const GAMES = [
   'sequence-lights',
@@ -250,12 +250,14 @@ test.describe('reduced motion', () => {
   // Review Focus #5
   test('reduced motion shows the final score at once', async ({ page }) => {
     await page.goto('./#/play/quick-math');
-    await startGame(page);
-    await expect(page.locator('[data-game]')).toBeVisible();
     // From here the page's time only moves when the test moves it, and only in small steps once the game is about to
     // end. Otherwise the seconds still left on the clock when the result appears would let a count-up finish by
-    // itself, and this test would pass without reduced motion.
-    await page.clock.pauseAt(new Date((await page.evaluate(() => Date.now())) + 100));
+    // itself, and this test would pass without reduced motion. The clock stops on the intro, where no timer runs, so
+    // the minute it jumps changes nothing; the game then starts on the stopped clock.
+    await expect(page.getByRole('button', { name: 'Saltar práctica', exact: true })).toBeVisible();
+    await freezeClock(page);
+    await startGame(page);
+    await expect(page.locator('[data-game]')).toBeVisible();
     await solveQuickMath(page, 5);
     await page.clock.runFor(55_000);
     const playAgain = page.getByRole('button', { name: 'Jugar de nuevo' });
