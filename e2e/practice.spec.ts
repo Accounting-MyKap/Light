@@ -45,7 +45,10 @@ async function playUntil(page: Page, what: string, done: () => Promise<boolean>,
   expect(await done(), `${what} within ${seconds} s`).toBe(true);
 }
 
-/** A wrong answer in round 1 of each practice, which brings up the hint. Locale-free. Guardagujas needs page.clock. */
+/**
+ * A wrong answer in round 1 of each practice, which brings up the hint. Locale-free. Guardagujas and Sequence lights
+ * need page.clock; Sequence lights leaves it stopped, so its hint stays up for whatever the caller checks next.
+ */
 async function answerWrong(page: Page, id: GameId) {
   if (id === 'switchyard') {
     // Key 1 sends the waiting red train off, and back the wrong way while it is still before the switch (it gets
@@ -61,7 +64,12 @@ async function answerWrong(page: Page, id: GameId) {
   if (id === 'arrows') await controls(page).nth(0).click(); // the middle arrow points right
   if (id === 'same-different') await controls(page).nth(0).click(); // the star is the same: «No» is wrong
   if (id === 'rule-switch') await page.getByTestId('target-right').click(); // the left card matches
-  if (id === 'sequence-lights') await controls(page).nth(0).click(); // the sequence starts at cell 2
+  if (id === 'sequence-lights') {
+    // Its hint is up for 800 ms only, then the sequence plays again: less than a busy machine can take from the tap to
+    // the check below. So the tap goes in on a stopped clock (the sequence has played and the board waits for it).
+    await freezeClock(page);
+    await controls(page).nth(0).click(); // the sequence starts at cell 2
+  }
   if (id === 'quick-math') {
     await page.keyboard.press('9');
     await page.keyboard.press('Enter'); // 2 + 3 is 5
@@ -333,7 +341,8 @@ for (const [locale, startName] of [
 
     for (const id of GAMES) {
       test(`${id}: no sideways scroll`, async ({ page }) => {
-        if (id === 'switchyard') await page.clock.install(); // its wrong answer holds the clock between two keys
+        // Their wrong answers stop the clock: Guardagujas between two keys, Sequence lights to keep its hint up.
+        if (id === 'switchyard' || id === 'sequence-lights') await page.clock.install();
         await page.goto(`./#/play/${id}`);
         await expect(page.getByRole('button', { name: startName, exact: true })).toBeVisible();
         expect(await hasNoSidewaysScroll(page), 'the intro scrolls sideways').toBe(true);
@@ -410,10 +419,7 @@ test.describe('review screenshots', () => {
       await shot(page, `${id}-1-guide`, page.getByText(GUIDE[id]));
 
       await waitForInput(page, id);
-      // Sequence lights takes its hint down after 800 ms. Keep it up: stop the clock before the wrong answer, while
-      // the board waits for a press and no timer runs.
-      if (id === 'sequence-lights') await freezeClock(page);
-      await answerWrong(page, id);
+      await answerWrong(page, id); // Sequence lights stops the clock here, so its hint stays up for the shot
       await shot(page, `${id}-2-hint`, page.getByText(HINT[id]));
     }
     await page.clock.resume();
