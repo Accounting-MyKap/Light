@@ -111,6 +111,9 @@ describe('sync enabled', () => {
   });
 
   test('requestSync never rejects: a failing run is logged and resolves null', async () => {
+    // After the failed run the scheduler retries by itself in 1 s. On the fake clock that retry is dropped with the
+    // test; on the real one it would fire during a later test (on a busy machine) and add a syncNow call there.
+    vi.useFakeTimers();
     const sync = await load(config);
     const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
     const failure = new Error('IndexedDB is gone');
