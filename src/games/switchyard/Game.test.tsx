@@ -1,6 +1,7 @@
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import { initI18n } from '../../i18n';
 import { FeedbackProvider } from '../shared/feedback';
+import { ARRIVAL_SHOW_MS } from './Board';
 import { SwitchyardGame } from './Game';
 import { switchyardGame } from './index';
 import { i18n } from '../../i18n';
@@ -111,7 +112,12 @@ test('a train sent to its station scores and shows a check mark there, without f
   renderGame();
   advance(1100);
   routeFirstTrain();
-  for (let i = 0; i < 150 && hud('Puntos') === '0'; i++) advance(100);
+  // Each step costs real time: the frames it plays and a render of the whole board. So the score is looked up once
+  // (searching the page for «Puntos» on every step was most of this test's time), and the steps are as long as they
+  // can be while the check mark, which shows for ARRIVAL_SHOW_MS, is still there when the loop stops.
+  const score = screen.getByText('Puntos').nextElementSibling!;
+  const step = ARRIVAL_SHOW_MS / 2;
+  for (let t = 0; t < 15_000 && score.textContent === '0'; t += step) advance(step);
   expect(hud('Puntos')).toBe('10');
   expect(document.querySelector('[data-arrival="correct"]')).not.toBeNull();
   expect(document.querySelector('[data-flash]')).toBeNull();
