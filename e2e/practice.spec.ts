@@ -47,7 +47,7 @@ async function playUntil(page: Page, what: string, done: () => Promise<boolean>,
 
 /**
  * A wrong answer in round 1 of each practice, which brings up the hint. Locale-free. Guardagujas and Sequence lights
- * need page.clock; Sequence lights leaves it stopped, so its hint stays up for whatever the caller checks next.
+ * need page.clock and leave it stopped, so the hint stays up for whatever the caller checks next.
  */
 async function answerWrong(page: Page, id: GameId) {
   if (id === 'switchyard') {
@@ -59,7 +59,9 @@ async function answerWrong(page: Page, id: GameId) {
     await page.keyboard.press('1');
     await page.clock.runFor(100);
     await page.keyboard.press('1');
-    await page.clock.resume();
+    // The test moves the clock on to the miss: in real time a slow machine drew too few frames (the practice moves at
+    // most 100 ms a frame), and the seven seconds took longer than the 15 s the check below allows.
+    await playUntil(page, 'the miss', async () => (await bubble(page).getAttribute('data-tone')) === 'hint', 500);
   }
   if (id === 'arrows') await controls(page).nth(0).click(); // the middle arrow points right
   if (id === 'same-different') await controls(page).nth(0).click(); // the star is the same: «No» is wrong
