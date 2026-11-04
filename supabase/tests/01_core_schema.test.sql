@@ -129,8 +129,8 @@ select set_config('request.jwt.claims', json_build_object('role', 'anon')::text,
 
 select is(
   (select count(*)::int from public.games),
-  21,
-  'anon can read games (7 training and 14 quiz)'
+  22,
+  'anon can read games (8 training and 14 quiz)'
 );
 select throws_ok(
   $$ insert into public.results (id, game_id, level, score, accuracy, duration_ms, played_at)
