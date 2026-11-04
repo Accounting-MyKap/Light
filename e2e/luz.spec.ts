@@ -228,8 +228,19 @@ test.describe('Star Shower at 320 px', () => {
       );
       return { sky, entered: all.filter((star) => star.y >= sky.y) };
     };
-    await expect.poll(async () => (await snapshot()).entered.length, { timeout: 15_000 }).toBeGreaterThanOrEqual(2);
-    const { sky, entered } = await snapshot();
+    // Check the snapshot the wait accepted: a fresh one could come after the lowest star has landed, which clears the
+    // sky (on a busy machine one snapshot took two seconds).
+    let shot: Awaited<ReturnType<typeof snapshot>> | undefined;
+    await expect
+      .poll(
+        async () => {
+          shot = await snapshot();
+          return shot.entered.length;
+        },
+        { timeout: 15_000 },
+      )
+      .toBeGreaterThanOrEqual(2);
+    const { sky, entered } = shot!;
     expect(entered.length).toBeGreaterThanOrEqual(2);
     for (const [i, star] of entered.entries()) {
       expect(star.text, `star ${i} is a level-10 sum`).toMatch(/^\d+ \+ \d+ × \d+$/);
