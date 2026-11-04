@@ -66,6 +66,12 @@ test('one call catches up several spawns, each at its scheduled time', () => {
 test('over many spawns: lane never repeats, answers on screen are unique, at most one comet, ~10 % comets', () => {
   let spawns = 0;
   let comets = 0;
+  // The checks on each of the 30,000 steps are plain comparisons that note what broke, and expect() looks at the
+  // notes once: 64,000 expect() calls were 95 % of this test's time and made it time out on a busy machine.
+  const broken: string[] = [];
+  const note = (seed: number, now: number, what: string) => {
+    if (broken.length < 10) broken.push(`seed ${seed} at ${now} ms: ${what}`);
+  };
   for (let seed = 1; seed <= 20; seed++) {
     const rng = createRng(seed);
     let s = createStarShower(1, rng);
@@ -77,14 +83,13 @@ test('over many spawns: lane never repeats, answers on screen are unique, at mos
         if (e.kind !== 'spawn') continue;
         spawns++;
         if (e.star.comet) comets++;
-        expect(e.star.lane).not.toBe(lastLane);
-        expect(e.star.lane).toBeGreaterThanOrEqual(0);
-        expect(e.star.lane).toBeLessThan(LANES);
+        if (Object.is(e.star.lane, lastLane)) note(seed, now, `lane ${e.star.lane} twice in a row`);
+        if (!(e.star.lane >= 0 && e.star.lane < LANES)) note(seed, now, `lane ${e.star.lane} is off the sky`);
         lastLane = e.star.lane;
       }
       const answers = s.stars.map((x) => x.problem.answer);
-      expect(new Set(answers).size).toBe(answers.length);
-      expect(s.stars.filter((x) => x.comet).length).toBeLessThanOrEqual(1);
+      if (new Set(answers).size !== answers.length) note(seed, now, `answers on screen ${answers.join(', ')}`);
+      if (!(s.stars.filter((x) => x.comet).length <= 1)) note(seed, now, 'more than one comet');
       if (now % 2000 === 0) {
         while (s.stars.length > 0) {
           const target = String(s.stars[0].problem.answer);
@@ -93,6 +98,7 @@ test('over many spawns: lane never repeats, answers on screen are unique, at mos
       }
     }
   }
+  expect(broken).toEqual([]);
   expect(spawns).toBeGreaterThan(1000);
   expect(comets / spawns).toBeGreaterThan(0.05);
   expect(comets / spawns).toBeLessThan(0.15);
