@@ -1,0 +1,27 @@
+/* The answer slot: what is typed sits on a glowing underline in the color of the game. Quick Math and Star Shower
+   both compose it; each adds only its own size and state on top. */
+.slot {
+  --slot: var(--game);
+  position: relative;
+  min-width: 4ch;
+  padding: 0 0.5rem 0.2rem;
+  color: var(--luz-text);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+
+.slot::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0;
+  height: 3px;
+  border-radius: 3px;
+  background: var(--slot);
+  box-shadow: 0 0 14px 1px var(--slot);
+}
+
+/* Nothing typed yet: the question mark waits dimmed. */
+.slot[data-empty='true'] {
+  color: var(--luz-muted);
+}

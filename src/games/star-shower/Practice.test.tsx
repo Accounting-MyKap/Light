@@ -50,8 +50,17 @@ const frames = () => advance(50);
 const stars = () => screen.queryAllByTestId('star');
 const texts = () => stars().map((star) => star.textContent);
 const star = (text: string) => stars().find((el) => el.textContent === text)!;
-/** How far down the sky a star hangs, in percent: 0 at the top, 100 on the horizon. */
-const height = (text: string) => parseFloat(star(text).style.top);
+/**
+ * How far down the sky a star or a burst is, in percent (0 at the top, 100 on the horizon): what the rail it hangs
+ * from is moved down by.
+ */
+function heightOf(el: HTMLElement): number {
+  const transform = el.closest<HTMLElement>('[data-rail]')?.style.transform ?? '';
+  const match = /^translateY\((.+)%\)$/.exec(transform);
+  if (!match) throw new Error(`Not on a rail moved down the sky: «${transform}»`);
+  return Number(match[1]);
+}
+const height = (text: string) => heightOf(star(text));
 const slot = () => screen.getByTestId('answer').textContent;
 const tone = () => document.querySelector('[data-tone]')?.getAttribute('data-tone');
 /** The guide's bubble says `text` (cheaper than searching the whole sky on every step). */
@@ -146,7 +155,7 @@ test('round 1: the star floats still a third of the way down, and 7 with Enter p
   // It bursts where it floated.
   const burst = document.querySelector<HTMLElement>('[data-kind="pop"]');
   expect(burst?.textContent).toBe('3 + 4');
-  expect(parseFloat(burst!.style.top)).toBeCloseTo(100 / 3, 1);
+  expect(heightOf(burst!)).toBeCloseTo(100 / 3, 1);
   expect(says('¡Bien!')()).toBe(true);
   expect(tone()).toBe('ok');
   expect(slot()).toBe('?');
@@ -253,7 +262,7 @@ test('round 2: a star on the horizon shows its hint, and the round starts over w
   expect(stars()).toHaveLength(0);
   // It fades on the horizon, in its lane.
   const fading = [...document.querySelectorAll<HTMLElement>('[data-kind="clear"]')];
-  expect(fading.some((burst) => burst.textContent === '5 + 2' && parseFloat(burst.style.top) === 100)).toBe(true);
+  expect(fading.some((burst) => burst.textContent === '5 + 2' && heightOf(burst) === 100)).toBe(true);
   expect(slot()).toBe('?');
   expect(screen.getByText('Práctica 2 de 3')).toBeInTheDocument();
 

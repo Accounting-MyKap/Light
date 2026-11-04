@@ -24,6 +24,17 @@ const controls = (page: Page) => page.locator('[data-zone="controls"] button');
 /** Guardagujas has no controls zone: its controls are the switches on the board. */
 const switches = (page: Page) => page.locator('[data-switch]');
 const targets = (page: Page, id: GameId) => (id === 'switchyard' ? switches(page) : controls(page));
+/**
+ * How far down the sky each live star of Lluvia de estrellas is, in % (0 at the top, 100 on the horizon): each one
+ * hangs from a rail that the sky moves with `translateY(<height>%)`.
+ */
+const starHeights = (page: Page) =>
+  page.getByTestId('star').evaluateAll((els) =>
+    els.map((el) => {
+      const rail = el.closest<HTMLElement>('[data-rail]');
+      return Number(/translateY\((-?[\d.]+)%\)/.exec(rail?.style.transform ?? '')?.[1]);
+    }),
+  );
 
 /** Opens a game for the first time and starts its practice, in any language. */
 async function openPractice(page: Page, id: GameId, startName: string | RegExp) {
@@ -493,7 +504,11 @@ test.describe('review screenshots', () => {
     await page.getByRole('button', { name: 'Empezar práctica', exact: true }).click();
     await expect(page.getByText('Práctica 1 de 3')).toBeVisible();
     await expect(stars).toHaveText(['3 + 4']);
+    // The still star floats a third of the way down, and stays there.
+    const [still] = await starHeights(page);
+    expect(still).toBeCloseTo(100 / 3, 1);
     await shot(page, 'star-shower-1-guide', page.getByText(/^Escribe el resultado de la estrella/));
+    expect(await starHeights(page)).toEqual([still]);
 
     // Round 1: the still star pops with 7 and Enter. The next round's progress stays on screen, unlike the 700 ms of
     // «¡Bien!».
@@ -515,6 +530,12 @@ test.describe('review screenshots', () => {
     await expect(bubble(page)).toHaveText(/^Si una estrella toca el horizonte, pierdes una vida/);
     await page.clock.runFor(4500);
     await expect(stars).toHaveText(['5 + 2', '9 − 3']);
+    // Both back from the top: 5 + 2 some 3.5 s down its 14 s fall, 9 − 3 born 2 s after it.
+    const [first, second] = await starHeights(page);
+    expect(first).toBeGreaterThan(20);
+    expect(first).toBeLessThan(30);
+    expect(second).toBeGreaterThan(5);
+    expect(second).toBeLessThan(15);
     await expect(bubble(page)).toHaveText(/^Si una estrella toca el horizonte/);
     await shot(page, 'star-shower-2-hint', page.getByText(/^Si una estrella toca el horizonte/));
     await page.clock.resume();

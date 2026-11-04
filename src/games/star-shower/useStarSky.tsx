@@ -8,7 +8,7 @@ import {
   type StarShowerEvent,
   type StarShowerState,
 } from './engine';
-import { topOf, type Burst, type SkyFlash, type SkyProps } from './Sky';
+import { railAt, type Burst, type SkyFlash, type SkyProps } from './Sky';
 
 /*
  * The moving sky shared by the game and its practice: a requestAnimationFrame loop advances the engine to a clock and
@@ -70,10 +70,11 @@ export function useStarSky(initial: () => StarShowerState, options: StarSkyOptio
   const effectKey = useRef(0);
   const timers = useRef(new Set<ReturnType<typeof setTimeout>>());
 
-  const starEls = useRef(new Map<number, HTMLElement>());
+  // The element that carries each live star down (its rail), by star id: what the animation loop moves.
+  const rails = useRef(new Map<number, HTMLElement>());
   const registerStar = useCallback((id: number, el: HTMLElement | null) => {
-    if (el) starEls.current.set(id, el);
-    else starEls.current.delete(id);
+    if (el) rails.current.set(id, el);
+    else rails.current.delete(id);
   }, []);
 
   useEffect(() => {
@@ -129,10 +130,11 @@ export function useStarSky(initial: () => StarShowerState, options: StarSkyOptio
       commit(state);
       react(events);
     }
+    // Only a transform changes each frame, so the browser moves the stars without laying out the page again.
     const at = drawTime(state, now);
     for (const star of state.stars) {
-      const el = starEls.current.get(star.id);
-      if (el) el.style.top = topOf(starHeight(star, at));
+      const rail = rails.current.get(star.id);
+      if (rail) rail.style.transform = railAt(starHeight(star, at));
     }
     return options.onFrame?.(state, now) ?? true;
   });
