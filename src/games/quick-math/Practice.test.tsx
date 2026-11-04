@@ -1,4 +1,4 @@
-import { act, render, screen } from '@testing-library/react';
+import { act, fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { initI18n } from '../../i18n';
 import { FeedbackProvider } from '../shared/feedback';
@@ -24,6 +24,9 @@ function setup() {
 
 const click = (name: string) => act(() => screen.getByRole('button', { name }).click());
 const type = (digits: string) => [...digits].forEach((d) => click(d));
+// Keys and time go through act() on the fake clock: React has drawn the new round and moved the key handler on to it
+// before the next line runs. Waiting on the real clock instead races React, and loses when the machine is busy.
+const key = (k: string) => fireEvent.keyDown(window, { key: k });
 const next = () => act(() => void vi.advanceTimersByTime(PRACTICE_NEXT_MS));
 
 beforeEach(async () => {
@@ -32,22 +35,22 @@ beforeEach(async () => {
 });
 afterEach(() => vi.useRealTimers());
 
-test('typing 5 + OK, 3 + Enter, then Saltar completes once', async () => {
-  vi.useRealTimers();
+test('typing 5 + OK, 3 + Enter, then Saltar completes once', () => {
   const { onComplete } = setup();
   expect(screen.getByTestId('problem')).toHaveTextContent('2 + 3');
   expect(screen.getByText('Escribe el resultado y toca OK')).toBeInTheDocument();
-  await userEvent.click(screen.getByRole('button', { name: '5' }));
-  await userEvent.click(screen.getByRole('button', { name: 'OK' }));
-  await new Promise((r) => setTimeout(r, PRACTICE_NEXT_MS + 100));
+  click('5');
+  click('OK');
+  next();
   expect(screen.getByTestId('problem')).toHaveTextContent('7 − 4');
-  await userEvent.keyboard('3{Enter}');
-  await new Promise((r) => setTimeout(r, PRACTICE_NEXT_MS + 100));
+  key('3');
+  key('Enter');
+  next();
   expect(screen.getByTestId('problem')).toHaveTextContent('6 × 7');
   expect(screen.getByText('Si una se te complica, puedes tocar Saltar')).toBeInTheDocument();
-  await userEvent.click(screen.getByRole('button', { name: 'Saltar' }));
+  click('Saltar');
   expect(screen.getByText('¡Bien!')).toBeInTheDocument();
-  await new Promise((r) => setTimeout(r, PRACTICE_NEXT_MS + 100));
+  next();
   expect(onComplete).toHaveBeenCalledTimes(1);
 });
 

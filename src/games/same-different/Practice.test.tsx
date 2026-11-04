@@ -1,5 +1,4 @@
-import { act, render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { act, fireEvent, render, screen } from '@testing-library/react';
 import { initI18n } from '../../i18n';
 import { FeedbackProvider } from '../shared/feedback';
 import { PRACTICE_NEXT_MS } from '../shared/practice/usePracticeRounds';
@@ -24,6 +23,9 @@ function setup() {
 }
 
 const click = (name: string) => act(() => screen.getByRole('button', { name }).click());
+// Keys and time go through act() on the fake clock: React has drawn the new round and moved the key handler on to it
+// before the next line runs. Waiting on the real clock instead races React, and loses when the machine is busy.
+const key = (k: string) => fireEvent.keyDown(window, { key: k });
 const next = () => act(() => void vi.advanceTimersByTime(PRACTICE_NEXT_MS));
 const intro = () => act(() => void vi.advanceTimersByTime(INTRO_MS));
 
@@ -81,16 +83,17 @@ test('a wrong answer in round 2 hints and keeps the round', () => {
   expect(screen.getByTestId('symbol')).toHaveAttribute('data-symbol', 'heart');
 });
 
-test('the arrow keys do nothing in step 0, then ← is No and → is Yes', async () => {
-  vi.useRealTimers();
+test('the arrow keys do nothing in step 0, then ← is No and → is Yes', () => {
   setup();
-  await userEvent.keyboard('{ArrowRight}');
+  key('ArrowRight');
   expect(screen.queryByText('¡Bien!')).not.toBeInTheDocument();
-  await new Promise((r) => setTimeout(r, INTRO_MS + 100));
-  await userEvent.keyboard('{ArrowRight}');
+  intro();
+  key('ArrowRight');
   expect(screen.getByText('¡Bien!')).toBeInTheDocument();
-  await new Promise((r) => setTimeout(r, PRACTICE_NEXT_MS + 100));
-  await userEvent.keyboard('{ArrowLeft}');
+  next();
+  // Round 2 is up, so the «¡Bien!» below can only come from ←.
+  expect(screen.getByText('Práctica 2 de 3')).toBeInTheDocument();
+  key('ArrowLeft');
   expect(screen.getByText('¡Bien!')).toBeInTheDocument();
 });
 
