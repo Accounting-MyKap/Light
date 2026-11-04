@@ -154,6 +154,9 @@ function advanceRound(game: StarShowerState, to: number, attempt: Attempt) {
     if (!lost()) state = { ...state, stars: [...state.stars, starOf(attempt, i)], nextId: attempt.firstId + i + 1 };
   }
   if (!lost()) moveTo(to);
+  // A loss starts the game's break, whose end would have the engine bring in a star of its own. The practice has no
+  // break: the try is over, and its sky stays empty until the round starts over.
+  if (lost()) state = { ...state, breakUntil: null, nextSpawnAt: Infinity };
   return { state, events };
 }
 
