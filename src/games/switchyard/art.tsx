@@ -1,5 +1,6 @@
 import { memo, type JSX } from 'react';
-import type { DecorKind, Pond, Shape } from './maps';
+import type { Decor, DecorKind, Pond, Shape } from './maps';
+import { SCENES, type Scene, type SceneTheme } from './themes';
 
 /*
  * The drawings of Switchyard, in board units. The tracks are seen from above; everything that stands on the ground
@@ -187,15 +188,24 @@ export const StationHouse = memo(function StationHouse({
 });
 
 /**
- * The stone portal the trains come out of, set in a grassy mound, centered on the mouth of the tunnel and facing down
- * (the board turns it to face right or left for a tunnel on a side).
+ * The stone portal the trains come out of, set in a mound of the scene (grassy, under fallen leaves or under snow),
+ * centered on the mouth of the tunnel and facing down (the board turns it to face right or left for a tunnel on a
+ * side).
  */
-export const TunnelPortal = memo(function TunnelPortal() {
+export const TunnelPortal = memo(function TunnelPortal({ theme = 'meadow' }: { theme?: SceneTheme }) {
+  const mound = SCENES[theme].mound;
   return (
     <g>
-      <ellipse cx={0} cy={-26} rx={54} ry={36} fill="#16302b" />
-      <ellipse cx={-10} cy={-36} rx={34} ry={20} fill="#1d3d34" opacity={0.8} />
-      <path d="M-46 -14 q4 -6 8 -1 M40 -18 q4 -6 8 -1 M-28 -50 q4 -6 8 -1" stroke="#3c8a62" strokeWidth={1.4} fill="none" />
+      <ellipse cx={0} cy={-26} rx={54} ry={36} fill={mound.body} />
+      <ellipse cx={-10} cy={-36} rx={34} ry={20} fill={mound.top} opacity={0.8} />
+      {mound.grass && (
+        <path
+          d="M-46 -14 q4 -6 8 -1 M40 -18 q4 -6 8 -1 M-28 -50 q4 -6 8 -1"
+          stroke={mound.grass}
+          strokeWidth={1.4}
+          fill="none"
+        />
+      )}
       <ellipse cx={0} cy={6} rx={38} ry={6} fill="#000000" opacity={0.3} />
       <path d="M-32 8 V-14 A32 32 0 0 1 32 -14 V8 Z" fill="#2b3150" stroke="#4a5280" strokeWidth={1.5} />
       {/* Stones around the arch. */}
@@ -210,48 +220,76 @@ export const TunnelPortal = memo(function TunnelPortal() {
   );
 });
 
-/* ---------------------------------------------------------------------------------------------- the night meadow */
+/* --------------------------------------------------------------------------------------------------- the scenery */
 
-const LEAF_DARK = '#1c4f3f';
-const LEAF = '#246a50';
-const LEAF_LIGHT = '#2f8462';
-const BARK = '#4a3530';
+/*
+ * The plants, stones and ponds around the tracks, in the colors of the map's scene (see themes.ts): the night meadow,
+ * the autumn forest, or the snowy night, where snow lies on the trees and the rocks and the pond is frozen.
+ */
 
-function Pine({ variant }: { variant: 0 | 1 }) {
-  const tint = variant === 0 ? LEAF : '#22625e';
+interface SceneryProps {
+  variant: 0 | 1;
+  scene: Scene;
+}
+
+/* The snow on a pine: a cap on its top and a band on its lower tier, with soft scalloped edges. */
+const PINE_SNOW =
+  'M0 -36 L5.8 -27.6 Q4.6 -26.2 3.2 -27.2 Q1.7 -25.6 0 -26.9 Q-1.8 -25.4 -3.3 -27 Q-4.7 -26 -5.8 -27.6 Z ' +
+  'M-7.6 -20 H7.6 L9.2 -16.9 Q7.6 -15.5 6 -16.6 Q4.1 -15 2.1 -16.4 Q0 -14.9 -2.1 -16.4 Q-4.1 -15 -6 -16.6 ' +
+  'Q-7.6 -15.5 -9.2 -16.9 Z';
+
+function Pine({ variant, scene }: SceneryProps) {
+  const leaf = scene.pine[variant];
   return (
     <g>
       <ellipse cx={0} cy={0} rx={11} ry={2.8} fill="#000000" opacity={0.3} />
-      <rect x={-2} y={-7} width={4} height={7} rx={1} fill={BARK} />
-      <path d="M0 -36 L11 -20 H7 L14 -7 H-14 L-7 -20 H-11 Z" fill={tint} />
-      <path d="M0 -36 L-11 -20 H-7 L-14 -7 H-4 L0 -36 Z" fill={LEAF_DARK} opacity={0.75} />
-      <path d="M0 -36 L5 -28" stroke={LEAF_LIGHT} strokeWidth={1.4} strokeLinecap="round" />
+      <rect x={-2} y={-7} width={4} height={7} rx={1} fill={scene.bark} />
+      <path d="M0 -36 L11 -20 H7 L14 -7 H-14 L-7 -20 H-11 Z" fill={leaf.body} />
+      <path d="M0 -36 L-11 -20 H-7 L-14 -7 H-4 L0 -36 Z" fill={leaf.shade} opacity={0.75} />
+      {scene.snow ? (
+        <path d={PINE_SNOW} fill={scene.snow} />
+      ) : (
+        <path d="M0 -36 L5 -28" stroke={leaf.light} strokeWidth={1.4} strokeLinecap="round" />
+      )}
     </g>
   );
 }
 
-function RoundTree({ variant }: { variant: 0 | 1 }) {
+/* The snow on the crown of a round tree. */
+const TREE_SNOW =
+  'M-9.5 -24.5 A11 11 0 0 1 9.5 -24.5 Q8 -22.6 6 -23.8 Q3.6 -21.8 1.2 -23.4 Q-1.6 -21.4 -4 -23.4 ' +
+  'Q-6.6 -22 -9.5 -24.5 Z';
+
+function RoundTree({ variant, scene }: SceneryProps) {
+  const leaf = scene.tree[variant];
   return (
     <g>
       <ellipse cx={0} cy={0} rx={10} ry={2.6} fill="#000000" opacity={0.3} />
-      <rect x={-2} y={-12} width={4} height={12} rx={1} fill={BARK} />
-      <circle cx={0} cy={-19} r={11} fill={variant === 0 ? LEAF : '#2a6a4a'} />
-      <circle cx={-4.5} cy={-23} r={6} fill={LEAF_LIGHT} opacity={0.55} />
-      <circle cx={5} cy={-15} r={5.5} fill={LEAF_DARK} opacity={0.6} />
+      <rect x={-2} y={-12} width={4} height={12} rx={1} fill={scene.bark} />
+      <circle cx={0} cy={-19} r={11} fill={leaf.body} />
+      <circle cx={-4.5} cy={-23} r={6} fill={leaf.light} opacity={0.55} />
+      <circle cx={5} cy={-15} r={5.5} fill={leaf.shade} opacity={0.6} />
+      {scene.snow && <path d={TREE_SNOW} fill={scene.snow} />}
     </g>
   );
 }
 
-function Bush({ variant }: { variant: 0 | 1 }) {
+/* The snow on a bush. */
+const BUSH_SNOW =
+  'M-5.6 -9.6 A6 6 0 0 1 5.6 -9.6 Q4.2 -8.4 2.8 -9.3 Q1 -7.9 -0.8 -9.2 Q-2.8 -8 -4.2 -9.2 Q-5 -8.8 -5.6 -9.6 Z';
+
+function Bush({ variant, scene }: SceneryProps) {
+  const leaf = scene.bush[variant];
   return (
     <g>
       <ellipse cx={0} cy={0.5} rx={11} ry={2.4} fill="#000000" opacity={0.3} />
-      <circle cx={-5} cy={-4} r={5.5} fill={LEAF_DARK} />
-      <circle cx={4.5} cy={-4} r={5.5} fill={LEAF} />
-      <circle cx={0} cy={-7.5} r={6} fill={LEAF} />
-      <circle cx={-1.5} cy={-9.5} r={2.6} fill={LEAF_LIGHT} opacity={0.6} />
+      <circle cx={-5} cy={-4} r={5.5} fill={leaf.shade} />
+      <circle cx={4.5} cy={-4} r={5.5} fill={leaf.body} />
+      <circle cx={0} cy={-7.5} r={6} fill={leaf.body} />
+      <circle cx={-1.5} cy={-9.5} r={2.6} fill={leaf.light} opacity={0.6} />
+      {scene.snow && <path d={BUSH_SNOW} fill={scene.snow} />}
       {variant === 1 && (
-        <g fill="#ff8fa3">
+        <g fill={scene.berries}>
           <circle cx={-4} cy={-6} r={1.1} />
           <circle cx={3} cy={-8} r={1.1} />
           <circle cx={5} cy={-3} r={1.1} />
@@ -261,98 +299,194 @@ function Bush({ variant }: { variant: 0 | 1 }) {
   );
 }
 
-function Rock({ variant }: { variant: 0 | 1 }) {
+/** A rock; where it snows, its top face is snow. */
+function Rock({ variant, scene }: SceneryProps) {
+  const [body, top] = scene.rock[variant];
+  const cap = scene.snow ?? top;
   return (
     <g>
       <ellipse cx={0} cy={0.5} rx={9} ry={2} fill="#000000" opacity={0.3} />
       {variant === 0 ? (
         <>
-          <path d="M-8 0 L-6 -6 L-1 -9 L5 -7 L8 0 Z" fill="#4b5370" />
-          <path d="M-6 -6 L-1 -9 L5 -7 L1 -4 Z" fill="#646d90" />
+          <path d="M-8 0 L-6 -6 L-1 -9 L5 -7 L8 0 Z" fill={body} />
+          <path d="M-6 -6 L-1 -9 L5 -7 L1 -4 Z" fill={cap} />
         </>
       ) : (
         <>
-          <path d="M-9 0 L-7 -4 L-2 -6 L2 -5 L4 -2 L7 -3 L9 0 Z" fill="#454c68" />
-          <path d="M-7 -4 L-2 -6 L2 -5 L-2 -3 Z" fill="#5d6687" />
+          <path d="M-9 0 L-7 -4 L-2 -6 L2 -5 L4 -2 L7 -3 L9 0 Z" fill={body} />
+          <path d="M-7 -4 L-2 -6 L2 -5 L-2 -3 Z" fill={cap} />
         </>
       )}
     </g>
   );
 }
 
-const PETALS = ['#ffd6e8', '#fff2a8', '#cfc2ff', '#ffffff'];
+/** Where the little groups on the ground stand: flowers, fallen leaves. */
+const SPOTS: readonly [number, number][] = [
+  [-4, -1],
+  [0, -3],
+  [4, -1],
+  [-2, 2],
+  [3, 2.5],
+];
 
-function Flowers({ variant }: { variant: 0 | 1 }) {
-  const spots: [number, number][] = [
-    [-4, -1],
-    [0, -3],
-    [4, -1],
-    [-2, 2],
-    [3, 2.5],
-  ];
+function Flowers({ variant, scene }: SceneryProps) {
   return (
     <g>
-      {spots.map(([x, y], i) => (
+      {SPOTS.map(([x, y], i) => (
         <g key={i}>
-          <path d={`M${x} ${y} v3`} stroke="#3c8a62" strokeWidth={0.8} />
-          <circle cx={x} cy={y} r={1.5} fill={PETALS[(i + variant) % PETALS.length]} />
+          <path d={`M${x} ${y} v3`} stroke={scene.grass} strokeWidth={0.8} />
+          <circle cx={x} cy={y} r={1.5} fill={scene.spots[(i + variant) % scene.spots.length]} />
         </g>
       ))}
     </g>
   );
 }
 
-function Grass({ variant }: { variant: 0 | 1 }) {
-  return (
-    <path
-      d={variant === 0 ? 'M-4 0 Q-4 -4 -6 -7 M0 0 Q0 -5 1 -9 M4 0 Q4 -4 6 -6' : 'M-3 0 Q-2 -5 -4 -8 M2 0 Q1 -4 3 -7'}
-      stroke="#3c8a62"
-      strokeWidth={1.4}
-      strokeLinecap="round"
-      fill="none"
-    />
-  );
-}
+const LEAF_TURNS = [-30, 25, 70, -60, 10];
 
-const DECOR: Record<DecorKind, (props: { variant: 0 | 1 }) => JSX.Element> = {
-  pine: Pine,
-  tree: RoundTree,
-  bush: Bush,
-  rock: Rock,
-  flowers: Flowers,
-  grass: Grass,
-};
-
-/** A plant or a stone, standing on x, y. */
-export function DecorView({ kind, x, y, scale, variant }: { kind: DecorKind; x: number; y: number; scale: number; variant: 0 | 1 }) {
-  const Drawing = DECOR[kind];
+/** Leaves fallen on the ground, where the meadow has flowers. */
+function FallenLeaves({ variant, scene }: SceneryProps) {
   return (
-    <g transform={`translate(${x.toFixed(1)} ${y.toFixed(1)}) scale(${scale.toFixed(2)})`}>
-      <Drawing variant={variant} />
+    <g>
+      {SPOTS.map(([x, y], i) => (
+        <path
+          key={i}
+          d="M-2.6 0 Q0 -1.8 2.6 0 Q0 1.8 -2.6 0 Z"
+          fill={scene.spots[(i + variant) % scene.spots.length]}
+          transform={`translate(${x} ${y + 1}) rotate(${LEAF_TURNS[(i + 2 * variant) % LEAF_TURNS.length]})`}
+        />
+      ))}
     </g>
   );
 }
 
-/** A pond seen from above, with the moon in it, a lily pad and reeds on one bank. */
-export function PondView({ pond, water }: { pond: Pond; water: string }) {
-  const { x, y, rx, ry } = pond;
+/** A round heap of snow `w` wide and `h` tall standing on `x`, 0, lit from the upper left. */
+function Heap({ x, w, h, scene }: { x: number; w: number; h: number; scene: Scene }) {
+  const [light, shade] = scene.spots;
+  const half = w / 2;
+  const left = 0.6 - half;
+  return (
+    <g transform={`translate(${x} 0)`}>
+      <path d={`M${-half} 0.8 Q${-half} ${-h} 0 ${-h} Q${half} ${-h} ${half} 0.8 Z`} fill={shade} />
+      <path
+        d={`M${left} 0 Q${left} ${0.4 - h} ${w * 0.08} ${0.4 - h} Q${w * 0.3} ${-h * 0.6} ${left} 0 Z`}
+        fill={light}
+      />
+    </g>
+  );
+}
+
+/** Two small heaps of snow, where the meadow has flowers. */
+function SnowMounds({ variant, scene }: SceneryProps) {
+  const [big, small] = variant === 0 ? [-1.5, 4.5] : [1.5, -4.5];
   return (
     <g>
-      <ellipse cx={x} cy={y} rx={rx + 3} ry={ry + 3} fill="#1a3a33" />
-      <ellipse cx={x} cy={y} rx={rx} ry={ry} fill={`url(#${water})`} stroke="#2a5a6a" strokeWidth={1.4} />
-      <ellipse cx={x - rx * 0.25} cy={y - ry * 0.2} rx={rx * 0.42} ry={ry * 0.2} fill="#ffffff" opacity={0.08} />
-      <circle cx={x + rx * 0.28} cy={y - ry * 0.1} r={Math.min(5, ry * 0.3)} fill="#f4f1d0" opacity={0.55} />
+      <ellipse cx={0} cy={1} rx={8} ry={1.8} fill="#000000" opacity={0.25} />
+      <Heap x={big} w={9} h={4.6} scene={scene} />
+      <Heap x={small} w={5} h={2.8} scene={scene} />
+    </g>
+  );
+}
+
+/** A tuft of grass; where it snows, it pokes out of a little snow. */
+function Grass({ variant, scene }: SceneryProps) {
+  return (
+    <g>
       <path
-        d={`M${x - rx * 0.35} ${y + ry * 0.3} a4.5 3 0 1 0 0.1 0 Z`}
-        fill="#2f8462"
-        transform={`rotate(-12 ${x - rx * 0.35} ${y + ry * 0.3})`}
+        d={variant === 0 ? 'M-4 0 Q-4 -4 -6 -7 M0 0 Q0 -5 1 -9 M4 0 Q4 -4 6 -6' : 'M-3 0 Q-2 -5 -4 -8 M2 0 Q1 -4 3 -7'}
+        stroke={scene.grass}
+        strokeWidth={1.4}
+        strokeLinecap="round"
+        fill="none"
       />
-      <g stroke="#3c7a55" strokeWidth={1.3} strokeLinecap="round">
+      {scene.snow && <ellipse cx={0} cy={0.3} rx={5} ry={1.4} fill={scene.spots[1]} />}
+    </g>
+  );
+}
+
+const DECOR: Record<Exclude<DecorKind, 'flowers'>, (props: SceneryProps) => JSX.Element> = {
+  pine: Pine,
+  tree: RoundTree,
+  bush: Bush,
+  rock: Rock,
+  grass: Grass,
+};
+
+/** What each scene has where the meadow has flowers. */
+const GROUND_SPOTS: Record<SceneTheme, (props: SceneryProps) => JSX.Element> = {
+  meadow: Flowers,
+  autumn: FallenLeaves,
+  snow: SnowMounds,
+};
+
+/** A plant or a stone of the scene, standing on x, y. */
+export function DecorView({ kind, x, y, scale, variant, theme }: Decor & { theme: SceneTheme }) {
+  const Drawing = kind === 'flowers' ? GROUND_SPOTS[theme] : DECOR[kind];
+  return (
+    <g transform={`translate(${x.toFixed(1)} ${y.toFixed(1)}) scale(${scale.toFixed(2)})`}>
+      <Drawing variant={variant} scene={SCENES[theme]} />
+    </g>
+  );
+}
+
+/**
+ * A pond seen from above, with the moon in it and reeds on one bank: a lily pad floats on it in the meadow and a
+ * fallen leaf in the autumn; in the snow it is frozen, with a crack across the ice.
+ */
+export function PondView({ pond, water, theme }: { pond: Pond; water: string; theme: SceneTheme }) {
+  const { x, y, rx, ry } = pond;
+  const look = SCENES[theme].pond;
+  const float = { x: x - rx * 0.35, y: y + ry * 0.3 };
+  // From the left bank toward the middle, with a short branch; drawn from the center of the pond.
+  const crack = [
+    `M${-rx * 0.66} ${ry * 0.2} l${rx * 0.2} ${-ry * 0.22} l${rx * 0.16} ${ry * 0.3} l${rx * 0.2} ${-ry * 0.18}`,
+    `M${-rx * 0.46} ${-ry * 0.02} l${-rx * 0.05} ${-ry * 0.32}`,
+  ].join(' ');
+  return (
+    <g>
+      <ellipse cx={x} cy={y} rx={rx + 3} ry={ry + 3} fill={look.bank} />
+      <ellipse cx={x} cy={y} rx={rx} ry={ry} fill={`url(#${water})`} stroke={look.rim} strokeWidth={1.4} />
+      <ellipse cx={x - rx * 0.25} cy={y - ry * 0.2} rx={rx * 0.42} ry={ry * 0.2} fill="#ffffff" opacity={0.08} />
+      {theme === 'snow' && (
+        <path
+          d={crack}
+          transform={`translate(${x} ${y})`}
+          fill="none"
+          stroke="#4b6282"
+          strokeWidth={1}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          opacity={0.75}
+        />
+      )}
+      <circle
+        cx={x + rx * 0.28}
+        cy={y - ry * 0.1}
+        r={Math.min(5, ry * 0.3)}
+        fill={look.moon}
+        opacity={look.moonOpacity}
+      />
+      {look.floating &&
+        (theme === 'autumn' ? (
+          <path
+            d="M-4.5 0 Q0 -3.2 4.5 0 Q0 3.2 -4.5 0 Z"
+            fill={look.floating}
+            transform={`translate(${float.x} ${float.y}) rotate(-24)`}
+          />
+        ) : (
+          <path
+            d={`M${float.x} ${float.y} a4.5 3 0 1 0 0.1 0 Z`}
+            fill={look.floating}
+            transform={`rotate(-12 ${float.x} ${float.y})`}
+          />
+        ))}
+      <g stroke={look.reeds} strokeWidth={1.3} strokeLinecap="round">
         <path d={`M${x + rx * 0.82} ${y + ry * 0.6} l-1 -12`} />
         <path d={`M${x + rx * 0.9} ${y + ry * 0.45} l1 -10`} />
         <path d={`M${x + rx * 0.72} ${y + ry * 0.72} l-2 -9`} />
       </g>
-      <g fill="#7a5544">
+      <g fill={look.cattails}>
         <rect x={x + rx * 0.82 - 2.2} y={y + ry * 0.6 - 15} width={2.6} height={5} rx={1.3} />
         <rect x={x + rx * 0.9 - 0.6} y={y + ry * 0.45 - 12.5} width={2.6} height={5} rx={1.3} />
       </g>

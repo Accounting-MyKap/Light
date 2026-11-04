@@ -256,6 +256,7 @@
       "levelStations": "{{n}} estaciones",
       "levelSideTunnel": "túnel lateral",
       "levelMiddleStation": "estación central",
+      "faster": "¡Más rápido! · Nivel {{level}}",
       "practice": {
         "tap": "Toca el cambio (el círculo con flecha) para que el tren rojo vaya a la estación roja, la del círculo",
         "moving": "Ahora el tren avanza solo: cambia la vía antes de que llegue al cambio",
@@ -263,6 +264,23 @@
         "hintYellow": "El tren amarillo va a la estación amarilla, la del cuadrado. Inténtalo otra vez",
         "hintEach": "Cada tren va a la estación de su color y forma. Inténtalo otra vez",
         "recap": "Tienes 90 segundos. Cada tren que llega a su estación suma; si llega a otra, no suma. Van más rápido mientras aciertas. Con teclado: números 1 a 9."
+      },
+      "result": {
+        "title": "Tus trenes",
+        "home": "Trenes a su estación: {{home}} de {{arrived}}",
+        "bestStreak_one": "Mejor racha: {{count}} tren seguido",
+        "bestStreak_other": "Mejor racha: {{count}} trenes seguidos",
+        "worstStation_one": "Donde más fallaste: {{station}} ({{count}} tren)",
+        "worstStation_other": "Donde más fallaste: {{station}} ({{count}} trenes)",
+        "stations": {
+          "circle": "la estación roja del círculo",
+          "square": "la estación amarilla del cuadrado",
+          "triangle": "la estación verde del triángulo",
+          "diamond": "la estación morada del rombo",
+          "star": "la estación naranja de la estrella",
+          "heart": "la estación rosada del corazón",
+          "cross": "la estación azul de la cruz"
+        }
       }
     },
     "star-shower": {

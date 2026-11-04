@@ -33,6 +33,51 @@ test('track switches are at least 44 px wide and tall, even on a small phone', a
   }
 });
 
+test('track switches never overlap, even at level 10 on a short landscape phone', async ({ page }) => {
+  // 640 × 360 leaves a board about 140 px wide, where 44 px buttons on the closest switches (110 of 360 board units
+  // apart on the 7-station map) would cover each other: a tap meant for one could flip its neighbor.
+  await page.setViewportSize({ width: 640, height: 360 });
+  await page.goto('./#/games');
+  await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+  await page.evaluate(
+    () =>
+      new Promise<void>((resolve, reject) => {
+        const open = indexedDB.open('light');
+        open.onerror = () => reject(open.error);
+        open.onsuccess = () => {
+          const db = open.result;
+          const tx = db.transaction('gameLevels', 'readwrite');
+          tx.objectStore('gameLevels').put({ gameId: 'switchyard', startLevel: 10 });
+          tx.oncomplete = () => {
+            db.close();
+            resolve();
+          };
+          tx.onerror = () => reject(tx.error);
+        };
+      }),
+  );
+  await page.goto('./#/play/switchyard');
+  await startGame(page);
+  const switches = page.locator('[data-game] [data-switch]');
+  // Level 10 brings the 7-station map, with its 6 switches.
+  await expect(switches).toHaveCount(6);
+  await expect(page.locator('[data-game] [role="group"]')).toBeVisible();
+  const boxes = await switches.evaluateAll((els) =>
+    els.map((el) => {
+      const r = el.getBoundingClientRect();
+      const n = Number(el.getAttribute('data-switch')) + 1;
+      return { n, left: r.left, top: r.top, right: r.right, bottom: r.bottom };
+    }),
+  );
+  for (const a of boxes) {
+    for (const b of boxes) {
+      if (a.n >= b.n) continue;
+      const overlap = a.left < b.right && b.left < a.right && a.top < b.bottom && b.top < a.bottom;
+      expect(overlap, `switches ${a.n} and ${b.n}: ${JSON.stringify([a, b])}`).toBe(false);
+    }
+  }
+});
+
 test('quiz controls are at least 44 px tall on a 320 px screen', async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 640 });
 

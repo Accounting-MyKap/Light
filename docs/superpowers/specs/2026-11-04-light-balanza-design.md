@@ -176,7 +176,8 @@ Siguen igual `correct`, `wrong` y `finish`. Todo respeta el interruptor de Sonid
 - No se puede tocar (`pointer-events: none`) ni tapa los controles.
 - Un `aria-live="polite"` montado vacío anuncia «Subiste al nivel N».
 - Bajar de nivel no se anuncia.
-- Prop `levelUp?: boolean` (por defecto `true`); los juegos de Preguntas pasan `false`. Las prácticas no usan
+- Prop `levelUp?: boolean` (por defecto `true`); los juegos de Preguntas pasan `false`, y Guardagujas también, porque
+  anuncia la subida con su propio «¡Más rápido! · Nivel N» sobre el tablero. Las prácticas no usan
   `GameFrame`, así que no lo muestran.
 - Movimiento reducido: aparece y se va con fundido, sin salto.
 

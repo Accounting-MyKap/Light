@@ -1,9 +1,10 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState, type RefObject } from 'react';
 import { prefersReducedMotion } from '../../core/motion';
 import { createRng, randomSeed } from '../../core/rng';
-import { ARRIVAL_SHOW_MS, Board } from './Board';
+import { ARRIVAL_SHOW_MS, Board, type PuffView } from './Board';
 import { BOARD } from './maps';
-import { toggleSwitch, type Arrival, type SwitchyardState } from './engine';
+import { toggleSwitch, type Arrival, type SwitchyardState, type Train } from './engine';
+import { createFrameMonitor, recordFrame } from './frameMonitor';
 import { agePuffs, emitPuffs, puffLook, type SmokeState } from './smoke';
 import { chimneyOf, trainSprite } from './sprite';
 import styles from './switchyard.module.css';
@@ -29,6 +30,10 @@ export interface SwitchyardWorldOptions {
   advance: (game: SwitchyardState, to: number) => { state: SwitchyardState; arrivals: Arrival[] };
   /** Called once for every train that reaches a station, before the frame is drawn. */
   onArrival: (arrival: Arrival) => void;
+  /** Called once for every train that comes out of the tunnel while the yard runs. */
+  onSpawn?: (train: Train) => void;
+  /** Called after a switch flipped, by a tap or a key. */
+  onFlip?: (index: number) => void;
 }
 
 export interface SwitchyardWorld {
@@ -39,6 +44,11 @@ export interface SwitchyardWorld {
   toggle: (index: number) => boolean;
   /** Moving trains are the game, so they move anyway; the smoke is decoration and stays off with reduced motion. */
   reducedMotion: boolean;
+  /**
+   * The phone draws the yard too slowly (see frameMonitor.ts): no new smoke, and the board stops its decorative
+   * animations. Once on, it stays on.
+   */
+  lite: boolean;
 }
 
 export function useSwitchyardWorld(initial: () => SwitchyardState, options: SwitchyardWorldOptions): SwitchyardWorld {
@@ -50,6 +60,8 @@ export function useSwitchyardWorld(initial: () => SwitchyardState, options: Swit
     arrivals: [],
   }));
   const worldRef = useRef(world);
+  const monitorRef = useRef(createFrameMonitor());
+  const [lite, setLite] = useState(false);
 
   // The latest callbacks, so the loop never calls stale ones and never restarts because of them.
   const optionsRef = useRef(options);
@@ -67,15 +79,27 @@ export function useSwitchyardWorld(initial: () => SwitchyardState, options: Swit
   useEffect(() => {
     if (!active) return;
     let frame = 0;
-    const tick = () => {
-      const { now: clock, advance, onArrival } = optionsRef.current;
+    const tick = (time: number) => {
+      const monitor = recordFrame(monitorRef.current, time);
+      if (monitor.lite && !monitorRef.current.lite) setLite(true);
+      monitorRef.current = monitor;
+
+      const { now: clock, advance, onArrival, onSpawn } = optionsRef.current;
       const now = clock();
       const current = worldRef.current;
       const { state, arrivals } = advance(current.game, now);
+      if (onSpawn && state.trains !== current.game.trains) {
+        // Train ids are never reused, so a train is new when the last frame did not have its id.
+        const before = new Set(current.game.trains.map((train) => train.id));
+        for (const train of state.trains) if (!before.has(train.id)) onSpawn(train);
+      }
       for (const arrival of arrivals) onArrival(arrival);
 
       let smoke = current.smoke;
-      if (!reducedMotion) {
+      if (monitor.lite) {
+        // Too slow for the smoke: no new puffs, and the last ones fade out as they would.
+        if (smoke.puffs.length > 0) smoke = agePuffs(smoke, now);
+      } else if (!reducedMotion) {
         const chimneys = state.trains
           .filter((train) => !train.arrived)
           .map((train) => {
@@ -105,6 +129,7 @@ export function useSwitchyardWorld(initial: () => SwitchyardState, options: Swit
       const current = worldRef.current;
       if (index < 0 || index >= current.game.switches.length) return false;
       commit({ ...current, game: toggleSwitch(current.game, index) });
+      optionsRef.current.onFlip?.(index);
       return true;
     },
     [commit],
@@ -112,52 +137,64 @@ export function useSwitchyardWorld(initial: () => SwitchyardState, options: Swit
 
   const current = useCallback(() => worldRef.current, []);
 
-  return { world, current, toggle, reducedMotion };
+  return { world, current, toggle, reducedMotion, lite };
 }
 
 /**
- * The width that lets the whole board fit in the measured box, keeping its proportions. Undefined until measured (or
- * where ResizeObserver does not exist), and the board then takes the width of its box.
+ * The width that lets the whole board fit in the measured box, keeping its proportions. Undefined until the box has
+ * a size (or where ResizeObserver does not exist), and the board then takes the width of its box.
  */
 function useFittedWidth(box: RefObject<HTMLElement | null>): number | undefined {
   const [width, setWidth] = useState<number>();
   useLayoutEffect(() => {
     const el = box.current;
     if (!el || typeof ResizeObserver === 'undefined') return;
-    const observer = new ResizeObserver(([entry]) => {
-      const { width: w, height: h } = entry.contentRect;
+    const fit = (w: number, h: number) => {
       if (w > 0 && h > 0) setWidth(Math.floor(Math.min(w, (h * BOARD.width) / BOARD.height)));
-    });
+    };
+    // Measured now, before the first paint: the observer reports only after it, and the board would show for a frame
+    // at the whole width of its box (overflowing it on a wide screen). The box's size never depends on the board's.
+    const rect = el.getBoundingClientRect();
+    fit(rect.width, rect.height);
+    const observer = new ResizeObserver(([entry]) => fit(entry.contentRect.width, entry.contentRect.height));
     observer.observe(el);
     return () => observer.disconnect();
   }, [box]);
   return width;
 }
 
+/** One empty list for every frame without smoke, so the smoke canvas is not cleared again on each of them. */
+const NO_PUFFS: readonly PuffView[] = [];
+
 /** The yard drawn as large as its box allows, with its switches, trains, smoke and arrival marks. */
 export function WorldBoard({
   world,
   onToggle,
   reducedMotion,
+  lite = false,
 }: {
   world: World;
   onToggle: (index: number) => void;
   reducedMotion: boolean;
+  /** A phone too slow for the decoration: the board stops its decorative animations. */
+  lite?: boolean;
 }) {
   const boxRef = useRef<HTMLDivElement>(null);
   const boardWidth = useFittedWidth(boxRef);
   const { game } = world;
+  const { puffs } = world.smoke;
   return (
     <div ref={boxRef} className={styles.boardWrap}>
       <Board
         map={game.map}
         switches={game.switches}
         trains={game.trains}
-        puffs={world.smoke.puffs.map((p) => ({ id: p.id, ...puffLook(p, game.now) }))}
+        puffs={puffs.length === 0 ? NO_PUFFS : puffs.map((p) => ({ id: p.id, ...puffLook(p, game.now) }))}
         arrivals={world.arrivals}
         now={game.now}
         onToggle={onToggle}
         reducedMotion={reducedMotion}
+        lite={lite}
         width={boardWidth}
       />
     </div>

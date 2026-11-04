@@ -2,6 +2,7 @@ import type { GameDefinition } from '../types';
 import { SWITCHYARD_MAX_SCORE, SWITCHYARD_REFERENCE_SCORE } from './engine';
 import { SwitchyardGame } from './Game';
 import { SwitchyardPractice } from './Practice';
+import { SwitchyardResultDetails } from './ResultDetails';
 import { SwitchyardThumb } from './Thumb';
 import { mapFeatures, mapFor, stationCountForLevel } from './maps';
 
@@ -13,6 +14,7 @@ export const switchyardGame: GameDefinition = {
   Component: SwitchyardGame,
   Practice: SwitchyardPractice,
   Thumb: SwitchyardThumb,
+  ResultDetails: SwitchyardResultDetails,
   describeLevel(level, t) {
     const stations = stationCountForLevel(level);
     const { sideTunnel, middleStation } = mapFeatures(mapFor(stations, false));

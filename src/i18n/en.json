@@ -256,6 +256,7 @@
       "levelStations": "{{n}} stations",
       "levelSideTunnel": "side tunnel",
       "levelMiddleStation": "station in the middle",
+      "faster": "Faster! · Level {{level}}",
       "practice": {
         "tap": "Tap the switch (the circle with an arrow) so the red train goes to the red station, the circle one",
         "moving": "Now the train moves on its own: switch the track before it reaches the switch",
@@ -263,6 +264,23 @@
         "hintYellow": "The yellow train goes to the yellow station, the square one. Try again",
         "hintEach": "Each train goes to the station of its color and shape. Try again",
         "recap": "You have 90 seconds. Each train that reaches its station scores; if it reaches another, it scores nothing. They speed up while you get them right. On a keyboard: numbers 1 to 9."
+      },
+      "result": {
+        "title": "Your trains",
+        "home": "Trains to their station: {{home}} of {{arrived}}",
+        "bestStreak_one": "Best streak: {{count}} train in a row",
+        "bestStreak_other": "Best streak: {{count}} trains in a row",
+        "worstStation_one": "Missed most: {{station}} ({{count}} train)",
+        "worstStation_other": "Missed most: {{station}} ({{count}} trains)",
+        "stations": {
+          "circle": "the red circle station",
+          "square": "the yellow square station",
+          "triangle": "the green triangle station",
+          "diamond": "the purple diamond station",
+          "star": "the orange star station",
+          "heart": "the pink heart station",
+          "cross": "the blue cross station"
+        }
       }
     },
     "star-shower": {
