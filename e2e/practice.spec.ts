@@ -30,14 +30,18 @@ async function waitForInput(page: Page, id: GameId) {
   if (id === 'sequence-lights') await page.waitForTimeout(2 * 850 + 300); // the two-cell sequence plays once
 }
 
-/** A wrong answer in round 1 of each practice, which brings up the hint. Locale-free. */
+/** A wrong answer in round 1 of each practice, which brings up the hint. Locale-free. Guardagujas needs page.clock. */
 async function answerWrong(page: Page, id: GameId) {
   if (id === 'switchyard') {
     // Key 1 sends the waiting red train off, and back the wrong way while it is still before the switch (it gets
-    // there some 370 ms after it sets off). It reaches the yellow station some seven seconds later.
+    // there some 370 ms after it sets off). The clock stands still between the two keys but for 100 ms, so a busy
+    // machine cannot let the train past the switch first. It reaches the yellow station some seven seconds later.
+    // (The minute the clock jumps as it stops is one frame to the practice, and the waiting train does not move.)
+    await freezeClock(page);
     await page.keyboard.press('1');
-    await page.waitForTimeout(100);
+    await page.clock.runFor(100);
     await page.keyboard.press('1');
+    await page.clock.resume();
   }
   if (id === 'arrows') await controls(page).nth(0).click(); // the middle arrow points right
   if (id === 'same-different') await controls(page).nth(0).click(); // the star is the same: «No» is wrong
@@ -302,6 +306,7 @@ for (const [locale, startName] of [
 
     for (const id of GAMES) {
       test(`${id}: no sideways scroll`, async ({ page }) => {
+        if (id === 'switchyard') await page.clock.install(); // its wrong answer holds the clock between two keys
         await page.goto(`./#/play/${id}`);
         await expect(page.getByRole('button', { name: startName, exact: true })).toBeVisible();
         expect(await hasNoSidewaysScroll(page), 'the intro scrolls sideways').toBe(true);
