@@ -48,7 +48,7 @@ test('area meters, streaks, days trained and charts', async () => {
   expect(stat('Racha actual').getByText('1')).toBeInTheDocument();
   expect(stat('Mejor racha').getByText('1')).toBeInTheDocument();
   expect(stat('Días entrenados').getByText('2')).toBeInTheDocument();
-  const labels = ['Velocidad', 'Memoria', 'Atención', 'Flexibilidad mental', 'Matemáticas'];
+  const labels = ['Velocidad', 'Memoria', 'Atención', 'Flexibilidad mental', 'Lógica', 'Matemáticas'];
   const areaCard = screen.getByRole('heading', { name: 'Puntaje por área' }).parentElement as HTMLElement;
   const order = within(areaCard).getAllByText((_, el) => labels.includes(el?.textContent ?? '') && el?.tagName === 'SPAN');
   expect(order.map((e) => e.textContent)).toEqual(labels);

@@ -7,17 +7,16 @@ import styles from './balance.module.css';
 
 /** One balance is drawn in a box of this size (SVG units). */
 export const BALANCE_BOX = { width: 200, height: 130 };
-/** How far a tipped beam turns, and how far each pan rises or falls with it (half beam 68 u × sin 10°). */
+/** How far a tipped beam turns, and how far each pan rises or falls with it (half beam 66 u × sin 10°). */
 export const TILT_DEG = 10;
-const PAN_SHIFT = 11.8;
+const PAN_SHIFT = 11.5;
 const PIVOT = { x: 100, y: 40 };
-const ARM = 68;
-/** Top of the hanger and bottom of the pan, under each end of the beam. */
-const HANGER_TOP = 46;
-const PAN_Y = 86;
-const PAN_HALF = 29;
-const FIGURE_STEP = 19;
-const FIGURE_SCALE = 0.8;
+const ARM = 66;
+/** The pan hangs on two chains from its end of the beam; figures stand on it in rows of three. */
+const PAN_Y = 92;
+const PAN_HALF = 32;
+const FIGURE_STEP = 21;
+const FIGURE_SCALE = 0.92;
 
 /** «2 cyan squares and 1 amber circle»: the figures of a pan, grouped by kind in the order they first appear. */
 export function describePan(pan: readonly FigureId[], t: TFunction): string {
@@ -49,7 +48,7 @@ function PanFigures({ pan, x }: { pan: Pan; x: number }) {
     const row = Math.floor(i / 3);
     const inRow = Math.min(3, pan.length - row * 3);
     const cx = x + (i % 3 - (inRow - 1) / 2) * FIGURE_STEP;
-    const cy = PAN_Y - 10 - row * FIGURE_STEP;
+    const cy = PAN_Y - 11 - row * FIGURE_STEP;
     const { shape, color } = FIGURES[figure];
     return (
       <path
@@ -68,12 +67,10 @@ function PanGroup({ pan, side, shift }: { pan: Pan; side: 'left' | 'right'; shif
   const x = side === 'left' ? PIVOT.x - ARM : PIVOT.x + ARM;
   return (
     <g className={styles.pan} style={{ '--shift': `${shift}px` } as CSSProperties}>
-      <path
-        className={styles.hanger}
-        d={`M${x} ${PIVOT.y}V${HANGER_TOP}M${x - PAN_HALF} ${PAN_Y}V${HANGER_TOP}H${x + PAN_HALF}V${PAN_Y}`}
-      />
+      {/* The chains go behind the figures. */}
+      <path className={styles.hanger} d={`M${x - PAN_HALF + 2} ${PAN_Y}L${x} ${PIVOT.y}L${x + PAN_HALF - 2} ${PAN_Y}`} />
       <PanFigures pan={pan} x={x} />
-      <path className={styles.plate} d={`M${x - PAN_HALF - 3} ${PAN_Y}h${2 * PAN_HALF + 6}l-6 7h${-2 * PAN_HALF + 6}z`} />
+      <path className={styles.plate} d={`M${x - PAN_HALF} ${PAN_Y}h${2 * PAN_HALF}l-6 6h${-2 * PAN_HALF + 12}z`} />
     </g>
   );
 }
@@ -114,8 +111,8 @@ export function BalanceView({
       className={styles.balance}
       overflow="visible"
     >
-      <path className={styles.stand} d="M76 127h48l-7-8h-34z" />
-      <rect className={styles.stand} x="97" y={PIVOT.y} width="6" height="80" rx="3" />
+      <path className={styles.stand} d="M76 128h48l-7-8h-34z" />
+      <rect className={styles.stand} x="97" y={PIVOT.y} width="6" height="81" rx="3" />
       <g className={styles.beam} style={{ '--angle': `${angle}deg` } as CSSProperties}>
         <rect x={PIVOT.x - ARM - 4} y={PIVOT.y - 3} width={2 * ARM + 8} height="6" rx="3" />
       </g>

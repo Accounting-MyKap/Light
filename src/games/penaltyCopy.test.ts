@@ -1,6 +1,7 @@
 import es from '../i18n/es.json';
 import en from '../i18n/en.json';
 import { ARROWS_WRONG_PENALTY } from './arrows/engine';
+import { BALANCE_DURATION_MS, BALANCE_WRONG_PENALTY } from './balance/engine';
 import { QUICK_MATH_WRONG_PENALTY } from './quick-math/engine';
 import { QUIZ_WRONG_PENALTY } from './quiz/engine';
 import { RULE_SWITCH_WRONG_PENALTY } from './rule-switch/engine';
@@ -59,4 +60,14 @@ test('quiz.instructions states the choice and true/false penalties (es and en)',
 test('star-shower instructions say a wrong number costs nothing (es and en)', () => {
   expect(dicts.es.games['star-shower'].instructions.join(' ')).toMatch(/no resta/);
   expect(dicts.en.games['star-shower'].instructions.join(' ')).toMatch(/costs no points/);
+});
+
+test('balance recap states that a mistake costs 15 points and its 90-second clock (es and en)', () => {
+  expect(BALANCE_WRONG_PENALTY).toBe(15);
+  expect(BALANCE_DURATION_MS / 1000).toBe(90);
+  for (const lang of ['es', 'en']) {
+    const recap = dicts[lang].games.balance.practice.recap;
+    expect(recap, lang).toMatch(word(BALANCE_WRONG_PENALTY));
+    expect(recap, lang).toMatch(word(BALANCE_DURATION_MS / 1000));
+  }
 });

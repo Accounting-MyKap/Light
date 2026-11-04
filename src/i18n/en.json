@@ -316,7 +316,18 @@
         "unknown": "?"
       },
       "levelHeaviest": "{{n}} shapes · Which is heaviest?",
-      "levelTilt": "{{n}} shapes · Which way will it tip?"
+      "levelTilt": "{{n}} shapes · Which way will it tip?",
+      "practice": {
+        "round1": "The side that goes down is heavier. Which is heaviest?",
+        "round2": "Put both balances together: which is the heaviest of all?",
+        "round3": "A level balance weighs the same on both sides. Which way will the new one tip?",
+        "round4": "And this one?",
+        "hint1": "The circle's pan is lower: the circle is heavier",
+        "hint2": "The circle is heavier than the square, and the square heavier than the triangle",
+        "hint3": "One circle weighs as much as two squares; three squares weigh more: the right side goes down",
+        "hint4": "Two circles weigh as much as four squares: it stays level",
+        "recap": "You have 90 seconds. Each mistake costs 15 points: think, but don't guess. With a keyboard: 1–5 for the shape; ←, = and → for the new balance."
+      }
     }
   },
   "play": {

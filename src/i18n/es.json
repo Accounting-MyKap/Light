@@ -316,7 +316,18 @@
         "unknown": "?"
       },
       "levelHeaviest": "{{n}} figuras · ¿Cuál pesa más?",
-      "levelTilt": "{{n}} figuras · ¿Hacia dónde se inclina?"
+      "levelTilt": "{{n}} figuras · ¿Hacia dónde se inclina?",
+      "practice": {
+        "round1": "El lado que baja pesa más. ¿Cuál pesa más?",
+        "round2": "Junta las dos balanzas: ¿cuál pesa más de todas?",
+        "round3": "Una balanza recta pesa igual a los dos lados. ¿Hacia dónde se inclina la nueva?",
+        "round4": "¿Y esta?",
+        "hint1": "El platillo del círculo está más abajo: el círculo pesa más",
+        "hint2": "El círculo pesa más que el cuadrado, y el cuadrado más que el triángulo",
+        "hint3": "Un círculo pesa como dos cuadrados; tres cuadrados pesan más: baja la derecha",
+        "hint4": "Dos círculos pesan como cuatro cuadrados: queda recta",
+        "recap": "Tienes 90 segundos. Cada error resta 15 puntos: piensa, pero sin adivinar. Con teclado: 1–5 para la figura; ←, = y → para la balanza nueva."
+      }
     }
   },
   "play": {

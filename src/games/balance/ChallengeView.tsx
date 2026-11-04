@@ -5,8 +5,7 @@ import type { Challenge } from './generator';
 import styles from './balance.module.css';
 
 const GAP = 16;
-/** The scene is two balances wide; the new balance is drawn this much bigger, under a thin line. */
-const SCENE_WIDTH = 2 * BALANCE_BOX.width + GAP;
+/** The new balance is drawn this much bigger, under a thin line. */
 const QUESTION_SCALE = 1.25;
 const QUESTION_GAP = 22;
 
@@ -15,42 +14,61 @@ interface Placed {
   y: number;
 }
 
-/** Where each clue and the new balance go: clues two to a row (an odd last one centered), the new one below. */
-export function layoutChallenge(challenge: Challenge): { clues: Placed[]; question: Placed | null; height: number } {
-  const n = challenge.clues.length;
-  const clues = challenge.clues.map((_, i) => {
-    const row = Math.floor(i / 2);
-    const alone = i === n - 1 && n % 2 === 1;
-    const x = alone ? (SCENE_WIDTH - BALANCE_BOX.width) / 2 : (i % 2) * (BALANCE_BOX.width + GAP);
-    return { x, y: row * (BALANCE_BOX.height + GAP) };
-  });
-  const rows = Math.ceil(n / 2);
-  const cluesHeight = rows * BALANCE_BOX.height + (rows - 1) * GAP;
-  if (challenge.kind !== 'tilt') return { clues, question: null, height: cluesHeight };
-  const question = {
-    x: (SCENE_WIDTH - BALANCE_BOX.width * QUESTION_SCALE) / 2,
-    y: cluesHeight + QUESTION_GAP,
-  };
-  return { clues, question, height: question.y + BALANCE_BOX.height * QUESTION_SCALE };
+export interface Layout {
+  clues: Placed[];
+  question: Placed | null;
+  width: number;
+  height: number;
 }
 
 /**
- * The width that lets the whole scene fit in the measured box, keeping its proportions. Undefined until measured (or
- * where ResizeObserver does not exist), and the scene then takes the width of its box.
+ * Where each clue and the new balance go, with the clues in one column or two to a row (an odd last one centered),
+ * and the new balance below them.
  */
-function useFittedWidth(box: RefObject<HTMLElement | null>, aspect: number): number | undefined {
-  const [width, setWidth] = useState<number>();
+export function layoutChallenge(challenge: Challenge, columns: 1 | 2): Layout {
+  const questionWidth = challenge.kind === 'tilt' ? BALANCE_BOX.width * QUESTION_SCALE : 0;
+  const cluesWidth = columns * BALANCE_BOX.width + (columns - 1) * GAP;
+  const width = Math.max(cluesWidth, questionWidth);
+  const n = challenge.clues.length;
+  const clues = challenge.clues.map((_, i) => {
+    const row = Math.floor(i / columns);
+    const alone = columns === 1 || (i === n - 1 && n % 2 === 1);
+    const x = alone ? (width - BALANCE_BOX.width) / 2 : (i % 2) * (BALANCE_BOX.width + GAP);
+    return { x, y: row * (BALANCE_BOX.height + GAP) };
+  });
+  const rows = Math.ceil(n / columns);
+  const cluesHeight = rows * BALANCE_BOX.height + (rows - 1) * GAP;
+  if (challenge.kind !== 'tilt') return { clues, question: null, width, height: cluesHeight };
+  const question = { x: (width - questionWidth) / 2, y: cluesHeight + QUESTION_GAP };
+  return { clues, question, width, height: question.y + BALANCE_BOX.height * QUESTION_SCALE };
+}
+
+/** How big a layout can be drawn in the box: its scale when fitted. */
+function fittedScale(layout: Layout, box: { width: number; height: number }): number {
+  return Math.min(box.width / layout.width, box.height / layout.height);
+}
+
+/** One column or two: whichever draws the balances bigger in the box (two until the box is measured). */
+export function chooseColumns(challenge: Challenge, box: { width: number; height: number } | null): 1 | 2 {
+  if (challenge.clues.length === 1) return 1;
+  if (!box) return 2;
+  return fittedScale(layoutChallenge(challenge, 1), box) > fittedScale(layoutChallenge(challenge, 2), box) ? 1 : 2;
+}
+
+/** The size of the box, measured; null until measured (or where ResizeObserver does not exist). */
+function useBoxSize(box: RefObject<HTMLElement | null>): { width: number; height: number } | null {
+  const [size, setSize] = useState<{ width: number; height: number } | null>(null);
   useLayoutEffect(() => {
     const el = box.current;
     if (!el || typeof ResizeObserver === 'undefined') return;
     const observer = new ResizeObserver(([entry]) => {
-      const { width: w, height: h } = entry.contentRect;
-      if (w > 0 && h > 0) setWidth(Math.floor(Math.min(w, h * aspect)));
+      const { width, height } = entry.contentRect;
+      if (width > 0 && height > 0) setSize({ width, height });
     });
     observer.observe(el);
     return () => observer.disconnect();
-  }, [box, aspect]);
-  return width;
+  }, [box]);
+  return size;
 }
 
 /**
@@ -60,8 +78,11 @@ function useFittedWidth(box: RefObject<HTMLElement | null>, aspect: number): num
 export function ChallengeView({ challenge, revealed }: { challenge: Challenge; revealed: boolean }) {
   const { t } = useTranslation();
   const boxRef = useRef<HTMLDivElement>(null);
-  const { clues, question, height } = layoutChallenge(challenge);
-  const width = useFittedWidth(boxRef, SCENE_WIDTH / height);
+  const box = useBoxSize(boxRef);
+  const layout = layoutChallenge(challenge, chooseColumns(challenge, box));
+  const { clues, question, width: sceneWidth, height } = layout;
+  // As large as the box allows, keeping the proportions; the width of the box until it is measured.
+  const width = box ? Math.floor(fittedScale(layout, box) * sceneWidth) : undefined;
   const lineY = question ? question.y - QUESTION_GAP / 2 : 0;
   return (
     <div
@@ -73,7 +94,7 @@ export function ChallengeView({ challenge, revealed }: { challenge: Challenge; r
     >
       <svg
         className={styles.scene}
-        viewBox={`0 0 ${SCENE_WIDTH} ${height}`}
+        viewBox={`0 0 ${sceneWidth} ${height}`}
         style={width ? { width } : undefined}
         role="group"
         aria-label={t('games.balance.clues')}
@@ -84,7 +105,7 @@ export function ChallengeView({ challenge, revealed }: { challenge: Challenge; r
         ))}
         {challenge.kind === 'tilt' && question && (
           <>
-            <path className={styles.divider} d={`M${SCENE_WIDTH * 0.2} ${lineY}H${SCENE_WIDTH * 0.8}`} />
+            <path className={styles.divider} d={`M${sceneWidth * 0.2} ${lineY}H${sceneWidth * 0.8}`} />
             <BalanceView
               balance={challenge.question}
               x={question.x}

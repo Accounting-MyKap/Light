@@ -1,7 +1,7 @@
 # Light — Ilumina tu cerebro
 
 Light es una app web gratuita con ejercicios cortos para ejercitar la mente: memoria, atención,
-velocidad, flexibilidad mental y matemáticas. Propone un entrenamiento diario de 3 juegos
+velocidad, flexibilidad mental, lógica y matemáticas. Propone un entrenamiento diario de 3 juegos
 (unos 5 minutos), lleva tu racha de días y muestra tu progreso. La sección **Preguntas** ofrece
 rondas de 10 preguntas de cultura general y de contabilidad, con su explicación y el repaso de tus
 errores. Funciona en español e inglés, se puede instalar en el celular y sigue funcionando sin internet.
@@ -98,7 +98,7 @@ docs/         especificación, planes de implementación y guía de contenido de
    (`Game.tsx`), la manera de enseñarlo y su definición (`index.ts`). Para enseñarlo hay dos opciones,
    y cada juego tiene exactamente una:
    - **una práctica guiada** (`Practice.tsx`, que recibe `onComplete` y `onSkip`), la recomendada y la de
-     los 5 juegos originales y Guardagujas; va en `index.ts` como `Practice`;
+     los 5 juegos originales, Guardagujas y Balanza; va en `index.ts` como `Practice`;
    - **o la pantalla de instrucciones**, como Lluvia de estrellas y los juegos de preguntas: un ejemplo
      estático (`Example.tsx`, en `index.ts` como `Example`) junto a los pasos.
 2. Agrega una línea en `src/games/registry.ts`.
