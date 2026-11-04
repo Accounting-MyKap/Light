@@ -65,7 +65,7 @@ export const fakeGame: GameDefinition = {
 
 export const fakeGame2: GameDefinition = { ...fakeGame, id: 'fake2' };
 
-/** A game without a practice, like Lluvia de estrellas and the quiz games: it keeps the instructions and their Example. */
+/** A game without a practice, like the quiz games: it keeps the instructions and their Example. */
 export const fakeGameNoPractice: GameDefinition = {
   id: 'fakenp',
   area: 'memory',

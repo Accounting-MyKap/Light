@@ -1,3 +1,4 @@
+import { useId, type ReactNode, type Ref } from 'react';
 import { formatProblem } from '../shared/arithmetic';
 import { starHeight, type Star } from './engine';
 import styles from './star-shower.module.css';
@@ -27,11 +28,15 @@ export interface SkyProps {
   input: string;
   /** Changes with every wrong number (restarts the shake). */
   wrongKey: number;
+  /** Gets the element the animation loop moves for each star (its rail), and null once the star is gone. */
   registerStar: (id: number, el: HTMLElement | null) => void;
 }
 
-/** Where a star hangs: its bottom edge at `height` of the sky, so at 1 it touches the horizon. */
-export const topOf = (height: number) => `${height * 100}%`;
+/**
+ * How far down its rail a star is moved: `height` of the rail, which is as tall as the sky. The star hangs from the
+ * rail's top by its bottom edge, so at 1 it touches the horizon.
+ */
+export const railAt = (height: number) => `translateY(${height * 100}%)`;
 
 /**
  * The night sky with its stars and horizon, and the answer slot over the horizon. The sky is not announced to
@@ -45,30 +50,28 @@ export function Sky({ stars, now, bursts, flash, input, wrongKey, registerStar }
           <div className={styles.dots} />
           {flash?.kind === 'comet' && <div key={flash.key} className={styles.cometFlash} data-sky-flash="comet" />}
           {stars.map((star) => (
-            <div
+            <Rail
               key={star.id}
               ref={(el) => registerStar(star.id, el)}
-              className={styles.star}
-              data-testid="star"
-              data-comet={star.comet}
-              data-lane={star.lane}
-              style={{ top: topOf(starHeight(star, now)) }}
+              lane={star.lane}
+              height={starHeight(star, now)}
             >
-              {star.comet && <Sparkle />}
-              {formatProblem(star.problem)}
-            </div>
+              <div className={styles.star} data-testid="star" data-comet={star.comet} data-lane={star.lane}>
+                <StarLook comet={star.comet}>{formatProblem(star.problem)}</StarLook>
+              </div>
+            </Rail>
           ))}
           {bursts.map((burst) => (
-            <div
-              key={burst.key}
-              className={styles.burst}
-              data-kind={burst.kind}
-              data-comet={burst.star.comet}
-              data-lane={burst.star.lane}
-              style={{ top: topOf(burst.height) }}
-            >
-              {formatProblem(burst.star.problem)}
-            </div>
+            <Rail key={burst.key} lane={burst.star.lane} height={burst.height}>
+              <div
+                className={styles.burst}
+                data-kind={burst.kind}
+                data-comet={burst.star.comet}
+                data-lane={burst.star.lane}
+              >
+                <StarLook comet={burst.star.comet}>{formatProblem(burst.star.problem)}</StarLook>
+              </div>
+            </Rail>
           ))}
         </div>
         <div className={styles.horizon} data-testid="horizon">
@@ -93,11 +96,61 @@ export function Sky({ stars, now, bursts, flash, input, wrongKey, registerStar }
   );
 }
 
-/** The comet's ✦, drawn rather than typed, so the star's text stays exactly its operation. Also in the example. */
-export function Sparkle() {
+interface RailProps {
+  lane: number;
+  /** 0 at the top of the sky, 1 on the horizon. */
+  height: number;
+  ref?: Ref<HTMLDivElement>;
+  children: ReactNode;
+}
+
+/**
+ * What carries a star (or a burst) down its lane: a line as tall as the sky, with no width, at the lane's center.
+ * The animation loop moves it with a transform, which needs no layout; what it carries is only the look.
+ */
+function Rail({ lane, height, ref, children }: RailProps) {
   return (
-    <svg className={styles.sparkle} viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M12 0C12.9 7.6 16.4 11.1 24 12C16.4 12.9 12.9 16.4 12 24C11.1 16.4 7.6 12.9 0 12C7.6 11.1 11.1 7.6 12 0Z" />
+    <div ref={ref} className={styles.rail} data-rail={lane} style={{ transform: railAt(height) }}>
+      {children}
+    </div>
+  );
+}
+
+/** The points of a 5-point star in a 100-unit box: outer radius 50, inner 21, centered a little low (y 52). */
+const STAR_POINTS = Array.from({ length: 10 }, (_, i) => {
+  const angle = -Math.PI / 2 + (i * Math.PI) / 5;
+  const radius = i % 2 === 0 ? 50 : 21;
+  return `${(50 + radius * Math.cos(angle)).toFixed(1)},${(52 + radius * Math.sin(angle)).toFixed(1)}`;
+}).join(' ');
+
+/**
+ * What a star looks like: a 5-point star (a round ball for the comet: the shape, not only the color, tells them
+ * apart) with its operation on a label just under it. The shapes are drawn and hold no text, so the star's text is
+ * exactly its operation.
+ */
+function StarLook({ comet, children }: { comet: boolean; children: ReactNode }) {
+  return (
+    <>
+      {comet ? <span className={styles.ball} /> : <StarHead />}
+      <span className={styles.label}>{children}</span>
+    </>
+  );
+}
+
+/** The star itself, in the color of the game (CSS), with a soft white shine at the upper left. */
+function StarHead() {
+  // Each star has its own shine, so no two gradients in the page share an id.
+  const shine = useId();
+  return (
+    <svg className={styles.head} viewBox="0 0 100 100" aria-hidden="true">
+      <defs>
+        <radialGradient id={shine} cx="40%" cy="35%" r="55%">
+          <stop offset="0" stopColor="#fff" stopOpacity="0.75" />
+          <stop offset="1" stopColor="#fff" stopOpacity="0" />
+        </radialGradient>
+      </defs>
+      <polygon className={styles.headBody} points={STAR_POINTS} />
+      <polygon points={STAR_POINTS} fill={`url(#${shine})`} />
     </svg>
   );
 }
