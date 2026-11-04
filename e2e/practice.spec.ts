@@ -498,6 +498,10 @@ test.describe('review screenshots', () => {
     // Round 1: the still star pops with 7 and Enter. The next round's progress stays on screen, unlike the 700 ms of
     // «¡Bien!».
     await page.keyboard.type('7');
+    // The practice frame holds the focus but is not a control: after a key it draws no ring around the whole practice.
+    const frame = bubble(page).locator('xpath=..');
+    await expect(frame).toBeFocused();
+    await expect(frame).toHaveCSS('outline-style', 'none');
     await page.keyboard.press('Enter');
     await expect(page.getByText('Práctica 2 de 3')).toBeVisible();
     await expect(bubble(page)).toHaveText(/^Las estrellas caen/);
