@@ -62,8 +62,22 @@ async function answerArrowsRound(page: Page, direction: 'left' | 'right') {
     .click();
 }
 
+/**
+ * Answers Arrows practice round `n` right and checks its «¡Bien!». That shows for 700 ms only, less than a busy machine
+ * can take from the click to the check, so the answer goes in on a stopped clock (the round has no timer running while
+ * it asks) and the round moves on once the check is done. Needs page.clock.
+ */
+async function answerArrowsRight(page: Page, n: number, direction: 'left' | 'right') {
+  await expect(page.getByText(`Práctica ${n} de 4`)).toBeVisible();
+  await freezeClock(page);
+  await answerArrowsRound(page, direction);
+  await expect(bubble(page)).toHaveText('¡Bien!');
+  await page.clock.resume();
+}
+
 test.describe('Arrows practice, start to finish', () => {
   test('practice, «¡Listo!», then the real game', async ({ page }) => {
+    await page.clock.install(); // for the «¡Bien!» checks
     await page.goto('./#/play/arrows');
     await expect(page.getByRole('heading', { level: 1, name: 'Flechas' })).toBeVisible();
     await expect(page.getByText('Vamos a practicar un poco: sin reloj y sin puntos.')).toBeVisible();
@@ -77,9 +91,7 @@ test.describe('Arrows practice, start to finish', () => {
       [3, 'right'],
       [4, 'left'],
     ] as const) {
-      await expect(page.getByText(`Práctica ${n} de 4`)).toBeVisible();
-      await answerArrowsRound(page, direction);
-      await expect(bubble(page)).toHaveText('¡Bien!');
+      await answerArrowsRight(page, n, direction);
     }
 
     await expect(page.getByRole('heading', { level: 1, name: '¡Listo! Ahora va en serio' })).toBeVisible();
@@ -394,10 +406,13 @@ test.describe('review screenshots', () => {
     // «¡Listo!» after the Arrows practice.
     await page.goto('./#/play/arrows');
     await page.getByRole('button', { name: 'Empezar práctica', exact: true }).click();
-    for (const direction of ['right', 'left', 'right', 'left'] as const) {
-      await answerArrowsRound(page, direction);
-      await expect(bubble(page)).toHaveText('¡Bien!');
-      await page.waitForTimeout(800);
+    for (const [n, direction] of [
+      [1, 'right'],
+      [2, 'left'],
+      [3, 'right'],
+      [4, 'left'],
+    ] as const) {
+      await answerArrowsRight(page, n, direction);
     }
     await shot(page, 'arrows-3-done', page.getByRole('heading', { level: 1, name: '¡Listo! Ahora va en serio' }));
 
