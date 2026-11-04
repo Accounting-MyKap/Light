@@ -17,7 +17,7 @@ vi.mock('../../data/settings', async (importOriginal) => {
 
 const POP = 'Escribe el resultado de la estrella y pulsa OK para reventarla';
 const FALLING = 'Las estrellas caen: revienta las dos antes de que toquen el horizonte';
-const COMET = 'La estrella dorada es un cometa: si la revientas, revienta todas';
+const COMET = 'El cometa dorado revienta todas las estrellas: revienta el cometa';
 const HINT_FIRST = 'Ese número no está en el cielo: 3 + 4 = 7. Inténtalo otra vez';
 const HINT_WRONG = 'Ese número no está en ninguna estrella. Inténtalo otra vez';
 const HINT_LOST = 'Si una estrella toca el horizonte, pierdes una vida. Inténtalo otra vez';

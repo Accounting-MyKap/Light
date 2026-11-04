@@ -267,7 +267,7 @@
       "practice": {
         "pop": "Type the star's answer and press OK to pop it",
         "falling": "The stars fall: pop both before they touch the horizon",
-        "comet": "The golden star is a comet: pop it and they all pop",
+        "comet": "The golden comet pops every star: pop the comet",
         "hintFirst": "That number isn't in the sky: 3 + 4 = 7. Try again",
         "hintWrong": "That number isn't on any star. Try again",
         "hintLost": "If a star touches the horizon, you lose a life. Try again",

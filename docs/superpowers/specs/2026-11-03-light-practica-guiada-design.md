@@ -222,7 +222,7 @@ Las cifras salen de las constantes del juego (duración, rondas, vidas y penaliz
 - **Guía:**
   - Ronda 1: «Escribe el resultado de la estrella y pulsa OK para reventarla» / «Type the star's answer and press OK to pop it».
   - Ronda 2: «Las estrellas caen: revienta las dos antes de que toquen el horizonte» / «The stars fall: pop both before they touch the horizon».
-  - Ronda 3: «La estrella dorada es un cometa: si la revientas, revienta todas» / «The golden star is a comet: pop it and they all pop».
+  - Ronda 3: «El cometa dorado revienta todas las estrellas: revienta el cometa» / «The golden comet pops every star: pop the comet».
 - **Al acertar:** la ronda acierta cuando todas sus estrellas reventaron. La reacción es una por ronda, no por estrella, como en Guardagujas; cada estrella reventada estalla como en el juego.
 - **Sin puntos ni vidas:** nada muestra puntos ni vidas. Los puntos, las vidas y las pausas del estado del juego no se usan.
 - **Teclas quietas:** mientras dice «¡Bien!», y desde que una estrella toca el horizonte hasta que la ronda empieza de nuevo, los números, el borrado y OK no hacen nada.

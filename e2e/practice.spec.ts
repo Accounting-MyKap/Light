@@ -553,7 +553,7 @@ test.describe('review screenshots', () => {
     for (let i = 0; i < 50 && (await comet.count()) === 0; i++) await page.clock.runFor(100);
     await page.clock.runFor(2000);
     await expect(stars).toHaveText(['8 − 5', '2 + 6', '4 + 5']);
-    await shot(page, 'star-shower-3-comet', page.getByText(/^La estrella dorada es un cometa/));
+    await shot(page, 'star-shower-3-comet', page.getByText(/^El cometa dorado revienta todas/));
     await page.clock.resume();
 
     // The comet pops them all, and the practice is done.
