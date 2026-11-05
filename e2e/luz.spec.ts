@@ -1,6 +1,6 @@
 import { mkdirSync } from 'node:fs';
 import { expect, test, type Page } from '@playwright/test';
-import { finishRunningGame, startGame } from './helpers';
+import { finishRunningGame, freezeClock, startGame } from './helpers';
 
 const GAMES = [
   'sequence-lights',
@@ -228,8 +228,19 @@ test.describe('Star Shower at 320 px', () => {
       );
       return { sky, entered: all.filter((star) => star.y >= sky.y) };
     };
-    await expect.poll(async () => (await snapshot()).entered.length, { timeout: 15_000 }).toBeGreaterThanOrEqual(2);
-    const { sky, entered } = await snapshot();
+    // Check the snapshot the wait accepted: a fresh one could come after the lowest star has landed, which clears the
+    // sky (on a busy machine one snapshot took two seconds).
+    let shot: Awaited<ReturnType<typeof snapshot>> | undefined;
+    await expect
+      .poll(
+        async () => {
+          shot = await snapshot();
+          return shot.entered.length;
+        },
+        { timeout: 15_000 },
+      )
+      .toBeGreaterThanOrEqual(2);
+    const { sky, entered } = shot!;
     expect(entered.length).toBeGreaterThanOrEqual(2);
     for (const [i, star] of entered.entries()) {
       expect(star.text, `star ${i} is a level-10 sum`).toMatch(/^\d+ \+ \d+ × \d+$/);
@@ -250,12 +261,14 @@ test.describe('reduced motion', () => {
   // Review Focus #5
   test('reduced motion shows the final score at once', async ({ page }) => {
     await page.goto('./#/play/quick-math');
-    await startGame(page);
-    await expect(page.locator('[data-game]')).toBeVisible();
     // From here the page's time only moves when the test moves it, and only in small steps once the game is about to
     // end. Otherwise the seconds still left on the clock when the result appears would let a count-up finish by
-    // itself, and this test would pass without reduced motion.
-    await page.clock.pauseAt(new Date((await page.evaluate(() => Date.now())) + 100));
+    // itself, and this test would pass without reduced motion. The clock stops on the intro, where no timer runs, so
+    // the minute it jumps changes nothing; the game then starts on the stopped clock.
+    await expect(page.getByRole('button', { name: 'Saltar práctica', exact: true })).toBeVisible();
+    await freezeClock(page);
+    await startGame(page);
+    await expect(page.locator('[data-game]')).toBeVisible();
     await solveQuickMath(page, 5);
     await page.clock.runFor(55_000);
     const playAgain = page.getByRole('button', { name: 'Jugar de nuevo' });

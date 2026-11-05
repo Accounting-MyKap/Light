@@ -1,6 +1,6 @@
 import { mkdirSync } from 'node:fs';
 import { expect, test, type Locator, type Page } from '@playwright/test';
-import { expectTall } from './helpers';
+import { expectTall, freezeClock } from './helpers';
 
 const GAMES = ['sequence-lights', 'arrows', 'same-different', 'rule-switch', 'quick-math', 'switchyard'] as const;
 type GameId = (typeof GAMES)[number];
@@ -30,19 +30,48 @@ async function waitForInput(page: Page, id: GameId) {
   if (id === 'sequence-lights') await page.waitForTimeout(2 * 850 + 300); // the two-cell sequence plays once
 }
 
-/** A wrong answer in round 1 of each practice, which brings up the hint. Locale-free. */
+/**
+ * Moves the stopped page clock on `ms`, in 100 ms jumps that each draw one frame of the Guardagujas practice: the
+ * largest step its clock takes in a frame, as on a slow device. runFor would draw a frame every 16 ms, six times the
+ * work, which on a busy machine took longer than the tests allow.
+ */
+async function play(page: Page, ms: number) {
+  for (let t = 0; t < ms; t += 100) await page.clock.fastForward(100);
+}
+
+/** Moves the stopped clock on as `play` does until `done`, for at most `seconds`, looking every `every` ms. */
+async function playUntil(page: Page, what: string, done: () => Promise<boolean>, every: number, seconds = 15) {
+  for (let t = 0; t < seconds * 1000 && !(await done()); t += every) await play(page, every);
+  expect(await done(), `${what} within ${seconds} s`).toBe(true);
+}
+
+/**
+ * A wrong answer in round 1 of each practice, which brings up the hint. Locale-free. Guardagujas and Sequence lights
+ * need page.clock and leave it stopped, so the hint stays up for whatever the caller checks next.
+ */
 async function answerWrong(page: Page, id: GameId) {
   if (id === 'switchyard') {
     // Key 1 sends the waiting red train off, and back the wrong way while it is still before the switch (it gets
-    // there some 370 ms after it sets off). It reaches the yellow station some seven seconds later.
+    // there some 370 ms after it sets off). The clock stands still between the two keys but for 100 ms, so a busy
+    // machine cannot let the train past the switch first. It reaches the yellow station some seven seconds later.
+    // (The minute the clock jumps as it stops is one frame to the practice, and the waiting train does not move.)
+    await freezeClock(page);
     await page.keyboard.press('1');
-    await page.waitForTimeout(100);
+    await page.clock.runFor(100);
     await page.keyboard.press('1');
+    // The test moves the clock on to the miss: in real time a slow machine drew too few frames (the practice moves at
+    // most 100 ms a frame), and the seven seconds took longer than the 15 s the check below allows.
+    await playUntil(page, 'the miss', async () => (await bubble(page).getAttribute('data-tone')) === 'hint', 500);
   }
   if (id === 'arrows') await controls(page).nth(0).click(); // the middle arrow points right
   if (id === 'same-different') await controls(page).nth(0).click(); // the star is the same: «No» is wrong
   if (id === 'rule-switch') await page.getByTestId('target-right').click(); // the left card matches
-  if (id === 'sequence-lights') await controls(page).nth(0).click(); // the sequence starts at cell 2
+  if (id === 'sequence-lights') {
+    // Its hint is up for 800 ms only, then the sequence plays again: less than a busy machine can take from the tap to
+    // the check below. So the tap goes in on a stopped clock (the sequence has played and the board waits for it).
+    await freezeClock(page);
+    await controls(page).nth(0).click(); // the sequence starts at cell 2
+  }
   if (id === 'quick-math') {
     await page.keyboard.press('9');
     await page.keyboard.press('Enter'); // 2 + 3 is 5
@@ -58,8 +87,22 @@ async function answerArrowsRound(page: Page, direction: 'left' | 'right') {
     .click();
 }
 
+/**
+ * Answers Arrows practice round `n` right and checks its «¡Bien!». That shows for 700 ms only, less than a busy machine
+ * can take from the click to the check, so the answer goes in on a stopped clock (the round has no timer running while
+ * it asks) and the round moves on once the check is done. Needs page.clock.
+ */
+async function answerArrowsRight(page: Page, n: number, direction: 'left' | 'right') {
+  await expect(page.getByText(`Práctica ${n} de 4`)).toBeVisible();
+  await freezeClock(page);
+  await answerArrowsRound(page, direction);
+  await expect(bubble(page)).toHaveText('¡Bien!');
+  await page.clock.resume();
+}
+
 test.describe('Arrows practice, start to finish', () => {
   test('practice, «¡Listo!», then the real game', async ({ page }) => {
+    await page.clock.install(); // for the «¡Bien!» checks
     await page.goto('./#/play/arrows');
     await expect(page.getByRole('heading', { level: 1, name: 'Flechas' })).toBeVisible();
     await expect(page.getByText('Vamos a practicar un poco: sin reloj y sin puntos.')).toBeVisible();
@@ -73,9 +116,7 @@ test.describe('Arrows practice, start to finish', () => {
       [3, 'right'],
       [4, 'left'],
     ] as const) {
-      await expect(page.getByText(`Práctica ${n} de 4`)).toBeVisible();
-      await answerArrowsRound(page, direction);
-      await expect(bubble(page)).toHaveText('¡Bien!');
+      await answerArrowsRight(page, n, direction);
     }
 
     await expect(page.getByRole('heading', { level: 1, name: '¡Listo! Ahora va en serio' })).toBeVisible();
@@ -302,6 +343,8 @@ for (const [locale, startName] of [
 
     for (const id of GAMES) {
       test(`${id}: no sideways scroll`, async ({ page }) => {
+        // Their wrong answers stop the clock: Guardagujas between two keys, Sequence lights to keep its hint up.
+        if (id === 'switchyard' || id === 'sequence-lights') await page.clock.install();
         await page.goto(`./#/play/${id}`);
         await expect(page.getByRole('button', { name: startName, exact: true })).toBeVisible();
         expect(await hasNoSidewaysScroll(page), 'the intro scrolls sideways').toBe(true);
@@ -378,10 +421,7 @@ test.describe('review screenshots', () => {
       await shot(page, `${id}-1-guide`, page.getByText(GUIDE[id]));
 
       await waitForInput(page, id);
-      await answerWrong(page, id);
-      if (id === 'sequence-lights') {
-        await page.clock.pauseAt(new Date((await page.evaluate(() => Date.now())) + 50)); // keep the hint up
-      }
+      await answerWrong(page, id); // Sequence lights stops the clock here, so its hint stays up for the shot
       await shot(page, `${id}-2-hint`, page.getByText(HINT[id]));
     }
     await page.clock.resume();
@@ -389,10 +429,13 @@ test.describe('review screenshots', () => {
     // «¡Listo!» after the Arrows practice.
     await page.goto('./#/play/arrows');
     await page.getByRole('button', { name: 'Empezar práctica', exact: true }).click();
-    for (const direction of ['right', 'left', 'right', 'left'] as const) {
-      await answerArrowsRound(page, direction);
-      await expect(bubble(page)).toHaveText('¡Bien!');
-      await page.waitForTimeout(800);
+    for (const [n, direction] of [
+      [1, 'right'],
+      [2, 'left'],
+      [3, 'right'],
+      [4, 'left'],
+    ] as const) {
+      await answerArrowsRight(page, n, direction);
     }
     await shot(page, 'arrows-3-done', page.getByRole('heading', { level: 1, name: '¡Listo! Ahora va en serio' }));
 
@@ -414,12 +457,12 @@ test.describe('review screenshots', () => {
   });
 
   test('the Guardagujas practice from start to finish, with screenshots for the owner', async ({ page }) => {
-    // Three rounds of trains in real time, with a miss in round 2: about half a minute.
+    // Three rounds of trains, with a miss in round 2: about half a minute.
     test.setTimeout(120_000);
     mkdirSync(SCREENSHOT_DIR, { recursive: true });
     await page.clock.install({ time: new Date('2026-10-20T10:00:00') });
-    /** The first train's locomotive is near the tunnel, at the top of the board: for about a second after it sets
-        off, so the polls that wait for it look every 50 ms. */
+    /** The first train's locomotive is near the tunnel, at the top of the board: for 1.1 s after it sets off, so the
+        waits for it look every half second. */
     const trainAtTunnel = () =>
       page.evaluate(() => {
         const loco = document.querySelector('[data-train] [data-car="loco"]')?.getAttribute('transform') ?? '';
@@ -438,28 +481,41 @@ test.describe('review screenshots', () => {
     await expect(page.getByText('Práctica 2 de 3')).toBeVisible({ timeout: 15_000 });
     await expect(bubble(page)).toHaveText(/^Ahora el tren avanza solo/);
 
-    // Round 2, left alone: the yellow train reaches the green station. The clock stops here and moves on in short
-    // steps until the miss, so the shot has the hint and the mark of the miss on the station.
-    await page.clock.pauseAt(new Date((await page.evaluate(() => Date.now())) + 50));
-    for (let i = 0; i < 150 && !(await wrongMark.isVisible()); i++) await page.clock.runFor(100);
-    // 400 ms more: the train has rolled into the station, and the mark (up for 900 ms) is still whole.
-    await page.clock.runFor(400);
+    // Round 2, left alone: the yellow train reaches the green station. From here to the last key of round 3 the clock
+    // stands still and the test moves it on (see play), so the shots catch their moments and the keys go in where the
+    // trains are, however slow the machine: in real time a busy test saw a train at the tunnel only after it had left.
+    // The minute the stop jumps is one frame to the practice. The miss is seen at most 500 ms after the train arrives;
+    // 300 ms more and it has rolled into the station, with its mark (up for 900 ms) still whole.
+    await freezeClock(page);
+    await playUntil(page, 'the miss', () => wrongMark.isVisible(), 500);
+    await play(page, 300);
     await expect(wrongMark).toBeVisible();
     await expect(bubble(page)).toHaveText(/^El tren amarillo va a la estación amarilla/);
     await shot(page, 'switchyard-2-hint', wrongMark);
-    await page.clock.resume();
 
     // The round starts over with the yellow train back at the tunnel; switch 2 sends it home this time.
-    await expect.poll(trainAtTunnel, { intervals: [50], timeout: 5_000 }).toBe(true);
+    await playUntil(page, 'the yellow train back at the tunnel', trainAtTunnel, 500);
     await page.keyboard.press('2');
 
-    // Round 3: green goes on to green (switch 2). Once it is well past switch 1 (it gets there after 1.3 s), switch
-    // 1 turns back to the left for red, which comes out 4 s into the round and reaches switch 1 at 5.3 s.
-    await expect(page.getByText('Práctica 3 de 3')).toBeVisible({ timeout: 15_000 });
-    await expect.poll(trainAtTunnel, { intervals: [50], timeout: 5_000 }).toBe(true);
+    // Round 3 starts 700 ms after the yellow train is home («¡Bien!»). Looking once a second, the test sees «¡Bien!» or,
+    // if a look jumped over it, round 3 at most 300 ms old: either way before the green train leaves the tunnel.
+    const homeOrRound3 = () =>
+      page.evaluate(
+        () =>
+          document.querySelector('[data-tone]')?.getAttribute('data-tone') === 'ok' ||
+          document.body.innerText.includes('Práctica 3 de 3'),
+      );
+    await playUntil(page, 'the yellow train home', homeOrRound3, 1000);
+    // Green goes on to green (switch 2). Once it is well past switch 1 (it gets there after 1.3 s), switch 1 turns
+    // back to the left for red, which comes out 4 s into the round and reaches switch 1 at 5.3 s. After that nothing
+    // depends on timing, and the rest runs in real time again.
+    const round3 = page.getByText('Práctica 3 de 3');
+    const round3AtTunnel = async () => (await round3.isVisible()) && (await trainAtTunnel());
+    await playUntil(page, 'round 3 with the green train at the tunnel', round3AtTunnel, 500);
     await page.keyboard.press('2');
-    await page.waitForTimeout(2500);
+    await play(page, 2500);
     await page.keyboard.press('1');
+    await page.clock.resume();
     await expect(page.locator('[data-train]')).toHaveCount(2, { timeout: 10_000 });
     await page.waitForTimeout(700); // the red locomotive out of the tunnel
     await shot(page, 'switchyard-3-two', page.getByText(/^Pueden venir varios a la vez/));

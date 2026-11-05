@@ -20,6 +20,18 @@ export async function startGame(page: Page): Promise<void> {
   else await start.click();
 }
 
+/**
+ * Stops the installed page clock, which runs on in real time until then. pauseAt needs a time still ahead of the
+ * page's own clock when the call lands, and the page reads its time, hands it to the test and gets the pause back
+ * while that clock keeps going: on a busy machine that took 130 to 490 ms, past the 50 or 100 ms the tests used to
+ * aim ahead («Cannot fast-forward to the past»). So the pause aims a minute ahead, and each timer due in that minute
+ * fires once, at the end of it. Call it only at a moment when no such timer changes what the test checks next.
+ */
+export async function freezeClock(page: Page): Promise<void> {
+  const now = await page.evaluate(() => Date.now());
+  await page.clock.pauseAt(new Date(now + 60_000));
+}
+
 /** Every control of the list must be at least 44 px tall. */
 export async function expectTall(targets: Locator): Promise<void> {
   await expect(targets.first()).toBeVisible(); // the app renders after an async bootstrap
@@ -41,18 +53,29 @@ export async function finishRunningGame(page: Page): Promise<void> {
   const result = page.getByRole('button', { name: RESULT_BUTTON });
 
   if (id === 'sequence-lights') {
-    // Each round ends after at most two presses on cell 1 (a sequence never repeats a cell back to back).
-    for (let i = 0; i < 40 && !(await result.isVisible()); i++) {
+    // Each round ends after at most two presses on cell 1 (a sequence never repeats a cell back to back). Move the
+    // clock until the board waits for a press («Tu turno»: it then holds still until one comes) or, after the last
+    // round, the result is up (it comes after a save that may take a while). A press aimed at a board that is about to
+    // go would wait for its cell until the test times out.
+    const yourTurn = page.locator('[data-game]').getByText('Tu turno', { exact: true });
+    const playOn = async () => {
       await page.clock.runFor(15_000);
-      await page.waitForTimeout(50);
+      return (await result.isVisible()) || (await yourTurn.isVisible());
+    };
+    for (let i = 0; i < 40; i++) {
+      await expect.poll(playOn).toBe(true);
       if (await result.isVisible()) break;
       await page.getByRole('button', { name: 'Casilla 1' }).click();
-      await page.waitForTimeout(50);
     }
   } else {
     // Guardagujas lasts 90 seconds; the other timed games 60. Lluvia de estrellas has no clock: left alone it
     // loses its 3 lives in about 30 seconds, so 61 seconds always reach its result.
-    await page.clock.runFor(id === 'switchyard' ? 91_000 : 61_000);
+    // A jump, not runFor: runFor fires every animation frame of the game one by one and waits a real timer tick
+    // (at least 4 ms) after each, so 91 s of Guardagujas took 24 s even on an idle machine and over a minute on a busy
+    // one. The game clocks read Date, and the engines catch up on a jump (Guardagujas counts the trains that arrive
+    // after its last frame, Lluvia de estrellas lands every star that is due), so each due timer firing once at the
+    // end gives the same result screen.
+    await page.clock.fastForward(id === 'switchyard' ? 91_000 : 61_000);
   }
   await expect(result).toBeVisible();
 }
