@@ -121,7 +121,7 @@ llegada. Encima, un botón HTML transparente por cambio, en porcentajes del tabl
 - **Cambios bien visibles:** disco oscuro con aro del color del área y halo; una flecha blanca apunta a la salida
   elegida; un «faro» (anillo que se expande y se apaga cada 1,6 s) los marca como tocables. Además los rieles de la
   salida elegida brillan y los de la otra se ven apagados, así se lee la ruta completa de un vistazo. Al tocar, la
-  flecha gira (150 ms). El área táctil es ≥ 44 px (14 % del ancho del tablero, mínimo 44 px) y tiene anillo de foco
+  flecha gira (150 ms). El área táctil es el 14 % del ancho del tablero, mínimo 44 px y nunca más del 19 % (ver §11) y tiene anillo de foco
   visible con teclado.
 - **Trenes:** vistos desde arriba. Locomotora (35 u) del color de su estación con caldera, cabina, chimenea y farol
   delantero con haz de luz; vagón acoplado (26 u) con la forma en tinta oscura (siempre derecha). Brillo suave del
@@ -145,7 +145,7 @@ flecha y crecimiento de los anillos de llegada (solo aparecen y se apagan).
 ### 5.5 Marco común
 
 `GameFrame` gana la propiedad opcional `stageFlash` (por defecto `true`); Guardagujas pasa `false` y dibuja sus
-propias reacciones en la estación. Sonido y vibración siguen saliendo de `useFeedback` (acierto → `correct`, fallo →
+propias reacciones en la estación. Sonido y vibración siguen saliendo de `useFeedback` (acierto → campanita de tren en lugar de `correct`, ver §11; fallo →
 `timeout`, que no sacude).
 
 ## 6. Integración
@@ -220,3 +220,63 @@ descarrilados en las curvas. Aprobó este diseño en la conversación.
 - Un juego puede describir qué trae cada nivel (`GameDefinition.describeLevel`); Guardagujas dice el mapa:
   «5 estaciones · estación central», «4 estaciones · túnel lateral».
 - El entrenamiento diario no muestra el selector: el nivel lo elige la app.
+
+## 11. Pulido del 2026-11-04 (pedido del dueño: «hazlos todos»)
+
+Hecho en paralelo por tres agentes (motor y datos; paisajes; sensación de juego) e integrado en la rama.
+
+**Sensación de juego**
+- **Sonidos del patio** (siguen los ajustes de Sonido y Vibración; nunca fallan sin WebAudio ni vibración): silbato de
+  vapor suave de dos notas cuando un tren sale del túnel; «clac» mecánico corto al mover un cambio (toque o tecla), con
+  una vibración de 8 ms; campanita cuando un tren llega a su estación, en lugar del tono genérico de acierto (otra
+  estación conserva el de fallo). Más suaves y cortos que los tonos de respuesta: en el nivel 10 sale un tren cada
+  1,6 s. La práctica tiene el «clac», sin silbato. `useFeedback` acepta un tono propio y `useCue` da un sonido y una
+  vibración que no son una respuesta. Mientras el contexto de audio esté suspendido (iPhone, antes del primer toque) no
+  suena nada: su reloj está detenido y los tonos acumulados sonarían todos juntos al despertar.
+- **«¡Más rápido! · Nivel N»**: cuando el nivel de la partida sube (no al empezar ni al bajar), una píldora del color del
+  juego aparece 1,2 s arriba de la zona de juego; se anuncia con cortesía al lector de pantalla y deja pasar los
+  toques. Con movimiento reducido solo aparece y se desvanece.
+- **Área táctil de los cambios**: 14 % del ancho del tablero, mínimo 44 px, pero nunca más del 19 % (los cambios están
+  a ≥ 70 u = 19,4 % entre sí): en un tablero de menos de ~230 px (teléfono horizontal bajo, niveles 9–10) los botones
+  se achican en vez de taparse, y el número de tecla se achica con ellos.
+- **Sin destello inicial**: el tablero se mide antes de pintarse por primera vez; luego `ResizeObserver` sigue los
+  cambios.
+- **Calidad automática** (`frameMonitor.ts`): si el promedio entre cuadros supera 38 ms (menos de ~26 cuadros/s; un
+  iPhone en modo de bajo consumo, fijo en 30, conserva su paisaje) en cuatro ventanas seguidas de 500 ms (~2 s), el
+  patio pasa a modo liviano por el resto de la partida: no sale más humo y el tablero lleva `data-lite`, que apaga el
+  faro de los cambios, quita las luciérnagas, hojas y copos (en vez de dejarlos quietos en el aire) y pausa las demás
+  animaciones decorativas. Un cuadro largo aislado o un
+  hueco de más de 250 ms (pausa, pestaña oculta) no cuentan.
+
+**Resultado y motor**
+- **Resumen del resultado** («Tus trenes», `GameResult.switchyard`, `ResultDetails.tsx`): trenes a su estación de los
+  que llegaron, mejor racha de trenes seguidos a su estación y la estación donde más se falló (contada por la estación
+  a la que debía ir el tren), con su color, su forma y su nombre en palabras. No aparece si no llegó ningún tren; sin
+  línea de racha si ninguno llegó a su estación.
+- **Numeración en orden de lectura** (§5.1): de arriba abajo y, en una misma fila (alturas a menos de 20 u), de
+  izquierda a derecha. Los espejos se numeran según sus propias posiciones; tramos y rutas siguen la numeración.
+- **Motor independiente del ritmo de cuadros** (§5.2): avanza en pasos de ≤ 20 ms sobre una rejilla fija y corta el
+  paso en el instante exacto en que sale un tren o uno llega a una estación; la escalera (velocidad y puntos) cambia en
+  ese instante. 60 fps y cuadros de 5–50 ms dan lo mismo que 20 ms.
+- **Humo tras un cuadro atrasado**: se reponen a lo sumo 3 bocanadas; tras una espera mayor sale una sola y sigue el
+  ritmo, para no apilar una nube en un punto.
+- **Calibración por simulación** (`calibration.test.ts`, 8 semillas, 90 s a 60 fps). Jugador perfecto: 396 / 1074 /
+  1498 desde los niveles 1 / 5 / 10 (máximo 1512 < 2000). 9 de 10 trenes a casa: 294 / 801 / 1293. 7 de 10: 182 / 431
+  / 970. La referencia 900 se mantiene: la alcanza un juego perfecto desde el nivel 4–5 o uno de 9 de 10 desde el 6;
+  ninguno desde el nivel 1. A nivel 10, dos trenes llegan al mismo cambio con al menos 1,6 s de diferencia: quedan
+  ≈ 1,4 s para girarlo después de que el primero pasa el margen de 24 u.
+
+**Paisaje por banda de niveles** (`themes.ts`, `themeFor(map)` por número de estaciones; el espejo conserva el suyo)
+- Niveles 1–4: pradera de noche (igual que antes). Niveles 5–8: **bosque de otoño de noche** (suelo pardo oscuro,
+  árboles y arbustos naranja, rojo y ocre, pinos verde oscuro, hojas caídas en lugar de flores, pasto seco, estanque
+  más oscuro con una hoja flotando, montículo del túnel oliva). Niveles 9–10: **noche nevada** (suelo gris azulado
+  oscuro con manchas tenues de nieve, nieve sobre pinos, árboles, arbustos y rocas, montoncitos de nieve en lugar de
+  flores, estanque helado con una grieta y la luna, montículo del túnel nevado).
+- Solo cambia el aspecto: la decoración ocupa los mismos lugares; estaciones, trenes, vías, cambios y marcas de
+  llegada no cambian. Una prueba exige contraste ≥ 3:1 de cada color de estación, del aro de los cambios y de las
+  marcas sobre cada suelo, incluso bajo dos manchas superpuestas.
+- En lugar de luciérnagas: en otoño caen hojas lentamente, girando y meciéndose; en la nieve caen copos suaves. Son
+  elementos de la página en una capa propia, sobre el suelo y detrás de trenes, estaciones y túnel, que nunca recibe
+  toques; solo se animan `transform`, `translate` y
+  `opacity`, sin trabajo de React por cuadro. Con movimiento reducido quedan quietos. El suelo y esa capa llevan
+  `data-theme` (`meadow`, `autumn`, `snow`).

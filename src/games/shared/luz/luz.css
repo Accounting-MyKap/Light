@@ -76,6 +76,12 @@
   --game: #8dff6a;
 }
 
+/* Logic: the teal left between cyan and lime, at least 20 (CIEDE2000) from every color above and below and from
+   --luz-ok and --luz-bad. */
+[data-luz][data-area='logic'] {
+  --game: #00b9a0;
+}
+
 /*
  * The two banks of the quiz section. Coral and sky blue, picked to sit between the colors already taken: each is at
  * least 21 (CIEDE2000) from every area color above and from --luz-ok and --luz-bad, farther than the closest pair

@@ -1,4 +1,4 @@
-import { poseAt, segmentsIntersect, type Point } from './geometry';
+import { headingName, poseAt, segmentsIntersect, type Point } from './geometry';
 import {
   ALL_MAPS,
   BOARD,
@@ -107,6 +107,48 @@ describe.each(ALL_MAPS.map((m) => [m.key, m] as const))('map %s', (_key, map) =>
 
   test('every route leads to its station', () => {
     for (const station of map.stations) expect(follow(map, station.route)).toBe(station.id);
+  });
+
+  test('a route names exactly the switches on the way to its station, from the tunnel on', () => {
+    for (const station of map.stations) {
+      const met: number[] = [];
+      let segment = map.segments[0];
+      const choice = new Map(station.route);
+      while ('switch' in segment.end) {
+        const sw = map.switches[segment.end.switch];
+        met.push(sw.id);
+        segment = map.segments[sw.exits[choice.get(sw.id)!]];
+      }
+      expect(station.route.map(([sw]) => sw)).toEqual(met);
+    }
+  });
+
+  test('every switch is reached by one track and left by its two exits', () => {
+    map.switches.forEach((sw, i) => {
+      expect(sw.id).toBe(i);
+      const arriving = map.segments.filter((s) => 'switch' in s.end && s.end.switch === sw.id);
+      const leaving = map.segments.filter((s) => s.from !== 'tunnel' && s.from.switch === sw.id);
+      expect(arriving).toHaveLength(1);
+      expect(dist(arriving[0].line.points[arriving[0].line.points.length - 1], sw.at)).toBeLessThan(1e-6);
+      expect(leaving.map((s) => s.id).sort((a, b) => a - b)).toEqual([...sw.exits].sort((a, b) => a - b));
+    });
+  });
+
+  test('switches are numbered in reading order: top to bottom, and left to right within a row', () => {
+    for (const a of map.switches) {
+      for (const b of map.switches) {
+        if (a.id >= b.id) continue;
+        if (Math.abs(a.at.y - b.at.y) < 20) expect(a.at.x, `${a.id} and ${b.id} share a row`).toBeLessThan(b.at.x);
+        else expect(a.at.y, `${a.id} above ${b.id}`).toBeLessThan(b.at.y);
+      }
+    }
+  });
+
+  test('the two exits of a switch are spoken as different directions', () => {
+    for (const sw of map.switches) {
+      const [a, b] = sw.exitAngles.map(headingName);
+      expect(a, `switch ${sw.id + 1}`).not.toBe(b);
+    }
   });
 
   test('switch exits start at the switch and continue the heading of the track that arrives', () => {
@@ -270,21 +312,69 @@ describe.each(ALL_MAPS.map((m) => [m.key, m] as const))('map %s', (_key, map) =>
   });
 });
 
-test('mirroring flips x and keeps the routes', () => {
+/** The switch of `mirrored` that stands where the mirror puts switch `id` of `map`. */
+function mirroredSwitch(map: TrackMap, mirrored: TrackMap, id: number) {
+  const at = map.switches[id].at;
+  return mirrored.switches.find((sw) => dist(sw.at, { x: BOARD.width - at.x, y: at.y }) < 1e-6)!;
+}
+
+test('mirroring flips x and keeps the routes, with the switches numbered by their new places', () => {
   const map = mapFor(5, false);
   const mirrored = mirrorMap(map);
   expect(mirrored.key).toBe(`${map.key}m`);
   map.stations.forEach((st, i) => {
     expect(mirrored.stations[i].at.x).toBeCloseTo(BOARD.width - st.at.x);
     expect(mirrored.stations[i].at.y).toBeCloseTo(st.at.y);
-    expect(mirrored.stations[i].route).toEqual(st.route);
+    // Same options at the same (mirrored) switches, whatever their numbers now.
+    expect(mirrored.stations[i].route).toEqual(st.route.map(([sw, option]) => [mirroredSwitch(map, mirrored, sw).id, option]));
   });
-  expect(mirrored.switches[0].exitAngles[0]).toBeCloseTo(180 - map.switches[0].exitAngles[0]);
+  map.switches.forEach((sw) => {
+    const twin = mirroredSwitch(map, mirrored, sw.id);
+    expect(twin.exitAngles[0]).toBeCloseTo(180 - sw.exitAngles[0]);
+    expect(twin.exitAngles[1]).toBeCloseTo(180 - sw.exitAngles[1]);
+    expect(twin.exits).toEqual(sw.exits);
+  });
   expect(mirrored.tunnel.at.x).toBeCloseTo(BOARD.width - map.tunnel.at.x);
   expect(mirrored.tunnel.angle).toBeCloseTo(180 - map.tunnel.angle);
   expect(mirrored.decor[0].x).toBeCloseTo(BOARD.width - map.decor[0].x);
   expect(mirrored.ponds[0].x).toBeCloseTo(BOARD.width - map.ponds[0].x);
   expect(mirrored.fireflies[0].x).toBeCloseTo(BOARD.width - map.fireflies[0].x);
+});
+
+test('a mirrored map is numbered by its own positions, not by the ones it was mirrored from', () => {
+  // Map 4 has two switches on the top row: 1 on the left, 2 on the right. In the mirror they swap places, and numbers.
+  const [plain, mirrored] = [mapFor(4, false), mapFor(4, true)];
+  expect(plain.switches.slice(0, 2).map((sw) => sw.at)).toEqual([
+    { x: 120, y: 100 },
+    { x: 230, y: 100 },
+  ]);
+  expect(mirrored.switches.slice(0, 2).map((sw) => sw.at)).toEqual([
+    { x: 130, y: 100 },
+    { x: 240, y: 100 },
+  ]);
+  expect(mirroredSwitch(plain, mirrored, 0).id).toBe(1);
+  expect(mirroredSwitch(plain, mirrored, 1).id).toBe(0);
+});
+
+test('the big maps read 1, 2, 3… down the board instead of in the order they were drawn', () => {
+  // Map 6: the tunnel on the left feeds a row of two switches; the others go down the board one by one.
+  expect(mapFor(6, false).switches.map((sw) => [sw.at.x, sw.at.y])).toEqual([
+    [112, 100],
+    [220, 100],
+    [150, 220],
+    [258, 300],
+    [150, 380],
+  ]);
+});
+
+test('the level-1 map keeps switch 1 above switch 2, as the practice expects', () => {
+  for (const map of [mapFor(3, false), mapFor(3, true)]) {
+    expect(map.switches.map((sw) => sw.at)).toEqual([
+      { x: 180, y: 130 },
+      { x: 180, y: 270 },
+    ]);
+    expect(map.stations.map((st) => st.route)).toEqual([[[0, 0]], [[0, 1], [1, 0]], [[0, 1], [1, 1]]]);
+  }
 });
 
 test('on some levels the trains come out of a tunnel on a side, left or right', () => {

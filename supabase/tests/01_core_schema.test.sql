@@ -17,13 +17,14 @@ select has_table('public', 'daily_completions', 'public.daily_completions exists
 select results_eq(
   $$ select id, area, max_score from public.games where area not in ('trivia', 'accounting') order by id collate "C" $$,
   $$ values ('arrows', 'attention', 8000),
+            ('balance', 'logic', 4000),
             ('quick-math', 'math', 8000),
             ('rule-switch', 'flexibility', 10000),
             ('same-different', 'speed', 12000),
             ('sequence-lights', 'memory', 960),
             ('star-shower', 'math', 4000),
             ('switchyard', 'attention', 2000) $$,
-  'games holds the 7 training games with their score bounds'
+  'games holds the 8 training games with their score bounds'
 );
 
 -- ---------------------------------------------------------------- table privileges
@@ -128,8 +129,8 @@ select set_config('request.jwt.claims', json_build_object('role', 'anon')::text,
 
 select is(
   (select count(*)::int from public.games),
-  21,
-  'anon can read games (7 training and 14 quiz)'
+  22,
+  'anon can read games (8 training and 14 quiz)'
 );
 select throws_ok(
   $$ insert into public.results (id, game_id, level, score, accuracy, duration_ms, played_at)

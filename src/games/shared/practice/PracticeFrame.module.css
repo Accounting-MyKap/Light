@@ -1,10 +1,15 @@
 /* The frame of the guided practice, drawn with the Luz tokens. Layout and sizes follow GameFrame. */
 .frame {
-  outline: none;
   display: flex;
   flex-direction: column;
   gap: 1rem;
   min-height: calc(100dvh - var(--screen-inset, 2.5rem));
+}
+
+/* It takes the focus when it opens; it is not a control, so it draws no ring, not even after a key (the app-wide
+   :focus-visible rule comes later and would win over a plain `.frame`). */
+.frame:focus {
+  outline: none;
 }
 
 .top {

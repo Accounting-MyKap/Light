@@ -475,6 +475,19 @@ describe('the focus around a pause and a failed load (keyboard and screen reader
     expect(screen.getByText('No pudimos cargar las preguntas.')).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Reintentar' })).toHaveFocus();
   });
+
+  test('«Reintentar», and «Recargar la página» once it is offered, carry the error: the focus move can cut the alert off', async () => {
+    const error = 'No pudimos cargar las preguntas.';
+    vi.mocked(loadQuestions).mockRejectedValue(new Error('offline'));
+    render(gameElement());
+    await settle();
+    expect(screen.getByRole('button', { name: 'Reintentar' })).toHaveAccessibleDescription(error);
+    fireEvent.click(screen.getByRole('button', { name: 'Reintentar' }));
+    await settle();
+    expect(screen.getByRole('button', { name: 'Reintentar' })).toHaveFocus();
+    expect(screen.getByRole('button', { name: 'Reintentar' })).toHaveAccessibleDescription(error);
+    expect(screen.getByRole('button', { name: 'Recargar la página' })).toHaveAccessibleDescription(error);
+  });
 });
 
 describe('a new question on a small screen', () => {
@@ -717,4 +730,15 @@ describe('in the Luz frame', () => {
     expect(screen.getAllByRole('button', { name: /^Option [1-4]: / })).toHaveLength(4);
     // setupTests fails the test if React saw two siblings with the same key.
   });
+});
+
+test('a quiz round never shows the level-up badge, even after four right answers in a row', async () => {
+  await renderGame();
+  for (let i = 0; i < 4; i++) {
+    advance(1000);
+    fireEvent.click(correctOption());
+    fireEvent.click(screen.getByRole('button', { name: 'Siguiente' }));
+  }
+  expect(hud('Nivel')).toBe('2');
+  expect(screen.queryByTestId('level-up')).not.toBeInTheDocument();
 });

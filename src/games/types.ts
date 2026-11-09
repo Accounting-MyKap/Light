@@ -14,9 +14,25 @@ export type Area =
   | 'trivia'
   | 'accounting';
 
-export const V1_AREAS: readonly Area[] = ['memory', 'attention', 'speed', 'flexibility', 'math'];
+/** The areas of the training games (the catalog, the daily plan and the area scores). */
+export const TRAINING_AREAS: readonly Area[] = ['memory', 'attention', 'speed', 'flexibility', 'math', 'logic'];
 /** The two areas of the quiz section; a quiz game's area is its question bank. */
 export const QUIZ_AREAS: readonly Area[] = ['trivia', 'accounting'];
+
+/** How the trains of a Guardagujas game did, for its result screen. */
+export interface SwitchyardRoundDetails {
+  /** Trains that reached their own station. */
+  home: number;
+  /** Trains that reached a station, theirs or another. */
+  arrived: number;
+  /** The longest run of trains in a row sent home. */
+  bestStreak: number;
+  /**
+   * Trains that reached another station, counted by the station they should have reached and named by its look
+   * (index in STATION_STYLES), so it reads without the map. Most missed first; stations never missed are left out.
+   */
+  missed: { style: number; count: number }[];
+}
 
 export interface GameResult {
   score: number;
@@ -25,6 +41,8 @@ export interface GameResult {
   durationMs: number;
   /** Solo en los juegos de preguntas: lo necesario para el repaso y el historial local. */
   quiz?: QuizRoundDetails;
+  /** Only in Guardagujas: the summary of its trains, below the stats of the result. */
+  switchyard?: SwitchyardRoundDetails;
 }
 
 export interface GameProps {

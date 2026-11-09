@@ -1,6 +1,7 @@
 import { GAMES, QUIZ_GAMES, TRAINING_GAMES, getGame } from './registry';
 import { QuizReview } from './quiz/QuizReview';
-import { QUIZ_AREAS, V1_AREAS, type GameDefinition } from './types';
+import { SwitchyardResultDetails } from './switchyard/ResultDetails';
+import { QUIZ_AREAS, TRAINING_AREAS, type GameDefinition } from './types';
 import { ACCOUNTING_CATEGORIES, CATEGORIES_BY_BANK, TRIVIA_CATEGORIES } from '../quiz/types';
 import es from '../i18n/es.json';
 import en from '../i18n/en.json';
@@ -36,7 +37,7 @@ test('registry entries are valid', () => {
   const ids = GAMES.map((g) => g.id);
   expect(new Set(ids).size).toBe(ids.length);
   expect(GAMES.map((g) => g.id)).toEqual([...TRAINING_GAMES, ...QUIZ_GAMES].map((g) => g.id));
-  for (const g of TRAINING_GAMES) expect(V1_AREAS).toContain(g.area);
+  for (const g of TRAINING_GAMES) expect(TRAINING_AREAS).toContain(g.area);
   for (const g of QUIZ_GAMES) expect(QUIZ_AREAS).toContain(g.area);
   for (const g of GAMES) {
     expect(g.maxScore).toBeGreaterThan(g.referenceScore);
@@ -56,7 +57,7 @@ test('registry entries are valid', () => {
   expect(getGame('nope')).toBeUndefined();
 });
 
-test('training games are the 5 v1 games, Guardagujas and Lluvia de estrellas', () =>
+test('training games are the 5 v1 games, Guardagujas, Lluvia de estrellas and Balanza', () =>
   expect(TRAINING_GAMES.map((g) => g.id)).toEqual([
     'sequence-lights',
     'arrows',
@@ -65,18 +66,17 @@ test('training games are the 5 v1 games, Guardagujas and Lluvia de estrellas', (
     'quick-math',
     'switchyard',
     'star-shower',
+    'balance',
   ]));
 
-test('the 5 v1 games and Guardagujas have a guided practice; Lluvia de estrellas and the quiz games keep the instructions', () => {
-  expect(GAMES.filter((g) => g.Practice).map((g) => g.id)).toEqual([
-    'sequence-lights',
-    'arrows',
-    'same-different',
-    'rule-switch',
-    'quick-math',
-    'switchyard',
-  ]);
-  expect(GAMES.filter((g) => g.Example).map((g) => g.id)).toEqual(['star-shower', ...QUIZ_IDS]);
+test('Balanza is the Logic game', () => {
+  expect(TRAINING_GAMES.filter((g) => g.area === 'logic').map((g) => g.id)).toEqual(['balance']);
+});
+
+test('every training game has a guided practice; only the quiz games keep the instructions', () => {
+  expect(GAMES.filter((g) => g.Practice).map((g) => g.id)).toEqual(TRAINING_GAMES.map((g) => g.id));
+  expect(TRAINING_GAMES).toHaveLength(8);
+  expect(GAMES.filter((g) => g.Example).map((g) => g.id)).toEqual(QUIZ_IDS);
 });
 
 test('only the quiz games carry a quiz config', () => {
@@ -84,9 +84,10 @@ test('only the quiz games carry a quiz config', () => {
   expect(QUIZ_GAMES.every((g) => g.quiz !== undefined)).toBe(true);
 });
 
-test('quiz games show the review of mistakes on the result; training games add nothing', () => {
+test('quiz games show the review of mistakes on the result, Guardagujas its trains; other training games add nothing', () => {
   expect(QUIZ_GAMES.every((g) => g.ResultDetails === QuizReview)).toBe(true);
-  expect(TRAINING_GAMES.every((g) => g.ResultDetails === undefined)).toBe(true);
+  expect(getGame('switchyard')?.ResultDetails).toBe(SwitchyardResultDetails);
+  expect(TRAINING_GAMES.filter((g) => g.ResultDetails !== undefined).map((g) => g.id)).toEqual(['switchyard']);
 });
 
 test('quiz games are the 14 ids, their area is their bank and mixes cover the bank', () => {

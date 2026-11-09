@@ -68,14 +68,14 @@ export async function finishRunningGame(page: Page): Promise<void> {
       await page.getByRole('button', { name: 'Casilla 1' }).click();
     }
   } else {
-    // Guardagujas lasts 90 seconds; the other timed games 60. Lluvia de estrellas has no clock: left alone it
-    // loses its 3 lives in about 30 seconds, so 61 seconds always reach its result.
+    // Guardagujas and Balanza last 90 seconds; the other timed games 60. Lluvia de estrellas has no clock: left
+    // alone it loses its 3 lives in about 30 seconds, so 61 seconds always reach its result.
     // A jump, not runFor: runFor fires every animation frame of the game one by one and waits a real timer tick
     // (at least 4 ms) after each, so 91 s of Guardagujas took 24 s even on an idle machine and over a minute on a busy
     // one. The game clocks read Date, and the engines catch up on a jump (Guardagujas counts the trains that arrive
-    // after its last frame, Lluvia de estrellas lands every star that is due), so each due timer firing once at the
-    // end gives the same result screen.
-    await page.clock.fastForward(id === 'switchyard' ? 91_000 : 61_000);
+    // after its last frame, Lluvia de estrellas lands every star that is due, the countdown of the other timed games
+    // reads the time that is left), so each due timer firing once at the end reaches the result screen.
+    await page.clock.fastForward(id === 'switchyard' || id === 'balance' ? 91_000 : 61_000);
   }
   await expect(result).toBeVisible();
 }

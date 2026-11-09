@@ -1,5 +1,6 @@
-import { createRng, type Rng } from '../../core/rng';
+import { createRng, randInt, type Rng } from '../../core/rng';
 import { answerArrow, createArrowsGame } from '../arrows/engine';
+import { answerBalance, choicesOf, createBalanceGame, type BalanceState } from '../balance/engine';
 import { answerRule, createRuleSwitchGame } from '../rule-switch/engine';
 import { answerSameDiff, createSameDiffGame } from '../same-different/engine';
 
@@ -57,4 +58,20 @@ test.each([
   const careful = averagePoints(sim as Sim<unknown>, 0.9, 600, 7);
   expect(Math.abs(guessing)).toBeLessThan(1.5);
   expect(careful).toBeGreaterThan(5);
+});
+
+test('balance: fast random guessing averages 0 or less, careful play clearly more', () => {
+  const sim: Sim<BalanceState> = {
+    create: (rng) => ({ ...createBalanceGame(1, rng, 0), score: START }),
+    score: (s) => s.score,
+    answer: (s, right, rt, rng) => {
+      const choices = choicesOf(s.challenge);
+      const others = choices.filter((c) => c !== s.challenge.answer);
+      const choice = right ? s.challenge.answer : others[randInt(rng, 0, others.length - 1)];
+      return answerBalance(s, choice, s.shownAt + rt, rng).state;
+    },
+  };
+  // A random guess is right one time in three (three choices) or less (more figures).
+  expect(averagePoints(sim as Sim<unknown>, 1 / 3, 200, 7)).toBeLessThan(1.5);
+  expect(averagePoints(sim as Sim<unknown>, 0.9, 2000, 7)).toBeGreaterThan(5);
 });

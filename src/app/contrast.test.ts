@@ -1,5 +1,5 @@
 import luzCss from '../games/shared/luz/luz.css?raw';
-import { QUIZ_AREAS, V1_AREAS } from '../games/types';
+import { QUIZ_AREAS, TRAINING_AREAS } from '../games/types';
 import css from './theme.css?raw';
 
 // Finds the block by its exact selector text followed by ` {`, so `[data-luz] {` never matches the longer
@@ -60,8 +60,8 @@ const TEXT_PAIRS: [string, string][] = [
   ['danger', 'bg'],
   ['danger', 'surface'],
   ['danger-text', 'danger'],
-  // The five training areas and the two quiz banks (the Preguntas screen and its Progress block use their colours).
-  ...[...V1_AREAS, ...QUIZ_AREAS].flatMap((area): [string, string][] => [
+  // The training areas and the two quiz banks (the Preguntas screen and its Progress block use their colours).
+  ...[...TRAINING_AREAS, ...QUIZ_AREAS].flatMap((area): [string, string][] => [
     [`area-${area}`, 'bg'],
     [`area-${area}`, 'surface'],
   ]),
@@ -96,8 +96,8 @@ describe('theme blocks stay in sync', () => {
 
 describe('Luz (always-dark game screens)', () => {
   const luz = tokensIn(luzCss, '[data-luz]');
-  // Every area that has games: the five training areas and the two banks of the quiz section.
-  const AREAS = [...V1_AREAS, ...QUIZ_AREAS];
+  // Every area that has games: the training areas and the two banks of the quiz section.
+  const AREAS = [...TRAINING_AREAS, ...QUIZ_AREAS];
   const games = AREAS.map((area): [string, string] => [area, tokensIn(luzCss, `[data-luz][data-area='${area}']`).game]);
 
   test('each area has a color of its own', () => {

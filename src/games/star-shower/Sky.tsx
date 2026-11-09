@@ -126,9 +126,9 @@ const STAR_POINTS = Array.from({ length: 10 }, (_, i) => {
 /**
  * What a star looks like: a 5-point star (a round ball for the comet: the shape, not only the color, tells them
  * apart) with its operation on a label just under it. The shapes are drawn and hold no text, so the star's text is
- * exactly its operation. Also in the example.
+ * exactly its operation.
  */
-export function StarLook({ comet, children }: { comet: boolean; children: ReactNode }) {
+function StarLook({ comet, children }: { comet: boolean; children: ReactNode }) {
   return (
     <>
       {comet ? <span className={styles.ball} /> : <StarHead />}

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useId, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { prefersReducedMotion } from '../../core/motion';
 import { createRng, randomSeed, type Rng } from '../../core/rng';
@@ -92,20 +92,28 @@ export function QuizGame({ startLevel, paused, onFinish, categories }: GameProps
     if (load.kind === 'loading') statusRef.current?.focus();
     if (load.kind === 'error') retryRef.current?.focus();
   }, [attempt, paused, load.kind]);
+  // The buttons are described by the error: the focus moving to «Reintentar» can cut the alert off, and the button
+  // alone would only say «Reintentar».
+  const errorId = useId();
 
   // Loading and a failed load are drawn in the frame too: its ✕ is the way out of the game screen.
   if (load.kind === 'error') {
     return (
       <div className={styles.game}>
-        <GameFrame score={0} level={firstLevel}>
+        <GameFrame score={0} level={firstLevel} levelUp={false}>
           <div className={styles.status}>
-            <p role="alert">{t('quiz.loadError')}</p>
-            <button ref={retryRef} type="button" className={styles.retry} onClick={retry}>
+            <p id={errorId} role="alert">{t('quiz.loadError')}</p>
+            <button ref={retryRef} type="button" className={styles.retry} aria-describedby={errorId} onClick={retry}>
               {t('play.retry')}
             </button>
             {/* Retrying cannot help when the app itself is stale (a bank chunk of an older version is gone). */}
             {failures >= 2 && (
-              <button type="button" className={styles.reload} onClick={() => window.location.reload()}>
+              <button
+                type="button"
+                className={styles.reload}
+                aria-describedby={errorId}
+                onClick={() => window.location.reload()}
+              >
                 {t('quiz.reload')}
               </button>
             )}
@@ -117,7 +125,7 @@ export function QuizGame({ startLevel, paused, onFinish, categories }: GameProps
   if (load.kind === 'loading') {
     return (
       <div className={styles.game}>
-        <GameFrame score={0} level={firstLevel}>
+        <GameFrame score={0} level={firstLevel} levelUp={false}>
           <p ref={statusRef} className={styles.status} role="status" tabIndex={-1}>
             {t('quiz.loading')}
           </p>
@@ -243,6 +251,7 @@ function QuizRound({ initial, clock, rng, paused, onFinish }: QuizRoundProps) {
         level={round.staircase.level}
         time={{ remainingMs: remaining, totalMs: QUIZ_QUESTION_MS, stopped: !asking, urgentMs: QUIZ_URGENT_MS }}
         controls={answers}
+        levelUp={false}
       >
         <div className={styles.zone}>
           <p className={styles.counter}>{t('quiz.questionOf', { n: number, total: QUIZ_ROUND_LENGTH })}</p>

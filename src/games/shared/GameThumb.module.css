@@ -24,5 +24,6 @@
 .thumb[data-area='speed'] { --g: #ff5fd2; }
 .thumb[data-area='flexibility'] { --g: #a98bff; }
 .thumb[data-area='math'] { --g: #8dff6a; }
+.thumb[data-area='logic'] { --g: #00b9a0; }
 .thumb[data-area='trivia'] { --g: #ff7b45; }
 .thumb[data-area='accounting'] { --g: #3399ff; }

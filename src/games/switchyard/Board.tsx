@@ -6,6 +6,7 @@ import { headingName, offsetPolyline, type Point } from './geometry';
 import { BOARD, STATION_STYLES, type TrackMap, type Tunnel } from './maps';
 import { trainSprite, type CarSprite } from './sprite';
 import styles from './switchyard.module.css';
+import { SCENES, themeFor, type SceneTheme } from './themes';
 
 /** How long the ring and the mark of an arrival stay on the station. */
 export const ARRIVAL_SHOW_MS = 900;
@@ -35,6 +36,8 @@ export interface BoardProps {
   onToggle: (index: number) => void;
   /** No smoke at all, and the arrival marks stand still. */
   reducedMotion?: boolean;
+  /** A phone too slow for the decoration: `data-lite` on the board, where the CSS stops its decorative animations. */
+  lite?: boolean;
   /** Width in CSS pixels; without it the board takes the width of its box (up to 420 px). */
   width?: number;
 }
@@ -57,6 +60,7 @@ export function Board({
   now = 0,
   onToggle,
   reducedMotion = false,
+  lite = false,
   width,
 }: BoardProps) {
   const { t } = useTranslation();
@@ -69,6 +73,7 @@ export function Board({
       style={width === undefined ? undefined : { width }}
       role="group"
       aria-label={t('games.switchyard.board')}
+      data-lite={lite ? '' : undefined}
     >
       <svg className={styles.layer} viewBox={viewBox} aria-hidden="true">
         <Defs uid={uid} />
@@ -78,6 +83,8 @@ export function Board({
         <Tracks map={map} switches={switches} />
         <SwitchDisks map={map} switches={switches} />
       </svg>
+      {/* What drifts in the air passes over the ground and behind the trains, the stations and the tunnel. */}
+      <Fireflies map={map} />
       <svg className={styles.layer} viewBox={viewBox} aria-hidden="true">
         {trains.map((train) => (
           <TrainView key={train.id} map={map} train={train} uid={uid} />
@@ -92,7 +99,6 @@ export function Board({
       <svg className={styles.layer} viewBox={viewBox} aria-hidden="true">
         <Front map={map} uid={uid} />
       </svg>
-      <Fireflies map={map} />
       <SwitchButtons map={map} switches={switches} onToggle={onToggle} />
     </div>
   );
@@ -216,7 +222,7 @@ const Front = memo(function Front({ map, uid }: { map: TrackMap; uid: string }) 
         );
       })}
       <g transform={portalTransform(map.tunnel)}>
-        <TunnelPortal />
+        <TunnelPortal theme={themeFor(map)} />
       </g>
     </g>
   );
@@ -243,14 +249,6 @@ function Defs({ uid }: { uid: string }) {
           <stop offset="1" stopColor={style.color} stopOpacity="0" />
         </radialGradient>
       ))}
-      <radialGradient id={`${uid}-ground`} cx="0.5" cy="0.4" r="0.75">
-        <stop offset="0" stopColor="#13282b" />
-        <stop offset="1" stopColor="#0a151b" />
-      </radialGradient>
-      <radialGradient id={`${uid}-water`} cx="0.4" cy="0.35" r="0.8">
-        <stop offset="0" stopColor="#1b4a63" />
-        <stop offset="1" stopColor="#0c263a" />
-      </radialGradient>
       <pattern id={`${uid}-dots`} width="20" height="20" patternUnits="userSpaceOnUse">
         <circle cx="10" cy="10" r="0.9" fill="#ffffff" opacity="0.06" />
       </pattern>
@@ -258,9 +256,25 @@ function Defs({ uid }: { uid: string }) {
   );
 }
 
+/**
+ * The scene around the tracks, in the colors of the map's band of levels (see themes.ts): the ground with its
+ * patches, the ponds, and the plants and stones from the back to the front.
+ */
 const Ground = memo(function Ground({ map, uid }: { map: TrackMap; uid: string }) {
+  const theme = themeFor(map);
+  const scene = SCENES[theme];
   return (
-    <g>
+    <g data-theme={theme}>
+      <defs>
+        <radialGradient id={`${uid}-ground`} cx="0.5" cy="0.4" r="0.75">
+          <stop offset="0" stopColor={scene.ground[0]} />
+          <stop offset="1" stopColor={scene.ground[1]} />
+        </radialGradient>
+        <radialGradient id={`${uid}-water`} cx="0.4" cy="0.35" r="0.8">
+          <stop offset="0" stopColor={scene.pond.water[0]} />
+          <stop offset="1" stopColor={scene.pond.water[1]} />
+        </radialGradient>
+      </defs>
       <rect width={BOARD.width} height={BOARD.height} rx={24} fill={`url(#${uid}-ground)`} />
       <rect width={BOARD.width} height={BOARD.height} rx={24} fill={`url(#${uid}-dots)`} />
       <rect
@@ -275,35 +289,68 @@ const Ground = memo(function Ground({ map, uid }: { map: TrackMap; uid: string }
         strokeWidth={1.5}
       />
       {map.patches.map((p, i) => (
-        <ellipse key={`patch${i}`} cx={p.x} cy={p.y} rx={p.rx} ry={p.ry} fill="#1a3a33" opacity={0.45} />
+        <ellipse
+          key={`patch${i}`}
+          cx={p.x}
+          cy={p.y}
+          rx={p.rx}
+          ry={p.ry}
+          fill={scene.patch}
+          opacity={scene.patchOpacity}
+        />
       ))}
       {map.ponds.map((pond, i) => (
-        <PondView key={`pond${i}`} pond={pond} water={`${uid}-water`} />
+        <PondView key={`pond${i}`} pond={pond} water={`${uid}-water`} theme={theme} />
       ))}
       {map.decor.map((d, i) => (
-        <DecorView key={i} {...d} />
+        <DecorView key={i} {...d} theme={theme} />
       ))}
     </g>
   );
 });
 
-/** Fireflies over the meadow; they twinkle unless the person asked for less motion. */
+/** What drifts over each scene. */
+const DRIFT_CLASS: Record<SceneTheme, string> = { meadow: styles.firefly, autumn: styles.leaf, snow: styles.snowflake };
+
+/** Snow falls thicker than leaves: two flakes on each spot, half a fall apart. */
+const DRIFT_PER_SPOT: Record<SceneTheme, number> = { meadow: 1, autumn: 1, snow: 2 };
+
+/**
+ * Where the `round`-th firefly, leaf or snowflake of spot `i` is, and its own beat, so no two move together. The ones
+ * that fall start part of the way down, so the air is already full when the game starts.
+ */
+function driftStyle(theme: SceneTheme, at: Point, i: number, round: number) {
+  const place = { left: `${(at.x / BOARD.width) * 100}%`, top: `${(at.y / BOARD.height) * 100}%` };
+  if (theme === 'meadow') return { ...place, animationDelay: `${((i * 0.73) % 3).toFixed(2)}s` };
+  // Falling and swaying are two animations, each with its own length.
+  const fall = theme === 'autumn' ? 11 + (i % 4) * 1.4 : 9 + (i % 3) * 1.6;
+  const sway = 2.4 + ((i + round) % 3) * 0.5;
+  const beat = {
+    animationDuration: `${fall}s, ${sway}s`,
+    animationDelay: `-${((i * 3.7 + (round * fall) / 2) % fall).toFixed(2)}s, -${((i * 0.9) % sway).toFixed(2)}s`,
+  };
+  const { spots } = SCENES.autumn;
+  return theme === 'autumn'
+    ? { ...place, ...beat, backgroundColor: spots[i % spots.length] }
+    : // Smaller flakes are farther away: they fall a shorter way, so more slowly.
+      { ...place, ...beat, scale: `${[1, 0.62, 0.8][(i + round) % 3]}` };
+}
+
+/**
+ * What drifts in the air over the scene: fireflies that twinkle over the meadow, leaves that fall through the autumn
+ * forest, snowflakes in the snowy night, on the spots the map keeps for them. The browser animates them on its own;
+ * they stand still for whoever asked for less motion, and they never catch a tap.
+ */
 const Fireflies = memo(function Fireflies({ map }: { map: TrackMap }) {
+  const theme = themeFor(map);
   return (
-    <>
-      {map.fireflies.map((f, i) => (
-        <span
-          key={i}
-          className={styles.firefly}
-          style={{
-            left: `${(f.x / BOARD.width) * 100}%`,
-            top: `${(f.y / BOARD.height) * 100}%`,
-            animationDelay: `${((i * 0.73) % 3).toFixed(2)}s`,
-          }}
-          aria-hidden="true"
-        />
-      ))}
-    </>
+    <div className={styles.air} data-theme={theme} aria-hidden="true">
+      {Array.from({ length: DRIFT_PER_SPOT[theme] }, (_, round) =>
+        map.fireflies.map((f, i) => (
+          <span key={`${round}-${i}`} className={DRIFT_CLASS[theme]} style={driftStyle(theme, f, i, round)} />
+        )),
+      )}
+    </div>
   );
 });
 

@@ -47,6 +47,11 @@
     "keypad": {
       "delete": "Delete",
       "ok": "OK"
+    },
+    "levelUp": {
+      "badge": "Level {{n}}!",
+      "harder": "Harder",
+      "announce": "You reached level {{n}}"
     }
   },
   "games": {
@@ -251,6 +256,7 @@
       "levelStations": "{{n}} stations",
       "levelSideTunnel": "side tunnel",
       "levelMiddleStation": "station in the middle",
+      "faster": "Faster! · Level {{level}}",
       "practice": {
         "tap": "Tap the switch (the circle with an arrow) so the red train goes to the red station, the circle one",
         "moving": "Now the train moves on its own: switch the track before it reaches the switch",
@@ -258,17 +264,92 @@
         "hintYellow": "The yellow train goes to the yellow station, the square one. Try again",
         "hintEach": "Each train goes to the station of its color and shape. Try again",
         "recap": "You have 90 seconds. Each train that reaches its station scores; if it reaches another, it scores nothing. They speed up while you get them right. On a keyboard: numbers 1 to 9."
+      },
+      "result": {
+        "title": "Your trains",
+        "home": "Trains to their station: {{home}} of {{arrived}}",
+        "bestStreak_one": "Best streak: {{count}} train in a row",
+        "bestStreak_other": "Best streak: {{count}} trains in a row",
+        "worstStation_one": "Missed most: {{station}} ({{count}} train)",
+        "worstStation_other": "Missed most: {{station}} ({{count}} trains)",
+        "stations": {
+          "circle": "the red circle station",
+          "square": "the yellow square station",
+          "triangle": "the green triangle station",
+          "diamond": "the purple diamond station",
+          "star": "the orange star station",
+          "heart": "the pink heart station",
+          "cross": "the blue cross station"
+        }
       }
     },
     "star-shower": {
       "title": "Star Shower",
       "skill": "Math under pressure",
       "description": "Solve the sums on the falling stars before they reach the horizon.",
-      "instructions": [
-        "Stars with sums are falling. Type the answer on the on-screen keypad or your keyboard and press OK (or Enter) to pop them.",
-        "The golden comet pops every star on the screen. A wrong number costs no points: just try again.",
-        "If a star reaches the horizon, you lose a life and the other stars vanish. Lose 3 and the game ends."
-      ]
+      "practice": {
+        "pop": "Type the star's answer and press OK to pop it",
+        "falling": "The stars fall: pop both before they touch the horizon",
+        "comet": "The golden comet pops every star: pop the comet",
+        "hintFirst": "That number isn't in the sky: 3 + 4 = 7. Try again",
+        "hintWrong": "That number isn't on any star. Try again",
+        "hintLost": "If a star touches the horizon, you lose a life. Try again",
+        "recap": "You play until you lose 3 lives: each star that touches the horizon takes one. A wrong number costs no points. On a keyboard: type and press Enter."
+      }
+    },
+    "balance": {
+      "title": "Balance",
+      "skill": "Logical reasoning",
+      "description": "Work out which shape is heaviest and which way a new balance will tip.",
+      "heaviest": "Which is heaviest?",
+      "tilt": "Which way will it tip?",
+      "left": "Left",
+      "equal": "Equal",
+      "right": "Right",
+      "clues": "Clues",
+      "names": {
+        "circle": "amber circle",
+        "square": "cyan square",
+        "triangle": "magenta triangle",
+        "diamond": "lime diamond",
+        "star": "orange star",
+        "hexagon": "white hexagon"
+      },
+      "count": {
+        "circle_one": "{{count}} amber circle",
+        "circle_other": "{{count}} amber circles",
+        "square_one": "{{count}} cyan square",
+        "square_other": "{{count}} cyan squares",
+        "triangle_one": "{{count}} magenta triangle",
+        "triangle_other": "{{count}} magenta triangles",
+        "diamond_one": "{{count}} lime diamond",
+        "diamond_other": "{{count}} lime diamonds",
+        "star_one": "{{count}} orange star",
+        "star_other": "{{count}} orange stars",
+        "hexagon_one": "{{count}} white hexagon",
+        "hexagon_other": "{{count}} white hexagons"
+      },
+      "balance": "{{left}} against {{right}}: {{outcome}}",
+      "and": " and ",
+      "outcome": {
+        "left": "the left side goes down",
+        "right": "the right side goes down",
+        "level": "they balance",
+        "unknown": "?"
+      },
+      "levelHeaviest": "{{n}} shapes · Which is heaviest?",
+      "levelTilt": "{{n}} shapes · Which way will it tip?",
+      "practice": {
+        "round1": "The side that goes down is heavier. Which is heaviest?",
+        "round2": "Put both balances together: which is the heaviest of all?",
+        "round3": "A level balance weighs the same on both sides. Which way will the new one tip?",
+        "round4": "And this one?",
+        "hint1": "The circle's pan is lower: the circle is heavier",
+        "hint2": "The circle is heavier than the square, and the square heavier than the triangle",
+        "hint3": "One circle weighs as much as two squares; three squares weigh more: the right side goes down",
+        "hint4": "Two circles weigh as much as four squares: it stays level",
+        "recap": "You have 90 seconds. Each mistake costs 15 points: think, but don't guess. With a keyboard: 1–5 for the shape; ←, = and → for the new balance."
+      }
     }
   },
   "play": {

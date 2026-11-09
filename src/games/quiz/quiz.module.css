@@ -12,6 +12,59 @@
   flex-direction: column;
 }
 
+/*
+ * A long question can be taller than a small phone. While the player scrolls down to the last options, the running
+ * time bar stays at the top of the screen as a slim strip, and nothing else does: the ✕, the title and the points
+ * scroll away as always (after the answer the clock is stopped anyway). The strip is the frame's 1rem gaps around the
+ * bar, which also hold its glow; the margins give that room back, so nothing moves. It sticks under the status bar.
+ * Once the page scrolls it takes dark Luz glass, out to the sides of the screen and up over the status bar (a shadow
+ * that wide, cut to the strip), so the text passes under it cleanly. At the top of the page it stays clear.
+ */
+.game [data-zone='time'] {
+  --bar-glass: color-mix(in srgb, var(--luz-bg) 96%, transparent);
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 1;
+  display: block;
+  margin: -1rem 0;
+  padding: 1rem 0;
+  clip-path: inset(calc(-1 * env(safe-area-inset-top, 0px)) -100vmax 0);
+}
+
+/* The glass comes in over the last 1rem of scroll before the top bar is gone (44 px, the ✕, is the least it takes):
+   it is whole by the time the strip sticks and anything passes under it, and a page that scrolls less stays clear. */
+@supports (animation-timeline: scroll()) {
+  .game [data-zone='time'] {
+    animation: bar-glass linear both;
+    animation-timeline: scroll();
+    animation-range: calc(var(--luz-pad-top) + 44px - 1rem) calc(var(--luz-pad-top) + 44px);
+  }
+}
+
+@keyframes bar-glass {
+  to {
+    background-color: var(--bar-glass);
+    box-shadow: 0 0 0 100vmax var(--bar-glass);
+    backdrop-filter: blur(16px);
+  }
+}
+
+/* A browser without scroll-driven animations keeps the glass on all the time: the text still never runs under the
+   bare bar. */
+@supports not (animation-timeline: scroll()) {
+  .game [data-zone='time'] {
+    background-color: var(--bar-glass);
+    box-shadow: 0 0 0 100vmax var(--bar-glass);
+    backdrop-filter: blur(16px);
+  }
+}
+
+/* A control that takes the focus while the strip is up is scrolled just clear of it: the status bar, 1rem, the 8 px
+   bar and 1rem. */
+.game [data-zone='controls'] button {
+  scroll-margin-top: calc(env(safe-area-inset-top, 0px) + 2rem + 8px);
+}
+
 /* The frame centers what is in its zones; the question and its answers take the whole width. */
 .zone,
 .answers {

@@ -13,6 +13,35 @@ test('a chimney puffs every 80 ms', () => {
   expect(new Set(smoke.puffs.map((p) => p.id)).size).toBe(10);
 });
 
+test('a frame that comes a little late still gets the puffs it missed', () => {
+  const rng = createRng(7);
+  let smoke = emitPuffs(empty(), [{ trainId: 1, x: 0, y: 0 }], 0, rng);
+  smoke = emitPuffs(smoke, [{ trainId: 1, x: 30, y: 0 }], 3 * PUFF_EVERY_MS, rng);
+  expect(smoke.puffs.map((p) => p.born)).toEqual([0, 80, 160, 240]);
+});
+
+test('after a stalled frame the chimney lets out one puff, not a cloud of them on one spot', () => {
+  const rng = createRng(8);
+  let smoke = emitPuffs(empty(), [{ trainId: 1, x: 0, y: 0 }], 0, rng);
+  // 1.5 s without a frame: the old rule back-filled 19 puffs at the chimney's new spot.
+  smoke = emitPuffs(smoke, [{ trainId: 1, x: 120, y: 0 }], 1520, rng);
+  expect(smoke.puffs.map((p) => p.born)).toEqual([0, 1520]);
+  expect(smoke.puffs.filter((p) => p.x === 120)).toHaveLength(1);
+  // And it goes on puffing at its usual pace from there.
+  smoke = emitPuffs(smoke, [{ trainId: 1, x: 126, y: 0 }], 1600, rng);
+  expect(smoke.puffs.map((p) => p.born)).toEqual([0, 1520, 1600]);
+});
+
+test('whatever the gap, a chimney never adds more than a few puffs in one frame', () => {
+  const rng = createRng(9);
+  for (const gap of [100, 250, 400, 1000, 5000, 60_000]) {
+    const before = emitPuffs(empty(), [{ trainId: 1, x: 0, y: 0 }], 0, rng);
+    const after = emitPuffs(before, [{ trainId: 1, x: 50, y: 0 }], gap, rng);
+    expect(after.puffs.length - before.puffs.length, `gap ${gap}`).toBeLessThanOrEqual(3);
+    expect(after.puffs.length - before.puffs.length, `gap ${gap}`).toBeGreaterThanOrEqual(1);
+  }
+});
+
 test('each train puffs on its own, and a train that left stops being tracked', () => {
   const rng = createRng(2);
   let smoke = emitPuffs(empty(), [{ trainId: 1, x: 0, y: 0 }, { trainId: 2, x: 50, y: 0 }], 0, rng);

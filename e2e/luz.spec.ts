@@ -10,6 +10,7 @@ const GAMES = [
   'quick-math',
   'switchyard',
   'star-shower',
+  'balance',
 ] as const;
 const CLOCK_TIME = new Date('2026-10-20T10:00:00');
 const LUZ_BACKGROUND = 'rgb(9, 11, 25)'; // #090b19
@@ -74,6 +75,49 @@ async function waitForStarInSky(page: Page): Promise<void> {
     .toBe(true);
 }
 
+/**
+ * Answers `count` Balanza challenges correctly: each one is read once it accepts answers (past the 150 ms guard),
+ * and the next is waited for (the answered one stays up while its buttons are marked).
+ */
+async function solveBalance(page: Page, count: number): Promise<void> {
+  const marked = page.locator('[data-game] [data-state]');
+  for (let i = 0; i < count; i++) {
+    await expect(marked).toHaveCount(0);
+    await page.waitForTimeout(250);
+    const answer = await page.getByTestId('balance-challenge').getAttribute('data-answer');
+    await page.locator(`[data-game] [data-choice="${answer}"]`).click();
+    await expect(marked.first()).toBeVisible();
+  }
+  await expect(marked).toHaveCount(0);
+}
+
+/** Opens Balanza at the given start level, by setting it in the local database first. */
+async function openBalanceAt(page: Page, level: number): Promise<void> {
+  await page.goto('./#/games');
+  await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+  await page.evaluate(
+    (startLevel) =>
+      new Promise<void>((resolve, reject) => {
+        const open = indexedDB.open('light');
+        open.onerror = () => reject(open.error);
+        open.onsuccess = () => {
+          const db = open.result;
+          const tx = db.transaction('gameLevels', 'readwrite');
+          tx.objectStore('gameLevels').put({ gameId: 'balance', startLevel });
+          tx.oncomplete = () => {
+            db.close();
+            resolve();
+          };
+          tx.onerror = () => reject(tx.error);
+        };
+      }),
+    level,
+  );
+  await page.goto('./#/play/balance');
+  await startGame(page);
+  await expect(page.getByTestId('balance-challenge')).toBeVisible();
+}
+
 /** Answers `count` Cambio de regla trials correctly: the card that matches the stimulus in the current rule. */
 async function solveRuleSwitch(page: Page, count: number): Promise<void> {
   for (let i = 0; i < count; i++) {
@@ -118,6 +162,7 @@ async function answerSome(page: Page, id: (typeof GAMES)[number]): Promise<void>
   if (id === 'quick-math') return solveQuickMath(page, 4);
   if (id === 'rule-switch') return solveRuleSwitch(page, 6);
   if (id === 'star-shower') return solveStarShower(page, 3);
+  if (id === 'balance') return solveBalance(page, 3);
   const buttons = page.locator('[data-game] [data-zone="controls"] button');
   if (id === 'arrows') {
     // «Izquierda» is the first button, «Derecha» the second: tap the one the center arrow points to.
@@ -169,12 +214,8 @@ test.describe('narrow English screen', () => {
   test('no sideways scroll at 320 px in English', async ({ page }) => {
     for (const id of GAMES) {
       await page.goto(`./#/play/${id}`);
-      // First visit: the practice invitation, or the instructions with their example for the game without a
-      // practice (Lluvia de estrellas).
-      const first =
-        id === 'star-shower'
-          ? page.getByRole('button', { name: 'Start', exact: true })
-          : page.getByRole('button', { name: 'Skip practice', exact: true });
+      // First visit: every training game invites to its practice.
+      const first = page.getByRole('button', { name: 'Skip practice', exact: true });
       await expect(first, `${id} first visit`).toBeVisible();
       expect(await hasNoSidewaysScroll(page), `${id} first visit scrolls sideways`).toBe(true);
 
@@ -209,8 +250,9 @@ test.describe('Star Shower at 320 px', () => {
         }),
     );
 
+    // A first visit: skipping the practice starts the game at the seeded level.
     await page.goto('./#/play/star-shower');
-    await page.getByRole('button', { name: 'Start' }).click();
+    await page.getByRole('button', { name: 'Skip practice', exact: true }).click();
     const stars = page.getByTestId('star');
     await expect(stars).toHaveCount(3, { timeout: 15_000 });
     // A star is born above the sky and comes down anchored by its bottom edge, and a new one can be born at any moment.
@@ -347,7 +389,7 @@ test.describe('Star Shower on short phones', () => {
     test(`Star Shower fits ${viewport.width}×${viewport.height} without scrolling`, async ({ page }) => {
       await page.setViewportSize(viewport);
       await page.goto('./#/play/star-shower');
-      await page.getByRole('button', { name: 'Comenzar' }).click();
+      await startGame(page);
       await expect(page.locator('[data-game]')).toBeVisible();
       await expect(page.getByTestId('star').first()).toBeAttached();
 
@@ -373,9 +415,9 @@ test.describe('Star Shower on short phones', () => {
 test.describe('review screenshots', () => {
   test.use({ viewport: { width: 390, height: 844 }, colorScheme: 'dark' });
 
-  test('screenshots of the seven games for review', async ({ page }) => {
-    // Seven games one after the other, Guardagujas with two trains sent home first: more than the default 90 s.
-    test.setTimeout(240_000);
+  test('screenshots of the training games for review', async ({ page }) => {
+    // Eight games one after the other, Guardagujas with two trains sent home first: more than the default 90 s.
+    test.setTimeout(300_000);
     mkdirSync(SCREENSHOT_DIR, { recursive: true });
     await page.clock.install({ time: CLOCK_TIME });
 
@@ -409,5 +451,62 @@ test.describe('review screenshots', () => {
       await page.waitForTimeout(800);
       await page.screenshot({ path: `${SCREENSHOT_DIR}/${id}-result.png` });
     }
+  });
+});
+
+test.describe('Balanza on short phones', () => {
+  const SHORT_PHONES = [
+    { width: 375, height: 548 },
+    { width: 320, height: 568 },
+  ];
+
+  for (const viewport of SHORT_PHONES) {
+    // Level 4 has the most figure buttons (5), level 10 the tallest scene (3 clues and the new balance).
+    for (const level of [4, 10]) {
+      test(`Balanza at level ${level} fits ${viewport.width}×${viewport.height} without scrolling`, async ({ page }) => {
+        await page.setViewportSize(viewport);
+        await openBalanceAt(page, level);
+        expect(await page.evaluate(() => document.documentElement.scrollHeight <= window.innerHeight)).toBe(true);
+        expect(await hasNoSidewaysScroll(page)).toBe(true);
+        const buttons = page.locator('[data-game] [data-zone="controls"] button');
+        await expect(buttons).toHaveCount(level === 4 ? 5 : 3);
+        for (const button of await buttons.all()) {
+          const box = (await button.boundingBox())!;
+          expect(box.height).toBeGreaterThanOrEqual(44);
+          expect(box.width).toBeGreaterThanOrEqual(44);
+          expect(box.y + box.height).toBeLessThanOrEqual(viewport.height);
+        }
+        // The whole scene is on screen, above the question.
+        const scene = (await page.getByTestId('balance-challenge').locator('svg').first().boundingBox())!;
+        const prompt = (await page.getByText(/^¿(Cuál pesa más|Hacia dónde se inclina)\?$/).boundingBox())!;
+        expect(scene.y).toBeGreaterThanOrEqual(0);
+        expect(scene.y + scene.height).toBeLessThanOrEqual(prompt.y);
+      });
+    }
+  }
+});
+
+test.describe('level-up notice', () => {
+  test.use({ viewport: { width: 390, height: 844 }, colorScheme: 'dark' });
+
+  test('four right answers in a row in Balanza bring up «¡Nivel 2!»', async ({ page }) => {
+    mkdirSync(SCREENSHOT_DIR, { recursive: true });
+    await openBalanceAt(page, 1);
+    const badge = page.getByTestId('level-up');
+    const marked = page.locator('[data-game] [data-state]');
+    for (let i = 0; i < 4; i++) {
+      await expect(marked).toHaveCount(0);
+      await page.waitForTimeout(250);
+      const answer = await page.getByTestId('balance-challenge').getAttribute('data-answer');
+      await page.locator(`[data-game] [data-choice="${answer}"]`).click();
+    }
+    await expect(badge).toBeVisible();
+    await expect(badge).toContainText('¡Nivel 2!');
+    await expect(page.locator('[data-game]').getByText('Nivel', { exact: true }).locator('xpath=..')).toContainText('2');
+    await page.waitForTimeout(300);
+    await page.screenshot({ path: `${SCREENSHOT_DIR}/balance-level-up.png` });
+    // It never takes a tap: the controls under it still answer.
+    await expect(badge).toHaveCSS('pointer-events', 'none');
+    await expect(badge).toBeHidden({ timeout: 3_000 });
   });
 });

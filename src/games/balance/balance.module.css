@@ -1,0 +1,269 @@
+/*
+ * Balanza in the Luz style. The scene is one SVG that fits the game zone (its box is measured); the controls sit in
+ * GameFrame's bottom zone. Colors come from the Luz tokens (--game, --luz-*) and from each figure's own color.
+ */
+
+/*
+ * Takes the free height of the game zone. The scene is laid over it and fits inside (the SVG keeps its proportions),
+ * so it never adds height of its own: a scene in the flow would push the frame taller than the screen.
+ */
+.box {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+}
+
+.scene {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  animation: drop-in 250ms ease-out both;
+}
+
+@keyframes drop-in {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.divider {
+  stroke: rgba(255, 255, 255, 0.12);
+  stroke-width: 1.5;
+  stroke-dasharray: 3 6;
+  stroke-linecap: round;
+}
+
+/* One balance: a stand, a glowing beam on a pivot, two pans hanging from cradles. */
+.stand {
+  fill: rgba(238, 241, 255, 0.2);
+}
+
+.beam {
+  fill: var(--game);
+  filter: drop-shadow(0 0 4px var(--game));
+  transform: rotate(var(--angle, 0deg));
+  transform-box: view-box;
+  transform-origin: 100px 40px;
+}
+
+.pivot {
+  fill: var(--luz-bg);
+  stroke: var(--game);
+  stroke-width: 2.5;
+}
+
+.pan {
+  transform: translateY(var(--shift, 0px));
+}
+
+/* The new balance tips with a little overshoot when the answer is given. */
+.balance[data-question] .beam,
+.balance[data-question] .pan {
+  transition: transform 450ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.hanger {
+  fill: none;
+  stroke: rgba(238, 241, 255, 0.45);
+  stroke-width: 1.4;
+  stroke-linejoin: round;
+}
+
+.plate {
+  fill: color-mix(in srgb, var(--game) 22%, #141729);
+  stroke: var(--game);
+  stroke-width: 1.5;
+  stroke-linejoin: round;
+}
+
+.figure {
+  stroke: #0b0d1a;
+  stroke-width: 2;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 3px var(--figure));
+}
+
+/* The «?» on the post of a new balance that waits for the answer. */
+.ask circle {
+  fill: var(--luz-bg);
+  stroke: var(--game);
+  stroke-width: 2;
+  filter: drop-shadow(0 0 5px var(--game));
+  animation: ask 1.4s ease-in-out infinite;
+}
+
+.ask text {
+  fill: var(--luz-text);
+  font-size: 16px;
+  font-weight: 800;
+}
+
+@keyframes ask {
+  0%,
+  100% {
+    opacity: 0.75;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Controls: the question over the answer buttons. */
+.controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  width: 100%;
+  max-width: 28rem;
+}
+
+.prompt {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 800;
+  text-align: center;
+}
+
+.figures {
+  display: grid;
+  grid-template-columns: repeat(var(--count, 3), minmax(0, 1fr));
+  gap: 0.6rem;
+  width: 100%;
+}
+
+.outcomes {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.6rem;
+  width: 100%;
+}
+
+.figureButton,
+.outcomeButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--game);
+  font: inherit;
+  font-weight: 700;
+  box-shadow:
+    inset 0 0 0 2px var(--game),
+    0 0 22px color-mix(in srgb, var(--game) 30%, transparent);
+  cursor: pointer;
+  transition:
+    background-color 120ms,
+    box-shadow 120ms;
+}
+
+.figureButton {
+  min-height: 60px;
+  padding: 0.35rem;
+}
+
+.outcomeButton {
+  flex-direction: column;
+  gap: 0.15rem;
+  min-height: 64px;
+  padding: 0.4rem 0.25rem;
+  font-size: 0.95rem;
+}
+
+.figureButton:active,
+.outcomeButton:active {
+  transform: scale(0.96);
+  filter: brightness(1.2);
+}
+
+.icon {
+  width: 34px;
+  height: 34px;
+  filter: drop-shadow(0 0 4px currentColor);
+}
+
+.icon path {
+  stroke: #0b0d1a;
+  stroke-width: 1.8;
+  stroke-linejoin: round;
+}
+
+.outcomeIcon {
+  width: 26px;
+  height: 26px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* After an answer: the chosen button turns green or red, and after a miss the right one turns green. */
+.figureButton[data-state='right'],
+.outcomeButton[data-state='right'],
+.figureButton[data-state='answer'],
+.outcomeButton[data-state='answer'] {
+  background: color-mix(in srgb, var(--luz-ok) 20%, transparent);
+  color: var(--luz-ok);
+  box-shadow:
+    inset 0 0 0 2.5px var(--luz-ok),
+    0 0 26px color-mix(in srgb, var(--luz-ok) 45%, transparent);
+}
+
+.figureButton[data-state='wrong'],
+.outcomeButton[data-state='wrong'] {
+  background: color-mix(in srgb, var(--luz-bad) 18%, transparent);
+  color: var(--luz-bad);
+  box-shadow:
+    inset 0 0 0 2.5px var(--luz-bad),
+    0 0 26px color-mix(in srgb, var(--luz-bad) 45%, transparent);
+}
+
+/* Short phones: smaller buttons, so the scene keeps its room. */
+@media (max-height: 640px) {
+  .figureButton {
+    min-height: 52px;
+  }
+
+  .outcomeButton {
+    min-height: 56px;
+  }
+
+  .icon {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+/* Reduced motion: the scene does not drop in, the new balance does not swing, the «?» does not beat. */
+@media (prefers-reduced-motion: reduce) {
+  .scene {
+    animation: none;
+  }
+
+  .balance[data-question] .beam,
+  .balance[data-question] .pan {
+    transition: none;
+  }
+
+  .ask circle {
+    animation: none;
+  }
+
+  .figureButton:active,
+  .outcomeButton:active {
+    transform: none;
+  }
+}

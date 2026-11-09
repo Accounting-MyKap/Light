@@ -33,3 +33,15 @@ test('every switch gets its button', () => {
     '1',
   ]);
 });
+
+test('what drifts in the air passes behind the trains, the stations and the tunnel, over the ground', () => {
+  const train = { id: 0, station: 0, route: [0], distance: 80, arrived: false };
+  const { container } = render(<Board map={MAP} switches={[0, 0]} trains={[train]} onToggle={() => undefined} />);
+  const layers = [...container.querySelector('[role="group"]')!.children];
+  const index = (selector: string) => layers.findIndex((el) => el.matches(selector) || el.querySelector(selector) !== null);
+  const air = layers.findIndex((el) => el.matches('div[data-theme]'));
+  expect(air).toBeGreaterThan(index('[data-theme] ~ *') === -1 ? 0 : 0);
+  expect(air).toBeGreaterThan(index('g[data-theme]'));
+  expect(air).toBeLessThan(index('[data-train]'));
+  expect(air).toBeLessThan(index('[data-station-id]'));
+});

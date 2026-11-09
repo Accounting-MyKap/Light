@@ -18,6 +18,7 @@
   --area-speed: #b0287f;
   --area-flexibility: #6247d1;
   --area-math: #2a7f1a;
+  --area-logic: #00776a;
   --area-trivia: #b8461b;
   --area-accounting: #0b6bcb;
   --card-bg: #ffffff;
@@ -51,6 +52,7 @@
     --area-speed: #ff5fd2;
     --area-flexibility: #a98bff;
     --area-math: #8dff6a;
+    --area-logic: #00b9a0;
     --area-trivia: #ff7b45;
     --area-accounting: #3399ff;
     --card-bg: rgba(255, 255, 255, 0.045);
@@ -84,6 +86,7 @@
   --area-speed: #b0287f;
   --area-flexibility: #6247d1;
   --area-math: #2a7f1a;
+  --area-logic: #00776a;
   --area-trivia: #b8461b;
   --area-accounting: #0b6bcb;
   --card-bg: #ffffff;
@@ -116,6 +119,7 @@
   --area-speed: #ff5fd2;
   --area-flexibility: #a98bff;
   --area-math: #8dff6a;
+  --area-logic: #00b9a0;
   --area-trivia: #ff7b45;
   --area-accounting: #3399ff;
   --card-bg: rgba(255, 255, 255, 0.045);

@@ -4,7 +4,7 @@ import { useEffect, type ReactNode } from 'react';
 import { playTone } from '../../core/sound';
 import { clearAllData } from '../../data/db';
 import { DEFAULT_SETTINGS, updateSettings, useSettings } from '../../data/settings';
-import { FeedbackProvider, useFeedback, useFeedbackSignal, type FeedbackKind } from './feedback';
+import { FeedbackProvider, useCue, useFeedback, useFeedbackSignal, type FeedbackKind } from './feedback';
 
 vi.mock('../../core/sound');
 // The real hook, unless a test pins the settings (see the re-render test below).
@@ -156,6 +156,43 @@ test('without a provider the sound still plays and nothing breaks', () => {
   expect(() => act(() => result.current('wrong'))).not.toThrow();
   expect(playTone).toHaveBeenCalledExactlyOnceWith('wrong');
   expect(vibrate).toHaveBeenCalledExactlyOnceWith([30, 50, 30]);
+});
+
+test('an answer can bring its own tone instead of the usual one, and keeps its vibration and signal', () => {
+  const wrapper = ({ children }: { children: ReactNode }) => (
+    <FeedbackProvider>
+      <Probe />
+      {children}
+    </FeedbackProvider>
+  );
+  const { result } = renderFeedback(wrapper);
+  act(() => result.current.feedback('correct', 'chime'));
+  expect(playTone).toHaveBeenCalledExactlyOnceWith('chime');
+  expect(vibrate).toHaveBeenCalledExactlyOnceWith(12);
+  expect(screen.getByTestId('signal')).toHaveTextContent(/^correct#\d+$/);
+});
+
+test('a cue plays its tone and its vibration, and publishes no signal', () => {
+  const wrapper = ({ children }: { children: ReactNode }) => (
+    <FeedbackProvider>
+      <Probe />
+      {children}
+    </FeedbackProvider>
+  );
+  const { result } = renderHook(() => useCue(), { wrapper });
+  act(() => result.current('clack', 8));
+  act(() => result.current('whistle'));
+  expect(vi.mocked(playTone).mock.calls).toEqual([['clack'], ['whistle']]);
+  expect(vibrate).toHaveBeenCalledExactlyOnceWith(8);
+  expect(screen.getByTestId('signal')).toHaveTextContent('none');
+});
+
+test('a cue follows the sound and vibration settings', () => {
+  vi.mocked(useSettings).mockReturnValue({ ...DEFAULT_SETTINGS, sound: false, vibration: false });
+  const { result } = renderHook(() => useCue());
+  act(() => result.current('clack', 8));
+  expect(playTone).not.toHaveBeenCalled();
+  expect(vibrate).not.toHaveBeenCalled();
 });
 
 test('without a provider there is no signal', () => {

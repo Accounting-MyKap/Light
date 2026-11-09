@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { act, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { useState, type ReactNode } from 'react';
 import { initI18n } from '../../i18n';
@@ -434,4 +434,72 @@ test('without controls there is no controls zone', () => {
   const { container } = renderFrame();
   expect(container.querySelector('[data-zone="stage"]')).not.toBeNull();
   expect(container.querySelector('[data-zone="controls"]')).toBeNull();
+});
+
+describe('level-up notice', () => {
+  const badge = () => screen.queryByTestId('level-up');
+
+  test('a higher level shows «¡Nivel 4!» and «Más difícil», plays the level-up tone and is announced', async () => {
+    const { playTone } = await import('../../core/sound');
+    vi.mocked(playTone).mockClear();
+    const view = renderFrame({ level: 3 });
+    expect(badge()).toBeNull();
+    view.update({ level: 4 });
+    expect(badge()).toHaveTextContent('¡Nivel 4!');
+    expect(badge()).toHaveTextContent('Más difícil');
+    expect(screen.getByText('Subiste al nivel 4')).toBeInTheDocument();
+    expect(playTone).toHaveBeenCalledWith('levelUp');
+  });
+
+  test('the badge never takes a tap: it lets touches through to the game', () => {
+    const view = renderFrame({ level: 3 });
+    view.update({ level: 4 });
+    expect(badge()).toHaveAttribute('aria-hidden', 'true');
+    expect(badge()?.className).toMatch(/levelUp/);
+  });
+
+  test('the badge goes away after 1.6 s', () => {
+    vi.useFakeTimers();
+    try {
+      const view = renderFrame({ level: 3 });
+      view.update({ level: 4 });
+      expect(badge()).not.toBeNull();
+      act(() => vi.advanceTimersByTime(1_600));
+      expect(badge()).toBeNull();
+    } finally {
+      vi.useRealTimers();
+    }
+  });
+
+  test('nothing at the start of a game, even at a high level', async () => {
+    const { playTone } = await import('../../core/sound');
+    vi.mocked(playTone).mockClear();
+    renderFrame({ level: 7 });
+    expect(badge()).toBeNull();
+    expect(playTone).not.toHaveBeenCalledWith('levelUp');
+  });
+
+  test('a lower level is not announced', () => {
+    const view = renderFrame({ level: 4 });
+    view.update({ level: 3 });
+    expect(badge()).toBeNull();
+    expect(screen.queryByText(/Subiste al nivel/)).toBeNull();
+  });
+
+  test('levelUp={false} turns it off (the quiz)', async () => {
+    const { playTone } = await import('../../core/sound');
+    vi.mocked(playTone).mockClear();
+    const view = renderFrame({ level: 3, levelUp: false });
+    view.update({ level: 4, levelUp: false });
+    expect(badge()).toBeNull();
+    expect(playTone).not.toHaveBeenCalledWith('levelUp');
+  });
+
+  test('each new level restarts the badge with its own number', () => {
+    const view = renderFrame({ level: 3 });
+    view.update({ level: 4 });
+    view.update({ level: 5 });
+    expect(screen.getAllByTestId('level-up')).toHaveLength(1);
+    expect(badge()).toHaveTextContent('¡Nivel 5!');
+  });
 });

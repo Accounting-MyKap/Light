@@ -47,6 +47,11 @@
     "keypad": {
       "delete": "Borrar",
       "ok": "OK"
+    },
+    "levelUp": {
+      "badge": "¡Nivel {{n}}!",
+      "harder": "Más difícil",
+      "announce": "Subiste al nivel {{n}}"
     }
   },
   "games": {
@@ -251,6 +256,7 @@
       "levelStations": "{{n}} estaciones",
       "levelSideTunnel": "túnel lateral",
       "levelMiddleStation": "estación central",
+      "faster": "¡Más rápido! · Nivel {{level}}",
       "practice": {
         "tap": "Toca el cambio (el círculo con flecha) para que el tren rojo vaya a la estación roja, la del círculo",
         "moving": "Ahora el tren avanza solo: cambia la vía antes de que llegue al cambio",
@@ -258,17 +264,92 @@
         "hintYellow": "El tren amarillo va a la estación amarilla, la del cuadrado. Inténtalo otra vez",
         "hintEach": "Cada tren va a la estación de su color y forma. Inténtalo otra vez",
         "recap": "Tienes 90 segundos. Cada tren que llega a su estación suma; si llega a otra, no suma. Van más rápido mientras aciertas. Con teclado: números 1 a 9."
+      },
+      "result": {
+        "title": "Tus trenes",
+        "home": "Trenes a su estación: {{home}} de {{arrived}}",
+        "bestStreak_one": "Mejor racha: {{count}} tren seguido",
+        "bestStreak_other": "Mejor racha: {{count}} trenes seguidos",
+        "worstStation_one": "Donde más fallaste: {{station}} ({{count}} tren)",
+        "worstStation_other": "Donde más fallaste: {{station}} ({{count}} trenes)",
+        "stations": {
+          "circle": "la estación roja del círculo",
+          "square": "la estación amarilla del cuadrado",
+          "triangle": "la estación verde del triángulo",
+          "diamond": "la estación morada del rombo",
+          "star": "la estación naranja de la estrella",
+          "heart": "la estación rosada del corazón",
+          "cross": "la estación azul de la cruz"
+        }
       }
     },
     "star-shower": {
       "title": "Lluvia de estrellas",
       "skill": "Cálculo bajo presión",
       "description": "Resuelve las operaciones de las estrellas antes de que toquen el horizonte.",
-      "instructions": [
-        "Caen estrellas con operaciones. Escribe el resultado con el teclado en pantalla o el de tu computador y pulsa OK (o Enter) para reventarlas.",
-        "El cometa dorado revienta todas las estrellas de la pantalla. Un número equivocado no resta puntos: vuelve a intentarlo.",
-        "Si una estrella toca el horizonte, pierdes una vida y se borran las demás. Al perder 3, termina la partida."
-      ]
+      "practice": {
+        "pop": "Escribe el resultado de la estrella y pulsa OK para reventarla",
+        "falling": "Las estrellas caen: revienta las dos antes de que toquen el horizonte",
+        "comet": "El cometa dorado revienta todas las estrellas: revienta el cometa",
+        "hintFirst": "Ese número no está en el cielo: 3 + 4 = 7. Inténtalo otra vez",
+        "hintWrong": "Ese número no está en ninguna estrella. Inténtalo otra vez",
+        "hintLost": "Si una estrella toca el horizonte, pierdes una vida. Inténtalo otra vez",
+        "recap": "Juegas hasta perder 3 vidas: cada estrella que toca el horizonte quita una. Un número equivocado no resta. Con teclado: escribe y pulsa Enter."
+      }
+    },
+    "balance": {
+      "title": "Balanza",
+      "skill": "Razonamiento lógico",
+      "description": "Deduce qué figura pesa más y hacia dónde se inclinará una balanza nueva.",
+      "heaviest": "¿Cuál pesa más?",
+      "tilt": "¿Hacia dónde se inclina?",
+      "left": "Izquierda",
+      "equal": "Igual",
+      "right": "Derecha",
+      "clues": "Pistas",
+      "names": {
+        "circle": "círculo ámbar",
+        "square": "cuadrado cian",
+        "triangle": "triángulo magenta",
+        "diamond": "rombo lima",
+        "star": "estrella naranja",
+        "hexagon": "hexágono blanco"
+      },
+      "count": {
+        "circle_one": "{{count}} círculo ámbar",
+        "circle_other": "{{count}} círculos ámbar",
+        "square_one": "{{count}} cuadrado cian",
+        "square_other": "{{count}} cuadrados cian",
+        "triangle_one": "{{count}} triángulo magenta",
+        "triangle_other": "{{count}} triángulos magenta",
+        "diamond_one": "{{count}} rombo lima",
+        "diamond_other": "{{count}} rombos lima",
+        "star_one": "{{count}} estrella naranja",
+        "star_other": "{{count}} estrellas naranjas",
+        "hexagon_one": "{{count}} hexágono blanco",
+        "hexagon_other": "{{count}} hexágonos blancos"
+      },
+      "balance": "{{left}} frente a {{right}}: {{outcome}}",
+      "and": " y ",
+      "outcome": {
+        "left": "baja la izquierda",
+        "right": "baja la derecha",
+        "level": "quedan iguales",
+        "unknown": "?"
+      },
+      "levelHeaviest": "{{n}} figuras · ¿Cuál pesa más?",
+      "levelTilt": "{{n}} figuras · ¿Hacia dónde se inclina?",
+      "practice": {
+        "round1": "El lado que baja pesa más. ¿Cuál pesa más?",
+        "round2": "Junta las dos balanzas: ¿cuál pesa más de todas?",
+        "round3": "Una balanza recta pesa igual a los dos lados. ¿Hacia dónde se inclina la nueva?",
+        "round4": "¿Y esta?",
+        "hint1": "El platillo del círculo está más abajo: el círculo pesa más",
+        "hint2": "El círculo pesa más que el cuadrado, y el cuadrado más que el triángulo",
+        "hint3": "Un círculo pesa como dos cuadrados; tres cuadrados pesan más: baja la derecha",
+        "hint4": "Dos círculos pesan como cuatro cuadrados: queda recta",
+        "recap": "Tienes 90 segundos. Cada error resta 15 puntos: piensa, pero sin adivinar. Con teclado: 1–5 para la figura; ←, = y → para la balanza nueva."
+      }
     }
   },
   "play": {

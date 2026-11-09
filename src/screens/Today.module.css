@@ -135,6 +135,7 @@
 .row[data-area='speed'] .next { color: var(--area-speed); }
 .row[data-area='flexibility'] .next { color: var(--area-flexibility); }
 .row[data-area='math'] .next { color: var(--area-math); }
+.row[data-area='logic'] .next { color: var(--area-logic); }
 
 .primary,
 .secondary {

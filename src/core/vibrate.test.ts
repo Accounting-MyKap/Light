@@ -1,4 +1,4 @@
-import { vibrate } from './vibrate';
+import { VIBRATION, vibrate } from './vibrate';
 
 afterEach(() => {
   Reflect.deleteProperty(navigator, 'vibrate');
@@ -9,6 +9,12 @@ test('vibrate passes the pattern to navigator.vibrate', () => {
   Object.defineProperty(navigator, 'vibrate', { value: spy, configurable: true });
   vibrate([30, 50, 30]);
   expect(spy).toHaveBeenCalledExactlyOnceWith([30, 50, 30]);
+});
+
+test('the tick of a switch is one pulse, shorter than the tap of a hit', () => {
+  expect(typeof VIBRATION.tick).toBe('number');
+  expect(VIBRATION.tick).toBeGreaterThan(0);
+  expect(VIBRATION.tick).toBeLessThan(VIBRATION.correct as number);
 });
 
 test('vibrate is a no-op where navigator.vibrate does not exist', () => {
@@ -23,4 +29,9 @@ test('vibrate never throws even if the browser refuses', () => {
     configurable: true,
   });
   expect(() => vibrate(12)).not.toThrow();
+});
+
+test('a level-up has its own pattern', async () => {
+  const { VIBRATION } = await import('./vibrate');
+  expect(VIBRATION.levelUp).toEqual([16, 40, 16, 40, 32]);
 });

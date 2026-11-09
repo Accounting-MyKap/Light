@@ -1,4 +1,5 @@
 import { arrowsGame } from './arrows';
+import { balanceGame } from './balance';
 import { QUIZ_GAME_LIST } from './quiz';
 import { quickMathGame } from './quick-math';
 import { ruleSwitchGame } from './rule-switch';
@@ -16,9 +17,10 @@ const TRAINING_GAME_LIST: readonly GameDefinition[] = [
   quickMathGame,
   switchyardGame,
   starShowerGame,
+  balanceGame,
 ];
 
-/** Every game: the 7 training games first, then the 14 quiz games. */
+/** Every game: the 8 training games first, then the 14 quiz games. */
 export const GAMES: readonly GameDefinition[] = [...TRAINING_GAME_LIST, ...QUIZ_GAME_LIST];
 
 /** The training games (no `quiz`): what the daily plan, the Games screen and the area scores use. */

@@ -171,11 +171,19 @@ function PlaySession({ game, daily }: { game: GameDefinition; daily: string | nu
     if (isResult) window.scrollTo({ top: 0, behavior: 'instant' });
   }, [isResult]);
 
-  // The game runs again and gets the focus back: it was on the pause sheet, which is gone.
+  // The game runs again and gets the focus back: it was on the pause sheet, which is gone. A game that puts it on an
+  // element of its own when it resumes (the quiz: its question, or «Siguiente») keeps it there; any other gets it on the
+  // play region. After the commit, when the game's own effects have already run (a parent's run after its children's):
+  // the focus moves only once, so a screen reader does not announce the region before the question.
+  const [resumes, setResumes] = useState(0);
   const resumeGame = useCallback(() => {
     setPause('off');
-    playRef.current?.focus({ preventScroll: true });
+    setResumes((n) => n + 1);
   }, []);
+  useEffect(() => {
+    const region = playRef.current;
+    if (resumes > 0 && region && !region.contains(document.activeElement)) region.focus({ preventScroll: true });
+  }, [resumes]);
 
   const startPlaying = useCallback(() => {
     finishedRef.current = false;
